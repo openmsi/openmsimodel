@@ -20,7 +20,7 @@ class Process(ProcessOrMeasurement):
     _SpecType = ProcessSpec
     _RunType = ProcessRun
 
-    TEMPLATE: ClassVar[ProcessTemplate]
+    TEMPLATE: ClassVar[ProcessTemplate] 
 
     @property
     def spec(self) -> ProcessSpec:
@@ -32,8 +32,6 @@ class Process(ProcessOrMeasurement):
         '''The underlying process run.'''
         return self._run
     
-    # TODO: INIT FUNCTION
-
     @classmethod
     def from_spec_or_run(
         cls,
@@ -59,7 +57,8 @@ class Process(ProcessOrMeasurement):
 
             if not isinstance(spec, ProcessSpec):
                 raise TypeError('spec must be a ProcessSpec.')
-
+            
+            print(process.spec)
             process.spec = spec
 
             process.spec.name = name

@@ -22,7 +22,7 @@ def out(item):
     fn = '_'.join([item.__class__.__name__, item.name, item.uids['auto']])
     with open(os.path.join(_subdirpath, fn),'w') as fp :
         fp.write(_encoder.thin_dumps(item,indent=3))
-        
+
 def plot_graph(dirpath, mode='run'):
     '''
     creates a NetworkX graph representation of the GEMD relationships by reading every object
@@ -41,8 +41,6 @@ def plot_graph(dirpath, mode='run'):
     for obj in gemd_objects:
         fp =  open(obj, 'r')
         obj_data = json.load(fp)
-        # print(obj_data['type'])
-        # print(obj_data['name'])
         obj_type = obj_data['type']
         if obj_type.startswith('parameter') or obj_type.startswith('condition') or obj_type.startswith('property'):
             nb_disregarded +=1
@@ -56,6 +54,8 @@ def plot_graph(dirpath, mode='run'):
         elif obj_type.startswith('ingredient'): # if node doesn't exist, create?
             if obj_type.endswith(mode):
                 G.add_node(uid, color='blue')
+                # print(obj_data)
+                _encoder.thin_dumps(obj_data, indent=3)
                 process = obj_data['process']['id']
                 material = obj_data['material']['id']
                 G.add_edge(uid, process)
@@ -98,7 +98,7 @@ def plot_graph(dirpath, mode='run'):
     blue_patch = mpatches.Patch(color='blue', label='The blue data')
         
     G_bis = nx.nx_agraph.to_agraph(G)
-    print(type(G_bis))
+    # print(type(G_bis))
     G_bis.layout(prog="dot")
     uid_path = os.path.join(dirpath, '{}_uid_graph.png'.format(mode))
     # legend_elements = [Line2D([0], [0], marker='o', color='blue', label='Female', lw=0,
@@ -126,7 +126,7 @@ def plot_graph(dirpath, mode='run'):
     print("nb of disregarded elements (i.e., templates/specs): {}/{}".format(nb_disregarded, len(gemd_objects)))
     return uid_path, info_path
 
-def test(encoder, subdirpath, terminal_gemd_obj, mode):
+def analyze(encoder, subdirpath, terminal_gemd_obj, mode):
     '''
     runs a series of tests on a set of GEMD objects. It starts by writing them to 
     subdirpath using a recursive function on the terminal gemd object in your worklow, 
@@ -144,6 +144,11 @@ def test(encoder, subdirpath, terminal_gemd_obj, mode):
     _subdirpath = subdirpath
     global _encoder
     _encoder = encoder
-    encoder.thin_dumps(terminal_gemd_obj,indent=3) # this step needs to be run to instantiate
-    recursive_foreach(terminal_gemd_obj, out)
+    if mode == "run":
+        terminal_gemd_obj_entity = terminal_gemd_obj._run
+    else:
+        terminal_gemd_obj_entity = terminal_gemd_obj._spec
+        
+    encoder.thin_dumps(terminal_gemd_obj_entity,indent=3) # this step needs to be run to instantiate
+    recursive_foreach(terminal_gemd_obj_entity, out)
     return plot_graph(subdirpath, mode=mode)

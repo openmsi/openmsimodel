@@ -138,7 +138,16 @@ def update_attrs(
     supplied_attrs = {attr.name: attr for attr in attributes}
 
     for attr_name, attr in supplied_attrs.items():
-        attr.template = attrs[plural][attr_name][attr_dict_key]
+        # print(attr_name)
+        # print(attr)
+        # print("-")
+        # print(plural)
+        # print(attr_name)
+        # print(attr_dict_key)
+        if type(attr) == PropertyAndConditions:
+            attr.property.template = attrs[plural][attr_name][attr_dict_key]
+        else:
+            attr.template = attrs[plural][attr_name][attr_dict_key]
 
     if which in ['spec', 'both']:
         _set_attrs(spec, required_attrs, supplied_attrs, AttrType, replace_all)

@@ -1,6 +1,7 @@
 '''Commonly-used types.'''
 
-from typing import TypeAlias, TypedDict, Union, Optional, Literal, Any
+from typing import TypedDict, Union, Optional, Literal, Any
+from typing_extensions import TypeAlias
 from gemd import (
     MaterialTemplate, ProcessTemplate, MeasurementTemplate,
     MaterialSpec, ProcessSpec, MeasurementSpec,

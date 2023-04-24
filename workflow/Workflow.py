@@ -7,11 +7,12 @@ class Workflow(Folder):
     mode 1: write everything in build_worfklow_model by (a) defining BaseNode/Block objects or (b) calling custom BaseNode/Block objects
     mode 2: write everything using the add_block method
     '''
-    def init(self, path, parent_path, is_last=False):
-        super().__init__(self, path, parent_path, is_last)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args)
         self.blocks = []
         self.terminal_material = None
         self.encoder = GEMDJson()
+        self.output_folder = kwargs['output_folder']
         
     def thin_dumps():
         '''
@@ -32,6 +33,12 @@ class Workflow(Folder):
         '''
         '''
         pass
+    
+    def print_encoded(self, obj):
+        print(self.encoder.dumps(obj, indent=3))
+    
+    def print_thin_encoded(self, obj):
+        print(self.encoder.thin_dumps(obj, indent=3))
     
     def build_model():
         '''

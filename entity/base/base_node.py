@@ -62,7 +62,6 @@ class BaseNode(ABC):
     def __init__(self, name: str, *, notes: Optional[str] = None) -> None:
 
         super().__init__()
-
         self._spec: Spec = self._SpecType(name=name, notes=notes, template=self.TEMPLATE)
         self._run: Run = make_instance(self._spec)
 
