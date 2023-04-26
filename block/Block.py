@@ -7,12 +7,14 @@ class Block():
     '''
     '''
     def __init__(self, 
+             name,
              workflow: Workflow = None,
              ingredients: Optional[list] = [],
              process: Optional[BaseNode] = None,
              material: Optional[Material] = None,
              measurements: Optional[list] = [],
              ):
+        self.name = name
         self.workflow = workflow
         self.ingredients = ingredients
         self.process = process
@@ -20,8 +22,13 @@ class Block():
         self.measurements = measurements
         pass
 
-    def thin_dumps(self):
-        pass
+    def thin_dumps(self, encoder, destination):
+        for ingredient in self.ingredients:
+            ingredient.thin_dumps(encoder, destination)
+        self.process.thin_dumps(encoder, destination)
+        self.material.thin_dumps(encoder, destination)
+        for measurement in self.measurements:
+            measurement.thin_dumps(encoder, destination)
     
     def dumps(self):
         pass
@@ -43,22 +50,10 @@ class Block():
     
     def link_prior(self, prior_block, ingredient_name_to_link):
         # links the prior block's material to current ingredient
-        # print(ingredient_name_to_link)
         for i, _ in enumerate(self.ingredients): 
-            # print('here')
-            # print(i)
-            # print(self.ingredients[i]._run.name)
             if self.ingredients[i]._run.name == ingredient_name_to_link:
-                # if ingredient_name_to_link == 'V Ingredient':
-                #     print('V')
-                #     print(ingredient_name_to_link)
-                #     print(self.workflow.print_thin_encoded(prior_block.material._spec))
-                #     print(self.workflow.print_thin_encoded(prior_block.material._run))
-                #     print("done")
                 self.ingredients[i]._spec.material = prior_block.material._spec
                 self.ingredients[i]._run.material = prior_block.material._run
-                # print("check")
-        # links the 
     
     def link_posterior(self, posterior_block, ingredient_name_to_link):
         # link the posterior block's ingredient to current material

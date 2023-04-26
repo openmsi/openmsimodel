@@ -1,5 +1,6 @@
 from .Folder import Folder
 from gemd.json import GEMDJson
+from collections import defaultdict
 
 #TODO: extend Logging
 class Workflow(Folder):
@@ -9,8 +10,9 @@ class Workflow(Folder):
     '''
     def __init__(self, *args, **kwargs):
         super().__init__(*args)
-        self.blocks = []
-        self.terminal_material = None
+         # blocks and terminal_materials can be overwritten to fit a structure
+        self.blocks = defaultdict()
+        self.terminal_materials = defaultdict()
         self.encoder = GEMDJson()
         self.output_folder = kwargs['output_folder']
         

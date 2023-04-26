@@ -5,14 +5,14 @@ from gemd import MeasurementTemplate
 from entity.base import Measurement
 from entity.base.attributes import AttrsDict, define_attribute, finalize_template
 
-__all__ = ['Weighting']
+__all__ = ['XRD']
 
-class Weighting(Measurement):
-    '''Class representing weighting as a measurement '''
+class XRD(Measurement):
+    '''Class representing SEM as a measurement '''
     
     TEMPLATE: ClassVar[MeasurementTemplate] = MeasurementTemplate(
-        name="Weighting",
-        description='The measurement of weight'
+        name="XRD",
+        description='XRD measurement'
     )
 
     _ATTRS: ClassVar[AttrsDict] = {'conditions': {}, 'parameters': {}, 'properties': {}}

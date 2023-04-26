@@ -5,9 +5,9 @@ from gemd import ProcessTemplate, ParameterTemplate, CategoricalBounds, NominalC
 from entity.base import Process
 from entity.base.attributes import AttrsDict, define_attribute, finalize_template
 
-__all__ = ['MixingProcess']
+__all__ = ['Mixing']
 
-class MixingProcess(Process):
+class Mixing(Process):
     '''Class representing the mixing of materials/elements for an experiment '''
     
     TEMPLATE: ClassVar[ProcessTemplate] = ProcessTemplate(

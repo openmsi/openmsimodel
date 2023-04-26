@@ -10,6 +10,8 @@ from gemd.entity.util import make_instance
 from .typing import Temp, Spec, Run, SpecOrRun, SpecRunLiteral, TagsDict, FileLinksDict
 from .attributes import AttrsDict, validate_which, update_attrs, remove_attrs
 
+import os
+
 __all__ = ['BaseNode']
 
 class BaseNode(ABC):
@@ -344,3 +346,11 @@ class BaseNode(ABC):
     @abstractmethod
     def to_form(self) -> str:
         '''Return a ``str`` specifying how to create a web form for this node.'''
+
+    def thin_dumps(self, encoder, destination):
+        for obj in [self._spec, self._run]:
+            encoder.thin_dumps(obj,indent=3) # trigger uids assignment
+            fn = '_'.join([obj.__class__.__name__, obj.name,obj.uids['auto']])
+            with open(os.path.join(destination, fn),'w') as fp:
+                fp.write(encoder.thin_dumps(obj,indent=3))
+            
