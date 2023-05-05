@@ -123,6 +123,8 @@ class BaseNode(ABC):
 
         self._build_tags_dict(self._spec.tags, tags_dict['spec'], self._TAG_SEP)
         self._build_tags_dict(self._run.tags, tags_dict['run'], self._TAG_SEP)
+        
+        return tags_dict
 
     @staticmethod
     def _build_tags_dict(tags: list[str], parent_dict: dict, tag_sep: str) -> None:
@@ -286,7 +288,7 @@ class BaseNode(ABC):
         Return a str representation of a ``FileLink`` based on its ``filename`` and url``.
         '''
         # TODO: add conversion to standard file path or https
-        return f'{link.filename}{"/" if link.filename.endswith("/") else ""}{link.url}'
+        return f'{link.filename}{"/" if link.filename.endswith("/") else ","}{link.url}'
 
     @classmethod
     def _set_filelinks(
@@ -347,10 +349,23 @@ class BaseNode(ABC):
     def to_form(self) -> str:
         '''Return a ``str`` specifying how to create a web form for this node.'''
 
+    # def thin_dumps(self, encoder, destination):
+    #     for obj in [self._spec, self._run]:
+    #         encoder.thin_dumps(obj,indent=3) # trigger uids assignment
+    #         fn = '_'.join([obj.__class__.__name__, obj.name,obj.uids['auto']])
+    #         with open(os.path.join(destination, fn),'w') as fp:
+    #             fp.write(encoder.thin_dumps(obj,indent=3))
+    
     def thin_dumps(self, encoder, destination):
+        self.dump_loop(encoder.thin_dumps, destination)
+        
+    def dumps(self, encoder, destination):
+        self.dump_loop(encoder.dumps, destination)
+                
+    def dump_loop(self, encoder_func, destination):
         for obj in [self._spec, self._run]:
-            encoder.thin_dumps(obj,indent=3) # trigger uids assignment
+            encoder_func(obj,indent=3) # trigger uids assignment
             fn = '_'.join([obj.__class__.__name__, obj.name,obj.uids['auto']])
             with open(os.path.join(destination, fn),'w') as fp:
-                fp.write(encoder.thin_dumps(obj,indent=3))
+                fp.write(encoder_func(obj,indent=3))
             

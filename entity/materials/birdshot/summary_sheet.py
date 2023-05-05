@@ -5,6 +5,8 @@ from gemd import MaterialTemplate, ParameterTemplate, CategoricalBounds, Nominal
 from entity.base import Material
 from entity.base.attributes import AttrsDict, define_attribute, finalize_template
 
+import pandas as pd
+
 __all__ = ['SummarySheet']
 
 class SummarySheet(Material):
@@ -20,10 +22,13 @@ class SummarySheet(Material):
     # define_attribute(
     #     _ATTRS,
     #     template=ParameterTemplate(
-    #         name='Supplier',
-    #         bounds=CategoricalBounds(categories=[''])
+    #         name='Iteration',
+    #         bounds=CategoricalBounds(categories=['AAA, AAB, AAC'])
     #     ),
     #     default_value=NominalCategorical('')
     # )
 
     finalize_template(_ATTRS, TEMPLATE)
+    
+    
+        

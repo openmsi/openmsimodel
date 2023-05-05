@@ -25,26 +25,32 @@ class Block():
     def thin_dumps(self, encoder, destination):
         for ingredient in self.ingredients:
             ingredient.thin_dumps(encoder, destination)
-        self.process.thin_dumps(encoder, destination)
-        self.material.thin_dumps(encoder, destination)
+        if self.process: self.process.thin_dumps(encoder, destination)
+        if self.material: self.material.thin_dumps(encoder, destination)
         for measurement in self.measurements:
             measurement.thin_dumps(encoder, destination)
     
-    def dumps(self):
-        pass
+    def dumps(self, encoder, destination):
+        for ingredient in self.ingredients:
+            ingredient.dumps(encoder, destination)
+        if self.process: self.process.dumps(encoder, destination)
+        if self.material: self.material.dumps(encoder, destination)
+        for measurement in self.measurements:
+            measurement.dumps(encoder, destination)
     
     def link_within(self):
         # link ingredients to process
-        if self.ingredients is not []:
+        if self.ingredients and self.process:
             for i in self.ingredients:
                 i._spec.process = self.process._spec
                 i._run.process = self.process._run
         # link process to material
-        if self.material is not None:
+        if self.material and self.process:
+            # print(self.material)
             self.material._spec.process = self.process._spec
             self.material._run.process = self.process._run
         # link measurements to material
-        if self.measurements is not []:
+        if self.measurements and self.material:
             for m in self.measurements:
                 m._run.material = self.material._run
     
@@ -52,6 +58,8 @@ class Block():
         # links the prior block's material to current ingredient
         for i, _ in enumerate(self.ingredients): 
             if self.ingredients[i]._run.name == ingredient_name_to_link:
+                # print(self.ingredients[i]._run.name)
+                # print(ingredient_name_to_link)
                 self.ingredients[i]._spec.material = prior_block.material._spec
                 self.ingredients[i]._run.material = prior_block.material._run
     

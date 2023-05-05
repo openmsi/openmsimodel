@@ -27,18 +27,13 @@ class Folder(object):
         return self.root.name
 
     @classmethod
-    def make_tree(cls, root, parent=None, is_last=False, criteria=None):
-        # print("in")
-        # print(self)
-        # print(cls)
-        # print(root)
+    def make_tree(self, cls, root, parent=None, is_last=False, criteria=None):
         root = Path(str(root))
         criteria = criteria or cls._default_criteria
 
         displayable_root = cls(root, 
                                parent, 
-                               is_last, 
-                               output_folder='')
+                               is_last)
         yield displayable_root
 
         # if directory, list of elements in lower case
@@ -51,15 +46,15 @@ class Folder(object):
         for path in children:
             is_last = count == len(children)
             if path.is_dir(): # directory vs file
-                yield from cls.make_tree(root=path,
+                yield from cls.make_tree(cls=cls,
+                                         root=path,
                                          parent=displayable_root,
                                          is_last=is_last,
                                          criteria=criteria)
             else:
-                yield cls(root, 
+                yield cls(path, 
                           displayable_root, 
-                          is_last, 
-                          output_folder='')
+                          is_last)
             count += 1
 
     @classmethod

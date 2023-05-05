@@ -44,7 +44,6 @@ def plot_graph(dirpath, mode='run'):
         fp =  open(obj, 'r')
         obj_data = json.load(fp)
         obj_type = obj_data['type']
-        # print(obj_type)
         if obj_type.startswith('parameter') or obj_type.startswith('condition') or obj_type.startswith('property'):
             nb_disregarded +=1
             continue
@@ -57,9 +56,9 @@ def plot_graph(dirpath, mode='run'):
         elif obj_type.startswith('ingredient'): # if node doesn't exist, create?
             if obj_type.endswith(mode):
                 G.add_node(uid, color='blue')
-                # _encoder.thin_dumps(obj_data, indent=3)
                 process = obj_data['process']['id']
-                material = obj_data['material']['id']
+                if obj_data['material']:
+                    material = obj_data['material']['id']
                 G.add_edge(uid, process)
                 G.add_edge(material, uid)
         elif obj_type.startswith('material'):
@@ -71,10 +70,10 @@ def plot_graph(dirpath, mode='run'):
         elif obj_type.startswith('measurement'):
             if obj_type.endswith(mode):
                 G.add_node(uid, color='purple')
-                # print(obj_data)
                 if 'material' in obj_data:
                     material = obj_data['material']['id']
                     G.add_edge(uid, material)
+
     # legend_elements = [
     #     Line2D([0], [0], marker='o', color='w', label='Label1',markerfacecolor='g', markersize=15),
     #     Line2D([0], [0], marker='o', color='w', label='label2',markerfacecolor='r', markersize=15),        
@@ -104,6 +103,7 @@ def plot_graph(dirpath, mode='run'):
     G_bis = nx.nx_agraph.to_agraph(G)
     G_bis.layout(prog="dot")
     uid_path = os.path.join(dirpath, '{}_uid_graph.png'.format(mode))
+    
     # legend_elements = [Line2D([0], [0], marker='o', color='blue', label='Female', lw=0,
                         #   markerfacecolor='blue', markersize=10),
                 #    Line2D([0], [0], marker='o', color='orange', label='Male', lw=0,
@@ -112,6 +112,7 @@ def plot_graph(dirpath, mode='run'):
     # ax.legend(handles=legend_elements, loc='upper right')
     # plt.show()
     # plt.legend(handles=[red_patch, blue_patch])
+    
     G_bis.draw(uid_path)
     plt.close()
     
