@@ -37,10 +37,11 @@ def plot_graph(dirpath, mode='run'):
     G = nx.DiGraph()
     mapping = defaultdict()
     nb_disregarded = 0
-    # gemd_objects = [os.path.join(dirpath, f) for f in os.listdir(dirpath)]
     gemd_objects = [os.path.join(dp, f) for dp, dn, filenames in os.walk(dirpath) for f in filenames if not f.endswith('.png')]
 
     for obj in gemd_objects:
+        if 'raw_jsons' in obj:
+            continue
         fp =  open(obj, 'r')
         obj_data = json.load(fp)
         obj_type = obj_data['type']

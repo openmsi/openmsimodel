@@ -29,6 +29,7 @@ from entity.measurements.birdshot.sem import SEM
 from entity.measurements.birdshot.ni import NI
 from entity.measurements.birdshot.xrd import XRD
 from entity.measurements.birdshot.tensile import Tensile
+from entity.measurements.birdshot.mounting_and_polishing import MountingAndPolishing
 
 from entity.ingredients.birdshot.summary_sheet_ingredient import SummarySheetIngredient # Not being used
 
@@ -83,6 +84,7 @@ class TAMUWorkflow(Workflow):
             'XRD': XRD,
             'NI': NI,
             'Tensile': Tensile,
+            'Mounting and Polishing ': MountingAndPolishing 
         }
         self.aggregate_or_buy = True 
         
@@ -111,14 +113,15 @@ class TAMUWorkflow(Workflow):
                                                     supplied_links={'Summary Sheet' : self.file_links['Summary Sheet']},
                                                     replace_all=False
                                                     )
-        
-        infer_compositions_block = Block(name='Infer Compositions',
+        infer_compositions_block_name = 'Infer Compositions'
+        infer_compositions_block = Block(name=infer_compositions_block_name,
                        workflow=self, 
                        ingredients=[],
                        process=None,
                        material=inferred_alloy_compositions
                        )
         infer_compositions_block.link_within()
+        self.blocks[infer_compositions_block_name] = infer_compositions_block
         
         count = 0
         path_offset = 2
@@ -142,7 +145,6 @@ class TAMUWorkflow(Workflow):
                         composition_id = split_item_path[path_offset+4]
                 else:
                     composition_id = split_item_path[path_offset+3]
-                # self.blocks[composition_id][fabrication_method][batch][block1.name] = block1
                 self.blocks[composition_id][fabrication_method][batch][infer_compositions_block.name] = infer_compositions_block
                 if ((item.depth == 4 and not is_ded) or (item.depth == 5 and is_ded)): 
                     self.setup_subfolder(composition_id, batch, fabrication_method)
@@ -162,10 +164,11 @@ class TAMUWorkflow(Workflow):
                        material=summary_sheet_material
                        )
         
+        # many to one
         for composition_id in self.terminal_blocks.keys():
             for fabrication_method in self.terminal_blocks[composition_id].keys():
-                for batch_id in self.terminal_blocks[composition_id][fabrication_method].keys():
-                    terminal_blocks = self.terminal_blocks[composition_id][fabrication_method][batch_id]
+                for batch in self.terminal_blocks[composition_id][fabrication_method].keys():
+                    terminal_blocks = self.terminal_blocks[composition_id][fabrication_method][batch]
                     for terminal_block in terminal_blocks:
                         ingredient_name = "{} Ingredient".format(terminal_block.material._run.name)
                         ingredient = Ingredient(ingredient_name)
@@ -184,23 +187,27 @@ class TAMUWorkflow(Workflow):
                        process=infer_compositions_process,
                        material=None
                        )
+        
         infer_next_compositions_block.link_within()
-        infer_next_compositions_block.link_prior(aggregate_summary_sheet_block, ingredient_name_to_link=summary_sheet_ingredient_name)
+        infer_next_compositions_block.link_prior(aggregate_summary_sheet_block, ingredient_name_to_link=summary_sheet_ingredient._run.name)
         for composition_id in self.terminal_blocks.keys():
             for fabrication_method in self.terminal_blocks[composition_id].keys():
-                for batch_id in self.terminal_blocks[composition_id][fabrication_method].keys():
+                for batch in self.terminal_blocks[composition_id][fabrication_method].keys():
                     self.blocks[composition_id][fabrication_method][batch][infer_next_compositions_block.name] = infer_next_compositions_block
+                    self.terminal_blocks[composition_id][fabrication_method][batch] = infer_next_compositions_block
         
     def process(self, item_path, composition_id, batch, fabrication_method, inferred_alloy_compositions, prior_block):
             
             blocks = []
             fabrication_method_lowercase = fabrication_method.lower()
-            processing_details = json.load(open(os.path.join(item_path, '{}-processing-details-v1.json'.format(fabrication_method_lowercase))))
-            synthesis_details = json.load(open(os.path.join(item_path, '{}-synthesis-details-v1.json'.format(fabrication_method_lowercase))))
-            traveler = json.load(open(os.path.join(item_path, '{}-traveler-v1.json'.format(fabrication_method_lowercase))))
-            
-            # mat_composition = traveler['data']['Material Composition']
-            yymm = traveler['data']['Sample ID']['Year & Month']
+            yymm = None
+            try:
+                processing_details = json.load(open(os.path.join(item_path, '{}-processing-details-v1.json'.format(fabrication_method_lowercase))))
+                synthesis_details = json.load(open(os.path.join(item_path, '{}-synthesis-details-v1.json'.format(fabrication_method_lowercase))))
+                traveler = json.load(open(os.path.join(item_path, '{}-traveler-v1.json'.format(fabrication_method_lowercase))))
+                yymm = traveler['data']['Sample ID']['Year & Month']
+            except:
+                pass
             
             common_name, alloy_common_name, common_tags = self.return_common_items(composition_id, fabrication_method, batch, yymm)
             
@@ -237,11 +244,7 @@ class TAMUWorkflow(Workflow):
                                                     supplied_links={child: item_path_file_link},
                                                     replace_all=False
                                                     )
-            # print(select_composition_process.run.file_links)
-            # print(composition_material.run.file_links)
-            # print(composition_material.run.tags)
-            # print(select_composition_process.run.tags)
-            # exit()
+
             block1 = Block(name="Selecting Composition",
                 workflow=self, 
                 ingredients=[inferred_alloy_compositions_ingredient],
@@ -253,6 +256,7 @@ class TAMUWorkflow(Workflow):
             self.blocks[composition_id][fabrication_method][batch][block1.name] = block1
             
             # block 2: Weighting + aggregating (or buying) materials 
+            # one to many
             composition_elements = []
             parallel_block2s = []
             composition_ingredient_name = '{} Ingredient'.format(composition_material._spec.name)
@@ -364,11 +368,21 @@ class TAMUWorkflow(Workflow):
                         )
         block7.link_within()
         block7.link_prior(block6, ingredient_name_to_link=forged_alloy_ingredient_name) 
-        
+        # print("here")
+        # print(block7)
         self.blocks[composition_id][fabrication_method][batch][block7.name] = block7
-        
         self.terminal_blocks[composition_id][fabrication_method][batch] = block7
-        
+    
+    def link_prior(self, workflow):
+        for composition_id in workflow.terminal_blocks.keys():
+            for fabrication_method in workflow.terminal_blocks[composition_id].keys():
+                for batch in workflow.terminal_blocks[composition_id][fabrication_method].keys():
+                    terminal_block = workflow.terminal_blocks[composition_id][fabrication_method][batch]
+                    self.blocks['Infer Compositions'].material._spec.process = terminal_block.process._spec
+                    self.blocks['Infer Compositions'].material._run.process = terminal_block.process._run
+                    
+                    # terminal_block.link_posterior(workflow.blocks['Infer Compositions'], ingredient_name_to_link=)
+     
     def process_measurement(self, item, item_path, composition_id, batch, fabrication_method):
         not_empty = False
         # check that there is at least one file (!= folder) inside of the item folder
@@ -398,6 +412,8 @@ class TAMUWorkflow(Workflow):
                 measurements=[measurement]
             )
             block.link_within()
+            print(item_path)
+            print(self.blocks[composition_id][fabrication_method][batch]['Setting up of Traveler'])
             block.link_prior(self.blocks[composition_id][fabrication_method][batch]['Setting up of Traveler'], ingredient_name_to_link=traveler_ingredient_name)
             self.blocks[composition_id][fabrication_method][batch][block.name] = block
 
@@ -412,7 +428,9 @@ class TAMUWorkflow(Workflow):
     def return_common_items(self, composition_id, fabrication_method, batch, yymm=None):
         common_name = 'composition {} with {} in batch {}'.format(composition_id, fabrication_method, batch)
         alloy_common_name = 'Alloy ({})'.format(common_name)
-        common_tags = (("composition_id", composition_id), ("yymm", yymm), ("batch", batch), ("fabrication_method", fabrication_method))
+        common_tags = (("composition_id", composition_id), ("batch", batch), ("fabrication_method", fabrication_method))
+        if yymm:
+            common_tags += (("yymm", yymm))
         return common_name, alloy_common_name, common_tags
     
     def setup_subfolder(self, composition_id, batch, fabrication_method):
@@ -433,7 +451,7 @@ class TAMUWorkflow(Workflow):
         os.makedirs(raw_jsons_dirpath)
         os.makedirs(thin_jsons_dirpath)
     
-    def thin_dumps_obj(self, obj):
+    def thin_dumps_single_obj(self, obj):
         self.thin_dumps_obj_dest = os.path.join(self.output_folder, obj._run.name)
         if os.path.exists(self.thin_dumps_obj_dest):
             shutil.rmtree(self.thin_dumps_obj_dest)
@@ -442,7 +460,6 @@ class TAMUWorkflow(Workflow):
             recursive_foreach(_obj, self.out)
         plot_graph(self.thin_dumps_obj_dest)
         plot_graph(self.thin_dumps_obj_dest, mode='spec')
-        # recursive_foreach(obj, obj.thin_dumps)
     
     def out(self, item):
         '''
@@ -454,27 +471,33 @@ class TAMUWorkflow(Workflow):
             fp.write(self.encoder.thin_dumps(item,indent=3))
             
     def thin_dumps(self):
-        self.dump_loop("thin")
+        self.dump_loop(mode="thin")
 
     def dumps(self):
-        self.dump_loop("raw")
+        self.dump_loop(mode="raw")
     
     def dump_loop(self, mode="thin"):
         for composition_id in self.gen_compositions():
             composition_id_path = os.path.join(self.output_folder, composition_id)
             for fabrication_method in self.blocks[composition_id].keys():
+                if fabrication_method == "DED":
+                    continue
                 fabrication_method_path = os.path.join(composition_id_path, fabrication_method)
                 for batch in self.blocks[composition_id][fabrication_method].keys():
                     _destination = os.path.join(fabrication_method_path, batch)
                     if mode == "raw":
                         folder_name = 'raw_jsons'
-                        
-                        break
-                    else:
-                        folder_name = 'raw_jsons'
+                        destination = os.path.join(_destination, folder_name)
+                        if self.terminal_blocks[composition_id][fabrication_method][batch]:
+                            self.terminal_blocks[composition_id][fabrication_method][batch].dumps(self.encoder, destination)
+                        continue
+                    folder_name = 'thin_jsons'
                     destination = os.path.join(_destination, folder_name)
                     for block_name, block in self.blocks[composition_id][fabrication_method][batch].items(): 
                         block.thin_dumps(self.encoder, destination)
+                    # break
+                # break
+            # break
                             
     
     def thin_plots(self):

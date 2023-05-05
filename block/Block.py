@@ -46,7 +46,6 @@ class Block():
                 i._run.process = self.process._run
         # link process to material
         if self.material and self.process:
-            # print(self.material)
             self.material._spec.process = self.process._spec
             self.material._run.process = self.process._run
         # link measurements to material
@@ -57,9 +56,9 @@ class Block():
     def link_prior(self, prior_block, ingredient_name_to_link):
         # links the prior block's material to current ingredient
         for i, _ in enumerate(self.ingredients): 
+            # print(ingredient_name_to_link)
+            # print(self.ingredients[i]._run.name)
             if self.ingredients[i]._run.name == ingredient_name_to_link:
-                # print(self.ingredients[i]._run.name)
-                # print(ingredient_name_to_link)
                 self.ingredients[i]._spec.material = prior_block.material._spec
                 self.ingredients[i]._run.material = prior_block.material._run
     
