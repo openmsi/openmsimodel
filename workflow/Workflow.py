@@ -12,7 +12,7 @@ class Workflow(Folder):
         super().__init__(*args)
          # blocks and terminal_materials can be overwritten to fit a structure
         self.blocks = defaultdict()
-        self.terminal_materials = defaultdict()
+        self.terminal_blocks = defaultdict()
         self.encoder = GEMDJson()
         self.output_folder = kwargs['output_folder']
         

@@ -19,60 +19,60 @@ class Composition(Material):
 
     _ATTRS: ClassVar[AttrsDict] = {'properties': {}}
 
-    define_attribute(
-        _ATTRS,
-        template=PropertyTemplate(
-            'Al',
-            bounds=RealBounds(0,100,''),
-            description='Percentage of the total composition that Al takes'
-        ),
-        default_value=NominalReal(0.0,'')
-    )
-    define_attribute(
-        _ATTRS,
-        template=PropertyTemplate(
-            'Cr',
-            bounds=RealBounds(0,100,''),
-            description='Percentage of the total composition that Cr takes'
-        ),
-        default_value=NominalReal(0.0,'')
-    )
-    define_attribute(
-        _ATTRS,
-        template=PropertyTemplate(
-            'Co',
-            bounds=RealBounds(0,100,''),
-            description='Percentage of the total composition that Co takes'
-        ),
-        default_value=NominalReal(0.0,'')
-    )
-    define_attribute(
-        _ATTRS,
-        template=PropertyTemplate(
-            'Fe',
-            bounds=RealBounds(0,100,''),
-            description='Percentage of the total composition that Fe takes'
-        ),
-        default_value=NominalReal(0.0,'')
-    )
-    define_attribute(
-        _ATTRS,
-        template=PropertyTemplate(
-            'Ni',
-            bounds=RealBounds(0,100,''),
-            description='Percentage of the total composition that Ni takes'
-        ),
-        default_value=NominalReal(0.0,'')
-    )
-    define_attribute(
-        _ATTRS,
-        template=PropertyTemplate(
-            'V',
-            bounds=RealBounds(0,100,''),
-            description='Percentage of the total composition that V takes'
-        ),
-        default_value=NominalReal(0.0,'')
-    )
+    # define_attribute(
+    #     _ATTRS,
+    #     template=PropertyTemplate(
+    #         'Al',
+    #         bounds=RealBounds(0,100,''),
+    #         description='Percentage of the total composition that Al takes'
+    #     ),
+    #     default_value=NominalReal(0.0,'')
+    # )
+    # define_attribute(
+    #     _ATTRS,
+    #     template=PropertyTemplate(
+    #         'Cr',
+    #         bounds=RealBounds(0,100,''),
+    #         description='Percentage of the total composition that Cr takes'
+    #     ),
+    #     default_value=NominalReal(0.0,'')
+    # )
+    # define_attribute(
+    #     _ATTRS,
+    #     template=PropertyTemplate(
+    #         'Co',
+    #         bounds=RealBounds(0,100,''),
+    #         description='Percentage of the total composition that Co takes'
+    #     ),
+    #     default_value=NominalReal(0.0,'')
+    # )
+    # define_attribute(
+    #     _ATTRS,
+    #     template=PropertyTemplate(
+    #         'Fe',
+    #         bounds=RealBounds(0,100,''),
+    #         description='Percentage of the total composition that Fe takes'
+    #     ),
+    #     default_value=NominalReal(0.0,'')
+    # )
+    # define_attribute(
+    #     _ATTRS,
+    #     template=PropertyTemplate(
+    #         'Ni',
+    #         bounds=RealBounds(0,100,''),
+    #         description='Percentage of the total composition that Ni takes'
+    #     ),
+    #     default_value=NominalReal(0.0,'')
+    # )
+    # define_attribute(
+    #     _ATTRS,
+    #     template=PropertyTemplate(
+    #         'V',
+    #         bounds=RealBounds(0,100,''),
+    #         description='Percentage of the total composition that V takes'
+    #     ),
+    #     default_value=NominalReal(0.0,'')
+    # )
     
 
     finalize_template(_ATTRS, TEMPLATE)

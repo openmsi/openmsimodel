@@ -130,7 +130,7 @@ def update_attrs(
     validate_which(which)
 
     required_attrs = _required_attrs(attrs, AttrType, attr_dict_key, plural)
-
+    
     for attr in attributes:
         if attr.name not in attrs[plural]:
             raise ValueError(f'{singular.capitalize()} "{attr.name}" is not supported.')
