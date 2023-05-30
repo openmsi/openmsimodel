@@ -465,8 +465,6 @@ class TAMUWorkflow(Workflow):
                 replace_all=False,
             )
             weighting_measurement._run.source = weighting_performed_source
-            # weighting_measurement._run.file_links = []
-            # composition_element_material._run.measurements.append()
 
             composition_elements.append(composition_element_material)
             block2 = Block(
@@ -553,17 +551,23 @@ class TAMUWorkflow(Workflow):
             arc_melting_metadata["Finish Date"],
         )
         arc_melting_parameters = synthesis_details["data"]["Arc Melting"]["  "]
-        arc_melting_tags = ()
 
-        def set(arc_melting_tags):
+        def gen_arc_melting_tags():
+            arc_melting_tags = ()
             for name in ["3 Part Sections", "Full Ingot"]:
                 _d = synthesis_details["data"]["Arc Melting"][name]
                 for key, value in _d.items():
                     tag_name = "{}::{}".format(name, key)
-                    arc_melting_tags += (tag_name, value)
+                    arc_melting_tags = ((tag_name, str(value)),) + arc_melting_tags
+            arc_melting_tags = (
+                ("start_date", arc_melting_metadata["Start Date"]),
+                ("finish_date", arc_melting_metadata["Finish Date"]),
+                ("time_spent", str(arc_melting_metadata["Time Spent"])),
+            ) + arc_melting_tags
             return arc_melting_tags
 
-        set(arc_melting_tags)
+        arc_melting_tags = gen_arc_melting_tags()
+        print(arc_melting_tags)
 
         alloy_ingredient_name = "{} Ingredient".format(alloy_common_name)
         alloy_ingredient = Ingredient(alloy_ingredient_name)
@@ -575,6 +579,22 @@ class TAMUWorkflow(Workflow):
             replace_all=False,
         )
 
+        for attribute_name, attribue_value in arc_melting_parameters.items():
+            if type(attribue_value) == str:
+                value = NominalCategorical(attribue_value)
+            else:
+                unit = ""
+                if attribute_name == "Initial Purging Times":
+                    unit = "hour"
+                value = NominalReal(attribue_value, unit)
+            arc_melting_process._update_attributes(
+                AttrType=Parameter,
+                attributes=(
+                    Parameter(attribute_name, value=value, origin="specified"),
+                ),
+                which="run",
+                replace_all=False,
+            )
         arc_melting_process._run.source = arc_melting_performed_source
 
         melted_alloy_material = Alloy("Arc Melted {}".format(alloy_common_name))
@@ -595,7 +615,7 @@ class TAMUWorkflow(Workflow):
                         file_links=[],
                     ),
                     conditions=[],
-                )
+                ),
             ),
             which="spec",
             replace_all=False,
@@ -628,12 +648,6 @@ class TAMUWorkflow(Workflow):
         )
         weighting_alloy_measurement._run.source = arc_melting_performed_source
 
-        print(melted_alloy_material._run.tags)
-        print(arc_melting_process._run.tags)
-        # print(melted_alloy_material._run.properties)
-        print(weighting_alloy_measurement._run.properties)
-
-        # exit()
         block4 = Block(
             name="Arc Melting of Alloy",
             workflow=self,
@@ -645,18 +659,41 @@ class TAMUWorkflow(Workflow):
         block4.link_within()
         block4.link_prior(prior_block, ingredient_name_to_link=alloy_ingredient_name)
 
-        # exit()
-
         self.blocks[composition_id][fabrication_method][batch][block4.name] = block4
 
+        print(self.print_thin_encoded(synthesis_details))
+        print(self.print_thin_encoded(processing_details))
+
         # block 5
+        homogenization_metadata = processing_details["data"]["Homogenization"][
+            "Process Overview"
+        ]
+        homogenization_performed_source = PerformedSource(
+            homogenization_metadata["Completed By"],
+            homogenization_metadata["Finish Date"],
+        )
+        homogenization_parameters = synthesis_details["data"]["Arc Melting"][
+            "Thermal Conditions"
+        ]
+        homogenization_parameters_2 = synthesis_details["data"]["Arc Melting"][
+            "Purging Sequence Pressure"
+        ]
+
+        homogenization_tags = (
+            ("start_date", homogenization_metadata["Start Date"]),
+            ("finish_date", homogenization_metadata["Finish Date"]),
+            ("time_spent", str(homogenization_metadata["Time Spent"])),
+        )
+
         melted_alloy_ingredient_name = "Arc Melted {} Ingredient".format(
             alloy_common_name
         )
         melted_alloy_ingredient = Ingredient(melted_alloy_ingredient_name)
+        tmp_tags = common_tags + homogenization_tags
         homogenization_process = Homogenization(
             "Homogenizing {}".format(alloy_common_name)
         )
+
         homogenized_alloy_material = Alloy("Homogenized {}".format(alloy_common_name))
         block5 = Block(
             name="Homogenization of Alloy",

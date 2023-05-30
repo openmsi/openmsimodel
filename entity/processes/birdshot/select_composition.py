@@ -1,30 +1,27 @@
 from typing import ClassVar
 
-from gemd import ProcessTemplate, ParameterTemplate, CategoricalBounds, NominalCategorical
+from gemd import (
+    ProcessTemplate,
+    ParameterTemplate,
+    CategoricalBounds,
+    NominalCategorical,
+)
 
 from entity.base import Process
 from entity.base.attributes import AttrsDict, define_attribute, finalize_template
 
-__all__ = ['SelectComposition']
+__all__ = ["SelectComposition"]
+
 
 class SelectComposition(Process):
-    '''Class representing the selection of a composition among the choices '''
-    
+    """Class representing the selection of a composition among the choices"""
+
     TEMPLATE: ClassVar[ProcessTemplate] = ProcessTemplate(
-        name= "Select Composition",
-        description='''Selecting a composition from suggested compositions by Bayesian inference
-                '''
+        name="Select Composition",
+        description="""Selecting a composition from suggested compositions by Bayesian inference
+                """,
     )
 
-    _ATTRS: ClassVar[AttrsDict] = {'conditions': {}, 'parameters': {}}
-
-    # define_attribute(
-    #     _ATTRS,
-    #     template=ParameterTemplate(
-    #         name='Supplier',
-    #         bounds=CategoricalBounds(categories=[''])
-    #     ),
-    #     default_value=NominalCategorical('')
-    # )
+    _ATTRS: ClassVar[AttrsDict] = {"conditions": {}, "parameters": {}}
 
     finalize_template(_ATTRS, TEMPLATE)
