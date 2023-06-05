@@ -193,7 +193,7 @@ class TAMUWorkflow(Workflow):
                         item, item_path, composition_id, batch, fabrication_method
                     )
 
-        # aggregate summary block
+        # block
         aggregate_summary_sheet_process = AggregateSummarySheet(
             "Aggregate summary sheet"
         )
@@ -206,28 +206,30 @@ class TAMUWorkflow(Workflow):
             material=summary_sheet_material,
         )
 
-        # many to one
-        for composition_id in self.terminal_blocks.keys():
-            for fabrication_method in self.terminal_blocks[composition_id].keys():
-                for batch in self.terminal_blocks[composition_id][
-                    fabrication_method
-                ].keys():
-                    terminal_blocks = self.terminal_blocks[composition_id][
+        def link_traveler_samples_to_summary_sheet():
+            for composition_id in self.terminal_blocks.keys():
+                for fabrication_method in self.terminal_blocks[composition_id].keys():
+                    for batch in self.terminal_blocks[composition_id][
                         fabrication_method
-                    ][batch]
-                    for terminal_block in terminal_blocks:
-                        ingredient_name = "{} Ingredient".format(
-                            terminal_block.material._run.name
-                        )
-                        ingredient = Ingredient(ingredient_name)
-                        aggregate_summary_sheet_block.ingredients.append(ingredient)
-                        aggregate_summary_sheet_block.link_within()
-                        aggregate_summary_sheet_block.link_prior(
-                            terminal_block, ingredient_name_to_link=ingredient_name
-                        )
-                    self.blocks[composition_id][fabrication_method][batch][
-                        aggregate_summary_sheet_block.name
-                    ] = aggregate_summary_sheet_block
+                    ].keys():
+                        terminal_blocks = self.terminal_blocks[composition_id][
+                            fabrication_method
+                        ][batch]
+                        for terminal_block in terminal_blocks:
+                            ingredient_name = "{} Ingredient".format(
+                                terminal_block.material._run.name
+                            )
+                            ingredient = Ingredient(ingredient_name)
+                            aggregate_summary_sheet_block.ingredients.append(ingredient)
+                            aggregate_summary_sheet_block.link_within()
+                            aggregate_summary_sheet_block.link_prior(
+                                terminal_block, ingredient_name_to_link=ingredient_name
+                            )
+                        self.blocks[composition_id][fabrication_method][batch][
+                            aggregate_summary_sheet_block.name
+                        ] = aggregate_summary_sheet_block
+
+        link_traveler_samples_to_summary_sheet()
 
         # BO block
         summary_sheet_ingredient_name = aggregate_summary_sheet_block.material._run.name
@@ -250,17 +252,21 @@ class TAMUWorkflow(Workflow):
             aggregate_summary_sheet_block,
             ingredient_name_to_link=summary_sheet_ingredient._run.name,
         )
-        for composition_id in self.terminal_blocks.keys():
-            for fabrication_method in self.terminal_blocks[composition_id].keys():
-                for batch in self.terminal_blocks[composition_id][
-                    fabrication_method
-                ].keys():
-                    self.blocks[composition_id][fabrication_method][batch][
-                        infer_next_compositions_block.name
-                    ] = infer_next_compositions_block
-                    self.terminal_blocks[composition_id][fabrication_method][
-                        batch
-                    ] = infer_next_compositions_block
+
+        def set_terminal_blocks():
+            for composition_id in self.terminal_blocks.keys():
+                for fabrication_method in self.terminal_blocks[composition_id].keys():
+                    for batch in self.terminal_blocks[composition_id][
+                        fabrication_method
+                    ].keys():
+                        self.blocks[composition_id][fabrication_method][batch][
+                            infer_next_compositions_block.name
+                        ] = infer_next_compositions_block
+                        self.terminal_blocks[composition_id][fabrication_method][
+                            batch
+                        ] = infer_next_compositions_block
+
+        set_terminal_blocks()
 
     def process(
         self,
@@ -271,42 +277,46 @@ class TAMUWorkflow(Workflow):
         inferred_alloy_compositions,
         prior_block,
     ):
-        blocks = []
         fabrication_method_lowercase = fabrication_method.lower()
         yymm = None
-        try:
-            processing_details = json.load(
-                open(
-                    os.path.join(
-                        item_path,
-                        "{}-processing-details-v1.json".format(
-                            fabrication_method_lowercase
-                        ),
-                    )
-                )
-            )
-            synthesis_details = json.load(
-                open(
-                    os.path.join(
-                        item_path,
-                        "{}-synthesis-details-v1.json".format(
-                            fabrication_method_lowercase
-                        ),
-                    )
-                )
-            )
-            traveler = json.load(
-                open(
-                    os.path.join(
-                        item_path,
-                        "{}-traveler-v1.json".format(fabrication_method_lowercase),
-                    )
-                )
-            )
-            yymm = traveler["data"]["Sample ID"]["Year & Month"]
 
-        except:
-            pass
+        def read_details():
+            try:
+                processing_details = json.load(
+                    open(
+                        os.path.join(
+                            item_path,
+                            "{}-processing-details-v1.json".format(
+                                fabrication_method_lowercase
+                            ),
+                        )
+                    )
+                )
+                synthesis_details = json.load(
+                    open(
+                        os.path.join(
+                            item_path,
+                            "{}-synthesis-details-v1.json".format(
+                                fabrication_method_lowercase
+                            ),
+                        )
+                    )
+                )
+                traveler = json.load(
+                    open(
+                        os.path.join(
+                            item_path,
+                            "{}-traveler-v1.json".format(fabrication_method_lowercase),
+                        )
+                    )
+                )
+                yymm = traveler["data"]["Sample ID"]["Year & Month"]
+
+            except:
+                pass
+            return processing_details, synthesis_details
+
+        processing_details, synthesis_details = read_details()
 
         common_name, alloy_common_name, common_tags = self.return_common_items(
             composition_id, fabrication_method, batch, yymm
@@ -321,49 +331,57 @@ class TAMUWorkflow(Workflow):
         )
         select_composition_process = SelectComposition("Select {}".format(common_name))
         composition_material = Composition(common_name)
-        composition_tags = tuple(
-            [
-                (element_name, str(element_percentage))
-                for element_name, element_percentage in self.measurements[
-                    composition_id
-                ]["Target Composition, at.%"].items()
-            ]
-        )
-        tmp_tags = common_tags + composition_tags
-        select_composition_process._set_tags(
-            tags=tmp_tags,
-            spec_or_run=select_composition_process.run,
-            replace_all=False,
-        )
-        composition_material._set_tags(
-            tags=tmp_tags,
-            spec_or_run=composition_material.run,
-            replace_all=False,
-        )
-        item_path_file_link = FileLink(filename="root", url=item_path)
-        select_composition_process._set_filelinks(
-            spec_or_run=select_composition_process.run,
-            supplied_links={"root": item_path_file_link},
-            replace_all=False,
-        )
-        composition_material._set_filelinks(
-            spec_or_run=composition_material.run,
-            supplied_links={"root": item_path_file_link},
-            replace_all=False,
-        )
-        for child in os.listdir(item_path):
-            child_path = os.path.join(item_path, child)
-            item_path_file_link = FileLink(filename=child, url=child_path)
+
+        def set_composition_material_and_select_composition_process_params_and_tags():
+            composition_tags = tuple(
+                [
+                    (element_name, str(element_percentage))
+                    for element_name, element_percentage in self.measurements[
+                        composition_id
+                    ]["Target Composition, at.%"].items()
+                ]
+            )
+            tmp_tags = common_tags + composition_tags
+            select_composition_process._set_tags(
+                tags=tmp_tags,
+                spec_or_run=select_composition_process.run,
+                replace_all=False,
+            )
+            composition_material._set_tags(
+                tags=tmp_tags,
+                spec_or_run=composition_material.run,
+                replace_all=False,
+            )
+            item_path_file_link = FileLink(filename="root", url=item_path)
             select_composition_process._set_filelinks(
                 spec_or_run=select_composition_process.run,
-                supplied_links={child: item_path_file_link},
+                supplied_links={"root": item_path_file_link},
                 replace_all=False,
             )
             composition_material._set_filelinks(
                 spec_or_run=composition_material.run,
-                supplied_links={child: item_path_file_link},
+                supplied_links={"root": item_path_file_link},
                 replace_all=False,
             )
+            for child in os.listdir(item_path):
+                child_path = os.path.join(item_path, child)
+                item_path_file_link = FileLink(filename=child, url=child_path)
+                select_composition_process._set_filelinks(
+                    spec_or_run=select_composition_process.run,
+                    supplied_links={child: item_path_file_link},
+                    replace_all=False,
+                )
+                composition_material._set_filelinks(
+                    spec_or_run=composition_material.run,
+                    supplied_links={child: item_path_file_link},
+                    replace_all=False,
+                )
+
+                return composition_tags
+
+        composition_tags = (
+            set_composition_material_and_select_composition_process_params_and_tags()
+        )
 
         block1 = Block(
             name="Selecting Composition",
@@ -401,50 +419,51 @@ class TAMUWorkflow(Workflow):
             )
 
             preparation_metadata = synthesis_details["data"]["Material Preparation"][""]
-            target_mass = synthesis_details["data"]["Material Preparation"][
-                "Target Mass"
-            ][element_name]
-            weighted_mass = synthesis_details["data"]["Material Preparation"][
-                "Weighed Mass"
-            ][element_name]
             weighting_performed_source = PerformedSource(
                 preparation_metadata["Completed By"],
                 preparation_metadata["Finish Date"],
             )
 
-            composition_element_material._update_attributes(
-                AttrType=PropertyAndConditions,
-                attributes=(
-                    PropertyAndConditions(
-                        property=Property(
-                            "Composition Percentage",
-                            value=NominalReal(float(element_property), ""),
-                            origin="predicted",
-                            notes="",
-                            file_links=[],
+            def set_composition_element_material_params_and_tags():
+                target_mass = synthesis_details["data"]["Material Preparation"][
+                    "Target Mass"
+                ][element_name]
+
+                composition_element_material._update_attributes(
+                    AttrType=PropertyAndConditions,
+                    attributes=(
+                        PropertyAndConditions(
+                            property=Property(
+                                "Composition Percentage",
+                                value=NominalReal(float(element_property), ""),
+                                origin="predicted",
+                                notes="",
+                                file_links=[],
+                            ),
+                            conditions=[],
                         ),
-                        conditions=[],
-                    ),
-                    PropertyAndConditions(
-                        property=Property(
-                            "Target Mass",
-                            value=NominalReal(float(target_mass), "g"),
-                            origin="computed",
-                            notes="",
-                            file_links=[],
+                        PropertyAndConditions(
+                            property=Property(
+                                "Target Mass",
+                                value=NominalReal(float(target_mass), "g"),
+                                origin="computed",
+                                notes="",
+                                file_links=[],
+                            ),
+                            conditions=[],
                         ),
-                        conditions=[],
                     ),
-                ),
-                which="spec",
-                replace_all=False,
-            )
-            composition_element_material._set_tags(
-                tags=common_tags,
-                spec_or_run=composition_element_material.run,
-                replace_all=False,
-            )
-            composition_element_material._run._sample_type = "production"
+                    which="spec",
+                    replace_all=False,
+                )
+                composition_element_material._set_tags(
+                    tags=common_tags,
+                    spec_or_run=composition_element_material.run,
+                    replace_all=False,
+                )
+                composition_element_material._run._sample_type = "production"
+
+            set_composition_element_material_params_and_tags()
 
             weighting_measurement = Weighting(
                 "Weighting {} for {}".format(element_name, common_name)
@@ -454,6 +473,9 @@ class TAMUWorkflow(Workflow):
                 spec_or_run=weighting_measurement.run,
                 replace_all=False,
             )
+            weighted_mass = synthesis_details["data"]["Material Preparation"][
+                "Weighed Mass"
+            ][element_name]
             weighting_measurement._update_attributes(
                 AttrType=Property,
                 attributes=(
@@ -543,6 +565,7 @@ class TAMUWorkflow(Workflow):
         alloy_common_name,
         prior_block,
     ):
+        # block 4
         melted_alloy_properties = synthesis_details["data"]["Arc Melting"]["   "]
 
         arc_melting_metadata = synthesis_details["data"]["Arc Melting"][" "]
@@ -550,7 +573,11 @@ class TAMUWorkflow(Workflow):
             arc_melting_metadata["Completed By"],
             arc_melting_metadata["Finish Date"],
         )
-        arc_melting_parameters = synthesis_details["data"]["Arc Melting"]["  "]
+
+        alloy_ingredient_name = "{} Ingredient".format(alloy_common_name)
+        alloy_ingredient = Ingredient(alloy_ingredient_name)
+
+        arc_melting_process = ArcMelting("Arc melting of {}".format(alloy_common_name))
 
         def gen_arc_melting_tags():
             arc_melting_tags = ()
@@ -567,11 +594,6 @@ class TAMUWorkflow(Workflow):
             return arc_melting_tags
 
         arc_melting_tags = gen_arc_melting_tags()
-        print(arc_melting_tags)
-
-        alloy_ingredient_name = "{} Ingredient".format(alloy_common_name)
-        alloy_ingredient = Ingredient(alloy_ingredient_name)
-        arc_melting_process = ArcMelting("Arc melting of {}".format(alloy_common_name))
         tmp_tags = common_tags + arc_melting_tags
         arc_melting_process._set_tags(
             tags=tmp_tags,
@@ -579,22 +601,26 @@ class TAMUWorkflow(Workflow):
             replace_all=False,
         )
 
-        for attribute_name, attribue_value in arc_melting_parameters.items():
-            if type(attribue_value) == str:
-                value = NominalCategorical(attribue_value)
-            else:
-                unit = ""
-                if attribute_name == "Initial Purging Times":
-                    unit = "hour"
-                value = NominalReal(attribue_value, unit)
-            arc_melting_process._update_attributes(
-                AttrType=Parameter,
-                attributes=(
-                    Parameter(attribute_name, value=value, origin="specified"),
-                ),
-                which="run",
-                replace_all=False,
-            )
+        def set_arc_melting_process_params():
+            arc_melting_parameters = synthesis_details["data"]["Arc Melting"]["  "]
+            for attribute_name, attribue_value in arc_melting_parameters.items():
+                if type(attribue_value) == str:
+                    value = NominalCategorical(attribue_value)
+                else:
+                    unit = ""
+                    if attribute_name == "Initial Purging Times":
+                        unit = "hour"
+                    value = NominalReal(attribue_value, unit)
+                arc_melting_process._update_attributes(
+                    AttrType=Parameter,
+                    attributes=(
+                        Parameter(attribute_name, value=value, origin="specified"),
+                    ),
+                    which="run",
+                    replace_all=False,
+                )
+
+        set_arc_melting_process_params()
         arc_melting_process._run.source = arc_melting_performed_source
 
         melted_alloy_material = Alloy("Arc Melted {}".format(alloy_common_name))
@@ -661,9 +687,6 @@ class TAMUWorkflow(Workflow):
 
         self.blocks[composition_id][fabrication_method][batch][block4.name] = block4
 
-        print(self.print_thin_encoded(synthesis_details))
-        print(self.print_thin_encoded(processing_details))
-
         # block 5
         homogenization_metadata = processing_details["data"]["Homogenization"][
             "Process Overview"
@@ -672,29 +695,116 @@ class TAMUWorkflow(Workflow):
             homogenization_metadata["Completed By"],
             homogenization_metadata["Finish Date"],
         )
-        homogenization_parameters = synthesis_details["data"]["Arc Melting"][
-            "Thermal Conditions"
-        ]
-        homogenization_parameters_2 = synthesis_details["data"]["Arc Melting"][
-            "Purging Sequence Pressure"
-        ]
-
-        homogenization_tags = (
-            ("start_date", homogenization_metadata["Start Date"]),
-            ("finish_date", homogenization_metadata["Finish Date"]),
-            ("time_spent", str(homogenization_metadata["Time Spent"])),
-        )
 
         melted_alloy_ingredient_name = "Arc Melted {} Ingredient".format(
             alloy_common_name
         )
         melted_alloy_ingredient = Ingredient(melted_alloy_ingredient_name)
-        tmp_tags = common_tags + homogenization_tags
+
         homogenization_process = Homogenization(
             "Homogenizing {}".format(alloy_common_name)
         )
+        homogenization_tags = (
+            ("start_date", homogenization_metadata["Start Date"]),
+            ("finish_date", homogenization_metadata["Finish Date"]),
+            ("time_spent", str(homogenization_metadata["Time Spent"])),
+        )
+        tmp_tags = common_tags + homogenization_tags
+        homogenization_process._set_tags(
+            tags=tmp_tags,
+            spec_or_run=homogenization_process.run,
+            replace_all=False,
+        )
+
+        def set_homogenization_process_params():
+            homogenization_parameters = processing_details["data"]["Homogenization"][
+                "Thermal Conditions"
+            ]
+            homogenization_parameters_2 = processing_details["data"]["Homogenization"][
+                "Purging Sequence Pressure"
+            ]
+            for attribute_name, attribue_value in homogenization_parameters.items():
+                if type(attribue_value) == str:
+                    value = NominalCategorical(attribue_value)
+                else:
+                    unit = ""
+                    if attribute_name == "Temperature":
+                        unit = "Kelvin"
+                    elif attribute_name == "Pressure":
+                        unit = "Pa"
+                    elif attribute_name == "Duration":
+                        unit = "hours"
+                    value = NominalReal(attribue_value, unit)
+                homogenization_process._update_attributes(
+                    AttrType=Parameter,
+                    attributes=(
+                        Parameter(attribute_name, value=value, origin="specified"),
+                    ),
+                    which="run",
+                    replace_all=False,
+                )
+            for purging_step, purging_pressure in homogenization_parameters_2.items():
+                if not purging_pressure:
+                    continue
+                value = NominalReal(purging_pressure, "Pa")
+                homogenization_process._update_attributes(
+                    AttrType=Parameter,
+                    attributes=(
+                        Parameter(
+                            "Purging Sequence {} Pressure".format(purging_step),
+                            value=value,
+                            template=homogenization_process._ATTRS["parameters"][
+                                "Pressure"
+                            ]["param"],
+                            origin="specified",
+                        ),
+                    ),
+                    which="run",
+                    replace_all=False,
+                )
+            homogenization_process._update_attributes(
+                AttrType=Parameter,
+                attributes=(
+                    Parameter(
+                        "Purging Sequence {} Pressure".format(purging_step),
+                        value=value,
+                        template=homogenization_process._ATTRS["parameters"][
+                            "Pressure"
+                        ]["param"],
+                        origin="specified",
+                    ),
+                ),
+                which="run",
+                replace_all=False,
+            )
+
+        set_homogenization_process_params()
+        homogenization_process._run.source = homogenization_performed_source
 
         homogenized_alloy_material = Alloy("Homogenized {}".format(alloy_common_name))
+        homogenized_alloy_material._set_tags(
+            tags=common_tags,
+            spec_or_run=homogenized_alloy_material.run,
+            replace_all=False,
+        )
+        homogenized_alloy_material._update_attributes(
+            AttrType=PropertyAndConditions,
+            attributes=(
+                PropertyAndConditions(
+                    property=Property(
+                        "Form",
+                        value=NominalCategorical("Ingot"),
+                        origin="predicted",
+                        notes="",
+                        file_links=[],
+                    ),
+                    conditions=[],
+                ),
+            ),
+            which="spec",
+            replace_all=False,
+        )
+
         block5 = Block(
             name="Homogenization of Alloy",
             workflow=self,
@@ -707,12 +817,48 @@ class TAMUWorkflow(Workflow):
         self.blocks[composition_id][fabrication_method][batch][block5.name] = block5
 
         # block 6
+        print(self.print_thin_encoded(processing_details))
+        
+        forging_metadata = processing_details["data"]["Forging"]["Process Overview"]
+        forging_performed_source = PerformedSource(
+            forging_metadata["Completed By"],
+            forging_metadata["Finish Date"],
+        )
+        forging_tags = (
+            ("start_date", forging_metadata["Start Date"]),
+            ("finish_date", forging_metadata["Finish Date"]),
+            ("time_spent", str(forging_metadata["Time Spent"])),
+        )
+        
+        forged_alloy_properties = processing_details["data"]["Forging"][
+            "Ingot Dimensions After"
+        ]
+        forged_alloy_properties_2 = processing_details["data"]["Forging"][
+            "Ingot Dimensions Before"
+        ]
+        forging_params = processing_details["data"]["Forging"]["Ingot Condition"]
+        forging_params_2 = processing_details["data"]["Forging"]["Maximum Load"]
+        press_temperature = processing_details["data"]["Forging"]["Press Temperature"]
+
         homogenized_alloy_ingredient_name = "Homogenized {} Ingredient".format(
             alloy_common_name
         )
         homogenized_alloy_ingredient = Ingredient(homogenized_alloy_ingredient_name)
         forging_process = Forging("Forging {}".format(alloy_common_name))
+
+        def set_forging_process_params():
+            forging_process.
+            pass
+
+        set_forging_process_params()
+
         forged_alloy_material = Alloy("Forged {}".format(alloy_common_name))
+
+        def set_forged_alloy_material_properties():
+            pass
+
+        set_forged_alloy_material_properties()
+
         block6 = Block(
             name="Forging of Alloy",
             workflow=self,
