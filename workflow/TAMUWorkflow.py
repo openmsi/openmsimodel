@@ -1,5 +1,5 @@
 from .Workflow import Workflow
-from .Workflow import Folder
+from .folder_or_file import FolderOrFile
 from block.Block import Block
 
 from entity.base import Material, Process, Measurement, Ingredient
@@ -33,14 +33,9 @@ from entity.measurements.birdshot.xrd import XRD
 from entity.measurements.birdshot.tensile import Tensile
 from entity.measurements.birdshot.mounting_and_polishing import MountingAndPolishing
 
-from entity.ingredients.birdshot.summary_sheet_ingredient import (
-    SummarySheetIngredient,
-)  # Not being used
 
 from utilities.tools import plot_graph
 
-import gemd
-import sys
 import json
 import os
 import shutil
@@ -48,12 +43,7 @@ import pandas as pd
 from pathlib import Path
 from collections import defaultdict
 
-from gemd.entity.object import (
-    MaterialSpec,
-    ProcessSpec,
-    IngredientSpec,
-    MeasurementSpec,
-)
+
 from gemd.entity.object import MaterialRun, ProcessRun, IngredientRun, MeasurementRun
 from gemd.entity.attribute import Property, Parameter, Condition, PropertyAndConditions
 from gemd.entity.value import NominalReal, NominalCategorical
@@ -78,9 +68,10 @@ from helpers.object_specs import OBJ_SPECS
 # TODO: figure out functions for naming output files (fn)
 
 
-class TAMUWorkflow(Workflow):
+class TAMUWorkflow(Workflow, FolderOrFile):
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+        Workflow.__init__(self, *args, **kwargs)
+        FolderOrFile.__init__(self, *args)
         self.iteration = kwargs["iteration"]
         self.sample_data_folder = kwargs["sample_data_folder"]
         recursive_dict = lambda: defaultdict(recursive_dict)
@@ -142,10 +133,11 @@ class TAMUWorkflow(Workflow):
         infer_compositions_block.link_within()
         self.blocks[infer_compositions_block_name] = infer_compositions_block
 
+        # extracting tree structure to build the model up
         count = 0
         path_offset = 6
+        tree_folders_and_files = self.make_tree(FolderOrFile, Path(self.root))
 
-        tree_folders_and_files = self.make_tree(Folder, Path(self.root))
         for item in tree_folders_and_files:
             item_path = str(item.root)
             if os.path.isfile(item_path):

@@ -1,73 +1,74 @@
-from .Folder import Folder
+from .folder_or_file import FolderOrFile
 from gemd.json import GEMDJson
 from collections import defaultdict
 
 
 # TODO: extend Logging
-class Workflow(Folder):
+class Workflow:
     """
-    mode 1: write everything in build_worfklow_model by (a) defining BaseNode/Block objects or (b) calling custom BaseNode/Block objects
-    mode 2: write everything using the add_block method
+    Class to model a workflow, typically a set of processing steps, experiments, and characterizations, into GEMD, a data model.
+    It offers utilities functions to build the model flexibly, break it down into smaller, easier to
+    manage blocks, or complete operations such as dumping and loading models into/from JSONs.
     """
 
     def __init__(self, *args, **kwargs):
-        super().__init__(*args)
-        # blocks and terminal_materials can be overwritten to fit a structure
         self.blocks = defaultdict()
         self.terminal_blocks = defaultdict()
         self.encoder = GEMDJson()
         self.output_folder = kwargs["output_folder"]
 
-    def thin_dumps():
-        """ """
+    def thin_dumps(self):
+        """
+        dumps the entire model into a JSON per object, each representing the 'thin' version' of the object
+        in which pointers (i.e., true value) are replaced by links (e.g., uuid).
+        """
         pass
 
-    def dumps():
-        """ """
+    def dumps(self):
+        """
+        dumps the entire model into a single JSON, which contains all the model objects with data pointers (!= links).
+        """
         pass
 
-    def thin_loads():
-        """ """
+    def thin_loads(self):
+        """
+        loads the entire model from a list of JSONs, each representing the 'thin' version' of the model object
+        in which pointers (i.e., true value) are replaced by links (e.g., uuid).
+        """
         pass
 
-    def loads():
-        """ """
+    def loads(self):
+        """
+        loads the entire model from a single JSON, which contains all the model objects with data pointers (!= links)
+        """
         pass
 
     def print_encoded(self, obj):
+        """
+        prints the passed GEMD object into a nicely readable full JSON
+        :param obj: the object to print
+        """
         print(self.encoder.dumps(obj, indent=3))
 
     def print_thin_encoded(self, obj):
+        """
+        prints the passed GEMD object into a nicely readable 'thin' JSON
+        :param obj: the object to print
+        """
         print(self.encoder.thin_dumps(obj, indent=3))
 
-    def build_model():
+    def build_model(self):
         """
         This function builds the entire GEMD model that represents a certain Workflow.
-        It is intended be overwritten by child Workflow objects specific to a user case.
+        to be overwritten by child objects of Workflow that correspond to a specific workflow / user case.
         """
         pass
 
-    def add_block():
+    def add_block(self):
         """
         mode 2
         this like to add an existing block seq.
         should link everything
         """
 
-        pass
-
-    def return_run_instance(obj_name, terminal=False):
-        """
-        takes terminal param so you can do on any object.
-        also can find middle object with name, uids, etc
-        """
-        pass
-
-    def return_spec_instance(obj_name, terminal=False):
-        pass
-
-    def make_run_instance():
-        pass
-
-    def make_spec_instance():
         pass

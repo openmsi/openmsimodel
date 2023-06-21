@@ -23,7 +23,7 @@ def out(item):
     function object to run on individual item during recursion
     :param item: json item to write its destination
     """
-    fn = "_".join([item.__class__.__name__, item.name, item.uids["auto"], '.json'])
+    fn = "_".join([item.__class__.__name__, item.name, item.uids["auto"], ".json"])
     with open(os.path.join(_subdirpath, fn), "w") as fp:
         fp.write(_encoder.thin_dumps(item, indent=3))
 
@@ -150,15 +150,6 @@ def plot_graph(dirpath, obj_state="run", objectpath=None, tmp="tmp"):
         ]
     if len(gemd_objects) == 0:
         return
-
-    # build a dict {uid: object} to easily access all object their uids
-    # for i, obj in enumerate(gemd_objects):
-    #     if "raw_jsons" in obj:
-    #         continue
-    #     fp = open(obj, "r")
-    #     obj_data = json.load(fp)
-    #     obj_uid = obj_data["uids"]["auto"]
-    #     object_mapping[obj_uid] = obj
 
     # adding objects to graph one by one
     for i, obj in enumerate(gemd_objects):
