@@ -1,29 +1,55 @@
 from typing import ClassVar
 
-from gemd import MeasurementTemplate
-
+from gemd import (
+    MeasurementTemplate,
+    PropertyTemplate,
+    CategoricalBounds,
+    NominalCategorical,
+    RealBounds,
+    NominalReal,
+)
 from entity.base import Measurement
 from entity.base.attributes import AttrsDict, define_attribute, finalize_template
 
-__all__ = ['XRD']
+__all__ = ["XRD"]
+
 
 class XRD(Measurement):
-    '''Class representing SEM as a measurement '''
-    
+    """Class representing XRD as a measurement"""
+
     TEMPLATE: ClassVar[MeasurementTemplate] = MeasurementTemplate(
-        name="XRD",
-        description='XRD measurement'
+        name="XRD", description="XRD measurement"
     )
 
-    _ATTRS: ClassVar[AttrsDict] = {'conditions': {}, 'parameters': {}, 'properties': {}}
+    _ATTRS: ClassVar[AttrsDict] = {"conditions": {}, "parameters": {}, "properties": {}}
 
-    # define_attribute(
-    #     _ATTRS,
-    #     template=ParameterTemplate(
-    #         name='Supplier',
-    #         bounds=CategoricalBounds(categories=[''])
-    #     ),
-    #     default_value=NominalCategorical('')
-    # )
+    define_attribute(
+        _ATTRS,
+        template=PropertyTemplate(
+            name="Lattice Parameter", bounds=RealBounds(0, 5, "cm")
+        ),
+        # default_value=NominalReal(0, "cm"),
+    )
+
+    define_attribute(
+        _ATTRS,
+        template=PropertyTemplate(
+            name="Phase", bounds=CategoricalBounds(categories=["FCC"])
+        ),
+    )
+
+    define_attribute(
+        _ATTRS,
+        template=PropertyTemplate(
+            name="Hardness, HV", bounds=RealBounds(0, 1000, "Pa")
+        ),
+        # default_value=NominalReal(0, "Pa"),
+    )
+
+    define_attribute(
+        _ATTRS,
+        template=PropertyTemplate(name="SD, HV", bounds=RealBounds(0, 1000, "Pa")),
+        # default_value=NominalReal(0, "Pa"),
+    )
 
     finalize_template(_ATTRS, TEMPLATE)

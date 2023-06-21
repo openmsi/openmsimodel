@@ -157,8 +157,7 @@ def update_attrs(
             continue
         if type(attr) == PropertyAndConditions:
             attr.property.template = attrs[plural][attr_name][attr_dict_key]
-        else:
-            attr.template = attrs[plural][attr_name][attr_dict_key]
+        else:            attr.template = attrs[plural][attr_name][attr_dict_key]
 
     if which in ["spec", "both"]:
         _set_attrs(spec, required_attrs, supplied_attrs, AttrType, replace_all)

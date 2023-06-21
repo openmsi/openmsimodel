@@ -1,29 +1,26 @@
 from typing import ClassVar
 
-from gemd import MeasurementTemplate
-
+from gemd import (
+    MeasurementTemplate,
+    PropertyTemplate,
+    CategoricalBounds,
+    NominalCategorical,
+)
 from entity.base import Measurement
 from entity.base.attributes import AttrsDict, define_attribute, finalize_template
 
-__all__ = ['SEM']
+__all__ = ["SEM"]
+
 
 class SEM(Measurement):
-    '''Class representing SEM as a measurement '''
-    
+    """Class representing SEM as a measurement"""
+
     TEMPLATE: ClassVar[MeasurementTemplate] = MeasurementTemplate(
-        name="SEM",
-        description='SEM Characterization'
+        name="SEM", description="SEM Characterization"
     )
 
-    _ATTRS: ClassVar[AttrsDict] = {'conditions': {}, 'parameters': {}, 'properties': {}}
+    _ATTRS: ClassVar[AttrsDict] = {"conditions": {}, "parameters": {}, "properties": {}}
 
-    # define_attribute(
-    #     _ATTRS,
-    #     template=ParameterTemplate(
-    #         name='Supplier',
-    #         bounds=CategoricalBounds(categories=[''])
-    #     ),
-    #     default_value=NominalCategorical('')
-    # )
+    
 
     finalize_template(_ATTRS, TEMPLATE)

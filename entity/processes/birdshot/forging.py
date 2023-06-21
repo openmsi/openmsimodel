@@ -1,6 +1,6 @@
 from typing import ClassVar
 
-from gemd import ProcessTemplate
+from gemd import ProcessTemplate, ParameterTemplate, RealBounds
 
 from entity.base import Process
 from entity.base.attributes import AttrsDict, define_attribute, finalize_template
@@ -18,5 +18,29 @@ class Forging(Process):
     )
 
     _ATTRS: ClassVar[AttrsDict] = {"conditions": {}, "parameters": {}}
+
+    define_attribute(
+        _ATTRS,
+        template=ParameterTemplate(
+            name="Soak Time",
+            bounds=RealBounds(0, 120, "minutes"),
+        ),
+    )
+
+    define_attribute(
+        _ATTRS,
+        template=ParameterTemplate(
+            name="Temperature",
+            bounds=RealBounds(0, 2000, "Kelvin"),
+        ),
+    )
+
+    define_attribute(
+        _ATTRS,
+        template=ParameterTemplate(
+            name="Maximum Load Step",
+            bounds=RealBounds(0, 200, "Pa"),
+        ),
+    )
 
     finalize_template(_ATTRS, TEMPLATE)
