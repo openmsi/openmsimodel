@@ -1,12 +1,18 @@
 from .folder_or_file import FolderOrFile
 from gemd.json import GEMDJson
 from collections import defaultdict
+import os
+import shutil
+from utilities.tools import plot_graph
+from gemd.util.impl import recursive_foreach
 
 
 # TODO: extend Logging
 class Workflow:
     """
     Class to model a workflow, typically a set of processing steps, experiments, and characterizations, into GEMD, a data model.
+    the definition of a workflow is meant to be flexible to the needs of the user. Workflows can be composed
+    to construct even larger GEMD graphs.
     It offers utilities functions to build the model flexibly, break it down into smaller, easier to
     manage blocks, or complete operations such as dumping and loading models into/from JSONs.
     """
@@ -64,11 +70,25 @@ class Workflow:
         """
         pass
 
-    def add_block(self):
+    def thin_dumps_single_obj(self, obj):
         """
-        mode 2
-        this like to add an existing block seq.
-        should link everything
+        :param obj: the object to print
         """
+        self.thin_dumps_obj_dest = os.path.join(self.output_folder, obj._run.name)
+        if os.path.exists(self.thin_dumps_obj_dest):
+            shutil.rmtree(self.thin_dumps_obj_dest)
+        os.makedirs(self.thin_dumps_obj_dest)
+        for _obj in [obj._spec, obj._run]:
+            recursive_foreach(_obj, self.out)
+        plot_graph(self.thin_dumps_obj_dest)
+        plot_graph(self.thin_dumps_obj_dest, obj_state == "spec")
 
-        pass
+    def out(self, item):
+        """
+        function object to run on individual item during recursion
+        :param item: json item to write its destination
+        se
+        """
+        fn = "_".join([item.__class__.__name__, item.name, item.uids["auto"], ".json"])
+        with open(os.path.join(self.path_holder, fn), "w") as fp:
+            fp.write(self.encoder.thin_dumps(item, indent=3))

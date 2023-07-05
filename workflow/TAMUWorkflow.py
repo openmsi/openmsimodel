@@ -53,9 +53,9 @@ from gemd.json import GEMDJson
 from gemd.util.impl import recursive_foreach
 
 # helpers folder is specific to birdshot, and found in the birdshot gemd/helpers folder
-from helpers.attribute_templates import ATTR_TEMPL
-from helpers.object_templates import OBJ_TEMPL
-from helpers.object_specs import OBJ_SPECS
+# from helpers.attribute_templates import ATTR_TEMPL
+# from helpers.object_templates import OBJ_TEMPL
+# from helpers.object_specs import OBJ_SPECS
 
 
 # TODO: write ingredients?
@@ -70,6 +70,13 @@ from helpers.object_specs import OBJ_SPECS
 
 class TAMUWorkflow(Workflow, FolderOrFile):
     def __init__(self, *args, **kwargs):
+        """
+        this function represents a TAMU workflow, from a list of compositions to tests, through their
+        VAM and DED fabrications, their splits into travelers for numerous characterizations, all the way to
+        using the characterization results to infer the next compositions using BO.
+        :param iteration: the iteration of the workflow (i.e., AAB)
+        :param sample_data_folder: the folder containing the sample data (i.e., /Sample Data/Iteration2_AAB)
+        """
         Workflow.__init__(self, *args, **kwargs)
         FolderOrFile.__init__(self, *args)
         self.iteration = kwargs["iteration"]
@@ -90,13 +97,14 @@ class TAMUWorkflow(Workflow, FolderOrFile):
         self.testing_mode = False
 
     def build_model(self):
+        # initialize the folder to dump the GEMD json files
         if os.path.exists(self.output_folder):
             shutil.rmtree(self.output_folder)
 
-        # ingesting the results of the summary sheet on all compositions, that is associated with each composition space/workflow
+        # ingesting the results of the summary sheet, which is associated with each composition space, and workflow object
         self.ingest_synthesis_results(self.iteration)
 
-        # collecting all the compositions in the composition space to be studied to assign as tags
+        # collecting all the compositions in the composition space to be assigned as tags
         compositions_tags = []
         for composition_id in self.measurements.keys():
             for element_name, element_percentage in self.measurements[composition_id][
@@ -109,7 +117,7 @@ class TAMUWorkflow(Workflow, FolderOrFile):
                     )
                 )
 
-        # first infer_compositions_block
+        # block 1: first infer_compositions_block
         inferred_alloy_compositions = InferredAlloyCompositions(
             "Inferred Alloy Compositions"
         )
@@ -138,6 +146,7 @@ class TAMUWorkflow(Workflow, FolderOrFile):
         path_offset = 6
         tree_folders_and_files = self.make_tree(FolderOrFile, Path(self.root))
 
+        # looping through all the folders and files in the tree structure
         for item in tree_folders_and_files:
             item_path = str(item.root)
             if os.path.isfile(item_path):
@@ -185,6 +194,10 @@ class TAMUWorkflow(Workflow, FolderOrFile):
                     )
 
         def add_average_tensile_measurement():
+            """
+            assigns the average tensile measurement from the excel summary sheet to the model
+            (since it is reflected only in the summary sheet, not in the tree structure as a folder/measurement or else)
+            """
             for composition_id in self.terminal_blocks.keys():
                 for fabrication_method in self.terminal_blocks[composition_id].keys():
                     for batch in self.terminal_blocks[composition_id][
@@ -200,7 +213,7 @@ class TAMUWorkflow(Workflow, FolderOrFile):
 
         add_average_tensile_measurement()
 
-        # block
+        # block -2: aggregation of summary sheet block
         aggregate_summary_sheet_process = AggregateSummarySheet(
             "Aggregate summary sheet"
         )
@@ -214,6 +227,11 @@ class TAMUWorkflow(Workflow, FolderOrFile):
         )
 
         def link_traveler_samples_to_summary_sheet():
+            """
+            this functions takes all the traveler samples build in the process_measurement() calls,
+            and converts them to ingredients to the next process, which is aggregation the summary sheet block, a
+            and which will ultimately be used for the Bayesian optimization process.
+            """
             for composition_id in self.terminal_blocks.keys():
                 for fabrication_method in self.terminal_blocks[composition_id].keys():
                     for batch in self.terminal_blocks[composition_id][
@@ -236,9 +254,10 @@ class TAMUWorkflow(Workflow, FolderOrFile):
                             aggregate_summary_sheet_block.name
                         ] = aggregate_summary_sheet_block
 
+        # an important step to link all the measurements on traveler samples to the summary sheet of the NEXT iteration
         link_traveler_samples_to_summary_sheet()
 
-        # BO block
+        # block -1: Bayesian Optimization block
         summary_sheet_ingredient_name = aggregate_summary_sheet_block.material._run.name
         summary_sheet_ingredient = Ingredient(
             "{} Ingredient".format(summary_sheet_ingredient_name)
@@ -261,6 +280,10 @@ class TAMUWorkflow(Workflow, FolderOrFile):
         )
 
         def set_terminal_blocks():
+            """
+            this is the functions that helps set the last terminal blocks.
+            terminal blocks are updated as the model is built, but these are the true last blocks of this workflow.
+            """
             for composition_id in self.terminal_blocks.keys():
                 for fabrication_method in self.terminal_blocks[composition_id].keys():
                     for batch in self.terminal_blocks[composition_id][
@@ -273,6 +296,7 @@ class TAMUWorkflow(Workflow, FolderOrFile):
                             batch
                         ] = infer_next_compositions_block
 
+        # last time to set the terminal blocks
         set_terminal_blocks()
 
     def process(
@@ -1110,32 +1134,23 @@ class TAMUWorkflow(Workflow, FolderOrFile):
         os.makedirs(raw_jsons_dirpath)
         os.makedirs(thin_jsons_dirpath)
 
-    def thin_dumps_single_obj(self, obj):
-        self.thin_dumps_obj_dest = os.path.join(self.output_folder, obj._run.name)
-        if os.path.exists(self.thin_dumps_obj_dest):
-            shutil.rmtree(self.thin_dumps_obj_dest)
-        os.makedirs(self.thin_dumps_obj_dest)
-        for _obj in [obj._spec, obj._run]:
-            recursive_foreach(_obj, self.out)
-        plot_graph(self.thin_dumps_obj_dest)
-        plot_graph(self.thin_dumps_obj_dest, mode="spec")
-
-    def out(self, item):
-        """
-        function object to run on individual item during recursion
-        :param item: json item to write its destination
-        """
-        fn = "_".join([item.__class__.__name__, item.name, item.uids["auto"], ".json"])
-        with open(os.path.join(self.tmp_path, fn), "w") as fp:
-            fp.write(self.encoder.thin_dumps(item, indent=3))
-
     def thin_dumps(self):
+        """
+        dumps the entire model into a JSON per object, each representing the 'thin' version' of the object
+        in which pointers (i.e., true value) are replaced by links (e.g., uuid).
+        """
         self.dump_loop(mode="thin")
 
     def dumps(self):
+        """
+        dumps the entire model into a single JSON, which contains all the model objects with data pointers (!= links).
+        """
         self.dump_loop(mode="raw")
 
     def dump_loop(self, mode="thin"):
+        """
+        helper function that navigates the blocks of the models and
+        """
         for composition_id in self.gen_compositions():
             composition_id_path = os.path.join(self.output_folder, composition_id)
             for fabrication_method in self.blocks[composition_id].keys():
@@ -1161,19 +1176,15 @@ class TAMUWorkflow(Workflow, FolderOrFile):
                     destination = os.path.join(_destination, folder_name)
                     t = self.terminal_blocks[composition_id][fabrication_method][batch]
                     self.encoder.thin_dumps(t.process._run)
-                    self.tmp_path = destination
+                    self.path_holder = destination  # workaround to: recursive_foreach can't pass params to out()
                     if t.process:
                         for _obj in [t.process._spec, t.process._run]:
                             recursive_foreach(_obj, self.out)
-
-                    # for block_name, block in self.blocks[composition_id][
-                    #     fabrication_method
-                    # ][batch].items():
-                    #     block.thin_dumps(self.encoder, destination)
                     if self.testing_mode == True:
                         return
 
     def thin_plots(self):
+        """"""
         for composition_id in self.gen_compositions():
             composition_id_path = os.path.join(self.output_folder, composition_id)
             for fabrication_method in os.listdir(composition_id_path):
