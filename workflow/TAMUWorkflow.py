@@ -66,7 +66,7 @@ from gemd.util.impl import recursive_foreach
 # TODO: add form to alloy object (melted, etc)
 # TODO: figure out path offset automatically
 # TODO: figure out functions for naming output files (fn)
-
+# FIXME: in yfiles, Diffusion shows up with out " " as opposed to rest: fix
 
 class TAMUWorkflow(Workflow, FolderOrFile):
     def __init__(self, *args, **kwargs):
@@ -495,7 +495,7 @@ class TAMUWorkflow(Workflow, FolderOrFile):
                 spec_or_run=weighting_measurement.run,
             )
             weighted_mass = synthesis_details["data"]["Material Preparation"][
-                "Weighed Mass"
+                "Weighted Mass"
             ][element_name]
             weighting_measurement._update_attributes(
                 AttrType=Property,
