@@ -68,6 +68,7 @@ from gemd.util.impl import recursive_foreach
 # TODO: figure out functions for naming output files (fn)
 # FIXME: in yfiles, Diffusion shows up with out " " as opposed to rest: fix
 
+
 class TAMUWorkflow(Workflow, FolderOrFile):
     def __init__(self, *args, **kwargs):
         """

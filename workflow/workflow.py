@@ -5,10 +5,11 @@ import os
 import shutil
 from utilities.tools import plot_graph
 from gemd.util.impl import recursive_foreach
+from ..utilities.runnable import Runnable
 
 
 # TODO: extend Logging
-class Workflow:
+class Workflow(Runnable):
     """
     Class to model a workflow, typically a set of processing steps, experiments, and characterizations, into GEMD, a data model.
     the definition of a workflow is meant to be flexible to the needs of the user. Workflows can be composed
@@ -92,3 +93,37 @@ class Workflow:
         fn = "_".join([item.__class__.__name__, item.name, item.uids["auto"], ".json"])
         with open(os.path.join(self.path_holder, fn), "w") as fp:
             fp.write(self.encoder.thin_dumps(item, indent=3))
+
+    #################### CLASS METHODS ####################
+
+    @classmethod
+    def get_argument_parser(cls, *args, **kwargs):
+        parser = cls.ARGUMENT_PARSER_TYPE(*args, **kwargs)
+        cl_args, cl_kwargs = cls.get_command_line_arguments()
+        parser.add_arguments(*cl_args, **cl_kwargs)
+        return parser
+
+    @classmethod
+    def get_command_line_arguments(cls):
+        superargs, superkwargs = super().get_command_line_arguments()
+        args = []
+        kwargs = {**superkwargs}
+        return args, kwargs
+
+    @classmethod
+    def run_from_command_line(cls, args=None):
+        parser = cls.get_argument_parser()
+        args = parser.parse_args(args=args)
+        workflow = cls(*args)
+        workflow.build_model()
+
+
+def main(args=None):
+    """
+    Main method to run from command line
+    """
+    Workflow.run_from_command_line(args)
+
+
+if __name__ == "__main__":
+    main()
