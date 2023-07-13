@@ -1,0 +1,7 @@
+README.md
+setup.py
+openmsimodel.egg-info/PKG-INFO
+openmsimodel.egg-info/SOURCES.txt
+openmsimodel.egg-info/dependency_links.txt
+openmsimodel.egg-info/not-zip-safe
+openmsimodel.egg-info/top_level.txt
