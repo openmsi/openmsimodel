@@ -59,7 +59,7 @@ class Process(ProcessOrMeasurement):
                 raise TypeError('spec must be a ProcessSpec.')
             
             print(process.spec)
-            process.spec = spec
+            process._spec = spec
 
             process.spec.name = name
             process.spec.notes = notes
@@ -73,7 +73,7 @@ class Process(ProcessOrMeasurement):
             if not isinstance(run, ProcessRun):
                 raise TypeError('run must be a ProcessRun.')
 
-            process.run = run
+            process._run = run
 
             process.run.name = name
             process.run.notes = notes
