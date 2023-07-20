@@ -5,8 +5,8 @@ Class defining the general OpenMSIStream workflow for running from the command l
 
 # imports
 from abc import ABC, abstractmethod
-from has_arguments import HasArguments
-from has_argument_parser import HasArgumentParser
+from .has_arguments import HasArguments
+from .has_argument_parser import HasArgumentParser
 
 
 class Runnable(HasArguments, HasArgumentParser, ABC):

@@ -1,0 +1,2 @@
+[console_scripts]
+gemd_modeller = openmsimodel.utilities.gemd_modeller:main

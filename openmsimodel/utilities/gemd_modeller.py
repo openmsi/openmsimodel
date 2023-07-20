@@ -9,8 +9,8 @@ import pathlib
 
 from gemd.util.impl import recursive_foreach
 from gemd.json import GEMDJson
-from argument_parsing import OpenMSIModelParser
-from runnable import Runnable
+from .argument_parsing import OpenMSIModelParser
+from .runnable import Runnable
 
 
 # TODO: add flag to open visualization tool?
@@ -354,55 +354,6 @@ class GemdModeller(Runnable):
         print("-- Saved graph to {} and {}".format(dot_path, svg_path))
         return dot_path, svg_path
 
-    # @classmethod
-    # def build_parser(cls):
-    #     """_summary_
-
-    #     Returns:
-    #         _type_: _description_
-    #     """
-    #     parser = argparse.ArgumentParser(
-    #         prog="Gemd Viewer",
-    #         description="Helps to visualize GEMD objects",
-    #         epilog="primarly parses for path to folder of GEMD json files",
-    #     )
-    #     parser.add_argument("dirpath", help="path to folder of GEMD json files")
-    #     parser.add_argument(
-    #         "--identifier",
-    #         type=str,
-    #         help="identifier, typically uuid, but can also be passed as partial node name",
-    #     )
-    #     parser.add_argument(
-    #         "--add_attributes",
-    #         type=int,
-    #         default=1,
-    #         help="option to determine whether or not to add attributes (i.e., conditions,properties and parameters)",
-    #     )
-    #     parser.add_argument(
-    #         "--add_tags",
-    #         type=int,
-    #         default=1,
-    #         help="option to determine whether or not to add tags ",
-    #     )
-    #     parser.add_argument(
-    #         "--add_file_links",
-    #         type=int,
-    #         # required=False,
-    #         default=1,
-    #         help="option to determine whether or not to add file links",
-    #     )
-    #     parser.add_argument(
-    #         "--add_separate_node",
-    #         action="store_true",
-    #         help="option to add attributes, file links and tags as separate nodes on graph",
-    #     )
-    #     parser.add_argument(
-    #         "--launch_notebook",
-    #         action="store_true",
-    #         help="triggers the launch of notebook to visualize your graph",
-    #     )
-    #     return parser
-
     @classmethod
     def get_argument_parser(cls, *args, **kwargs):
         parser = cls.ARGUMENT_PARSER_TYPE(*args, **kwargs)
@@ -450,9 +401,12 @@ class GemdModeller(Runnable):
         )
 
         if args.identifier:
-            identifier_G = cls.extract_subgraph(
-                G, args.identifier, func=[nx.ancestors, nx.descendants]
-            )
+            functions = []
+            if args.d:
+                functions.append(nx.descendants)
+            if args.a:
+                functions.append(nx.ancestors)
+            identifier_G = cls.extract_subgraph(G, args.identifier, func=functions)
             identifier_G = cls.map_to_graphviz(identifier_G, name_mapping)
             identifier_G_dot_path, _ = cls.save_graph(
                 viewer.dirpath, identifier_G, "{}".format(args.identifier)
