@@ -3,23 +3,19 @@ import networkx as nx
 from collections import defaultdict
 import shutil
 import os
-from gemd.util.impl import recursive_foreach
-from gemd.json import GEMDJson
-
 import matplotlib.pyplot as plt
-
-# from matplotlib.lines import Line2D
-# import matplotlib.colors as colors
-# import matplotlib.cm as cmx
-# import matplotlib.patches as mpatches
-# from matplotlib import pylab
 import argparse
 import pathlib
+
+from gemd.util.impl import recursive_foreach
+from gemd.json import GEMDJson
+from argument_parsing import OpenMSIModelParser
+from runnable import Runnable
 
 
 # TODO: add flag to open visualization tool?
 # TODO: add file links and tags
-class GemdModeller:
+class GemdModeller(Runnable):
     """this class provides modules to build and visualize a networkx or graphviz object from gemd objects.
     By taking folder path containing GEMD thin JSON files, it establishes the relationships
     between them by interpreting their uuids/links, and flexibly produces anything from
@@ -27,11 +23,13 @@ class GemdModeller:
     from attributes, file links or tags.
     """
 
+    ARGUMENT_PARSER_TYPE = OpenMSIModelParser
+
     IPYNB_FILENAME = pathlib.Path(
-        pathlib.Path(__file__).parent.resolve() / "nb_template.ipynb"
+        pathlib.Path(__file__).parent.resolve() / "gemd_modeller_config/template.ipynb"
     )
     CONFIG_FILENAME = pathlib.Path(
-        pathlib.Path(__file__).parent.resolve() / ".config_ipynb"
+        pathlib.Path(__file__).parent.resolve() / "gemd_modeller_config/.config"
     )
 
     # instance attributes
@@ -260,9 +258,6 @@ class GemdModeller:
             if att_name in G.nodes[uid].keys():  # already exists, append to it
                 count = len(G.nodes[uid][att_name])
                 G.nodes[uid][att_name][count] = node_name
-                # if not type(G.nodes[uid][att_name]) == list:
-                #     G.nodes[uid][att_name] = [G.nodes[uid][att_name]]
-                # G.nodes[uid][att_name].append(node_name)
                 return
             if att_name in ["file_links", "tags"]:
                 G.nodes[uid][att_name] = {0: node_name}
@@ -302,12 +297,15 @@ class GemdModeller:
     def launch_notebook(cls, dot_path):
         with open(cls.CONFIG_FILENAME, "w") as f:
             f.write(dot_path)
-        os.system(
-            "jupyter nbconvert --execute --to notebook --inplace  {}".format(
-                cls.IPYNB_FILENAME
-            )
-        )
-        os.system("jupyter notebook {}".format(cls.IPYNB_FILENAME))
+        # os.system(
+        #     "jupyter nbconvert --execute --to notebook --inplace  {}".format(
+        #         cls.IPYNB_FILENAME
+        #     )
+        # )
+        # print(cls.IPYNB_FILENAME)
+        # print(cls.IPYNB_FILENAME.parent)
+        # exit()
+        os.system("jupyter notebook --notebook-dir={}".format(cls.IPYNB_FILENAME.parent))
         return None
 
     def update_paths(self, svg_path, dot_path):
@@ -357,54 +355,77 @@ class GemdModeller:
         print("Saved graph to {} and {}".format(dot_path, svg_path))
         return dot_path, svg_path
 
-    @classmethod
-    def build_parser(cls):
-        """_summary_
+    # @classmethod
+    # def build_parser(cls):
+    #     """_summary_
 
-        Returns:
-            _type_: _description_
-        """
-        parser = argparse.ArgumentParser(
-            prog="Gemd Viewer",
-            description="Helps to visualize GEMD objects",
-            epilog="primarly parses for path to folder of GEMD json files",
-        )
-        parser.add_argument("dirpath", help="path to folder of GEMD json files")
-        parser.add_argument(
-            "--identifier",
-            type=str,
-            help="identifier, typically uuid, but can also be passed as partial node name",
-        )
-        parser.add_argument(
-            "--add_attributes",
-            type=int,
-            default=1,
-            help="option to determine whether or not to add attributes (i.e., conditions,properties and parameters)",
-        )
-        parser.add_argument(
-            "--add_tags",
-            type=int,
-            default=1,
-            help="option to determine whether or not to add tags ",
-        )
-        parser.add_argument(
-            "--add_file_links",
-            type=int,
-            # required=False,
-            default=1,
-            help="option to determine whether or not to add file links",
-        )
-        parser.add_argument(
-            "--add_separate_node",
-            action="store_true",
-            help="option to add attributes, file links and tags as separate nodes on graph",
-        )
-        parser.add_argument(
-            "--launch_notebook",
-            action="store_true",
-            help="triggers the launch of notebook to visualize your graph",
-        )
+    #     Returns:
+    #         _type_: _description_
+    #     """
+    #     parser = argparse.ArgumentParser(
+    #         prog="Gemd Viewer",
+    #         description="Helps to visualize GEMD objects",
+    #         epilog="primarly parses for path to folder of GEMD json files",
+    #     )
+    #     parser.add_argument("dirpath", help="path to folder of GEMD json files")
+    #     parser.add_argument(
+    #         "--identifier",
+    #         type=str,
+    #         help="identifier, typically uuid, but can also be passed as partial node name",
+    #     )
+    #     parser.add_argument(
+    #         "--add_attributes",
+    #         type=int,
+    #         default=1,
+    #         help="option to determine whether or not to add attributes (i.e., conditions,properties and parameters)",
+    #     )
+    #     parser.add_argument(
+    #         "--add_tags",
+    #         type=int,
+    #         default=1,
+    #         help="option to determine whether or not to add tags ",
+    #     )
+    #     parser.add_argument(
+    #         "--add_file_links",
+    #         type=int,
+    #         # required=False,
+    #         default=1,
+    #         help="option to determine whether or not to add file links",
+    #     )
+    #     parser.add_argument(
+    #         "--add_separate_node",
+    #         action="store_true",
+    #         help="option to add attributes, file links and tags as separate nodes on graph",
+    #     )
+    #     parser.add_argument(
+    #         "--launch_notebook",
+    #         action="store_true",
+    #         help="triggers the launch of notebook to visualize your graph",
+    #     )
+    #     return parser
+
+    @classmethod
+    def get_argument_parser(cls, *args, **kwargs):
+        parser = cls.ARGUMENT_PARSER_TYPE(*args, **kwargs)
+        cl_args, cl_kwargs = cls.get_command_line_arguments()
+        parser.add_arguments(*cl_args, **cl_kwargs)
         return parser
+
+    @classmethod
+    def get_command_line_arguments(cls):
+        superargs, superkwargs = super().get_command_line_arguments()
+        args = [
+            *superargs,
+            "dirpath",
+            "identifier",
+            "launch_notebook",
+            "add_attributes",
+            "add_file_links",
+            "add_tags",
+            "add_separate_node",
+        ]
+        kwargs = {**superkwargs}
+        return args, kwargs
 
     @classmethod
     def run_from_command_line(cls, args=None):
@@ -415,7 +436,7 @@ class GemdModeller:
         :param args: the list of arguments to send to the parser instead of getting them from sys.argv
         :type args: list, optional
         """
-        parser = cls.build_parser()
+        parser = cls.get_argument_parser()
         args = parser.parse_args(args=args)
         viewer = cls(args.dirpath)
         assets_to_add = {

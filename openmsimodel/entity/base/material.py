@@ -83,9 +83,9 @@ class Material(BaseNode):
 
             material._spec = spec
 
-            material._spec.name = name
-            material._spec.notes = notes
-            material._spec.template = cls.TEMPLATE
+            material.spec.name = name
+            material.spec.notes = notes
+            material.spec.template = cls.TEMPLATE
 
             material.update_properties_and_conditions()
 
@@ -94,10 +94,10 @@ class Material(BaseNode):
                 raise TypeError("run must be a MaterialRun.")
 
             material._run = run
-            material._run.name = name
-            material._run.notes = notes
+            material.run.name = name
+            material.run.notes = notes
 
-            material._run.spec = material.spec
+            material.run.spec = material.spec
 
         else:
             material._run = make_instance(material.spec)

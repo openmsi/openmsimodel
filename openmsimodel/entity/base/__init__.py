@@ -1,8 +1,16 @@
-'''Base material, process, and measurement classes.'''
+"""Base material, process, and measurement classes."""
 
-from .material import Material
-from .process import Process
-from .measurement import Measurement
-from .ingredient import Ingredient
+from . import base_node 
+from . import material 
+from . import process 
+from . import measurement 
+from . import ingredient 
 
-__all__ = ['Material', 'Process', 'Measurement', 'Ingredient']
+
+from .base_node import *
+from .material import *
+from .process import *
+from .measurement import *
+from .ingredient import *
+
+__all__ = base_node.__all__ +  material.__all__ + process.__all__ + measurement.__all__ + ingredient.__all__ 

@@ -1,23 +1,29 @@
 from typing import ClassVar
 
-from gemd import MaterialTemplate, PropertyTemplate, CategoricalBounds, NominalCategorical
+from gemd import (
+    MaterialTemplate,
+    PropertyTemplate,
+    CategoricalBounds,
+    NominalCategorical,
+)
 from gemd.entity.bounds import RealBounds
 from gemd.entity.value import NominalReal
 
 from entity.base import Material
 from entity.base.attributes import AttrsDict, define_attribute, finalize_template
 
-__all__ = ['Composition']
+__all__ = ["Composition"]
+
 
 class Composition(Material):
-    '''Class representing composition'''
-    
+    """Class representing composition"""
+
     TEMPLATE: ClassVar[MaterialTemplate] = MaterialTemplate(
-        'Alloy Composition',
-        description='Composition selected to be fabricated and characterized',
+        "Alloy Composition",
+        description="Composition selected to be fabricated and characterized",
     )
 
-    _ATTRS: ClassVar[AttrsDict] = {'properties': {}}
+    _ATTRS: ClassVar[AttrsDict] = {"properties": {}}
 
     # define_attribute(
     #     _ATTRS,
@@ -73,6 +79,5 @@ class Composition(Material):
     #     ),
     #     default_value=NominalReal(0.0,'')
     # )
-    
 
     finalize_template(_ATTRS, TEMPLATE)

@@ -1,4 +1,4 @@
-from workflow import Workflow
+from workflow.workflow import Workflow
 from typing import ClassVar, Type, Optional
 from entity.base.material import Material
 from entity.base.base_node import BaseNode

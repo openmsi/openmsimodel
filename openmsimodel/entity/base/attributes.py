@@ -153,11 +153,14 @@ def update_attrs(
     for attr_name, attr in supplied_attrs.items():
         # TODO: quick fix for now for having multiple version of a same template (i.e., ambient ressure, purging pressure for the same parameter template: pressure )
         # TODO: applies to uncommented bloc of code above that caused errors
-        if attr.template is not None:
+        if attr_name not in  attrs[plural].keys(): # TODO: improve fix?
+            raise KeyError(f"the '{attr_name}' attribute is not among the object defined attributes.")
+        if attr.template is not None or attr.property.template is not None:
             continue
         if type(attr) == PropertyAndConditions:
             attr.property.template = attrs[plural][attr_name][attr_dict_key]
-        else:            attr.template = attrs[plural][attr_name][attr_dict_key]
+        else:
+            attr.template = attrs[plural][attr_name][attr_dict_key]
 
     if which in ["spec", "both"]:
         _set_attrs(spec, required_attrs, supplied_attrs, AttrType, replace_all)

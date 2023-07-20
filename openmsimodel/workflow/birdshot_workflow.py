@@ -1,9 +1,8 @@
-from workflow import Workflow
-from folder_or_file import FolderOrFile
+from .workflow import Workflow
+from .folder_or_file import FolderOrFile
+
 from block.block import Block
-
 from entity.base import Material, Process, Measurement, Ingredient
-
 from entity.processes.birdshot.aggregate_summary_sheet import AggregateSummarySheet
 from entity.processes.birdshot.infer_compositions import InferCompositions
 from entity.processes.birdshot.select_composition import SelectComposition
@@ -14,14 +13,13 @@ from entity.processes.birdshot.homogenization import Homogenization
 from entity.processes.birdshot.forging import Forging
 from entity.processes.birdshot.setting_traveler import SettingTraveler
 from entity.processes.birdshot.setting_traveler_sample import SettingTravelerSample
-
 from entity.materials.birdshot.summary_sheet import SummarySheet
 from entity.materials.birdshot.inferred_alloy_compositions import (
     InferredAlloyCompositions,
 )
 from entity.materials.birdshot.composition import Composition
 from entity.materials.birdshot.element import Element
-from entity.materials.birdshot.alloy_material import Alloy
+from entity.materials.birdshot.alloy import Alloy
 from entity.materials.birdshot.traveler import Traveler
 from entity.materials.birdshot.traveler_sample import TravelerSample
 

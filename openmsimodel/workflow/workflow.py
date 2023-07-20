@@ -1,11 +1,11 @@
-
 from pathlib import Path
-from .folder_or_file import FolderOrFile
+from folder_or_file import FolderOrFile
+
 # import sys
 # sys.path.append("..")
 from utilities.tools import *
 from utilities.runnable import Runnable
-from utilities.argument_parsing import WorkflowParser
+from utilities.argument_parsing import OpenMSIModelParser
 
 from collections import defaultdict
 import os
@@ -23,10 +23,10 @@ class Workflow(Runnable):
     to construct even larger GEMD graphs.
     It offers utilities functions to build the model flexibly, break it down into smaller, easier to
     manage blocks, or complete operations such as dumping and loading models into/from JSONs.
-    :param 
+    :param
     """
-    
-    ARGUMENT_PARSER_TYPE = WorkflowParser
+
+    ARGUMENT_PARSER_TYPE = OpenMSIModelParser
 
     def __init__(self, *args, **kwargs):
         self.blocks = defaultdict()
