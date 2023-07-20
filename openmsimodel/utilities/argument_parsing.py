@@ -170,7 +170,7 @@ class OpenMSIModelParser(ArgumentParser):
         ],
         "identifier": [
             "optional",
-            {"type": str, "help": "identifier (full/partial uuid or name)"},
+            {"type": str, "help": "identifier of GEMD object to plot, with full/partial uuid/name"},
         ],
         "add_attributes": [
             "optional", 
@@ -210,6 +210,22 @@ class OpenMSIModelParser(ArgumentParser):
                 "action": "store_true",
                 "default": False,
                 "help": "whether to launch the final desired graph in a Jupyter notebook",
+            },
+        ],
+        "a": [
+            "optional",
+            {
+                "action": "store_true",
+                "default": False,
+                "help": "whether to include ancestors of selected identifier",
+            },
+        ],
+        "d": [
+            "optional",
+            {
+                "action": "store_true",
+                "default": False,
+                "help": "whether to include descendants of selected identifier",
             },
         ],
     }

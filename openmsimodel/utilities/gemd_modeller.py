@@ -60,11 +60,7 @@ class GemdModeller(Runnable):
 
         :return: graph
         """
-        print(
-            "-- Building {} in mode {} and with {}".format(
-                self.dirpath, obj_state, add_separate_node
-            )
-        )
+        print("-- Building {}s of folder {}".format(obj_state, self.dirpath))
         G = nx.DiGraph()
         object_mapping = defaultdict()
         name_mapping = defaultdict()
@@ -283,6 +279,7 @@ class GemdModeller(Runnable):
             return []
 
     def diagnostics(self, G, gemd_objects, nb_disregarded):
+        print("-- Analysis --")
         print("cycles in the graph: {}".format(list(nx.simple_cycles(G))))
         print(
             "nb of disregarded elements (i.e., templates/specs): {}/{}".format(
@@ -305,7 +302,9 @@ class GemdModeller(Runnable):
         # print(cls.IPYNB_FILENAME)
         # print(cls.IPYNB_FILENAME.parent)
         # exit()
-        os.system("jupyter notebook --notebook-dir={}".format(cls.IPYNB_FILENAME.parent))
+        os.system(
+            "jupyter notebook --notebook-dir={}".format(cls.IPYNB_FILENAME.parent)
+        )
         return None
 
     def update_paths(self, svg_path, dot_path):
@@ -352,7 +351,7 @@ class GemdModeller(Runnable):
         # writing dot file
         with open(dot_path, "w") as f:
             f.write(str(G))
-        print("Saved graph to {} and {}".format(dot_path, svg_path))
+        print("-- Saved graph to {} and {}".format(dot_path, svg_path))
         return dot_path, svg_path
 
     # @classmethod
@@ -423,6 +422,8 @@ class GemdModeller(Runnable):
             "add_file_links",
             "add_tags",
             "add_separate_node",
+            "a",
+            "d",
         ]
         kwargs = {**superkwargs}
         return args, kwargs
