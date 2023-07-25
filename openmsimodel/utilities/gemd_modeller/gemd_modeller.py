@@ -248,6 +248,10 @@ class GemdModeller:
                     node_name = "{}, {} {}".format(
                         att_name, value["nominal"], value["units"]
                     )
+                elif value["type"] == "uniform_real":
+                    node_name = "{}, {}-{} {}".format(
+                        att_name, value["lower_bound"], value['upper_bound'], value["units"]
+                    )
                 elif value["type"] == "nominal_categorical":
                     node_name = "{}, {}".format(att_name, value["category"])
                 self.add_to_graph(G, uid, node_name, att_name, add_separate_node)
