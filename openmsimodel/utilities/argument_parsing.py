@@ -168,33 +168,37 @@ class OpenMSIModelParser(ArgumentParser):
             "positional",
             {"type": str, "help": "path to folder of GEMD json files"},
         ],
+        "obj_state": [
+            "optional",
+            {
+                "type": str,
+                "choices": ["run", "spec"],
+                "default": "run",
+                "help": "whether to model specs or runs ",
+            },
+        ],
         "identifier": [
             "optional",
-            {"type": str, "help": "identifier of GEMD object to plot, with full/partial uuid/name"},
+            {
+                "type": str,
+                "help": "identifier of GEMD object to plot, with full/partial uuid/name",
+            },
         ],
         "add_attributes": [
-            "optional", 
+            "optional",
             {
-                "type": bool, 
-                "default": True, 
-                "help": "whether to add GEMD attributes (i.e., conditions, parameters, and properties)"
-            }
+                "type": bool,
+                "default": True,
+                "help": "whether to add GEMD attributes (i.e., conditions, parameters, and properties)",
+            },
         ],
         "add_tags": [
-            "optional", 
-            {
-                "type": bool, 
-                "default": True,
-                "help": "whether to add GEMD tags"
-            }
+            "optional",
+            {"type": bool, "default": True, "help": "whether to add GEMD tags"},
         ],
         "add_file_links": [
-            "optional", 
-            {
-                "type": bool, 
-                "default": True, 
-                "help": "whether to add GEMD file links"
-            }
+            "optional",
+            {"type": bool, "default": True, "help": "whether to add GEMD file links"},
         ],
         "add_separate_node": [
             "optional",

@@ -1,17 +1,24 @@
-from setuptools import setup, find_packages
+import setuptools
 
-setup(
+version = "0.1"
+
+setupkwargs = dict(
     name="openmsimodel",
-    version="0.1",
+    version=version,
     description="data modelling package",
-    url="http://github.com/storborg/funniest",
+    url="https://github.com/openmsi/openmsimodel",
     author="Ali Rachidi",
     author_email="arachid1@jhu.edu",
-    license="MIT",
+    # license="MIT",
     # packages=['openmsimodel'],
-    packages=find_packages(),
+    packages=setuptools.find_packages(include=["openmsistream*"]),
+    # packages=find_packages(),
     zip_safe=False,
     entry_points={
         "console_scripts": ["gemd_modeller=openmsimodel.utilities.gemd_modeller:main"],
     },
 )
+
+setupkwargs["extras_require"]["all"] = sum(setupkwargs["extras_require"].values(), [])
+
+setuptools.setup(**setupkwargs)

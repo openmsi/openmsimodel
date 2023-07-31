@@ -8,8 +8,12 @@ from gemd import (
     RealBounds,
     NominalReal,
 )
-from entity.base import Measurement
-from entity.base.attributes import AttrsDict, define_attribute, finalize_template
+from openmsimodel.entity.base import Measurement
+from openmsimodel.entity.base.attributes import (
+    AttrsDict,
+    define_attribute,
+    finalize_template,
+)
 
 __all__ = ["Tensile"]
 

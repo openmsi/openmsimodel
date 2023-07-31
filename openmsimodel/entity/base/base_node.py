@@ -97,6 +97,8 @@ class BaseNode(ABC):
         and the run's spec will be set to this spec.
         """
 
+    ############################### ATTRIBUTES ###############################
+
     def _update_attributes(
         self,
         AttrType: Type[BaseAttribute],
@@ -120,28 +122,7 @@ class BaseNode(ABC):
 
         remove_attrs(self._ATTRS, self._spec, self._run, AttrType, attr_names, which)
 
-    def get_tags_dict(self) -> TagsDict:
-        """Get a ``dict`` representing the hierarchical tags."""
-
-        tags_dict = {"spec": {}, "run": {}}
-
-        self._build_tags_dict(self._spec.tags, tags_dict["spec"], self._TAG_SEP)
-        self._build_tags_dict(self._run.tags, tags_dict["run"], self._TAG_SEP)
-
-        return tags_dict
-
-    @staticmethod
-    def _build_tags_dict(tags: list[str], parent_dict: dict, tag_sep: str) -> None:
-        """Build a spec or run hierarchical tags ``dict``."""
-
-        for tag_str in tags:
-            tag_tup = tag_str.split(tag_sep)
-            parent = parent_dict
-            for component in tag_tup:
-                if component not in parent:
-                    parent[component] = {}
-                parent = parent[component]
-
+    ############################### TAGS ###############################
     def update_tags(
         self,
         *tags: tuple[str, ...],
@@ -185,24 +166,6 @@ class BaseNode(ABC):
         if which in ["run", "both"]:
             self._set_tags(self._run, tags, replace_all)
 
-    @classmethod
-    def _set_tags(
-        cls,
-        spec_or_run: SpecOrRun,
-        tags: tuple[tuple[str, ...], ...],
-        replace_all: bool = False,
-    ) -> None:
-        """Set tags for the spec or run."""
-
-        tag_strs = [cls._TAG_SEP.join(tag) for tag in tags]
-
-        if not replace_all:
-            existing_tags = [tag for tag in spec_or_run.tags if tag not in tag_strs]
-        else:
-            existing_tags = []
-
-        spec_or_run.tags = existing_tags + tag_strs
-
     def remove_tags(
         self, *tags: tuple[str, ...], which: SpecRunLiteral = "spec"
     ) -> None:
@@ -228,13 +191,55 @@ class BaseNode(ABC):
             self._remove_tags(self._run, tags)
 
     @classmethod
-    def _remove_tags(
+    def _set_tags_of_spec_or_run(
+        cls,
+        spec_or_run: SpecOrRun,
+        tags: tuple[tuple[str, ...], ...],
+        replace_all: bool = False,
+    ) -> None:
+        """Set tags for the spec or run."""
+
+        tag_strs = [cls._TAG_SEP.join(tag) for tag in tags]
+
+        if not replace_all:
+            existing_tags = [tag for tag in spec_or_run.tags if tag not in tag_strs]
+        else:
+            existing_tags = []
+
+        spec_or_run.tags = existing_tags + tag_strs
+
+    @classmethod
+    def _remove_tags_of_spec_or_run(
         cls, spec_or_run: SpecOrRun, tags: tuple[tuple[str, ...], ...]
     ) -> None:
         """Remove tags from the spec or run."""
 
         tag_strs = [cls._TAG_SEP.join(tag) for tag in tags]
         spec_or_run.tags = [tag for tag in spec_or_run.tags if tag not in tag_strs]
+
+    def get_tags_dict(self) -> TagsDict:
+        """Get a ``dict`` representing the hierarchical tags."""
+
+        tags_dict = {"spec": {}, "run": {}}
+
+        self._build_tags_dict(self._spec.tags, tags_dict["spec"], self._TAG_SEP)
+        self._build_tags_dict(self._run.tags, tags_dict["run"], self._TAG_SEP)
+
+        return tags_dict
+
+    @staticmethod
+    def _build_tags_dict(tags: list[str], parent_dict: dict, tag_sep: str) -> None:
+        """Build a spec or run hierarchical tags ``dict``."""
+
+        for tag_str in tags:
+            tag_tup = tag_str.split(tag_sep)
+            parent = parent_dict
+            for component in tag_tup:
+                if component not in parent:
+                    parent[component] = {}
+                parent = parent[component]
+
+    ############################### FILE LINKS ###############################
 
     def get_filelinks_dict(self) -> FileLinksDict:
         """

@@ -41,11 +41,10 @@ class GemdModeller(Runnable):
     # instance method
     def build_graph(
         self,
-        obj_state="run",
-        full_json_path=None,
-        add_separate_node=False,
+        obj_state,
+        add_separate_node,
+        assets_to_add,
         update=True,
-        assets_to_add={},
     ):
         """
         creates a NetworkX graph representation of the GEMD relationships by reading every object
@@ -56,7 +55,9 @@ class GemdModeller(Runnable):
 
         :param dirpath: source of graph
         :param obj_state: to plot a graph of specs, runs or templates
-        :param full_json_path: path to json file containing all objects in full format (!= )
+        :param add_separate_node: bool to determine whether or not to add assets as attribute of related node, or as separate node
+        :param assets_to_add: dict to determine which of attributes, tags and/or file links to add to model
+        :param update: bool to determinate updating instance variable svg_path and dot_path
 
         :return: graph
         """
@@ -67,18 +68,18 @@ class GemdModeller(Runnable):
         encoder = GEMDJson()
         nb_disregarded = 0
 
-        gemd_objects = []
-        if full_json_path:  # plotting a graph from a single, full json (!= thin)
-            with open(full_json_path) as fp:
-                # TODO: build gemd objects by converting them to thin jsons???
-                object = encoder.load(fp)
-        else:  # plotting a graph from a bunch of thin jsons
-            gemd_objects = [
-                os.path.join(dp, f)
-                for dp, dn, filenames in os.walk(self.dirpath)
-                for f in filenames
-                if f.endswith(".json")
-            ]
+        # gemd_objects = []
+        # if full_json_path:  # plotting a graph from a single, full json (!= thin)
+        #     with open(full_json_path) as fp:
+        #         # TODO: build gemd objects by converting them to thin jsons???
+        #         object = encoder.load(fp)
+        # else:  # plotting a graph from a bunch of thin jsons
+        gemd_objects = [
+            os.path.join(dp, f)
+            for dp, dn, filenames in os.walk(self.dirpath)
+            for f in filenames
+            if f.endswith(".json")
+        ]
         if len(gemd_objects) == 0:
             return
 
@@ -153,6 +154,7 @@ class GemdModeller(Runnable):
                 G.add_node(uid, color="blue")
                 process = obj_data["process"]["id"]
                 G.add_edge(uid, process)
+                # G.add_edge(process, uid)
                 self.add_gemd_assets(
                     G,
                     uid,
@@ -241,6 +243,13 @@ class GemdModeller(Runnable):
                 if value["type"] == "nominal_real":
                     node_name = "{}, {} {}".format(
                         att_name, value["nominal"], value["units"]
+                    )
+                elif value["type"] == "uniform_real":
+                    node_name = "{}, {}-{} {}".format(
+                        att_name,
+                        value["lower_bound"],
+                        value["upper_bound"],
+                        value["units"],
                     )
                 elif value["type"] == "nominal_categorical":
                     node_name = "{}, {}".format(att_name, value["category"])
@@ -367,6 +376,7 @@ class GemdModeller(Runnable):
         args = [
             *superargs,
             "dirpath",
+            "obj_state",
             "identifier",
             "launch_notebook",
             "add_attributes",
@@ -397,7 +407,9 @@ class GemdModeller(Runnable):
             "add_tags": args.add_tags,
         }
         G, relabeled_G, name_mapping = viewer.build_graph(
-            add_separate_node=args.add_separate_node, assets_to_add=assets_to_add
+            add_separate_node=args.add_separate_node, 
+            obj_state=args.obj_state,
+            assets_to_add=assets_to_add
         )
 
         if args.identifier:

@@ -1,35 +1,43 @@
-from .workflow import Workflow
+from openmsimodel.workflow.workflow import Workflow
 from .folder_or_file import FolderOrFile
 
 from block.block import Block
-from entity.base import Material, Process, Measurement, Ingredient
-from entity.processes.birdshot.aggregate_summary_sheet import AggregateSummarySheet
-from entity.processes.birdshot.infer_compositions import InferCompositions
-from entity.processes.birdshot.select_composition import SelectComposition
-from entity.processes.birdshot.aggregate_material import AggregateMaterial
-from entity.processes.birdshot.mixing import Mixing
-from entity.processes.birdshot.arc_melting import ArcMelting
-from entity.processes.birdshot.homogenization import Homogenization
-from entity.processes.birdshot.forging import Forging
-from entity.processes.birdshot.setting_traveler import SettingTraveler
-from entity.processes.birdshot.setting_traveler_sample import SettingTravelerSample
-from entity.materials.birdshot.summary_sheet import SummarySheet
-from entity.materials.birdshot.inferred_alloy_compositions import (
+from openmsimodel.entity.base import Material, Process, Measurement, Ingredient
+from openmsimodel.entity.processes.birdshot.aggregate_summary_sheet import (
+    AggregateSummarySheet,
+)
+from openmsimodel.entity.processes.birdshot.infer_compositions import InferCompositions
+from openmsimodel.entity.processes.birdshot.select_composition import SelectComposition
+from openmsimodel.entity.processes.birdshot.aggregate_material import AggregateMaterial
+from openmsimodel.entity.processes.birdshot.mixing import Mixing
+from openmsimodel.entity.processes.birdshot.arc_melting import ArcMelting
+from openmsimodel.entity.processes.birdshot.homogenization import Homogenization
+from openmsimodel.entity.processes.birdshot.forging import Forging
+from openmsimodel.entity.processes.birdshot.setting_traveler import SettingTraveler
+from openmsimodel.entity.processes.birdshot.setting_traveler_sample import (
+    SettingTravelerSample,
+)
+from openmsimodel.entity.materials.birdshot.summary_sheet import SummarySheet
+from openmsimodel.entity.materials.birdshot.inferred_alloy_compositions import (
     InferredAlloyCompositions,
 )
-from entity.materials.birdshot.composition import Composition
-from entity.materials.birdshot.element import Element
-from entity.materials.birdshot.alloy import Alloy
-from entity.materials.birdshot.traveler import Traveler
-from entity.materials.birdshot.traveler_sample import TravelerSample
+from openmsimodel.entity.materials.birdshot.composition import Composition
+from openmsimodel.entity.materials.birdshot.element import Element
+from openmsimodel.entity.materials.birdshot.alloy import Alloy
+from openmsimodel.entity.materials.birdshot.traveler import Traveler
+from openmsimodel.entity.materials.birdshot.traveler_sample import TravelerSample
 
-from entity.measurements.birdshot.weighting import Weighting
-from entity.measurements.birdshot.measure_dimensions import MeasureDimensions
-from entity.measurements.birdshot.sem import SEM
-from entity.measurements.birdshot.ni import NI
-from entity.measurements.birdshot.xrd import XRD
-from entity.measurements.birdshot.tensile import Tensile
-from entity.measurements.birdshot.mounting_and_polishing import MountingAndPolishing
+from openmsimodel.entity.measurements.birdshot.weighting import Weighting
+from openmsimodel.entity.measurements.birdshot.measure_dimensions import (
+    MeasureDimensions,
+)
+from openmsimodel.entity.measurements.birdshot.sem import SEM
+from openmsimodel.entity.measurements.birdshot.ni import NI
+from openmsimodel.entity.measurements.birdshot.xrd import XRD
+from openmsimodel.entity.measurements.birdshot.tensile import Tensile
+from openmsimodel.entity.measurements.birdshot.mounting_and_polishing import (
+    MountingAndPolishing,
+)
 
 
 from utilities.tools import plot_graph
@@ -1397,10 +1405,11 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
     @classmethod
     def get_command_line_arguments(cls):
         superargs, superkwargs = super().get_command_line_arguments()
-        args = [*superargs, 'path']
+        args = [*superargs, "path"]
         kwargs = {**superkwargs}
         return args, kwargs
-    
+
+
 def main(args=None):
     """
     Main method to run from command line

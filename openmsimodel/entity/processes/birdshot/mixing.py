@@ -7,8 +7,12 @@ from gemd import (
     NominalCategorical,
 )
 
-from entity.base import Process
-from entity.base.attributes import AttrsDict, define_attribute, finalize_template
+from openmsimodel.entity.base import Process
+from openmsimodel.entity.base.attributes import (
+    AttrsDict,
+    define_attribute,
+    finalize_template,
+)
 
 __all__ = ["Mixing"]
 

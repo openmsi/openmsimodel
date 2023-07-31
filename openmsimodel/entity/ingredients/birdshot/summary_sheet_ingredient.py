@@ -2,14 +2,19 @@ from typing import ClassVar
 
 from gemd import ParameterTemplate, CategoricalBounds, NominalCategorical
 
-from entity.base import Ingredient
-from entity.base.attributes import AttrsDict, define_attribute, finalize_template
+from openmsimodel.entity.base import Ingredient
+from openmsimodel.entity.base.attributes import (
+    AttrsDict,
+    define_attribute,
+    finalize_template,
+)
 
-__all__ = ['SummarySheet']
+__all__ = ["SummarySheet"]
+
 
 class SummarySheetIngredient(Ingredient):
-    '''Class representing summary sheet '''
-    
+    """Class representing summary sheet"""
+
     # name = __name__ + ' Template'
     # TEMPLATE: ClassVar[MaterialTemplate] = MaterialTemplate(
     #     name,

@@ -9,8 +9,8 @@ from gemd import (
 from gemd.entity.bounds import RealBounds
 from gemd.entity.value import NominalReal
 
-from entity.base import Material
-from entity.base.attributes import AttrsDict, define_attribute, finalize_template
+from openmsimodel.entity.base import Material
+from openmsimodel.entity.base.attributes import AttrsDict, define_attribute, finalize_template
 
 __all__ = ["Composition"]
 

@@ -3,7 +3,7 @@ from folder_or_file import FolderOrFile
 
 # import sys
 # sys.path.append("..")
-from utilities.tools import *
+from openmsimodel.utilities.tools import *
 from utilities.runnable import Runnable
 from utilities.argument_parsing import OpenMSIModelParser
 
