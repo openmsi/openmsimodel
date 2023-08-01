@@ -1,5 +1,3 @@
-"""Material implementation classes."""
-
 from . import birdshot
 from .birdshot import *
 

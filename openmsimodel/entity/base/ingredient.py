@@ -59,3 +59,6 @@ class Ingredient(BaseNode):
 
     def to_form(self) -> str:
         pass
+
+    # TODO: from_material
+    # TODO: from_material_run_or_spec

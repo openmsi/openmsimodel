@@ -89,7 +89,7 @@ class Measurement(ProcessOrMeasurement):
             if not isinstance(spec, MeasurementSpec):
                 raise TypeError("spec must be a MeasurementSpec.")
 
-            measurement.spec = spec
+            measurement._spec = spec
 
             measurement.spec.name = name
             measurement.spec.notes = notes
@@ -102,7 +102,7 @@ class Measurement(ProcessOrMeasurement):
             if not isinstance(run, MeasurementRun):
                 raise TypeError("run must be a MeasurementRun.")
 
-            measurement.run = run
+            measurement._run = run
 
             measurement.run.name = name
             measurement.run.notes = notes
@@ -118,7 +118,7 @@ class Measurement(ProcessOrMeasurement):
             )
 
         else:
-            measurement.run = make_instance(measurement.spec)
+            measurement._run = make_instance(measurement.spec)
 
         return measurement
 

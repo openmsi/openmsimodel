@@ -1,5 +1,8 @@
-'''Process implementation classes.'''
+"""Process implementation classes."""
 
-from .buy_starting_materials import BuyStartingMaterials
+from . import birdshot
+from .birdshot import *
 
-__all__ = ['BuyStartingMaterials']
+__all__ = birdshot.__all__
+
+del birdshot

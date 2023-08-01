@@ -1,14 +1,9 @@
-from . import alloy
-from . import composition
-from . import inferred_alloy_compositions
-from . import summary_sheet
-from . import traveler_sample
-
 from .alloy import Alloy
 from .composition import Composition
 from .inferred_alloy_compositions import InferredAlloyCompositions
 from .summary_sheet import SummarySheet
 from .traveler_sample import TravelerSample
+from .traveler import Traveler
 
 __all__ = [
     "Alloy",
@@ -16,6 +11,7 @@ __all__ = [
     "InferredAlloyCompositions",
     "SummarySheet",
     "TravelerSample",
+    "Traveler",
 ]
 
 del alloy
@@ -23,3 +19,4 @@ del composition
 del inferred_alloy_compositions
 del summary_sheet
 del traveler_sample
+del traveler

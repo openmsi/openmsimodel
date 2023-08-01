@@ -62,6 +62,7 @@ class BaseNode(ABC):
 
     _TAG_SEP: ClassVar[str] = "::"
 
+    # TODO: adding passing a template as option?
     def __init__(self, name: str, *, notes: Optional[str] = None) -> None:
         super().__init__()
         self._spec: Spec = self._SpecType(
@@ -217,16 +218,6 @@ class BaseNode(ABC):
         tag_strs = [cls._TAG_SEP.join(tag) for tag in tags]
         spec_or_run.tags = [tag for tag in spec_or_run.tags if tag not in tag_strs]
 
-    def get_tags_dict(self) -> TagsDict:
-        """Get a ``dict`` representing the hierarchical tags."""
-
-        tags_dict = {"spec": {}, "run": {}}
-
-        self._build_tags_dict(self._spec.tags, tags_dict["spec"], self._TAG_SEP)
-        self._build_tags_dict(self._run.tags, tags_dict["run"], self._TAG_SEP)
-
-        return tags_dict
-
     @staticmethod
     def _build_tags_dict(tags: list[str], parent_dict: dict, tag_sep: str) -> None:
         """Build a spec or run hierarchical tags ``dict``."""
@@ -239,29 +230,17 @@ class BaseNode(ABC):
                     parent[component] = {}
                 parent = parent[component]
 
+    def get_tags_dict(self) -> TagsDict:
+        """Get a ``dict`` representing the hierarchical tags."""
+
+        tags_dict = {"spec": {}, "run": {}}
+
+        self._build_tags_dict(self._spec.tags, tags_dict["spec"], self._TAG_SEP)
+        self._build_tags_dict(self._run.tags, tags_dict["run"], self._TAG_SEP)
+
+        return tags_dict
+
     ############################### FILE LINKS ###############################
-
-    def get_filelinks_dict(self) -> FileLinksDict:
-        """
-        Get string representations of the file links.
-
-        Returns
-        -------
-        filelinks_dict: FileLinksDict
-            Strings representing the file links of the spec and run.
-        """
-
-        filelinks_dict = {}
-
-        filelinks_dict["spec"] = tuple(
-            self._link_str(link) for link in self._spec.file_links
-        )
-        filelinks_dict["run"] = tuple(
-            self._link_str(link) for link in self._run.file_links
-        )
-
-        return filelinks_dict
-
     def update_filelinks(
         self,
         *filelinks: FileLink,
@@ -290,14 +269,6 @@ class BaseNode(ABC):
 
         if which in ["run", "both"]:
             self._set_filelinks(self._run, supplied_links, replace_all)
-
-    @staticmethod
-    def _link_str(link: FileLink) -> str:
-        """
-        Return a str representation of a ``FileLink`` based on its ``filename`` and url``.
-        """
-        # TODO: add conversion to standard file path or https
-        return f'{link.filename}{"/" if link.filename.endswith("/") else ","}{link.url}'
 
     @classmethod
     def _set_filelinks(
@@ -352,9 +323,38 @@ class BaseNode(ABC):
             if cls._link_str(link) not in filelink_strs
         ]
 
-    @abstractmethod
-    def to_form(self) -> str:
-        """Return a ``str`` specifying how to create a web form for this node."""
+    @staticmethod
+    def _link_str(link: FileLink) -> str:
+        """
+        Return a str representation of a ``FileLink`` based on its ``filename`` and url``.
+        """
+        # TODO: add conversion to standard file path or https
+        return f'{link.filename}{"/" if link.filename.endswith("/") else ","}{link.url}'
+
+    def get_filelinks_dict(self) -> FileLinksDict:
+        """
+        Get string representations of the file links.
+
+        Returns
+        -------
+        filelinks_dict: FileLinksDict
+            Strings representing the file links of the spec and run.
+        """
+
+        filelinks_dict = {}
+
+        filelinks_dict["spec"] = tuple(
+            self._link_str(link) for link in self._spec.file_links
+        )
+        filelinks_dict["run"] = tuple(
+            self._link_str(link) for link in self._run.file_links
+        )
+
+        return filelinks_dict
+
+    # @abstractmethod
+    # def to_form(self) -> str:
+    #     """Return a ``str`` specifying how to create a web form for this node."""
 
     # def thin_dumps(self, encoder, destination):
     #     for obj in [self._spec, self._run]:
