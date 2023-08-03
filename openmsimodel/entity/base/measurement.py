@@ -53,6 +53,7 @@ class Measurement(ProcessOrMeasurement):
         self.update_properties(properties=properties, replace_all=True)
 
         self.set_material(material)
+        
 
     @property
     def spec(self) -> MeasurementSpec:
@@ -145,6 +146,7 @@ class Measurement(ProcessOrMeasurement):
 
         self._run.material = material
 
+    # TODO: merge all properties stuff to base node?
     def get_properties_dict(self) -> dict[str, ValueAndOrigin]:
         """
         Return a ``dict`` of measurement run properties.

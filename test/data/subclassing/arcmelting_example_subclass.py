@@ -17,10 +17,10 @@ from openmsimodel.entity.base.attributes import (
     _validate_temp_keys,
 )
 
-__all__ = ["ArcMelting"]
+__all__ = ["ArcMeltingExample"]
 
 
-class ArcMelting(Process):
+class ArcMeltingExample(Process):
     """Class representing arc melting"""
 
     TEMPLATE: ClassVar[ProcessTemplate] = ProcessTemplate(

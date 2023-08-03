@@ -41,7 +41,7 @@ class GemdModeller(Runnable):
     # instance method
     def build_graph(
         self,
-        obj_state,
+        state,
         add_separate_node,
         assets_to_add,
         update=True,
@@ -54,14 +54,14 @@ class GemdModeller(Runnable):
         measurements or ingredients) and saves a NetworkX graph in "dot" as .png
 
         :param dirpath: source of graph
-        :param obj_state: to plot a graph of specs, runs or templates
+        :param state: to plot a graph of specs, runs or templates
         :param add_separate_node: bool to determine whether or not to add assets as attribute of related node, or as separate node
         :param assets_to_add: dict to determine which of attributes, tags and/or file links to add to model
         :param update: bool to determinate updating instance variable svg_path and dot_path
 
         :return: graph
         """
-        print("-- Building {}s of folder {}".format(obj_state, self.dirpath))
+        print("-- Building {}s of folder {}".format(state, self.dirpath))
         G = nx.DiGraph()
         object_mapping = defaultdict()
         name_mapping = defaultdict()
@@ -105,7 +105,7 @@ class GemdModeller(Runnable):
                 obj_uid,
                 obj_data,
                 obj_type,
-                obj_state,
+                state,
                 assets_to_add,
                 add_separate_node,
             )
@@ -117,7 +117,7 @@ class GemdModeller(Runnable):
 
         # # plotting
         dot_path, svg_path = self.save_graph(
-            self.dirpath, relabeled_G, name="{}_graph".format(obj_state)
+            self.dirpath, relabeled_G, name="{}_graph".format(state)
         )
         if update:
             self.update_paths(svg_path, dot_path)
@@ -133,24 +133,24 @@ class GemdModeller(Runnable):
         uid,
         obj_data,
         obj_type,
-        obj_state,
+        state,
         assets_to_add,
         add_separate_node,
     ):
         if obj_type.startswith("process"):
-            if obj_type.endswith(obj_state):
+            if obj_type.endswith(state):
                 G.add_node(uid, color="red")
                 self.add_gemd_assets(
                     G,
                     uid,
                     obj_data,
                     "process",
-                    obj_state,
+                    state,
                     assets_to_add,
                     add_separate_node,
                 )
         elif obj_type.startswith("ingredient"):  # TODO if node doesn't exist, create?
-            if obj_type.endswith(obj_state):
+            if obj_type.endswith(state):
                 G.add_node(uid, color="blue")
                 process = obj_data["process"]["id"]
                 G.add_edge(uid, process)
@@ -160,7 +160,7 @@ class GemdModeller(Runnable):
                     uid,
                     obj_data,
                     "ingredient",
-                    obj_state,
+                    state,
                     assets_to_add,
                     add_separate_node,
                 )
@@ -168,14 +168,14 @@ class GemdModeller(Runnable):
                     material = obj_data["material"]["id"]
                     G.add_edge(material, uid)
         elif obj_type.startswith("material"):
-            if obj_type.endswith(obj_state):
+            if obj_type.endswith(state):
                 G.add_node(uid, color="green")
                 self.add_gemd_assets(
                     G,
                     uid,
                     obj_data,
                     "material",
-                    obj_state,
+                    state,
                     assets_to_add,
                     add_separate_node,
                 )
@@ -184,14 +184,14 @@ class GemdModeller(Runnable):
                     process = obj_data["process"]["id"]
                     G.add_edge(process, uid)  # ?
         elif obj_type.startswith("measurement"):
-            if obj_type.endswith(obj_state):
+            if obj_type.endswith(state):
                 G.add_node(uid, color="purple")
                 self.add_gemd_assets(
                     G,
                     uid,
                     obj_data,
                     "measurement",
-                    obj_state,
+                    state,
                     assets_to_add,
                     add_separate_node,
                 )
@@ -205,7 +205,7 @@ class GemdModeller(Runnable):
         uid,
         obj_data,
         object_class,
-        obj_state,
+        state,
         assets_to_add,
         add_separate_node,
     ):
@@ -376,7 +376,7 @@ class GemdModeller(Runnable):
         args = [
             *superargs,
             "dirpath",
-            "obj_state",
+            "state",
             "identifier",
             "launch_notebook",
             "add_attributes",
@@ -408,7 +408,7 @@ class GemdModeller(Runnable):
         }
         G, relabeled_G, name_mapping = viewer.build_graph(
             add_separate_node=args.add_separate_node, 
-            obj_state=args.obj_state,
+            state=args.state,
             assets_to_add=assets_to_add
         )
 

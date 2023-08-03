@@ -10,6 +10,9 @@ from gemd import (
     Parameter,
     Property,
     PropertyAndConditions,
+    ProcessTemplate,
+    MaterialTemplate,
+    MeasurementTemplate,
 )
 from gemd.entity.template.attribute_template import AttributeTemplate
 from gemd.entity.attribute.base_attribute import BaseAttribute
@@ -17,7 +20,7 @@ from gemd.entity.bounds.base_bounds import BaseBounds
 from gemd.entity.value.base_value import BaseValue
 from gemd.enumeration import Origin
 
-from .typing import Temp, Spec, Run, SpecOrRun, SpecRunLiteral
+from .typing import Temp, Spec, Run, Attributes, SpecOrRun, SpecOrRunLiteral
 
 
 class AttrDict(TypedDict):
@@ -95,6 +98,11 @@ def define_attribute(
     if default_value is not None and not isinstance(default_value, BaseValue):
         raise TypeError("default_value must be an instance of BaseValue.")
 
+    if not (key1 in cls_attrs.keys()):
+        raise TypeError(
+            f'attribute template of type "{key1}" cannot be assigned to attributes dictionary with keys "{cls_attrs.keys()}".'
+        )
+
     cls_attrs[key1][template.name] = {
         key2: template,
         "bounds": bounds,
@@ -135,12 +143,12 @@ def update_attrs(
     AttrType: Type[Union[BaseAttribute, PropertyAndConditions]],
     attributes: tuple[BaseAttribute],
     replace_all: bool = False,
-    which: SpecRunLiteral = "spec",
+    state: SpecOrRunLiteral = "spec",
 ) -> None:
     """Used by BaseNode to update attributes and link attribute templates."""
 
     attr_dict_key, singular, plural = _validate_attr_type(AttrType)
-    validate_which(which)
+    validate_state(state)
 
     required_attrs = _required_attrs(attrs, AttrType, attr_dict_key, plural)
 
@@ -153,8 +161,10 @@ def update_attrs(
     for attr_name, attr in supplied_attrs.items():
         # TODO: quick fix for now for having multiple version of a same template (i.e., ambient ressure, purging pressure for the same parameter template: pressure )
         # TODO: applies to uncommented bloc of code above that caused errors
-        if attr_name not in  attrs[plural].keys(): # TODO: improve fix?
-            raise KeyError(f"the '{attr_name}' attribute is not among the object defined attributes.")
+        if attr_name not in attrs[plural].keys():  # TODO: improve fix?
+            raise KeyError(
+                f"the '{attr_name}' attribute is not among the object defined attributes."
+            )
         if attr.template is not None or attr.property.template is not None:
             continue
         if type(attr) == PropertyAndConditions:
@@ -162,9 +172,9 @@ def update_attrs(
         else:
             attr.template = attrs[plural][attr_name][attr_dict_key]
 
-    if which in ["spec", "both"]:
+    if state in ["spec", "both"]:
         _set_attrs(spec, required_attrs, supplied_attrs, AttrType, replace_all)
-    if which in ["run", "both"]:
+    if state in ["run", "both"]:
         _set_attrs(run, required_attrs, supplied_attrs, AttrType, replace_all)
 
 
@@ -248,12 +258,12 @@ def remove_attrs(
     run: Run,
     AttrType: Type[Union[BaseAttribute, PropertyAndConditions]],
     attr_names: tuple[str, ...],
-    which: SpecRunLiteral = "spec",
+    state: SpecOrRunLiteral = "spec",
 ) -> None:
     """Used by BaseNode to remove attributes by name."""
 
     _, singular, plural = _validate_attr_type(AttrType)
-    validate_which(which)
+    validate_state(state)
 
     required_names = [
         attr_name
@@ -267,14 +277,16 @@ def remove_attrs(
         if name in required_names:
             raise ValueError(f'May not remove required {singular} "{name}".')
 
-    if which in ["spec", "both"]:
+    if state in ["spec", "both"]:
         _remove_attrs(AttrType, spec, attr_names)
-    if which in ["run", "both"]:
+    if state in ["run", "both"]:
         _remove_attrs(AttrType, run, attr_names)
 
 
 def _remove_attrs(
-    AttrType: Type[Union[BaseAttribute, PropertyAndConditions]],
+    AttrType: Type[
+        Union[BaseAttribute, PropertyAndConditions]
+    ],  # TODO: figure whether to do this or use 'Attributes' from typing
     spec_or_run: SpecOrRun,
     attr_names: tuple[str, ...],
 ) -> None:
@@ -297,7 +309,23 @@ def _remove_attrs(
         spec_or_run.properties = left_over
 
 
-def _validate_attr_type(AttrType: Any) -> None:
+def _validate_temp_keys(Temp: Temp) -> AttrsDict:
+    """Check `Temp`, or Template type, and returns the corresponding AttrsDict."""
+    # ATTRS = {}
+    if isinstance(Temp, ProcessTemplate):
+        ATTRS = {"conditions": {}, "parameters": {}}
+    elif isinstance(Temp, MaterialTemplate):
+        ATTRS = {"properties": {}}
+    elif isinstance(Temp, MaterialTemplate):
+        ATTRS = {"properties": {}, "conditions": {}, "parameters": {}}
+    else:
+        raise ValueError(
+            "AttrType must be one of ProcessTemplate, MaterialTemplate, or MeasurementTemplate."
+        )
+    return AttrsDict(ATTRS)
+
+
+def _validate_attr_type(AttrType: Attributes) -> None:
     """Check `AttrType`, return case-specific strings."""
 
     if AttrType is Condition:
@@ -320,8 +348,8 @@ def _validate_attr_type(AttrType: Any) -> None:
     return attr_dict_key, singular, plural
 
 
-def validate_which(which: Any) -> None:
-    """Validate `which`."""
+def validate_state(state: Any) -> None:
+    """Validate `state`."""
 
-    if which not in get_args(SpecRunLiteral):
-        raise ValueError(f"which must be one of {get_args(SpecRunLiteral)}")
+    if state not in get_args(SpecOrRunLiteral):
+        raise ValueError(f"{state} must be one of {get_args(SpecOrRunLiteral)}")

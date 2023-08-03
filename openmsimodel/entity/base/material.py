@@ -8,6 +8,7 @@ from gemd.enumeration import SampleType
 
 from .base_node import BaseNode
 from .typing import ProcessDict, PropsAndCondsDict
+from .attributes import finalize_template
 from .process import Process
 
 __all__ = ["Material"]
@@ -30,12 +31,13 @@ class Material(BaseNode):
         self,
         name: str,
         *,
+        template: ClassVar[MaterialTemplate] = None,
         notes: Optional[str] = None,
         process: Optional[Process] = None,
         properties: Optional[list[PropertyAndConditions]] = None,
         sample_type: Optional[SampleType] = None
     ) -> None:
-        super().__init__(name, notes=notes)
+        super().__init__(name, template=template, notes=notes)
 
         self.set_process(process)
 

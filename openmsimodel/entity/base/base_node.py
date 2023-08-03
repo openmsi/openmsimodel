@@ -7,9 +7,26 @@ from gemd import FileLink
 from gemd.entity.attribute.base_attribute import BaseAttribute
 from gemd.entity.util import make_instance
 
-from .typing import Temp, Spec, Run, SpecOrRun, SpecRunLiteral, TagsDict, FileLinksDict
-from .attributes import AttrsDict, validate_which, update_attrs, remove_attrs
+from .typing import (
+    Temp,
+    Spec,
+    Run,
+    SpecOrRun,
+    SpecOrRunLiteral,
+    TagsDict,
+    FileLinksDict,
+)
+from .attributes import (
+    AttrsDict,
+    validate_state,
+    update_attrs,
+    remove_attrs,
+    _validate_temp_keys,
+    define_attribute,
+    finalize_template,
+)
 
+from ...utilities.logging import Logger
 import os
 
 __all__ = ["BaseNode"]
@@ -60,11 +77,46 @@ class BaseNode(ABC):
 
     _ATTRS: ClassVar[AttrsDict]
 
+    # TODO: remove and put somewhere
     _TAG_SEP: ClassVar[str] = "::"
 
-    # TODO: adding passing a template as option?
-    def __init__(self, name: str, *, notes: Optional[str] = None) -> None:
+    def __init__(
+        self,
+        name: str,
+        *,
+        template: ClassVar[Temp] = None,  # TODO: triple check with abc's hastemplate
+        notes: Optional[str] = None,
+    ) -> None:
         super().__init__()
+        self.logger = Logger()
+
+        if not template:
+            if not hasattr(
+                self, "TEMPLATE"
+            ):  # TODO: maybe verify the existence AND actual type
+                raise AttributeError(
+                    f"Template is not defined.\n Assign to 'template' parameter an instance of either {Temp.__dict__['__args__']},\n OR define a new subclass with a TEMPLATE attribute."
+                )
+        else:
+            if hasattr(self, "TEMPLATE"):
+                self.logger.info(
+                    f"Found existing template {self.TEMPLATE.name}. Overwriting..."
+                )
+            self.TEMPLATE = template
+            self._ATTRS = _validate_temp_keys(self.TEMPLATE)
+            if hasattr(self.TEMPLATE, "conditions"):
+                for c in self.TEMPLATE.conditions:
+                    define_attribute(
+                        self._ATTRS, template=c[0]
+                    )  # TODO: look into this weird format from GEMD (attr, bounds)
+            if hasattr(self.TEMPLATE, "parameters"):
+                for p in self.TEMPLATE.parameters:
+                    define_attribute(self._ATTRS, template=p[0])
+            if hasattr(self.TEMPLATE, "properties"):
+                for p in self.TEMPLATE.properties:
+                    define_attribute(self._ATTRS, template=p[0])
+            finalize_template(self._ATTRS, self.TEMPLATE)
+
         self._spec: Spec = self._SpecType(
             name=name, notes=notes, template=self.TEMPLATE
         )
@@ -100,35 +152,40 @@ class BaseNode(ABC):
 
     ############################### ATTRIBUTES ###############################
 
+    def set_ATTRS(init, template):
+        attr_dict_key, singular, plural = _validate_attr_type(template.__class__)
+        a = 1
+        # if isinstance(template, class_or_tuple)
+
     def _update_attributes(
         self,
         AttrType: Type[BaseAttribute],
         attributes: tuple[BaseAttribute],
         replace_all: bool = False,
-        which: SpecRunLiteral = "spec",
+        state: SpecOrRunLiteral = "spec",
     ) -> None:
         """Update attributes and link attribute templates."""
 
         update_attrs(
-            self._ATTRS, self._spec, self._run, AttrType, attributes, replace_all, which
+            self._ATTRS, self._spec, self._run, AttrType, attributes, replace_all, state
         )
 
     def _remove_attributes(
         self,
         AttrType: Type[BaseAttribute],
         attr_names: tuple[str, ...],
-        which: SpecRunLiteral = "spec",
+        state: SpecOrRunLiteral = "spec",
     ) -> None:
         """Remove attributes by name."""
 
-        remove_attrs(self._ATTRS, self._spec, self._run, AttrType, attr_names, which)
+        remove_attrs(self._ATTRS, self._spec, self._run, AttrType, attr_names, state)
 
     ############################### TAGS ###############################
     def update_tags(
         self,
         *tags: tuple[str, ...],
         replace_all: bool = False,
-        which: SpecRunLiteral = "spec",
+        state: SpecOrRunLiteral = "spec",
     ) -> None:
         """
         Change or add hierarchical tags.
@@ -155,20 +212,20 @@ class BaseNode(ABC):
             components of a tag from most general to most specific.
         replace_all: bool, default False
             If ``True``, remove any existing tags before adding new ones.
-        which: {'spec', 'run', 'both'}, default 'spec'
+        state: {'spec', 'run', 'both'}, default 'spec'
             Whether to update the spec, run, or both.
         """
 
-        validate_which(which)
+        validate_state(state)
 
-        if which in ["spec", "both"]:
+        if state in ["spec", "both"]:
             self._set_tags(self._spec, tags, replace_all)
 
-        if which in ["run", "both"]:
+        if state in ["run", "both"]:
             self._set_tags(self._run, tags, replace_all)
 
     def remove_tags(
-        self, *tags: tuple[str, ...], which: SpecRunLiteral = "spec"
+        self, *tags: tuple[str, ...], state: SpecOrRunLiteral = "spec"
     ) -> None:
         """Remove tags.
 
@@ -179,18 +236,19 @@ class BaseNode(ABC):
         ----------
         *tags: tuple[str]
             ``tuple``s representing tags to remove.
-        which: {'spec', 'run', 'both'}, default 'spec'
+        state: {'spec', 'run', 'both'}, default 'spec'
             Whether to remove from the spec, run, or both.
         """
 
-        validate_which(which)
+        validate_state(state)
 
-        if which in ["spec", "both"]:
+        if state in ["spec", "both"]:
             self._remove_tags(self._spec, tags)
 
-        if which in ["run", "both"]:
+        if state in ["run", "both"]:
             self._remove_tags(self._run, tags)
 
+    # TODO: merge into one method?
     @classmethod
     def _set_tags_of_spec_or_run(
         cls,
@@ -245,7 +303,7 @@ class BaseNode(ABC):
         self,
         *filelinks: FileLink,
         replace_all: bool = False,
-        which: SpecRunLiteral = "spec",
+        state: SpecOrRunLiteral = "spec",
     ) -> None:
         """
         Change or add file links.
@@ -256,18 +314,18 @@ class BaseNode(ABC):
             The file links to change or add.
         replace_all: bool, default False
             If ``True``, remove any existing file links before adding new ones.
-        which: {'spec', 'run', 'both'}, default 'spec'
+        state: {'spec', 'run', 'both'}, default 'spec'
             Whether to update the spec, run, or both.
         """
 
-        validate_which(which)
+        validate_state(state)
 
         supplied_links = {self._link_str(link): link for link in filelinks}
 
-        if which in ["spec", "both"]:
+        if state in ["spec", "both"]:
             self._set_filelinks(self._spec, supplied_links, replace_all)
 
-        if which in ["run", "both"]:
+        if state in ["run", "both"]:
             self._set_filelinks(self._run, supplied_links, replace_all)
 
     @classmethod
@@ -288,7 +346,7 @@ class BaseNode(ABC):
         spec_or_run.file_links = {**existing_links, **supplied_links}.values()
 
     def remove_filelinks(
-        self, *filelinks: FileLink, which: SpecRunLiteral = "spec"
+        self, *filelinks: FileLink, state: SpecOrRunLiteral = "spec"
     ) -> None:
         """Remove file links.
 
@@ -297,16 +355,16 @@ class BaseNode(ABC):
         *filelinks: tuple[str]
             The file links to remove by comparison of the underlying url and
             filename.
-        which: {'spec', 'run', 'both'}, default 'spec'
+        state: {'spec', 'run', 'both'}, default 'spec'
             Whether to remove from the spec, run, or both.
         """
 
-        validate_which(which)
+        validate_state(state)
 
-        if which in ["spec", "both"]:
+        if state in ["spec", "both"]:
             self._remove_filelinks(self._spec, filelinks)
 
-        if which in ["run", "both"]:
+        if state in ["run", "both"]:
             self._remove_filelinks(self._run, filelinks)
 
     @classmethod
@@ -351,6 +409,9 @@ class BaseNode(ABC):
         )
 
         return filelinks_dict
+
+    #TODO: add a 'update_spec' function to != the 1:1 / template:spec duality
+
 
     # @abstractmethod
     # def to_form(self) -> str:
