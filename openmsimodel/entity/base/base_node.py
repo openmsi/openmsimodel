@@ -7,6 +7,9 @@ from gemd import FileLink
 from gemd.entity.attribute.base_attribute import BaseAttribute
 from gemd.entity.util import make_instance
 
+# from gemd.util.impl import set_uuids
+from .impl import assign_uuid
+
 from .typing import (
     Temp,
     Spec,
@@ -27,6 +30,9 @@ from .attributes import (
 )
 
 from ...utilities.logging import Logger
+from openmsimodel.stores.gemd_template_store import global_template_store
+from openmsimodel.stores.gemd_spec_store import global_spec_store
+
 import os
 
 __all__ = ["BaseNode"]
@@ -95,7 +101,7 @@ class BaseNode(ABC):
                 self, "TEMPLATE"
             ):  # TODO: maybe verify the existence AND actual type
                 raise AttributeError(
-                    f"Template is not defined.\n Assign to 'template' parameter an instance of either {Temp.__dict__['__args__']},\n OR define a new subclass with a TEMPLATE attribute."
+                    f"Template is not defined.\n Assign to 'template' parameter an instance of either {Temp.__dict__['__args__']},\n OR create a new subclass with a defined TEMPLATE attribute."
                 )
         else:
             if hasattr(self, "TEMPLATE"):
@@ -115,7 +121,23 @@ class BaseNode(ABC):
             if hasattr(self.TEMPLATE, "properties"):
                 for p in self.TEMPLATE.properties:
                     define_attribute(self._ATTRS, template=p[0])
-            finalize_template(self._ATTRS, self.TEMPLATE)
+            finalize_template(
+                self._ATTRS, self.TEMPLATE
+            )  # TODO: Extend (or sync with external func that returns a dict for runs/specs
+
+        if {"persistent_id", "auto"} <= self.TEMPLATE.uids.keys():
+            raise KeyError(
+                f'the "auto" and "persistent_id" uid keys are reserved. Use another key. '
+            )
+
+        assign_uuid(self.TEMPLATE, "auto")
+        # self.TEMPLATE.add_uid("persistent_id", persistent_id)
+        # TODO: test uid assignment, recursive assignment, uid overwrite
+        # TODO: give a countdown uid too
+
+        global_template_store.register_new_template_from_file(self.TEMPLATE)
+        # TODO: register all attrs
+        # global_spec_store.register_new_template_from_file(self.TEMPLATE)
 
         self._spec: Spec = self._SpecType(
             name=name, notes=notes, template=self.TEMPLATE
@@ -410,8 +432,7 @@ class BaseNode(ABC):
 
         return filelinks_dict
 
-    #TODO: add a 'update_spec' function to != the 1:1 / template:spec duality
-
+    # TODO: add a 'update_spec' function to != the 1:1 / template:spec duality
 
     # @abstractmethod
     # def to_form(self) -> str:

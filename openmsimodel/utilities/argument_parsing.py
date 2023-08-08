@@ -163,6 +163,7 @@ class OpenMSIModelParser(ArgumentParser):
     dictionary of keyword arguments to send to :func:`argparse.ArgumentParser.add_argument`.
     """
 
+    # TODO: how to specifiy all?
     ARGUMENTS = {
         "dirpath": [
             "positional",
@@ -230,6 +231,15 @@ class OpenMSIModelParser(ArgumentParser):
                 "action": "store_true",
                 "default": False,
                 "help": "whether to include descendants of selected identifier",
+            },
+        ],
+        "state": [
+            "optional",
+            {
+                "type": str,
+                "choices": ["run", "spec"],
+                "default": "run",
+                "help": "whether to plot only runs or specs ",
             },
         ],
     }

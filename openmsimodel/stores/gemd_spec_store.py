@@ -13,6 +13,9 @@ from gemd.json import GEMDJson
 from .cached_isinstance_functions import isinstance_spec
 
 
+__all__ = ["GEMDSpec", "GEMDSpecStore"]
+
+
 @dataclass
 class GEMDSpec:
     spec: Union[MaterialSpec, ProcessSpec, IngredientSpec, MeasurementSpec]
@@ -209,3 +212,5 @@ class GEMDSpecStore:
             item, new_spec_as_dict_no_uid, from_file
         )
         self.__n_specs += 1
+
+global_spec_store = GEMDSpecStore()

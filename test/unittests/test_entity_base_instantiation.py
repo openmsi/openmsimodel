@@ -37,7 +37,7 @@ from gemd.entity.util import make_instance
 class TestEntityBaseNode(unittest.TestCase):
     ct = ConditionTemplate(
         "location",
-        uids={"auto": "uid_2"},
+        uids={"gen": "uid_2"},
         bounds=CategoricalBounds(["Purification Tube Furnace", "X-Ray Panel"]),
         description="none",
     )
@@ -123,11 +123,19 @@ class TestEntityBaseNode(unittest.TestCase):
                 ],
             )
 
+        # initializing with an assigned 'auto' uid
+        pt = ProcessTemplate(
+            "process template", uids={"gen": "uid_3"}, conditions=[self.ct]
+        )
+        with self.assertRaises(KeyError):
+            p = Process("process", template=pt)
+
     def test_all_initializations(self):
         """testing initialization of all types of BaseNode object"""
 
         # initializing by subclassing
         a = ArcMeltingExample("arc melting")
+        self.assertIn("auto", a.TEMPLATE.uids.keys())
         self.assertEquals(len(a.TEMPLATE.parameters), 5)
         self.assertEquals(len(a._ATTRS["parameters"]), 5)
         self.assertEquals(len(a.run.parameters), 0)
@@ -137,9 +145,11 @@ class TestEntityBaseNode(unittest.TestCase):
         del a
 
         # initializing by passing a template
-        t = ProcessTemplate("process template", uids={"auto": "uid_1"})
+        t = ProcessTemplate("process template", uids={"gen": "uid_1"})
         p = Process("process", template=t)
+        self.assertIn("auto", p.TEMPLATE.uids.keys())
         self.assertEquals(t.uids["auto"], p.TEMPLATE.uids["auto"])
+        self.assertEquals(t.uids["gen"], "uid_1")
         del t
         del p
 
@@ -154,7 +164,7 @@ class TestEntityBaseNode(unittest.TestCase):
 
         # initializing by passing a template with attribute templates
         pt = ProcessTemplate(
-            "process template", uids={"auto": "uid_3"}, conditions=[self.ct]
+            "process template", uids={"gen": "uid_3"}, conditions=[self.ct]
         )
         p = Process("process", template=pt)
         self.assertEquals(pt.uids["auto"], p.TEMPLATE.uids["auto"])
