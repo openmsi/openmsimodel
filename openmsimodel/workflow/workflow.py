@@ -3,9 +3,9 @@ from folder_or_file import FolderOrFile
 
 # import sys
 # sys.path.append("..")
-from openmsimodel.utilities.tools import *
-from utilities.runnable import Runnable
-from utilities.argument_parsing import OpenMSIModelParser
+# from openmsimodel.utilities.tools import *
+from openmsimodel.utilities.runnable import Runnable
+from openmsimodel.utilities.argument_parsing import OpenMSIModelParser
 
 from collections import defaultdict
 import os
@@ -32,7 +32,7 @@ class Workflow(Runnable):
         self.blocks = defaultdict()
         self.terminal_blocks = defaultdict()
         self.encoder = GEMDJson()
-        self.output_folder = kwargs["output_folder"]
+        self.destination = args["destination"]
 
     def thin_dumps(self):
         """
@@ -74,7 +74,7 @@ class Workflow(Runnable):
         """
         print(self.encoder.thin_dumps(obj, indent=3))
 
-    def build_model(self):
+    def build(self):
         """
         This function builds the entire GEMD model that represents a certain Workflow.
         to be overwritten by child objects of Workflow that correspond to a specific workflow / user case.
@@ -85,7 +85,7 @@ class Workflow(Runnable):
         """
         :param obj: the object to print
         """
-        self.thin_dumps_obj_dest = os.path.join(self.output_folder, obj._run.name)
+        self.thin_dumps_obj_dest = os.path.join(self.destination, obj._run.name)
         if os.path.exists(self.thin_dumps_obj_dest):
             shutil.rmtree(self.thin_dumps_obj_dest)
         os.makedirs(self.thin_dumps_obj_dest)
@@ -106,12 +106,12 @@ class Workflow(Runnable):
 
     #################### CLASS METHODS ####################
 
-    @classmethod
-    def get_argument_parser(cls, *args, **kwargs):
-        parser = cls.ARGUMENT_PARSER_TYPE(*args, **kwargs)
-        cl_args, cl_kwargs = cls.get_command_line_arguments()
-        parser.add_arguments(*cl_args, **cl_kwargs)
-        return parser
+    # @classmethod
+    # def get_argument_parser(cls, *args, **kwargs):
+    #     parser = cls.ARGUMENT_PARSER_TYPE(*args, **kwargs)
+    #     cl_args, cl_kwargs = cls.get_command_line_arguments()
+    #     parser.add_arguments(*cl_args, **cl_kwargs)
+    #     return parser
 
     @classmethod
     def get_command_line_arguments(cls):
@@ -125,7 +125,7 @@ class Workflow(Runnable):
         parser = cls.get_argument_parser()
         args = parser.parse_args(args=args)
         workflow = cls(*args)
-        workflow.build_model()
+        workflow.build()
 
 
 def main(args=None):

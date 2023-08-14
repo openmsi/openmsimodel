@@ -1,5 +1,5 @@
 """Base class for classes containing GEMD templates and objects."""
-
+import os
 from abc import ABC, abstractmethod
 from typing import ClassVar, Type, Optional
 
@@ -29,11 +29,12 @@ from .attributes import (
     finalize_template,
 )
 
-from ...utilities.logging import Logger
-from openmsimodel.stores.gemd_template_store import global_template_store
-from openmsimodel.stores.gemd_spec_store import global_spec_store
+from openmsimodel.utilities.logging import Logger
+from openmsimodel.stores.gemd_template_store import GEMDTemplateStore
 
-import os
+# from openmsimodel.stores.gemd_template_store import global_template_store
+
+# global_template_store = GEMDTemplateStore()
 
 __all__ = ["BaseNode"]
 
@@ -135,7 +136,7 @@ class BaseNode(ABC):
         # TODO: test uid assignment, recursive assignment, uid overwrite
         # TODO: give a countdown uid too
 
-        global_template_store.register_new_template_from_file(self.TEMPLATE)
+        self.TEMPLATE = global_template_store.register_new_template(self.TEMPLATE)
         # TODO: register all attrs
         # global_spec_store.register_new_template_from_file(self.TEMPLATE)
 

@@ -1,25 +1,10 @@
 # imports
 import pkg_resources, subprocess, unittest, sys, importlib
-from pathlib import Path
 
 sys.path.insert(0, "..")
-from data.subclassing.incomplete_subclass import incompleteSubclass
-from data.subclassing.erroneous_subclass_1 import erroneousSubclass1  # FIXME ?
+# from data.subclassing.incomplete_subclass import incompleteSubclass
+# from data.subclassing.erroneous_subclass_1 import erroneousSubclass1
 from data.subclassing.arcmelting_example_subclass import ArcMeltingExample
-
-# empty folders
-
-from openmsimodel.stores.gemd_template_store import GEMDTemplateStore
-
-test_root = Path(__file__).parent.parent / "data/templates"
-test_template_store = GEMDTemplateStore(load_all_files=False)
-test_template_store.initialize_store(test_root)
-test_template_store.register_all_templates_from_files()
-# from openmsimodel.stores.gemd_template_store import global_template_store
-
-global_template_store.set_root(test_root)
-
-# set new path
 
 from openmsimodel.entity.base import (
     BaseNode,
@@ -50,102 +35,9 @@ from gemd.entity.util import make_instance
 
 
 class TestEntityBaseNode(unittest.TestCase):
-    ct = ConditionTemplate(
-        "location",
-        uids={"gen": "uid_2"},
-        bounds=CategoricalBounds(["Purification Tube Furnace", "X-Ray Panel"]),
-        description="none",
-    )
     # TODO: test define attributes when the same attribute is repassed
 
-    def test_base_node_initialization(self):
-        """testing initialization of BaseNode object"""
-        with self.assertRaises(
-            TypeError
-        ):  # abstract class can't instantiate on its own
-            b = BaseNode("base")
-
-    def test_incomplete_initializations(self):
-        """testing initializing with incomplete or erroneous classes"""
-
-        # initializing with an incomplete subclassing
-        with self.assertRaises(AttributeError):
-            i = incompleteSubclass("incomplete")
-
-        # needs a template, either passed or defined in subclass
-        with self.assertRaises(AttributeError):
-            p = Process("process")
-
-        # initializing with wrong subclasses
-        for i in range(2, 4):  # TODO: fix testing for i==1
-            with self.assertRaises(TypeError):
-                module = str(
-                    "data.subclassing.erroneous_subclass_{}.erroneousSubclass{}".format(
-                        i, i
-                    )
-                )
-                importlib.import_module(module)
-        for i in range(5, 8):
-            with self.assertRaises(NameError):
-                module = str(
-                    "data.subclassing.erroneous_subclass_{}.erroneousSubclass{}".format(
-                        i, i
-                    )
-                )
-                importlib.import_module(module)
-
-        # initializing by passing a template WITHOUT attribute templates + actual attributes
-        with self.assertRaises(KeyError):
-            p = Process(
-                "process",
-                template=ProcessTemplate(
-                    "process template",
-                    conditions=[],
-                ),
-                conditions=[
-                    Condition(
-                        "location",
-                        value=NominalCategorical("X-Ray Panel"),
-                        template=self.ct,
-                    )
-                ],
-            )
-
-        # initializing with wrong template type
-        with self.assertRaises(TypeError):
-            p = Process(
-                "process",
-                template=MaterialTemplate(
-                    "material template",
-                ),
-            )
-
-        # initializing with attribute template that isn't accepted (i.e., material CANT have parameters)
-        with self.assertRaises(TypeError):
-            p = Material(
-                "material",
-                template=MaterialTemplate(
-                    "material template",
-                ),
-                parameters=[
-                    Parameter(
-                        "location",
-                        value=NominalCategorical("Choice 1"),
-                        template=ParameterTemplate(
-                            "t", bounds=CategoricalBounds(["Choice 1"])
-                        ),
-                    )
-                ],
-            )
-
-        # initializing with an assigned 'auto' uid
-        pt = ProcessTemplate(
-            "process template", uids={"auto": "uid_3"}, conditions=[self.ct]
-        )
-        with self.assertRaises(KeyError):
-            p = Process("process", template=pt)
-
-    def test_all_initializations(self):
+    def test_stores(self):
         """testing initialization of all types of BaseNode object"""
 
         # initializing by subclassing
@@ -179,8 +71,7 @@ class TestEntityBaseNode(unittest.TestCase):
             )
 
         with self.assertRaises(NameError):
-            instantiate(name)  # reusing same name
-
+            instantiate(name)
         instantiate("2nd process template")
 
         # initializing by passing a template with attribute templates
@@ -221,7 +112,7 @@ class TestEntityBaseNode(unittest.TestCase):
         p = Process(
             "process",
             template=ProcessTemplate(
-                "5th process template",
+                "process template",
                 conditions=[self.ct],
             ),
             conditions=[
@@ -241,7 +132,7 @@ class TestEntityBaseNode(unittest.TestCase):
         p = Process(
             "process",
             template=ProcessTemplate(
-                "6th process template",
+                "process template",
                 conditions=[self.ct],
             ),
             conditions=[

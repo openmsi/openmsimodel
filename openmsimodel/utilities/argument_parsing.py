@@ -163,11 +163,50 @@ class OpenMSIModelParser(ArgumentParser):
     dictionary of keyword arguments to send to :func:`argparse.ArgumentParser.add_argument`.
     """
 
-    # TODO: how to specifiy all?
+    # TODO: how to specifiy all? +
+    # ** Make some mandatory for some classes but not others
+    # FIXME: parser needs to reject when argument name is passed but argument isn't passed
     ARGUMENTS = {
+        "root": [
+            "positional",
+            {
+                "type": str,
+                "help": "path of source data on materials, experiments, etc, that help build the GEMD model",
+            },
+        ],
+        "destination": [
+            "positional",
+            {
+                "type": str,
+                "help": "destination for artefacts generated during the creation of gemd models",
+            },
+        ],
         "dirpath": [
             "positional",
             {"type": str, "help": "path to folder of GEMD json files"},
+        ],
+        "database_name": [
+            "positional",
+            {"type": str, "help": "name of database to log on"},
+        ],
+        "private_path": [
+            "positional",
+            {"type": str, "help": "path to private file containing keys to the database "},
+        ],
+        # TODO: Move the 2 below to birdshot specific args
+        "iteration": [
+            "optional",
+            {
+                "type": str,
+                "help": "the iteration of the workflow (i.e., AAB)",
+            },
+        ],
+        "sample_data_folder": [
+            "optional",
+            {
+                "type": str,
+                "help": "the folder containing the sample data (i.e., /Sample Data/Iteration2_AAB)",
+            },
         ],
         "obj_state": [
             "optional",

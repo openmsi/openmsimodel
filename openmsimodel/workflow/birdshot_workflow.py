@@ -1,7 +1,7 @@
 from openmsimodel.workflow.workflow import Workflow
-from .folder_or_file import FolderOrFile
+from openmsimodel.workflow.folder_or_file import FolderOrFile
 
-from block.block import Block
+from openmsimodel.block.process_block import ProcessBlock
 from openmsimodel.entity.base import Material, Process, Measurement, Ingredient
 from openmsimodel.entity.processes.birdshot.aggregate_summary_sheet import (
     AggregateSummarySheet,
@@ -40,7 +40,9 @@ from openmsimodel.entity.measurements.birdshot.mounting_and_polishing import (
 )
 
 
-from utilities.tools import plot_graph
+from openmsimodel.utilities.tools import plot_graph
+from openmsimodel.utilities.argument_parsing import OpenMSIModelParser
+
 
 import json
 import os
@@ -86,9 +88,9 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         """
         Workflow.__init__(self, *args, **kwargs)
         FolderOrFile.__init__(self, *args)
-        self.root = args.path
-        self.iteration = kwargs["iteration"]
-        self.sample_data_folder = kwargs["sample_data_folder"]
+        # self.root = args.path
+        self.iteration = args["iteration"]
+        self.sample_data_folder = args["sample_data_folder"]
         recursive_dict = lambda: defaultdict(recursive_dict)
         self.blocks = recursive_dict()  # overwrite
         self.terminal_blocks = recursive_dict()  # overwrite
@@ -104,7 +106,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         self.aggregate_or_buy = True
         self.testing_mode = False
 
-    def build_model(self):
+    def build(self):
         # initialize the folder to dump the GEMD json files
         if os.path.exists(self.output_folder):
             shutil.rmtree(self.output_folder)
@@ -1405,9 +1407,16 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
     @classmethod
     def get_command_line_arguments(cls):
         superargs, superkwargs = super().get_command_line_arguments()
-        args = [*superargs, "path"]
+        args = [*superargs, "root", "destination", "iteration", "sample_data_folder"]
         kwargs = {**superkwargs}
         return args, kwargs
+
+    @classmethod
+    def run_from_command_line(cls, args=None):
+        parser = cls.get_argument_parser()
+        args = parser.parse_args(args=args)
+        workflow = cls(args)
+        workflow.build()
 
 
 def main(args=None):
