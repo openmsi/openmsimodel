@@ -3,13 +3,13 @@ def create_tables_query():
     # gemd_object_table_name = "GEMDObject"
     # gemd_attribute_table_name = "GEMDAttribute"
     return """
-    create table GEMDModel_temp (
+    create table GEMDModel (
         id bigint identity(1,1) not null
     , name varchar(1024) not null
     , constraint pk_gemdmodel primary key(id)
     )
 
-    create table GEMDObject_temp (
+    create table GEMDObject (
     uid varchar(64) not null
     , model_id bigint not null
     , gemd_type varchar(32) not null
@@ -30,7 +30,7 @@ def create_tables_query():
     [conditions] [nvarchar](max) NULL
     )
 
-    CREATE TABLE GEMDEdge_temp(
+    CREATE TABLE GEMDEdge(
         id bigint IDENTITY(1,1)  not null
     , from_uid varchar(64) not null
     , to_uid varchar(64) not null

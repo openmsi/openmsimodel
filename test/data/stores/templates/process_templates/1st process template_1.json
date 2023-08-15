@@ -1,0 +1,15 @@
+{
+   "allowed_labels": [],
+   "allowed_names": [],
+   "conditions": [],
+   "description": null,
+   "name": "1st process template",
+   "parameters": [],
+   "tags": [],
+   "type": "process_template",
+   "uids": {
+      "auto": "6b68ce2a-c971-408d-ad47-24d8a3015678",
+      "gen": "uid_1",
+      "persistent_id": 1
+   }
+}

@@ -30,11 +30,8 @@ from .attributes import (
 )
 
 from openmsimodel.utilities.logging import Logger
-from openmsimodel.stores.gemd_template_store import GEMDTemplateStore
 
-# from openmsimodel.stores.gemd_template_store import global_template_store
-
-# global_template_store = GEMDTemplateStore()
+import openmsimodel.stores.gemd_template_store as template_store
 
 __all__ = ["BaseNode"]
 
@@ -136,7 +133,11 @@ class BaseNode(ABC):
         # TODO: test uid assignment, recursive assignment, uid overwrite
         # TODO: give a countdown uid too
 
-        self.TEMPLATE = global_template_store.register_new_template(self.TEMPLATE)
+        self.TEMPLATE = template_store.global_template_store.register_new_template(
+            self.TEMPLATE
+        )
+        # TODO: turn into a list
+
         # TODO: register all attrs
         # global_spec_store.register_new_template_from_file(self.TEMPLATE)
 
