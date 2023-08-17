@@ -1,11 +1,14 @@
 # imports
 import pkg_resources, subprocess, unittest, sys, importlib
+from pathlib import Path
+import os
 
 sys.path.insert(0, "..")
-# from data.subclassing.incomplete_subclass import incompleteSubclass
-# from data.subclassing.erroneous_subclass_1 import erroneousSubclass1
-from data.subclassing.arcmelting_example_subclass import ArcMeltingExample
 
+from data.subclassing.arcmelting_example_subclass import ArcMeltingExample
+from openmsimodel.entity.impl import assign_uuid
+
+from openmsimodel.stores.gemd_template_store import GEMDTemplateStore
 from openmsimodel.entity.base import (
     BaseNode,
     Process,
@@ -34,214 +37,80 @@ from gemd.json import GEMDJson
 from gemd.entity.util import make_instance
 
 
-class TestEntityBaseNode(unittest.TestCase):
+class TestStores(unittest.TestCase):
     # TODO: test define attributes when the same attribute is repassed
 
     def test_stores(self):
-        """testing initialization of all types of BaseNode object"""
+        """testing stores"""
 
-        # initializing by subclassing
-        a = ArcMeltingExample("arc melting")
-        self.assertIn("auto", a.TEMPLATE.uids.keys())
-        self.assertEquals(len(a.TEMPLATE.parameters), 5)
-        self.assertEquals(len(a._ATTRS["parameters"]), 5)
-        self.assertEquals(len(a.run.parameters), 0)
+        #######
+        # run_all_tests will run test_entity_base_instantiation first, which populates the stores already wit ArcMeltingExample initiations for example,
+        # in which case both declarations below should return a warning for template already in file but still have the same template by uid
+        # Expected: should get warnings with existing
+
+        with self.assertWarns(ResourceWarning):
+            a = ArcMeltingExample("arc melting")
+            first_auto_uid = ArcMeltingExample.TEMPLATE.uids["auto"]
+            a = ArcMeltingExample("arc melting")
+            self.assertEquals(first_auto_uid, a.TEMPLATE.uids["auto"])
+        # self.assertNotEquals(first_auto_uid, a.TEMPLATE.uids["auto"])
+
+        ######
+        dummy_root = Path(__file__).parent.parent / "data/stores/dummy_store"
+        dummy_template_store = GEMDTemplateStore(load_all_files=False)
+
+        # testing property setter
+        dummy_template_store.root = dummy_root
         self.assertEquals(
-            len(a.spec.parameters), 2
-        )  # 2/5 ParameterTemplates have default values, that get assigned to specs
-        del a
+            dummy_template_store.root,
+            Path(__file__).parent.parent / "data/stores/dummy_store",
+        )
 
-        # initializing by passing a template
-        name = "1st process template"
-        t = ProcessTemplate(name, uids={"gen": "uid_1"})
-        p = Process("process", template=t)
-        self.assertIn("auto", p.TEMPLATE.uids.keys())
-        self.assertEquals(t.uids["auto"], p.TEMPLATE.uids["auto"])
-        self.assertEquals(t.uids["gen"], "uid_1")
-        del t
-        del p
+        # testing initializing store
+        dummy_template_store.initialize_store()
 
-        # initializing by subclassing and passing a template
-        def instantiate(template_name):
-            a = ArcMeltingExample(
-                "arc melting",
-                template=ProcessTemplate(
-                    template_name,
-                ),
+        for root, dirs, files in os.walk(dummy_root):
+            self.assertTrue(len(files) == 1)
+            self.assertEqual(
+                os.path.join(root, files[0]), str(dummy_template_store.registry_path)
             )
+            for dir in dirs:
+                full_dir = Path(os.path.join(root, dir))
+                self.assertTrue(full_dir in dummy_template_store.store_folders.values())
+            break
 
-        with self.assertRaises(NameError):
-            instantiate(name)
-        instantiate("2nd process template")
+        # testing register_template
+        name = "dummy template 1"
+        template = ProcessTemplate(name)
+        _type = type(template)
+        destination = dummy_template_store.store_folders[_type]
 
-        # initializing by passing a template with attribute templates
-        pt = ProcessTemplate(
-            "3rd process template", uids={"gen": "uid_3"}, conditions=[self.ct]
-        )
-        p = Process("process", template=pt)
-        self.assertEquals(pt.uids["auto"], p.TEMPLATE.uids["auto"])
-        self.assertEquals(
-            self.ct.uids["auto"], p.TEMPLATE.conditions[0][0].uids["auto"]
-        )
-        self.assertEquals(len(p.TEMPLATE.conditions), 1)
-        del pt
-        del p
+        with self.assertRaises(TypeError):
+            dummy_template_store.register_new_template("str", from_file=False)
 
-        # initializing by passing a template with attribute templates + actual attributes
-        # a)
-        p = Process(
-            "process",
-            template=ProcessTemplate(
-                "4th process template",
-                conditions=[self.ct],
-            ),
-            conditions=[
-                Condition(
-                    "location",
-                    value=NominalCategorical("X-Ray Panel"),
-                    template=self.ct,
-                )
-            ],
+        # with self.assertRaises(RuntimeError):  # doesn't have uid so must be set
+        #     dummy_template_store.register_new_template(template, from_file=False)
+        # assign_uuid(template, "auto")
+        self.assertEqual(len(os.listdir(destination)), 0)
+        dummy_template_store.register_new_template(template, from_file=False)
+        self.assertEqual(len(os.listdir(destination)), 1)
+        self.assertEqual(len(dummy_template_store._object_templates[_type]), 1)
+        self.assertEqual(
+            dummy_template_store._object_templates[_type][name].template.name,
+            name,
         )
-        self.assertEquals(
-            self.ct.uids["auto"], p.spec.conditions[0].template.uids["auto"]
-        )
-        self.assertEquals(len(p.TEMPLATE.conditions), 1)
-        del p
-
-        p = Process(
-            "process",
-            template=ProcessTemplate(
-                "process template",
-                conditions=[self.ct],
-            ),
-            conditions=[
-                Condition(
-                    "location",
-                    value=NominalCategorical("X-Ray Panel"),
-                    template=self.ct,
-                )
-            ],
-            state="run",
-        )
-        self.assertEquals(
-            self.ct.uids["auto"], p.run.conditions[0].template.uids["auto"]
-        )
-        del p
-
-        p = Process(
-            "process",
-            template=ProcessTemplate(
-                "process template",
-                conditions=[self.ct],
-            ),
-            conditions=[
-                Condition(
-                    "location",
-                    value=NominalCategorical("X-Ray Panel"),
-                    template=self.ct,
-                )
-            ],
-            state="both",
+        self.assertTrue(
+            "auto"
+            in dummy_template_store._object_templates[_type][name].template.uids.keys()
         )
 
-        self.assertEquals(
-            self.ct.uids["auto"], p.spec.conditions[0].template.uids["auto"]
-        )
-        self.assertEquals(
-            self.ct.uids["auto"], p.run.conditions[0].template.uids["auto"]
-        )
+        with self.assertWarns(ResourceWarning):
+            dummy_template_store.register_new_template(template, from_file=False)
+        self.assertEqual(
+            len(dummy_template_store._object_templates[_type]), 1
+        )  # make sure it hasn't been added, as the already registered template should have been used
 
-        del p
+        # with self.assertWarns(ResourceWarning): #TODO: this raises a keyerror so THINK ABOUT This scenario. GOOD but think about encoder inside the store, etcs
+        #     p = Process("dummy Process", template=template)
 
-    # def test_from_spec_or_run(self):
-    #     # without template
-    #     with self.assertRaises(AttributeError):
-    #         p = Process.from_spec_or_run(
-    #             "process",
-    #             notes=["adding notes to a process"],
-    #             spec=ProcessSpec("process spec", template=None, parameters=[]),
-    #             run=ProcessRun("process run", parameters=[]),
-    #         )
-
-    #     # with template
-    #     with self.assertRaises(AttributeError):
-    #         p = Process.from_spec_or_run(
-    #             "process",
-    #             notes=["adding notes to a process"],
-    #             spec=ProcessSpec(
-    #                 "process spec",
-    #                 template=ProcessTemplate(
-    #                     "process template",
-    #                     description="Template of process",
-    #                     conditions=[],
-    #                     parameters=[],
-    #                 ),
-    #                 parameters=[],
-    #             ),
-    #             run=ProcessRun("process run", spec=None, parameters=[]),  # test
-    #         )
-
-    #     # with pre existing thing
-    #     encoder = GEMDJson()
-    #     t = ProcessTemplate(
-    #         "process template",
-    #         description="Template of process",
-    #         conditions=[],
-    #         parameters=[],
-    #     )
-    #     value = "900-950"
-    #     s = ProcessSpec(
-    #         "process spec",
-    #         template=t,
-    #         parameters=[
-    #             Parameter(
-    #                 "Argon Pressure",
-    #                 value=NominalCategorical(value),
-    #                 origin="specified",
-    #             )
-    #         ],
-    #     )
-    #     r = make_instance(s)
-    #     encoder.thin_dumps(r)
-
-    #     p = ArcMeltingExample.from_spec_or_run(
-    #         "process", notes=["adding notes to process"], spec=s
-    #     )
-    #     self.assertEquals(p.spec.uids["auto"], s.uids["auto"])
-    #     self.assertEquals(p.spec.parameters[2].value.category, value)
-
-    #     p = ArcMeltingExample.from_spec_or_run(
-    #         "process", notes=["adding notes to process"], run=r
-    #     )
-    #     self.assertEquals(p.run.uids["auto"], r.uids["auto"])
-
-    #     p = ArcMeltingExample.from_spec_or_run(
-    #         "process", notes=["adding notes to process"], spec=s, run=r
-    #     )
-    #     self.assertEquals(p.spec, s)
-    #     self.assertEquals(p.spec.uids["auto"], s.uids["auto"])
-    #     self.assertEquals(p.run.uids["auto"], r.uids["auto"])
-    #     self.assertEquals(p.spec.parameters[2].value.category, value)
-
-    # def test_from_spec_or_run_2(self):
-    #     pass
-
-    # def testt(self):
-    #     p = ArcMeltingExample("arc melting")
-    #     value = "900-950"
-    #     p._update_attributes(
-    #         AttrType=Parameter,
-    #         attributes=(
-    #             Parameter(
-    #                 "Argon Pressure",
-    #                 value=NominalCategorical(value),
-    #                 origin="specified",
-    #             ),
-    #             Parameter(
-    #                 "Initial Purging Times",
-    #                 value=NominalReal(1, "hour"),
-    #                 origin="specified",
-    #             ),
-    #         ),
-    #     )
+        # dummy_template_store.register_all_templates_from_files()

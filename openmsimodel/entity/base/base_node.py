@@ -1,5 +1,5 @@
 """Base class for classes containing GEMD templates and objects."""
-import os
+import os, warnings
 from abc import ABC, abstractmethod
 from typing import ClassVar, Type, Optional
 
@@ -8,7 +8,7 @@ from gemd.entity.attribute.base_attribute import BaseAttribute
 from gemd.entity.util import make_instance
 
 # from gemd.util.impl import set_uuids
-from .impl import assign_uuid
+from openmsimodel.entity.impl import assign_uuid
 
 from .typing import (
     Temp,
@@ -92,58 +92,60 @@ class BaseNode(ABC):
         notes: Optional[str] = None,
     ) -> None:
         super().__init__()
+
         self.logger = Logger()
 
+        has_template = hasattr(self, "TEMPLATE")
+
+        # if not has_template and not template:
         if not template:
-            if not hasattr(
-                self, "TEMPLATE"
-            ):  # TODO: maybe verify the existence AND actual type
+            if not has_template:
                 raise AttributeError(
                     f"Template is not defined.\n Assign to 'template' parameter an instance of either {Temp.__dict__['__args__']},\n OR create a new subclass with a defined TEMPLATE attribute."
                 )
-        else:
-            if hasattr(self, "TEMPLATE"):
-                self.logger.info(
-                    f"Found existing template {self.TEMPLATE.name}. Overwriting..."
+            self.prepare_template()
+
+        if template:
+            if ("persistent_id" in self.TEMPLATE.uids.keys()) or (
+                "auto" in self.TEMPLATE.uids.keys()
+            ):
+                raise KeyError(
+                    f'the "auto" and "persistent_id" uid keys are reserved. Use another key. '
+                )
+            if has_template:
+                warnings.warn(
+                    f"Found template '{self.TEMPLATE.name}', but '{template.name}' will be used instead.",
+                    ResourceWarning,
                 )
             self.TEMPLATE = template
-            self._ATTRS = _validate_temp_keys(self.TEMPLATE)
-            if hasattr(self.TEMPLATE, "conditions"):
-                for c in self.TEMPLATE.conditions:
-                    define_attribute(
-                        self._ATTRS, template=c[0]
-                    )  # TODO: look into this weird format from GEMD (attr, bounds)
-            if hasattr(self.TEMPLATE, "parameters"):
-                for p in self.TEMPLATE.parameters:
-                    define_attribute(self._ATTRS, template=p[0])
-            if hasattr(self.TEMPLATE, "properties"):
-                for p in self.TEMPLATE.properties:
-                    define_attribute(self._ATTRS, template=p[0])
-            finalize_template(
-                self._ATTRS, self.TEMPLATE
-            )  # TODO: Extend (or sync with external func that returns a dict for runs/specs
+            # TODO: Extend (or sync with external func that returns a dict for runs/specs
 
-        if {"persistent_id", "auto"} <= self.TEMPLATE.uids.keys():
-            raise KeyError(
-                f'the "auto" and "persistent_id" uid keys are reserved. Use another key. '
-            )
+        # if template and (  # TODO: move up
+        #     (
+        #         ("persistent_id" in self.TEMPLATE.uids.keys())
+        #         or ("auto" in self.TEMPLATE.uids.keys())
+        #     )
+        # ):
+        #     raise KeyError(
+        #         f'the "auto" and "persistent_id" uid keys are reserved. Use another key. '
+        #     )
 
-        assign_uuid(self.TEMPLATE, "auto")
-        # self.TEMPLATE.add_uid("persistent_id", persistent_id)
-        # TODO: test uid assignment, recursive assignment, uid overwrite
-        # TODO: give a countdown uid too
+        # assign_uuid(self.TEMPLATE, "auto")
 
         self.TEMPLATE = template_store.global_template_store.register_new_template(
             self.TEMPLATE
         )
-        # TODO: turn into a list
 
-        # TODO: register all attrs
-        # global_spec_store.register_new_template_from_file(self.TEMPLATE)
+        for _attr_type in self._ATTRS.keys():
+            for _attr in self._ATTRS[_attr_type].values():
+                template_store.global_template_store.register_new_template(_attr["obj"])
 
         self._spec: Spec = self._SpecType(
             name=name, notes=notes, template=self.TEMPLATE
         )
+        # if spec the same as in store, use the one in store
+        # if not, use the one instantiated from template
+        # sce 1: diff template but same name
         self._run: Run = make_instance(self._spec)
 
     @property
@@ -176,10 +178,20 @@ class BaseNode(ABC):
 
     ############################### ATTRIBUTES ###############################
 
-    def set_ATTRS(init, template):
-        attr_dict_key, singular, plural = _validate_attr_type(template.__class__)
-        a = 1
-        # if isinstance(template, class_or_tuple)
+    def prepare_template(self):
+        self._ATTRS = _validate_temp_keys(self.TEMPLATE)
+        if hasattr(self.TEMPLATE, "conditions"):
+            for c in self.TEMPLATE.conditions:
+                define_attribute(
+                    self._ATTRS, template=c[0]
+                )  # TODO: look into this weird format from GEMD (attr, bounds)
+        if hasattr(self.TEMPLATE, "parameters"):
+            for p in self.TEMPLATE.parameters:
+                define_attribute(self._ATTRS, template=p[0])
+        if hasattr(self.TEMPLATE, "properties"):
+            for p in self.TEMPLATE.properties:
+                define_attribute(self._ATTRS, template=p[0])
+        finalize_template(self._ATTRS, self.TEMPLATE)
 
     def _update_attributes(
         self,

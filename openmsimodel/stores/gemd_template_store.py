@@ -1,5 +1,5 @@
 # imports
-import os, csv, json
+import os, csv, json, warnings
 import shutil
 from pathlib import Path
 from typing import Union
@@ -15,7 +15,7 @@ from .cached_isinstance_functions import (
     isinstance_attribute_template,
     isinstance_object_template,
 )
-from openmsimodel.entity.base.impl import assign_uuid
+from openmsimodel.entity.impl import assign_uuid
 from ..utilities.logging import Logger
 
 __all__ = ["GEMDTemplate", "GEMDTemplateStore"]
@@ -97,7 +97,7 @@ class GEMDTemplateStore(ABC):
 
     @property
     def registry_columns(self):
-        return ["persistent_id", "name"]
+        return ["persistent_id", "name", "type"]
 
     @property
     def store_folders(self):
@@ -110,24 +110,10 @@ class GEMDTemplateStore(ABC):
             ProcessTemplate: self._root / "process_templates",
         }
 
-    # @classmethod
-    # @abstractmethod ?
-    # shutil can cause problems down the road? permissions, etc
-    def initialize_store(self):
-        # TODO raise error if not exists
-        if os.path.isdir(self.root):
-            shutil.rmtree(self.root)
-        os.mkdir(self.root)
-        for subfolder in self.store_folders.values():
-            os.mkdir(subfolder)
-        with open(self.registry_path, "w") as registry_csv_file:
-            registry_writer = csv.writer(registry_csv_file, delimiter=",")
-            registry_writer.writerow(self.registry_columns)
-
     TempStringToTemp = {  # TODO: move to typing
         "property_template": PropertyTemplate,
         "condition_template": ConditionTemplate,
-        "parameter_template": MaterialTemplate,
+        "parameter_template": ParameterTemplate,
         "measurement_template": MeasurementTemplate,
         "material_template": MaterialTemplate,
         "process_template": ProcessTemplate,
@@ -149,21 +135,21 @@ class GEMDTemplateStore(ABC):
                     template = self.encoder.raw_loads(template)
                 self.register_new_template(template, from_file=True)
 
-    # def validate_template(self, template):
-
     def register_new_template(self, template, from_file=False):
         """
         Add a new template that's been read from a file
         """
         if not isinstance_template(template):
-            return
+            errmsg = f' : Excepted an AttributeTemplate or BaseTemplate but got "{type(template).__name__}"!'
+            raise TypeError(errmsg)
         name = template.name
 
         if (
             self.encoder.scope not in template.uids.keys()
         ):  # TODO: maybe remove since there is a equivalent check in base node init()
-            errmsg = f'ERROR: {type(template).__name__} {name} is missing a UID for scope "{self.encoder.scope}"!'
-            raise RuntimeError(errmsg)
+            assign_uuid(template, "auto")
+            # errmsg = f'ERROR: {type(template).__name__} {name} is missing a UID for scope "{self.encoder.scope}"!'
+            # raise RuntimeError(errmsg)
 
         dict_to_add_to = None
         if isinstance_attribute_template(
@@ -181,48 +167,75 @@ class GEMDTemplateStore(ABC):
         if (
             name in dict_to_add_to.keys()
         ):  # TODO: return a message if name is similar to one in bank
-            raise NameError(
-                f"ERROR: template with name {name} already exists in store! "
+            warning_msg = f"WARNING: template with name '{name}' already exists in store and will be used. "
+            warnings.warn(
+                warning_msg,
+                ResourceWarning,
             )
+            if self.encoder.scope not in dict_to_add_to[name].template.uids:
+                warning_msg = f"WARNING: template with name '{name}' found in store doesn't have 'auto' uid."
+                warnings.warn(
+                    warning_msg,
+                    ResourceWarning,
+                )
+            return dict_to_add_to[name].template
 
-        if from_file:
+        if from_file: #TODO: change to from_store
             dict_to_add_to[name] = GEMDTemplate(template, True)
-            self._n_from_files += (
-                1  # TODO: keep this incr but add just __n, and increment differently
-            )
+            self._n_from_files += 1  # TODO: keep this incr but add to __n for all, and increment differently
         else:
-            # TODO: this is always going to be false if not is not in dict. just compare without name
+            # TODO: this is always going to be false if not in dict. just compare without name
             # finding template by full match
-            has_matching_template = False
-            ordered_template = ordered(
-                template
-            )  # TODO: maybe remove persistent_id key here from ordered_template/ or not necessary based on previous code block?
-            for obj in dict_to_add_to.values():
-                if ordered(obj) == ordered_template:
-                    has_matching_template = True
-                    matching_template = obj
-                    self.logger.info(
-                        f"template with name {name} sucessfully found in store by matching its JSON content to a template in store. "
-                    )
-                    return matching_template.template
+            # has_matching_template = False
+            # ordered_template = ordered(
+            #     template
+            # )  # TODO: maybe remove persistent_id key here from ordered_template/ or not necessary based on previous code block?
+            # # TODO: use hash comparison instead?
+            # for obj in dict_to_add_to.values():
+            #     if ordered(obj) == ordered_template:
+            #         has_matching_template = True
+            #         matching_template = obj
+            #         self.logger.info(
+            #             f"template '{name}' sucessfully found in store by matching its JSON content to a template in store. "
+            #         )
+            #         return matching_template.template
 
             # writing to registry
             # TODO: convert to dataframe manipulation to be safer
             with open(self.registry_path, "r+") as registry_csv_file:
                 persistent_id = len(registry_csv_file.readlines()) - 1
-                template.add_uid("persistent_id", persistent_id)
+                template.add_uid(
+                    "persistent_id", persistent_id
+                )  # TODO: maybe make sure it's not there?
                 registry_writer = csv.writer(registry_csv_file, delimiter=",")
-                registry_writer.writerow([persistent_id, name])
+                registry_writer.writerow([persistent_id, name, template.typ])
 
             # writing template to file
             with open(
-                self.store_folders[type(template)] / f"{name}_{persistent_id}.json",
+                self.store_folders[type(template)] / f"{name}_pid_{persistent_id}.json",
                 "w",  # TODO: maybe use diff encoding of path
             ) as template_file:
                 template_file.write(self.encoder.thin_dumps(template, indent=3))
 
             dict_to_add_to[name] = GEMDTemplate(template, False)
-        return dict_to_add_to[name].template
+
+        return dict_to_add_to[
+            name
+        ].template  # TODO: maybe return full template and keep info about the template, like from_file, path, etc
+
+    # @classmethod
+    # @abstractmethod ?
+    # shutil can cause problems down the road? permissions, etc
+    def initialize_store(self):
+        # TODO raise error if not exists
+        if os.path.isdir(self.root):
+            shutil.rmtree(self.root)
+        os.mkdir(self.root)
+        for subfolder in self.store_folders.values():
+            os.mkdir(subfolder)
+        with open(self.registry_path, "w") as registry_csv_file:
+            registry_writer = csv.writer(registry_csv_file, delimiter=",")
+            registry_writer.writerow(self.registry_columns)
 
     def add_missing_hardcoded_templates(self, attr_hardcoded, obj_hardcoded):
         """

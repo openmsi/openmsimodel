@@ -45,7 +45,7 @@ class ProcessOrMeasurement(BaseNode):
         notes: Optional[str] = None,
         conditions: Optional[list[Condition]] = None,
         parameters: Optional[list[Parameter]] = None,
-        state: SpecOrRunLiteral = "spec",
+        state: SpecOrRunLiteral = "spec", #TODO: fix this
     ) -> None:
         super().__init__(name, template=template, notes=notes)
 

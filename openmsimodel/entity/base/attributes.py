@@ -79,18 +79,19 @@ def define_attribute(
 
     if isinstance(template, ConditionTemplate):
         key1 = "conditions"
-        key2 = "cond"
+        # key2 = "cond"
     elif isinstance(template, ParameterTemplate):
         key1 = "parameters"
-        key2 = "param"
+        # key2 = "param"
     elif isinstance(template, PropertyTemplate):
         key1 = "properties"
-        key2 = "prop"
+        # key2 = "prop"
     else:
         raise TypeError(
             "template must be an instance of ConditionTemplate, "
             "ParameterTemplate, or PropertyTemplate."
         )
+    key2 = "obj"
 
     if bounds is not None and not isinstance(bounds, BaseBounds):
         raise TypeError("bounds must be an instance of BaseBounds.")
@@ -119,19 +120,19 @@ def finalize_template(cls_attrs: AttrsDict, cls_template: Temp) -> None:
 
     if cls_attrs.get("conditions") is not None:
         cls_template.conditions = [
-            (cond_dict["cond"], cond_dict["bounds"])
+            (cond_dict["obj"], cond_dict["bounds"])
             for cond_dict in cls_attrs["conditions"].values()
         ]
 
     if cls_attrs.get("parameters") is not None:
         cls_template.parameters = [
-            (param_dict["param"], param_dict["bounds"])
+            (param_dict["obj"], param_dict["bounds"])
             for param_dict in cls_attrs["parameters"].values()
         ]
 
     if cls_attrs.get("properties") is not None:
         cls_template.properties = [
-            (prop_dict["prop"], prop_dict["bounds"])
+            (prop_dict["obj"], prop_dict["bounds"])
             for prop_dict in cls_attrs["properties"].values()
         ]
 
