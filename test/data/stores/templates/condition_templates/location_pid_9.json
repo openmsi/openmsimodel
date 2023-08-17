@@ -1,0 +1,18 @@
+{
+   "bounds": {
+      "categories": [
+         "Purification Tube Furnace",
+         "X-Ray Panel"
+      ],
+      "type": "categorical_bounds"
+   },
+   "description": "none",
+   "name": "location",
+   "tags": [],
+   "type": "condition_template",
+   "uids": {
+      "auto": "68800030-c4f8-4f68-9f3f-6b08fe26e548",
+      "gen": "uid_2",
+      "persistent_id": 9
+   }
+}

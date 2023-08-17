@@ -97,21 +97,12 @@ class BaseNode(ABC):
 
         has_template = hasattr(self, "TEMPLATE")
 
-        # if not has_template and not template:
-        if not template:
-            if not has_template:
-                raise AttributeError(
-                    f"Template is not defined.\n Assign to 'template' parameter an instance of either {Temp.__dict__['__args__']},\n OR create a new subclass with a defined TEMPLATE attribute."
-                )
-            self.prepare_template()
+        if not has_template and not template:
+            raise AttributeError(
+                f"Template is not defined.\n Assign to 'template' parameter an instance of either {Temp.__dict__['__args__']},\n OR create a new subclass with a defined TEMPLATE attribute."
+            )
 
         if template:
-            if ("persistent_id" in self.TEMPLATE.uids.keys()) or (
-                "auto" in self.TEMPLATE.uids.keys()
-            ):
-                raise KeyError(
-                    f'the "auto" and "persistent_id" uid keys are reserved. Use another key. '
-                )
             if has_template:
                 warnings.warn(
                     f"Found template '{self.TEMPLATE.name}', but '{template.name}' will be used instead.",
@@ -120,21 +111,23 @@ class BaseNode(ABC):
             self.TEMPLATE = template
             # TODO: Extend (or sync with external func that returns a dict for runs/specs
 
-        # if template and (  # TODO: move up
-        #     (
-        #         ("persistent_id" in self.TEMPLATE.uids.keys())
-        #         or ("auto" in self.TEMPLATE.uids.keys())
-        #     )
-        # ):
-        #     raise KeyError(
-        #         f'the "auto" and "persistent_id" uid keys are reserved. Use another key. '
-        #     )
+        if template and (  # TODO: move up
+            (
+                ("persistent_id" in self.TEMPLATE.uids.keys())
+                or ("auto" in self.TEMPLATE.uids.keys())
+            )
+        ):
+            raise KeyError(
+                f'the "auto" and "persistent_id" uid keys are reserved. Use another key. '
+            )
 
         # assign_uuid(self.TEMPLATE, "auto")
 
         self.TEMPLATE = template_store.global_template_store.register_new_template(
             self.TEMPLATE
         )
+
+        self.prepare_template()
 
         for _attr_type in self._ATTRS.keys():
             for _attr in self._ATTRS[_attr_type].values():
