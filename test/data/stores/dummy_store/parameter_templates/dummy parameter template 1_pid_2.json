@@ -1,0 +1,16 @@
+{
+   "bounds": {
+      "default_units": "hour",
+      "lower_bound": 0,
+      "type": "real_bounds",
+      "upper_bound": 48
+   },
+   "description": null,
+   "name": "dummy parameter template 1",
+   "tags": [],
+   "type": "parameter_template",
+   "uids": {
+      "auto": "3a632abf-caec-4c67-bc0f-bcd478e15ca8",
+      "persistent_id": 2
+   }
+}

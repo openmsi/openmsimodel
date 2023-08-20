@@ -20,6 +20,8 @@ from ..utilities.logging import Logger
 
 __all__ = ["GEMDTemplate", "GEMDTemplateStore"]
 
+global template_store_ids
+template_store_ids = []
 
 # TODO: chck types of errors returned
 
@@ -36,6 +38,9 @@ class GEMDTemplate:  # TODO: move to typing
         ProcessTemplate,
     ]
     from_file: bool
+    from_store: bool
+    from_memory: bool
+    from_subclass: bool
 
 
 def ordered(obj):
@@ -53,10 +58,14 @@ class GEMDTemplateStore(ABC):
     a template_type_root of json dump files coupled with one or more dictionaries of static, hard-coded templates
     """
 
-    def __init__(self, encoder=GEMDJson(), load_all_files=False):
+    def __init__(self, id, encoder=GEMDJson(), load_all_files=False):
         """
         encoder = a pre-created GEMD JSON encoder (optional)
         """
+        if id in template_store_ids:
+            raise NameError(f'template store with id {id} already exists.')
+        self.id = id
+        template_store_ids.append(id)
         self.encoder = encoder  # TODO: separate from workflow one
         self.logger = Logger()
         self._n_from_files = 0
@@ -78,7 +87,7 @@ class GEMDTemplateStore(ABC):
             ProcessTemplate: self._process_templates,
         }
         if load_all_files:
-            self.register_all_templates_from_files()
+            self.register_all_templates_from_store()
 
     _root = Path(__file__).parent / "stores/templates"
 
@@ -119,9 +128,9 @@ class GEMDTemplateStore(ABC):
         "process_template": ProcessTemplate,
     }
 
-    def register_all_templates_from_files(self):
+    def register_all_templates_from_store(self):
         """
-        loads all templates supposed to reside as files from preset folders
+        loads all templates supposed to reside as files from store folder
         """
         # TODO: use the registered hardtemplates
         for template_type in self._object_templates.keys():
@@ -133,9 +142,16 @@ class GEMDTemplateStore(ABC):
                 ) as template_file:  # TODO: change to regular load
                     template = json.dumps((json.load(template_file)))
                     template = self.encoder.raw_loads(template)
-                self.register_new_template(template, from_file=True)
+                self.register_new_template(template, from_file=True, from_store=True)
 
-    def register_new_template(self, template, from_file=False):
+    def register_new_template(
+        self,
+        template,
+        from_file=False,
+        from_store=False,
+        from_memory=False,
+        from_subclass=False,
+    ):
         """
         Add a new template that's been read from a file
         """
@@ -144,12 +160,8 @@ class GEMDTemplateStore(ABC):
             raise TypeError(errmsg)
         name = template.name
 
-        if (
-            self.encoder.scope not in template.uids.keys()
-        ):  # TODO: maybe remove since there is a equivalent check in base node init()
+        if self.encoder.scope not in template.uids.keys():
             assign_uuid(template, "auto")
-            # errmsg = f'ERROR: {type(template).__name__} {name} is missing a UID for scope "{self.encoder.scope}"!'
-            # raise RuntimeError(errmsg)
 
         dict_to_add_to = None
         if isinstance_attribute_template(
@@ -178,10 +190,13 @@ class GEMDTemplateStore(ABC):
                     warning_msg,
                     ResourceWarning,
                 )
-            return dict_to_add_to[name].template
+            dict_to_add_to[name].from_memory = False
+            dict_to_add_to[name].from_subclass = False
+            dict_to_add_to[name].from_store = True
+            return dict_to_add_to[name]
 
-        if from_file: #TODO: change to from_store
-            dict_to_add_to[name] = GEMDTemplate(template, True)
+        if from_store:  # TODO: change to from_store
+            # dict_to_add_to[name] = GEMDTemplate(template, True)
             self._n_from_files += 1  # TODO: keep this incr but add to __n for all, and increment differently
         else:
             # TODO: this is always going to be false if not in dict. just compare without name
@@ -198,7 +213,7 @@ class GEMDTemplateStore(ABC):
             #         self.logger.info(
             #             f"template '{name}' sucessfully found in store by matching its JSON content to a template in store. "
             #         )
-            #         return matching_template.template
+            #         return matching_template
 
             # writing to registry
             # TODO: convert to dataframe manipulation to be safer
@@ -217,11 +232,13 @@ class GEMDTemplateStore(ABC):
             ) as template_file:
                 template_file.write(self.encoder.thin_dumps(template, indent=3))
 
-            dict_to_add_to[name] = GEMDTemplate(template, False)
+        dict_to_add_to[name] = GEMDTemplate(
+            template, from_file, from_store, from_memory, from_subclass
+        )
 
         return dict_to_add_to[
             name
-        ].template  # TODO: maybe return full template and keep info about the template, like from_file, path, etc
+        ]  # TODO: maybe return full template and keep info about the template, like from_store, path, etc
 
     # @classmethod
     # @abstractmethod ?
@@ -325,8 +342,8 @@ class GEMDTemplateStore(ABC):
         for tempdict in both_dicts:
             for template_type in tempdict.keys():
                 for name in tempdict[template_type].keys():
-                    if tempdict[template_type][name].from_file:
+                    if tempdict[template_type][name].from_store:
                         yield tempdict[template_type][name].template
 
 
-global_template_store = GEMDTemplateStore(load_all_files=True)
+all_template_stores = {"global" :GEMDTemplateStore('global', load_all_files=True)}

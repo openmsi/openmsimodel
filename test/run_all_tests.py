@@ -96,18 +96,6 @@ def main(args=None):
             for error in loader.errors:
                 print(f"\t{error}")
             return
-        if args.no_kafka:
-            for suite in suites:
-                for test_group in suite._tests:
-                    for test in test_group:
-                        if (test._testMethodName).endswith("kafka"):
-                            test_name = test._testMethodName
-                            msg = "tests that interact with the kafka broker are being skipped"
-                            setattr(
-                                test,
-                                test_name,
-                                unittest.skip(msg)(getattr(test, test_name)),
-                            )
         elif args.unittest_regex is not None:
             for suite in suites:
                 for test_group in suite._tests:

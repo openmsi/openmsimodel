@@ -169,9 +169,9 @@ def update_attrs(
         if attr.template is not None or attr.property.template is not None:
             continue
         if type(attr) == PropertyAndConditions:
-            attr.property.template = attrs[plural][attr_name][attr_dict_key]
+            attr.property.template = attrs[plural][attr_name]["obj"]
         else:
-            attr.template = attrs[plural][attr_name][attr_dict_key]
+            attr.template = attrs[plural][attr_name]["obj"]
 
     if state in ["spec", "both"]:
         _set_attrs(spec, required_attrs, supplied_attrs, AttrType, replace_all)
@@ -195,7 +195,7 @@ def _required_attrs(
                 property=Property(
                     name=attr_name,
                     value=attr_dict["default_value"],
-                    template=attr_dict[attr_dict_key],
+                    template=attr_dict["obj"],
                     origin=Origin.SPECIFIED,
                 )
             )
@@ -207,7 +207,7 @@ def _required_attrs(
         attr_name: AttrType(
             name=attr_name,
             value=attr_dict["default_value"],
-            template=attr_dict[attr_dict_key],
+            template=attr_dict["obj"],
             origin=Origin.SPECIFIED,
         )
         for attr_name, attr_dict in attrs[plural].items()

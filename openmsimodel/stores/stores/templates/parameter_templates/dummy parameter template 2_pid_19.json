@@ -1,0 +1,16 @@
+{
+   "bounds": {
+      "default_units": "meter",
+      "lower_bound": 0,
+      "type": "real_bounds",
+      "upper_bound": 10
+   },
+   "description": null,
+   "name": "dummy parameter template 2",
+   "tags": [],
+   "type": "parameter_template",
+   "uids": {
+      "auto": "e7e1d98b-38f4-490b-887d-4a8b8cdae92b",
+      "persistent_id": 19
+   }
+}

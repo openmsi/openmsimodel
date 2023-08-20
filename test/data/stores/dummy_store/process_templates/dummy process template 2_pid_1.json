@@ -1,0 +1,23 @@
+{
+   "allowed_labels": [],
+   "allowed_names": [],
+   "conditions": [],
+   "description": null,
+   "name": "dummy process template 2",
+   "parameters": [
+      [
+         {
+            "id": "3a632abf-caec-4c67-bc0f-bcd478e15ca8",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         null
+      ]
+   ],
+   "tags": [],
+   "type": "process_template",
+   "uids": {
+      "auto": "0e37e57f-1bb5-4135-ab25-f334ec91794b",
+      "persistent_id": 1
+   }
+}

@@ -11,15 +11,14 @@ from data.subclassing.arcmelting_example_subclass import ArcMeltingExample
 from openmsimodel.stores.gemd_template_store import GEMDTemplateStore
 
 test_root = Path(__file__).parent.parent / "data/stores/templates"
-test_template_store = GEMDTemplateStore(load_all_files=False)
+test_template_store = GEMDTemplateStore(id="test", load_all_files=False)
 test_template_store.root = test_root
 test_template_store.initialize_store()
-test_template_store.register_all_templates_from_files()
-
+test_template_store.register_all_templates_from_store()
 # setting global store = test store for testing
-import openmsimodel.stores.gemd_template_store as template_store
+import openmsimodel.stores.gemd_template_store as gemd_template_store
 
-template_store.global_template_store = test_template_store
+gemd_template_store.all_template_stores = {"test": test_template_store}
 
 from openmsimodel.entity.base import (
     BaseNode,
@@ -155,6 +154,10 @@ class TestEntityBaseNode(unittest.TestCase):
     def test_all_initializations(self):
         """testing initialization of all types of BaseNode object"""
 
+        self.assertTrue(len(gemd_template_store.all_template_stores.keys()), 1)
+        self.assertTrue("test" in gemd_template_store.all_template_stores.keys())
+        # template_store.global_template_store
+
         ###### initializing by subclassing
         a = ArcMeltingExample("arc melting")
         self.assertIn("auto", a.TEMPLATE.uids.keys())
@@ -162,8 +165,11 @@ class TestEntityBaseNode(unittest.TestCase):
         self.assertEquals(len(a.TEMPLATE.parameters), 5)
         self.assertEquals(len(a._ATTRS["parameters"]), 5)
         self.assertEquals(len(a.run.parameters), 0)
-        self.assertEquals(len(a.spec.parameters), 0)
-        # self.assertEquals(len(a.spec.parameters), 2)  #FIXME 2/5 ParameterTemplates have default values, that get assigned to specs
+        self.assertEquals(len(a.spec.parameters), 2)
+        self.assertEqual(a.TEMPLATE_WRAPPER["test"].from_file, False)
+        self.assertEqual(a.TEMPLATE_WRAPPER["test"].from_memory, False)
+        self.assertEqual(a.TEMPLATE_WRAPPER["test"].from_subclass, True)
+        self.assertEqual(a.TEMPLATE_WRAPPER["test"].from_store, False)
         del a
 
         ######
@@ -176,6 +182,10 @@ class TestEntityBaseNode(unittest.TestCase):
         self.assertIn("persistent_id", p.TEMPLATE.uids.keys())
         self.assertEquals(t.uids["auto"], p.TEMPLATE.uids["auto"])
         self.assertEquals(t.uids["gen"], "uid_1")
+        self.assertEqual(p.TEMPLATE_WRAPPER["test"].from_file, False)
+        self.assertEqual(p.TEMPLATE_WRAPPER["test"].from_memory, True)
+        self.assertEqual(p.TEMPLATE_WRAPPER["test"].from_subclass, False)
+        self.assertEqual(p.TEMPLATE_WRAPPER["test"].from_store, False)
 
         # initializing by subclassing and passing a template
         def instantiate(template_name):
@@ -193,6 +203,10 @@ class TestEntityBaseNode(unittest.TestCase):
             t.uids["auto"], a.TEMPLATE.uids["auto"]
         )  # reusing the same template that should have been saved to store by now
         instantiate("process template 2")
+        self.assertEqual(a.TEMPLATE_WRAPPER["test"].from_file, False)
+        self.assertEqual(a.TEMPLATE_WRAPPER["test"].from_memory, False)
+        self.assertEqual(a.TEMPLATE_WRAPPER["test"].from_subclass, False)
+        self.assertEqual(a.TEMPLATE_WRAPPER["test"].from_store, True)
         del t
         del p
         del a
@@ -207,10 +221,15 @@ class TestEntityBaseNode(unittest.TestCase):
             self.ct.uids["auto"], p.TEMPLATE.conditions[0][0].uids["auto"]
         )
         self.assertEquals(len(p.TEMPLATE.conditions), 1)
+        self.assertEqual(p.TEMPLATE_WRAPPER["test"].from_file, False)
+        self.assertEqual(p.TEMPLATE_WRAPPER["test"].from_memory, True)
+        self.assertEqual(p.TEMPLATE_WRAPPER["test"].from_subclass, False)
+        self.assertEqual(p.TEMPLATE_WRAPPER["test"].from_store, False)
         del pt
         del p
 
-        ##### initializing by passing a template with attribute templates + actual attributes
+    def test_process_initializations(self):
+        """initializing by passing a template with attribute templates + actual attributes"""
         # TODO: do the same with materials
         # TODO: test way more
         # a)

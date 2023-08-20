@@ -31,7 +31,7 @@ from .attributes import (
 
 from openmsimodel.utilities.logging import Logger
 
-import openmsimodel.stores.gemd_template_store as template_store
+import openmsimodel.stores.gemd_template_store as gemd_template_store
 
 __all__ = ["BaseNode"]
 
@@ -95,11 +95,13 @@ class BaseNode(ABC):
 
         self.logger = Logger()
 
+        self.TEMPLATE_WRAPPER = {}
+
         has_template = hasattr(self, "TEMPLATE")
 
         if not has_template and not template:
             raise AttributeError(
-                f"Template is not defined.\n Assign to 'template' parameter an instance of either {Temp.__dict__['__args__']},\n OR create a new subclass with a defined TEMPLATE attribute."
+                f"TEMPLATE is not defined. Assign to 'template' parameter an instance of either {Temp.__dict__['__args__']},\n OR create a new subclass with a defined TEMPLATE attribute."
             )
 
         if template:
@@ -109,29 +111,37 @@ class BaseNode(ABC):
                     ResourceWarning,
                 )
             self.TEMPLATE = template
+            if ("persistent_id" in self.TEMPLATE.uids.keys()) or (
+                "auto" in self.TEMPLATE.uids.keys()
+            ):
+                raise KeyError(
+                    f'the "auto" and "persistent_id" uid keys are reserved. Use another key. '
+                )
+
             # TODO: Extend (or sync with external func that returns a dict for runs/specs
 
-        if template and (  # TODO: move up
-            (
-                ("persistent_id" in self.TEMPLATE.uids.keys())
-                or ("auto" in self.TEMPLATE.uids.keys())
+        # TODO: change from file when supporting file links
+        for i, store in enumerate(gemd_template_store.all_template_stores.values()):
+            self.TEMPLATE_WRAPPER[store.id] = store.register_new_template(
+                self.TEMPLATE,
+                from_file=False,
+                from_store=False,
+                from_memory=bool(template),
+                from_subclass=bool(has_template and not template),
             )
-        ):
-            raise KeyError(
-                f'the "auto" and "persistent_id" uid keys are reserved. Use another key. '
-            )
+            if i == 0:  # first one is the the designated store for accessing template
+                designated_store_id = store.id
+                self.TEMPLATE = self.TEMPLATE_WRAPPER[designated_store_id].template
 
-        # assign_uuid(self.TEMPLATE, "auto")
+        if template:
+            self.prepare_attrs()
 
-        self.TEMPLATE = template_store.global_template_store.register_new_template(
-            self.TEMPLATE
-        )
-
-        self.prepare_template()
-
-        for _attr_type in self._ATTRS.keys():
-            for _attr in self._ATTRS[_attr_type].values():
-                template_store.global_template_store.register_new_template(_attr["obj"])
+        for i, store in enumerate(gemd_template_store.all_template_stores.values()):
+            for _attr_type in self._ATTRS.keys():
+                for _attr in self._ATTRS[_attr_type].values():
+                    gemd_template_store.all_template_stores[
+                        store.id
+                    ].register_new_template(_attr["obj"])
 
         self._spec: Spec = self._SpecType(
             name=name, notes=notes, template=self.TEMPLATE
@@ -171,7 +181,7 @@ class BaseNode(ABC):
 
     ############################### ATTRIBUTES ###############################
 
-    def prepare_template(self):
+    def prepare_attrs(self):
         self._ATTRS = _validate_temp_keys(self.TEMPLATE)
         if hasattr(self.TEMPLATE, "conditions"):
             for c in self.TEMPLATE.conditions:
@@ -184,7 +194,7 @@ class BaseNode(ABC):
         if hasattr(self.TEMPLATE, "properties"):
             for p in self.TEMPLATE.properties:
                 define_attribute(self._ATTRS, template=p[0])
-        finalize_template(self._ATTRS, self.TEMPLATE)
+        # finalize_template(self._ATTRS, self.TEMPLATE)
 
     def _update_attributes(
         self,
