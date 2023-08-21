@@ -2,4 +2,4 @@
 Ingredient
 =============
 
-.. automodule:: entity.base.ingredient.Ingredient
+.. autoclass:: entity.base.ingredient.Ingredient

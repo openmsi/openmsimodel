@@ -95,12 +95,70 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-subworkflow.process_block.ProcessBlock">
-<span id="process-block"></span><h1>Process Block<a class="headerlink" href="#module-subworkflow.process_block.ProcessBlock" title="Permalink to this heading"></a></h1>
+  <section id="process-block">
+<h1>Process Block<a class="headerlink" href="#process-block" title="Permalink to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="subworkflow.process_block.ProcessBlock">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">subworkflow.process_block.</span></span><span class="sig-name descname"><span class="pre">ProcessBlock</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">process</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.11)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Process</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">workflow</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.11)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Workflow</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">material</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.11)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Material</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ingredients</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.11)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">measurements</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.11)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#subworkflow.process_block.ProcessBlock" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="subworkflow.html#subworkflow.subworkflow.Subworkflow" title="subworkflow.subworkflow.Subworkflow"><code class="xref py py-class docutils literal notranslate"><span class="pre">Subworkflow</span></code></a></p>
 <p>ProcessBlock is a type of Subworkflow intended to represent consecutive BaseElements in the order of ‘Ingredients’, ‘Process’, ‘Material’, and ‘Measurements’.
 It is the natural order of GEMD objects, and of our BaseElements object, which are essentially GEMD wrappers. It is a loose class and can omit some elements of the block.
 It can be a powerful way to manipulate, link, dump, etc, GEMD objects together, while Blocks themselves can be linked with one another, facilitating repeat
 elements, linking for wide (i.e., many ingredients, many measurements) or vertical (i.e., long sequence of BaseElements) workflow, etc.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="subworkflow.process_block.ProcessBlock.link_within">
+<span class="sig-name descname"><span class="pre">link_within</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#subworkflow.process_block.ProcessBlock.link_within" title="Permalink to this definition"></a></dt>
+<dd><p>this functions links the specs and runs of the BaseElements in the current block.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="subworkflow.process_block.ProcessBlock.link_prior">
+<span class="sig-name descname"><span class="pre">link_prior</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prior_block</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ingredient_name_to_link</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#subworkflow.process_block.ProcessBlock.link_prior" title="Permalink to this definition"></a></dt>
+<dd><p>links the prior block’s material to current ingredient.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>prior_block (Block): prior block containing the material to link
+ingredient_name_to_link (str): name of the ingredient in current block to link to prior material</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="subworkflow.process_block.ProcessBlock.link_posterior">
+<span class="sig-name descname"><span class="pre">link_posterior</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">posterior_block</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ingredient_name_to_link</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#subworkflow.process_block.ProcessBlock.link_posterior" title="Permalink to this definition"></a></dt>
+<dd><p>link the posterior block’s ingredient to current material</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>posterior_block (Block): posterior block containing the ingredient to link
+ingredient_name_to_link (str): _description_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="subworkflow.process_block.ProcessBlock.add_ingredient">
+<span class="sig-name descname"><span class="pre">add_ingredient</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#subworkflow.process_block.ProcessBlock.add_ingredient" title="Permalink to this definition"></a></dt>
+<dd><p>add ingredient to block</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="subworkflow.process_block.ProcessBlock.add_process">
+<span class="sig-name descname"><span class="pre">add_process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#subworkflow.process_block.ProcessBlock.add_process" title="Permalink to this definition"></a></dt>
+<dd><p>add process to block</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="subworkflow.process_block.ProcessBlock.add_material">
+<span class="sig-name descname"><span class="pre">add_material</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#subworkflow.process_block.ProcessBlock.add_material" title="Permalink to this definition"></a></dt>
+<dd><p>add material to block</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="subworkflow.process_block.ProcessBlock.add_measurement">
+<span class="sig-name descname"><span class="pre">add_measurement</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#subworkflow.process_block.ProcessBlock.add_measurement" title="Permalink to this definition"></a></dt>
+<dd><p>add measurement to block</p>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
 

@@ -2,4 +2,4 @@
 Material
 =============
 
-.. automodule:: entity.base.material.Material
+.. autoclass:: entity.base.material.Material

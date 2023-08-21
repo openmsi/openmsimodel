@@ -22,7 +22,7 @@ __all__ = ["Measurement"]
 
 class Measurement(ProcessOrMeasurement):
     """
-    Base class for measurements.
+    Base element for measurements.
 
     """
 

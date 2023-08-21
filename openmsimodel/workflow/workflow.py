@@ -23,7 +23,6 @@ class Workflow(Runnable):
     to construct even larger GEMD graphs.
     It offers utilities functions to build the model flexibly, break it down into smaller, easier to
     manage blocks, or complete operations such as dumping and loading models into/from JSONs.
-    :param
     """
 
     ARGUMENT_PARSER_TYPE = OpenMSIModelParser

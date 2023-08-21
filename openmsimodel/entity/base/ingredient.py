@@ -17,7 +17,7 @@ __all__ = ["Ingredient"]
 
 class Ingredient(BaseElement):
     """
-    Base class for ingredients.
+    Base element for ingredients.
 
     """
 

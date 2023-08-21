@@ -2,4 +2,4 @@
 Subworkflow
 =============
 
-.. automodule:: subworkflow.subworkflow.Subworkflow
+.. autoclass:: subworkflow.subworkflow.Subworkflow

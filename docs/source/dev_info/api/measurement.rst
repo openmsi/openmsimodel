@@ -2,4 +2,4 @@
 Measurement
 =============
 
-.. automodule:: entity.base.measurement.Measurement
+.. autoclass:: entity.base.measurement.Measurement

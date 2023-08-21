@@ -2,4 +2,4 @@
 Base Element
 =============
 
-.. automodule:: entity.base.base_element.BaseElement
+.. autoclass:: entity.base.base_element.BaseElement

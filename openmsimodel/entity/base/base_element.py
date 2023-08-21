@@ -48,9 +48,6 @@ class BaseElement(ABC):
     Note that `name` is the GEMD name given to the spec and run. The template
     name is the name of the subclass.
 
-    The `to_form` abstract method could be implemented to instruct a webpage
-    how to create form elements and validation based on the template.
-
     To subclass:
 
     1. Instantiate ``TEMPLATE`` as follows:
@@ -59,9 +56,7 @@ class BaseElement(ABC):
     ``ProcessTemplate``, or ``MeasurementTemplate``.
 
     2. Instantiate ``_ATTRS`` as follows:
-    ``_ATTRS: ClassVar[AttrsDict] = {'conditions': {}, 'parameters': {}, 'properties': {}}``.
-    However, only include the relevant keys (e.g., exclude ``'properties'`` for a ``Process``
-    subclass).
+    ``_ATTRS: ClassVar[AttrsDict] = _validate_temp_keys(TEMPLATE)
 
     3. Add conditions, parameters, and/or properties using
     ``define_attribute(_ATTRS, ...)`` from the ``qf_gemd.base.attributes``

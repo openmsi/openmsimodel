@@ -6,8 +6,7 @@ from openmsimodel.utilities.runnable import Runnable
 
 
 class Subworkflow(Runnable):
-    """
-    Subworkflow represents 1+ BaseElements that are grouped together for easier instantiation, manipulation, analysis, and more.
+    """Subworkflow represents 1+ BaseElements that are grouped together for easier instantiation, manipulation, analysis, and more.
     The grouping can be based on any rule or criteria of interest, such as consecutive elements, elements with a logical relationships or simply preference.
     """
 

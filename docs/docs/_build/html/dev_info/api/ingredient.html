@@ -95,9 +95,35 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-entity.base.ingredient.Ingredient">
-<span id="ingredient"></span><h1>Ingredient<a class="headerlink" href="#module-entity.base.ingredient.Ingredient" title="Permalink to this heading"></a></h1>
+  <section id="ingredient">
+<h1>Ingredient<a class="headerlink" href="#ingredient" title="Permalink to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="entity.base.ingredient.Ingredient">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">entity.base.ingredient.</span></span><span class="sig-name descname"><span class="pre">Ingredient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">notes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.11)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#entity.base.ingredient.Ingredient" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="base_element.html#entity.base.base_element.BaseElement" title="entity.base.base_element.BaseElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseElement</span></code></a></p>
 <p>Base class for ingredients.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="entity.base.ingredient.Ingredient.spec">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">spec</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">IngredientSpec</span></em><a class="headerlink" href="#entity.base.ingredient.Ingredient.spec" title="Permalink to this definition"></a></dt>
+<dd><p>The underlying process spec.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="entity.base.ingredient.Ingredient.run">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">run</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">IngredientRun</span></em><a class="headerlink" href="#entity.base.ingredient.Ingredient.run" title="Permalink to this definition"></a></dt>
+<dd><p>The underlying process run.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="entity.base.ingredient.Ingredient.from_spec_or_run">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_spec_or_run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">notes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.11)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.11)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><span class="pre">IngredientSpec</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.11)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><span class="pre">IngredientRun</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="process.html#entity.base.process.Process" title="entity.base.process.Process"><span class="pre">Process</span></a></span></span><a class="headerlink" href="#entity.base.ingredient.Ingredient.from_spec_or_run" title="Permalink to this definition"></a></dt>
+<dd><p>Instantiate a <cite>Process</cite> from a spec or run with appropriate validation.</p>
+<p>Note that the spec’s template will be set to the class template,
+and the run’s spec will be set to this spec.</p>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
 

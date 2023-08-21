@@ -103,18 +103,18 @@ class ProcessBlock(Subworkflow):
                 posterior_block.ingredients[name].spec.material = self.material.spec
                 posterior_block.ingredients[name].run.material = self.material.run
 
-    def add_ingredient(self):
+    def add_ingredient(self, ingredient):
         """add ingredient to block"""
         pass
 
-    def add_process(self):
+    def add_process(self, process):
         """add process to block"""
         pass
 
-    def add_material(self):
+    def add_material(self, material):
         """add material to block"""
         pass
 
-    def add_measurement(self):
+    def add_measurement(self, measurement):
         """add measurement to block"""
         pass

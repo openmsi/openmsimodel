@@ -2,4 +2,4 @@
 Process Block
 =============
 
-.. automodule:: subworkflow.process_block.ProcessBlock
+.. autoclass:: subworkflow.process_block.ProcessBlock

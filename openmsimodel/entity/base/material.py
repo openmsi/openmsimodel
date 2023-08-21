@@ -16,7 +16,7 @@ __all__ = ["Material"]
 
 class Material(BaseElement):
     """
-    Base class for materials.
+    Base element for materials.
 
     """
 

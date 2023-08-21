@@ -2,4 +2,4 @@
 Process
 =============
 
-.. automodule:: entity.base.process.Process
+.. autoclass:: entity.base.process.Process

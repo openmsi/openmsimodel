@@ -12,7 +12,7 @@ __all__ = ["Process"]
 
 class Process(ProcessOrMeasurement):
     """
-    Base class for processes.
+    Base element for processes.
 
     """
 

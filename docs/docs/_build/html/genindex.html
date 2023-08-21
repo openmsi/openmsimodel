@@ -84,8 +84,9 @@
  <a href="#A"><strong>A</strong></a>
  | <a href="#B"><strong>B</strong></a>
  | <a href="#D"><strong>D</strong></a>
- | <a href="#E"><strong>E</strong></a>
+ | <a href="#F"><strong>F</strong></a>
  | <a href="#G"><strong>G</strong></a>
+ | <a href="#I"><strong>I</strong></a>
  | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
  | <a href="#O"><strong>O</strong></a>
@@ -93,12 +94,23 @@
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
+ | <a href="#U"><strong>U</strong></a>
  | <a href="#W"><strong>W</strong></a>
  
 </div>
 <h2 id="A">A</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dev_info/api/process_block.html#subworkflow.process_block.ProcessBlock.add_ingredient">add_ingredient() (subworkflow.process_block.ProcessBlock method)</a>
+</li>
+      <li><a href="dev_info/api/process_block.html#subworkflow.process_block.ProcessBlock.add_material">add_material() (subworkflow.process_block.ProcessBlock method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dev_info/api/process_block.html#subworkflow.process_block.ProcessBlock.add_measurement">add_measurement() (subworkflow.process_block.ProcessBlock method)</a>
+</li>
+      <li><a href="dev_info/api/process_block.html#subworkflow.process_block.ProcessBlock.add_process">add_process() (subworkflow.process_block.ProcessBlock method)</a>
+</li>
       <li><a href="dev_info/api/workflow.html#workflow.workflow.Workflow.ARGUMENT_PARSER_TYPE">ARGUMENT_PARSER_TYPE (workflow.workflow.Workflow attribute)</a>
 </li>
   </ul></td>
@@ -106,6 +118,10 @@
 
 <h2 id="B">B</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dev_info/api/base_element.html#entity.base.base_element.BaseElement">BaseElement (class in entity.base.base_element)</a>
+</li>
+  </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dev_info/api/workflow.html#workflow.workflow.Workflow.build">build() (workflow.workflow.Workflow method)</a>
 </li>
@@ -120,44 +136,19 @@
   </ul></td>
 </tr></table>
 
-<h2 id="E">E</h2>
+<h2 id="F">F</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li>
-    entity.base.base_element.BaseElement
+      <li><a href="dev_info/api/base_element.html#entity.base.base_element.BaseElement.from_spec_or_run">from_spec_or_run() (entity.base.base_element.BaseElement class method)</a>
 
       <ul>
-        <li><a href="dev_info/api/base_element.html#module-entity.base.base_element.BaseElement">module</a>
+        <li><a href="dev_info/api/ingredient.html#entity.base.ingredient.Ingredient.from_spec_or_run">(entity.base.ingredient.Ingredient class method)</a>
 </li>
-      </ul></li>
-      <li>
-    entity.base.ingredient.Ingredient
-
-      <ul>
-        <li><a href="dev_info/api/ingredient.html#module-entity.base.ingredient.Ingredient">module</a>
+        <li><a href="dev_info/api/material.html#entity.base.material.Material.from_spec_or_run">(entity.base.material.Material class method)</a>
 </li>
-      </ul></li>
-      <li>
-    entity.base.material.Material
-
-      <ul>
-        <li><a href="dev_info/api/material.html#module-entity.base.material.Material">module</a>
+        <li><a href="dev_info/api/measurement.html#entity.base.measurement.Measurement.from_spec_or_run">(entity.base.measurement.Measurement class method)</a>
 </li>
-      </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li>
-    entity.base.measurement.Measurement
-
-      <ul>
-        <li><a href="dev_info/api/measurement.html#module-entity.base.measurement.Measurement">module</a>
-</li>
-      </ul></li>
-      <li>
-    entity.base.process.Process
-
-      <ul>
-        <li><a href="dev_info/api/process.html#module-entity.base.process.Process">module</a>
+        <li><a href="dev_info/api/process.html#entity.base.process.Process.from_spec_or_run">(entity.base.process.Process class method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -166,7 +157,35 @@
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="dev_info/api/workflow.html#workflow.workflow.Workflow.get_command_line_arguments">get_command_line_arguments() (workflow.workflow.Workflow class method)</a>
+      <li><a href="dev_info/api/subworkflow.html#subworkflow.subworkflow.Subworkflow.get_command_line_arguments">get_command_line_arguments() (subworkflow.subworkflow.Subworkflow class method)</a>
+
+      <ul>
+        <li><a href="dev_info/api/workflow.html#workflow.workflow.Workflow.get_command_line_arguments">(workflow.workflow.Workflow class method)</a>
+</li>
+      </ul></li>
+      <li><a href="dev_info/api/base_element.html#entity.base.base_element.BaseElement.get_filelinks_dict">get_filelinks_dict() (entity.base.base_element.BaseElement method)</a>
+</li>
+      <li><a href="dev_info/api/measurement.html#entity.base.measurement.Measurement.get_material">get_material() (entity.base.measurement.Measurement method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dev_info/api/material.html#entity.base.material.Material.get_process_dict">get_process_dict() (entity.base.material.Material method)</a>
+</li>
+      <li><a href="dev_info/api/material.html#entity.base.material.Material.get_properties_and_conditions_dict">get_properties_and_conditions_dict() (entity.base.material.Material method)</a>
+</li>
+      <li><a href="dev_info/api/measurement.html#entity.base.measurement.Measurement.get_properties_dict">get_properties_dict() (entity.base.measurement.Measurement method)</a>
+</li>
+      <li><a href="dev_info/api/material.html#entity.base.material.Material.get_sample_type">get_sample_type() (entity.base.material.Material method)</a>
+</li>
+      <li><a href="dev_info/api/base_element.html#entity.base.base_element.BaseElement.get_tags_dict">get_tags_dict() (entity.base.base_element.BaseElement method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="I">I</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dev_info/api/ingredient.html#entity.base.ingredient.Ingredient">Ingredient (class in entity.base.ingredient)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -174,6 +193,14 @@
 <h2 id="L">L</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dev_info/api/process_block.html#subworkflow.process_block.ProcessBlock.link_posterior">link_posterior() (subworkflow.process_block.ProcessBlock method)</a>
+</li>
+      <li><a href="dev_info/api/process_block.html#subworkflow.process_block.ProcessBlock.link_prior">link_prior() (subworkflow.process_block.ProcessBlock method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dev_info/api/process_block.html#subworkflow.process_block.ProcessBlock.link_within">link_within() (subworkflow.process_block.ProcessBlock method)</a>
+</li>
       <li><a href="dev_info/api/workflow.html#workflow.workflow.Workflow.loads">loads() (workflow.workflow.Workflow method)</a>
 </li>
   </ul></td>
@@ -182,25 +209,12 @@
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li>
-    module
-
-      <ul>
-        <li><a href="dev_info/api/base_element.html#module-entity.base.base_element.BaseElement">entity.base.base_element.BaseElement</a>
+      <li><a href="dev_info/api/material.html#entity.base.material.Material">Material (class in entity.base.material)</a>
 </li>
-        <li><a href="dev_info/api/ingredient.html#module-entity.base.ingredient.Ingredient">entity.base.ingredient.Ingredient</a>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dev_info/api/measurement.html#entity.base.measurement.Measurement">Measurement (class in entity.base.measurement)</a>
 </li>
-        <li><a href="dev_info/api/material.html#module-entity.base.material.Material">entity.base.material.Material</a>
-</li>
-        <li><a href="dev_info/api/measurement.html#module-entity.base.measurement.Measurement">entity.base.measurement.Measurement</a>
-</li>
-        <li><a href="dev_info/api/process.html#module-entity.base.process.Process">entity.base.process.Process</a>
-</li>
-        <li><a href="dev_info/api/process_block.html#module-subworkflow.process_block.ProcessBlock">subworkflow.process_block.ProcessBlock</a>
-</li>
-        <li><a href="dev_info/api/subworkflow.html#module-subworkflow.subworkflow.Subworkflow">subworkflow.subworkflow.Subworkflow</a>
-</li>
-      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -217,9 +231,13 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dev_info/api/workflow.html#workflow.workflow.Workflow.print_encoded">print_encoded() (workflow.workflow.Workflow method)</a>
 </li>
+      <li><a href="dev_info/api/workflow.html#workflow.workflow.Workflow.print_thin_encoded">print_thin_encoded() (workflow.workflow.Workflow method)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="dev_info/api/workflow.html#workflow.workflow.Workflow.print_thin_encoded">print_thin_encoded() (workflow.workflow.Workflow method)</a>
+      <li><a href="dev_info/api/process.html#entity.base.process.Process">Process (class in entity.base.process)</a>
+</li>
+      <li><a href="dev_info/api/process_block.html#subworkflow.process_block.ProcessBlock">ProcessBlock (class in subworkflow.process_block)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -227,30 +245,64 @@
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="dev_info/api/workflow.html#workflow.workflow.Workflow.run_from_command_line">run_from_command_line() (workflow.workflow.Workflow class method)</a>
+      <li><a href="dev_info/api/base_element.html#entity.base.base_element.BaseElement.remove_filelinks">remove_filelinks() (entity.base.base_element.BaseElement method)</a>
 </li>
+      <li><a href="dev_info/api/material.html#entity.base.material.Material.remove_properties">remove_properties() (entity.base.material.Material method)</a>
+
+      <ul>
+        <li><a href="dev_info/api/measurement.html#entity.base.measurement.Measurement.remove_properties">(entity.base.measurement.Measurement method)</a>
+</li>
+      </ul></li>
+      <li><a href="dev_info/api/base_element.html#entity.base.base_element.BaseElement.remove_tags">remove_tags() (entity.base.base_element.BaseElement method)</a>
+</li>
+      <li><a href="dev_info/api/base_element.html#entity.base.base_element.BaseElement.run">run (entity.base.base_element.BaseElement property)</a>
+
+      <ul>
+        <li><a href="dev_info/api/ingredient.html#entity.base.ingredient.Ingredient.run">(entity.base.ingredient.Ingredient property)</a>
+</li>
+        <li><a href="dev_info/api/material.html#entity.base.material.Material.run">(entity.base.material.Material property)</a>
+</li>
+        <li><a href="dev_info/api/measurement.html#entity.base.measurement.Measurement.run">(entity.base.measurement.Measurement property)</a>
+</li>
+        <li><a href="dev_info/api/process.html#entity.base.process.Process.run">(entity.base.process.Process property)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dev_info/api/subworkflow.html#subworkflow.subworkflow.Subworkflow.run_from_command_line">run_from_command_line() (subworkflow.subworkflow.Subworkflow class method)</a>
+
+      <ul>
+        <li><a href="dev_info/api/workflow.html#workflow.workflow.Workflow.run_from_command_line">(workflow.workflow.Workflow class method)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li>
-    subworkflow.process_block.ProcessBlock
+      <li><a href="dev_info/api/measurement.html#entity.base.measurement.Measurement.set_material">set_material() (entity.base.measurement.Measurement method)</a>
+</li>
+      <li><a href="dev_info/api/material.html#entity.base.material.Material.set_process">set_process() (entity.base.material.Material method)</a>
+</li>
+      <li><a href="dev_info/api/material.html#entity.base.material.Material.set_sample_type">set_sample_type() (entity.base.material.Material method)</a>
+</li>
+      <li><a href="dev_info/api/base_element.html#entity.base.base_element.BaseElement.spec">spec (entity.base.base_element.BaseElement property)</a>
 
       <ul>
-        <li><a href="dev_info/api/process_block.html#module-subworkflow.process_block.ProcessBlock">module</a>
+        <li><a href="dev_info/api/ingredient.html#entity.base.ingredient.Ingredient.spec">(entity.base.ingredient.Ingredient property)</a>
+</li>
+        <li><a href="dev_info/api/material.html#entity.base.material.Material.spec">(entity.base.material.Material property)</a>
+</li>
+        <li><a href="dev_info/api/measurement.html#entity.base.measurement.Measurement.spec">(entity.base.measurement.Measurement property)</a>
+</li>
+        <li><a href="dev_info/api/process.html#entity.base.process.Process.spec">(entity.base.process.Process property)</a>
 </li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li>
-    subworkflow.subworkflow.Subworkflow
-
-      <ul>
-        <li><a href="dev_info/api/subworkflow.html#module-subworkflow.subworkflow.Subworkflow">module</a>
+      <li><a href="dev_info/api/subworkflow.html#subworkflow.subworkflow.Subworkflow">Subworkflow (class in subworkflow.subworkflow)</a>
 </li>
-      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -264,6 +316,22 @@
       <li><a href="dev_info/api/workflow.html#workflow.workflow.Workflow.thin_dumps_single_obj">thin_dumps_single_obj() (workflow.workflow.Workflow method)</a>
 </li>
       <li><a href="dev_info/api/workflow.html#workflow.workflow.Workflow.thin_loads">thin_loads() (workflow.workflow.Workflow method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="U">U</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dev_info/api/base_element.html#entity.base.base_element.BaseElement.update_filelinks">update_filelinks() (entity.base.base_element.BaseElement method)</a>
+</li>
+      <li><a href="dev_info/api/measurement.html#entity.base.measurement.Measurement.update_properties">update_properties() (entity.base.measurement.Measurement method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dev_info/api/material.html#entity.base.material.Material.update_properties_and_conditions">update_properties_and_conditions() (entity.base.material.Material method)</a>
+</li>
+      <li><a href="dev_info/api/base_element.html#entity.base.base_element.BaseElement.update_tags">update_tags() (entity.base.base_element.BaseElement method)</a>
 </li>
   </ul></td>
 </tr></table>
