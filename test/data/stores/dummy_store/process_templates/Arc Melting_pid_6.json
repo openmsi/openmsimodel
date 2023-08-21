@@ -1,0 +1,55 @@
+{
+   "allowed_labels": [],
+   "allowed_names": [],
+   "conditions": [],
+   "description": null,
+   "name": "Arc Melting",
+   "parameters": [
+      [
+         {
+            "id": "b769d4db-34f7-4860-9ada-6cb88473f0af",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         null
+      ],
+      [
+         {
+            "id": "3c916c1b-8fff-48f1-b063-0c2ddb9434d1",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         null
+      ],
+      [
+         {
+            "id": "20b9594e-9f66-4977-b723-aff695d82f40",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         null
+      ],
+      [
+         {
+            "id": "85401f86-fc77-4cfe-aa54-9d08c4ae60c5",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         null
+      ],
+      [
+         {
+            "id": "bfffd239-4070-4b16-9400-baa8bafc2952",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         null
+      ]
+   ],
+   "tags": [],
+   "type": "process_template",
+   "uids": {
+      "auto": "f97ac947-6d85-4883-8c01-50e5d168dcf3",
+      "persistent_id": 6
+   }
+}

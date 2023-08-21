@@ -19,7 +19,8 @@ class FolderOrFile:
     display_parent_prefix_middle = "    "
     display_parent_prefix_last = "│   "
 
-    def __init__(self, *args, **kwargs):
+    # def __init__(self, *args, **kwargs):
+    def __init__(self, root, parent_path, is_last):
         """
         this class represents a folder or a file, and is used in a recursive approach to
         build trees, navigate them or display them swiftly.
@@ -28,9 +29,9 @@ class FolderOrFile:
         :param is_last: is this the last element in the tree
 
         """
-        self.root = Path(str(args.root))
-        self.parent = args.parent_path
-        self.is_last = args.is_last
+        self.root = Path(str(root))
+        self.parent = parent_path
+        self.is_last = is_last
         if self.parent:
             self.depth = self.parent.depth + 1
         else:

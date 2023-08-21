@@ -5,7 +5,7 @@ import os
 
 sys.path.insert(0, "..")
 
-from data.subclassing.arcmelting_example_subclass import ArcMeltingExample
+from data.subclassing.arcmelting import ArcMelting
 from openmsimodel.entity.impl import assign_uuid
 
 # import openmsimodel.stores.gemd_template_store as template_store
@@ -17,7 +17,7 @@ from openmsimodel.stores.gemd_template_store import (
 )
 
 from openmsimodel.entity.base import (
-    BaseNode,
+    BaseElement,
     Process,
     Measurement,
     Ingredient,
@@ -62,14 +62,14 @@ class TestStores(unittest.TestCase):
         """testing stores"""
 
         #######
-        # run_all_tests will run test_entity_base_instantiation first, which populates the stores already wit ArcMeltingExample initiations for example,
+        # run_all_tests will run test_entity_base_instantiation first, which populates the stores already wit ArcMelting initiations for example,
         # in which case both declarations below should return a warning for template already in file but still have the same template by uid
         # Expected: should get warnings with existing
 
         with self.assertWarns(ResourceWarning):
-            a = ArcMeltingExample("arc melting")
-            first_auto_uid = ArcMeltingExample.TEMPLATE.uids["auto"]
-            a_2 = ArcMeltingExample("arc melting")
+            a = ArcMelting("arc melting")
+            first_auto_uid = ArcMelting.TEMPLATE.uids["auto"]
+            a_2 = ArcMelting("arc melting")
             self.assertEquals(first_auto_uid, a_2.TEMPLATE.uids["auto"])
         # if (
         #     global_template_store.id == "global"
@@ -175,7 +175,7 @@ class TestStores(unittest.TestCase):
             len(self.dummy_template_store._object_templates[type(template)]), 2
         )
 
-    def test_dummy_store_with_basenode(self):
+    def test_dummy_store_with_BaseElement(self):
         # test store is manipulated in test_entity_base_instantiation prior (expected and useful for testing across files)
         test_processes_count = len(
             all_template_stores["test"]._object_templates[ProcessTemplate]
@@ -288,49 +288,6 @@ class TestStores(unittest.TestCase):
         #  why? template already exists and is reused with the attributes that come with it!
         # 1a) and 1b) have the same exepcted results
         reusable_tests()
-        # helper_1(
-        #     len(test_processes) - test_processes_count,
-        #     1,
-        #     len(os.listdir(processes_destination)) - test_processes_count,
-        #     1,
-        # )
-        # test_parameters = all_template_stores["test"]._attribute_templates[
-        #     ParameterTemplate
-        # ]
-        # parameters_destination = all_template_stores["test"].store_folders[
-        #     ParameterTemplate
-        # ]
-        # helper_1(
-        #     (len(test_parameters) - test_params_count),
-        #     1,
-        #     len(os.listdir(parameters_destination)) - test_params_count,
-        #     1,
-        # )
-
-        # dummy_processes = all_template_stores["dummy"]._object_templates[
-        #     ProcessTemplate
-        # ]
-        # dummy_processes_destination = all_template_stores["dummy"].store_folders[
-        #     ProcessTemplate
-        # ]
-        # helper_1(
-        #     len(dummy_processes),
-        #     3,
-        #     len(os.listdir(dummy_processes_destination)),
-        #     3,
-        # )
-        # dummy_parameters = all_template_stores["dummy"]._attribute_templates[
-        #     ParameterTemplate
-        # ]
-        # dummy_parameters_destination = all_template_stores["dummy"].store_folders[
-        #     ParameterTemplate
-        # ]
-        # helper_1(
-        #     len(dummy_parameters),
-        #     2,
-        #     len(os.listdir(dummy_parameters_destination)),
-        #     2,
-        # )
 
         ##### 1) c) same as above with already existing attr template in store
         p = Process(
@@ -339,7 +296,7 @@ class TestStores(unittest.TestCase):
                 "dummy process template 4",  # new process
                 parameters=[
                     ParameterTemplate(
-                        "dummy parameter template 3",  # already existing param
+                        "dummy parameter template 2",  # already existing param
                         bounds=RealBounds(0, 10, "m"),
                     )
                 ],
@@ -350,12 +307,13 @@ class TestStores(unittest.TestCase):
         processes_destination = all_template_stores["test"].store_folders[
             ProcessTemplate
         ]
-        # gets one more process template!
+        # this time 1c) has diff exepected results
+        # both dictionary gets one more process template... but same parameter templates!
         helper_1(
             len(test_processes) - test_processes_count,
-            2,
+            1 + 1,
             len(os.listdir(processes_destination)) - test_processes_count,
-            2,
+            1 + 1,
         )
         test_parameters = all_template_stores["test"]._attribute_templates[
             ParameterTemplate
@@ -370,11 +328,34 @@ class TestStores(unittest.TestCase):
             1,
         )
 
+        dummy_processes = all_template_stores["dummy"]._object_templates[
+            ProcessTemplate
+        ]
+        dummy_processes_destination = all_template_stores["dummy"].store_folders[
+            ProcessTemplate
+        ]
+        helper_1(
+            len(dummy_processes),
+            4,
+            len(os.listdir(dummy_processes_destination)),
+            4,
+        )
+        dummy_parameters = all_template_stores["dummy"]._attribute_templates[
+            ParameterTemplate
+        ]
+        dummy_parameters_destination = all_template_stores["dummy"].store_folders[
+            ParameterTemplate
+        ]
+        helper_1(
+            len(dummy_parameters),
+            2,
+            len(os.listdir(dummy_parameters_destination)),
+            2,
+        )
+
     # def test_multi_stores(self):
+    # TODO: do tests with 2 diff orders, check which one gets pulled from
 
-    # test with 2 diff orders
+    # TODO: test self.dummy_template_store.register_all_templates_from_files()
 
-    # with self.assertWarns(ResourceWarning): #TODO: this raises a keyerror so THINK ABOUT This scenario. GOOD but think about encoder inside the store, etcs
-    #     p = Process("dummy Process", template=template)
-
-    # self.dummy_template_store.register_all_templates_from_files()
+    # TODO: tests the n's, the from_ mroe extensively,

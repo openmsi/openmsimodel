@@ -14,7 +14,6 @@ class Process(ProcessOrMeasurement):
     """
     Base class for processes.
 
-    TODO: instructions for subclassing
     """
 
     _TempType = ProcessTemplate

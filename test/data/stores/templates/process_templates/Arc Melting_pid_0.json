@@ -2,12 +2,12 @@
    "allowed_labels": [],
    "allowed_names": [],
    "conditions": [],
-   "description": "One of the fabrication methods, arc melting\n                ",
+   "description": null,
    "name": "Arc Melting",
    "parameters": [
       [
          {
-            "id": "2055fcec-c7bb-406d-9487-c5e34a22d3b2",
+            "id": "b769d4db-34f7-4860-9ada-6cb88473f0af",
             "scope": "auto",
             "type": "link_by_uid"
          },
@@ -15,7 +15,7 @@
       ],
       [
          {
-            "id": "5834af8a-667d-4517-b349-a8b886001c01",
+            "id": "3c916c1b-8fff-48f1-b063-0c2ddb9434d1",
             "scope": "auto",
             "type": "link_by_uid"
          },
@@ -23,7 +23,7 @@
       ],
       [
          {
-            "id": "486ec664-daf9-4381-9950-d0844276e188",
+            "id": "20b9594e-9f66-4977-b723-aff695d82f40",
             "scope": "auto",
             "type": "link_by_uid"
          },
@@ -31,7 +31,7 @@
       ],
       [
          {
-            "id": "bbace7a7-532e-4b61-b7eb-43beec9eb2e5",
+            "id": "85401f86-fc77-4cfe-aa54-9d08c4ae60c5",
             "scope": "auto",
             "type": "link_by_uid"
          },
@@ -39,7 +39,7 @@
       ],
       [
          {
-            "id": "35d79cd2-44ce-426b-a5c3-f791c6a1b906",
+            "id": "bfffd239-4070-4b16-9400-baa8bafc2952",
             "scope": "auto",
             "type": "link_by_uid"
          },
@@ -49,7 +49,7 @@
    "tags": [],
    "type": "process_template",
    "uids": {
-      "auto": "1eda0503-4fea-44db-8e04-8fd3a8705b30",
+      "auto": "f97ac947-6d85-4883-8c01-50e5d168dcf3",
       "persistent_id": 0
    }
 }

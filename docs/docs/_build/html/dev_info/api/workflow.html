@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Workflow &mdash; openmsimodel 0.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Subworkflow" href="subworkflow.html" />
+    <link rel="prev" title="API reference" href="../api_reference.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            openmsimodel
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Intro to OpenMSImodel:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation/getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Working with OpenMSIModel:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../user_info/structure.html">Structure</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API reference/dev info:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../api_reference.html">API reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../api_reference.html#top-level-classes">Top-level classes</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="subworkflow.html">Subworkflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="base_element.html">Base Element</a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_block.html">Process Block</a></li>
+<li class="toctree-l3"><a class="reference internal" href="material.html">Material</a></li>
+<li class="toctree-l3"><a class="reference internal" href="process.html">Process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ingredient.html">Ingredient</a></li>
+<li class="toctree-l3"><a class="reference internal" href="measurement.html">Measurement</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ci_testing.html">CI testing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">openmsimodel</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api_reference.html">API reference</a></li>
+      <li class="breadcrumb-item active">Workflow</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/dev_info/api/workflow.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="workflow">
+<h1>Workflow<a class="headerlink" href="#workflow" title="Permalink to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="workflow.workflow.Workflow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">workflow.workflow.</span></span><span class="sig-name descname"><span class="pre">Workflow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#workflow.workflow.Workflow" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Runnable</span></code></p>
+<p>Class to model a workflow, typically a set of processing steps, experiments, and characterizations, into GEMD, a data model.
+the definition of a workflow is meant to be flexible to the needs of the user. Workflows can be composed
+to construct even larger GEMD graphs.
+It offers utilities functions to build the model flexibly, break it down into smaller, easier to
+manage blocks, or complete operations such as dumping and loading models into/from JSONs.
+:param</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="workflow.workflow.Workflow.ARGUMENT_PARSER_TYPE">
+<span class="sig-name descname"><span class="pre">ARGUMENT_PARSER_TYPE</span></span><a class="headerlink" href="#workflow.workflow.Workflow.ARGUMENT_PARSER_TYPE" title="Permalink to this definition"></a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">OpenMSIModelParser</span></code></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="workflow.workflow.Workflow.thin_dumps">
+<span class="sig-name descname"><span class="pre">thin_dumps</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#workflow.workflow.Workflow.thin_dumps" title="Permalink to this definition"></a></dt>
+<dd><p>dumps the entire model into a JSON per object, each representing the ‘thin’ version’ of the object
+in which pointers (i.e., true value) are replaced by links (e.g., uuid).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="workflow.workflow.Workflow.dumps">
+<span class="sig-name descname"><span class="pre">dumps</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#workflow.workflow.Workflow.dumps" title="Permalink to this definition"></a></dt>
+<dd><p>dumps the entire model into a single JSON, which contains all the model objects with data pointers (!= links).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="workflow.workflow.Workflow.thin_loads">
+<span class="sig-name descname"><span class="pre">thin_loads</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#workflow.workflow.Workflow.thin_loads" title="Permalink to this definition"></a></dt>
+<dd><p>loads the entire model from a list of JSONs, each representing the ‘thin’ version’ of the model object
+in which pointers (i.e., true value) are replaced by links (e.g., uuid).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="workflow.workflow.Workflow.loads">
+<span class="sig-name descname"><span class="pre">loads</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#workflow.workflow.Workflow.loads" title="Permalink to this definition"></a></dt>
+<dd><p>loads the entire model from a single JSON, which contains all the model objects with data pointers (!= links)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="workflow.workflow.Workflow.print_encoded">
+<span class="sig-name descname"><span class="pre">print_encoded</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#workflow.workflow.Workflow.print_encoded" title="Permalink to this definition"></a></dt>
+<dd><p>prints the passed GEMD object into a nicely readable full JSON
+:param obj: the object to print</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="workflow.workflow.Workflow.print_thin_encoded">
+<span class="sig-name descname"><span class="pre">print_thin_encoded</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#workflow.workflow.Workflow.print_thin_encoded" title="Permalink to this definition"></a></dt>
+<dd><p>prints the passed GEMD object into a nicely readable ‘thin’ JSON
+:param obj: the object to print</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="workflow.workflow.Workflow.build">
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#workflow.workflow.Workflow.build" title="Permalink to this definition"></a></dt>
+<dd><p>This function builds the entire GEMD model that represents a certain Workflow.
+to be overwritten by child objects of Workflow that correspond to a specific workflow / user case.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="workflow.workflow.Workflow.thin_dumps_single_obj">
+<span class="sig-name descname"><span class="pre">thin_dumps_single_obj</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#workflow.workflow.Workflow.thin_dumps_single_obj" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>obj</strong> – the object to print</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="workflow.workflow.Workflow.out">
+<span class="sig-name descname"><span class="pre">out</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#workflow.workflow.Workflow.out" title="Permalink to this definition"></a></dt>
+<dd><p>function object to run on individual item during recursion
+:param item: json item to write its destination
+se</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="workflow.workflow.Workflow.get_command_line_arguments">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_command_line_arguments</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#workflow.workflow.Workflow.get_command_line_arguments" title="Permalink to this definition"></a></dt>
+<dd><p>Get the list of argument names and the dictionary of argument names/default values
+to add to the argument parser</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>args, a list of argument names recognized by the argument parser</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)">list</a>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>)</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>kwargs, a dictionary of default argument values keyed by argument names
+recognized by the argument parser</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="workflow.workflow.Workflow.run_from_command_line">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">run_from_command_line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#workflow.workflow.Workflow.run_from_command_line" title="Permalink to this definition"></a></dt>
+<dd><p>Child classes should implement this function to do whatever it is they do
+when they run from the command line</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>args</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a>) – the list of arguments to send to the parser instead of
+getting them from sys.argv</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../api_reference.html" class="btn btn-neutral float-left" title="API reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="subworkflow.html" class="btn btn-neutral float-right" title="Subworkflow" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Ali Rachidi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

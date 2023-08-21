@@ -1,0 +1,11 @@
+{
+   "description": null,
+   "name": "Material",
+   "properties": [],
+   "tags": [],
+   "type": "material_template",
+   "uids": {
+      "auto": "fbfaec56-fa5f-4862-a5cb-ae1924467e9d",
+      "persistent_id": 18
+   }
+}

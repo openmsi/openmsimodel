@@ -1,5 +1,9 @@
 from pathlib import Path
-from folder_or_file import FolderOrFile
+from collections import defaultdict
+import os
+import shutil
+import argparse
+from .folder_or_file import FolderOrFile
 
 # import sys
 # sys.path.append("..")
@@ -7,10 +11,6 @@ from folder_or_file import FolderOrFile
 from openmsimodel.utilities.runnable import Runnable
 from openmsimodel.utilities.argument_parsing import OpenMSIModelParser
 
-from collections import defaultdict
-import os
-import shutil
-import argparse
 
 from gemd.json import GEMDJson
 from gemd.util.impl import recursive_foreach
@@ -29,10 +29,14 @@ class Workflow(Runnable):
     ARGUMENT_PARSER_TYPE = OpenMSIModelParser
 
     def __init__(self, *args, **kwargs):
-        self.blocks = defaultdict()
-        self.terminal_blocks = defaultdict()
-        self.encoder = GEMDJson()
-        self.destination = args["destination"]
+        """Initialization of workflow"""
+        self.subs = defaultdict()
+        self.terminal_subs = defaultdict()
+        # self.blocks = defaultdict()
+        # self.terminal_blocks = defaultdict()
+        # self.encoder = GEMDJson()
+        # if "output" in args:
+        #     self.output = args.output
 
     def thin_dumps(self):
         """
@@ -105,13 +109,6 @@ class Workflow(Runnable):
             fp.write(self.encoder.thin_dumps(item, indent=3))
 
     #################### CLASS METHODS ####################
-
-    # @classmethod
-    # def get_argument_parser(cls, *args, **kwargs):
-    #     parser = cls.ARGUMENT_PARSER_TYPE(*args, **kwargs)
-    #     cl_args, cl_kwargs = cls.get_command_line_arguments()
-    #     parser.add_arguments(*cl_args, **cl_kwargs)
-    #     return parser
 
     @classmethod
     def get_command_line_arguments(cls):

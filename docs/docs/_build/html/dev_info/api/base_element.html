@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Base Element &mdash; openmsimodel 0.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Process Block" href="process_block.html" />
+    <link rel="prev" title="Subworkflow" href="subworkflow.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            openmsimodel
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Intro to OpenMSImodel:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation/getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Working with OpenMSIModel:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../user_info/structure.html">Structure</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API reference/dev info:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../api_reference.html">API reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../api_reference.html#top-level-classes">Top-level classes</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="workflow.html">Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="subworkflow.html">Subworkflow</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Base Element</a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_block.html">Process Block</a></li>
+<li class="toctree-l3"><a class="reference internal" href="material.html">Material</a></li>
+<li class="toctree-l3"><a class="reference internal" href="process.html">Process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ingredient.html">Ingredient</a></li>
+<li class="toctree-l3"><a class="reference internal" href="measurement.html">Measurement</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ci_testing.html">CI testing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">openmsimodel</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api_reference.html">API reference</a></li>
+      <li class="breadcrumb-item active">Base Element</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/dev_info/api/base_element.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-entity.base.base_element.BaseElement">
+<span id="base-element"></span><h1>Base Element<a class="headerlink" href="#module-entity.base.base_element.BaseElement" title="Permalink to this heading"></a></h1>
+<p>Base class for materials, processes, and measurements.</p>
+<p><code class="docutils literal notranslate"><span class="pre">BaseElement</span></code> ‘s are thin wrappers for GEMD entities. One <code class="docutils literal notranslate"><span class="pre">BaseElement</span></code> contains
+a template, spec, and run for the same kind of entity (<code class="docutils literal notranslate"><span class="pre">Material</span></code>,
+<code class="docutils literal notranslate"><span class="pre">Process</span></code>, or <code class="docutils literal notranslate"><span class="pre">Measurement</span></code>) and helps to create, update, link, and
+output these.</p>
+<p>Note that <cite>name</cite> is the GEMD name given to the spec and run. The template
+name is the name of the subclass.</p>
+<p>The <cite>to_form</cite> abstract method could be implemented to instruct a webpage
+how to create form elements and validation based on the template.</p>
+<p>To subclass:</p>
+<p>1. Instantiate <code class="docutils literal notranslate"><span class="pre">TEMPLATE</span></code> as follows:
+<code class="docutils literal notranslate"><span class="pre">TEMPLATE:</span> <span class="pre">ClassVar[Template]</span> <span class="pre">=</span> <span class="pre">Template(name=__name__)</span></code>,
+replacing <code class="docutils literal notranslate"><span class="pre">Template</span></code> with one of <code class="docutils literal notranslate"><span class="pre">MaterialTemplate</span></code>,
+<code class="docutils literal notranslate"><span class="pre">ProcessTemplate</span></code>, or <code class="docutils literal notranslate"><span class="pre">MeasurementTemplate</span></code>.</p>
+<p>2. Instantiate <code class="docutils literal notranslate"><span class="pre">_ATTRS</span></code> as follows:
+<code class="docutils literal notranslate"><span class="pre">_ATTRS:</span> <span class="pre">ClassVar[AttrsDict]</span> <span class="pre">=</span> <span class="pre">{'conditions':</span> <span class="pre">{},</span> <span class="pre">'parameters':</span> <span class="pre">{},</span> <span class="pre">'properties':</span> <span class="pre">{}}</span></code>.
+However, only include the relevant keys (e.g., exclude <code class="docutils literal notranslate"><span class="pre">'properties'</span></code> for a <code class="docutils literal notranslate"><span class="pre">Process</span></code>
+subclass).</p>
+<p>3. Add conditions, parameters, and/or properties using
+<code class="docutils literal notranslate"><span class="pre">define_attribute(_ATTRS,</span> <span class="pre">...)</span></code> from the <code class="docutils literal notranslate"><span class="pre">qf_gemd.base.attributes</span></code>
+module.</p>
+<p>4. Call <code class="docutils literal notranslate"><span class="pre">finalize_template(_ATTRS,</span> <span class="pre">TEMPLATE)</span></code>, found in the
+<code class="docutils literal notranslate"><span class="pre">qf_gemd.base.attributes</span></code> module, to add attributes to <code class="docutils literal notranslate"><span class="pre">TEMPLATE</span></code>.</p>
+<ol class="arabic simple" start="5">
+<li><p>Follow any additional subclass directions.</p></li>
+</ol>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="subworkflow.html" class="btn btn-neutral float-left" title="Subworkflow" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="process_block.html" class="btn btn-neutral float-right" title="Process Block" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Ali Rachidi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

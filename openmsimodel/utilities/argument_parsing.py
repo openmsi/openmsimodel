@@ -174,7 +174,7 @@ class OpenMSIModelParser(ArgumentParser):
                 "help": "path of source data on materials, experiments, etc, that help build the GEMD model",
             },
         ],
-        "destination": [
+        "output": [
             "positional",
             {
                 "type": str,

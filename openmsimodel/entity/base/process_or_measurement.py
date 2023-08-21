@@ -16,14 +16,14 @@ from gemd import (
     PerformedSource,
 )
 
-from .base_node import BaseNode
+from .base_element import BaseElement
 from .typing import SpecOrRunLiteral, ValueOriginDict
 from .attributes import finalize_template
 
 __all__ = ["ProcessOrMeasurement"]
 
 
-class ProcessOrMeasurement(BaseNode):
+class ProcessOrMeasurement(BaseElement):
     """Base class for processes and measurements."""
 
     _TempType: ClassVar[Type[Union[ProcessTemplate, MeasurementTemplate]]]
@@ -45,7 +45,7 @@ class ProcessOrMeasurement(BaseNode):
         notes: Optional[str] = None,
         conditions: Optional[list[Condition]] = None,
         parameters: Optional[list[Parameter]] = None,
-        state: SpecOrRunLiteral = "spec", #TODO: fix this
+        which: SpecOrRunLiteral = "spec",  # TODO: fix this
     ) -> None:
         super().__init__(name, template=template, notes=notes)
 
@@ -57,10 +57,10 @@ class ProcessOrMeasurement(BaseNode):
 
         # FIXME: would this work if template?
         self.update_conditions(
-            *conditions, replace_all=True, state=state
-        )  # TODO change state? or add param?
+            *conditions, replace_all=True, which=which
+        )  # TODO change which? or add param?
 
-        self.update_parameters(*parameters, replace_all=True, state=state)
+        self.update_parameters(*parameters, replace_all=True, which=which)
 
     def get_conditions_dict(self) -> dict[str, ValueOriginDict]:
         """Return a ``dict`` of the spec and run conditions."""
@@ -70,7 +70,7 @@ class ProcessOrMeasurement(BaseNode):
         self,
         *conditions: Condition,
         replace_all: bool = False,
-        state: SpecOrRunLiteral = "spec",
+        which: SpecOrRunLiteral = "spec",
     ) -> None:
         """
         Change or add conditions.
@@ -81,7 +81,7 @@ class ProcessOrMeasurement(BaseNode):
             The conditions to change (by name) or add.
         replace_all: bool, default False
             If ``True``, remove any existing conditions before adding new ones.
-        state: {'spec', 'run', 'both'}, default 'spec'
+        which: {'spec', 'run', 'both'}, default 'spec'
             Whether to update the spec, run, or both.
 
         Raises
@@ -94,18 +94,18 @@ class ProcessOrMeasurement(BaseNode):
             AttrType=Condition,
             attributes=conditions,
             replace_all=replace_all,
-            state=state,
+            which=which,
         )
 
     def remove_conditions(
-        self, *condition_names: str, state: SpecOrRunLiteral = "spec"
+        self, *condition_names: str, which: SpecOrRunLiteral = "spec"
     ) -> None:
         """
         Remove conditions by name.
 
         *condition_names: str
             The names of conditions to remove.
-        state: {'spec', 'run', 'both'}, default 'spec'
+        which: {'spec', 'run', 'both'}, default 'spec'
             Whether to remove from the spec, run, or both.
 
         Raises
@@ -115,7 +115,7 @@ class ProcessOrMeasurement(BaseNode):
         """
 
         self._remove_attributes(
-            AttrType=Condition, attr_names=condition_names, state=state
+            AttrType=Condition, attr_names=condition_names, which=which
         )
 
     def get_parameters_dict(self) -> dict[str, ValueOriginDict]:
@@ -126,7 +126,7 @@ class ProcessOrMeasurement(BaseNode):
         self,
         *parameters: Parameter,
         replace_all: bool = False,
-        state: SpecOrRunLiteral = "spec",
+        which: SpecOrRunLiteral = "spec",
     ) -> None:
         """
         Change or add parameters.
@@ -137,7 +137,7 @@ class ProcessOrMeasurement(BaseNode):
             The parameters to change (by name) or add.
         replace_all: bool, default False
             If ``True``, remove any existing parameters before adding new ones.
-        state: {'spec', 'run', 'both'}, default 'spec'
+        which: {'spec', 'run', 'both'}, default 'spec'
             Whether to update the spec, run, or both.
 
         Raises
@@ -150,18 +150,18 @@ class ProcessOrMeasurement(BaseNode):
             AttrType=Parameter,
             attributes=parameters,
             replace_all=replace_all,
-            state=state,
+            which=which,
         )
 
     def remove_parameters(
-        self, *parameter_names: str, state: SpecOrRunLiteral = "spec"
+        self, *parameter_names: str, which: SpecOrRunLiteral = "spec"
     ) -> None:
         """
         Remove parameters by name.
 
         *parameter_names: str
             The names of parameters to remove.
-        state: {'spec', 'run', 'both'}, default 'spec'
+        which: {'spec', 'run', 'both'}, default 'spec'
             Whether to remove from the spec, run, or both.
 
         Raises
@@ -171,7 +171,7 @@ class ProcessOrMeasurement(BaseNode):
         """
 
         self._remove_attributes(
-            AttrType=Parameter, attr_names=parameter_names, state=state
+            AttrType=Parameter, attr_names=parameter_names, which=which
         )
 
     def get_source(self) -> dict[str, str]:

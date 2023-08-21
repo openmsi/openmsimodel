@@ -1,12 +1,4 @@
-# gemd_tools
+# OpenMSIModel
 
-cast_control==0.10.11
-
-
-### TAMU
-
-- how to move specific TAMU (and any project) outside of gemd_tools?
-- enforce 1 process / 1 material constraint on block?
-- handle PropertyAndConditions in the attributes module
-- link_prior() and posterior() via other fields than name
-- MeasurementRun has properties but MeasurementSepc doesn't
+OpenMSIModel uses the GEMD (Graphical Expression of Material Data) format to interact with generalized laboratory, analysis, and computational materials data.
+It allows to structure real scientific workflows into meaningful data structures, model them in graph and relational databases, explore on interactive graphical interfaces, and build long-term, shareable assets stores.

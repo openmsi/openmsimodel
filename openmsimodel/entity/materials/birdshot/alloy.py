@@ -36,22 +36,4 @@ class Alloy(Material):
         ),
     )
 
-    # define_attribute(
-    #     _ATTRS,
-    #     template=PropertyTemplate(
-    #         name="Mass",
-    #         bounds=RealBounds(0, 150, "g"),
-    #     ),
-    #     default_value=NominalReal(0.0, "g"),
-    # )
-
-    # define_attribute(
-    #     _ATTRS,
-    #     template=PropertyTemplate(
-    #         name="Mass Loss",
-    #         bounds=RealBounds(0, 50, "g"),
-    #     ),
-    #     default_value=NominalReal(0.0, "g"),
-    # )
-
     finalize_template(_ATTRS, TEMPLATE)

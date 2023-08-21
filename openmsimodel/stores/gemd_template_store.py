@@ -63,7 +63,7 @@ class GEMDTemplateStore(ABC):
         encoder = a pre-created GEMD JSON encoder (optional)
         """
         if id in template_store_ids:
-            raise NameError(f'template store with id {id} already exists.')
+            raise NameError(f"template store with id {id} already exists.")
         self.id = id
         template_store_ids.append(id)
         self.encoder = encoder  # TODO: separate from workflow one
@@ -346,4 +346,5 @@ class GEMDTemplateStore(ABC):
                         yield tempdict[template_type][name].template
 
 
-all_template_stores = {"global" :GEMDTemplateStore('global', load_all_files=True)}
+all_template_stores = {"global": GEMDTemplateStore("global", load_all_files=False)}
+all_template_stores["global"].initialize_store()

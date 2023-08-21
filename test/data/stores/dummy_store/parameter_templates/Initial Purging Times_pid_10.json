@@ -1,0 +1,16 @@
+{
+   "bounds": {
+      "default_units": "hour",
+      "lower_bound": 0,
+      "type": "real_bounds",
+      "upper_bound": 10
+   },
+   "description": null,
+   "name": "Initial Purging Times",
+   "tags": [],
+   "type": "parameter_template",
+   "uids": {
+      "auto": "85401f86-fc77-4cfe-aa54-9d08c4ae60c5",
+      "persistent_id": 10
+   }
+}

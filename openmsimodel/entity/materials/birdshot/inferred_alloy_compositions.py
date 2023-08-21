@@ -12,6 +12,7 @@ from openmsimodel.entity.base.attributes import (
     AttrsDict,
     define_attribute,
     finalize_template,
+    _validate_temp_keys,
 )
 
 __all__ = ["InferredAlloyCompositions"]
@@ -25,7 +26,7 @@ class InferredAlloyCompositions(Material):
         description="Final selection of the bayesian optimziation algorithm, which can generate different number of compositions (i.e., 16 for VAM, 8 for DED) under various paramereters",
     )
 
-    _ATTRS: ClassVar[AttrsDict] = {"properties": {}}
+    _ATTRS: ClassVar[AttrsDict] = _validate_temp_keys(TEMPLATE)
 
     # define_attribute(
     #     _ATTRS,

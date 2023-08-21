@@ -1,8 +1,8 @@
 from openmsimodel.workflow.workflow import Workflow
 from openmsimodel.workflow.folder_or_file import FolderOrFile
-
-from openmsimodel.block.process_block import ProcessBlock
+from openmsimodel.subworkflow.process_block import ProcessBlock
 from openmsimodel.entity.base import Material, Process, Measurement, Ingredient
+
 from openmsimodel.entity.processes.birdshot.aggregate_summary_sheet import (
     AggregateSummarySheet,
 )
@@ -78,7 +78,8 @@ from gemd.util.impl import recursive_foreach
 
 
 class BIRDSHOTWorfklow(Workflow, FolderOrFile):
-    def __init__(self, *args, **kwargs):
+    # def __init__(self, *args, **kwargs):
+    def __init__(self, root, output, iteration, sample_data_folder):
         """
         this function represents a TAMU workflow, from a list of compositions to tests, through their
         VAM and DED fabrications, their splits into travelers for numerous characterizations, all the way to
@@ -86,13 +87,19 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         :param iteration: the iteration of the workflow (i.e., AAB)
         :param sample_data_folder: the folder containing the sample data (i.e., /Sample Data/Iteration2_AAB)
         """
-        Workflow.__init__(self, *args, **kwargs)
-        FolderOrFile.__init__(self, *args)
-        # self.root = args.path
-        self.iteration = args["iteration"]
-        self.sample_data_folder = args["sample_data_folder"]
+        # Workflow.__init__(self, *args, **kwargs)
+        # FolderOrFile.__init__(self, *args)
+        Workflow.__init__(self)
+        FolderOrFile.__init__(self, root, parent_path=None, is_last=False)
+        # self.root gets set in FolderOrFile
+        # self.output = args["output"]
+        self.output = output
+        # self.iteration = args["iteration"]
+        self.iteration = iteration
+        # self.sample_data_folder = args["sample_data_folder"]
+        self.sample_data_folder = sample_data_folder
         recursive_dict = lambda: defaultdict(recursive_dict)
-        self.blocks = recursive_dict()  # overwrite
+        self.subs = recursive_dict()  # overwrite
         self.terminal_blocks = recursive_dict()  # overwrite
         self.file_links = recursive_dict()
         self.measurements = recursive_dict()
@@ -105,11 +112,13 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         }
         self.aggregate_or_buy = True
         self.testing_mode = False
+        # if "output" in args:
+        # self.output = args.output
 
     def build(self):
         # initialize the folder to dump the GEMD json files
-        if os.path.exists(self.output_folder):
-            shutil.rmtree(self.output_folder)
+        if os.path.exists(self.output):
+            shutil.rmtree(self.output)
 
         # ingesting the results of the summary sheet, which is associated with each composition space, and workflow object
         self.ingest_synthesis_results(self.iteration)
@@ -141,7 +150,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
                 supplied_links={"Summary Sheet": self.file_links["Summary Sheet"]},
             )
         infer_compositions_block_name = "Infer Compositions"
-        infer_compositions_block = Block(
+        infer_compositions_block = ProcessBlock(
             name=infer_compositions_block_name,
             workflow=self,
             ingredients=[],
@@ -149,7 +158,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
             material=inferred_alloy_compositions,
         )
         infer_compositions_block.link_within()
-        self.blocks[infer_compositions_block_name] = infer_compositions_block
+        self.subs[infer_compositions_block_name] = infer_compositions_block
 
         # extracting tree structure to build the model up
         count = 0
@@ -181,7 +190,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
                         composition_id = split_item_path[path_offset + 4]
                 else:
                     composition_id = split_item_path[path_offset + 3]
-                self.blocks[composition_id][fabrication_method][batch][
+                self.subs[composition_id][fabrication_method][batch][
                     infer_compositions_block.name
                 ] = infer_compositions_block
                 if (item.depth == 4 and not is_ded) or (item.depth == 5 and is_ded):
@@ -228,7 +237,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
             "Aggregate summary sheet"
         )
         summary_sheet_material = SummarySheet("Summary sheet")
-        aggregate_summary_sheet_block = Block(
+        aggregate_summary_sheet_block = ProcessBlock(
             name="Aggregating Summary Sheet",
             workflow=self,
             ingredients=[],
@@ -255,12 +264,12 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
                                 terminal_block.material._run.name
                             )
                             ingredient = Ingredient(ingredient_name)
-                            aggregate_summary_sheet_block.ingredients.append(ingredient)
+                            aggregate_summary_sheet_block.ingredients[ingredient.name] = ingredient
                             aggregate_summary_sheet_block.link_within()
                             aggregate_summary_sheet_block.link_prior(
                                 terminal_block, ingredient_name_to_link=ingredient_name
                             )
-                        self.blocks[composition_id][fabrication_method][batch][
+                        self.subs[composition_id][fabrication_method][batch][
                             aggregate_summary_sheet_block.name
                         ] = aggregate_summary_sheet_block
 
@@ -275,7 +284,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         infer_compositions_process = InferCompositions(
             "Infer compositions using Bayesian Optimizations"
         )
-        infer_next_compositions_block = Block(
+        infer_next_compositions_block = ProcessBlock(
             name="Infer Compositions",
             workflow=self,
             ingredients=[summary_sheet_ingredient],
@@ -299,7 +308,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
                     for batch in self.terminal_blocks[composition_id][
                         fabrication_method
                     ].keys():
-                        self.blocks[composition_id][fabrication_method][batch][
+                        self.subs[composition_id][fabrication_method][batch][
                             infer_next_compositions_block.name
                         ] = infer_next_compositions_block
                         self.terminal_blocks[composition_id][fabrication_method][
@@ -418,7 +427,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
             set_composition_material_and_select_composition_process_params_and_tags()
         )
 
-        block1 = Block(
+        block1 = ProcessBlock(
             name="Selecting Composition",
             workflow=self,
             ingredients=[inferred_alloy_compositions_ingredient],
@@ -430,7 +439,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
             prior_block,
             ingredient_name_to_link=inferred_alloy_compositions_ingredient_name,
         )
-        self.blocks[composition_id][fabrication_method][batch][block1.name] = block1
+        self.subs[composition_id][fabrication_method][batch][block1.name] = block1
 
         # block 2: Weighting + aggregating (or buying) materials (one to many)
         composition_elements = []
@@ -519,7 +528,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
             weighting_measurement._run.source = weighting_performed_source
 
             composition_elements.append(composition_element_material)
-            block2 = Block(
+            block2 = ProcessBlock(
                 name="Aggregating {} for {}".format(element_name, common_name),
                 workflow=self,
                 ingredients=[composition_ingredient],
@@ -532,7 +541,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
                 block1, ingredient_name_to_link=composition_ingredient_name
             )
             parallel_block2s.append(block2)
-            self.blocks[composition_id][fabrication_method][batch][block2.name] = block2
+            self.subs[composition_id][fabrication_method][batch][block2.name] = block2
 
         # block 3 : mixing
         composition_element_ingredients = []
@@ -554,7 +563,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
             tags=common_tags,
             spec_or_run=alloy_material.run,
         )
-        block3 = Block(
+        block3 = ProcessBlock(
             name="Mixing Elements",
             workflow=self,
             ingredients=composition_element_ingredients,
@@ -567,7 +576,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
                 block,
                 ingredient_name_to_link=composition_element_ingredients[i]._run.name,
             )
-        self.blocks[composition_id][fabrication_method][batch][block3.name] = block3
+        self.subs[composition_id][fabrication_method][batch][block3.name] = block3
 
         # block 4 : fabrication
         if fabrication_method == "VAM":
@@ -696,7 +705,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         )
         weighting_alloy_measurement._run.source = arc_melting_performed_source
 
-        block4 = Block(
+        block4 = ProcessBlock(
             name="Arc Melting of Alloy",
             workflow=self,
             ingredients=[alloy_ingredient],
@@ -707,7 +716,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         block4.link_within()
         block4.link_prior(prior_block, ingredient_name_to_link=alloy_ingredient_name)
 
-        self.blocks[composition_id][fabrication_method][batch][block4.name] = block4
+        self.subs[composition_id][fabrication_method][batch][block4.name] = block4
 
         # block 5
         homogenization_metadata = processing_details["data"]["Homogenization"][
@@ -775,7 +784,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
                             value=value,
                             template=homogenization_process._ATTRS["parameters"][
                                 "Pressure"
-                            ]["param"],
+                            ]["obj"],
                             origin="specified",
                         ),
                     ),
@@ -789,7 +798,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
                         value=value,
                         template=homogenization_process._ATTRS["parameters"][
                             "Pressure"
-                        ]["param"],
+                        ]["obj"],
                         origin="specified",
                     ),
                 ),
@@ -821,7 +830,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
             which="spec",
         )
 
-        block5 = Block(
+        block5 = ProcessBlock(
             name="Homogenization of Alloy",
             workflow=self,
             ingredients=[melted_alloy_ingredient],
@@ -830,7 +839,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         )
         block5.link_within()
         block5.link_prior(block4, ingredient_name_to_link=melted_alloy_ingredient_name)
-        self.blocks[composition_id][fabrication_method][batch][block5.name] = block5
+        self.subs[composition_id][fabrication_method][batch][block5.name] = block5
 
         # block 6
 
@@ -868,7 +877,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
                         value=value,
                         origin="specified",
                         template=forging_process._ATTRS["parameters"]["Temperature"][
-                            "param"
+                            "obj"
                         ],
                     ),
                 ),
@@ -906,7 +915,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
                             origin="specified",
                             template=forging_process._ATTRS["parameters"][
                                 "Maximum Load Step"
-                            ]["param"],
+                            ]["obj"],
                         ),
                     ),
                     which="run",
@@ -949,7 +958,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
                                 origin="specified",
                                 template=capture_dimensions_measurement._ATTRS[
                                     "properties"
-                                ][attribute_name]["prop"],
+                                ][attribute_name]["obj"],
                             ),
                         ),
                         which="run",
@@ -957,7 +966,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
 
         set_capture_dimensions_measurement_properties()
 
-        block6 = Block(
+        block6 = ProcessBlock(
             name="Forging of Alloy",
             workflow=self,
             ingredients=[homogenized_alloy_ingredient],
@@ -968,7 +977,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         block6.link_prior(
             block5, ingredient_name_to_link=homogenized_alloy_ingredient_name
         )
-        self.blocks[composition_id][fabrication_method][batch][block6.name] = block6
+        self.subs[composition_id][fabrication_method][batch][block6.name] = block6
 
         # block 7
         forged_alloy_ingredient_name = "Forged {} Ingredient".format(alloy_common_name)
@@ -985,7 +994,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
             tags=common_tags,
             spec_or_run=traveler_material.run,
         )
-        block7 = Block(
+        block7 = ProcessBlock(
             name="Setting up of Traveler",
             workflow=self,
             ingredients=[forged_alloy_ingredient],
@@ -994,7 +1003,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         )
         block7.link_within()
         block7.link_prior(block6, ingredient_name_to_link=forged_alloy_ingredient_name)
-        self.blocks[composition_id][fabrication_method][batch][block7.name] = block7
+        self.subs[composition_id][fabrication_method][batch][block7.name] = block7
         self.terminal_blocks[composition_id][fabrication_method][batch] = block7
 
     def process_measurement(
@@ -1042,7 +1051,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
 
                     if not type(attribute_value) == str:
                         unit = measurement._ATTRS["properties"][attribute_name][
-                            "prop"
+                            "obj"
                         ].bounds.default_units
                         value = NominalReal(float(attribute_value), unit)
                     else:
@@ -1061,7 +1070,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
                         which="run",
                     )
 
-            block = Block(
+            block = ProcessBlock(
                 name="Setting up of Traveler Sample for {} ({}) characterization".format(
                     measurement_name, measurement_id
                 ),
@@ -1073,12 +1082,12 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
             )
             block.link_within()
             block.link_prior(
-                self.blocks[composition_id][fabrication_method][batch][
+                self.subs[composition_id][fabrication_method][batch][
                     "Setting up of Traveler"
                 ],
                 ingredient_name_to_link=traveler_ingredient_name,
             )
-            self.blocks[composition_id][fabrication_method][batch][block.name] = block
+            self.subs[composition_id][fabrication_method][batch][block.name] = block
 
             if (
                 type(self.terminal_blocks[composition_id][fabrication_method][batch])
@@ -1104,10 +1113,10 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
                     terminal_block = workflow.terminal_blocks[composition_id][
                         fabrication_method
                     ][batch]
-                    self.blocks[
+                    self.subs[
                         "Infer Compositions"
                     ].material._spec.process = terminal_block.process._spec
-                    self.blocks[
+                    self.subs[
                         "Infer Compositions"
                     ].material._run.process = terminal_block.process._run
                     # terminal_block.link_posterior(workflow.blocks['Infer Compositions'], ingredient_name_to_link=)
@@ -1127,7 +1136,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         return common_name, alloy_common_name, common_tags
 
     def setup_subfolder(self, composition_id, batch, fabrication_method):
-        composition_id_path = os.path.join(self.output_folder, composition_id)
+        composition_id_path = os.path.join(self.output, composition_id)
         if not os.path.exists(composition_id_path):
             os.makedirs(composition_id_path)
 
@@ -1162,14 +1171,14 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         helper function that navigates the blocks of the models and
         """
         for composition_id in self.gen_compositions():
-            composition_id_path = os.path.join(self.output_folder, composition_id)
-            for fabrication_method in self.blocks[composition_id].keys():
+            composition_id_path = os.path.join(self.output, composition_id)
+            for fabrication_method in self.subs[composition_id].keys():
                 if fabrication_method == "DED":
                     continue
                 fabrication_method_path = os.path.join(
                     composition_id_path, fabrication_method
                 )
-                for batch in self.blocks[composition_id][fabrication_method].keys():
+                for batch in self.subs[composition_id][fabrication_method].keys():
                     _destination = os.path.join(fabrication_method_path, batch)
 
                     if mode == "raw":
@@ -1196,7 +1205,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
     def thin_plots(self):
         """"""
         for composition_id in self.gen_compositions():
-            composition_id_path = os.path.join(self.output_folder, composition_id)
+            composition_id_path = os.path.join(self.output, composition_id)
             for fabrication_method in os.listdir(composition_id_path):
                 fabrication_method_path = os.path.join(
                     composition_id_path, fabrication_method
@@ -1407,7 +1416,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
     @classmethod
     def get_command_line_arguments(cls):
         superargs, superkwargs = super().get_command_line_arguments()
-        args = [*superargs, "root", "destination", "iteration", "sample_data_folder"]
+        args = [*superargs, "root", "output", "iteration", "sample_data_folder"]
         kwargs = {**superkwargs}
         return args, kwargs
 
@@ -1415,7 +1424,12 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
     def run_from_command_line(cls, args=None):
         parser = cls.get_argument_parser()
         args = parser.parse_args(args=args)
-        workflow = cls(args)
+        workflow = cls(
+            args.root,
+            args.output,
+            args.iteration,
+            args.sample_data_folder,
+        )
         workflow.build()
 
 

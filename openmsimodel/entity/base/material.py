@@ -6,7 +6,7 @@ from gemd import MaterialTemplate, MaterialSpec, MaterialRun, PropertyAndConditi
 from gemd.entity.util import make_instance
 from gemd.enumeration import SampleType
 
-from .base_node import BaseNode
+from .base_element import BaseElement
 from .typing import ProcessDict, PropsAndCondsDict
 from .attributes import finalize_template
 from .process import Process
@@ -14,11 +14,10 @@ from .process import Process
 __all__ = ["Material"]
 
 
-class Material(BaseNode):
+class Material(BaseElement):
     """
     Base class for materials.
 
-    TODO: instructions for subclassing
     """
 
     _TempType = MaterialTemplate

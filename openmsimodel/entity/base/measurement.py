@@ -24,7 +24,6 @@ class Measurement(ProcessOrMeasurement):
     """
     Base class for measurements.
 
-    TODO: instructions for subclassing
     """
 
     _TempType = MeasurementTemplate
@@ -53,7 +52,6 @@ class Measurement(ProcessOrMeasurement):
         self.update_properties(properties=properties, replace_all=True)
 
         self.set_material(material)
-        
 
     @property
     def spec(self) -> MeasurementSpec:
@@ -125,7 +123,7 @@ class Measurement(ProcessOrMeasurement):
 
     def get_material(self) -> str:
         """
-        Get the name of the material on which the measurement run was performed.
+        Get the name of the material on sstate the measurement run was performed.
 
         Returns
         -------
@@ -136,7 +134,7 @@ class Measurement(ProcessOrMeasurement):
 
     def set_material(self, material: Optional[MaterialRun]) -> None:
         """
-        Set the material on which the measurement run was performed.
+        Set the material on sstate the measurement run was performed.
 
         Parameters
         ----------

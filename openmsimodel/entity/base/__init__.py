@@ -7,16 +7,17 @@
 # from . import ingredient
 
 
-from .base_node import *
+from .base_element import *
 from .material import *
 from .process import *
 from .measurement import *
 from .ingredient import *
+
 # from .typing import *
 # from .impl import *
 
 __all__ = (
-    base_node.__all__
+    base_element.__all__
     + material.__all__
     + process.__all__
     + measurement.__all__
@@ -25,7 +26,7 @@ __all__ = (
     # + impl.__all__
 )
 
-del base_node
+del base_element
 del material
 del process
 del measurement

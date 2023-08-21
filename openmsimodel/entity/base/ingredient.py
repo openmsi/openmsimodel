@@ -8,25 +8,26 @@ from gemd import IngredientSpec, IngredientRun, PropertyAndConditions
 from gemd.entity.util import make_instance
 from gemd.enumeration import SampleType
 
-from .base_node import BaseNode
+from .base_element import BaseElement
 from .typing import ProcessDict, PropsAndCondsDict
 from .process import Process
 
 __all__ = ["Ingredient"]
 
 
-class Ingredient(BaseNode):
+class Ingredient(BaseElement):
     """
     Base class for ingredients.
 
-    TODO: instructions for subclassing
     """
 
     _SpecType = IngredientSpec
     _RunType = IngredientRun
 
     def __init__(self, name: str, *, notes: Optional[str] = None) -> None:
+        # BaseElement.__init__(self, name)
         super(ABC, self).__init__()
+        self.name = name
         self._spec: Spec = self._SpecType(name=name, notes=notes)
         self._run: Run = make_instance(self._spec)
 

@@ -5,10 +5,12 @@ persistent_id,name,type
 3,dummy process template 3,process_template
 4,dummy parameter template 2,parameter_template
 5,dummy process template 4,process_template
-6,dummy parameter template 3,parameter_template
-7,Arc Melting,process_template
-8,Argon Pressure,parameter_template
-9,Diffusion,parameter_template
-10,Ingot Location,parameter_template
-11,Initial Purging Times,parameter_template
-12,Vacuum Before Melt,parameter_template
+6,Arc Melting,process_template
+7,Argon Pressure,parameter_template
+8,Diffusion,parameter_template
+9,Ingot Location,parameter_template
+10,Initial Purging Times,parameter_template
+11,Vacuum Before Melt,parameter_template
+12,Material,material_template
+13,Process template example,process_template
+14,Measurement template example,measurement_template

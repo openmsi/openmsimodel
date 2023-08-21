@@ -144,12 +144,12 @@ def update_attrs(
     AttrType: Type[Union[BaseAttribute, PropertyAndConditions]],
     attributes: tuple[BaseAttribute],
     replace_all: bool = False,
-    state: SpecOrRunLiteral = "spec",
+    which: SpecOrRunLiteral = "spec",
 ) -> None:
-    """Used by BaseNode to update attributes and link attribute templates."""
+    """Used by BaseElement to update attributes and link attribute templates."""
 
     attr_dict_key, singular, plural = _validate_attr_type(AttrType)
-    validate_state(state)
+    validate_state(which)
 
     required_attrs = _required_attrs(attrs, AttrType, attr_dict_key, plural)
 
@@ -163,19 +163,28 @@ def update_attrs(
         # TODO: quick fix for now for having multiple version of a same template (i.e., ambient ressure, purging pressure for the same parameter template: pressure )
         # TODO: applies to uncommented bloc of code above that caused errors
         if attr_name not in attrs[plural].keys():  # TODO: improve fix?
-            raise KeyError(
-                f"the '{attr_name}' attribute is not among the object defined attributes."
-            )
-        if attr.template is not None or attr.property.template is not None:
-            continue
+            if (
+                hasattr(attr, "template")
+                and attr.template.name not in attrs[plural].keys()
+            ):
+                raise KeyError(
+                    f"the '{attr_name}' attribute is not among the object defined attributes."
+                )
+            attr_name = attr.template.name  # FIXME
+        # if attr.template is not None or (attr.property is not None and attr.property.template is not None): #FIXME
+        #     continue
         if type(attr) == PropertyAndConditions:
-            attr.property.template = attrs[plural][attr_name]["obj"]
+            if hasattr(attr, "property") and attr.property.template is not None:
+                attr.property.template = attrs[plural][attr_name]["obj"]
         else:
-            attr.template = attrs[plural][attr_name]["obj"]
+            if attr.template is not None:
+                attr.template = attrs[plural][attr_name][
+                    "obj"
+                ]  # TODO: fix attr_name, change to temp_name and set temp_name to whole name or to template.name based on if found
 
-    if state in ["spec", "both"]:
+    if which in ["spec", "both"]:
         _set_attrs(spec, required_attrs, supplied_attrs, AttrType, replace_all)
-    if state in ["run", "both"]:
+    if which in ["run", "both"]:
         _set_attrs(run, required_attrs, supplied_attrs, AttrType, replace_all)
 
 
@@ -259,12 +268,12 @@ def remove_attrs(
     run: Run,
     AttrType: Type[Union[BaseAttribute, PropertyAndConditions]],
     attr_names: tuple[str, ...],
-    state: SpecOrRunLiteral = "spec",
+    which: SpecOrRunLiteral = "spec",
 ) -> None:
-    """Used by BaseNode to remove attributes by name."""
+    """Used by BaseElement to remove attributes by name."""
 
     _, singular, plural = _validate_attr_type(AttrType)
-    validate_state(state)
+    validate_state(which)
 
     required_names = [
         attr_name
@@ -278,9 +287,9 @@ def remove_attrs(
         if name in required_names:
             raise ValueError(f'May not remove required {singular} "{name}".')
 
-    if state in ["spec", "both"]:
+    if which in ["spec", "both"]:
         _remove_attrs(AttrType, spec, attr_names)
-    if state in ["run", "both"]:
+    if which in ["run", "both"]:
         _remove_attrs(AttrType, run, attr_names)
 
 
@@ -317,7 +326,7 @@ def _validate_temp_keys(Temp: Temp) -> AttrsDict:
         ATTRS = {"conditions": {}, "parameters": {}}
     elif isinstance(Temp, MaterialTemplate):
         ATTRS = {"properties": {}}
-    elif isinstance(Temp, MaterialTemplate):
+    elif isinstance(Temp, MeasurementTemplate):
         ATTRS = {"properties": {}, "conditions": {}, "parameters": {}}
     else:
         raise ValueError(
@@ -349,8 +358,8 @@ def _validate_attr_type(AttrType: Attributes) -> None:
     return attr_dict_key, singular, plural
 
 
-def validate_state(state: Any) -> None:
-    """Validate `state`."""
+def validate_state(which: Any) -> None:
+    """Validate `which`."""
 
-    if state not in get_args(SpecOrRunLiteral):
-        raise ValueError(f"{state} must be one of {get_args(SpecOrRunLiteral)}")
+    if which not in get_args(SpecOrRunLiteral):
+        raise ValueError(f"{which} must be one of {get_args(SpecOrRunLiteral)}")
