@@ -1,5 +1,3 @@
-"""Base class for measurements."""
-
 from typing import ClassVar, Optional
 
 from gemd import (
@@ -125,9 +123,7 @@ class Measurement(ProcessOrMeasurement):
         """
         Get the name of the material on sstate the measurement run was performed.
 
-        Returns
-        -------
-        material_name: str
+
         """
 
         return self._run.material.name
@@ -136,9 +132,7 @@ class Measurement(ProcessOrMeasurement):
         """
         Set the material on sstate the measurement run was performed.
 
-        Parameters
-        ----------
-        material: {MaterialRun, None}
+        :param material: {MaterialRun, None}
             The measurement's material.
         """
 
@@ -174,17 +168,12 @@ class Measurement(ProcessOrMeasurement):
         """
         Change or add measured properties of the measurement run.
 
-        Parameters
-        ----------
         *properties: Property
             The properties to change (by name) or add.
         replace_all: bool, default False
             If ``True``, remove any existing properties before adding new ones.
 
-        Raises
-        ------
-        ValueError
-            If the name of a property is not supported.
+
         """
 
         self._update_attributes(
@@ -198,13 +187,10 @@ class Measurement(ProcessOrMeasurement):
         """
         Remove measured properties from the measurement run by name.
 
-        *property_names: str
+        property_names: str
             The names of properties to remove.
 
-        Raises
-        ------
-        ValueError
-            If the name of a property is not supported.
+
         """
 
         self._remove_attributes(
