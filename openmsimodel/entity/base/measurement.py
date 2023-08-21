@@ -142,22 +142,8 @@ class Measurement(ProcessOrMeasurement):
     def get_properties_dict(self) -> dict[str, ValueAndOrigin]:
         """
         Return a ``dict`` of measurement run properties.
-
         The keys are the names of the properties.
         Each value is a ``dict`` containing a value ``dict`` and origin ``str``.
-
-        Example output:
-
-        {
-            'Measured intensity': {
-                'value': {'nominal': 1234, 'units': '', 'type': 'nominal_real'},
-                'origin': 'measured'
-            },
-            'Background-subtracted intensity': {
-                'value': {'nominal': 1000, 'units': '', 'type': 'nominal_real'},
-                'origin': 'computed'
-            },
-        }
         """
 
         return self._prop_dict(self._run.properties)
