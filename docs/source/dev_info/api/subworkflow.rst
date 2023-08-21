@@ -2,4 +2,4 @@
 Subworkflow
 =============
 
-.. autoclass:: subworkflow.subworkflow.Subworkflow
+.. autoclass:: openmsimodel.subworkflow.subworkflow.Subworkflow
