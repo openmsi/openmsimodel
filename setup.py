@@ -19,6 +19,6 @@ setupkwargs = dict(
     },
 )
 
-setupkwargs["extras_require"]["all"] = sum(setupkwargs["extras_require"].values(), [])
+# setupkwargs["extras_require"]["all"] = sum(setupkwargs["extras_require"].values(), [])
 
 setuptools.setup(**setupkwargs)

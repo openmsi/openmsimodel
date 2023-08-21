@@ -1,0 +1,16 @@
+{
+   "bounds": {
+      "categories": [
+         "FCC"
+      ],
+      "type": "categorical_bounds"
+   },
+   "description": null,
+   "name": "Phase",
+   "tags": [],
+   "type": "property_template",
+   "uids": {
+      "auto": "c85b9ab8-1634-4f72-a8f1-455de01237ba",
+      "persistent_id": 36
+   }
+}
