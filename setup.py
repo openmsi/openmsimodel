@@ -18,6 +18,10 @@ setupkwargs = dict(
         "console_scripts": ["gemd_modeller=openmsimodel.utilities.gemd_modeller:main"],
     },
     extras_require={},
+    install_requires=[
+        "gemd",
+        "methodtools",
+    ],
 )
 
 setupkwargs["extras_require"]["all"] = sum(setupkwargs["extras_require"].values(), [])
