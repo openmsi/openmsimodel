@@ -16,11 +16,6 @@
 
 
 # -- Project information -----------------------------------------------------
-import os
-import sys
-sys.path.insert(0, os.path.abspath('../../openmsimodel'))
-# sys.path.insert(0, os.path.abspath('.'))
-
 project = 'openmsimodel'
 copyright = '2023, Ali Rachidi'
 author = 'Ali Rachidi'
@@ -41,10 +36,10 @@ extensions = [
     'sphinx_rtd_theme',
 ]
 
-#autodoc configs
+# autodoc configs
 autodoc_default_options = {
-    'show-inheritance':None,
-    'members':None,
+    'show-inheritance': None,
+    'members': None,
     'member-order': 'bysource',
 }
 

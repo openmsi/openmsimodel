@@ -2,4 +2,4 @@
 Process
 =============
 
-.. autoclass:: entity.base.process.Process
+.. autoclass:: openmsimodel.entity.base.process.Process
