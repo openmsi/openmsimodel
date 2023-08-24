@@ -2,4 +2,4 @@
 Process Block
 =============
 
-.. autoclass:: subworkflow.process_block.ProcessBlock
+.. autoclass:: openmsimodel.subworkflow.process_block.ProcessBlock

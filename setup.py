@@ -11,7 +11,7 @@ setupkwargs = dict(
     author_email="arachid1@jhu.edu",
     # license="MIT",
     # packages=['openmsimodel'],
-    packages=setuptools.find_packages(include=["openmsistream*"]),
+    packages=setuptools.find_packages(include=["openmsimodel*"]),
     # packages=find_packages(),
     zip_safe=False,
     entry_points={
@@ -21,6 +21,7 @@ setupkwargs = dict(
     install_requires=[
         "gemd",
         "methodtools",
+        "pandas",
     ],
 )
 
