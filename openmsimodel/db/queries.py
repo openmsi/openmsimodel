@@ -2,11 +2,52 @@ def show_models():
     return """select distinct * from GEMDModel"""
 
 
-def top_elements(self, model_id, nb, gemd_type):
+def top_elements(model_id, nb, gemd_type):
+    """return top elements of a certain type from model.
+
+    Args:
+        model_id (int): id of the model to query
+        nb (int): number of elements
+        gemd_type (str): type of gemd object
+
+    Returns:
+        _type_: str
+    """
     return f"""
     select top {nb} context
     from  gemdobject c where gemd_type='{gemd_type} && c.model_id={model_id}' 
     order by newid()
+    """
+
+
+def display_all(model_id, type_to_display):
+    return f""" select * from {type_to_display} where model_id={model_id}"""
+
+
+def return_all_paths(model_id):
+    """return all paths between all nodes in model"""
+    return f"""
+    with gr as (
+    select c.uid as root_uid
+    ,      c.gemd_type as root_type
+    ,      0 as level
+    ,      cast(NULL as varchar(64)) as endpoint_uid
+    ,      c.uid as from_uid, cast(NULL as bigint) as edge_id, cast(NULL as varchar(64)) as gemd_ref
+    ,      cast(gemd_type+':'+c.uid as varchar(max)) as [path]
+    from GEMDObject c where c.model_id={model_id} 
+    union all
+    select gr.root_uid, gr.root_type, gr.level+1, e.to_uid
+    ,      e.to_uid, e.id, e.gemd_ref
+    ,      gr.path+'==>'+e.gemd_ref+':'+e.to_uid
+    from gr
+    join GEMDEdge e on e.from_uid=gr.from_uid
+    where gr.level < 16
+    )
+    select root_uid, root_type, endpoint_uid
+    ,      edge_id,gemd_ref
+    ,      path, level
+    from gr
+    order by root_type,root_uid, path
     """
 
 
@@ -96,6 +137,14 @@ def reachable_nodes_query(uid):
 
 
 def to_node_query(model_id):
+    """returns all elements that can reach a given node, for all nodes in the model.
+
+    Args:
+        model_id (str): id of the model to query
+
+    Returns:
+        _type_: str
+    """
     return f"""
         with gr as (
         select c.uid as root_uid
