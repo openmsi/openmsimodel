@@ -1,7 +1,7 @@
 from openmsimodel.workflow.workflow import Workflow
 from openmsimodel.entity.base.material import Material, Process
 from openmsimodel.entity.base.base_element import BaseElement
-from .subworkflow import Subworkflow
+from openmsimodel.subworkflow import Subworkflow
 from typing import ClassVar, Type, Optional
 
 

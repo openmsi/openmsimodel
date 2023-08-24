@@ -114,6 +114,47 @@ def save_graph(graph, file_name):
     del fig
 
 
+"""helper to extract GEMD data from all scenarios, whether folder of JSONs or single JSON, thin or full, etc.
+    it raises IOError in case the data can't be properly extracted.
+    """
+
+
+def read_gemd_data(dirpath, encoder):
+    """helper to extract GEMD data from all scenarios, whether folder of JSONs or single JSON, thin or full, etc.
+    it raises IOError in case the data can't be properly extracted.
+
+    Args:
+        dirpath (str): path to directory or file containing GEMD knowledge
+        encoder (GEMDJson): GEMD encoder
+
+    Raises:
+        IOError: if folder or file doesn't match the criteria
+
+    Returns:
+        list: all gemd objects extracted from folder or file
+    """
+
+    try:
+        if os.path.isdir(dirpath):
+            print("Extracting folder...")
+            gemd_objects = [
+                os.path.join(dp, f)
+                for dp, dn, filenames in os.walk(dirpath)
+                for f in filenames
+                if f.endswith(".json")
+            ]
+        elif os.path.isfile(dirpath) and dirpath.name.endswith(".json"):
+            print("Extracting file...")
+            with open(dirpath) as fp:
+                gemd_objects = json.load(fp)
+            # print(_loaded)
+    except:
+        raise IOError(
+            f"couldn't extract GEMD data. Expected folder of JSONs or single JSON with 1+ objects. "
+        )
+    return gemd_objects
+
+
 def plot_graph(
     dirpath, obj_state="run", objectpath=None, tmp="tmp", add_attributes=False
 ):
@@ -135,20 +176,7 @@ def plot_graph(
 
     if objectpath:  # plotting a graph from a single, full json (!= thin)
         with open(objectpath) as fp:
-            # TODO: build gemd objects by converting them to thin jsons???
-            # f = json.load(fp)
-            # print(f)
-            # f = str(f)
-            # print(f)
-            # print(type(f))
-            # object = encoder.loads(f)
             object = encoder.load(fp)
-            # print(len(object))
-            # print(object[0])
-            # exit()
-        # print(object)
-        # encoder.thin_dumps(object, indent=3)
-        # gemd_objects = recursive_foreach(object, out, encoder, tmp)
     else:  # plotting a graph from a bunch of thin jsons
         gemd_objects = [
             os.path.join(dp, f)
@@ -202,31 +230,3 @@ def plot_graph(
             nb_disregarded, len(gemd_objects)
         )
     )
-
-
-# def analyze(encoder, subdirpath, terminal_gemd_obj, obj_state):
-#     '''
-#     runs a series of tests on a set of GEMD objects. It starts by writing them to
-#     subdirpath using a recursive function on the terminal gemd object in your worklow,
-#     and custom plots a graph of GEMD objects.
-#     :param encoder: GEMDencoder object of the current run
-#     :param subdirpath: destination directory of your GEMD objects tied to a run
-#     :param terminal_gemd_obj: last gemd object in the pipeline/workflow
-#     :param obj_state: determins what object type to plot
-#     '''
-#     # delete if it already exists
-#     if os.path.exists(subdirpath):
-#         shutil.rmtree(subdirpath)
-#     os.mkdir(subdirpath)
-#     global _subdirpath
-#     _subdirpath = subdirpath
-#     global _encoder
-#     _encoder = encoder
-#     if obj_state == "run":
-#         terminal_gemd_obj_entity = terminal_gemd_obj._run
-#     else:
-#         terminal_gemd_obj_entity = terminal_gemd_obj._spec
-
-#     encoder.thin_dumps(terminal_gemd_obj_entity,indent=3) # this step needs to be run to instantiate
-#     recursive_foreach(terminal_gemd_obj_entity, out)
-#     return plot_graph(subdirpath, obj_state=obj_state)

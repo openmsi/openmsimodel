@@ -15,7 +15,10 @@ setupkwargs = dict(
     # packages=find_packages(),
     zip_safe=False,
     entry_points={
-        "console_scripts": ["gemd_modeller=openmsimodel.utilities.gemd_modeller:main"],
+        "console_scripts": [
+            "open_graph=openmsimodel.graph.open_graph:main",
+            "open_db=openmsimodel.db.open_db:main",
+        ],
     },
     extras_require={},
     install_requires=[

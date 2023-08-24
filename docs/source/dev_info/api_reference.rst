@@ -18,3 +18,14 @@ Top-level classes
    api/process
    api/ingredient
    api/measurement
+
+Modules
+-----------------
+
+.. toctree::
+   :maxdepth: 1
+
+   modules/open_graph
+   modules/open_db
+
+   

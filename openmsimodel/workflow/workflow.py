@@ -11,7 +11,6 @@ from .folder_or_file import FolderOrFile
 from openmsimodel.utilities.runnable import Runnable
 from openmsimodel.utilities.argument_parsing import OpenMSIModelParser
 
-
 from gemd.json import GEMDJson
 from gemd.util.impl import recursive_foreach
 
@@ -29,6 +28,7 @@ class Workflow(Runnable):
 
     def __init__(self, *args, **kwargs):
         """Initialization of workflow"""
+        # self.elements = []
         self.subs = defaultdict()
         self.terminal_subs = defaultdict()
         # self.blocks = defaultdict()
@@ -36,6 +36,13 @@ class Workflow(Runnable):
         # self.encoder = GEMDJson()
         # if "output" in args:
         #     self.output = args.output
+
+    def build(self):
+        """
+        This function builds the entire GEMD model that represents a certain Workflow.
+        to be overwritten by child objects of Workflow that correspond to a specific workflow / user case.
+        """
+        pass
 
     def thin_dumps(self):
         """
@@ -76,13 +83,6 @@ class Workflow(Runnable):
         :param obj: the object to print
         """
         print(self.encoder.thin_dumps(obj, indent=3))
-
-    def build(self):
-        """
-        This function builds the entire GEMD model that represents a certain Workflow.
-        to be overwritten by child objects of Workflow that correspond to a specific workflow / user case.
-        """
-        pass
 
     def thin_dumps_single_obj(self, obj):
         """

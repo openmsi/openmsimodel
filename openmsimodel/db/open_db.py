@@ -1,6 +1,6 @@
 import json, glob, os, csv
 import random
-from gemd_database import MSSQLDatabase
+from openmsimodel.db.gemd_database import MSSQLDatabase
 from openmsimodel.utilities.argument_parsing import OpenMSIModelParser
 from openmsimodel.utilities.runnable import Runnable
 
@@ -9,15 +9,20 @@ from sqlalchemy.ext.automap import automap_base
 from openmsimodel.utilities.logging import Logger
 
 
-class GemdSQL(Runnable):
+class OpenDB(Runnable):
+    """Class to interact with model artefacts in a database, allowing long-term storage of assets, faster and richer data retrieval, etc.
+    The module typically extract knowledges directly from JSONs of GEMD objects, and maps the GEMD Json structure to SQL classes (see prepare_classes()).
+    JSONs remain the main method of communication across the packages, from model instantiatiation to graphers.
+    """
+
     ARGUMENT_PARSER_TYPE = OpenMSIModelParser
 
-    def __init__(self, database_name, private_path, destination):
+    def __init__(self, database_name, private_path, output):
         with open(private_path, "r") as f:
             self.auth = json.load(f)
         self.database = database_name  # GEMD
         self.gemd_db = MSSQLDatabase(self.auth, self.database)
-        self.destination = destination
+        self.output = output
         self.listed = {
             "show_models": self.show_models,
             "top_elements": self.top_elements,
@@ -74,12 +79,12 @@ class GemdSQL(Runnable):
         return self.gemd_db.execute_query(sql), sql
 
     def print_and_dump(self, sql_results, query, name):
-        destination_file = os.path.join(
-            self.destination, name + str(random.randint(0, 100000)) + ".csv"
+        output_file = os.path.join(
+            self.output, name + str(random.randint(0, 100000)) + ".csv"
         )
         print(sql_results)
-        sql_results.to_csv(destination_file)
-        with open(destination_file, "a") as fp:
+        sql_results.to_csv(output_file)
+        with open(output_file, "a") as fp:
             w = csv.writer(fp)
             w.writerow("\n")
             w.writerow([query])
@@ -128,7 +133,7 @@ class GemdSQL(Runnable):
     @classmethod
     def get_command_line_arguments(cls):
         superargs, superkwargs = super().get_command_line_arguments()
-        args = [*superargs, "database_name", "private_path", "destination"]
+        args = [*superargs, "database_name", "private_path", "output"]
         kwargs = {**superkwargs}
         return args, kwargs
 
@@ -136,7 +141,7 @@ class GemdSQL(Runnable):
     def run_from_command_line(cls, args=None):
         parser = cls.get_argument_parser()
         args = parser.parse_args(args=args)
-        gemd_sql = cls(args.database_name, args.private_path, args.destination)
+        gemd_sql = cls(args.database_name, args.private_path, args.output)
         try:
             while True:
                 args = input().split()
@@ -190,7 +195,7 @@ def main(args=None):
     """
     Main method to run from command line
     """
-    GemdSQL.run_from_command_line(args)
+    OpenDB.run_from_command_line(args)
 
 
 if __name__ == "__main__":

@@ -191,7 +191,10 @@ class OpenMSIModelParser(ArgumentParser):
         ],
         "private_path": [
             "positional",
-            {"type": str, "help": "path to private file containing keys to the database "},
+            {
+                "type": str,
+                "help": "path to private file containing keys to the database ",
+            },
         ],
         # TODO: Move the 2 below to birdshot specific args
         "iteration": [
@@ -201,20 +204,18 @@ class OpenMSIModelParser(ArgumentParser):
                 "help": "the iteration of the workflow (i.e., AAB)",
             },
         ],
+        "uuid_to_track": [
+            "optional",
+            {
+                "type": str,
+                "help": "uuid to track and on the basis of which links are built (helpful for grapher)",
+            },
+        ],
         "sample_data_folder": [
             "optional",
             {
                 "type": str,
                 "help": "the folder containing the sample data (i.e., /Sample Data/Iteration2_AAB)",
-            },
-        ],
-        "obj_state": [
-            "optional",
-            {
-                "type": str,
-                "choices": ["run", "spec"],
-                "default": "run",
-                "help": "whether to model specs or runs ",
             },
         ],
         "identifier": [
@@ -272,13 +273,13 @@ class OpenMSIModelParser(ArgumentParser):
                 "help": "whether to include descendants of selected identifier",
             },
         ],
-        "state": [
+        "which": [
             "optional",
             {
                 "type": str,
                 "choices": ["run", "spec"],
                 "default": "run",
-                "help": "whether to plot only runs or specs ",
+                "help": "which of runs or specs to plot",
             },
         ],
     }
