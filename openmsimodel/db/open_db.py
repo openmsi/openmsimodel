@@ -1,12 +1,15 @@
 import json, glob, os, csv
-import random
+import random, pathlib
+
 from openmsimodel.db.gemd_database import MSSQLDatabase
 from openmsimodel.utilities.argument_parsing import OpenMSIModelParser
 from openmsimodel.utilities.runnable import Runnable
+from openmsimodel.utilities.tools import read_gemd_data
+from openmsimodel.utilities.logging import Logger
 
 from sqlalchemy.orm import Session
 from sqlalchemy.ext.automap import automap_base
-from openmsimodel.utilities.logging import Logger
+from gemd.json import GEMDJson
 
 
 class OpenDB(Runnable):
@@ -114,20 +117,24 @@ class OpenDB(Runnable):
 
         model = GEMDModel(name=name)
 
-        files = glob.glob(f"{dirpath}/*.json")
+        files = read_gemd_data(dirpath, GEMDJson())
+        # files = glob.glob(f"{dirpath}/*.json")
         for file in files:
-            with open(f"{file}", "r") as f:
-                try:
-                    d = json.load(f)
-                    GEMDObject(
-                        gemd_type=d["type"],
-                        uid=d["uids"]["auto"],
-                        context=json.dumps(d),
-                        gemdmodel=model,
-                    )
-                except Exception as e:
-                    print("ERROR:", file)
-                    print(e)
+            # with open(f"{file}", "r") as f:
+            try:
+                # d = json.load(file)
+                d = file
+                # print(len(d["uids"]["citrine-demo"]))
+                # exit()
+                GEMDObject(
+                    gemd_type=d["type"],
+                    uid=d["uids"]["citrine-demo"][:64],
+                    context=json.dumps(d),
+                    gemdmodel=model,
+                )
+            except Exception as e:
+                print("ERROR:", file)
+                print(e)
 
         session = Session(self.gemd_db.ENGINE)
         session.add(model)
@@ -149,6 +156,12 @@ class OpenDB(Runnable):
         parser = cls.get_argument_parser()
         args = parser.parse_args(args=args)
         gemd_sql = cls(args.database_name, args.private_path, args.output)
+        # gemd_sql.load_model(
+        #     "cake",
+        #     pathlib.Path(
+        #         "/srv/hemi01-j01/openmsimodel/examples/bake/example_gemd_material_history.json"
+        #     ),
+        # )
         try:
             while True:
                 args = input().split()

@@ -28,6 +28,7 @@ class Workflow(Runnable):
 
     def __init__(self, *args, **kwargs):
         """Initialization of workflow"""
+        # self.root
         # self.elements = []
         self.subs = defaultdict()
         self.terminal_subs = defaultdict()
@@ -84,28 +85,28 @@ class Workflow(Runnable):
         """
         print(self.encoder.thin_dumps(obj, indent=3))
 
-    def thin_dumps_single_obj(self, obj):
-        """
-        :param obj: the object to print
-        """
-        self.thin_dumps_obj_dest = os.path.join(self.destination, obj._run.name)
-        if os.path.exists(self.thin_dumps_obj_dest):
-            shutil.rmtree(self.thin_dumps_obj_dest)
-        os.makedirs(self.thin_dumps_obj_dest)
-        for _obj in [obj._spec, obj._run]:
-            recursive_foreach(_obj, self.out)
-        plot_graph(self.thin_dumps_obj_dest)
-        plot_graph(self.thin_dumps_obj_dest, obj_state == "spec")
+    # def thin_dumps_single_obj(self, obj):
+    #     """
+    #     :param obj: the object to print
+    #     """
+    #     self.thin_dumps_obj_dest = os.path.join(self.destination, obj._run.name)
+    #     if os.path.exists(self.thin_dumps_obj_dest):
+    #         shutil.rmtree(self.thin_dumps_obj_dest)
+    #     os.makedirs(self.thin_dumps_obj_dest)
+    #     for _obj in [obj._spec, obj._run]:
+    #         recursive_foreach(_obj, self.out)
+    #     plot_graph(self.thin_dumps_obj_dest)
+    #     plot_graph(self.thin_dumps_obj_dest, obj_state == "spec")
 
-    def out(self, item):
-        """
-        function object to run on individual item during recursion
-        :param item: json item to write its destination
-        se
-        """
-        fn = "_".join([item.__class__.__name__, item.name, item.uids["auto"], ".json"])
-        with open(os.path.join(self.path_holder, fn), "w") as fp:
-            fp.write(self.encoder.thin_dumps(item, indent=3))
+    # def out(self, item):
+    #     """
+    #     function object to run on individual item during recursion
+    #     :param item: json item to write its destination
+    #     se
+    #     """
+    #     fn = "_".join([item.__class__.__name__, item.name, item.uids["auto"], ".json"])
+    #     with open(os.path.join(self.path_holder, fn), "w") as fp:
+    #         fp.write(self.encoder.thin_dumps(item, indent=3))
 
     #################### CLASS METHODS ####################
 

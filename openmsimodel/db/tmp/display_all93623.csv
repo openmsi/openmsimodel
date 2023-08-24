@@ -1,0 +1,4 @@
+,uid,model_id,name,performed_by,performed_date,spec_uid,material_uid,context
+"
+"
+ select * from measurement_run where model_id=4

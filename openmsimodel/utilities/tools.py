@@ -124,7 +124,7 @@ def read_gemd_data(dirpath, encoder):
     it raises IOError in case the data can't be properly extracted.
 
     Args:
-        dirpath (str): path to directory or file containing GEMD knowledge
+        dirpath (str, Path): path to directory or file containing GEMD knowledge
         encoder (GEMDJson): GEMD encoder
 
     Raises:
@@ -133,7 +133,9 @@ def read_gemd_data(dirpath, encoder):
     Returns:
         list: all gemd objects extracted from folder or file
     """
-
+    n = dirpath
+    if hasattr(dirpath, "name"):
+        n = dirpath.name
     try:
         if os.path.isdir(dirpath):
             print("Extracting folder...")
@@ -143,7 +145,7 @@ def read_gemd_data(dirpath, encoder):
                 for f in filenames
                 if f.endswith(".json")
             ]
-        elif os.path.isfile(dirpath) and dirpath.name.endswith(".json"):
+        elif os.path.isfile(dirpath) and n.endswith(".json"):
             print("Extracting file...")
             with open(dirpath) as fp:
                 gemd_objects = json.load(fp)
