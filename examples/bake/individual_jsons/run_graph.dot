@@ -1,0 +1,35 @@
+strict digraph "" {
+	graph [bb="0,0,396.68,252"];
+	node [label="\N",
+		nodesep=0.4,
+		ranksep=1
+	];
+	"Cake,  cak"	 [color=green,
+		file_links="{0: 'https://storcpdkenticomedia.blob.core.windows.net/media/recipemanagementsystem/media/recipe-media-files/recipes/retail/x17/\
+16730-beckys-butter-cake-600x600.jpg?ext=.jpg'}",
+		height=0.5,
+		pos="253.73,18",
+		tags="{0: 'cake::butter cake', 1: 'dessert::baked::cake', 2: 'iced::chocolate'}",
+		width=1.336];
+	"Icing Cake,  ici"	 [color=red,
+		height=0.5,
+		pos="178.73,90",
+		width=1.8234];
+	"Icing Cake,  ici" -> "Cake,  cak"	 [pos="e,236.26,34.773 196.89,72.571 206.52,63.328 218.49,51.835 228.96,41.784"];
+	"frosting,  fro"	 [color=blue,
+		height=0.5,
+		pos="178.73,162",
+		tags="{0: 'frosting::chocolate', 1: 'topping::chocolate'}",
+		width=1.5526];
+	"frosting,  fro" -> "Icing Cake,  ici"	 [pos="e,178.73,108.41 178.73,143.83 178.73,136.13 178.73,126.97 178.73,118.42"];
+	"frosting-d576929a6c518c058db29324c13db0c3"	 [height=0.5,
+		pos="178.73,234",
+		width=4.9648];
+	"frosting-d576929a6c518c058db29324c13db0c3" -> "frosting,  fro"	 [pos="e,178.73,180.41 178.73,215.83 178.73,208.13 178.73,198.97 178.73,190.42"];
+	"Final Taste,  tas"	 [Tastiness="Tastiness, 4-5",
+		color=purple,
+		height=0.5,
+		pos="329.73,90",
+		width=1.8596];
+	"Final Taste,  tas" -> "Cake,  cak"	 [pos="e,271.44,34.773 311.34,72.571 301.58,63.328 289.45,51.835 278.84,41.784"];
+}

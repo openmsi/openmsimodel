@@ -1,3 +1,15 @@
+def show_models():
+    return """select distinct * from GEMDModel"""
+
+
+def top_elements(self, model_id, nb, gemd_type):
+    return f"""
+    select top {nb} context
+    from  gemdobject c where gemd_type='{gemd_type} && c.model_id={model_id}' 
+    order by newid()
+    """
+
+
 def create_tables_query():
     # gemd_model_table_name = "GEMDModel"
     # gemd_object_table_name = "GEMDObject"

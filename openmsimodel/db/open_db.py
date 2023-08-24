@@ -90,6 +90,7 @@ class OpenDB(Runnable):
             w.writerow([query])
 
     def prepare_classes(self):
+        """preparing the SQL classes to be used to match the GEMD classes"""
         try:
             Base = automap_base()
             Base.prepare(self.gemd_db.ENGINE)
@@ -102,6 +103,12 @@ class OpenDB(Runnable):
             print(e)
 
     def load_model(self, name, dirpath):
+        """function to load a model into the base
+
+        Args:
+            name (str): name of the model
+            dirpath (str): path to folder containing JSONs
+        """
         self.logger.info("Loading model...")
         GEMDObject, GEMDModel = self.prepare_classes()
 
