@@ -12,5 +12,5 @@ persistent_id,name,type
 10,Initial Purging Times,parameter_template
 11,Vacuum Before Melt,parameter_template
 12,Material,material_template
-13,Process template example,process_template
-14,Measurement template example,measurement_template
+13,Measurement template example,measurement_template
+14,Process template example,process_template

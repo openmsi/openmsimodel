@@ -1,4 +1,7 @@
-from openmsimodel.entity.base import Process, Material
+from openmsimodel.entity.base.process import Process
+from openmsimodel.entity.base.material import Material
+from openmsimodel.utilities.attributes import _validate_temp_keys, define_attribute
+
 from gemd import (
     ProcessTemplate,
     MaterialTemplate,
@@ -6,8 +9,6 @@ from gemd import (
     ParameterTemplate,
     CategoricalBounds,
 )
-
-from openmsimodel.entity.base.attributes import _validate_temp_keys, define_attribute
 
 
 # wrong template type

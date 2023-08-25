@@ -10,7 +10,8 @@ from gemd.util.impl import set_uuids
 from gemd.json import GEMDJson
 from gemd.entity.template import PropertyTemplate, ParameterTemplate, ConditionTemplate
 from gemd.entity.template import MaterialTemplate, MeasurementTemplate, ProcessTemplate
-from .cached_isinstance_functions import (
+from openmsimodel.utilities.typing import Template
+from openmsimodel.utilities.cached_isinstance_functions import (
     isinstance_template,
     isinstance_attribute_template,
     isinstance_object_template,
@@ -18,7 +19,7 @@ from .cached_isinstance_functions import (
 from openmsimodel.entity.impl import assign_uuid
 from ..utilities.logging import Logger
 
-__all__ = ["GEMDTemplate", "GEMDTemplateStore"]
+# __all__ = ["GEMDTemplate", "GEMDTemplateStore"]
 
 global template_store_ids
 template_store_ids = []
@@ -146,7 +147,7 @@ class GEMDTemplateStore(ABC):
 
     def register_new_template(
         self,
-        template,
+        template: Template,
         from_file=False,
         from_store=False,
         from_memory=False,
@@ -346,6 +347,7 @@ class GEMDTemplateStore(ABC):
                         yield tempdict[template_type][name].template
 
 
-if __name__ == "__main__":
-    all_template_stores = {"global": GEMDTemplateStore("global", load_all_files=False)}
-    all_template_stores["global"].initialize_store()
+# if __name__ == "__main__":
+#     global all_template_stores
+all_template_stores = {"global": GEMDTemplateStore("global", load_all_files=False)}
+all_template_stores["global"].initialize_store()

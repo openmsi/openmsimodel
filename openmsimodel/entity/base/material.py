@@ -7,8 +7,8 @@ from gemd.entity.util import make_instance
 from gemd.enumeration import SampleType
 
 from .base_element import BaseElement
-from .typing import ProcessDict, PropsAndCondsDict
-from .attributes import finalize_template
+from openmsimodel.utilities.typing import ProcessDict, PropsAndCondsDict
+from openmsimodel.utilities.attributes import finalize_template
 from .process import Process
 
 __all__ = ["Material"]

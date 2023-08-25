@@ -2,14 +2,15 @@
 
 from abc import ABC
 from typing import ClassVar, Optional
-from .typing import Spec, Run
+
+from openmsimodel.utilities.typing import Spec, Run
+from openmsimodel.utilities.typing import ProcessDict, PropsAndCondsDict
 
 from gemd import IngredientSpec, IngredientRun, PropertyAndConditions
 from gemd.entity.util import make_instance
 from gemd.enumeration import SampleType
 
 from .base_element import BaseElement
-from .typing import ProcessDict, PropsAndCondsDict
 from .process import Process
 
 __all__ = ["Ingredient"]

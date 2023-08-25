@@ -11,7 +11,7 @@ from gemd import (
 )
 from gemd.entity.util import make_instance
 
-from .typing import ValueAndOrigin
+from openmsimodel.utilities.typing import ValueAndOrigin
 
 from .process_or_measurement import ProcessOrMeasurement
 

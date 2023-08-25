@@ -7,7 +7,7 @@
    "parameters": [
       [
          {
-            "id": "6d0483ae-6c4e-4c5e-9a79-bb668d88e732",
+            "id": "7f6087d8-acc6-4473-b4be-bd06b7b60c7c",
             "scope": "auto",
             "type": "link_by_uid"
          },
@@ -17,7 +17,7 @@
    "tags": [],
    "type": "process_template",
    "uids": {
-      "auto": "8b8c71a1-4280-4ab8-a745-0c96181ba3f1",
+      "auto": "88482273-bfc7-46fb-a39b-71bc469060ee",
       "persistent_id": 1
    }
 }

@@ -1,5 +1,5 @@
-from openmsimodel.entity.base import Material
-from openmsimodel.entity.base.attributes import (
+from openmsimodel.entity.base.material import Material
+from openmsimodel.utilities.attributes import (
     AttrsDict,
     define_attribute,
     finalize_template,

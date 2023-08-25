@@ -10,8 +10,8 @@ from gemd.entity.util import make_instance
 # from gemd.util.impl import set_uuids
 from openmsimodel.entity.impl import assign_uuid
 
-from .typing import (
-    Temp,
+from openmsimodel.utilities.typing import (
+    Template,
     Spec,
     Run,
     SpecOrRun,
@@ -19,7 +19,7 @@ from .typing import (
     TagsDict,
     FileLinksDict,
 )
-from .attributes import (
+from openmsimodel.utilities.attributes import (
     AttrsDict,
     validate_state,
     update_attrs,
@@ -68,11 +68,11 @@ class BaseElement(ABC):
     5. Follow any additional subclass directions.
     """
 
-    _TempType: ClassVar[Type[Temp]]
+    _TempType: ClassVar[Type[Template]]
     _SpecType: ClassVar[Type[Spec]]
     _RunType: ClassVar[Type[Run]]
 
-    TEMPLATE: ClassVar[Temp]
+    TEMPLATE: ClassVar[Template]
 
     _ATTRS: ClassVar[AttrsDict]
 
@@ -83,7 +83,9 @@ class BaseElement(ABC):
         self,
         name: str,
         *,
-        template: ClassVar[Temp] = None,  # TODO: triple check with abc's hastemplate
+        template: ClassVar[
+            Template
+        ] = None,  # TODO: triple check with abc's hastemplate
         notes: Optional[str] = None,
     ) -> None:
         super().__init__()
@@ -95,7 +97,7 @@ class BaseElement(ABC):
 
         if not has_template and not template:
             raise AttributeError(
-                f"TEMPLATE is not defined. Assign to 'template' parameter an instance of either {Temp.__dict__['__args__']},\n OR create a new subclass with a defined TEMPLATE attribute."
+                f"TEMPLATE is not defined. Assign to 'template' parameter an instance of either {Template.__dict__['__args__']},\n OR create a new subclass with a defined TEMPLATE attribute."
             )
 
         if template:

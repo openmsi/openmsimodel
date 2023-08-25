@@ -2,8 +2,8 @@ from typing import ClassVar
 
 from gemd import MeasurementTemplate, PropertyTemplate, RealBounds, NominalReal
 
-from openmsimodel.entity.base import Measurement
-from openmsimodel.entity.base.attributes import (
+from openmsimodel.entity.base.measurement import Measurement
+from openmsimodel.utilities.attributes import (
     AttrsDict,
     define_attribute,
     finalize_template,

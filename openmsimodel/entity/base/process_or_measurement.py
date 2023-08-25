@@ -16,9 +16,9 @@ from gemd import (
     PerformedSource,
 )
 
-from .base_element import BaseElement
-from .typing import SpecOrRunLiteral, ValueOriginDict
-from .attributes import finalize_template
+from openmsimodel.entity.base.base_element import BaseElement
+from openmsimodel.utilities.typing import SpecOrRunLiteral, ValueOriginDict
+from openmsimodel.utilities.attributes import finalize_template
 
 __all__ = ["ProcessOrMeasurement"]
 

@@ -7,7 +7,7 @@ from gemd import (
     CategoricalBounds,
 )
 
-from openmsimodel.entity.base.attributes import _validate_temp_keys, define_attribute
+from openmsimodel.utilities.attributes import _validate_temp_keys, define_attribute
 
 
 # wrong attribute template type

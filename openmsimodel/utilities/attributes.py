@@ -20,7 +20,7 @@ from gemd.entity.bounds.base_bounds import BaseBounds
 from gemd.entity.value.base_value import BaseValue
 from gemd.enumeration import Origin
 
-from .typing import Temp, Spec, Run, Attributes, SpecOrRun, SpecOrRunLiteral
+from .typing import Template, Spec, Run, Attributes, SpecOrRun, SpecOrRunLiteral
 
 
 class AttrDict(TypedDict):
@@ -111,7 +111,7 @@ def define_attribute(
     }
 
 
-def finalize_template(cls_attrs: AttrsDict, cls_template: Temp) -> None:
+def finalize_template(cls_attrs: AttrsDict, cls_template: Template) -> None:
     """
     Add conditions, parameters, and properties to ``cls_template``.
 
@@ -319,14 +319,14 @@ def _remove_attrs(
         spec_or_run.properties = left_over
 
 
-def _validate_temp_keys(Temp: Temp) -> AttrsDict:
-    """Check `Temp`, or Template type, and returns the corresponding AttrsDict."""
+def _validate_temp_keys(Template: Template) -> AttrsDict:
+    """Check `Template`, or Template type, and returns the corresponding AttrsDict."""
     # ATTRS = {}
-    if isinstance(Temp, ProcessTemplate):
+    if isinstance(Template, ProcessTemplate):
         ATTRS = {"conditions": {}, "parameters": {}}
-    elif isinstance(Temp, MaterialTemplate):
+    elif isinstance(Template, MaterialTemplate):
         ATTRS = {"properties": {}}
-    elif isinstance(Temp, MeasurementTemplate):
+    elif isinstance(Template, MeasurementTemplate):
         ATTRS = {"properties": {}, "conditions": {}, "parameters": {}}
     else:
         raise ValueError(

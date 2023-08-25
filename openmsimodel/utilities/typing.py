@@ -6,12 +6,17 @@ from gemd import (
     MaterialTemplate,
     ProcessTemplate,
     MeasurementTemplate,
+    PropertyTemplate,
+    ParameterTemplate,
+    ConditionTemplate,
     MaterialSpec,
     ProcessSpec,
     MeasurementSpec,
+    IngredientSpec,
     MaterialRun,
     ProcessRun,
     MeasurementRun,
+    IngredientRun,
     Condition,
     Parameter,
     Property,
@@ -19,11 +24,19 @@ from gemd import (
 )
 from gemd.enumeration import Origin
 
-Temp: TypeAlias = Union[MaterialTemplate, ProcessTemplate, MeasurementTemplate]
+AttrTemplate: TypeAlias = Union[PropertyTemplate, ParameterTemplate, ConditionTemplate]
 
-Spec: TypeAlias = Union[MaterialSpec, ProcessSpec, MeasurementSpec]
+ObjTemplate: TypeAlias = Union[MaterialTemplate, ProcessTemplate, MeasurementTemplate]
 
-Run: TypeAlias = Union[MaterialRun, ProcessRun, MeasurementRun]
+Template: TypeAlias = Union[AttrTemplate, ObjTemplate]
+
+Spec: TypeAlias = Union[MaterialSpec, ProcessSpec, MeasurementSpec, IngredientSpec]
+
+Run: TypeAlias = Union[MaterialRun, ProcessRun, MeasurementRun, IngredientRun]
+
+AllGEMD: TypeAlias = Union[Template, Spec, Run]
+
+AllGEMDMinusAttr: TypeAlias = Union[ObjTemplate, Spec, Run]
 
 SpecOrRun: TypeAlias = Union[Spec, Run]
 

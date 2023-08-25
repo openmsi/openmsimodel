@@ -23,7 +23,7 @@ class ProcessBlock(Subworkflow):
             dict
         ] = {},  # TODO: names have to be unique? will that be a problem?
         measurements: Optional[dict] = {},
-    ):
+    ):  # FIXME
         """initialization of ProcessBlock.
 
         Args:
@@ -43,40 +43,47 @@ class ProcessBlock(Subworkflow):
         Subworkflow.__init__(self, name, workflow=workflow)
         # if process is None: #FIXME
         #     raise TypeError("'process' argument is not set. ")
-        self.name = name
-        if (not isinstance(material, Material)) or (not isinstance(process, Process)):
-            # if (not (type(material) == Material)) or (not (type(process) == Process)):
+        if (material and (not isinstance(material, Material))) or (
+            process and not isinstance(process, Process)
+        ):
             raise TypeError(
                 f"Expected Material and Process; got '{type(material)}' and '{type(process)}' "
             )
         self.material = material
         self.process = process
-        # ingredients
         if type(ingredients) == dict:
             self.ingredients = ingredients
         elif type(ingredients) == list:
             self.ingredients = {}
             for i in ingredients:
-                if not type(i) == Ingredient:
+                if not isinstance(i, Ingredient):
                     raise TypeError(f"Expected 'Ingredient'; got {type(i)}")
                 if i.name in self.ingredients.keys():
                     raise NameError(
                         f"ingredients must have unique names. Found a duplicate: {i.name}"
                     )
                 self.ingredients[i.name] = i
-        # measurements
+        else:
+            raise TypeError(
+                f"Expected ingredients to be a list or dict; got {type(ingredients)}"
+            )
+
         if type(measurements) == dict:
             self.measurements = measurements
         elif type(measurements) == list:
             self.measurements = {}
-            for i in measurements:
-                if not type(i) == Measurement:
-                    raise TypeError(f"Expected 'Measurement'; got {type(i)}")
+            for m in measurements:
+                if not isinstance(m, Measurement):
+                    raise TypeError(f"Expected 'Measurement'; got {type(m)}")
                 if m.name in self.measurements.keys():
                     raise NameError(
                         f"measurements must have unique names. Found a duplicate: {m.name}"
                     )
                 self.measurements[m.name] = m
+        else:
+            raise TypeError(
+                f"Expected measurements to be a list or dict; got {type(measurements)}"
+            )
 
     def link_within(self):
         """this functions links the specs and runs of the BaseElements in the current block."""
@@ -121,6 +128,19 @@ class ProcessBlock(Subworkflow):
                 posterior_block.ingredients[name].spec.material = self.material.spec
                 posterior_block.ingredients[name].run.material = self.material.run
 
+    def from_(self, any):
+        if isinstance_base_element(any):
+            if isinstance(any, Material):
+                self.material = any
+            if isinstance(any, Process):
+                self.process = any
+            elif isinstance(any, Ingredient):
+                self.ingredients[any.name] = any
+            elif isinstance(any, Measurement):
+                self.measurements[any.name] = any
+            self.link_within()
+        # elif 
+
     def add_ingredient(self, ingredient: Ingredient):
         """add ingredient to block"""
         if not isinstance(ingredient, Ingredient):
@@ -138,7 +158,7 @@ class ProcessBlock(Subworkflow):
         self.process = process
 
     def add_material(self, material: Material):
-        # if type(material) is not Material:
+        """add material to block"""
         if not isinstance(material, Material):
             raise TypeError(f"expected 'Material'; got '{type(material)}' ")
         self.material = process

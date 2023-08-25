@@ -18,5 +18,5 @@ persistent_id,name,type
 16,dummy parameter template 2,parameter_template
 17,dummy process template 4,process_template
 18,Material,material_template
-19,Process template example,process_template
-20,Measurement template example,measurement_template
+19,Measurement template example,measurement_template
+20,Process template example,process_template

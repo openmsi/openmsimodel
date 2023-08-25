@@ -9,15 +9,14 @@ from gemd import (
     NominalReal,
 )
 
+# from openmsimodel.entity.base.process import Process
 from openmsimodel.entity.base import Process
-from openmsimodel.entity.base.attributes import (
+from openmsimodel.utilities.attributes import (
     AttrsDict,
     define_attribute,
     finalize_template,
     _validate_temp_keys,
 )
-
-__all__ = ["ArcMeltingExample"]
 
 
 class ArcMelting(Process):

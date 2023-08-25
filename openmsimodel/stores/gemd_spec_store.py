@@ -10,7 +10,7 @@ from gemd.entity.object import (
     MeasurementSpec,
 )
 from gemd.json import GEMDJson
-from .cached_isinstance_functions import isinstance_spec
+from openmsimodel.utilities.cached_isinstance_functions import isinstance_spec
 
 
 __all__ = ["GEMDSpec", "GEMDSpecStore"]
@@ -212,5 +212,6 @@ class GEMDSpecStore:
             item, new_spec_as_dict_no_uid, from_file
         )
         self.__n_specs += 1
+
 
 global_spec_store = GEMDSpecStore()

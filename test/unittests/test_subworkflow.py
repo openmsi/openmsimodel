@@ -52,29 +52,121 @@ from gemd.json import GEMDJson
 from gemd.entity.util import make_instance
 
 
+def helper(id, w):
+    ingredient = Ingredient(f"ingredient {id}")
+    material = MaterialExample(f"material {id}")
+    process = ProcessExample(f"process {id}")
+    measurement = MeasurementExample(f"measurement {id}")
+    process_block = ProcessBlock(
+        name=f"Process Block {id}",
+        workflow=w,
+        material=material,
+        ingredients={ingredient.name: ingredient},
+        process=process,
+        measurements={measurement.name: measurement},
+    )
+    return process_block
+
+
 class TestSubworkflow(unittest.TestCase):
     """this tests functions related to the subworkflow module."""
+
+    def test_invalid_instantiations(self):
+        """testing invalid cases for block instantiation/manipulation."""
+        w = Workflow()
+        with self.assertRaises(TypeError):
+            process_block = ProcessBlock(
+                name=f"Process Block {id}",
+                workflow=w,
+                material="wrong type",  #
+                ingredients=[],
+                process=None,
+                measurements=[],
+            )
+        with self.assertRaises(TypeError):
+            process_block = ProcessBlock(
+                name=f"Process Block {id}",
+                workflow=w,
+                material=MaterialExample("material"),
+                ingredients=[],
+                process="wrong type",  #
+                measurements=[],
+            )
+        with self.assertRaises(TypeError):
+            process_block = ProcessBlock(
+                name=f"Process Block {id}",
+                workflow=w,
+                material=None,
+                ingredients="wrong type",  #
+                process=None,
+                measurements=[],
+            )
+        with self.assertRaises(TypeError):
+            process_block = ProcessBlock(
+                name=f"Process Block {id}",
+                workflow=w,
+                material=None,
+                ingredients=[],
+                process=None,
+                measurements="wrong type",  #
+            )
+
+        with self.assertRaises(TypeError):
+            process_block = ProcessBlock(
+                name=f"Process Block {id}",
+                workflow=w,
+                material=None,
+                ingredients=[MaterialExample("wrong type")],  #
+                process=None,
+                measurements=[],
+            )
+
+        with self.assertRaises(TypeError):
+            process_block = ProcessBlock(
+                name=f"Process Block {id}",
+                workflow=w,
+                material=None,
+                ingredients=[],
+                process=None,
+                measurements=[MaterialExample("wrong type")],  #
+            )
+
+        with self.assertRaises(NameError):
+            process_block = ProcessBlock(
+                name=f"Process Block {id}",
+                workflow=w,
+                material=None,
+                ingredients=[],
+                process=None,
+                measurements=[
+                    MeasurementExample("same name twice"),
+                    MeasurementExample("same name twice"),
+                ],  #
+            )
+
+        # testing {add_} helpers
+        process_block_1 = helper(id=1, w=w)
+        with self.assertRaises(TypeError):
+            process_block_1.add_ingredient("wrong type")
+        with self.assertRaises(TypeError):
+            process_block_1.add_measurement("wrong type")
+        with self.assertRaises(TypeError):
+            process_block_1.add_process("wrong type")
+        with self.assertRaises(TypeError):
+            process_block_1.add_material("wrong type")
+
+
+        with self.assertRaises(NameError):
+            process_block_1.add_ingredient(Ingredient(f"ingredient 1"))
+        with self.assertRaises(NameError):
+            process_block_1.add_measurement(MeasurementExample(f"measurement 1"))
 
     def test_process_block_instantiations(self):
         """this tests basic instantiations of ProcessBlocks and use of link_within / prior / posterior"""
 
         w = Workflow()
-        def helper(id):
-            ingredient = Ingredient(f"ingredient {id}")
-            material = MaterialExample(f"material {id}")
-            process = ProcessExample(f"process {id}")
-            measurement = MeasurementExample(f"measurement {id}")
-            process_block = ProcessBlock(
-                name=f"Process Block {id}",
-                workflow=w,
-                material=material,
-                ingredients={ingredient.name: ingredient},
-                process=process,
-                measurements={measurement.name: measurement},
-            )
-            return process_block
 
-        process_block_1 = helper(1)
+        process_block_1 = helper(1, w)
         process_block_1.link_within()
         self.assertEqual(  # ingredient to process
             process_block_1.ingredients["ingredient 1"].spec.process.uids["auto"],
@@ -99,7 +191,7 @@ class TestSubworkflow(unittest.TestCase):
         )
 
         ###### # prior material to curr ingredient
-        process_block_2 = helper(2)
+        process_block_2 = helper(2, w)
         process_block_2.link_prior(
             process_block_1, ingredient_name_to_link="ingredient 2"
         )
@@ -110,7 +202,7 @@ class TestSubworkflow(unittest.TestCase):
         )
 
         ###### curr ingredient to posterior material
-        process_block_0 = helper(0)
+        process_block_0 = helper(0, w)
         process_block_0.link_posterior(
             process_block_1, ingredient_name_to_link="ingredient 1"
         )
