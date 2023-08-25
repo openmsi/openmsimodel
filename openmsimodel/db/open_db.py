@@ -47,6 +47,13 @@ class OpenDB(Runnable):
         self.logger = Logger()
 
     def print_and_dump(self, sql_results, query, name):
+        """_summary_
+
+        Args:
+            sql_results (_type_): _description_
+            query (_type_): _description_
+            name (_type_): _description_
+        """
         output_file = os.path.join(
             self.output, name + str(random.randint(0, 100000)) + ".csv"
         )
@@ -148,38 +155,25 @@ class OpenDB(Runnable):
                             f"-  name: {function_name}, acronym: {function_accronym}, description: {function.__doc__} "
                         )
                     additional_args = input().split()
-                    code = additional_args[0]
-                    if code in open_db.listed_acronyms.keys():  # passed the code
-                        name = open_db.listed_acronyms[code]
+                    identifier = additional_args[0]
+                    if (
+                        identifier in open_db.listed_acronyms.keys()
+                        or identifier.upper() in open_db.listed_acronyms.keys()
+                    ):  # passed the acronym
+                        name = open_db.listed_acronyms[identifier.upper()]
                         func = open_db.listed_functions[name][0]
-                    elif code in open_db.listed_functions.keys():  # passed whole name
-                        func = open_db.listed_functions[code][0]
+                    elif (
+                        identifier in open_db.listed_functions.keys()
+                        or identifier.lower() in open_db.listed_functions.keys()
+                    ):  # passed whole name
+                        func = open_db.listed_functions[identifier.lower()][0]
                     else:
                         raise KeyError(
-                            f"couldn't recognize the function passed as {code}. Pass the full name or acronym. "
+                            f"couldn't recognize the identifier passed as '{identifier}'. Pass the full name or acronym. "
                         )
                     query = func(*additional_args[1:])
                     result = open_db.gemd_db.execute_query(query)
-                    open_db.print_and_dump(result, query, code)
-                    # passed_function_key = additional_args[0]
-                    # if passed_function_key == "show_models":
-                    #     result, query = open_db.show_models()
-                    #     open_db.print_and_dump(result, query, "show_models")
-                    # elif passed_function_key == "return_all_paths":
-                    #     model_id = additional_args[1]
-                    #     result, query = open_db.return_all_paths(model_id)
-                    #     open_db.print_and_dump(result, query, "return_all_paths")
-                    # elif passed_function_key == "display_all":
-                    #     model_id = additional_args[1]
-                    #     type_to_display = additional_args[2]
-                    #     result, query = open_db.display_all(model_id, type_to_display)
-                    #     open_db.print_and_dump(result, query, "display_all")
-                    # elif passed_function_key == "top_elements":
-                    #     model_id = additional_args[1]
-                    #     nb = additional_args[2]
-                    #     gemd_type = additional_args[3]
-                    #     result, query = open_db.top_elements(model_id, nb, gemd_type)
-                    #     open_db.print_and_dump(result, query, "top_elements")
+                    open_db.print_and_dump(result, query, identifier)
                 elif mode == "custom":  # custom query
                     query = " ".join(args[1:])
                     open_db.logger.info("executing custom query...")

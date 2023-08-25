@@ -266,7 +266,7 @@ class TestEntityBaseElement(unittest.TestCase):
                     template=self.ct,
                 )
             ],
-            state="run",
+            which="run",
         )
         self.assertEquals(
             self.ct.uids["auto"], p.run.conditions[0].template.uids["auto"]
@@ -286,7 +286,7 @@ class TestEntityBaseElement(unittest.TestCase):
                     template=self.ct,
                 )
             ],
-            state="both",
+            which="both",
         )
 
         self.assertEquals(

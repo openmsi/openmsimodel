@@ -13,6 +13,7 @@ class TestArgumentParsing(unittest.TestCase):
         testing parser's against existing and non-existing arguments
         """
 
+        # basic instantiation
         parser = OpenMSIModelParser()
         parser.add_arguments(
             "dirpath", "identifier", "add_attributes", "launch_notebook"

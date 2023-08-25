@@ -1,5 +1,5 @@
 from openmsimodel.workflow.workflow import Workflow
-from openmsimodel.entity.base.material import Material, Process
+from openmsimodel.entity.base import Ingredient, Measurement, Material, Process
 from openmsimodel.entity.base.base_element import BaseElement
 from openmsimodel.subworkflow.subworkflow import Subworkflow
 from typing import ClassVar, Type, Optional
@@ -43,24 +43,40 @@ class ProcessBlock(Subworkflow):
         Subworkflow.__init__(self, name, workflow=workflow)
         # if process is None: #FIXME
         #     raise TypeError("'process' argument is not set. ")
-        # self.name = name
+        self.name = name
+        if (not isinstance(material, Material)) or (not isinstance(process, Process)):
+            # if (not (type(material) == Material)) or (not (type(process) == Process)):
+            raise TypeError(
+                f"Expected Material and Process; got '{type(material)}' and '{type(process)}' "
+            )
         self.material = material
-        # FIXME
-        self.ingredients = {}
-        if type(ingredients) == list:
-            for i in ingredients:
-                self.ingredients[i.name] = i
-        # if ingredients and not (type(ingredients) == dict):
-        #     raise TypeError('ingredients must be of type "dict".')
-        # self.ingredients = ingredients
         self.process = process
-        self.measurements = {}
-        if type(measurements) == list:
+        # ingredients
+        if type(ingredients) == dict:
+            self.ingredients = ingredients
+        elif type(ingredients) == list:
+            self.ingredients = {}
+            for i in ingredients:
+                if not type(i) == Ingredient:
+                    raise TypeError(f"Expected 'Ingredient'; got {type(i)}")
+                if i.name in self.ingredients.keys():
+                    raise NameError(
+                        f"ingredients must have unique names. Found a duplicate: {i.name}"
+                    )
+                self.ingredients[i.name] = i
+        # measurements
+        if type(measurements) == dict:
+            self.measurements = measurements
+        elif type(measurements) == list:
+            self.measurements = {}
             for i in measurements:
-                self.measurements[i.name] = i
-        # if measurements and not (type(measurements) == dict):
-        #     raise TypeError('measurement must be of type "dict".')
-        # self.measurements = measurements
+                if not type(i) == Measurement:
+                    raise TypeError(f"Expected 'Measurement'; got {type(i)}")
+                if m.name in self.measurements.keys():
+                    raise NameError(
+                        f"measurements must have unique names. Found a duplicate: {m.name}"
+                    )
+                self.measurements[m.name] = m
 
     def link_within(self):
         """this functions links the specs and runs of the BaseElements in the current block."""
@@ -78,7 +94,7 @@ class ProcessBlock(Subworkflow):
             for name in self.measurements.keys():
                 self.measurements[name].run.material = self.material.run
 
-    def link_prior(self, prior_block, ingredient_name_to_link):
+    def link_prior(self, prior_block: "ProcessBlock", ingredient_name_to_link: str):
         """links the prior block's material to current ingredient.
 
         Args:
@@ -91,7 +107,9 @@ class ProcessBlock(Subworkflow):
                 self.ingredients[name].spec.material = prior_block.material.spec
                 self.ingredients[name].run.material = prior_block.material.run
 
-    def link_posterior(self, posterior_block, ingredient_name_to_link):
+    def link_posterior(
+        self, posterior_block: "ProcessBlock", ingredient_name_to_link: str
+    ):
         """link the posterior block's ingredient to current material
 
         Args:
@@ -103,18 +121,34 @@ class ProcessBlock(Subworkflow):
                 posterior_block.ingredients[name].spec.material = self.material.spec
                 posterior_block.ingredients[name].run.material = self.material.run
 
-    def add_ingredient(self, ingredient):
+    def add_ingredient(self, ingredient: Ingredient):
         """add ingredient to block"""
-        pass
+        if not isinstance(ingredient, Ingredient):
+            raise TypeError(f"expected 'Ingredient'; got '{type(ingredient)}' ")
+        if ingredient.name in self.ingredients.keys():
+            raise NameError(
+                f"Ingredients must have unique names. Found a duplicate: {ingredient.name}"
+            )
+        self.ingredients[ingredient.name] = ingredient
 
-    def add_process(self, process):
+    def add_process(self, process: Process):
         """add process to block"""
-        pass
+        if not isinstance(process, Process):
+            raise TypeError(f"expected 'Process'; got '{type(process)}' ")
+        self.process = process
 
-    def add_material(self, material):
-        """add material to block"""
-        pass
+    def add_material(self, material: Material):
+        # if type(material) is not Material:
+        if not isinstance(material, Material):
+            raise TypeError(f"expected 'Material'; got '{type(material)}' ")
+        self.material = process
 
-    def add_measurement(self, measurement):
+    def add_measurement(self, measurement: Measurement):
         """add measurement to block"""
-        pass
+        if not isinstance(measurement, Measurement):
+            raise TypeError(f"expected 'Measurement'; got '{type(measurement)}' ")
+        if measurement.name in self.measurements.keys():
+            raise NameError(
+                f"measurements must have unique names. Found a duplicate: {measurement.name}"
+            )
+        self.measurements[measurement.name] = measurement
