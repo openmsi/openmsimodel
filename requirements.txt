@@ -5,3 +5,4 @@ SQLAlchemy==2.0.17
 numpy
 pandas
 methodtools
+matplotlib
