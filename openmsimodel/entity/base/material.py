@@ -136,7 +136,7 @@ class Material(BaseElement):
         ``dict`` and origin ``str``.
         Each ``'condition'`` key corresponds to a ``dict`` in which the keys are
         the names of the conditions associated with a particular property and the
-        values are value/origin ``dict``s.
+        values are value/origin ``dict`` s.
         """
 
         return self._prop_cond_dict(self._spec.properties)
@@ -146,7 +146,7 @@ class Material(BaseElement):
     ) -> None:
         """
         Change or add expected properties (with conditions) of the material spec.
-        *properties: PropertyAndConditions
+        properties: PropertyAndConditions
         The properties (with conditions) to change (by name) or add.
         replace_all: bool, default False
         If ``True``, remove any existing properties before adding new ones.
@@ -163,7 +163,7 @@ class Material(BaseElement):
         """
         Remove expected properties from the material spec by name.
 
-        *property_names: str
+        property_names: str
             The names of properties to remove.
 
         """

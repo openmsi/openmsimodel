@@ -153,7 +153,7 @@ class Measurement(ProcessOrMeasurement):
     ) -> None:
         """
         Change or add measured properties of the measurement run.
-        *properties: Property
+        properties: Property
         The properties to change (by name) or add.
         replace_all: bool, default False
         If ``True``, remove any existing properties before adding new ones.

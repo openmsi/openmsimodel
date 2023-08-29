@@ -243,8 +243,8 @@ class BaseElement(ABC):
         Internally, tag strings will be concatenated with ``'::'`` as
         recommended by the GEMD specification.
 
-        *tags: tuple[str]
-            ``tuple`` s representing tags to add. Each tuple should contain the
+        tags: tuple[str]
+            tuples representing tags to add. Each tuple should contain the
             components of a tag from most general to most specific.
         replace_all: bool, default False
             If ``True``, remove any existing tags before adding new ones.
@@ -268,7 +268,7 @@ class BaseElement(ABC):
         See `update_tags` for tag format details. Tags are removed by exact
         comparison of the underlying hierarchcal ``str`` s.
 
-        *tags: tuple[str]
+        tags: tuple[str]
         ``tuple`` s representing tags to remove.
         which: {'spec', 'run', 'both'}, default 'spec'
         Whether to remove from the spec, run, or both.
@@ -342,7 +342,7 @@ class BaseElement(ABC):
         """
         Change or add file links.
 
-        *filelinks: FileLink
+        filelinks: FileLink
         The file links to change or add.
         replace_all: bool, default False
         If ``True``, remove any existing file links before adding new ones.
@@ -382,7 +382,7 @@ class BaseElement(ABC):
     ) -> None:
         """Remove file links.
 
-        *filelinks: tuple[str]
+        filelinks: tuple[str]
             The file links to remove by comparison of the underlying url and
             filename.
         which: {'spec', 'run', 'both'}, default 'spec'
