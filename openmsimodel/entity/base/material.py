@@ -147,9 +147,9 @@ class Material(BaseElement):
         """
         Change or add expected properties (with conditions) of the material spec.
         properties: PropertyAndConditions
-        The properties (with conditions) to change (by name) or add.
+            The properties (with conditions) to change (by name) or add.
         replace_all: bool, default False
-        If ``True``, remove any existing properties before adding new ones.
+            If ``True``, remove any existing properties before adding new ones.
         """
 
         self._update_attributes(
