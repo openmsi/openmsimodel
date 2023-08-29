@@ -1,0 +1,14 @@
+{
+   "allowed_labels": [],
+   "allowed_names": [],
+   "conditions": [],
+   "description": "Mixing individual elements of the composition to make the initial mixture for the alloy \n                ",
+   "name": "Mixing",
+   "parameters": [],
+   "tags": [],
+   "type": "process_template",
+   "uids": {
+      "auto": "46028141-ea8f-45b0-86a8-7248fbd661a5",
+      "persistent_id": 10
+   }
+}

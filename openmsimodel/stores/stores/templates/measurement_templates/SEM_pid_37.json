@@ -1,0 +1,13 @@
+{
+   "conditions": [],
+   "description": "SEM Characterization",
+   "name": "SEM",
+   "parameters": [],
+   "properties": [],
+   "tags": [],
+   "type": "measurement_template",
+   "uids": {
+      "auto": "3142c294-8c9e-4ecf-85fe-ea46e1ded941",
+      "persistent_id": 37
+   }
+}

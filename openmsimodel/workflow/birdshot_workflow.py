@@ -93,6 +93,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         FolderOrFile.__init__(self, root, parent_path=None, is_last=False)
         # self.root gets set in FolderOrFile
         # self.output = args["output"]
+        self.encoder = GEMDJson()
         self.output = output
         # self.iteration = args["iteration"]
         self.iteration = iteration
@@ -264,7 +265,9 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
                                 terminal_block.material._run.name
                             )
                             ingredient = Ingredient(ingredient_name)
-                            aggregate_summary_sheet_block.ingredients[ingredient.name] = ingredient
+                            aggregate_summary_sheet_block.ingredients[
+                                ingredient.name
+                            ] = ingredient
                             aggregate_summary_sheet_block.link_within()
                             aggregate_summary_sheet_block.link_prior(
                                 terminal_block, ingredient_name_to_link=ingredient_name
@@ -297,6 +300,8 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
             aggregate_summary_sheet_block,
             ingredient_name_to_link=summary_sheet_ingredient._run.name,
         )
+
+        self.thin_dumps()
 
         def set_terminal_blocks():
             """
@@ -361,10 +366,9 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
                     )
                 )
                 yymm = traveler["data"]["Sample ID"]["Year & Month"]
-
+                return processing_details, synthesis_details
             except:
-                pass
-            return processing_details, synthesis_details
+                return {}, {}
 
         processing_details, synthesis_details = read_details()
 
@@ -514,7 +518,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
                 spec_or_run=weighting_measurement.run,
             )
             weighted_mass = synthesis_details["data"]["Material Preparation"][
-                "Weighted Mass"
+                "Weighed Mass"
             ][element_name]
             weighting_measurement._update_attributes(
                 AttrType=Property,
@@ -1194,11 +1198,17 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
                     folder_name = "thin_jsons"
                     destination = os.path.join(_destination, folder_name)
                     t = self.terminal_blocks[composition_id][fabrication_method][batch]
-                    self.encoder.thin_dumps(t.process._run)
+                    # self.encoder.thin_dumps(t.process._run)  # FXIME
                     self.path_holder = destination  # workaround to: recursive_foreach can't pass params to out()
-                    if t.process:
-                        for _obj in [t.process._spec, t.process._run]:
-                            recursive_foreach(_obj, self.out)
+                    if type(t) == list:
+                        for _t in t:
+                            if _t.process:
+                                for _obj in [_t.process._spec, _t.process._run]:
+                                    recursive_foreach(_obj, self.out)
+                    else:  
+                        if t.process:
+                            for _obj in [t.process._spec, t.process._run]:
+                                recursive_foreach(_obj, self.out)
                     if self.testing_mode == True:
                         return
 

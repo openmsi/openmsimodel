@@ -8,7 +8,7 @@ from gemd import (
 )
 
 from openmsimodel.entity.base import Process
-from openmsimodel.entity.base.attributes import (
+from openmsimodel.utilities.attributes import (
     AttrsDict,
     define_attribute,
     finalize_template,
