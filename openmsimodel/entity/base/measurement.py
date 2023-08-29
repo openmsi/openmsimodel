@@ -11,7 +11,7 @@ from gemd import (
 )
 from gemd.entity.util import make_instance
 
-from openmsimodel.utilities.typing import ValueAndOrigin
+# from openmsimodel.utilities.typing import ValueAndOrigin
 
 from .process_or_measurement import ProcessOrMeasurement
 
@@ -139,7 +139,7 @@ class Measurement(ProcessOrMeasurement):
         self._run.material = material
 
     # TODO: merge all properties stuff to base node?
-    def get_properties_dict(self) -> dict[str, ValueAndOrigin]:
+    def get_properties_dict(self):
         """
         Return a ``dict`` of measurement run properties.
         The keys are the names of the properties.
@@ -181,7 +181,7 @@ class Measurement(ProcessOrMeasurement):
         )
 
     @staticmethod
-    def _prop_dict(run_props: list[Property]) -> dict[str, ValueAndOrigin]:
+    def _prop_dict(run_props: list[Property]):
         """Return a ``dict`` of measurement run properties."""
 
         prop_dict = {

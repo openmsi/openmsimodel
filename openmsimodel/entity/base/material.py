@@ -7,7 +7,8 @@ from gemd.entity.util import make_instance
 from gemd.enumeration import SampleType
 
 from .base_element import BaseElement
-from openmsimodel.utilities.typing import ProcessDict, PropsAndCondsDict
+
+# from openmsimodel.utilities.typing import ProcessDict, PropsAndCondsDict
 from openmsimodel.utilities.attributes import finalize_template
 from .process import Process
 
@@ -105,7 +106,7 @@ class Material(BaseElement):
 
         return material
 
-    def get_process_dict(self) -> ProcessDict:
+    def get_process_dict(self):
         """Get the names of the spec's and run's process."""
 
         return {"spec": self._spec.process.name, "run": self._run.process.name}
@@ -127,7 +128,7 @@ class Material(BaseElement):
             self._spec.process = None
             self._run.process = None
 
-    def get_properties_and_conditions_dict(self) -> dict[str, PropsAndCondsDict]:
+    def get_properties_and_conditions_dict(self):
         """
         Return a ``dict`` of material spec properties and conditions.
         The keys are the names of the properties.
@@ -192,7 +193,7 @@ class Material(BaseElement):
     @staticmethod
     def _prop_cond_dict(
         spec_prop_conds: list[PropertyAndConditions],
-    ) -> dict[str, PropsAndCondsDict]:
+    ):
         """Return a ``dict`` of material spec properties and conditions."""
 
         prop_cond_dict = {

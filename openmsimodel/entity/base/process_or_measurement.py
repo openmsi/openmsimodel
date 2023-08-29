@@ -17,7 +17,7 @@ from gemd import (
 )
 
 from openmsimodel.entity.base.base_element import BaseElement
-from openmsimodel.utilities.typing import SpecOrRunLiteral, ValueOriginDict
+from openmsimodel.utilities.typing import SpecOrRunLiteral
 from openmsimodel.utilities.attributes import finalize_template
 
 __all__ = ["ProcessOrMeasurement"]
@@ -62,7 +62,7 @@ class ProcessOrMeasurement(BaseElement):
 
         self.update_parameters(*parameters, replace_all=True, which=which)
 
-    def get_conditions_dict(self) -> dict[str, ValueOriginDict]:
+    def get_conditions_dict(self):
         """Return a ``dict`` of the spec and run conditions."""
         return self._spec_run_dict(self._spec.conditions, self._run.conditions)
 
@@ -118,7 +118,7 @@ class ProcessOrMeasurement(BaseElement):
             AttrType=Condition, attr_names=condition_names, which=which
         )
 
-    def get_parameters_dict(self) -> dict[str, ValueOriginDict]:
+    def get_parameters_dict(self):
         """Return a ``dict`` of the spec and run parameters."""
         return self._spec_run_dict(self._spec.parameters, self._run.parameters)
 
@@ -224,7 +224,7 @@ class ProcessOrMeasurement(BaseElement):
     def _spec_run_dict(
         spec_attrs: Union[list[Condition], list[Parameter]],
         run_attrs: Union[list[Condition], list[Parameter]],
-    ) -> dict[str, ValueOriginDict]:
+    ):
         """
         Return a ``dict`` of spec and run conditions or parameters.
 

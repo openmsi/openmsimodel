@@ -4,7 +4,8 @@ from abc import ABC
 from typing import ClassVar, Optional
 
 from openmsimodel.utilities.typing import Spec, Run
-from openmsimodel.utilities.typing import ProcessDict, PropsAndCondsDict
+
+# from openmsimodel.utilities.typing import ProcessDict, PropsAndCondsDict
 
 from gemd import IngredientSpec, IngredientRun, PropertyAndConditions
 from gemd.entity.util import make_instance

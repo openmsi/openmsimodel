@@ -17,8 +17,8 @@ from openmsimodel.utilities.typing import (
     Run,
     SpecOrRun,
     SpecOrRunLiteral,
-    TagsDict,
-    FileLinksDict,
+    # TagsDict,
+    # FileLinksDict,
 )
 from openmsimodel.utilities.attributes import (
     AttrsDict,
@@ -322,7 +322,7 @@ class BaseElement(ABC):
                     parent[component] = {}
                 parent = parent[component]
 
-    def get_tags_dict(self) -> TagsDict:
+    def get_tags_dict(self):
         """Get a ``dict`` representing the hierarchical tags."""
 
         tags_dict = {"spec": {}, "run": {}}
@@ -419,7 +419,7 @@ class BaseElement(ABC):
         # TODO: add conversion to standard file path or https
         return f'{link.filename}{"/" if link.filename.endswith("/") else ","}{link.url}'
 
-    def get_filelinks_dict(self) -> FileLinksDict:
+    def get_filelinks_dict(self):
         """
         Get string representations of the file links.
 
