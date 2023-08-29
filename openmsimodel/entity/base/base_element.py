@@ -57,7 +57,7 @@ class BaseElement(ABC):
     ``ProcessTemplate``, or ``MeasurementTemplate``.
 
     2. Instantiate ``_ATTRS`` as follows:
-    ``_ATTRS: ClassVar[AttrsDict] = _validate_temp_keys(TEMPLATE)
+    ``_ATTRS``: ClassVar[AttrsDict] = _validate_temp_keys(TEMPLATE)
 
     3. Add conditions, parameters, and/or properties using
     ``define_attribute(_ATTRS, ...)`` from the ``qf_gemd.base.attributes``
@@ -228,7 +228,7 @@ class BaseElement(ABC):
         """
         Change or add hierarchical tags.
 
-        Each tag is represented by a ``tuple`` of hierarchical ``str``s. For
+        Each tag is represented by a ``tuple`` of hierarchical ``str`` s. For
         example, ``('Quantum Design', 'MPMS3')``, in that order, describes the
         make and model of a particular measurement instrument.
 
@@ -244,7 +244,7 @@ class BaseElement(ABC):
         recommended by the GEMD specification.
 
         *tags: tuple[str]
-            ``tuple``s representing tags to add. Each tuple should contain the
+            ``tuple`` s representing tags to add. Each tuple should contain the
             components of a tag from most general to most specific.
         replace_all: bool, default False
             If ``True``, remove any existing tags before adding new ones.
@@ -266,12 +266,12 @@ class BaseElement(ABC):
         """Remove tags.
 
         See `update_tags` for tag format details. Tags are removed by exact
-        comparison of the underlying hierarchcal ``str``s.
+        comparison of the underlying hierarchcal ``str`` s.
 
         *tags: tuple[str]
-            ``tuple``s representing tags to remove.
+        ``tuple`` s representing tags to remove.
         which: {'spec', 'run', 'both'}, default 'spec'
-            Whether to remove from the spec, run, or both.
+        Whether to remove from the spec, run, or both.
         """
 
         validate_state(which)
@@ -343,11 +343,11 @@ class BaseElement(ABC):
         Change or add file links.
 
         *filelinks: FileLink
-            The file links to change or add.
+        The file links to change or add.
         replace_all: bool, default False
-            If ``True``, remove any existing file links before adding new ones.
+        If ``True``, remove any existing file links before adding new ones.
         which: {'spec', 'run', 'both'}, default 'spec'
-            Whether to update the spec, run, or both.
+        Whether to update the spec, run, or both.
         """
 
         validate_state(which)
