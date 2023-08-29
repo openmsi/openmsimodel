@@ -347,7 +347,7 @@ class GEMDTemplateStore(ABC):
                         yield tempdict[template_type][name].template
 
 
-# if __name__ == "__main__":
-#     global all_template_stores
-all_template_stores = {"global": GEMDTemplateStore("global", load_all_files=False)}
-all_template_stores["global"].initialize_store()
+if __name__ == "__main__":
+    #     global all_template_stores
+    all_template_stores = {"global": GEMDTemplateStore("global", load_all_files=False)}
+    all_template_stores["global"].initialize_store()
