@@ -114,8 +114,6 @@ class Material(BaseElement):
         """
         Set the process that produces this material.
 
-        Parameters
-        ----------
         process: {Process, None}
             Process instance whose spec and run will be set as the process for the material's
             spec and run, respectively. If ``None``, the material's spec and run process will be
@@ -132,7 +130,6 @@ class Material(BaseElement):
     def get_properties_and_conditions_dict(self) -> dict[str, PropsAndCondsDict]:
         """
         Return a ``dict`` of material spec properties and conditions.
-
         The keys are the names of the properties.
         Each value is a ``dict`` with the keys ``'property'`` and ``'conditions'``.
         Each ``'property'`` key corresponds to another ``dict`` containing a value
@@ -140,34 +137,6 @@ class Material(BaseElement):
         Each ``'condition'`` key corresponds to a ``dict`` in which the keys are
         the names of the conditions associated with a particular property and the
         values are value/origin ``dict``s.
-
-        Example output:
-
-        {
-            'Composition': {
-                'property': {
-                    'value': {'formula': 'Na', 'type': 'empirical_formula'},
-                    'origin': 'specified'
-                },
-                'conditions': {}
-            },
-            'Purity': {
-                'property': {
-                    'value': {'nominal': 0.999, 'units': '', 'type': 'nominal_real'},
-                    'origin': 'specified'
-                },
-                'conditions': {
-                    'atmosphere': {
-                        'value': {'category': 'argon', 'type': 'nominal_categorical'},
-                        'origin': 'specified'
-                    },
-                    'pressure': {
-                        'value': {'nominal': 1, 'units': 'bar', 'type': 'nominal_real'},
-                        'origin': 'specified'
-                    }
-                }
-            },
-        }
         """
 
         return self._prop_cond_dict(self._spec.properties)
@@ -177,18 +146,10 @@ class Material(BaseElement):
     ) -> None:
         """
         Change or add expected properties (with conditions) of the material spec.
-
-        Parameters
-        ----------
         *properties: PropertyAndConditions
-            The properties (with conditions) to change (by name) or add.
+        The properties (with conditions) to change (by name) or add.
         replace_all: bool, default False
-            If ``True``, remove any existing properties before adding new ones.
-
-        Raises
-        ------
-        ValueError
-            If the name of a property is not supported.
+        If ``True``, remove any existing properties before adding new ones.
         """
 
         self._update_attributes(
@@ -205,10 +166,6 @@ class Material(BaseElement):
         *property_names: str
             The names of properties to remove.
 
-        Raises
-        ------
-        ValueError
-            If the name of a property is not supported.
         """
 
         self._remove_attributes(
@@ -218,9 +175,6 @@ class Material(BaseElement):
     def get_sample_type(self) -> SampleType:
         """
         Get the sample type of the material run.
-
-        Returns
-        -------
         sample_type: SampleType
         """
 
@@ -230,8 +184,6 @@ class Material(BaseElement):
         """
         Set the sample type of the material run.
 
-        Parameters
-        ----------
         sample_type: SampleType
         """
 

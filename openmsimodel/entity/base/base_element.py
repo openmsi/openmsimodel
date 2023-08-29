@@ -1,4 +1,5 @@
 """Base class for classes containing GEMD templates and objects."""
+
 import os, warnings
 from abc import ABC, abstractmethod
 from typing import ClassVar, Type, Optional
@@ -242,8 +243,6 @@ class BaseElement(ABC):
         Internally, tag strings will be concatenated with ``'::'`` as
         recommended by the GEMD specification.
 
-        Parameters
-        ----------
         *tags: tuple[str]
             ``tuple``s representing tags to add. Each tuple should contain the
             components of a tag from most general to most specific.
@@ -269,8 +268,6 @@ class BaseElement(ABC):
         See `update_tags` for tag format details. Tags are removed by exact
         comparison of the underlying hierarchcal ``str``s.
 
-        Parameters
-        ----------
         *tags: tuple[str]
             ``tuple``s representing tags to remove.
         which: {'spec', 'run', 'both'}, default 'spec'
@@ -345,8 +342,6 @@ class BaseElement(ABC):
         """
         Change or add file links.
 
-        Parameters
-        ----------
         *filelinks: FileLink
             The file links to change or add.
         replace_all: bool, default False
@@ -387,8 +382,6 @@ class BaseElement(ABC):
     ) -> None:
         """Remove file links.
 
-        Parameters
-        ----------
         *filelinks: tuple[str]
             The file links to remove by comparison of the underlying url and
             filename.
@@ -430,8 +423,6 @@ class BaseElement(ABC):
         """
         Get string representations of the file links.
 
-        Returns
-        -------
         filelinks_dict: FileLinksDict
             Strings representing the file links of the spec and run.
         """
