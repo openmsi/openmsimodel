@@ -20,12 +20,13 @@ setupkwargs = dict(
             "open_db=openmsimodel.db.open_db:main",
         ],
     },
-    extras_require={},
+    python_requires=">=3.7,<3.10",
     install_requires=[
         "gemd",
         "methodtools",
         "pandas",
     ],
+    extras_require={},
 )
 
 setupkwargs["extras_require"]["all"] = sum(setupkwargs["extras_require"].values(), [])
