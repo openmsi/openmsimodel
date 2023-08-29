@@ -22,9 +22,13 @@ setupkwargs = dict(
     },
     python_requires=">=3.7,<3.10",
     install_requires=[
-        "gemd",
-        "methodtools",
+        "gemd==1.13.0",
+        "networkx==3.1",
+        "pymssql==2.2.8",
+        "SQLAlchemy==2.0.17",
+        "numpy",
         "pandas",
+        "methodtools",
     ],
     extras_require={},
 )
