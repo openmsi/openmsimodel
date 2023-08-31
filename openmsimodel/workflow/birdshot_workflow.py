@@ -573,6 +573,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
             ingredients=composition_element_ingredients,
             process=mixing_process,
             material=alloy_material,
+            measurements=[]
         )
         block3.link_within()
         for i, block in enumerate(parallel_block2s):

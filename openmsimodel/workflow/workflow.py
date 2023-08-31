@@ -29,7 +29,7 @@ class Workflow(Runnable):
     def __init__(self, *args, **kwargs):
         """Initialization of workflow"""
         # self.root
-        # self.elements = []
+        self.elements = []
         self.subs = defaultdict()
         self.terminal_subs = defaultdict()
         # self.blocks = defaultdict()

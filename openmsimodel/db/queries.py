@@ -13,11 +13,7 @@ def top_elements(model_id, nb, gemd_type):
     Returns:
         _type_: str
     """
-    return f"""
-    select top {nb} context
-    from  gemdobject c where gemd_type='{gemd_type} && c.model_id={model_id}' 
-    order by newid()
-    """
+    return f"""select top {nb} context from gemdobject c where gemd_type='{gemd_type}' AND c.model_id='{model_id}' order by newid()"""
 
 
 def display_all(model_id, type_to_display):

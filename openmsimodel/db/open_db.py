@@ -13,6 +13,8 @@ from sqlalchemy.ext.automap import automap_base
 from gemd.json import GEMDJson
 
 from inspect import getmembers, isfunction
+from PyInquirer import prompt, Separator
+from pprint import pprint
 
 
 def create_acronym(phrase):
@@ -136,26 +138,60 @@ class OpenDB(Runnable):
         # )
         try:
             while True:
-                args = input().split()
-                if len(args) == 0:
-                    raise Exception("No arguments passed.")
-                mode = args[0]
-                if mode == "schema":  # create schema
+                select_mode_question = [
+                    {
+                        "type": "list",
+                        "name": "mode",
+                        "message": "Select interactive mode: ",
+                        "choices": [
+                            "load_model",
+                            "listed_queries",
+                            "custom_query",
+                            "add_schema",
+                        ],
+                    }
+                ]
+                answer = prompt(select_mode_question)
+                if not "mode" in answer.keys():
+                    raise KeyError('Expected a value for key "mode", but not found.')
+                mode = answer["mode"]
+                if mode == "add_schema":
                     pass
-                elif mode == "load":  # load model
+                elif mode == "load_model":
                     name = args[1]
                     dirpath = args[2]
                     open_db.load_model(name, dirpath)
-                elif mode == "listed":  # listed_functions functions
-                    for function_name, (
-                        function,
-                        function_accronym,
-                    ) in open_db.listed_functions.items():
-                        open_db.logger.info(
-                            f"-  name: {function_name}, acronym: {function_accronym}, description: {function.__doc__} "
-                        )
-                    additional_args = input().split()
-                    identifier = additional_args[0]
+                elif mode == "listed_queries":
+                    # providing documentationon available queries
+                    def list_queries():
+                        for function_name, (
+                            function,
+                            function_accronym,
+                        ) in open_db.listed_functions.items():
+                            open_db.logger.info(
+                                f"-  name: {function_name}, acronym: {function_accronym}, description: {function.__doc__} "
+                            )
+
+                    show_documentation_question = {
+                        "type": "confirm",
+                        "name": "display",
+                        "message": "Would you like to display documentation on listed queries? (Enter to skip) ",
+                        "default": False,
+                    }
+                    answer = prompt(show_documentation_question)
+                    display = answer["display"]
+                    if display:
+                        list_queries()
+
+                    # specifying query
+                    select_query_question = {
+                        "type": "input",
+                        "name": "selected_query",
+                        "message": "Enter query with its required arguments: ",
+                    }
+                    answer = prompt(select_query_question)
+                    selected_query = answer["selected_query"].split(" ")
+                    identifier = selected_query[0]
                     if (
                         identifier in open_db.listed_acronyms.keys()
                         or identifier.upper() in open_db.listed_acronyms.keys()
@@ -171,16 +207,24 @@ class OpenDB(Runnable):
                         raise KeyError(
                             f"couldn't recognize the identifier passed as '{identifier}'. Pass the full name or acronym. "
                         )
-                    query = func(*additional_args[1:])
-                    result = open_db.gemd_db.execute_query(query)
-                    open_db.print_and_dump(result, query, identifier)
-                elif mode == "custom":  # custom query
-                    query = " ".join(args[1:])
-                    open_db.logger.info("executing custom query...")
-                    open_db.logger.info(f"query: {query}")
+                    selected_query = func(*selected_query[1:])
+                    result = open_db.gemd_db.execute_query(selected_query)
+                    open_db.print_and_dump(result, selected_query, identifier)
+                elif mode == "custom_query":  # custom query
+                    enter_custom_query_question = {
+                        "type": "input",
+                        "name": "custom_query",
+                        "message": "Enter a custom query:",
+                        "default": "",
+                    }
+                    answer = prompt(enter_custom_query_question)
+                    custom_query = answer["custom_query"]
 
-                    result = open_db.gemd_db.execute_query(query)
-                    open_db.print_and_dump(result, query, "custom_query")
+                    open_db.logger.info("executing custom query...")
+                    open_db.logger.info(f"query: {custom_query}")
+
+                    result = open_db.gemd_db.execute_query(custom_query)
+                    open_db.print_and_dump(result, custom_query, "custom_query")
                     open_db.logger.info("Done.")
         except KeyboardInterrupt:
             pass
