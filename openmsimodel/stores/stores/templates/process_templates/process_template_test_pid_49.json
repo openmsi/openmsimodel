@@ -1,0 +1,14 @@
+{
+   "allowed_labels": [],
+   "allowed_names": [],
+   "conditions": [],
+   "description": null,
+   "name": "process_template_test",
+   "parameters": [],
+   "tags": [],
+   "type": "process_template",
+   "uids": {
+      "auto": "6a1c3ef5-7a94-4d35-853b-17f45f1c8c93",
+      "persistent_id": 49
+   }
+}

@@ -3,20 +3,21 @@ from collections import defaultdict
 import os
 import shutil
 import argparse
-from .folder_or_file import FolderOrFile
+from argparse import ArgumentParser
 
-# import sys
-# sys.path.append("..")
-# from openmsimodel.utilities.tools import *
+from openmsimodel.workflow.folder_or_file import FolderOrFile
 from openmsimodel.utilities.runnable import Runnable
 from openmsimodel.utilities.argument_parsing import OpenMSIModelParser
 
 from gemd.json import GEMDJson
 from gemd.util.impl import recursive_foreach
 
+from pydantic import BaseModel
+# from typing_extensions import Alias
+
 
 # TODO: extend Logging
-class Workflow(Runnable):
+class Workflow(Runnable, BaseModel):
     """Class to model a workflow, typically a set of processing steps, experiments, and characterizations, into GEMD, a data model.
     the definition of a workflow is meant to be flexible to the needs of the user. Workflows can be composed
     to construct even larger GEMD graphs.
@@ -24,7 +25,7 @@ class Workflow(Runnable):
     manage blocks, or complete operations such as dumping and loading models into/from JSONs.
     """
 
-    ARGUMENT_PARSER_TYPE = OpenMSIModelParser
+    # ARGUMENT_PARSER_TYPE: ArgumentParser = OpenMSIModelParser
 
     def __init__(self, *args, **kwargs):
         """Initialization of workflow"""
@@ -32,6 +33,7 @@ class Workflow(Runnable):
         self.elements = []
         self.subs = defaultdict()
         self.terminal_subs = defaultdict()
+        self.ARGUMENT_PARSER_TYPE = OpenMSIModelParser
         # self.blocks = defaultdict()
         # self.terminal_blocks = defaultdict()
         # self.encoder = GEMDJson()

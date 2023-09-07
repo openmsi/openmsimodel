@@ -6,13 +6,14 @@ from typing import ClassVar, Type, Optional
 
 from gemd import FileLink
 from gemd.entity.attribute.base_attribute import BaseAttribute
+from gemd.entity.template.base_template import BaseTemplate
 from gemd.entity.util import make_instance
 
 # from gemd.util.impl import set_uuids
 from openmsimodel.entity.impl import assign_uuid
 
 from openmsimodel.utilities.typing import (
-    Template,
+    ObjTemplate,
     Spec,
     Run,
     SpecOrRun,
@@ -31,13 +32,19 @@ from openmsimodel.utilities.attributes import (
 )
 
 from openmsimodel.utilities.logging import Logger
-
 import openmsimodel.stores.gemd_template_store as gemd_template_store
+
+from pydantic import BaseModel, PrivateAttr, Extra, Field
+import sys
+
+sys.path.append("/srv/hemi01-j01/gemd-schema")
+from gemd_schema.attribute_template_basemodel import AttributeTemplate
+from gemd_schema.object_template_basemodel import ObjectTemplate
 
 __all__ = ["BaseElement"]
 
 
-class BaseElement(ABC):
+class BaseElement(ABC, BaseModel):
     """
     Base class for materials, processes, and measurements.
 
@@ -51,65 +58,74 @@ class BaseElement(ABC):
 
     To subclass:
 
-    1. Instantiate ``TEMPLATE`` as follows:
-    ``TEMPLATE: ClassVar[Template] = Template(name=__name__)``,
-    replacing ``Template`` with one of ``MaterialTemplate``,
+    1. Instantiate ``_TEMPLATE`` as follows:
+    ``_TEMPLATE: ClassVar[ObjTemplate] = ObjTemplate(name=__name__)``,
+    replacing ``ObjTemplate`` with one of ``MaterialTemplate``,
     ``ProcessTemplate``, or ``MeasurementTemplate``.
 
     2. Instantiate ``_ATTRS`` as follows:
-    ``_ATTRS``: ClassVar[AttrsDict] = _validate_temp_keys(TEMPLATE)
+    ``_ATTRS``: ClassVar[AttrsDict] = _validate_temp_keys(_TEMPLATE)
 
     3. Add conditions, parameters, and/or properties using
     ``define_attribute(_ATTRS, ...)`` from the ``qf_gemd.base.attributes``
     module.
 
-    4. Call ``finalize_template(_ATTRS, TEMPLATE)``, found in the
-    ``qf_gemd.base.attributes`` module, to add attributes to ``TEMPLATE``.
+    4. Call ``finalize_template(_ATTRS, _TEMPLATE)``, found in the
+    ``qf_gemd.base.attributes`` module, to add attributes to ``_TEMPLATE``.
 
     5. Follow any additional subclass directions.
     """
 
-    _TempType: ClassVar[Type[Template]]
+    class Config:
+        arbitrary_types_allowed = True
+
+    name: str
+
+    _TempType: ClassVar[Type[ObjTemplate]]
     _SpecType: ClassVar[Type[Spec]]
     _RunType: ClassVar[Type[Run]]
+    logger: ClassVar[Logger] = Logger()
+    _TAG_SEP: ClassVar[str] = "::"
 
-    TEMPLATE: ClassVar[Template]
+    # TEMPLATE: BaseTemplate = Field(..., title="some")
+    TEMPLATE: ObjectTemplate
+    _ATTRS: PrivateAttr(AttrsDict) = {}
+    _TEMPLATE_WRAPPER: dict = PrivateAttr({})
 
-    _ATTRS: ClassVar[AttrsDict]
+    _spec: Spec = None
+    _run: Run = None
 
     # TODO: remove and put somewhere
-    _TAG_SEP: ClassVar[str] = "::"
 
     def __init__(
         self,
         name: str,
         *,
         template: ClassVar[
-            Template
+            ObjTemplate
         ] = None,  # TODO: triple check with abc's hastemplate
         notes: Optional[str] = None,
     ) -> None:
-        super().__init__()
+        # BaseModel.__init__(self, **{"name": name})
+        _TEMPLATE_WRAPPER = {}
 
-        self.name = name
-        self.logger = Logger()
-        self.TEMPLATE_WRAPPER = {}
-        has_template = hasattr(self, "TEMPLATE")
+        has_template = hasattr(self, "_TEMPLATE")
 
         if not has_template and not template:
             raise AttributeError(
-                f"TEMPLATE is not defined. Assign to 'template' parameter an instance of either {Template.__dict__['__args__']},\n OR create a new subclass with a defined TEMPLATE attribute."
+                f"_TEMPLATE is not defined. Assign to 'template' parameter an instance of either {ObjTemplate.__dict__['__args__']},\n OR create a new subclass with a defined _TEMPLATE attribute."
             )
 
         if template:
             if has_template:
                 warnings.warn(
-                    f"Found template '{self.TEMPLATE.name}', but '{template.name}' will be used instead.",
+                    f"Found template '{self._TEMPLATE.name}', but '{template.name}' will be used instead.",
                     ResourceWarning,
                 )
-            self.TEMPLATE = template
-            if ("persistent_id" in self.TEMPLATE.uids.keys()) or (
-                "auto" in self.TEMPLATE.uids.keys()
+            _TEMPLATE = template
+            if hasattr(_TEMPLATE, "uids") and (
+                ("persistent_id" in _TEMPLATE.uids.keys())
+                or ("auto" in _TEMPLATE.uids.keys())
             ):
                 raise KeyError(
                     f'the "auto" and "persistent_id" uid keys are reserved. Use another key. '
@@ -119,8 +135,8 @@ class BaseElement(ABC):
 
         # TODO: change from file when supporting file links
         for i, store in enumerate(gemd_template_store.all_template_stores.values()):
-            self.TEMPLATE_WRAPPER[store.id] = store.register_new_template(
-                self.TEMPLATE,
+            _TEMPLATE_WRAPPER[store.id] = store.register_new_template(
+                _TEMPLATE,
                 from_file=False,
                 from_store=False,
                 from_memory=bool(template),
@@ -128,27 +144,45 @@ class BaseElement(ABC):
             )
             if i == 0:  # first one is the the designated store for accessing template
                 designated_store_id = store.id
-                self.TEMPLATE = self.TEMPLATE_WRAPPER[designated_store_id].template
+                _TEMPLATE = _TEMPLATE_WRAPPER[designated_store_id].template
 
         if template:
-            self.prepare_attrs()
+            _ATTRS = self.prepare_attrs(_TEMPLATE)
+            # FIXME: call finalize here?
 
         for i, store in enumerate(gemd_template_store.all_template_stores.values()):
-            for _attr_type in self._ATTRS.keys():
-                for _attr in self._ATTRS[_attr_type].values():
+            for _attr_type in _ATTRS.keys():
+                for _attr in _ATTRS[_attr_type].values():
                     gemd_template_store.all_template_stores[
                         store.id
                     ].register_new_template(_attr["obj"])
 
-        self._spec: Spec = self._SpecType(
-            name=name, notes=notes, template=self.TEMPLATE
-        )
+        _spec = self._SpecType(name=name, notes=notes, template=_TEMPLATE)
+        assign_uuid(_spec, "auto")
         # if spec the same as in store, use the one in store
         # if not, use the one instantiated from template
         # sce 1: diff template but same name
-        self._run: Run = make_instance(self._spec)
-        assign_uuid(self._spec, "auto")
-        assign_uuid(self._run, "auto")
+        _run = make_instance(_spec)
+        assign_uuid(_run, "auto")
+        # _TEMPLATE = {
+        #     "type": "material_template",
+        #     "name": "na",
+        #     "uids": {"auto": "0de7d6af-7a34-4bb1-8575-88ff6125f9bb"},
+        #     "tags": [],
+        #     "file_links": {"filename": "", "url": ""},
+        #     "notes": "fe",
+        # }
+        BaseModel.__init__(
+            self,
+            **{
+                "name": name,
+                "TEMPLATE": _TEMPLATE,
+                "_run": _run,
+                "_spec": _spec,
+                "_ATTRS": _ATTRS,
+            },
+        )
+        print("here")
 
     @property
     @abstractmethod
@@ -180,21 +214,6 @@ class BaseElement(ABC):
 
     ############################### ATTRIBUTES ###############################
 
-    def prepare_attrs(self):
-        self._ATTRS = _validate_temp_keys(self.TEMPLATE)
-        if hasattr(self.TEMPLATE, "conditions"):
-            for c in self.TEMPLATE.conditions:
-                define_attribute(
-                    self._ATTRS, template=c[0]
-                )  # TODO: look into this weird format from GEMD (attr, bounds)
-        if hasattr(self.TEMPLATE, "parameters"):
-            for p in self.TEMPLATE.parameters:
-                define_attribute(self._ATTRS, template=p[0])
-        if hasattr(self.TEMPLATE, "properties"):
-            for p in self.TEMPLATE.properties:
-                define_attribute(self._ATTRS, template=p[0])
-        # finalize_template(self._ATTRS, self.TEMPLATE)
-
     def _update_attributes(
         self,
         AttrType: Type[BaseAttribute],
@@ -217,6 +236,22 @@ class BaseElement(ABC):
         """Remove attributes by name."""
 
         remove_attrs(self._ATTRS, self._spec, self._run, AttrType, attr_names, which)
+
+    def prepare_attrs(self, template):
+        _ATTRS = _validate_temp_keys(template)
+        if hasattr(template, "conditions"):
+            for c in template.conditions:
+                define_attribute(
+                    _ATTRS, template=c[0]
+                )  # TODO: look into this weird format from GEMD (attr, bounds)
+        if hasattr(template, "parameters"):
+            for p in template.parameters:
+                define_attribute(_ATTRS, template=p[0])
+        if hasattr(template, "properties"):
+            for p in template.properties:
+                define_attribute(_ATTRS, template=p[0])
+        return _ATTRS
+        # finalize_template(self._ATTRS, self._TEMPLATE)
 
     ############################### TAGS ###############################
     def update_tags(

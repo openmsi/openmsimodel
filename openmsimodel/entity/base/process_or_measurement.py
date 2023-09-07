@@ -20,7 +20,10 @@ from openmsimodel.entity.base.base_element import BaseElement
 from openmsimodel.utilities.typing import SpecOrRunLiteral
 from openmsimodel.utilities.attributes import finalize_template
 
-__all__ = ["ProcessOrMeasurement"]
+from pydantic import BaseModel, PrivateAttr, Extra, Field
+from gemd_schema.attribute_templates import attribute_template
+
+# __all__ = ["ProcessOrMeasurement"]
 
 
 class ProcessOrMeasurement(BaseElement):
@@ -30,7 +33,9 @@ class ProcessOrMeasurement(BaseElement):
     _SpecType: ClassVar[Type[Union[ProcessSpec, MeasurementSpec]]]
     _RunType: ClassVar[Type[Union[ProcessRun, MeasurementRun]]]
 
-    TEMPLATE: ClassVar[Union[ProcessTemplate, MeasurementTemplate]]
+    TEMPLATE: ClassVar[Union[ProcessTemplate, MeasurementTemplate]] = Field(
+        attribute_template, title="some"
+    )
 
     # {'brand1': {'model1': ('id1', 'id2', etc.), etc.}, etc.}
     # e.g. {'Quantum Design': {'DynaCool': ['1', '2', '3']}}
@@ -47,7 +52,8 @@ class ProcessOrMeasurement(BaseElement):
         parameters: Optional[list[Parameter]] = None,
         which: SpecOrRunLiteral = "spec",  # TODO: fix this
     ) -> None:
-        super().__init__(name, template=template, notes=notes)
+        # super().__init__(name, template=template, notes=notes)
+        BaseElement.__init__(self, name, template=template, notes=notes)
 
         if conditions is None:
             conditions = []

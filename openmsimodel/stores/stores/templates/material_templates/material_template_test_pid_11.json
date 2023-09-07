@@ -1,0 +1,11 @@
+{
+   "description": null,
+   "name": "material_template_test",
+   "properties": [],
+   "tags": [],
+   "type": "material_template",
+   "uids": {
+      "auto": "2e01d56e-fab1-447c-9c31-2439ded117c1",
+      "persistent_id": 11
+   }
+}

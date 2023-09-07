@@ -28,6 +28,7 @@ class Ingredient(BaseElement):
 
     def __init__(self, name: str, *, notes: Optional[str] = None) -> None:
         # BaseElement.__init__(self, name)
+        # BaseModel.__init__(self, **{"name": name})
         super(ABC, self).__init__()
         self.name = name
         self._spec: Spec = self._SpecType(name=name, notes=notes)

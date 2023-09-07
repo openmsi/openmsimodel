@@ -3,15 +3,30 @@ from openmsimodel.entity.base import Ingredient, Measurement, Material, Process
 from openmsimodel.entity.base.base_element import BaseElement
 from openmsimodel.subworkflow.subworkflow import Subworkflow
 from typing import ClassVar, Type, Optional
+from pydantic import BaseModel
+
+# from pydantic import BaseModel as PydanticBaseModel
+# class BaseModel(PydanticBaseModel):
+#     class Config:
+#         arbitrary_types_allowed = True
 
 
-class ProcessBlock(Subworkflow):
+class ProcessBlock(Subworkflow, BaseModel):
     """
     ProcessBlock is a type of Subworkflow intended to represent consecutive BaseElements in the order of 'Ingredients', 'Process', 'Material', and 'Measurements'.
     It is the natural order of GEMD objects, and of our BaseElements object, which are essentially GEMD wrappers. It is a loose class and can omit some elements of the block.
     It can be a powerful way to manipulate, link, dump, etc, GEMD objects together, while Blocks themselves can be linked with one another, facilitating repeat
     elements, linking for wide (i.e., many ingredients, many measurements) or vertical (i.e., long sequence of BaseElements) workflow, etc.
     """
+
+    name: str
+    process: Optional[Process]
+    workflow: Workflow = None
+    material: Optional[Material] = None
+    ingredients: Optional[
+        dict
+    ]  # TODO: names have to be unique? will that be a problem?
+    measurements: Optional[dict]
 
     def __init__(  # FIXME
         self,
@@ -39,7 +54,10 @@ class ProcessBlock(Subworkflow):
             TypeError: ingredients must be of type "dict".
             TypeError: measurement must be of type "dict".
         """
-
+        # BaseModel.__init__(
+        #     self, name, process, workflow, material, ingredients, measurements
+        # )
+        BaseModel.__init__(self, **{"name": name})
         Subworkflow.__init__(self, name, workflow=workflow)
         # if process is None: #FIXME
         #     raise TypeError("'process' argument is not set. ")
@@ -128,7 +146,8 @@ class ProcessBlock(Subworkflow):
                 posterior_block.ingredients[name].spec.material = self.material.spec
                 posterior_block.ingredients[name].run.material = self.material.run
 
-    def from_(self, any):
+    @classmethod
+    def from_(cls, any):
         if isinstance_base_element(any):
             if isinstance(any, Material):
                 self.material = any
@@ -139,7 +158,7 @@ class ProcessBlock(Subworkflow):
             elif isinstance(any, Measurement):
                 self.measurements[any.name] = any
             self.link_within()
-        # elif 
+        # elif
 
     def add_ingredient(self, ingredient: Ingredient):
         """add ingredient to block"""

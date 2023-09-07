@@ -26,7 +26,7 @@ class Subworkflow(Runnable):
             self.workflow.subs[name] = self
 
     @classmethod
-    def from_(self, any):
+    def from_(cls, any):
         """returns a subworkflow instantiated from elements contained it. will vary based on subworkflow and element types."""
         pass
 

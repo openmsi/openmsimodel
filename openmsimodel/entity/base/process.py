@@ -15,7 +15,7 @@ class Process(ProcessOrMeasurement):
     Base element for processes.
 
     """
-
+    # name: str
     _TempType = ProcessTemplate
     _SpecType = ProcessSpec
     _RunType = ProcessRun
