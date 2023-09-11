@@ -12,8 +12,8 @@ Top-level classes
 
    api/workflow 
    api/subworkflow
-   api/base_element
-   api/process_block 
+   api/process_block
+   api/base_element 
    api/material
    api/process
    api/ingredient

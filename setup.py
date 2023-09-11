@@ -30,6 +30,7 @@ setupkwargs = dict(
         "pandas",
         "methodtools",
         "matplotlib",
+        "prompt_toolkit",
     ],
     extras_require={},
 )
