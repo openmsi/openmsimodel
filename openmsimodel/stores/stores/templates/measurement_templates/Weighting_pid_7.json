@@ -1,0 +1,30 @@
+{
+   "conditions": [],
+   "description": "The measurement of weight",
+   "name": "Weighting",
+   "parameters": [],
+   "properties": [
+      [
+         {
+            "id": "ff71c77c-3a17-489b-9dee-da2eb46314bb",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         null
+      ],
+      [
+         {
+            "id": "0a97d66b-b9f6-49ef-8636-135ef5aa3622",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         null
+      ]
+   ],
+   "tags": [],
+   "type": "measurement_template",
+   "uids": {
+      "auto": "826fbd3d-68c9-4936-9cfa-373fb9c19ef5",
+      "persistent_id": 7
+   }
+}

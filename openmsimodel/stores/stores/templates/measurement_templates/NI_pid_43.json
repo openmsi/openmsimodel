@@ -1,0 +1,13 @@
+{
+   "conditions": [],
+   "description": "NI measurement",
+   "name": "NI",
+   "parameters": [],
+   "properties": [],
+   "tags": [],
+   "type": "measurement_template",
+   "uids": {
+      "auto": "64f49ae4-82c3-40da-8bb8-942d72e69417",
+      "persistent_id": 43
+   }
+}

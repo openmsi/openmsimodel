@@ -1,1 +1,57 @@
 persistent_id,name,type
+0,Inferred Alloy Compositions,material_template
+1,Select Composition,process_template
+2,Alloy Composition,material_template
+3,Aggregate Material,process_template
+4,Element,material_template
+5,Composition Percentage,property_template
+6,Target Mass,property_template
+7,Weighting,measurement_template
+8,Weighed Mass,property_template
+9,Mass Loss,property_template
+10,Mixing,process_template
+11,Alloy,material_template
+12,Form,property_template
+13,Arc Melting,process_template
+14,Argon Pressure,parameter_template
+15,Diffusion,parameter_template
+16,Ingot Location,parameter_template
+17,Initial Purging Times,parameter_template
+18,Vacuum Before Melt,parameter_template
+19,Homogenization,process_template
+20,Pressure,parameter_template
+21,Duration,parameter_template
+22,Temperature,parameter_template
+23,Atmosphere,parameter_template
+24,Cooling Rate,parameter_template
+25,Forging,process_template
+26,Soak Time,parameter_template
+27,Maximum Load Step,parameter_template
+28,MeasureDimensions,measurement_template
+29,Length,property_template
+30,Width,property_template
+31,Thickness,property_template
+32,Thickness Reduction,property_template
+33,Setting traveler,process_template
+34,Traveler,material_template
+35,Setting Traveler Sample,process_template
+36,Traveler Sample,material_template
+37,SEM,measurement_template
+38,XRD,measurement_template
+39,Lattice Parameter,property_template
+40,Phase,property_template
+41,"Hardness, HV",property_template
+42,"SD, HV",property_template
+43,NI,measurement_template
+44,Tensile,measurement_template
+45,"Elastic Modulus, GPa",property_template
+46,"Yield Strength, MPa",property_template
+47,"UTS, MPa",property_template
+48,"Elongation, %",property_template
+49,"Strain Hardening, MPa",property_template
+50,dUTS_dY,property_template
+51,Aggregate Traveler Samples,process_template
+52,Traveler Samples,material_template
+53,Aggregate Summary Sheet,process_template
+54,Summary Sheet,material_template
+55,Infer Compositions,process_template

@@ -209,6 +209,7 @@ class OpenMSIModelParser(ArgumentParser):
             {
                 "type": str,
                 "help": "uuid to track and on the basis of which links are built (helpful for grapher)",
+                "default": "auto",
             },
         ],
         "sample_data_folder": [

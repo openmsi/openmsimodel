@@ -1,4 +1,0 @@
-,uid,model_id,name,template_uid,context
-"
-"
- select * from measurement_spec where model_id=7

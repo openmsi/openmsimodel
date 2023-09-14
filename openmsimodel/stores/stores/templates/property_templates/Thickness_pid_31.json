@@ -1,0 +1,16 @@
+{
+   "bounds": {
+      "default_units": "centimeter",
+      "lower_bound": 0,
+      "type": "real_bounds",
+      "upper_bound": 25
+   },
+   "description": "Thickness of alloy",
+   "name": "Thickness",
+   "tags": [],
+   "type": "property_template",
+   "uids": {
+      "auto": "8b7ff43b-90b3-4092-9024-0eb55a647b29",
+      "persistent_id": 31
+   }
+}

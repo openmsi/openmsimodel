@@ -1,8 +1,0 @@
-,context
-"
-"
-"
-    select top 5 context
-    from  gemdobject c where gemd_type='measurement_run && c.model_id=4' 
-    order by newid()
-    "

@@ -211,7 +211,6 @@ def _required_attrs(
             for attr_name, attr_dict in attrs[plural].items()
             if attr_dict["default_value"] is not None
         }
-
     return {
         attr_name: AttrType(
             name=attr_name,

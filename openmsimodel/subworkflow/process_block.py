@@ -23,6 +23,7 @@ class ProcessBlock(Subworkflow):
             dict
         ] = {},  # TODO: names have to be unique? will that be a problem?
         measurements: Optional[dict] = {},
+        _type: str = None,
     ):  # FIXME
         """initialization of ProcessBlock.
 
@@ -84,6 +85,7 @@ class ProcessBlock(Subworkflow):
             raise TypeError(
                 f"Expected measurements to be a list or dict; got {type(measurements)}"
             )
+        self.type = _type
 
     def link_within(self):
         """this functions links the specs and runs of the BaseElements in the current block."""
@@ -92,27 +94,40 @@ class ProcessBlock(Subworkflow):
             for name in self.ingredients.keys():
                 self.ingredients[name].spec.process = self.process.spec
                 self.ingredients[name].run.process = self.process.run
+        else:
+            print(f"no ingredients and process for block '{self.name}' were linked. ")
         # link process to material
         if self.material and self.process:
             self.material.spec.process = self.process.spec
             self.material.run.process = self.process.run
+        else:
+            print(f"no material and process for block '{self.name}' were linked. ")
         # link measurements to material
         if self.measurements and self.material:
             for name in self.measurements.keys():
                 self.measurements[name].run.material = self.material.run
+        # else:
+        #     print(f"measurements and material for block {self.name} were not linked. ")
 
-    def link_prior(self, prior_block: "ProcessBlock", ingredient_name_to_link: str):
+    def link_prior(
+        self, prior_block: "ProcessBlock", ingredient_name_to_link: str
+    ):  # TODO: change to 'current_ing_name'
         """links the prior block's material to current ingredient.
 
         Args:
             prior_block (Block): prior block containing the material to link
             ingredient_name_to_link (str): name of the ingredient in current block to link to prior material
         """
-
+        linked = False
         for name in self.ingredients.keys():
             if self.ingredients[name].run.name == ingredient_name_to_link:
                 self.ingredients[name].spec.material = prior_block.material.spec
                 self.ingredients[name].run.material = prior_block.material.run
+                linked = True
+        if not linked:
+            print(
+                f"Current block '{self.name}' couldn't be linked to block '{prior_block.name}'"
+            )
 
     def link_posterior(
         self, posterior_block: "ProcessBlock", ingredient_name_to_link: str
@@ -139,7 +154,7 @@ class ProcessBlock(Subworkflow):
             elif isinstance(any, Measurement):
                 self.measurements[any.name] = any
             self.link_within()
-        # elif 
+        # elif
 
     def add_ingredient(self, ingredient: Ingredient):
         """add ingredient to block"""

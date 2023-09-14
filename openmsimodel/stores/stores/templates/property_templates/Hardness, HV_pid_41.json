@@ -1,0 +1,16 @@
+{
+   "bounds": {
+      "default_units": "pascal",
+      "lower_bound": 0,
+      "type": "real_bounds",
+      "upper_bound": 1000
+   },
+   "description": null,
+   "name": "Hardness, HV",
+   "tags": [],
+   "type": "property_template",
+   "uids": {
+      "auto": "b2538f2c-5e2d-428d-a451-86dfc0c036e3",
+      "persistent_id": 41
+   }
+}

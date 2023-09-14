@@ -349,4 +349,4 @@ class GEMDTemplateStore(ABC):
 
 # if __name__ == "__main__":
 all_template_stores = {"global": GEMDTemplateStore("global", load_all_files=False)}
-# all_template_stores["global"].initialize_store()
+all_template_stores["global"].initialize_store()

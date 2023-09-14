@@ -1,8 +1,0 @@
-,context
-"
-"
-"
-    select top 4 context
-    from  gemdobject c where gemd_type='material_run && c.model_id=3' 
-    order by newid()
-    "

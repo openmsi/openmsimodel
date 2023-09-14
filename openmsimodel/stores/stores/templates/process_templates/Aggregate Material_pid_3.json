@@ -1,0 +1,14 @@
+{
+   "allowed_labels": [],
+   "allowed_names": [],
+   "conditions": [],
+   "description": "Aggregaging the correct ingredients to produce a mixture that can go through\n                fabrication procedure\n                ",
+   "name": "Aggregate Material",
+   "parameters": [],
+   "tags": [],
+   "type": "process_template",
+   "uids": {
+      "auto": "7b747d15-07f7-4f2e-b41a-4d5c0332c753",
+      "persistent_id": 3
+   }
+}

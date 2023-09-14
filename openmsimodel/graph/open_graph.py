@@ -35,8 +35,9 @@ class OpenGraph(Runnable):
     )
 
     # instance attributes
-    def __init__(self, dirpath):
+    def __init__(self, dirpath, output):
         self.dirpath = pathlib.Path(dirpath)
+        self.output = pathlib.Path(output)
         self.svg_path = None
         self.dot_path = None
 
@@ -119,7 +120,7 @@ class OpenGraph(Runnable):
 
         # # plotting
         dot_path, svg_path = self.save_graph(
-            self.dirpath, relabeled_G, name="{}_graph".format(which)
+            self.output, relabeled_G, name="{}_graph".format(which)
         )
         if update:
             self.update_paths(svg_path, dot_path)
@@ -443,8 +444,8 @@ class OpenGraph(Runnable):
         Returns:
             str: paths to, respectively, the dot and svg files
         """
-        if os.path.isfile(dest):
-            dest = dest.parent
+        # if os.path.isfile(dest):
+        #     dest = dest.parent
         # svg file
         svg_path = os.path.join(dest, "{}.svg".format(name))
         # dot file
@@ -481,6 +482,7 @@ class OpenGraph(Runnable):
             "a",
             "d",
             "uuid_to_track",
+            "output",
         ]
         kwargs = {**superkwargs}
         return args, kwargs
@@ -496,7 +498,7 @@ class OpenGraph(Runnable):
         """
         parser = cls.get_argument_parser()
         args = parser.parse_args(args=args)
-        viewer = cls(pathlib.Path(args.dirpath))
+        viewer = cls(args.dirpath, args.output)
         assets_to_add = {
             "add_attributes": args.add_attributes,
             "add_file_links": args.add_file_links,
@@ -519,7 +521,7 @@ class OpenGraph(Runnable):
             identifier_G = cls.extract_subgraph(G, args.identifier, func=functions)
             identifier_G = cls.map_to_graphviz(identifier_G, name_mapping)
             identifier_G_dot_path, _ = cls.save_graph(
-                viewer.dirpath, identifier_G, "{}".format(args.identifier)
+                args.output, identifier_G, "{}".format(args.identifier)
             )
 
         # launches interactive notebook

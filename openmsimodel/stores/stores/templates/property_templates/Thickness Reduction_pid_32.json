@@ -1,0 +1,16 @@
+{
+   "bounds": {
+      "default_units": "centimeter",
+      "lower_bound": -150,
+      "type": "real_bounds",
+      "upper_bound": 150
+   },
+   "description": "Thickness of alloy",
+   "name": "Thickness Reduction",
+   "tags": [],
+   "type": "property_template",
+   "uids": {
+      "auto": "c847d20e-30c6-4a5f-93e3-20a1c0632ecf",
+      "persistent_id": 32
+   }
+}

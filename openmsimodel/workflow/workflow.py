@@ -98,15 +98,16 @@ class Workflow(Runnable):
     #     plot_graph(self.thin_dumps_obj_dest)
     #     plot_graph(self.thin_dumps_obj_dest, obj_state == "spec")
 
-    # def out(self, item):
-    #     """
-    #     function object to run on individual item during recursion
-    #     :param item: json item to write its destination
-    #     se
-    #     """
-    #     fn = "_".join([item.__class__.__name__, item.name, item.uids["auto"], ".json"])
-    #     with open(os.path.join(self.path_holder, fn), "w") as fp:
-    #         fp.write(self.encoder.thin_dumps(item, indent=3))
+    def local_out(self, item):
+        """
+        function object to run on individual item during recursion
+        :param item: json item to write its destination
+        se
+        """
+        fn = "_".join([item.__class__.__name__, item.name, item.uids["auto"], ".json"])
+        with open(os.path.join(self.local_out_destination, fn), "w") as fp:
+            # fp.write(self.encoder.thin_dumps(item, indent=3))
+            fp.write(self.f(item, indent=3))
 
     #################### CLASS METHODS ####################
 

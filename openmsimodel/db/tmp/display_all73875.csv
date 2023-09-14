@@ -1,4 +1,0 @@
-,uid,model_id,name,spec_uid,process_run_uid,context
-"
-"
- select * from material_run where model_id=4

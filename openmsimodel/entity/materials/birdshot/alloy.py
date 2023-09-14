@@ -3,6 +3,7 @@ from openmsimodel.utilities.attributes import (
     AttrsDict,
     define_attribute,
     finalize_template,
+    _validate_temp_keys,
 )
 
 from typing import ClassVar
@@ -16,8 +17,6 @@ from gemd import (
     NominalReal,
 )
 
-__all__ = ["Alloy"]
-
 
 class Alloy(Material):
     """Class representing an Alloy"""
@@ -27,7 +26,7 @@ class Alloy(Material):
         description="Alloy generated with a unique composition and synthesis parameters",
     )
 
-    _ATTRS: ClassVar[AttrsDict] = {"properties": {}}
+    _ATTRS: ClassVar[AttrsDict] = _validate_temp_keys(TEMPLATE)
 
     define_attribute(
         _ATTRS,

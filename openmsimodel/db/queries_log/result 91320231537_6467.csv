@@ -1,0 +1,459 @@
+,uid,name
+0,26737b08-c3e2-4ee6-9609-4b9b6ee22efd,Weighed Mass
+1,26737b08-c3e2-4ee6-9609-4b9b6ee22efd,Mass Loss
+2,4d1a75c2-b700-4dd5-8ce9-88e57a6f457a,Weighed Mass
+3,4d1a75c2-b700-4dd5-8ce9-88e57a6f457a,Mass Loss
+4,c2ebbff3-2f5a-46c3-8f06-510dbac83d48,Weighed Mass
+5,c2ebbff3-2f5a-46c3-8f06-510dbac83d48,Mass Loss
+6,f7fe0e41-1641-4340-bcff-29f2b7665d22,Weighed Mass
+7,f7fe0e41-1641-4340-bcff-29f2b7665d22,Mass Loss
+8,948ddadf-f0e6-4022-a2f3-0de0884ea878,Weighed Mass
+9,948ddadf-f0e6-4022-a2f3-0de0884ea878,Mass Loss
+10,b48ebcdc-5e78-4250-9d87-cbd1b1db1e0d,Weighed Mass
+11,b48ebcdc-5e78-4250-9d87-cbd1b1db1e0d,Mass Loss
+12,2ffee34b-adad-4831-8500-87aac0934f2d,Weighed Mass
+13,2ffee34b-adad-4831-8500-87aac0934f2d,Mass Loss
+14,53058723-c70f-4669-8b11-b0e64aab1a27,"Elastic Modulus, GPa"
+15,53058723-c70f-4669-8b11-b0e64aab1a27,"Yield Strength, MPa"
+16,53058723-c70f-4669-8b11-b0e64aab1a27,"UTS, MPa"
+17,53058723-c70f-4669-8b11-b0e64aab1a27,"Elongation, %"
+18,53058723-c70f-4669-8b11-b0e64aab1a27,"Strain Hardening, MPa"
+19,53058723-c70f-4669-8b11-b0e64aab1a27,dUTS_dY
+20,d1356ec4-fc76-4ffc-b5a3-ce071b486460,Weighed Mass
+21,d1356ec4-fc76-4ffc-b5a3-ce071b486460,Mass Loss
+22,ddbb60d9-8fd8-4f8f-bec5-0b5f57e99cf2,Weighed Mass
+23,ddbb60d9-8fd8-4f8f-bec5-0b5f57e99cf2,Mass Loss
+24,f54b0437-c167-4cd2-b800-4162d53764bc,Weighed Mass
+25,f54b0437-c167-4cd2-b800-4162d53764bc,Mass Loss
+26,02bd2cc5-cd43-43cd-b9a1-d5d63863c6b9,"Elastic Modulus, GPa"
+27,02bd2cc5-cd43-43cd-b9a1-d5d63863c6b9,"Yield Strength, MPa"
+28,02bd2cc5-cd43-43cd-b9a1-d5d63863c6b9,"UTS, MPa"
+29,02bd2cc5-cd43-43cd-b9a1-d5d63863c6b9,"Elongation, %"
+30,02bd2cc5-cd43-43cd-b9a1-d5d63863c6b9,"Strain Hardening, MPa"
+31,02bd2cc5-cd43-43cd-b9a1-d5d63863c6b9,dUTS_dY
+32,06d0ca78-3cba-46cb-ae14-29ecf387a92c,"Elastic Modulus, GPa"
+33,06d0ca78-3cba-46cb-ae14-29ecf387a92c,"Yield Strength, MPa"
+34,06d0ca78-3cba-46cb-ae14-29ecf387a92c,"UTS, MPa"
+35,06d0ca78-3cba-46cb-ae14-29ecf387a92c,"Elongation, %"
+36,06d0ca78-3cba-46cb-ae14-29ecf387a92c,"Strain Hardening, MPa"
+37,06d0ca78-3cba-46cb-ae14-29ecf387a92c,dUTS_dY
+38,958bed36-d4af-4f6d-819d-e81e8b132f8b,Weighed Mass
+39,958bed36-d4af-4f6d-819d-e81e8b132f8b,Mass Loss
+40,123d8868-0ff4-4089-939f-775b8a24ea91,Weighed Mass
+41,123d8868-0ff4-4089-939f-775b8a24ea91,Mass Loss
+42,3d20774b-3f90-4b33-a58d-5624408c7561,Weighed Mass
+43,3d20774b-3f90-4b33-a58d-5624408c7561,Mass Loss
+44,853a8ddf-1d0f-416b-95f3-90c059b347b3,Weighed Mass
+45,853a8ddf-1d0f-416b-95f3-90c059b347b3,Mass Loss
+46,a32865e5-5326-4d13-80bd-2cc8f1ebc1de,"Elastic Modulus, GPa"
+47,a32865e5-5326-4d13-80bd-2cc8f1ebc1de,"Yield Strength, MPa"
+48,a32865e5-5326-4d13-80bd-2cc8f1ebc1de,"UTS, MPa"
+49,a32865e5-5326-4d13-80bd-2cc8f1ebc1de,"Elongation, %"
+50,a32865e5-5326-4d13-80bd-2cc8f1ebc1de,"Strain Hardening, MPa"
+51,a32865e5-5326-4d13-80bd-2cc8f1ebc1de,dUTS_dY
+52,d82c1de9-6447-4be2-8110-9948dd67ed3f,Phase
+53,d82c1de9-6447-4be2-8110-9948dd67ed3f,Lattice Parameter
+54,d82c1de9-6447-4be2-8110-9948dd67ed3f,"Hardness, HV"
+55,d82c1de9-6447-4be2-8110-9948dd67ed3f,"SD, HV"
+56,1377acb0-5c8b-4e09-bd06-e57e1f3a6953,Phase
+57,1377acb0-5c8b-4e09-bd06-e57e1f3a6953,Lattice Parameter
+58,1377acb0-5c8b-4e09-bd06-e57e1f3a6953,"Hardness, HV"
+59,1377acb0-5c8b-4e09-bd06-e57e1f3a6953,"SD, HV"
+60,72c7a4a5-b182-4246-aeaa-e191678c7680,"Elastic Modulus, GPa"
+61,72c7a4a5-b182-4246-aeaa-e191678c7680,"Yield Strength, MPa"
+62,72c7a4a5-b182-4246-aeaa-e191678c7680,"UTS, MPa"
+63,72c7a4a5-b182-4246-aeaa-e191678c7680,"Elongation, %"
+64,72c7a4a5-b182-4246-aeaa-e191678c7680,"Strain Hardening, MPa"
+65,72c7a4a5-b182-4246-aeaa-e191678c7680,dUTS_dY
+66,a3555890-0c75-42b0-a9b8-15448b150e7e,Weighed Mass
+67,a3555890-0c75-42b0-a9b8-15448b150e7e,Mass Loss
+68,dca8fab4-4fea-4a62-9f48-8d8ec0c9bee7,Phase
+69,dca8fab4-4fea-4a62-9f48-8d8ec0c9bee7,Lattice Parameter
+70,dca8fab4-4fea-4a62-9f48-8d8ec0c9bee7,"Hardness, HV"
+71,dca8fab4-4fea-4a62-9f48-8d8ec0c9bee7,"SD, HV"
+72,014fa458-9fba-40d7-b602-5829cc6becdd,Weighed Mass
+73,014fa458-9fba-40d7-b602-5829cc6becdd,Mass Loss
+74,139d52a9-d720-48bd-8759-1f01fbf2782a,Weighed Mass
+75,139d52a9-d720-48bd-8759-1f01fbf2782a,Mass Loss
+76,72d63ce3-85fc-451b-a557-84c43f81d835,Weighed Mass
+77,72d63ce3-85fc-451b-a557-84c43f81d835,Mass Loss
+78,14a08c04-f3b9-4352-8b3e-bfd5e89766d6,"Elastic Modulus, GPa"
+79,14a08c04-f3b9-4352-8b3e-bfd5e89766d6,"Yield Strength, MPa"
+80,14a08c04-f3b9-4352-8b3e-bfd5e89766d6,"UTS, MPa"
+81,14a08c04-f3b9-4352-8b3e-bfd5e89766d6,"Elongation, %"
+82,14a08c04-f3b9-4352-8b3e-bfd5e89766d6,"Strain Hardening, MPa"
+83,14a08c04-f3b9-4352-8b3e-bfd5e89766d6,dUTS_dY
+84,5e7cbef6-73a0-4286-adba-cba0e67b0f51,Phase
+85,5e7cbef6-73a0-4286-adba-cba0e67b0f51,Lattice Parameter
+86,5e7cbef6-73a0-4286-adba-cba0e67b0f51,"Hardness, HV"
+87,5e7cbef6-73a0-4286-adba-cba0e67b0f51,"SD, HV"
+88,82b5b277-7f35-4e8f-913a-25d719ac54a5,Weighed Mass
+89,82b5b277-7f35-4e8f-913a-25d719ac54a5,Mass Loss
+90,bc327b5a-35ce-4bf2-8af2-5545497f0491,Weighed Mass
+91,bc327b5a-35ce-4bf2-8af2-5545497f0491,Mass Loss
+92,586f8b2e-5bdf-40c0-b859-dd9d30a5ff96,Weighed Mass
+93,586f8b2e-5bdf-40c0-b859-dd9d30a5ff96,Mass Loss
+94,a57b8136-fd4b-4ae4-b45f-75e28a30fe9f,Weighed Mass
+95,a57b8136-fd4b-4ae4-b45f-75e28a30fe9f,Mass Loss
+96,74a073b6-59cc-4fc0-a2b5-437e048b55df,Weighed Mass
+97,74a073b6-59cc-4fc0-a2b5-437e048b55df,Mass Loss
+98,a4d1d231-fa5b-4979-a141-94e243edba8d,Weighed Mass
+99,a4d1d231-fa5b-4979-a141-94e243edba8d,Mass Loss
+100,e20a9e2a-bc3c-4684-93d2-1086047cfda1,Weighed Mass
+101,e20a9e2a-bc3c-4684-93d2-1086047cfda1,Mass Loss
+102,0e07b9dd-7d70-44d0-814b-9d1a83e49e39,Weighed Mass
+103,0e07b9dd-7d70-44d0-814b-9d1a83e49e39,Mass Loss
+104,27741ab2-07d1-4010-bf75-bc2cbc1511c5,Weighed Mass
+105,27741ab2-07d1-4010-bf75-bc2cbc1511c5,Mass Loss
+106,f8059d48-fa24-424a-ae45-7e1fbed2316e,Weighed Mass
+107,f8059d48-fa24-424a-ae45-7e1fbed2316e,Mass Loss
+108,141d2cca-f7ae-451c-aded-fdabec78613a,Weighed Mass
+109,141d2cca-f7ae-451c-aded-fdabec78613a,Mass Loss
+110,21abbfa7-152a-44e2-8610-22a77b454068,Phase
+111,21abbfa7-152a-44e2-8610-22a77b454068,Lattice Parameter
+112,21abbfa7-152a-44e2-8610-22a77b454068,"Hardness, HV"
+113,21abbfa7-152a-44e2-8610-22a77b454068,"SD, HV"
+114,bc2c2f2d-0e86-4aad-8053-fb3e6da3b191,Weighed Mass
+115,bc2c2f2d-0e86-4aad-8053-fb3e6da3b191,Mass Loss
+116,d57e11f6-2cdb-45cb-bdac-fdfeb179dc8c,Weighed Mass
+117,d57e11f6-2cdb-45cb-bdac-fdfeb179dc8c,Mass Loss
+118,faa181eb-2955-402f-b1df-70262fae9995,Weighed Mass
+119,faa181eb-2955-402f-b1df-70262fae9995,Mass Loss
+120,6e12be7d-8e9d-4807-9a34-23d90f1f3390,"Elastic Modulus, GPa"
+121,6e12be7d-8e9d-4807-9a34-23d90f1f3390,"Yield Strength, MPa"
+122,6e12be7d-8e9d-4807-9a34-23d90f1f3390,"UTS, MPa"
+123,6e12be7d-8e9d-4807-9a34-23d90f1f3390,"Elongation, %"
+124,6e12be7d-8e9d-4807-9a34-23d90f1f3390,"Strain Hardening, MPa"
+125,6e12be7d-8e9d-4807-9a34-23d90f1f3390,dUTS_dY
+126,aca074ae-3bd9-480b-b264-512c6952c436,Weighed Mass
+127,aca074ae-3bd9-480b-b264-512c6952c436,Mass Loss
+128,619639b9-927f-42f7-800a-a8462eca738b,Weighed Mass
+129,619639b9-927f-42f7-800a-a8462eca738b,Mass Loss
+130,81133c17-15ef-4e05-acca-3b505fe46068,Weighed Mass
+131,81133c17-15ef-4e05-acca-3b505fe46068,Mass Loss
+132,25b091aa-8fa3-437e-9521-980d2bf78c33,Weighed Mass
+133,25b091aa-8fa3-437e-9521-980d2bf78c33,Mass Loss
+134,58dffe0f-1e29-4db8-af34-9d7b6d11b9fe,Weighed Mass
+135,58dffe0f-1e29-4db8-af34-9d7b6d11b9fe,Mass Loss
+136,d006d6cd-4e01-44ce-85fb-f458a5104f26,Weighed Mass
+137,d006d6cd-4e01-44ce-85fb-f458a5104f26,Mass Loss
+138,2a242baa-8026-49a2-bacb-db5f1ff2efc5,Weighed Mass
+139,2a242baa-8026-49a2-bacb-db5f1ff2efc5,Mass Loss
+140,2e648836-1fe5-497f-9ae7-492118cda896,Weighed Mass
+141,2e648836-1fe5-497f-9ae7-492118cda896,Mass Loss
+142,3cb4860c-f1fc-492f-9225-07c4a7126541,Phase
+143,3cb4860c-f1fc-492f-9225-07c4a7126541,Lattice Parameter
+144,3cb4860c-f1fc-492f-9225-07c4a7126541,"Hardness, HV"
+145,3cb4860c-f1fc-492f-9225-07c4a7126541,"SD, HV"
+146,796e496f-ff2f-427d-8f88-75868e5cae69,Weighed Mass
+147,796e496f-ff2f-427d-8f88-75868e5cae69,Mass Loss
+148,7afb9f2e-a0b8-444f-b517-669ea3f369d3,Weighed Mass
+149,7afb9f2e-a0b8-444f-b517-669ea3f369d3,Mass Loss
+150,cce4e35c-f38e-44d9-9049-7ce5b33e4d79,Weighed Mass
+151,cce4e35c-f38e-44d9-9049-7ce5b33e4d79,Mass Loss
+152,c9bdc953-e954-4432-b726-ed995989acf0,Weighed Mass
+153,c9bdc953-e954-4432-b726-ed995989acf0,Mass Loss
+154,0e240e33-3e67-4408-aa5d-b27d4dfb9894,Weighed Mass
+155,0e240e33-3e67-4408-aa5d-b27d4dfb9894,Mass Loss
+156,4fb55efb-770c-4ae5-8bbe-1230a1094091,Weighed Mass
+157,4fb55efb-770c-4ae5-8bbe-1230a1094091,Mass Loss
+158,86e6e324-63ea-48a6-a06b-56426b69b461,"Elastic Modulus, GPa"
+159,86e6e324-63ea-48a6-a06b-56426b69b461,"Yield Strength, MPa"
+160,86e6e324-63ea-48a6-a06b-56426b69b461,"UTS, MPa"
+161,86e6e324-63ea-48a6-a06b-56426b69b461,"Elongation, %"
+162,86e6e324-63ea-48a6-a06b-56426b69b461,"Strain Hardening, MPa"
+163,86e6e324-63ea-48a6-a06b-56426b69b461,dUTS_dY
+164,a9e1b94f-967e-4096-91e5-b6335df56736,"Elastic Modulus, GPa"
+165,a9e1b94f-967e-4096-91e5-b6335df56736,"Yield Strength, MPa"
+166,a9e1b94f-967e-4096-91e5-b6335df56736,"UTS, MPa"
+167,a9e1b94f-967e-4096-91e5-b6335df56736,"Elongation, %"
+168,a9e1b94f-967e-4096-91e5-b6335df56736,"Strain Hardening, MPa"
+169,a9e1b94f-967e-4096-91e5-b6335df56736,dUTS_dY
+170,f98c180a-be29-4021-ad70-c9d62f2e8c89,Phase
+171,f98c180a-be29-4021-ad70-c9d62f2e8c89,Lattice Parameter
+172,f98c180a-be29-4021-ad70-c9d62f2e8c89,"Hardness, HV"
+173,f98c180a-be29-4021-ad70-c9d62f2e8c89,"SD, HV"
+174,10c0f657-6692-425f-b594-ebf360b70278,Weighed Mass
+175,10c0f657-6692-425f-b594-ebf360b70278,Mass Loss
+176,3320a4e9-58a2-4edd-86ed-18a8efdfbaeb,Weighed Mass
+177,3320a4e9-58a2-4edd-86ed-18a8efdfbaeb,Mass Loss
+178,387cc4b2-aea0-4773-8cf6-2c9ce1e89c24,Weighed Mass
+179,387cc4b2-aea0-4773-8cf6-2c9ce1e89c24,Mass Loss
+180,fcf499f2-996d-4581-9338-d94b887add28,Weighed Mass
+181,fcf499f2-996d-4581-9338-d94b887add28,Mass Loss
+182,efb96a2b-69d9-4963-8c42-4bd6a546958d,Weighed Mass
+183,efb96a2b-69d9-4963-8c42-4bd6a546958d,Mass Loss
+184,6c05bc90-6c2f-4313-8748-6698dfb05c2b,Phase
+185,6c05bc90-6c2f-4313-8748-6698dfb05c2b,Lattice Parameter
+186,6c05bc90-6c2f-4313-8748-6698dfb05c2b,"Hardness, HV"
+187,6c05bc90-6c2f-4313-8748-6698dfb05c2b,"SD, HV"
+188,9a6beabe-3c70-417d-8afc-a330a6efcd2f,Weighed Mass
+189,9a6beabe-3c70-417d-8afc-a330a6efcd2f,Mass Loss
+190,c6708c15-7d43-4cb2-848c-0e329ea341fa,Weighed Mass
+191,c6708c15-7d43-4cb2-848c-0e329ea341fa,Mass Loss
+192,261fb665-e502-4585-89bd-916cb036e54e,Weighed Mass
+193,261fb665-e502-4585-89bd-916cb036e54e,Mass Loss
+194,a67a4ecd-d6cc-4318-9896-ba8fa04301d1,Weighed Mass
+195,a67a4ecd-d6cc-4318-9896-ba8fa04301d1,Mass Loss
+196,c2da2ba1-37fc-4eee-a724-472609801fee,Weighed Mass
+197,c2da2ba1-37fc-4eee-a724-472609801fee,Mass Loss
+198,d0a30b8d-e28f-4ed3-a06f-7e6a90356513,Weighed Mass
+199,d0a30b8d-e28f-4ed3-a06f-7e6a90356513,Mass Loss
+200,f7c92476-8a7d-4e74-81f3-7d9065460ffe,Weighed Mass
+201,f7c92476-8a7d-4e74-81f3-7d9065460ffe,Mass Loss
+202,2f2de58f-6c4e-4706-9f7b-09ae6802249c,Weighed Mass
+203,2f2de58f-6c4e-4706-9f7b-09ae6802249c,Mass Loss
+204,63ce0ec3-e40e-42c8-8042-a1c4380c8e7e,Weighed Mass
+205,63ce0ec3-e40e-42c8-8042-a1c4380c8e7e,Mass Loss
+206,7d5e44af-f266-419c-89aa-df4882a07a3e,Weighed Mass
+207,7d5e44af-f266-419c-89aa-df4882a07a3e,Mass Loss
+208,98f66b85-e270-42ec-bece-9865783ce0e7,Weighed Mass
+209,98f66b85-e270-42ec-bece-9865783ce0e7,Mass Loss
+210,17e7abb9-9f40-4558-b750-608f4cf47447,Weighed Mass
+211,17e7abb9-9f40-4558-b750-608f4cf47447,Mass Loss
+212,bf5ed06a-d0b6-486e-af76-6da7b8092aa0,"Elastic Modulus, GPa"
+213,bf5ed06a-d0b6-486e-af76-6da7b8092aa0,"Yield Strength, MPa"
+214,bf5ed06a-d0b6-486e-af76-6da7b8092aa0,"UTS, MPa"
+215,bf5ed06a-d0b6-486e-af76-6da7b8092aa0,"Elongation, %"
+216,bf5ed06a-d0b6-486e-af76-6da7b8092aa0,"Strain Hardening, MPa"
+217,bf5ed06a-d0b6-486e-af76-6da7b8092aa0,dUTS_dY
+218,07e13dc7-8f1a-44d7-bec8-5097f87d460a,"Elastic Modulus, GPa"
+219,07e13dc7-8f1a-44d7-bec8-5097f87d460a,"Yield Strength, MPa"
+220,07e13dc7-8f1a-44d7-bec8-5097f87d460a,"UTS, MPa"
+221,07e13dc7-8f1a-44d7-bec8-5097f87d460a,"Elongation, %"
+222,07e13dc7-8f1a-44d7-bec8-5097f87d460a,"Strain Hardening, MPa"
+223,07e13dc7-8f1a-44d7-bec8-5097f87d460a,dUTS_dY
+224,8ba9f356-7b94-4632-b0fb-e44364f715fc,Weighed Mass
+225,8ba9f356-7b94-4632-b0fb-e44364f715fc,Mass Loss
+226,938edd3e-1e09-4072-8731-e6894b95a9ed,"Elastic Modulus, GPa"
+227,938edd3e-1e09-4072-8731-e6894b95a9ed,"Yield Strength, MPa"
+228,938edd3e-1e09-4072-8731-e6894b95a9ed,"UTS, MPa"
+229,938edd3e-1e09-4072-8731-e6894b95a9ed,"Elongation, %"
+230,938edd3e-1e09-4072-8731-e6894b95a9ed,"Strain Hardening, MPa"
+231,938edd3e-1e09-4072-8731-e6894b95a9ed,dUTS_dY
+232,af9b1d49-4aae-4231-a83c-80a8a782d35b,Weighed Mass
+233,af9b1d49-4aae-4231-a83c-80a8a782d35b,Mass Loss
+234,d1abe872-736a-46bd-b21e-31ac5f432eca,Phase
+235,d1abe872-736a-46bd-b21e-31ac5f432eca,Lattice Parameter
+236,d1abe872-736a-46bd-b21e-31ac5f432eca,"Hardness, HV"
+237,d1abe872-736a-46bd-b21e-31ac5f432eca,"SD, HV"
+238,dde39690-f5bb-47b9-97bb-6bdb18eea5f7,"Elastic Modulus, GPa"
+239,dde39690-f5bb-47b9-97bb-6bdb18eea5f7,"Yield Strength, MPa"
+240,dde39690-f5bb-47b9-97bb-6bdb18eea5f7,"UTS, MPa"
+241,dde39690-f5bb-47b9-97bb-6bdb18eea5f7,"Elongation, %"
+242,dde39690-f5bb-47b9-97bb-6bdb18eea5f7,"Strain Hardening, MPa"
+243,dde39690-f5bb-47b9-97bb-6bdb18eea5f7,dUTS_dY
+244,0f324e59-64e9-4d15-a3f2-16f5bae27aec,Weighed Mass
+245,0f324e59-64e9-4d15-a3f2-16f5bae27aec,Mass Loss
+246,5b1c3b64-e561-43bd-a4af-7f4e751c714a,Weighed Mass
+247,5b1c3b64-e561-43bd-a4af-7f4e751c714a,Mass Loss
+248,abf35264-289f-4b4a-b96b-2f9e8403cf8b,Weighed Mass
+249,abf35264-289f-4b4a-b96b-2f9e8403cf8b,Mass Loss
+250,548a52db-ed9b-448a-b667-db5c6e0c7465,"Elastic Modulus, GPa"
+251,548a52db-ed9b-448a-b667-db5c6e0c7465,"Yield Strength, MPa"
+252,548a52db-ed9b-448a-b667-db5c6e0c7465,"UTS, MPa"
+253,548a52db-ed9b-448a-b667-db5c6e0c7465,"Elongation, %"
+254,548a52db-ed9b-448a-b667-db5c6e0c7465,"Strain Hardening, MPa"
+255,548a52db-ed9b-448a-b667-db5c6e0c7465,dUTS_dY
+256,6c420fb9-14dd-4d56-9385-f9bd5fb7229f,"Elastic Modulus, GPa"
+257,6c420fb9-14dd-4d56-9385-f9bd5fb7229f,"Yield Strength, MPa"
+258,6c420fb9-14dd-4d56-9385-f9bd5fb7229f,"UTS, MPa"
+259,6c420fb9-14dd-4d56-9385-f9bd5fb7229f,"Elongation, %"
+260,6c420fb9-14dd-4d56-9385-f9bd5fb7229f,"Strain Hardening, MPa"
+261,6c420fb9-14dd-4d56-9385-f9bd5fb7229f,dUTS_dY
+262,9a7600ec-e324-40c7-842d-2bc0ab68e470,Weighed Mass
+263,9a7600ec-e324-40c7-842d-2bc0ab68e470,Mass Loss
+264,409f811e-6925-4698-a3d5-b054bc13aa9f,Weighed Mass
+265,409f811e-6925-4698-a3d5-b054bc13aa9f,Mass Loss
+266,6634c728-56c2-40f5-a381-3cd4298f932f,Weighed Mass
+267,6634c728-56c2-40f5-a381-3cd4298f932f,Mass Loss
+268,8d7d5af2-6b04-463a-ac4e-56e1beb17d3f,Weighed Mass
+269,8d7d5af2-6b04-463a-ac4e-56e1beb17d3f,Mass Loss
+270,afc225e2-3382-4dd1-a097-7baefa6b6d09,"Elastic Modulus, GPa"
+271,afc225e2-3382-4dd1-a097-7baefa6b6d09,"Yield Strength, MPa"
+272,afc225e2-3382-4dd1-a097-7baefa6b6d09,"UTS, MPa"
+273,afc225e2-3382-4dd1-a097-7baefa6b6d09,"Elongation, %"
+274,afc225e2-3382-4dd1-a097-7baefa6b6d09,"Strain Hardening, MPa"
+275,afc225e2-3382-4dd1-a097-7baefa6b6d09,dUTS_dY
+276,df1da267-619a-42f5-9fac-4ddc9ede30d0,Weighed Mass
+277,df1da267-619a-42f5-9fac-4ddc9ede30d0,Mass Loss
+278,0b39e64e-7735-4680-9f30-7e4520c3589f,Phase
+279,0b39e64e-7735-4680-9f30-7e4520c3589f,Lattice Parameter
+280,0b39e64e-7735-4680-9f30-7e4520c3589f,"Hardness, HV"
+281,0b39e64e-7735-4680-9f30-7e4520c3589f,"SD, HV"
+282,39aadd9e-b5da-408d-8a17-f67e2983318a,Weighed Mass
+283,39aadd9e-b5da-408d-8a17-f67e2983318a,Mass Loss
+284,b3c02bc1-bbfc-49dd-a937-1586b11a9561,"Elastic Modulus, GPa"
+285,b3c02bc1-bbfc-49dd-a937-1586b11a9561,"Yield Strength, MPa"
+286,b3c02bc1-bbfc-49dd-a937-1586b11a9561,"UTS, MPa"
+287,b3c02bc1-bbfc-49dd-a937-1586b11a9561,"Elongation, %"
+288,b3c02bc1-bbfc-49dd-a937-1586b11a9561,"Strain Hardening, MPa"
+289,b3c02bc1-bbfc-49dd-a937-1586b11a9561,dUTS_dY
+290,cb6ae495-c630-4a11-b687-2a1b74ec1d06,Weighed Mass
+291,cb6ae495-c630-4a11-b687-2a1b74ec1d06,Mass Loss
+292,32ab6499-5191-4cf7-8380-36fef3228d79,Weighed Mass
+293,32ab6499-5191-4cf7-8380-36fef3228d79,Mass Loss
+294,fc8ba492-f5b8-4eac-b0a0-3073ff8d1c56,Weighed Mass
+295,fc8ba492-f5b8-4eac-b0a0-3073ff8d1c56,Mass Loss
+296,ef8e7a54-3646-4521-b3c4-21a15196a3b8,"Elastic Modulus, GPa"
+297,ef8e7a54-3646-4521-b3c4-21a15196a3b8,"Yield Strength, MPa"
+298,ef8e7a54-3646-4521-b3c4-21a15196a3b8,"UTS, MPa"
+299,ef8e7a54-3646-4521-b3c4-21a15196a3b8,"Elongation, %"
+300,ef8e7a54-3646-4521-b3c4-21a15196a3b8,"Strain Hardening, MPa"
+301,ef8e7a54-3646-4521-b3c4-21a15196a3b8,dUTS_dY
+302,2c40e9a0-b11c-4459-87cb-6ee7189184ac,"Elastic Modulus, GPa"
+303,2c40e9a0-b11c-4459-87cb-6ee7189184ac,"Yield Strength, MPa"
+304,2c40e9a0-b11c-4459-87cb-6ee7189184ac,"UTS, MPa"
+305,2c40e9a0-b11c-4459-87cb-6ee7189184ac,"Elongation, %"
+306,2c40e9a0-b11c-4459-87cb-6ee7189184ac,"Strain Hardening, MPa"
+307,2c40e9a0-b11c-4459-87cb-6ee7189184ac,dUTS_dY
+308,2fa8af00-58d7-4a16-8524-83dc36047e89,Weighed Mass
+309,2fa8af00-58d7-4a16-8524-83dc36047e89,Mass Loss
+310,7e22f80e-8b52-48de-a36e-7f680119cdab,Weighed Mass
+311,7e22f80e-8b52-48de-a36e-7f680119cdab,Mass Loss
+312,f3dbddf5-856b-4591-b90e-b272aca58a4a,"Elastic Modulus, GPa"
+313,f3dbddf5-856b-4591-b90e-b272aca58a4a,"Yield Strength, MPa"
+314,f3dbddf5-856b-4591-b90e-b272aca58a4a,"UTS, MPa"
+315,f3dbddf5-856b-4591-b90e-b272aca58a4a,"Elongation, %"
+316,f3dbddf5-856b-4591-b90e-b272aca58a4a,"Strain Hardening, MPa"
+317,f3dbddf5-856b-4591-b90e-b272aca58a4a,dUTS_dY
+318,35c88c66-89ef-499c-8621-1d284bd0b661,Weighed Mass
+319,35c88c66-89ef-499c-8621-1d284bd0b661,Mass Loss
+320,62ad9728-f350-436b-a4f7-ec2caa51e540,Weighed Mass
+321,62ad9728-f350-436b-a4f7-ec2caa51e540,Mass Loss
+322,bdccbc59-1153-4a60-8a5b-885e1a3b2f54,Weighed Mass
+323,bdccbc59-1153-4a60-8a5b-885e1a3b2f54,Mass Loss
+324,e6042711-a959-42f4-a0c7-0c042aa7be74,Weighed Mass
+325,e6042711-a959-42f4-a0c7-0c042aa7be74,Mass Loss
+326,20093067-d402-442b-9f45-4894bf0a04e5,Weighed Mass
+327,20093067-d402-442b-9f45-4894bf0a04e5,Mass Loss
+328,27f96c6f-3499-4c9b-ad90-c05762983e5f,Weighed Mass
+329,27f96c6f-3499-4c9b-ad90-c05762983e5f,Mass Loss
+330,eaed1955-65b2-4603-85ce-913ce57484fb,Phase
+331,eaed1955-65b2-4603-85ce-913ce57484fb,Lattice Parameter
+332,eaed1955-65b2-4603-85ce-913ce57484fb,"Hardness, HV"
+333,eaed1955-65b2-4603-85ce-913ce57484fb,"SD, HV"
+334,474cb3db-c4bc-449a-961e-cf837f1ea136,Weighed Mass
+335,474cb3db-c4bc-449a-961e-cf837f1ea136,Mass Loss
+336,6c5f64f3-8d8c-4e97-9c64-ff1586d0351c,Weighed Mass
+337,6c5f64f3-8d8c-4e97-9c64-ff1586d0351c,Mass Loss
+338,b1601dbd-6db3-44ce-9fe9-fcfee3b9982a,Weighed Mass
+339,b1601dbd-6db3-44ce-9fe9-fcfee3b9982a,Mass Loss
+340,f675773e-bceb-48a4-a607-40fde79b57ad,Weighed Mass
+341,f675773e-bceb-48a4-a607-40fde79b57ad,Mass Loss
+342,10df93f2-3785-49e6-a816-c8561ff6d636,Weighed Mass
+343,10df93f2-3785-49e6-a816-c8561ff6d636,Mass Loss
+344,8e9d55bb-c333-4e33-bfd8-8c4996ef427a,"Elastic Modulus, GPa"
+345,8e9d55bb-c333-4e33-bfd8-8c4996ef427a,"Yield Strength, MPa"
+346,8e9d55bb-c333-4e33-bfd8-8c4996ef427a,"UTS, MPa"
+347,8e9d55bb-c333-4e33-bfd8-8c4996ef427a,"Elongation, %"
+348,8e9d55bb-c333-4e33-bfd8-8c4996ef427a,"Strain Hardening, MPa"
+349,8e9d55bb-c333-4e33-bfd8-8c4996ef427a,dUTS_dY
+350,eaabd5df-4599-4b87-bd8d-e54efabd8b97,Weighed Mass
+351,eaabd5df-4599-4b87-bd8d-e54efabd8b97,Mass Loss
+352,fd673d97-8bbc-4c12-95f4-5384ff33c312,Weighed Mass
+353,fd673d97-8bbc-4c12-95f4-5384ff33c312,Mass Loss
+354,f0c7e6ef-f47f-4292-a820-f0bae2fd020b,Weighed Mass
+355,f0c7e6ef-f47f-4292-a820-f0bae2fd020b,Mass Loss
+356,563b9444-5c75-4668-a6a5-094aacaf419f,Weighed Mass
+357,563b9444-5c75-4668-a6a5-094aacaf419f,Mass Loss
+358,b294a6e3-989f-45e0-a9ca-310a98dd4aa3,Weighed Mass
+359,b294a6e3-989f-45e0-a9ca-310a98dd4aa3,Mass Loss
+360,c9d7fcc1-4f54-411e-863c-fbc46d277540,Weighed Mass
+361,c9d7fcc1-4f54-411e-863c-fbc46d277540,Mass Loss
+362,f7bb67d4-1005-4889-9d3f-70382d2c8841,Weighed Mass
+363,f7bb67d4-1005-4889-9d3f-70382d2c8841,Mass Loss
+364,09d4568e-a3b2-4cd5-a048-942551673a05,Weighed Mass
+365,09d4568e-a3b2-4cd5-a048-942551673a05,Mass Loss
+366,56503a6b-2a4b-46f9-b62a-27090c83360e,Phase
+367,56503a6b-2a4b-46f9-b62a-27090c83360e,Lattice Parameter
+368,56503a6b-2a4b-46f9-b62a-27090c83360e,"Hardness, HV"
+369,56503a6b-2a4b-46f9-b62a-27090c83360e,"SD, HV"
+370,a8e9b606-abed-4d64-bf45-70a50263be35,Weighed Mass
+371,a8e9b606-abed-4d64-bf45-70a50263be35,Mass Loss
+372,ca321622-e9bc-4c24-aff1-636b8e2dac91,Weighed Mass
+373,ca321622-e9bc-4c24-aff1-636b8e2dac91,Mass Loss
+374,191694cc-e1a5-4e17-9638-73dd13008f5b,Weighed Mass
+375,191694cc-e1a5-4e17-9638-73dd13008f5b,Mass Loss
+376,2924dafc-d7e2-44ef-ad06-8ef6a116335e,Weighed Mass
+377,2924dafc-d7e2-44ef-ad06-8ef6a116335e,Mass Loss
+378,76c1cbc8-67cf-4b6d-a67d-70a3eda373c6,"Elastic Modulus, GPa"
+379,76c1cbc8-67cf-4b6d-a67d-70a3eda373c6,"Yield Strength, MPa"
+380,76c1cbc8-67cf-4b6d-a67d-70a3eda373c6,"UTS, MPa"
+381,76c1cbc8-67cf-4b6d-a67d-70a3eda373c6,"Elongation, %"
+382,76c1cbc8-67cf-4b6d-a67d-70a3eda373c6,"Strain Hardening, MPa"
+383,76c1cbc8-67cf-4b6d-a67d-70a3eda373c6,dUTS_dY
+384,238333c4-f2b1-4bbf-9f27-940712eb0ef5,Weighed Mass
+385,238333c4-f2b1-4bbf-9f27-940712eb0ef5,Mass Loss
+386,29bc82cf-8d94-4339-bef8-b14fab2360d8,"Elastic Modulus, GPa"
+387,29bc82cf-8d94-4339-bef8-b14fab2360d8,"Yield Strength, MPa"
+388,29bc82cf-8d94-4339-bef8-b14fab2360d8,"UTS, MPa"
+389,29bc82cf-8d94-4339-bef8-b14fab2360d8,"Elongation, %"
+390,29bc82cf-8d94-4339-bef8-b14fab2360d8,"Strain Hardening, MPa"
+391,29bc82cf-8d94-4339-bef8-b14fab2360d8,dUTS_dY
+392,70ebc0bb-8db9-4e3a-a723-f78b193810eb,Weighed Mass
+393,70ebc0bb-8db9-4e3a-a723-f78b193810eb,Mass Loss
+394,772cae9f-821a-48c8-92e5-c418163ea22a,"Elastic Modulus, GPa"
+395,772cae9f-821a-48c8-92e5-c418163ea22a,"Yield Strength, MPa"
+396,772cae9f-821a-48c8-92e5-c418163ea22a,"UTS, MPa"
+397,772cae9f-821a-48c8-92e5-c418163ea22a,"Elongation, %"
+398,772cae9f-821a-48c8-92e5-c418163ea22a,"Strain Hardening, MPa"
+399,772cae9f-821a-48c8-92e5-c418163ea22a,dUTS_dY
+400,794923b3-148c-4eae-bbd9-7da4b5a939ae,Weighed Mass
+401,794923b3-148c-4eae-bbd9-7da4b5a939ae,Mass Loss
+402,2cb2c691-5edf-4e59-b83f-3f3e003242b6,Weighed Mass
+403,2cb2c691-5edf-4e59-b83f-3f3e003242b6,Mass Loss
+404,795cea22-772c-4c38-a7a6-593ba96b9f27,"Elastic Modulus, GPa"
+405,795cea22-772c-4c38-a7a6-593ba96b9f27,"Yield Strength, MPa"
+406,795cea22-772c-4c38-a7a6-593ba96b9f27,"UTS, MPa"
+407,795cea22-772c-4c38-a7a6-593ba96b9f27,"Elongation, %"
+408,795cea22-772c-4c38-a7a6-593ba96b9f27,"Strain Hardening, MPa"
+409,795cea22-772c-4c38-a7a6-593ba96b9f27,dUTS_dY
+410,cc32b252-7f01-4eee-9bdb-a8bf04e67271,Phase
+411,cc32b252-7f01-4eee-9bdb-a8bf04e67271,Lattice Parameter
+412,cc32b252-7f01-4eee-9bdb-a8bf04e67271,"Hardness, HV"
+413,cc32b252-7f01-4eee-9bdb-a8bf04e67271,"SD, HV"
+414,c88efbda-4109-4c74-aa27-828190b33795,Weighed Mass
+415,c88efbda-4109-4c74-aa27-828190b33795,Mass Loss
+416,3d0a2832-7599-423d-82cd-77c266524ac4,"Elastic Modulus, GPa"
+417,3d0a2832-7599-423d-82cd-77c266524ac4,"Yield Strength, MPa"
+418,3d0a2832-7599-423d-82cd-77c266524ac4,"UTS, MPa"
+419,3d0a2832-7599-423d-82cd-77c266524ac4,"Elongation, %"
+420,3d0a2832-7599-423d-82cd-77c266524ac4,"Strain Hardening, MPa"
+421,3d0a2832-7599-423d-82cd-77c266524ac4,dUTS_dY
+422,45212daf-f363-44be-bc16-86eeb1a4d5fd,"Elastic Modulus, GPa"
+423,45212daf-f363-44be-bc16-86eeb1a4d5fd,"Yield Strength, MPa"
+424,45212daf-f363-44be-bc16-86eeb1a4d5fd,"UTS, MPa"
+425,45212daf-f363-44be-bc16-86eeb1a4d5fd,"Elongation, %"
+426,45212daf-f363-44be-bc16-86eeb1a4d5fd,"Strain Hardening, MPa"
+427,45212daf-f363-44be-bc16-86eeb1a4d5fd,dUTS_dY
+428,7a454cfa-2db6-4cd5-8759-40d12c6e5039,Weighed Mass
+429,7a454cfa-2db6-4cd5-8759-40d12c6e5039,Mass Loss
+430,84bba37a-90e2-4cdc-a7ee-6100b5b6f577,"Elastic Modulus, GPa"
+431,84bba37a-90e2-4cdc-a7ee-6100b5b6f577,"Yield Strength, MPa"
+432,84bba37a-90e2-4cdc-a7ee-6100b5b6f577,"UTS, MPa"
+433,84bba37a-90e2-4cdc-a7ee-6100b5b6f577,"Elongation, %"
+434,84bba37a-90e2-4cdc-a7ee-6100b5b6f577,"Strain Hardening, MPa"
+435,84bba37a-90e2-4cdc-a7ee-6100b5b6f577,dUTS_dY
+436,d95d6bfe-69e2-4bc7-9a1b-f03f514e05d0,Weighed Mass
+437,d95d6bfe-69e2-4bc7-9a1b-f03f514e05d0,Mass Loss
+438,df9cd909-0ba6-4614-bcf9-f19e6a90ce1f,"Elastic Modulus, GPa"
+439,df9cd909-0ba6-4614-bcf9-f19e6a90ce1f,"Yield Strength, MPa"
+440,df9cd909-0ba6-4614-bcf9-f19e6a90ce1f,"UTS, MPa"
+441,df9cd909-0ba6-4614-bcf9-f19e6a90ce1f,"Elongation, %"
+442,df9cd909-0ba6-4614-bcf9-f19e6a90ce1f,"Strain Hardening, MPa"
+443,df9cd909-0ba6-4614-bcf9-f19e6a90ce1f,dUTS_dY
+444,3766b3b9-b01a-4569-b8d3-6336862d68b2,Weighed Mass
+445,3766b3b9-b01a-4569-b8d3-6336862d68b2,Mass Loss
+446,a13dacf7-1392-4baa-b9c2-74e2e094d143,Weighed Mass
+447,a13dacf7-1392-4baa-b9c2-74e2e094d143,Mass Loss
+448,d306c6c0-896c-45f9-ad97-c7a3d70f06a2,Weighed Mass
+449,d306c6c0-896c-45f9-ad97-c7a3d70f06a2,Mass Loss
+450,ef888c15-e205-46de-8c7e-6946e1f877ac,Phase
+451,ef888c15-e205-46de-8c7e-6946e1f877ac,Lattice Parameter
+452,ef888c15-e205-46de-8c7e-6946e1f877ac,"Hardness, HV"
+453,ef888c15-e205-46de-8c7e-6946e1f877ac,"SD, HV"
+454,df5e1f3d-27de-4ca3-a365-52ab373a62bb,Phase
+455,df5e1f3d-27de-4ca3-a365-52ab373a62bb,Lattice Parameter
+456,df5e1f3d-27de-4ca3-a365-52ab373a62bb,"Hardness, HV"
+457,df5e1f3d-27de-4ca3-a365-52ab373a62bb,"SD, HV"
