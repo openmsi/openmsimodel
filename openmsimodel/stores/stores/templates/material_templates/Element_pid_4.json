@@ -4,7 +4,7 @@
    "properties": [
       [
          {
-            "id": "34f53a4a-3eba-47a9-8b52-debcb047c520",
+            "id": "12922ebb-f950-4fe6-9d0a-3b6d19de4340",
             "scope": "auto",
             "type": "link_by_uid"
          },
@@ -12,7 +12,7 @@
       ],
       [
          {
-            "id": "d964758d-eec0-43c7-af2a-2fd56c35b524",
+            "id": "aae7b2c2-b0f7-4a6a-83b7-83da2b97fa9c",
             "scope": "auto",
             "type": "link_by_uid"
          },
@@ -22,7 +22,7 @@
    "tags": [],
    "type": "material_template",
    "uids": {
-      "auto": "d6565184-0bc0-45ff-8194-a5db4d007a90",
+      "auto": "c3ac8d1d-1d0a-4d17-8f02-397699c0b3a5",
       "persistent_id": 4
    }
 }

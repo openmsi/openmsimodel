@@ -7,7 +7,7 @@
    "parameters": [
       [
          {
-            "id": "c28fb9bc-3ae6-40f6-b93d-4158a915cf99",
+            "id": "0f0cbcab-9165-46e9-bcb1-1ce997cc86a0",
             "scope": "auto",
             "type": "link_by_uid"
          },
@@ -15,7 +15,7 @@
       ],
       [
          {
-            "id": "ed792041-1b86-4a7b-b4d1-f6ea4219a8b3",
+            "id": "2724fc3c-bbe6-431e-b731-5ad935e7325d",
             "scope": "auto",
             "type": "link_by_uid"
          },
@@ -23,7 +23,7 @@
       ],
       [
          {
-            "id": "4b980ff6-c705-4caf-b33a-7e693767727d",
+            "id": "988730dc-b0c7-4e61-9488-551d38ac0670",
             "scope": "auto",
             "type": "link_by_uid"
          },
@@ -31,7 +31,7 @@
       ],
       [
          {
-            "id": "20c3e27c-680e-42c1-99b8-082664f37d53",
+            "id": "a913543c-3183-494f-973c-28d2fded9d76",
             "scope": "auto",
             "type": "link_by_uid"
          },
@@ -39,7 +39,7 @@
       ],
       [
          {
-            "id": "1e6353da-8690-45f5-ab0a-36201a45b2e0",
+            "id": "e6bc72ac-fed4-440a-8bd8-c7775605ab6f",
             "scope": "auto",
             "type": "link_by_uid"
          },
@@ -49,7 +49,7 @@
    "tags": [],
    "type": "process_template",
    "uids": {
-      "auto": "794a4321-db28-4e49-84d0-618327879829",
+      "auto": "02c0a3d1-a912-4d83-a46a-b1e89a2d48ad",
       "persistent_id": 27
    }
 }

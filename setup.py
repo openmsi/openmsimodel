@@ -37,6 +37,7 @@ setupkwargs = dict(
         "ipython",
         "ipykernel",
         "openpyxl",
+        "pygraphviz",
     ],
     extras_require={},
 )
