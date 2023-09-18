@@ -54,6 +54,7 @@ import pandas as pd
 from pathlib import Path
 from collections import defaultdict
 import time
+import sys
 
 from gemd.entity.object import MaterialRun, ProcessRun, IngredientRun, MeasurementRun
 from gemd.entity.attribute import Property, Parameter, Condition, PropertyAndConditions
@@ -80,24 +81,23 @@ from gemd.util.impl import recursive_foreach
 
 
 class BIRDSHOTWorfklow(Workflow, FolderOrFile):
-    def __init__(self, root, output, iteration, sample_data_folder):
+    def __init__(self, root, output, iteration, synthesis_path, srjt_path):
         """
         this function represents a TAMU workflow, from a list of compositions to tests, through their
         VAM and DED fabrications, their splits into travelers for numerous characterizations, all the way to
         using the characterization results to infer the next compositions using BO.
         :param iteration: the iteration of the workflow (i.e., AAB)
-        :param sample_data_folder: the folder containing the sample data (i.e., /Sample Data/Iteration2_AAB)
+        :param synthesis_path: the path to synthesis file (i.e., /Sample Data/Iteration2_AAB/HTMDEC AAB Summary Synthesis Results)
+        :param srjt_path: the path to sjrt file
         """
         Workflow.__init__(self)
-        FolderOrFile.__init__(self, root, parent_path=None, is_last=False)
         # self.root gets set in FolderOrFile
-        # self.output = args["output"]
+        FolderOrFile.__init__(self, root, parent_path=None, is_last=False)
         self.encoder = GEMDJson()
         self.output = Path(output)
-        # self.iteration = args["iteration"]
         self.iteration = iteration
-        # self.sample_data_folder = args["sample_data_folder"]
-        self.sample_data_folder = sample_data_folder
+        self.synthesis_path = Path(synthesis_path)
+        self.srjt_path = Path(srjt_path)
         recursive_dict = lambda: defaultdict(recursive_dict)
         self.subs = recursive_dict()  # overwrite
         self.terminal_blocks = recursive_dict()  # overwrite
@@ -114,14 +114,14 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         self.testing_mode = False
 
     def build(self):
-        # initialize the folder to dump the GEMD json files
-        if os.path.exists(self.output):
-            shutil.rmtree(self.output)
-
         # ingesting the results of the summary sheet, which is associated with each composition space, and workflow object
-        self.ingest_synthesis_results(self.iteration)  # TODO: move to helpers?
+        ingest_synthesis_results(
+            self.iteration, self.synthesis_path, self.file_links, self.measurements
+        )
 
-        # block 1: first infer_compositions_block
+        ingest_sjrt_results()
+
+        ############## block 1: first infer_compositions_block
         def create_infer_compositions_block():
             # collecting all the compositions in the composition space to be assigned as tags
             compositions_tags = []
@@ -168,11 +168,14 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
             inferred_alloy_compositions,
         ) = create_infer_compositions_block()
 
+        self.subs[infer_compositions_block.name] = infer_compositions_block
+
         # extracting tree structure to build the model up
         count = 0
         path_offset = 6
-        tree_folders_and_files = self.make_tree(FolderOrFile, Path(self.root))
+        tree_folders_and_files = self.make_tree(FolderOrFile, self.root)
 
+        ############## blocks from 2 to (n-3)
         # looping through all the folders and files in the tree structure
         for item in tree_folders_and_files:
             item_path = str(item.root)
@@ -198,11 +201,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
                         composition_id = split_item_path[path_offset + 4]
                 else:
                     composition_id = split_item_path[path_offset + 3]
-                self.subs[composition_id][fabrication_method][batch][
-                    infer_compositions_block.name
-                ] = infer_compositions_block
                 if (item.depth == 4 and not is_ded) or (item.depth == 5 and is_ded):
-                    self.setup_subfolder(composition_id, batch, fabrication_method)
                     if onlyfiles:
                         self.process(
                             item_path,
@@ -244,7 +243,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
 
         add_average_tensile_measurement()
 
-        # block -3: aggregation of traveler samples by category
+        ############## block -3: aggregation of traveler samples by category
         def extract_traveler_samples_blocks():
             traveler_samples_blocks = defaultdict(lambda: [])
             for composition_id in self.terminal_blocks.keys():
@@ -293,7 +292,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
                 )
             terminal_blocks.append(aggregate_traveler_samples_block)
 
-        # block -2: aggregation of summary sheet block
+        ############## block -2: aggregation of summary sheet block
         aggregate_summary_sheet_process = AggregateSummarySheet("Aggregate sheet")
         summary_sheet_material = SummarySheet("Summary sheet")
         aggregate_summary_sheet_block = ProcessBlock(
@@ -311,14 +310,6 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
             and converts them to ingredients to the next process, which is aggregation the summary sheet block, a
             and which will ultimately be used for the Bayesian optimization process.
             """
-            # for composition_id in self.terminal_blocks.keys():
-            #     for fabrication_method in self.terminal_blocks[composition_id].keys():
-            #         for batch in self.terminal_blocks[composition_id][
-            #             fabrication_method
-            #         ].keys():
-            #             terminal_block = self.terminal_blocks[composition_id][
-            #                 fabrication_method
-            #             ][batch]
             for terminal_block in terminal_blocks:
                 ingredient_name = "{} Ing.".format(terminal_block.material._run.name)
                 ingredient = Ingredient(ingredient_name)
@@ -330,14 +321,14 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
             self.subs[
                 aggregate_summary_sheet_block.name
             ] = aggregate_summary_sheet_block
-            self.terminal_blocks[
-                aggregate_summary_sheet_block.name
-            ] = aggregate_summary_sheet_block
+            # self.terminal_blocks[
+            #     aggregate_summary_sheet_block.name
+            # ] = aggregate_summary_sheet_block
 
         # an important step to link all the measurements on traveler samples to the summary sheet of the NEXT iteration
         link_traveler_samples_to_summary_sheet()
 
-        # block -1: Bayesian Optimization block
+        ############## block -1: Bayesian Optimization block
         summary_sheet_ingredient_name = aggregate_summary_sheet_block.material._run.name
         summary_sheet_ingredient = Ingredient(
             "{} Ing.".format(summary_sheet_ingredient_name)
@@ -349,6 +340,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
             ingredients=[summary_sheet_ingredient],
             process=infer_compositions_process,
             material=None,
+            _type="action",
         )
 
         infer_next_compositions_block.link_within()
@@ -356,39 +348,10 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
             aggregate_summary_sheet_block,
             ingredient_name_to_link=summary_sheet_ingredient._run.name,
         )
-        self.terminal_blocks[
-            aggregate_summary_sheet_block.name
-        ] = aggregate_summary_sheet_block
         self.subs[aggregate_summary_sheet_block.name] = aggregate_summary_sheet_block
 
-        # dumping
-        # self.thin_structured_dumps()
-        self.local_out_destination = self.output / "unstructured/thin"
-        if not os.path.exists(self.local_out_destination):
-            os.makedirs(self.local_out_destination)
-        self.thin_dumps(infer_next_compositions_block.process.run)
-        # self.local_out_destination = self.output / "unstructured/raw"
-        # if not os.path.exists(self.local_out_destination):
-        #     os.makedirs(self.local_out_destination)
-        # self.dumps(infer_next_compositions_block.process.run)
-
-        # def set_terminal_blocks():
-        #     """
-        #     this is the functions that helps set the last terminal blocks.
-        #     terminal blocks are updated as the model is built, but these are the true last blocks of this workflow.
-        #     """
-        #     for composition_id in self.terminal_blocks.keys():
-        #         for fabrication_method in self.terminal_blocks[composition_id].keys():
-        #             for batch in self.terminal_blocks[composition_id][
-        #                 fabrication_method
-        #             ].keys():
-        #                 self.subs[composition_id][fabrication_method][batch][
-        #                     infer_next_compositions_block.name
-        #                 ] = infer_next_compositions_block
-        #                 self.terminal_blocks[composition_id][fabrication_method][
-        #                     batch
-        #                 ] = infer_next_compositions_block
-        # set_terminal_blocks()
+        # assigning terminal material
+        self.terminal_material = infer_next_compositions_block.process.run
 
     def process(
         self,
@@ -444,9 +407,9 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
             short_name,
             alloy_common_name,
             common_tags,
-        ) = self.return_common_items(composition_id, fabrication_method, batch, yymm)
+        ) = return_common_items(composition_id, fabrication_method, batch, yymm)
 
-        # block 1: Selecting composition
+        ############## block 1: Selecting composition
         inferred_alloy_compositions_ingredient_name = "{} Ing.".format(
             inferred_alloy_compositions._spec.name
         )
@@ -502,7 +465,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         )
 
         block1 = ProcessBlock(
-            name="Selecting Composition",
+            name=f"Selecting Composition {composition_id}",
             workflow=self,
             ingredients=[inferred_alloy_compositions_ingredient],
             process=select_composition_process,
@@ -513,9 +476,9 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
             prior_block,
             ingredient_name_to_link=inferred_alloy_compositions_ingredient_name,
         )
-        self.subs[composition_id][fabrication_method][batch][block1.name] = block1
+        self.subs[block1.name] = block1
 
-        # block 2: Weighting + aggregating (or buying) materials (one to many)
+        ############## block 2: Weighting + aggregating (or buying) materials (one to many)
         composition_elements = []
         parallel_block2s = []
         composition_ingredient_name = "{} Ing.".format(composition_material._spec.name)
@@ -526,7 +489,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         ) in composition_tags:  # TODO: if aggregate_or_buy
             composition_ingredient = Ingredient(composition_ingredient_name)
             aggregating_material_process = AggregateMaterial(
-                f"Aggregating {element_name} for {short_name}"
+                f"Aggregating {element_name} for {composition_id}"
             )
             aggregating_material_process._set_tags(
                 tags=common_tags,
@@ -610,15 +573,16 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
                 process=aggregating_material_process,
                 material=composition_element_material,
                 measurements=[weighting_measurement],
+                _type="action",
             )
             block2.link_within()
             block2.link_prior(
                 block1, ingredient_name_to_link=composition_ingredient_name
             )
             parallel_block2s.append(block2)
-            self.subs[composition_id][fabrication_method][batch][block2.name] = block2
+            self.subs[block2.name] = block2
 
-        # block 3 : mixing
+        ############## block 3 : mixing
         composition_element_ingredients = []
         for composition_element_material in composition_elements:
             composition_element_ingredient_name = "{} Ing.".format(
@@ -628,7 +592,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
                 composition_element_ingredient_name
             )
             composition_element_ingredients.append(composition_element_ingredient)
-        mixing_process = Mixing("Mix elemts of {}".format(composition_id))
+        mixing_process = Mixing(f"Mix elements of {composition_id}")
         mixing_process._set_tags(
             tags=common_tags,
             spec_or_run=mixing_process.run,
@@ -639,7 +603,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
             spec_or_run=alloy_material.run,
         )
         block3 = ProcessBlock(
-            name="Mix Elements",
+            name="Mix elements of {}".format(composition_id),
             workflow=self,
             ingredients=composition_element_ingredients,
             process=mixing_process,
@@ -652,9 +616,9 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
                 block,
                 ingredient_name_to_link=composition_element_ingredients[i]._run.name,
             )
-        self.subs[composition_id][fabrication_method][batch][block3.name] = block3
+        self.subs[block3.name] = block3
 
-        # block 4 : fabrication
+        ############## block 4 : fabrication
         if fabrication_method == "VAM":
             self.process_vam(
                 composition_id,
@@ -678,7 +642,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         alloy_common_name,
         prior_block,
     ):
-        # block 4
+        ############## block 4
         melted_alloy_properties = synthesis_details["data"]["Arc Melting"]["   "]
 
         arc_melting_metadata = synthesis_details["data"]["Arc Melting"][" "]
@@ -792,9 +756,9 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         block4.link_within()
         block4.link_prior(prior_block, ingredient_name_to_link=alloy_ingredient_name)
 
-        self.subs[composition_id][fabrication_method][batch][block4.name] = block4
+        self.subs[block4.name] = block4
 
-        # block 5
+        ############## block 5
         homogenization_metadata = processing_details["data"]["Homogenization"][
             "Process Overview"
         ]
@@ -913,9 +877,9 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         )
         block5.link_within()
         block5.link_prior(block4, ingredient_name_to_link=melted_alloy_ingredient_name)
-        self.subs[composition_id][fabrication_method][batch][block5.name] = block5
+        self.subs[block5.name] = block5
 
-        # block 6
+        ############## block 6
         forging_metadata = processing_details["data"]["Forging"]["Process Overview"]
         forging_performed_source = PerformedSource(
             forging_metadata["Completed By"],
@@ -1044,9 +1008,9 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         block6.link_prior(
             block5, ingredient_name_to_link=homogenized_alloy_ingredient_name
         )
-        self.subs[composition_id][fabrication_method][batch][block6.name] = block6
+        self.subs[block6.name] = block6
 
-        # block 7
+        ############## block 7
         forged_alloy_ingredient_name = "Forged {} Ing.".format(alloy_common_name)
         forged_alloy_ingredient = Ingredient(forged_alloy_ingredient_name)
         setting_traveler_process = SettingTraveler(
@@ -1070,7 +1034,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         )
         block7.link_within()
         block7.link_prior(block6, ingredient_name_to_link=forged_alloy_ingredient_name)
-        self.subs[composition_id][fabrication_method][batch][block7.name] = block7
+        self.subs[block7.name] = block7
         self.terminal_blocks[composition_id][fabrication_method][batch] = block7
 
     def process_measurement(
@@ -1101,9 +1065,12 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
                     not_empty = True
                     break
 
-        _, _, alloy_common_name, common_tags = self.return_common_items(
-            composition_id, fabrication_method, batch
-        )
+        (
+            long_name,
+            short_name,
+            alloy_common_name,
+            common_tags,
+        ) = return_common_items(composition_id, fabrication_method, batch)
 
         if not_empty:
             measurement_name = item_path.split("/")[-1]
@@ -1165,9 +1132,9 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
                         which="run",
                     )
 
-            block = ProcessBlock(
-                name="Set T. Sample for {} ({}) charact.".format(
-                    measurement_name, measurement_id
+            measurement_block = ProcessBlock(
+                name="Set {} T. Sample for {} ({}) charact.".format(
+                    alloy_common_name, measurement_name, measurement_id
                 ),
                 workflow=self,
                 ingredients=[traveler_ingredient],
@@ -1176,28 +1143,134 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
                 measurements=[measurement],
                 _type=measurement_name,
             )
-            block.link_within()
-            block.link_prior(
-                self.subs[composition_id][fabrication_method][batch][
-                    f"Setting up of Traveler {alloy_common_name}"
-                ],
+            measurement_block.link_within()
+            measurement_block.link_prior(
+                self.subs[f"Setting up of Traveler {alloy_common_name}"],
                 ingredient_name_to_link=traveler_ingredient_name,
             )
-            self.subs[composition_id][fabrication_method][batch][block.name] = block
+            self.subs[measurement_block.name] = measurement_block
 
-            # self.terminal_blocks[composition_id][fabrication_method][batch] = block
             if (
                 type(self.terminal_blocks[composition_id][fabrication_method][batch])
                 == list
             ):
                 self.terminal_blocks[composition_id][fabrication_method][batch].append(
-                    block
+                    measurement_block
                 )
             else:
                 self.terminal_blocks[composition_id][fabrication_method][batch] = []
                 self.terminal_blocks[composition_id][fabrication_method][batch].append(
-                    block
+                    measurement_block
                 )
+
+    ###################### HELPERS ###############
+
+    def setup_subfolder(self, composition_id, batch, fabrication_method):
+        composition_id_path = os.path.join(self.output / "structured", composition_id)
+        if os.path.exists(composition_id_path):
+            shutil.rmtree(composition_id_path)
+        os.makedirs(composition_id_path)
+
+        fabrication_method_path = os.path.join(composition_id_path, fabrication_method)
+        # if not os.path.exists(fabrication_method_path):
+        os.makedirs(fabrication_method_path)
+
+        batch_path = os.path.join(fabrication_method_path, batch)
+        # if not os.path.exists(batch_path):
+        os.makedirs(batch_path)
+
+        raw_jsons_dirpath = os.path.join(batch_path, "raw_jsons")
+        thin_jsons_dirpath = os.path.join(batch_path, "thin_jsons")
+        os.makedirs(raw_jsons_dirpath)
+        os.makedirs(thin_jsons_dirpath)
+
+    def thin_dumps(
+        self, obj, destination=None
+    ):  # TODO: add option to pass own target path
+        self.local_out_destination = self.output / "unstructured/thin"
+        if destination:  # adding overwrite options
+            self.local_out_destination = destination
+        if not os.path.exists(self.local_out_destination):
+            os.makedirs(self.local_out_destination)
+        else:  # notifying user that folder is not empty
+            if not len(os.listdir(self.local_out_destination)) == 0:
+                print("Folder is not empty.")
+        print("Executing thin dumps...")
+        self.dump_function = self.encoder.thin_dumps
+        start = time.time()
+        recursive_foreach(obj, self.local_out)
+        end = time.time()
+        print(f"Time elapsed: {end - start}")
+
+    def dumps(self, obj, destination=None):
+        self.local_out_destination = self.output / "unstructured/raw"
+        if destination:  # adding overwrite options
+            self.local_out_destination = destination
+        else:  # notifying user that folder is not empty
+            if not len(os.listdir(self.local_out_destination)) == 0:
+                print("Folder is not empty.")
+        if not os.path.exists(self.local_out_destination):
+            os.makedirs(self.local_out_destination)
+        print("Executing raw dumps...")
+        self.dump_function = self.encoder.dumps
+        start = time.time()
+        recursive_foreach(obj, self.local_out)
+        end = time.time()
+        print(f"Time elapsed: {end - start}")
+
+    def thin_structured_dumps(self):
+        """
+        dumps the entire model into a JSON per object, each representing the 'thin' version' of the object
+        in which pointers (i.e., true value) are replaced by links (e.g., uuid).
+        """
+        self.dump_function = self.encoder.thin_dumps
+        print("Executing thin structured dumps...")
+        start = time.time()
+        self.structured_dump_loop(mode="thin")
+        end = time.time()
+        print(f"Time elapsed: {end - start}")
+
+    def structured_dumps(self):
+        """
+        dumps the entire model into a single JSON, which contains all the model objects with data pointers (!= links).
+        """
+        self.dump_function = self.encoder.dumps
+        print("Executing raw structured dumps...")
+        start = time.time()
+        self.structured_dump_loop(mode="raw")
+        end = time.time()
+        print(f"Time elapsed: {end - start}")
+
+    def structured_dump_loop(self, mode="thin"):
+        """
+        helper function that navigates the blocks of the models and
+        """
+        for composition_id in gen_compositions(self.root):
+            composition_id_path = self.output / "structured" / composition_id
+            for fabrication_method in self.terminal_blocks[composition_id].keys():
+                if fabrication_method == "DED":
+                    continue
+                fabrication_method_path = composition_id_path / fabrication_method
+                for batch in self.terminal_blocks[composition_id][
+                    fabrication_method
+                ].keys():
+                    self.setup_subfolder(composition_id, batch, fabrication_method)
+                    _destination = fabrication_method_path / batch
+                    folder_name = "thin_jsons"
+                    destination = _destination / folder_name
+                    t = self.terminal_blocks[composition_id][fabrication_method][batch]
+                    self.local_out_destination = destination  # workaround to: recursive_foreach can't pass params to out()
+                    if type(t) == list:
+                        for _t in t:
+                            if _t.process:
+                                for _obj in [_t.process._spec, _t.process._run]:
+                                    recursive_foreach(_obj, self.local_out)
+                    else:
+                        if t.process:
+                            for _obj in [t.process._spec, t.process._run]:
+                                recursive_foreach(_obj, self.local_out)
+                    if self.testing_mode:
+                        return
 
     def link_prior(self, workflow):
         for composition_id in workflow.terminal_blocks.keys():
@@ -1216,334 +1289,10 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
                     ].material._run.process = terminal_block.process._run
                     # terminal_block.link_posterior(workflow.blocks['Infer Compositions'], ingredient_name_to_link=)
 
-    def return_common_items(self, composition_id, fabrication_method, batch, yymm=None):
-        long_name = (
-            f"composition {composition_id} with {fabrication_method} in batch {batch}"
-        )
-        short_name = f"{composition_id}-{fabrication_method}-{batch}"
-        alloy_common_name = "Alloy ({})".format(short_name)
-        common_tags = (
-            ("composition_id", composition_id),
-            ("batch", batch),
-            ("fabrication_method", fabrication_method),
-        )
-        if yymm:
-            common_tags = (("yymm", yymm),) + common_tags
-        return long_name, short_name, alloy_common_name, common_tags
-
-    def setup_subfolder(self, composition_id, batch, fabrication_method):
-        composition_id_path = os.path.join(self.output / "structured", composition_id)
-        if not os.path.exists(composition_id_path):
-            os.makedirs(composition_id_path)
-
-        fabrication_method_path = os.path.join(composition_id_path, fabrication_method)
-        if not os.path.exists(fabrication_method_path):
-            os.makedirs(fabrication_method_path)
-
-        batch_path = os.path.join(fabrication_method_path, batch)
-        if not os.path.exists(batch_path):
-            os.makedirs(batch_path)
-
-        raw_jsons_dirpath = os.path.join(batch_path, "raw_jsons")
-        thin_jsons_dirpath = os.path.join(batch_path, "thin_jsons")
-        os.makedirs(raw_jsons_dirpath)
-        os.makedirs(thin_jsons_dirpath)
-
-    def thin_dumps(self, obj):
-        print("Executing thin dumps...")
-        self.f = self.encoder.thin_dumps
-        start = time.time()
-        recursive_foreach(obj, self.local_out)
-        end = time.time()
-        print(f"Time elapsed: {end - start}")
-
-    def dumps(self, obj):
-        print("Executing raw dumps...")
-        self.f = self.encoder.dumps
-        start = time.time()
-        recursive_foreach(obj, self.local_out)
-        end = time.time()
-        print(f"Time elapsed: {end - start}")
-
-    def thin_structured_dumps(self):
-        """
-        dumps the entire model into a JSON per object, each representing the 'thin' version' of the object
-        in which pointers (i.e., true value) are replaced by links (e.g., uuid).
-        """
-        print("Executing thin structured dumps...")
-        start = time.time()
-        self.structured_dump_loop(mode="thin")
-        end = time.time()
-        print(f"Time elapsed: {end - start}")
-
-    def structured_dumps(self):
-        """
-        dumps the entire model into a single JSON, which contains all the model objects with data pointers (!= links).
-        """
-        print("Executing raw structured dumps...")
-        start = time.time()
-        self.structured_dump_loop(mode="raw")
-        end = time.time()
-        print(f"Time elapsed: {end - start}")
-
-    def structured_dump_loop(self, mode="thin"):
-        """
-        helper function that navigates the blocks of the models and
-        """
-        for composition_id in self.gen_compositions():
-            composition_id_path = os.path.join(
-                self.output / "structured", composition_id
-            )
-            for fabrication_method in self.subs[composition_id].keys():
-                if fabrication_method == "DED":
-                    continue
-                fabrication_method_path = os.path.join(
-                    composition_id_path, fabrication_method
-                )
-                for batch in self.subs[composition_id][fabrication_method].keys():
-                    _destination = os.path.join(fabrication_method_path, batch)
-
-                    if mode == "raw":
-                        folder_name = "raw_jsons"
-                        destination = os.path.join(_destination, folder_name)
-                        if self.terminal_blocks[composition_id][fabrication_method][
-                            batch
-                        ]:
-                            self.terminal_blocks[composition_id][fabrication_method][
-                                batch
-                            ].dumps(self.encoder, destination)
-                        continue
-                    folder_name = "thin_jsons"
-                    destination = os.path.join(_destination, folder_name)
-                    t = self.terminal_blocks[composition_id][fabrication_method][batch]
-                    self.local_out_destination = destination  # workaround to: recursive_foreach can't pass params to out()
-                    if type(t) == list:
-                        for _t in t:
-                            if _t.process:
-                                for _obj in [_t.process._spec, _t.process._run]:
-                                    recursive_foreach(_obj, self.local_out)
-                    else:
-                        if t.process:
-                            for _obj in [t.process._spec, t.process._run]:
-                                recursive_foreach(_obj, self.local_out)
-                    if self.testing_mode:
-                        return
-
-    # def thin_plots(self):
-    #     """"""
-    #     for composition_id in self.gen_compositions():
-    #         composition_id_path = os.path.join(self.output, composition_id)
-    #         for fabrication_method in os.listdir(composition_id_path):
-    #             fabrication_method_path = os.path.join(
-    #                 composition_id_path, fabrication_method
-    #             )
-    #             for batch in os.listdir(fabrication_method_path):
-    #                 batch_path = os.path.join(fabrication_method_path, batch)
-    #                 batch_path = os.path.join(batch_path, "thin_jsons")
-    #                 plot_graph(batch_path)
-    #         if self.testing_mode == True:
-    #             return
-
-    def gen_compositions(self):
-        ids = []
-        for id in range(1, 17):
-            composition_id = "0%s" % id if id % 10 == id else "%s" % id
-            composition_id = str(self.root).split("/")[-1] + composition_id
-            ids.append(composition_id)
-        return ids
-
-    def gemd_json_filename(self):
-        pass
-
-    def ingest_synthesis_results(self, iteration):
-        file_link_name = "HTMDEC {} Summary Synthesis Results.xlsx".format(iteration)
-        file_link_path = os.path.join(self.sample_data_folder, file_link_name)
-        df = pd.read_excel(file_link_path)
-        self.file_links["Summary Sheet"] = FileLink(
-            filename=file_link_name, url=file_link_path
-        )
-        new_header = df.iloc[1]
-        core_df = df[2:19]
-        core_df.columns = new_header
-        column_names = list(core_df.columns.values)
-        core_df = core_df.reset_index()
-        for row_index, row in core_df.iterrows():
-            if row_index == 0:
-                sub_header_row = row
-                continue
-            name = row["Alloy"]
-            split_name = name.split("_")
-            composition_id = split_name[0]
-            yymm = split_name[1]
-            fabrication_method = split_name[2]
-            batch = split_name[3]
-
-            # target composition
-            target_composition_column = column_names[1]
-            for i in range(2, 8):
-                element_name = sub_header_row[i]
-                composition = row[i]
-                self.measurements[composition_id][target_composition_column][
-                    element_name
-                ] = composition
-
-            # T05: averaged measured composition and difference
-            measurement_id = row[8]
-            average_composition_column = column_names[8]
-            composition_difference_column = column_names[14]
-            for i in range(9, 15):
-                element_name = sub_header_row[i]
-                average_composition = row[i]
-                composition_difference = row[i + 6]
-                self.measurements[composition_id][fabrication_method][batch][
-                    measurement_id
-                ][average_composition_column][element_name] = average_composition
-                self.measurements[composition_id][fabrication_method][batch][
-                    measurement_id
-                ][composition_difference_column][element_name] = composition_difference
-
-            # T03: phase/lattice parameters
-            measurement_id = row[21]
-            phase_column = column_names[21]
-            lattice_parameter_column = column_names[22]
-            phase = row[22]
-            lattice_parameter = row[23]
-
-            self.measurements[composition_id][fabrication_method][batch][
-                measurement_id
-            ][phase_column] = phase
-            self.measurements[composition_id][fabrication_method][batch][
-                measurement_id
-            ][lattice_parameter_column] = lattice_parameter
-
-            # T03: hardness, HV, SD, HV
-            measurement_id = row[24]
-            hardness_column = column_names[24]
-            sd_hv_column = column_names[25]
-            hardness = row[25]
-            sd_hv = row[26]
-            self.measurements[composition_id][fabrication_method][batch][
-                measurement_id
-            ][hardness_column] = hardness
-            self.measurements[composition_id][fabrication_method][batch][
-                measurement_id
-            ][sd_hv_column] = sd_hv
-
-            # T08: elastic modulus, yield strength, uts, elongtation, strain hardnening
-            measurement_id = row[27]
-            elastic_modulus_column = column_names[27]
-            yield_stength_column = column_names[28]
-            uts_column = column_names[29]
-            elongation_column = column_names[30]
-            strain_hardening_column = column_names[31]
-            derivative_column = column_names[32]
-            derivative_column = derivative_column.replace("\u03c3", "d")
-
-            elastic_modulus = row[28]
-            yield_stength = row[29]
-            uts = row[30]
-            elongation = row[31]
-            strain_hardening = row[32]
-            derivative = row[33]
-
-            self.measurements[composition_id][fabrication_method][batch][
-                measurement_id
-            ][elastic_modulus_column] = elastic_modulus
-            self.measurements[composition_id][fabrication_method][batch][
-                measurement_id
-            ][yield_stength_column] = yield_stength
-            self.measurements[composition_id][fabrication_method][batch][
-                measurement_id
-            ][uts_column] = uts
-            self.measurements[composition_id][fabrication_method][batch][
-                measurement_id
-            ][elongation_column] = elongation
-            self.measurements[composition_id][fabrication_method][batch][
-                measurement_id
-            ][strain_hardening_column] = strain_hardening
-            self.measurements[composition_id][fabrication_method][batch][
-                measurement_id
-            ][derivative_column] = derivative
-
-            # T09: elastic modulus, yield strength, uts, elongtation, strain hardnening
-            measurement_id = row[34]
-            elastic_modulus_column = column_names[34]
-            yield_stength_column = column_names[35]
-            uts_column = column_names[36]
-            elongation_column = column_names[37]
-            strain_hardening_column = column_names[38]
-            derivative_column = column_names[39]
-            derivative_column = derivative_column.replace("\u03c3", "d")
-
-            elastic_modulus = row[35]
-            yield_stength = row[36]
-            uts = row[37]
-            elongation = row[38]
-            strain_hardening = row[39]
-            derivative = row[40]
-
-            self.measurements[composition_id][fabrication_method][batch][
-                measurement_id
-            ][elastic_modulus_column] = elastic_modulus
-            self.measurements[composition_id][fabrication_method][batch][
-                measurement_id
-            ][yield_stength_column] = yield_stength
-            self.measurements[composition_id][fabrication_method][batch][
-                measurement_id
-            ][uts_column] = uts
-            self.measurements[composition_id][fabrication_method][batch][
-                measurement_id
-            ][elongation_column] = elongation
-            self.measurements[composition_id][fabrication_method][batch][
-                measurement_id
-            ][strain_hardening_column] = strain_hardening
-            self.measurements[composition_id][fabrication_method][batch][
-                measurement_id
-            ][derivative_column] = derivative
-
-            # Average: elastic modulus, yield strength, uts, elongtation, strain hardnening
-            measurement_id = row[41]
-            elastic_modulus_column = column_names[41]
-            yield_stength_column = column_names[42]
-            uts_column = column_names[43]
-            elongation_column = column_names[44]
-            strain_hardening_column = column_names[45]
-            derivative_column = column_names[46]
-            derivative_column = derivative_column.replace("\u03c3", "d")
-
-            elastic_modulus = row[42]
-            yield_stength = row[43]
-            uts = row[44]
-            elongation = row[45]
-            strain_hardening = row[46]
-            derivative = row[47]
-
-            self.measurements[composition_id][fabrication_method][batch][
-                measurement_id
-            ][elastic_modulus_column] = elastic_modulus
-            self.measurements[composition_id][fabrication_method][batch][
-                measurement_id
-            ][yield_stength_column] = yield_stength
-            self.measurements[composition_id][fabrication_method][batch][
-                measurement_id
-            ][uts_column] = uts
-            self.measurements[composition_id][fabrication_method][batch][
-                measurement_id
-            ][elongation_column] = elongation
-            self.measurements[composition_id][fabrication_method][batch][
-                measurement_id
-            ][strain_hardening_column] = strain_hardening
-            self.measurements[composition_id][fabrication_method][batch][
-                measurement_id
-            ][derivative_column] = derivative
-
-        strain_rate_and_temperature_df = df[19:21]
-        strain_rate_and_temperature_df.columns = new_header
-
     @classmethod
     def get_command_line_arguments(cls):
         superargs, superkwargs = super().get_command_line_arguments()
-        args = [*superargs, "root", "output", "iteration", "sample_data_folder"]
+        args = [*superargs, "root", "output", "iteration", "synthesis_path"]
         kwargs = {**superkwargs}
         return args, kwargs
 
@@ -1555,9 +1304,223 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
             args.root,
             args.output,
             args.iteration,
-            args.sample_data_folder,
+            args.synthesis_path,
         )
-        workflow.build()
+        with open(os.path.join(args.output, "log.txt"), "w") as sys.stderr:
+            workflow.build()
+            workflow.thin_dumps(workflow.terminal_material)
+            workflow.thin_structured_dumps()
+
+
+def gen_compositions(root):
+    ids = []
+    for id in range(1, 17):
+        composition_id = "0%s" % id if id % 10 == id else "%s" % id
+        composition_id = str(root).split("/")[-1] + composition_id
+        ids.append(composition_id)
+    return ids
+
+
+def return_common_items(composition_id, fabrication_method, batch, yymm=None):
+    long_name = (
+        f"composition {composition_id} with {fabrication_method} in batch {batch}"
+    )
+    short_name = f"{composition_id}-{fabrication_method}-{batch}"
+    alloy_common_name = "Alloy ({})".format(short_name)
+    common_tags = (
+        ("composition_id", composition_id),
+        ("batch", batch),
+        ("fabrication_method", fabrication_method),
+    )
+    if yymm:
+        common_tags = (("yymm", yymm),) + common_tags
+    return long_name, short_name, alloy_common_name, common_tags
+
+
+def ingest_synthesis_results(iteration, synthesis_path, file_links, measurements):
+    # file_link_name = "HTMDEC {} Summary Synthesis Results.xlsx".format(iteration)
+    # file_link_path = os.path.join(sample_data_folder, file_link_name)
+    df = pd.read_excel(synthesis_path)
+    file_links["Summary Sheet"] = FileLink(
+        filename=synthesis_path.split("/")[-1], url=file_link_path
+    )
+    new_header = df.iloc[1]
+    core_df = df[2:19]
+    core_df.columns = new_header
+    column_names = list(core_df.columns.values)
+    core_df = core_df.reset_index()
+    for row_index, row in core_df.iterrows():
+        if row_index == 0:
+            sub_header_row = row
+            continue
+        name = row["Alloy"]
+        split_name = name.split("_")
+        composition_id = split_name[0]
+        yymm = split_name[1]
+        fabrication_method = split_name[2]
+        batch = split_name[3]
+
+        # target composition
+        target_composition_column = column_names[1]
+        for i in range(2, 8):
+            element_name = sub_header_row[i]
+            composition = row[i]
+            measurements[composition_id][target_composition_column][
+                element_name
+            ] = composition
+
+        # T05: averaged measured composition and difference
+        measurement_id = row[8]
+        average_composition_column = column_names[8]
+        composition_difference_column = column_names[14]
+        for i in range(9, 15):
+            element_name = sub_header_row[i]
+            average_composition = row[i]
+            composition_difference = row[i + 6]
+            measurements[composition_id][fabrication_method][batch][measurement_id][
+                average_composition_column
+            ][element_name] = average_composition
+            measurements[composition_id][fabrication_method][batch][measurement_id][
+                composition_difference_column
+            ][element_name] = composition_difference
+
+        # T03: phase/lattice parameters
+        measurement_id = row[21]
+        phase_column = column_names[21]
+        lattice_parameter_column = column_names[22]
+        phase = row[22]
+        lattice_parameter = row[23]
+
+        measurements[composition_id][fabrication_method][batch][measurement_id][
+            phase_column
+        ] = phase
+        measurements[composition_id][fabrication_method][batch][measurement_id][
+            lattice_parameter_column
+        ] = lattice_parameter
+
+        # T03: hardness, HV, SD, HV
+        measurement_id = row[24]
+        hardness_column = column_names[24]
+        sd_hv_column = column_names[25]
+        hardness = row[25]
+        sd_hv = row[26]
+        measurements[composition_id][fabrication_method][batch][measurement_id][
+            hardness_column
+        ] = hardness
+        measurements[composition_id][fabrication_method][batch][measurement_id][
+            sd_hv_column
+        ] = sd_hv
+
+        # T08: elastic modulus, yield strength, uts, elongtation, strain hardnening
+        measurement_id = row[27]
+        elastic_modulus_column = column_names[27]
+        yield_stength_column = column_names[28]
+        uts_column = column_names[29]
+        elongation_column = column_names[30]
+        strain_hardening_column = column_names[31]
+        derivative_column = column_names[32]
+        derivative_column = derivative_column.replace("\u03c3", "d")
+
+        elastic_modulus = row[28]
+        yield_stength = row[29]
+        uts = row[30]
+        elongation = row[31]
+        strain_hardening = row[32]
+        derivative = row[33]
+
+        measurements[composition_id][fabrication_method][batch][measurement_id][
+            elastic_modulus_column
+        ] = elastic_modulus
+        measurements[composition_id][fabrication_method][batch][measurement_id][
+            yield_stength_column
+        ] = yield_stength
+        measurements[composition_id][fabrication_method][batch][measurement_id][
+            uts_column
+        ] = uts
+        measurements[composition_id][fabrication_method][batch][measurement_id][
+            elongation_column
+        ] = elongation
+        measurements[composition_id][fabrication_method][batch][measurement_id][
+            strain_hardening_column
+        ] = strain_hardening
+        measurements[composition_id][fabrication_method][batch][measurement_id][
+            derivative_column
+        ] = derivative
+
+        # T09: elastic modulus, yield strength, uts, elongtation, strain hardnening
+        measurement_id = row[34]
+        elastic_modulus_column = column_names[34]
+        yield_stength_column = column_names[35]
+        uts_column = column_names[36]
+        elongation_column = column_names[37]
+        strain_hardening_column = column_names[38]
+        derivative_column = column_names[39]
+        derivative_column = derivative_column.replace("\u03c3", "d")
+
+        elastic_modulus = row[35]
+        yield_stength = row[36]
+        uts = row[37]
+        elongation = row[38]
+        strain_hardening = row[39]
+        derivative = row[40]
+
+        measurements[composition_id][fabrication_method][batch][measurement_id][
+            elastic_modulus_column
+        ] = elastic_modulus
+        measurements[composition_id][fabrication_method][batch][measurement_id][
+            yield_stength_column
+        ] = yield_stength
+        measurements[composition_id][fabrication_method][batch][measurement_id][
+            uts_column
+        ] = uts
+        measurements[composition_id][fabrication_method][batch][measurement_id][
+            elongation_column
+        ] = elongation
+        measurements[composition_id][fabrication_method][batch][measurement_id][
+            strain_hardening_column
+        ] = strain_hardening
+        measurements[composition_id][fabrication_method][batch][measurement_id][
+            derivative_column
+        ] = derivative
+
+        # Average: elastic modulus, yield strength, uts, elongtation, strain hardnening
+        measurement_id = row[41]
+        elastic_modulus_column = column_names[41]
+        yield_stength_column = column_names[42]
+        uts_column = column_names[43]
+        elongation_column = column_names[44]
+        strain_hardening_column = column_names[45]
+        derivative_column = column_names[46]
+        derivative_column = derivative_column.replace("\u03c3", "d")
+
+        elastic_modulus = row[42]
+        yield_stength = row[43]
+        uts = row[44]
+        elongation = row[45]
+        strain_hardening = row[46]
+        derivative = row[47]
+
+        measurements[composition_id][fabrication_method][batch][measurement_id][
+            elastic_modulus_column
+        ] = elastic_modulus
+        measurements[composition_id][fabrication_method][batch][measurement_id][
+            yield_stength_column
+        ] = yield_stength
+        measurements[composition_id][fabrication_method][batch][measurement_id][
+            uts_column
+        ] = uts
+        measurements[composition_id][fabrication_method][batch][measurement_id][
+            elongation_column
+        ] = elongation
+        measurements[composition_id][fabrication_method][batch][measurement_id][
+            strain_hardening_column
+        ] = strain_hardening
+        measurements[composition_id][fabrication_method][batch][measurement_id][
+            derivative_column
+        ] = derivative
+
+    strain_rate_and_temperature_df = df[19:21]
+    strain_rate_and_temperature_df.columns = new_header
 
 
 def main(args=None):
