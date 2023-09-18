@@ -58,7 +58,6 @@ from collections import defaultdict
 import time
 import sys
 
-import openpyxl
 import subprocess
 
 from gemd.entity.object import MaterialRun, ProcessRun, IngredientRun, MeasurementRun

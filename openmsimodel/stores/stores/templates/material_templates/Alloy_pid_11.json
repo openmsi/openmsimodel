@@ -4,7 +4,7 @@
    "properties": [
       [
          {
-            "id": "1090005f-26d5-4949-8013-427f074d0472",
+            "id": "7c0797e4-e5c8-4fc3-9749-d8c241511bf5",
             "scope": "auto",
             "type": "link_by_uid"
          },
@@ -14,7 +14,7 @@
    "tags": [],
    "type": "material_template",
    "uids": {
-      "auto": "24367985-d253-44d2-8b25-4a26cead8f0a",
+      "auto": "52491052-e7c8-47ac-a476-2c27c9d659c3",
       "persistent_id": 11
    }
 }

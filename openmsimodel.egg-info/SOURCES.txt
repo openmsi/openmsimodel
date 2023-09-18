@@ -31,12 +31,14 @@ openmsimodel/entity/materials/birdshot/inferred_alloy_compositions.py
 openmsimodel/entity/materials/birdshot/summary_sheet.py
 openmsimodel/entity/materials/birdshot/traveler.py
 openmsimodel/entity/materials/birdshot/traveler_sample.py
+openmsimodel/entity/materials/birdshot/traveler_samples.py
 openmsimodel/entity/measurements/__init__.py
 openmsimodel/entity/measurements/birdshot/__init__.py
 openmsimodel/entity/measurements/birdshot/measure_dimensions.py
 openmsimodel/entity/measurements/birdshot/mounting_and_polishing.py
 openmsimodel/entity/measurements/birdshot/ni.py
 openmsimodel/entity/measurements/birdshot/sem.py
+openmsimodel/entity/measurements/birdshot/srjt.py
 openmsimodel/entity/measurements/birdshot/tensile.py
 openmsimodel/entity/measurements/birdshot/weighting.py
 openmsimodel/entity/measurements/birdshot/xrd.py
@@ -46,6 +48,7 @@ openmsimodel/entity/processes/homogenization.py
 openmsimodel/entity/processes/birdshot/__init__.py
 openmsimodel/entity/processes/birdshot/aggregate_material.py
 openmsimodel/entity/processes/birdshot/aggregate_summary_sheet.py
+openmsimodel/entity/processes/birdshot/aggregate_traveler_samples.py
 openmsimodel/entity/processes/birdshot/arc_melting.py
 openmsimodel/entity/processes/birdshot/forging.py
 openmsimodel/entity/processes/birdshot/homogenization.py

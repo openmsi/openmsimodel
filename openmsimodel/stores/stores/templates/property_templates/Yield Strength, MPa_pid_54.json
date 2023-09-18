@@ -1,7 +1,7 @@
 {
    "bounds": {
       "default_units": "megapascal",
-      "lower_bound": 0,
+      "lower_bound": -10000,
       "type": "real_bounds",
       "upper_bound": 10000
    },
@@ -10,7 +10,7 @@
    "tags": [],
    "type": "property_template",
    "uids": {
-      "auto": "738a1997-abbf-4c21-9a73-0557e8d2445f",
+      "auto": "fa2ca820-7098-40bc-bb93-362ea67ff22e",
       "persistent_id": 54
    }
 }

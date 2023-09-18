@@ -6,7 +6,7 @@
    "properties": [
       [
          {
-            "id": "57e464f0-8592-4c37-825d-17df9faa6997",
+            "id": "97b77c4a-4a6e-4f1a-9540-ff32d3f564ec",
             "scope": "auto",
             "type": "link_by_uid"
          },
@@ -14,7 +14,7 @@
       ],
       [
          {
-            "id": "af8af017-0e60-41d2-8a4d-72cefe18ea1f",
+            "id": "2d43f79d-3905-4f79-8e98-4b6ba4e85479",
             "scope": "auto",
             "type": "link_by_uid"
          },
@@ -22,7 +22,7 @@
       ],
       [
          {
-            "id": "b889f9df-c72a-4ea8-968e-e20774867e60",
+            "id": "47996fdf-8f89-466d-b8b7-5c1d13eebbfa",
             "scope": "auto",
             "type": "link_by_uid"
          },
@@ -30,7 +30,7 @@
       ],
       [
          {
-            "id": "a010459b-eb18-4c44-a5b7-9687de09444f",
+            "id": "641c8f30-2b46-4676-b72a-78ecd6c0eb47",
             "scope": "auto",
             "type": "link_by_uid"
          },
@@ -40,7 +40,7 @@
    "tags": [],
    "type": "measurement_template",
    "uids": {
-      "auto": "70114867-d844-473a-b2f6-7dc7c0fe077f",
+      "auto": "66ab1b6b-0750-455c-b472-57522d683f44",
       "persistent_id": 46
    }
 }

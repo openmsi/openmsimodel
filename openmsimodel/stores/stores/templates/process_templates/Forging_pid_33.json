@@ -7,7 +7,7 @@
    "parameters": [
       [
          {
-            "id": "3b431360-beb4-4920-93d3-fb30643141ce",
+            "id": "4562fb84-9bda-484b-8630-827509cdeddc",
             "scope": "auto",
             "type": "link_by_uid"
          },
@@ -15,7 +15,7 @@
       ],
       [
          {
-            "id": "2b37512d-a06d-4591-8f07-f7b4cda3621f",
+            "id": "1013aa0f-b58f-4a0b-8543-c740949a9658",
             "scope": "auto",
             "type": "link_by_uid"
          },
@@ -23,7 +23,7 @@
       ],
       [
          {
-            "id": "ecf76b5f-d9ff-4d72-9830-e45bf7425521",
+            "id": "6dda0c49-0b25-42fd-b5fb-896f85290aef",
             "scope": "auto",
             "type": "link_by_uid"
          },
@@ -33,7 +33,7 @@
    "tags": [],
    "type": "process_template",
    "uids": {
-      "auto": "0f8fb025-c93b-4d76-9efb-3ad916719d60",
+      "auto": "a278d4f7-b8e4-477f-8765-119c26a168f1",
       "persistent_id": 33
    }
 }
