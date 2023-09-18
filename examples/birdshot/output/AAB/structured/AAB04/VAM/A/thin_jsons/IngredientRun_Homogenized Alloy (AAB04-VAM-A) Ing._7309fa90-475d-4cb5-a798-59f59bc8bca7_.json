@@ -1,0 +1,30 @@
+{
+   "absolute_quantity": null,
+   "file_links": [],
+   "labels": [],
+   "mass_fraction": null,
+   "material": {
+      "id": "afb7b6d1-d8ef-4f4b-adb2-182a0ebe985f",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "name": "Homogenized Alloy (AAB04-VAM-A) Ing.",
+   "notes": null,
+   "number_fraction": null,
+   "process": {
+      "id": "9c52b15f-c43a-4144-9b0b-50421a580ebe",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "spec": {
+      "id": "b7d35f13-e8fc-4ec2-8090-368d8fbc7694",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [],
+   "type": "ingredient_run",
+   "uids": {
+      "auto": "7309fa90-475d-4cb5-a798-59f59bc8bca7"
+   },
+   "volume_fraction": null
+}

@@ -1,0 +1,17 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Aggregating V for AAB04",
+   "notes": null,
+   "parameters": [],
+   "tags": [],
+   "template": {
+      "id": "53a08e4f-c65b-43ef-a4ee-d20c3e2d20dd",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "process_spec",
+   "uids": {
+      "auto": "6bc45fbd-e9c5-41f2-9e78-19ffe71bccb4"
+   }
+}

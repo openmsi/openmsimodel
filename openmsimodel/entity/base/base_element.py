@@ -439,6 +439,16 @@ class BaseElement(ABC):
         return filelinks_dict
 
     # TODO: add a 'update_spec' function to != the 1:1 / template:spec duality
+    def all_gemd(self) -> list:
+        if self.__class__.__name__ == "Ingredient":
+            return [self.spec, self.run]
+        else:
+            return [self.TEMPLATE, self.spec, self.run]
+        # _all_gemd = []
+        # if hasattr(self, '_TEMPLATE') and self._TEMPLATE:
+        #     _all_gemd.append(self._TEMPLATE)
+        # _all_gemd.extend([self._TEMPLATE, self.spec(), self.run()])
+        # return _all_gemd
 
     # @abstractmethod
     # def to_form(self) -> str:
@@ -451,15 +461,15 @@ class BaseElement(ABC):
     #         with open(os.path.join(destination, fn),'w') as fp:
     #             fp.write(encoder.thin_dumps(obj,indent=3))
 
-    def thin_dumps(self, encoder, destination):
-        self.dump_loop(encoder.thin_dumps, destination)
+    # def thin_dumps(self, encoder, destination):
+    #     self.dump_loop(encoder.thin_dumps, destination)
 
-    def dumps(self, encoder, destination):
-        self.dump_loop(encoder.dumps, destination)
+    # def dumps(self, encoder, destination):
+    #     self.dump_loop(encoder.dumps, destination)
 
-    def dump_loop(self, encoder_func, destination):
-        for obj in [self._spec, self._run]:
-            encoder_func(obj, indent=3)  # trigger uids assignment
-            fn = "_".join([obj.__class__.__name__, obj.name, obj.uids["auto"]])
-            with open(os.path.join(destination, fn), "w") as fp:
-                fp.write(encoder_func(obj, indent=3))
+    # def dump_loop(self, encoder_func, destination):
+    #     for obj in [self._spec, self._run]:
+    #         encoder_func(obj, indent=3)  # trigger uids assignment
+    #         fn = "_".join([obj.__class__.__name__, obj.name, obj.uids["auto"]])
+    #         with open(os.path.join(destination, fn), "w") as fp:
+    #             fp.write(encoder_func(obj, indent=3))

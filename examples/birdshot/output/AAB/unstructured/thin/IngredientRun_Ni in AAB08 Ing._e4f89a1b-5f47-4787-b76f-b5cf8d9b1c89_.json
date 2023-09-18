@@ -1,0 +1,30 @@
+{
+   "absolute_quantity": null,
+   "file_links": [],
+   "labels": [],
+   "mass_fraction": null,
+   "material": {
+      "id": "0d9ccec4-5c45-4502-9983-b91fb977b103",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "name": "Ni in AAB08 Ing.",
+   "notes": null,
+   "number_fraction": null,
+   "process": {
+      "id": "06bec5db-32a7-4e70-8f85-75e1d060845f",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "spec": {
+      "id": "c9e9773f-b515-4400-8862-c1a0355d5ee4",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [],
+   "type": "ingredient_run",
+   "uids": {
+      "auto": "e4f89a1b-5f47-4787-b76f-b5cf8d9b1c89"
+   },
+   "volume_fraction": null
+}

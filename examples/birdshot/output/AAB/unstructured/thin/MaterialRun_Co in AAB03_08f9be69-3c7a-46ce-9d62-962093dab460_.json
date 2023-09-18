@@ -1,0 +1,25 @@
+{
+   "file_links": [],
+   "name": "Co in AAB03",
+   "notes": null,
+   "process": {
+      "id": "57ca8fe7-ece1-4890-9186-b971ffa5d3e6",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "sample_type": "production",
+   "spec": {
+      "id": "090ef262-3a70-4de2-9dcd-91aca23a1eb7",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB03",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "material_run",
+   "uids": {
+      "auto": "08f9be69-3c7a-46ce-9d62-962093dab460"
+   }
+}

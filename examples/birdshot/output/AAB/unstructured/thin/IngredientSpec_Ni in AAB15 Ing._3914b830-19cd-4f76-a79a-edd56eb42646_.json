@@ -1,0 +1,25 @@
+{
+   "absolute_quantity": null,
+   "file_links": [],
+   "labels": [],
+   "mass_fraction": null,
+   "material": {
+      "id": "e96fd3d3-6bbb-4fa4-b83a-bd9a2a986b16",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "name": "Ni in AAB15 Ing.",
+   "notes": null,
+   "number_fraction": null,
+   "process": {
+      "id": "90ba6cd3-6a9c-43fb-99ea-182e67ca73ff",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [],
+   "type": "ingredient_spec",
+   "uids": {
+      "auto": "3914b830-19cd-4f76-a79a-edd56eb42646"
+   },
+   "volume_fraction": null
+}

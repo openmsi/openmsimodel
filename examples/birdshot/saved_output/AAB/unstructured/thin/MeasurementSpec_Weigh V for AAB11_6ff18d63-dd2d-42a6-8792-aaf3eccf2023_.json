@@ -1,0 +1,17 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Weigh V for AAB11",
+   "notes": null,
+   "parameters": [],
+   "tags": [],
+   "template": {
+      "id": "bf30386a-ba34-4cfd-a807-fbddd228719b",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "measurement_spec",
+   "uids": {
+      "auto": "6ff18d63-dd2d-42a6-8792-aaf3eccf2023"
+   }
+}

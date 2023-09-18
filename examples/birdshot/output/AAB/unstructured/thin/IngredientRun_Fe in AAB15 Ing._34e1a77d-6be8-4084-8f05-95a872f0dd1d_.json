@@ -1,0 +1,30 @@
+{
+   "absolute_quantity": null,
+   "file_links": [],
+   "labels": [],
+   "mass_fraction": null,
+   "material": {
+      "id": "ff34a58b-b05e-4bf0-9d08-678093d7e1fc",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "name": "Fe in AAB15 Ing.",
+   "notes": null,
+   "number_fraction": null,
+   "process": {
+      "id": "a598802d-3f8c-4226-9bbe-e06faef39f63",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "spec": {
+      "id": "3de75ce0-421e-4c21-91f5-fa7885d5cde3",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [],
+   "type": "ingredient_run",
+   "uids": {
+      "auto": "34e1a77d-6be8-4084-8f05-95a872f0dd1d"
+   },
+   "volume_fraction": null
+}

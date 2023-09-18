@@ -1,0 +1,17 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Aggregating Ni for AAB02",
+   "notes": null,
+   "parameters": [],
+   "tags": [],
+   "template": {
+      "id": "53a08e4f-c65b-43ef-a4ee-d20c3e2d20dd",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "process_spec",
+   "uids": {
+      "auto": "57f3cfba-d45b-4650-89a0-2a733715866f"
+   }
+}

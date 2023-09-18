@@ -1,0 +1,16 @@
+{
+   "bounds": {
+      "default_units": "dimensionless",
+      "lower_bound": 0,
+      "type": "real_bounds",
+      "upper_bound": 1
+   },
+   "description": null,
+   "name": "Strain Rate Sensitivity Exponent Std. Dev.",
+   "tags": [],
+   "type": "property_template",
+   "uids": {
+      "auto": "aa3b2756-d157-41b4-9553-aababf1f52dc",
+      "persistent_id": 20
+   }
+}

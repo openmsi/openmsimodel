@@ -1,0 +1,21 @@
+{
+   "file_links": [],
+   "name": " Tensile Traveler samples",
+   "notes": null,
+   "process": {
+      "id": "d3feaa62-2655-4bfc-b19c-80f1daa404fe",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "properties": [],
+   "tags": [],
+   "template": {
+      "id": "306f584c-d91b-453c-a448-b5598a4fe1f2",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "material_spec",
+   "uids": {
+      "auto": "10185e73-430c-4d78-be99-cdb0526dfa47"
+   }
+}

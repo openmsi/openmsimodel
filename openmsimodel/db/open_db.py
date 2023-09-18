@@ -12,13 +12,17 @@ import openmsimodel.db.queries as queries
 
 from inspect import getmembers, isfunction
 
+local = True
 try:
     from IPython import get_ipython
+    exec_env = get_ipython().__class__.__name__
+    if exec_env == "ZMQInteractiveShell":  # ran locally
+        local = False
 except Exception as e:
     print(f"Import ERROR: {e}")
-exec_env = get_ipython().__class__.__name__
-if not (exec_env == "ZMQInteractiveShell"):  # ran in a notebook
+if local:
     from PyInquirer import prompt, Separator
+
 from pprint import pprint
 
 

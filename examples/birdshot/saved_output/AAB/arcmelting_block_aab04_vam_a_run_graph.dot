@@ -1,0 +1,43 @@
+strict digraph "" {
+	graph [bb="0,0,858.76,252"];
+	node [label="\N",
+		nodesep=0.4,
+		ranksep=1
+	];
+	"Alloy (AAB04-VAM-A) Ing.,  073"	 [color=blue,
+		height=0.5,
+		pos="656.63,162",
+		width=4.4052];
+	"Arc melting Alloy (AAB04-VAM-A),  17d"	 ["Argon Pressure"="Argon Pressure, 850-900",
+		Diffusion="Diffusion, Before Each Melt",
+		"Ingot Location"="Ingot Location, 7.0 dimensionless",
+		"Initial Purging Times"="Initial Purging Times, 3.0 hour",
+		"Vacuum Before Melt"="Vacuum Before Melt, 5e-05 dimensionless",
+		color=red,
+		height=0.5,
+		pos="656.63,90",
+		tags="{0: 'composition_id::AAB04', 1: 'batch::A', 2: 'fabrication_method::VAM', 3: 'start_date::2022-11-03', 4: 'finish_date::2022-11-05', \
+5: 'time_spent::3', 6: 'Full Ingot::7::175', 7: 'Full Ingot::6::145', 8: 'Full Ingot::5::145', 9: 'Full Ingot::4::145', 10: 'Full \
+Ingot::3::145', 11: 'Full Ingot::2::145', 12: 'Full Ingot::1::110', 13: '3 Part Sections::3::110', 14: '3 Part Sections::2::90', \
+15: '3 Part Sections::1::90'}",
+		width=5.4162];
+	"Alloy (AAB04-VAM-A) Ing.,  073" -> "Arc melting Alloy (AAB04-VAM-A),  17d"	 [pos="e,656.63,108.41 656.63,143.83 656.63,136.13 656.63,126.97 656.63,118.42"];
+	"Arc Melted Alloy (AAB04-VAM-A),  949"	 [color=green,
+		height=0.5,
+		pos="438.63,18",
+		tags="{0: 'composition_id::AAB04', 1: 'batch::A', 2: 'fabrication_method::VAM'}",
+		width=5.344];
+	"Arc melting Alloy (AAB04-VAM-A),  17d" -> "Arc Melted Alloy (AAB04-VAM-A),  949"	 [pos="e,491.42,35.437 604.14,72.663 573.19,62.443 533.86,49.451 501.29,38.697"];
+	"cb7fb7f0-1293-4d56-a345-ce55ab970814"	 [height=0.5,
+		pos="656.63,234",
+		width=5.6148];
+	"cb7fb7f0-1293-4d56-a345-ce55ab970814" -> "Alloy (AAB04-VAM-A) Ing.,  073"	 [pos="e,656.63,180.41 656.63,215.83 656.63,208.13 656.63,198.97 656.63,190.42"];
+	"Weigh Arc Melted Alloy (AAB04-VAM-A),  fd6"	 ["Mass Loss"="Mass Loss, 0.02 gram",
+		"Weighed Mass"="Weighed Mass, 29.9974 gram",
+		color=purple,
+		height=0.5,
+		pos="221.63,90",
+		tags="{0: 'composition_id::AAB04', 1: 'batch::A', 2: 'fabrication_method::VAM'}",
+		width=6.1564];
+	"Weigh Arc Melted Alloy (AAB04-VAM-A),  fd6" -> "Arc Melted Alloy (AAB04-VAM-A),  949"	 [pos="e,386.34,35.35 274.44,72.479 305.25,62.256 344.28,49.305 376.56,38.596"];
+}

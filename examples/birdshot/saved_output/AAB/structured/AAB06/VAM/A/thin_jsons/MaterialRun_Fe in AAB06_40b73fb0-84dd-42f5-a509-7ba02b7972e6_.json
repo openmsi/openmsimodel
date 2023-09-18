@@ -1,0 +1,25 @@
+{
+   "file_links": [],
+   "name": "Fe in AAB06",
+   "notes": null,
+   "process": {
+      "id": "b0589df0-201f-4680-b43e-f0009b7843f5",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "sample_type": "production",
+   "spec": {
+      "id": "3d8235a8-5409-4286-89c3-c56b245f0017",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB06",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "material_run",
+   "uids": {
+      "auto": "40b73fb0-84dd-42f5-a509-7ba02b7972e6"
+   }
+}

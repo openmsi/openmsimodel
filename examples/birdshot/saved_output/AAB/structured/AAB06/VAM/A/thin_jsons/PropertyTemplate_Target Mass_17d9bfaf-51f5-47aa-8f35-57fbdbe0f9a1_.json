@@ -1,0 +1,16 @@
+{
+   "bounds": {
+      "default_units": "gram",
+      "lower_bound": 0,
+      "type": "real_bounds",
+      "upper_bound": 150
+   },
+   "description": "Expected mass to attain based on composition design ",
+   "name": "Target Mass",
+   "tags": [],
+   "type": "property_template",
+   "uids": {
+      "auto": "17d9bfaf-51f5-47aa-8f35-57fbdbe0f9a1",
+      "persistent_id": 6
+   }
+}

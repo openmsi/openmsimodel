@@ -1,0 +1,25 @@
+{
+   "absolute_quantity": null,
+   "file_links": [],
+   "labels": [],
+   "mass_fraction": null,
+   "material": {
+      "id": "9a46a2b0-b8b4-4b8f-ba68-1ba26ce86a7b",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "name": "Composition AAB13 Ing.",
+   "notes": null,
+   "number_fraction": null,
+   "process": {
+      "id": "8ed9ff91-6dbc-413b-a59e-55ef9602fac4",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [],
+   "type": "ingredient_spec",
+   "uids": {
+      "auto": "243e5a6c-31aa-49a4-a5a4-e4d42b91c2bd"
+   },
+   "volume_fraction": null
+}

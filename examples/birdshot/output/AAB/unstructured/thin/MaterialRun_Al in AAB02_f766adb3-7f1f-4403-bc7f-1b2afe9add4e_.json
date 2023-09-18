@@ -1,0 +1,25 @@
+{
+   "file_links": [],
+   "name": "Al in AAB02",
+   "notes": null,
+   "process": {
+      "id": "233bad3e-b2ae-4044-b84a-267584eff65b",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "sample_type": "production",
+   "spec": {
+      "id": "3554ded8-89d3-45aa-9125-ee9b91ab5c2a",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB02",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "material_run",
+   "uids": {
+      "auto": "f766adb3-7f1f-4403-bc7f-1b2afe9add4e"
+   }
+}

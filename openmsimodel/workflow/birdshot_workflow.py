@@ -44,6 +44,8 @@ from openmsimodel.entity.measurements.birdshot.tensile import Tensile
 from openmsimodel.entity.measurements.birdshot.mounting_and_polishing import (
     MountingAndPolishing,
 )
+from openmsimodel.entity.measurements.birdshot.srjt import SRJT
+
 from openmsimodel.utilities.tools import plot_graph
 from openmsimodel.utilities.argument_parsing import OpenMSIModelParser
 
@@ -55,6 +57,9 @@ from pathlib import Path
 from collections import defaultdict
 import time
 import sys
+
+import openpyxl
+import subprocess
 
 from gemd.entity.object import MaterialRun, ProcessRun, IngredientRun, MeasurementRun
 from gemd.entity.attribute import Property, Parameter, Condition, PropertyAndConditions
@@ -88,7 +93,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         using the characterization results to infer the next compositions using BO.
         :param iteration: the iteration of the workflow (i.e., AAB)
         :param synthesis_path: the path to synthesis file (i.e., /Sample Data/Iteration2_AAB/HTMDEC AAB Summary Synthesis Results)
-        :param srjt_path: the path to sjrt file
+        :param srjt_path: the path to srjt file
         """
         Workflow.__init__(self)
         # self.root gets set in FolderOrFile
@@ -119,7 +124,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
             self.iteration, self.synthesis_path, self.file_links, self.measurements
         )
 
-        ingest_sjrt_results()
+        ingest_srjt_results(self.srjt_path, self.output, self.measurements)
 
         ############## block 1: first infer_compositions_block
         def create_infer_compositions_block():
@@ -189,18 +194,21 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
             # /AAA/VAM/B/AAA01/T01 or /AAA/DED/A/AAA01-AAA08/AAA01
             if item.depth >= 4:
                 is_ded = "DED" in item_path
-                split_item_path = item_path.split("/")
+                split_item_path = substring_after(item_path, str(self.root))
+                if split_item_path[0] == "/":  # avoiding first '/'
+                    split_item_path = split_item_path[1:]
+                split_item_path = split_item_path.split("/")
                 fabrication_method = split_item_path[
-                    path_offset + 1
+                    0
                 ]  # path offset used to removes path elements before data (i.e., ../data/)
-                batch = split_item_path[path_offset + 2]
+                batch = split_item_path[1]
                 if is_ded:
                     if item.depth == 4:
                         continue
                     elif item.depth >= 5:
-                        composition_id = split_item_path[path_offset + 4]
+                        composition_id = split_item_path[3]
                 else:
-                    composition_id = split_item_path[path_offset + 3]
+                    composition_id = split_item_path[2]
                 if (item.depth == 4 and not is_ded) or (item.depth == 5 and is_ded):
                     if onlyfiles:
                         self.process(
@@ -282,7 +290,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
                 ingredients=ings,
                 process=aggregate_traveler_samples_process,
                 material=traveler_samples_material,
-                _type="action",
+                _type="procedural",
             )
             aggregate_traveler_samples_block.link_within()
             for traveler_sample_block in traveler_samples_blocks[traveler_sample_type]:
@@ -301,7 +309,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
             ingredients=[],
             process=aggregate_summary_sheet_process,
             material=summary_sheet_material,
-            _type="action",
+            _type="procedural",
         )
 
         def link_traveler_samples_to_summary_sheet():
@@ -340,7 +348,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
             ingredients=[summary_sheet_ingredient],
             process=infer_compositions_process,
             material=None,
-            _type="action",
+            _type="procedural",
         )
 
         infer_next_compositions_block.link_within()
@@ -573,7 +581,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
                 process=aggregating_material_process,
                 material=composition_element_material,
                 measurements=[weighting_measurement],
-                _type="action",
+                _type="procedural",
             )
             block2.link_within()
             block2.link_prior(
@@ -602,13 +610,44 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
             tags=common_tags,
             spec_or_run=alloy_material.run,
         )
+        srjt_measurement = SRJT(f"SRJT charact. for {composition_id}")
+        srjt_measurement._set_tags(
+            tags=common_tags,
+            spec_or_run=srjt_measurement.run,
+        )
+
+        for srjt_property_name in self.measurements[composition_id]["SRJT"].keys():
+            attribute_value = self.measurements[composition_id]["SRJT"][
+                srjt_property_name
+            ]
+            # if not type(value) == str:  # FIXME
+            unit = srjt_measurement._ATTRS["properties"][srjt_property_name][
+                "obj"
+            ].bounds.default_units
+            value = NominalReal(float(attribute_value), unit)
+            srjt_measurement._update_attributes(
+                AttrType=Property,
+                attributes=(
+                    Property(
+                        srjt_property_name,
+                        value=value,
+                        origin="measured",
+                        notes="",
+                        file_links=[],
+                    ),
+                ),
+                which="run",
+            )
+
+        # assigning srjt measurement to alloy at earlier phase due to measuremenet being indep. from batch/fab method
+
         block3 = ProcessBlock(
             name="Mix elements of {}".format(composition_id),
             workflow=self,
             ingredients=composition_element_ingredients,
             process=mixing_process,
             material=alloy_material,
-            measurements=[],
+            measurements=[srjt_measurement],
         )
         block3.link_within()
         for i, block in enumerate(parallel_block2s):
@@ -1111,7 +1150,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
                 for attribute_name, attribute_value in m.items():
                     attribute_name = attribute_name.replace("/", "_")
 
-                    if not type(attribute_value) == str:
+                    if not type(attribute_value) == str:  # FIXME
                         unit = measurement._ATTRS["properties"][attribute_name][
                             "obj"
                         ].bounds.default_units
@@ -1124,7 +1163,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
                             Property(
                                 attribute_name,
                                 value=value,
-                                origin="predicted",
+                                origin="measured",
                                 notes="",
                                 file_links=[],
                             ),
@@ -1185,11 +1224,14 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         os.makedirs(thin_jsons_dirpath)
 
     def thin_dumps(
-        self, obj, destination=None
+        self, obj, destination=None, overwrite=False
     ):  # TODO: add option to pass own target path
         self.local_out_destination = self.output / "unstructured/thin"
         if destination:  # adding overwrite options
             self.local_out_destination = destination
+        if overwrite:
+            if os.path.exists(self.local_out_destination):
+                shutil.rmtree(self.local_out_destination)
         if not os.path.exists(self.local_out_destination):
             os.makedirs(self.local_out_destination)
         else:  # notifying user that folder is not empty
@@ -1202,15 +1244,25 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         end = time.time()
         print(f"Time elapsed: {end - start}")
 
-    def dumps(self, obj, destination=None):
+    def dumps(self, obj, destination=None,  overwrite=False):
         self.local_out_destination = self.output / "unstructured/raw"
+        # if destination:  # adding overwrite options
+        #     self.local_out_destination = destination
+        # else:  # notifying user that folder is not empty
+        #     if not len(os.listdir(self.local_out_destination)) == 0:
+        #         print("Folder is not empty.")
+        # if not os.path.exists(self.local_out_destination):
+        #     os.makedirs(self.local_out_destination)
         if destination:  # adding overwrite options
             self.local_out_destination = destination
+        if overwrite:
+            if os.path.exists(self.local_out_destination):
+                shutil.rmtree(self.local_out_destination)
+        if not os.path.exists(self.local_out_destination):
+            os.makedirs(self.local_out_destination)
         else:  # notifying user that folder is not empty
             if not len(os.listdir(self.local_out_destination)) == 0:
                 print("Folder is not empty.")
-        if not os.path.exists(self.local_out_destination):
-            os.makedirs(self.local_out_destination)
         print("Executing raw dumps...")
         self.dump_function = self.encoder.dumps
         start = time.time()
@@ -1292,7 +1344,14 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
     @classmethod
     def get_command_line_arguments(cls):
         superargs, superkwargs = super().get_command_line_arguments()
-        args = [*superargs, "root", "output", "iteration", "synthesis_path"]
+        args = [
+            *superargs,
+            "root",
+            "output",
+            "iteration",
+            "synthesis_path",
+            "srjt_path",
+        ]
         kwargs = {**superkwargs}
         return args, kwargs
 
@@ -1301,11 +1360,9 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         parser = cls.get_argument_parser()
         args = parser.parse_args(args=args)
         workflow = cls(
-            args.root,
-            args.output,
-            args.iteration,
-            args.synthesis_path,
+            args.root, args.output, args.iteration, args.synthesis_path, args.srjt_path
         )
+
         with open(os.path.join(args.output, "log.txt"), "w") as sys.stderr:
             workflow.build()
             workflow.thin_dumps(workflow.terminal_material)
@@ -1342,7 +1399,7 @@ def ingest_synthesis_results(iteration, synthesis_path, file_links, measurements
     # file_link_path = os.path.join(sample_data_folder, file_link_name)
     df = pd.read_excel(synthesis_path)
     file_links["Summary Sheet"] = FileLink(
-        filename=synthesis_path.split("/")[-1], url=file_link_path
+        filename=str(synthesis_path).split("/")[-1], url=str(synthesis_path)
     )
     new_header = df.iloc[1]
     core_df = df[2:19]
@@ -1521,6 +1578,41 @@ def ingest_synthesis_results(iteration, synthesis_path, file_links, measurements
 
     strain_rate_and_temperature_df = df[19:21]
     strain_rate_and_temperature_df.columns = new_header
+
+
+def ingest_srjt_results(srjt_path, output, measurements):
+    # FIXME: add file link
+    # Convert the Excel file to CSV using LibreOffice
+    output_file = str(srjt_path).split(".")[0] + ".csv"
+    output_file = output_file.split("/")[-1]
+
+    conversion_command = [
+        "libreoffice",
+        "--headless",  # Run LibreOffice in headless mode (without GUI)
+        "--convert-to",
+        "csv",
+        "--outdir",
+        output,  # Output directory
+        srjt_path,
+    ]
+
+    subprocess.run(conversion_command)
+
+    # Read the CSV file into a Pandas DataFrame
+    df = pd.read_csv(output / output_file)
+
+    # Clean up the temporary CSV file
+    subprocess.run(["rm", output / output_file])
+
+    columns = list(df.columns)
+    for i in range(len(df)):
+        composition_id = df.loc[i, "Sample Name"]
+        for y in range(1, len(columns)):
+            measurements[composition_id]["SRJT"][columns[y]] = df.loc[i, columns[y]]
+
+
+def substring_after(s, delim):
+    return s.partition(delim)[2]
 
 
 def main(args=None):

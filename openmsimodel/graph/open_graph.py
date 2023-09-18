@@ -13,10 +13,9 @@ from gemd.json import GEMDJson
 from openmsimodel.utilities.argument_parsing import OpenMSIModelParser
 from openmsimodel.utilities.runnable import Runnable
 from openmsimodel.utilities.tools import read_gemd_data
+from openmsimodel.graph.helpers import launch_graph_widget
 
 
-# TODO: add flag to open visualization tool?
-# TODO: add file links and tags
 class OpenGraph(Runnable):
     """this class provides modules to build and visualize a networkx or graphviz object from gemd objects.
     By taking folder path containing GEMD thin JSON files, it establishes the relationships
@@ -35,8 +34,9 @@ class OpenGraph(Runnable):
     )
 
     # instance attributes
-    def __init__(self, dirpath, output):
-        self.dirpath = pathlib.Path(dirpath)
+    def __init__(self, name, dirpath, output):
+        self.name = name
+        self.dirpath = pathlib.Path(dirpath) if not (type(dirpath) == list) else dirpath
         self.output = pathlib.Path(output)
         self.svg_path = None
         self.dot_path = None
@@ -64,7 +64,14 @@ class OpenGraph(Runnable):
             dictionary name_mapping: mapping from uuid to name
         """
 
-        print("-- Building {}s of {}".format(which, self.dirpath))
+        print(
+            "-- Building {}s of {}".format(
+                which,
+                self.dirpath
+                if not type(self.dirpath) == list
+                else f"list with {len(self.dirpath)} items",
+            )
+        )
         G = nx.DiGraph()
         object_mapping = defaultdict()
         name_mapping = defaultdict()
@@ -77,19 +84,21 @@ class OpenGraph(Runnable):
             return
 
         # adding objects to graph one by one
-        for i, obj in enumerate(gemd_objects):
-            if "raw_jsons" in obj:  # FIXME
-                continue
-            obj_data = obj
-            if type(obj) == str:  # path
-                fp = open(obj, "r")
-                obj_data = json.load(fp)
+        for i, obj_data in enumerate(gemd_objects):
+            # if "raw_jsons" in obj:  # FIXME
+            #     continue
+            # obj_data = obj
+            # if type(obj) == str:  # path
+            #     fp = open(obj, "r")
+            #     obj_data = json.load(fp)
             # if not (
             #     type(obj_data) == dict and "type" in obj_data.keys()
             # ):  # FIXME helps when reading a full mat history, or a list, in the same folder as others single jsons
             #     continue
-            if type(obj_data) == list:
-                continue
+            # if type(obj_data) == list:
+            #     continue
+            # print(obj_data)
+            # print(type(obj_data))
             obj_type = obj_data["type"]
             if (
                 obj_type.startswith("parameter")
@@ -120,7 +129,9 @@ class OpenGraph(Runnable):
 
         # # plotting
         dot_path, svg_path = self.save_graph(
-            self.output, relabeled_G, name="{}_graph".format(which)
+            self.output,
+            relabeled_G,
+            name="{}_{}_graph".format(self.name, which),
         )
         if update:
             self.update_paths(svg_path, dot_path)
@@ -147,12 +158,12 @@ class OpenGraph(Runnable):
             uid (str): uid of current object
             obj_data (dict): data of current object
             obj_type (str): type of current object
-            which (bool): to plot a graph of specs, runs or templates
+            which (bool): to plot a graph of specs, runs or templates, or all
             assets_to_add (dict): dict to determine which of attributes, tags and/or file links to add to model
             add_separate_node (bool):  bool to determine whether or not to add assets as attribute of related node, or as separate node
         """
         if obj_type.startswith("process"):
-            if obj_type.endswith(which):
+            if obj_type.endswith(which):  # TODO: add "which" equals all to add both
                 G.add_node(uid, color="red")
                 self.add_gemd_assets(
                     G,
@@ -314,23 +325,23 @@ class OpenGraph(Runnable):
             else:
                 G.nodes[uid][att_name] = node_name
 
-    def get_strongly_cc(self, G, node):
-        """get strong connected component of node"""
+    # def get_strongly_cc(self, G, node):
+    #     """get strong connected component of node"""
 
-        for cc in nx.strongly_connected_components(G):
-            lst = []
-            if node in cc:
-                return cc
-        else:
-            return []
+    #     for cc in nx.strongly_connected_components(G):
+    #         lst = []
+    #         if node in cc:
+    #             return cc
+    #     else:
+    #         return []
 
-    def get_weakly_cc(self, G, node):
-        """get weakly connected component of node"""
-        for cc in nx.weakly_connected_components(G):
-            if node in cc:
-                return cc
-        else:
-            return []
+    # def get_weakly_cc(self, G, node):
+    #     """get weakly connected component of node"""
+    #     for cc in nx.weakly_connected_components(G):
+    #         if node in cc:
+    #             return cc
+    #     else:
+    #         return []
 
     def diagnostics(self, G, gemd_objects, nb_disregarded):
         print("-- Analysis --")
@@ -345,21 +356,16 @@ class OpenGraph(Runnable):
         print("nb of isolates: {}".format(nx.number_of_isolates(G)))
 
     @classmethod
-    def launch_notebook(cls, dot_path):
-        with open(cls.CONFIG_FILENAME, "w") as f:
-            f.write(dot_path)
-        # os.system(
-        #     "jupyter nbconvert --execute --to notebook --inplace  {}".format(
-        #         cls.IPYNB_FILENAME
-        #     )
-        # )
-        # print(cls.IPYNB_FILENAME)
-        # print(cls.IPYNB_FILENAME.parent)
-        # exit()
-        os.system(
-            "jupyter notebook --notebook-dir={}".format(cls.IPYNB_FILENAME.parent)
-        )
-        return None
+    def launch(cls, dot_path, from_command_line=False):
+        if from_command_line:
+            with open(cls.CONFIG_FILENAME, "w") as f:
+                f.write(dot_path)
+            os.system(
+                "jupyter notebook --notebook-dir={}".format(cls.IPYNB_FILENAME.parent)
+            )
+            return None
+        else:
+            launch_graph_widget(dot_path)
 
     def update_paths(self, svg_path, dot_path):
         self.svg_path = svg_path
@@ -444,8 +450,6 @@ class OpenGraph(Runnable):
         Returns:
             str: paths to, respectively, the dot and svg files
         """
-        # if os.path.isfile(dest):
-        #     dest = dest.parent
         # svg file
         svg_path = os.path.join(dest, "{}.svg".format(name))
         # dot file
@@ -471,6 +475,7 @@ class OpenGraph(Runnable):
         superargs, superkwargs = super().get_command_line_arguments()
         args = [
             *superargs,
+            "name",
             "dirpath",
             "which",
             "identifier",
@@ -498,7 +503,7 @@ class OpenGraph(Runnable):
         """
         parser = cls.get_argument_parser()
         args = parser.parse_args(args=args)
-        viewer = cls(args.dirpath, args.output)
+        viewer = cls(args.name, args.dirpath, args.output)
         assets_to_add = {
             "add_attributes": args.add_attributes,
             "add_file_links": args.add_file_links,
@@ -527,9 +532,9 @@ class OpenGraph(Runnable):
         # launches interactive notebook
         if args.launch_notebook:
             if args.identifier:
-                viewer.launch_notebook(identifier_G_dot_path)
+                viewer.launch(identifier_G_dot_path, from_command_line=True)
             else:
-                viewer.launch_notebook(viewer.dot_path)
+                viewer.launch(viewer.dot_path, from_command_line=True)
 
 
 def main(args=None):

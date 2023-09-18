@@ -1,0 +1,16 @@
+{
+   "bounds": {
+      "categories": [
+         "Ar"
+      ],
+      "type": "categorical_bounds"
+   },
+   "description": null,
+   "name": "Atmosphere",
+   "tags": [],
+   "type": "parameter_template",
+   "uids": {
+      "auto": "ab277f6b-f769-4a80-9117-0d9f881caa05",
+      "persistent_id": 31
+   }
+}

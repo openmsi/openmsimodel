@@ -1,0 +1,16 @@
+{
+   "bounds": {
+      "categories": [
+         "Before Each Melt"
+      ],
+      "type": "categorical_bounds"
+   },
+   "description": null,
+   "name": "Diffusion",
+   "tags": [],
+   "type": "parameter_template",
+   "uids": {
+      "auto": "9c32d880-fd3f-4135-b69d-9fc87c60709c",
+      "persistent_id": 23
+   }
+}

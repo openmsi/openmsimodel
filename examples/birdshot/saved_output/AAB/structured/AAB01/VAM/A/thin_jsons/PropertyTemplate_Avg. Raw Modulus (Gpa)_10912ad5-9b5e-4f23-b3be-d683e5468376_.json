@@ -1,0 +1,16 @@
+{
+   "bounds": {
+      "default_units": "gigapascal",
+      "lower_bound": 0,
+      "type": "real_bounds",
+      "upper_bound": 500
+   },
+   "description": null,
+   "name": "Avg. Raw Modulus (Gpa)",
+   "tags": [],
+   "type": "property_template",
+   "uids": {
+      "auto": "10912ad5-9b5e-4f23-b3be-d683e5468376",
+      "persistent_id": 17
+   }
+}

@@ -1,0 +1,21 @@
+{
+   "file_links": [],
+   "name": "Alloy (AAB13-VAM-A): T. Sample (XRD, T03)",
+   "notes": null,
+   "process": {
+      "id": "aa94019c-bc54-40be-bb3e-526f10fe5ac6",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "properties": [],
+   "tags": [],
+   "template": {
+      "id": "0c24972a-cf43-42eb-b092-526752d201dd",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "material_spec",
+   "uids": {
+      "auto": "1cb1898f-1bce-4260-aa28-54505e9b3431"
+   }
+}

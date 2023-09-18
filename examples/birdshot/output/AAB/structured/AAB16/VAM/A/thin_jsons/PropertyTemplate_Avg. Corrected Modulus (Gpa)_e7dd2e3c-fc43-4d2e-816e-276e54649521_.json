@@ -1,0 +1,16 @@
+{
+   "bounds": {
+      "default_units": "gigapascal",
+      "lower_bound": 0,
+      "type": "real_bounds",
+      "upper_bound": 400
+   },
+   "description": null,
+   "name": "Avg. Corrected Modulus (Gpa)",
+   "tags": [],
+   "type": "property_template",
+   "uids": {
+      "auto": "e7dd2e3c-fc43-4d2e-816e-276e54649521",
+      "persistent_id": 15
+   }
+}

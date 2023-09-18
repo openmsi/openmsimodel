@@ -47,7 +47,7 @@ class FolderOrFile:
         return self.root.name
 
     @classmethod
-    def make_tree(self, cls, root, parent=None, is_last=False, criteria=None):
+    def make_tree(self, cls, root, parent=None, is_last=False, criteria=None):  # FIXME
         """
         powerful function that builds trees recursively.
         It passes the current item, displayable_root, as the 'parent' parameters to its children to navigate down the tree.

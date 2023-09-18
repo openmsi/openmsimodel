@@ -1,0 +1,16 @@
+{
+   "bounds": {
+      "default_units": "centimeter",
+      "lower_bound": 0,
+      "type": "real_bounds",
+      "upper_bound": 50
+   },
+   "description": "Width of alloy",
+   "name": "Width",
+   "tags": [],
+   "type": "property_template",
+   "uids": {
+      "auto": "4b6f54e6-099e-46bd-9209-b3eba153072b",
+      "persistent_id": 38
+   }
+}

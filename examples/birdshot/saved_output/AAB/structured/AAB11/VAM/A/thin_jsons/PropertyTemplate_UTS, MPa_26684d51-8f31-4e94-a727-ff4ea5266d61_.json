@@ -1,0 +1,16 @@
+{
+   "bounds": {
+      "default_units": "megapascal",
+      "lower_bound": 0,
+      "type": "real_bounds",
+      "upper_bound": 10000
+   },
+   "description": null,
+   "name": "UTS, MPa",
+   "tags": [],
+   "type": "property_template",
+   "uids": {
+      "auto": "26684d51-8f31-4e94-a727-ff4ea5266d61",
+      "persistent_id": 55
+   }
+}

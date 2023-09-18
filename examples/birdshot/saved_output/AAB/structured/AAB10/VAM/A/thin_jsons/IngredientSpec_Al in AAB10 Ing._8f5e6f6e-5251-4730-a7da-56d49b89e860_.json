@@ -1,0 +1,25 @@
+{
+   "absolute_quantity": null,
+   "file_links": [],
+   "labels": [],
+   "mass_fraction": null,
+   "material": {
+      "id": "31b5767e-13ee-4abc-9399-f2d6e34ca6e5",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "name": "Al in AAB10 Ing.",
+   "notes": null,
+   "number_fraction": null,
+   "process": {
+      "id": "03ed6d17-d800-4759-ab89-0660168f735f",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [],
+   "type": "ingredient_spec",
+   "uids": {
+      "auto": "8f5e6f6e-5251-4730-a7da-56d49b89e860"
+   },
+   "volume_fraction": null
+}

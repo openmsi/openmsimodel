@@ -1,0 +1,46 @@
+{
+   "conditions": [],
+   "description": "The measurement of dimension of an alloy in its form, often ingot",
+   "name": "MeasureDimensions",
+   "parameters": [],
+   "properties": [
+      [
+         {
+            "id": "ea3b696e-7a0c-4a14-8be3-42f608e3e1d4",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         null
+      ],
+      [
+         {
+            "id": "4b6f54e6-099e-46bd-9209-b3eba153072b",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         null
+      ],
+      [
+         {
+            "id": "e90c2631-97c3-4f7e-8c16-1a077fe82837",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         null
+      ],
+      [
+         {
+            "id": "7e224a1d-88d1-4a2e-a67b-6d8cb22a492d",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         null
+      ]
+   ],
+   "tags": [],
+   "type": "measurement_template",
+   "uids": {
+      "auto": "dea9bf4d-36af-4092-a3b6-0eea028ed5d0",
+      "persistent_id": 36
+   }
+}

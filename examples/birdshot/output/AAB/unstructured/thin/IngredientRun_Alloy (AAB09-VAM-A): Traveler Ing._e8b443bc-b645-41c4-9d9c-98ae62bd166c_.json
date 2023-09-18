@@ -1,0 +1,30 @@
+{
+   "absolute_quantity": null,
+   "file_links": [],
+   "labels": [],
+   "mass_fraction": null,
+   "material": {
+      "id": "39136e3d-7b94-4a75-b87a-5eb0bad0b16c",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "name": "Alloy (AAB09-VAM-A): Traveler Ing.",
+   "notes": null,
+   "number_fraction": null,
+   "process": {
+      "id": "2b1ee1e7-fadd-414c-bd46-1c8cc0ac9abe",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "spec": {
+      "id": "4616f69e-b427-4ffc-ae70-03ea71e96d19",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [],
+   "type": "ingredient_run",
+   "uids": {
+      "auto": "e8b443bc-b645-41c4-9d9c-98ae62bd166c"
+   },
+   "volume_fraction": null
+}

@@ -1,0 +1,16 @@
+{
+   "bounds": {
+      "default_units": "dimensionless",
+      "lower_bound": 0,
+      "type": "real_bounds",
+      "upper_bound": 15
+   },
+   "description": null,
+   "name": "Ingot Location",
+   "tags": [],
+   "type": "parameter_template",
+   "uids": {
+      "auto": "466cf4e1-be4b-4144-b55e-8c255949de3b",
+      "persistent_id": 24
+   }
+}

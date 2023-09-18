@@ -1,0 +1,52 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Arc melting Alloy (AAB02-VAM-A)",
+   "notes": null,
+   "parameters": [
+      {
+         "file_links": [],
+         "name": "Initial Purging Times",
+         "notes": null,
+         "origin": "specified",
+         "template": {
+            "id": "83be9c7b-ebc5-48b2-acba-7907e76391c7",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         "type": "parameter",
+         "value": {
+            "nominal": 0.0,
+            "type": "nominal_real",
+            "units": "hour"
+         }
+      },
+      {
+         "file_links": [],
+         "name": "Vacuum Before Melt",
+         "notes": null,
+         "origin": "specified",
+         "template": {
+            "id": "c084af30-60b7-4691-bb84-b61ce6f7cb07",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         "type": "parameter",
+         "value": {
+            "nominal": 0.0,
+            "type": "nominal_real",
+            "units": "dimensionless"
+         }
+      }
+   ],
+   "tags": [],
+   "template": {
+      "id": "c04f5a2c-f0ed-40ec-a9e3-82fd2500be14",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "process_spec",
+   "uids": {
+      "auto": "36be914b-5780-4471-b71e-75bdba9693f2"
+   }
+}

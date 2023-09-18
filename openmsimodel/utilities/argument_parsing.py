@@ -196,6 +196,13 @@ class OpenMSIModelParser(ArgumentParser):
                 "help": "path to private file containing keys to the database ",
             },
         ],
+        "name": [
+            "positional",
+            {
+                "type": str,
+                "help": "name",
+            },
+        ],
         # TODO: Move the 2 below to birdshot specific args
         "iteration": [
             "optional",
@@ -212,11 +219,18 @@ class OpenMSIModelParser(ArgumentParser):
                 "default": "auto",
             },
         ],
-        "sample_data_folder": [
+        "synthesis_path": [
             "optional",
             {
                 "type": str,
-                "help": "the folder containing the sample data (i.e., /Sample Data/Iteration2_AAB)",
+                "help": "the path to synthesis file",
+            },
+        ],
+        "srjt_path": [
+            "optional",
+            {
+                "type": str,
+                "help": "the path to sjrt file",
             },
         ],
         "identifier": [

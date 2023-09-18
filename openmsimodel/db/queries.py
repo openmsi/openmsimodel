@@ -314,7 +314,7 @@ def create_attributes_query(model_id):
 def prepare_classes(db_engine):
     try:
         Base = automap_base()
-        Base.prepare(db_engine)
+        Base.prepare(db_engine, reflect=True)
         for c in Base.classes:
             print(c)
         GEMDObject = Base.classes.GEMDObject
@@ -357,10 +357,11 @@ def load_model_query(name, db, dirpath, uuid):
     session.commit()
     print("Session commited.")
 
-    print("Loading GEMDEdges and GEMDAttributes...")
-    # creating GEMDEdges
-    db.execute_query(create_edges_query(model.id))
+    # print("Loading GEMDEdges and GEMDAttributes...")
+    # # creating GEMDEdges
+    # db.execute_query(create_edges_query(model.id))
 
-    # creating GEMDEdges
-    db.execute_query(create_attributes_query(model.id))
+    # # creating GEMDEdges
+    # db.execute_query(create_attributes_query(model.id))
+
     print("Queries executed.")

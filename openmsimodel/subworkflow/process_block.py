@@ -156,6 +156,24 @@ class ProcessBlock(Subworkflow):
             self.link_within()
         # elif
 
+    def all(self) -> list:
+        _all = []
+        for i in self.ingredients.values():
+            _all.append(i)
+        if self.process:
+            _all.append(self.process)
+        if self.material:
+            _all.append(self.material)
+        for m in self.measurements.values():
+            _all.append(m)
+        return _all
+
+    def all_gemd(self) -> list:
+        _all_gemd = []
+        for obj in self.all():
+            _all_gemd.extend(obj.all_gemd())
+        return _all_gemd
+
     def add_ingredient(self, ingredient: Ingredient):
         """add ingredient to block"""
         if not isinstance(ingredient, Ingredient):

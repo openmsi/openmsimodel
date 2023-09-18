@@ -12,46 +12,54 @@ persistent_id,name,type
 10,Mixing,process_template
 11,Alloy,material_template
 12,Form,property_template
-13,Arc Melting,process_template
-14,Argon Pressure,parameter_template
-15,Diffusion,parameter_template
-16,Ingot Location,parameter_template
-17,Initial Purging Times,parameter_template
-18,Vacuum Before Melt,parameter_template
-19,Homogenization,process_template
-20,Pressure,parameter_template
-21,Duration,parameter_template
-22,Temperature,parameter_template
-23,Atmosphere,parameter_template
-24,Cooling Rate,parameter_template
-25,Forging,process_template
-26,Soak Time,parameter_template
-27,Maximum Load Step,parameter_template
-28,MeasureDimensions,measurement_template
-29,Length,property_template
-30,Width,property_template
-31,Thickness,property_template
-32,Thickness Reduction,property_template
-33,Setting traveler,process_template
-34,Traveler,material_template
-35,Setting Traveler Sample,process_template
-36,Traveler Sample,material_template
-37,SEM,measurement_template
-38,XRD,measurement_template
-39,Lattice Parameter,property_template
-40,Phase,property_template
-41,"Hardness, HV",property_template
-42,"SD, HV",property_template
-43,NI,measurement_template
-44,Tensile,measurement_template
-45,"Elastic Modulus, GPa",property_template
-46,"Yield Strength, MPa",property_template
-47,"UTS, MPa",property_template
-48,"Elongation, %",property_template
-49,"Strain Hardening, MPa",property_template
-50,dUTS_dY,property_template
-51,Aggregate Traveler Samples,process_template
-52,Traveler Samples,material_template
-53,Aggregate Summary Sheet,process_template
-54,Summary Sheet,material_template
-55,Infer Compositions,process_template
+13,SRJT,measurement_template
+14,Avg. Corrected Hardness (Gpa),property_template
+15,Avg. Corrected Modulus (Gpa),property_template
+16,Avg. Pile-up Ratio,property_template
+17,Avg. Raw Modulus (Gpa),property_template
+18,Avg. Raw Hardness (Gpa),property_template
+19,Strain Rate Sensitivity Exponent,property_template
+20,Strain Rate Sensitivity Exponent Std. Dev.,property_template
+21,Arc Melting,process_template
+22,Argon Pressure,parameter_template
+23,Diffusion,parameter_template
+24,Ingot Location,parameter_template
+25,Initial Purging Times,parameter_template
+26,Vacuum Before Melt,parameter_template
+27,Homogenization,process_template
+28,Pressure,parameter_template
+29,Duration,parameter_template
+30,Temperature,parameter_template
+31,Atmosphere,parameter_template
+32,Cooling Rate,parameter_template
+33,Forging,process_template
+34,Soak Time,parameter_template
+35,Maximum Load Step,parameter_template
+36,MeasureDimensions,measurement_template
+37,Length,property_template
+38,Width,property_template
+39,Thickness,property_template
+40,Thickness Reduction,property_template
+41,Setting traveler,process_template
+42,Traveler,material_template
+43,Setting Traveler Sample,process_template
+44,Traveler Sample,material_template
+45,SEM,measurement_template
+46,XRD,measurement_template
+47,Lattice Parameter,property_template
+48,Phase,property_template
+49,"Hardness, HV",property_template
+50,"SD, HV",property_template
+51,NI,measurement_template
+52,Tensile,measurement_template
+53,"Elastic Modulus, GPa",property_template
+54,"Yield Strength, MPa",property_template
+55,"UTS, MPa",property_template
+56,"Elongation, %",property_template
+57,"Strain Hardening, MPa",property_template
+58,dUTS_dY,property_template
+59,Aggregate Traveler Samples,process_template
+60,Traveler Samples,material_template
+61,Aggregate Summary Sheet,process_template
+62,Summary Sheet,material_template
+63,Infer Compositions,process_template

@@ -1,0 +1,17 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Aggregating XRD samples",
+   "notes": null,
+   "parameters": [],
+   "tags": [],
+   "template": {
+      "id": "d60a74a4-e9b3-499d-b223-c0644fa8d5a8",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "process_spec",
+   "uids": {
+      "auto": "7990c6b9-d140-40d9-afa5-4101e4c753ef"
+   }
+}

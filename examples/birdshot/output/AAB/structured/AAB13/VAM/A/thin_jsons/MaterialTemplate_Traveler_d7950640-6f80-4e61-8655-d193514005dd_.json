@@ -1,0 +1,11 @@
+{
+   "description": "Traveler",
+   "name": "Traveler",
+   "properties": [],
+   "tags": [],
+   "type": "material_template",
+   "uids": {
+      "auto": "d7950640-6f80-4e61-8655-d193514005dd",
+      "persistent_id": 42
+   }
+}

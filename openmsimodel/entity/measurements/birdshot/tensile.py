@@ -38,14 +38,14 @@ class Tensile(Measurement):
     define_attribute(
         _ATTRS,
         template=PropertyTemplate(
-            name="Yield Strength, MPa", bounds=RealBounds(0, 10000, "MPa")
+            name="Yield Strength, MPa", bounds=RealBounds(-10000, 10000, "MPa")
         ),
         # default_value=NominalReal(0, "MPa"),
     )
 
     define_attribute(
         _ATTRS,
-        template=PropertyTemplate(name="UTS, MPa", bounds=RealBounds(0, 10000, "MPa")),
+        template=PropertyTemplate(name="UTS, MPa", bounds=RealBounds(-10000, 10000, "MPa")),
         # default_value=NominalReal(0, "MPa"),
     )
 
@@ -58,7 +58,7 @@ class Tensile(Measurement):
     define_attribute(
         _ATTRS,
         template=PropertyTemplate(
-            name="Strain Hardening, MPa", bounds=RealBounds(0, 10000, "MPa")
+            name="Strain Hardening, MPa", bounds=RealBounds(-10000, 10000, "MPa")
         ),
         # default_value=NominalReal(0, "MPa"),
     )

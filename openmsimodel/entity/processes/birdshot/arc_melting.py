@@ -25,8 +25,7 @@ class ArcMelting(Process):
 
     TEMPLATE: ClassVar[ProcessTemplate] = ProcessTemplate(
         name="Arc Melting",
-        description="""One of the fabrication methods, arc melting
-                """,
+        description="""One of the fabrication methods, arc melting""",
     )
 
     _ATTRS: ClassVar[AttrsDict] = _validate_temp_keys(TEMPLATE)
@@ -51,7 +50,7 @@ class ArcMelting(Process):
         _ATTRS,
         template=ParameterTemplate(
             name="Ingot Location",
-            bounds=RealBounds(0, 10, ""),
+            bounds=RealBounds(0, 15, ""),
         ),
     )
 
@@ -68,7 +67,7 @@ class ArcMelting(Process):
         _ATTRS,
         template=ParameterTemplate(
             name="Vacuum Before Melt",
-            bounds=RealBounds(0, 5, ""),
+            bounds=RealBounds(0, 15, ""),
         ),
         default_value=NominalReal(0, ""),
     )
