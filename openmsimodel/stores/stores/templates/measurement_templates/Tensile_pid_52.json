@@ -6,7 +6,7 @@
    "properties": [
       [
          {
-            "id": "e8f28b5b-5a03-4eba-806a-a11874ed5aab",
+            "id": "9bf7dc57-9e6e-46fc-a178-e65f7acf8b6d",
             "scope": "auto",
             "type": "link_by_uid"
          },
@@ -14,7 +14,7 @@
       ],
       [
          {
-            "id": "fa2ca820-7098-40bc-bb93-362ea67ff22e",
+            "id": "cac07062-0319-4553-a8e8-35e312607a6e",
             "scope": "auto",
             "type": "link_by_uid"
          },
@@ -22,7 +22,7 @@
       ],
       [
          {
-            "id": "34309bf8-095c-4ab5-98ed-6200a62edc11",
+            "id": "f9cc4131-1a7b-4c34-b49d-fe93e9126f50",
             "scope": "auto",
             "type": "link_by_uid"
          },
@@ -30,7 +30,7 @@
       ],
       [
          {
-            "id": "1e90555a-b141-4a85-98dc-08d14f49f5db",
+            "id": "97b2496f-7bda-4815-97c1-9e5dc450e891",
             "scope": "auto",
             "type": "link_by_uid"
          },
@@ -38,7 +38,7 @@
       ],
       [
          {
-            "id": "8fa6f362-6c14-4928-85d8-760e4df4f30d",
+            "id": "b507dd26-69cb-4366-b38a-20d64900edee",
             "scope": "auto",
             "type": "link_by_uid"
          },
@@ -46,7 +46,7 @@
       ],
       [
          {
-            "id": "ae7329af-9f35-49f0-b3fa-4a2aab86abf9",
+            "id": "e9e886b6-72f2-4553-b433-6e7f0f687db8",
             "scope": "auto",
             "type": "link_by_uid"
          },
@@ -56,7 +56,7 @@
    "tags": [],
    "type": "measurement_template",
    "uids": {
-      "auto": "6156779f-04a9-466d-8e31-cca767337ca9",
+      "auto": "65987a63-ba3c-44ad-951e-0b0b05b7501a",
       "persistent_id": 52
    }
 }

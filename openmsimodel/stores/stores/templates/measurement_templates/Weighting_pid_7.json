@@ -6,7 +6,7 @@
    "properties": [
       [
          {
-            "id": "1d0933b1-73da-47bb-9bdc-8b88383315cf",
+            "id": "e9be649a-be6b-4f1a-8059-74fa91cd7eaa",
             "scope": "auto",
             "type": "link_by_uid"
          },
@@ -14,7 +14,7 @@
       ],
       [
          {
-            "id": "4a909d44-ad1b-4d28-b998-9ab9015280fc",
+            "id": "efedfb3e-7b49-4e5d-82b6-8b1741b4e653",
             "scope": "auto",
             "type": "link_by_uid"
          },
@@ -24,7 +24,7 @@
    "tags": [],
    "type": "measurement_template",
    "uids": {
-      "auto": "700eb357-33e5-4730-8626-993a25706aba",
+      "auto": "8c0aaad5-00d9-4b02-bef3-d5e1e9203cd9",
       "persistent_id": 7
    }
 }
