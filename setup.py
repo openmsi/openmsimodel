@@ -27,13 +27,8 @@ setupkwargs = dict(
         "pymssql==2.2.8",
         "SQLAlchemy==2.0.17",
         "PyInquirer",
-<<<<<<< Updated upstream
         "prompt_toolkit",
         # "setuptools==60.7.0",
-=======
-        "prompt_toolkit==1.0.14",
-        "setuptools",
->>>>>>> Stashed changes
         "numpy",
         "pandas",
         "methodtools",
