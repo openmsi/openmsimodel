@@ -1,0 +1,16 @@
+{
+   "bounds": {
+      "default_units": "centimeter",
+      "lower_bound": 0,
+      "type": "real_bounds",
+      "upper_bound": 5
+   },
+   "description": null,
+   "name": "Lattice Parameter",
+   "tags": [],
+   "type": "property_template",
+   "uids": {
+      "auto": "66226188-4849-4708-b958-08eb4d554d0f",
+      "persistent_id": 47
+   }
+}

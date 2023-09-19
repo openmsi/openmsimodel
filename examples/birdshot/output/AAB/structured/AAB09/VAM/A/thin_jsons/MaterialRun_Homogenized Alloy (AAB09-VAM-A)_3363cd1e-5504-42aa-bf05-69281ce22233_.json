@@ -1,0 +1,25 @@
+{
+   "file_links": [],
+   "name": "Homogenized Alloy (AAB09-VAM-A)",
+   "notes": null,
+   "process": {
+      "id": "145602e1-bd5f-4f08-81d2-aab39576f049",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "sample_type": null,
+   "spec": {
+      "id": "b8488c1f-19be-4a98-8877-6507be68bb91",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB09",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "material_run",
+   "uids": {
+      "auto": "3363cd1e-5504-42aa-bf05-69281ce22233"
+   }
+}

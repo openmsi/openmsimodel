@@ -1,0 +1,21 @@
+{
+   "file_links": [],
+   "name": "Alloy (AAB12-VAM-A): Traveler",
+   "notes": null,
+   "process": {
+      "id": "a9cce556-7fb9-41db-bb62-6a0e524680aa",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "properties": [],
+   "tags": [],
+   "template": {
+      "id": "f395edd1-f964-41c7-9255-d3105ea3f0ef",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "material_spec",
+   "uids": {
+      "auto": "dc9558a7-ad82-496d-9899-67b4fc12f4d7"
+   }
+}

@@ -1,0 +1,16 @@
+{
+   "bounds": {
+      "default_units": "dimensionless",
+      "lower_bound": 0,
+      "type": "real_bounds",
+      "upper_bound": 200
+   },
+   "description": null,
+   "name": "Avg. Pile-up Ratio",
+   "tags": [],
+   "type": "property_template",
+   "uids": {
+      "auto": "f45392a9-910c-4f6e-86c7-96da61730e06",
+      "persistent_id": 16
+   }
+}

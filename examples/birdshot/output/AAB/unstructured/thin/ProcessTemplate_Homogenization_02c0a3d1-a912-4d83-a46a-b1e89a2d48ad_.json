@@ -1,0 +1,55 @@
+{
+   "allowed_labels": [],
+   "allowed_names": [],
+   "conditions": [],
+   "description": "Homogenizing\n                ",
+   "name": "Homogenization",
+   "parameters": [
+      [
+         {
+            "id": "0f0cbcab-9165-46e9-bcb1-1ce997cc86a0",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         null
+      ],
+      [
+         {
+            "id": "2724fc3c-bbe6-431e-b731-5ad935e7325d",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         null
+      ],
+      [
+         {
+            "id": "988730dc-b0c7-4e61-9488-551d38ac0670",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         null
+      ],
+      [
+         {
+            "id": "a913543c-3183-494f-973c-28d2fded9d76",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         null
+      ],
+      [
+         {
+            "id": "e6bc72ac-fed4-440a-8bd8-c7775605ab6f",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         null
+      ]
+   ],
+   "tags": [],
+   "type": "process_template",
+   "uids": {
+      "auto": "02c0a3d1-a912-4d83-a46a-b1e89a2d48ad",
+      "persistent_id": 27
+   }
+}

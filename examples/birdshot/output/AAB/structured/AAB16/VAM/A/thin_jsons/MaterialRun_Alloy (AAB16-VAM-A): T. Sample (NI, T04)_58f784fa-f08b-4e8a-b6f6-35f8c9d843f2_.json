@@ -1,0 +1,25 @@
+{
+   "file_links": [],
+   "name": "Alloy (AAB16-VAM-A): T. Sample (NI, T04)",
+   "notes": null,
+   "process": {
+      "id": "ca437580-8dd8-4087-97cd-2425c6040374",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "sample_type": null,
+   "spec": {
+      "id": "3e0492da-cc82-4904-84fa-0b1ac148626a",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB16",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "material_run",
+   "uids": {
+      "auto": "58f784fa-f08b-4e8a-b6f6-35f8c9d843f2"
+   }
+}

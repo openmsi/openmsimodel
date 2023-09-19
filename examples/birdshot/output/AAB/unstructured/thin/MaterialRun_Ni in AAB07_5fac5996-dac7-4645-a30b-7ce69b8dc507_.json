@@ -1,0 +1,25 @@
+{
+   "file_links": [],
+   "name": "Ni in AAB07",
+   "notes": null,
+   "process": {
+      "id": "454cba7e-b8eb-4d85-85ab-59ac95627f75",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "sample_type": "production",
+   "spec": {
+      "id": "78649d8f-e79b-4842-af81-12e3f2713e5a",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB07",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "material_run",
+   "uids": {
+      "auto": "5fac5996-dac7-4645-a30b-7ce69b8dc507"
+   }
+}

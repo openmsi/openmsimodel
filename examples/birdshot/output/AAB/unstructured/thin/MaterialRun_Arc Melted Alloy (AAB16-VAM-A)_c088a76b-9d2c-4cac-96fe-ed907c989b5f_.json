@@ -1,0 +1,25 @@
+{
+   "file_links": [],
+   "name": "Arc Melted Alloy (AAB16-VAM-A)",
+   "notes": null,
+   "process": {
+      "id": "8f7d57cd-9cc4-477b-9589-6060caa4f1e9",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "sample_type": null,
+   "spec": {
+      "id": "d33f6a65-2ae7-4458-9ce1-0dc4c327f6ae",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB16",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "material_run",
+   "uids": {
+      "auto": "c088a76b-9d2c-4cac-96fe-ed907c989b5f"
+   }
+}

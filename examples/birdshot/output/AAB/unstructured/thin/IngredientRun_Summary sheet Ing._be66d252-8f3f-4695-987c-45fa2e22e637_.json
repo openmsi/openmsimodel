@@ -1,0 +1,30 @@
+{
+   "absolute_quantity": null,
+   "file_links": [],
+   "labels": [],
+   "mass_fraction": null,
+   "material": {
+      "id": "bd582476-7fe5-45a8-9c73-1d9df1fd2ce1",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "name": "Summary sheet Ing.",
+   "notes": null,
+   "number_fraction": null,
+   "process": {
+      "id": "ddfaf35f-849f-434e-ac4d-0fe0291e10bd",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "spec": {
+      "id": "41b726b4-82b1-421d-8867-1daa1ce8bb55",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [],
+   "type": "ingredient_run",
+   "uids": {
+      "auto": "be66d252-8f3f-4695-987c-45fa2e22e637"
+   },
+   "volume_fraction": null
+}

@@ -1,0 +1,16 @@
+{
+   "bounds": {
+      "default_units": "gram",
+      "lower_bound": 0,
+      "type": "real_bounds",
+      "upper_bound": 50
+   },
+   "description": "Relative mass loss",
+   "name": "Mass Loss",
+   "tags": [],
+   "type": "property_template",
+   "uids": {
+      "auto": "3ff37629-2103-48e3-8dbb-365421e0ed08",
+      "persistent_id": 9
+   }
+}

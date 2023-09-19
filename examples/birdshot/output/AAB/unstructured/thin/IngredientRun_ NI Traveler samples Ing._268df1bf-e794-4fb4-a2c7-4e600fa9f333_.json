@@ -1,0 +1,30 @@
+{
+   "absolute_quantity": null,
+   "file_links": [],
+   "labels": [],
+   "mass_fraction": null,
+   "material": {
+      "id": "d344ef04-e6be-44a2-a775-6343ecca3ab0",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "name": " NI Traveler samples Ing.",
+   "notes": null,
+   "number_fraction": null,
+   "process": {
+      "id": "88c4cf41-a20a-425f-93a2-a3d1bfffec54",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "spec": {
+      "id": "8ee43d64-4e22-4e65-8536-a88260b1ba12",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [],
+   "type": "ingredient_run",
+   "uids": {
+      "auto": "268df1bf-e794-4fb4-a2c7-4e600fa9f333"
+   },
+   "volume_fraction": null
+}

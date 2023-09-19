@@ -1,0 +1,55 @@
+{
+   "allowed_labels": [],
+   "allowed_names": [],
+   "conditions": [],
+   "description": "One of the fabrication methods, arc melting",
+   "name": "Arc Melting",
+   "parameters": [
+      [
+         {
+            "id": "dcc2adca-8408-479c-8cc6-5d46ef776307",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         null
+      ],
+      [
+         {
+            "id": "92bc54fe-f8fb-409d-a5ed-9dc40ce5465e",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         null
+      ],
+      [
+         {
+            "id": "8320d2ea-a1c0-4bca-b20c-127ec0075aed",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         null
+      ],
+      [
+         {
+            "id": "363e5f3e-a3fa-4291-841d-bb82c5f87ccd",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         null
+      ],
+      [
+         {
+            "id": "8268ab66-701e-4ae1-b1da-68b6e11916ae",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         null
+      ]
+   ],
+   "tags": [],
+   "type": "process_template",
+   "uids": {
+      "auto": "0ef393b7-2a07-4830-8c7f-bdbc991a102b",
+      "persistent_id": 21
+   }
+}

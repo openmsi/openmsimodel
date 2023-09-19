@@ -1,0 +1,25 @@
+{
+   "absolute_quantity": null,
+   "file_links": [],
+   "labels": [],
+   "mass_fraction": null,
+   "material": {
+      "id": "ba18e7e7-a8ef-46f3-8b45-ba3d5d68ee9a",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "name": "Composition AAB08 Ing.",
+   "notes": null,
+   "number_fraction": null,
+   "process": {
+      "id": "9dc3cfe6-f88a-47b0-a5e9-1879ccaa9549",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [],
+   "type": "ingredient_spec",
+   "uids": {
+      "auto": "38bd37e4-775e-4d4a-a852-f5647698ab4f"
+   },
+   "volume_fraction": null
+}
