@@ -1,0 +1,63 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "material": {
+      "id": "f5d35aef-e6eb-454e-99ab-288824560ea0",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "name": "Weigh Co for AAB05",
+   "notes": null,
+   "parameters": [],
+   "properties": [
+      {
+         "file_links": [],
+         "name": "Weighed Mass",
+         "notes": null,
+         "origin": "unknown",
+         "template": null,
+         "type": "property",
+         "value": {
+            "nominal": 7.7044,
+            "type": "nominal_real",
+            "units": "gram"
+         }
+      },
+      {
+         "file_links": [],
+         "name": "Mass Loss",
+         "notes": null,
+         "origin": "specified",
+         "template": {
+            "id": "04282189-fa4b-4ac1-b3ea-6fb89fdda3bb",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         "type": "property",
+         "value": {
+            "nominal": 0.0,
+            "type": "nominal_real",
+            "units": "gram"
+         }
+      }
+   ],
+   "source": {
+      "performed_by": "Wenle & Daniel",
+      "performed_date": "2022-11-04",
+      "type": "performed_source"
+   },
+   "spec": {
+      "id": "27c644bf-3066-47cc-b242-399d141fc4de",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB05",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "measurement_run",
+   "uids": {
+      "auto": "6f40febb-6382-4377-938a-c7fc09f8070b"
+   }
+}

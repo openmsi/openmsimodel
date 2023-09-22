@@ -1,0 +1,16 @@
+{
+   "bounds": {
+      "default_units": "gigapascal",
+      "lower_bound": 0,
+      "type": "real_bounds",
+      "upper_bound": 5
+   },
+   "description": null,
+   "name": "Avg. Raw Hardness (Gpa)",
+   "tags": [],
+   "type": "property_template",
+   "uids": {
+      "auto": "dc185e5d-7f61-4067-be10-8a91062eabfd",
+      "persistent_id": 20
+   }
+}

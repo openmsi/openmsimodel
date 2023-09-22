@@ -156,7 +156,7 @@ class ProcessBlock(Subworkflow):
             self.link_within()
         # elif
 
-    def all(self) -> list:
+    def return_all(self) -> list:
         _all = []
         for i in self.ingredients.values():
             _all.append(i)
@@ -168,10 +168,10 @@ class ProcessBlock(Subworkflow):
             _all.append(m)
         return _all
 
-    def all_gemd(self) -> list:
+    def return_all_gemd(self) -> list:
         _all_gemd = []
-        for obj in self.all():
-            _all_gemd.extend(obj.all_gemd())
+        for obj in self.return_all():
+            _all_gemd.extend(obj.return_all_gemd())
         return _all_gemd
 
     def add_ingredient(self, ingredient: Ingredient):

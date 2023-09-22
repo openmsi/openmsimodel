@@ -1,0 +1,22 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Adding Al for AAB12",
+   "notes": null,
+   "parameters": [],
+   "source": null,
+   "spec": {
+      "id": "0ed925bb-9f37-48b7-9313-4c1a1bcd7fdb",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB12",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "process_run",
+   "uids": {
+      "auto": "f243a0e8-3223-4dcb-b1e9-0d3263dd3b27"
+   }
+}

@@ -1,0 +1,56 @@
+{
+   "file_links": [],
+   "name": "Ni in AAB11",
+   "notes": null,
+   "process": {
+      "id": "a6d48193-c373-4a8f-b509-f79cb1e527cd",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "properties": [
+      {
+         "conditions": [],
+         "property": {
+            "file_links": [],
+            "name": "Composition Percentage",
+            "notes": "",
+            "origin": "predicted",
+            "template": null,
+            "type": "property",
+            "value": {
+               "nominal": 55.00000000000001,
+               "type": "nominal_real",
+               "units": "dimensionless"
+            }
+         },
+         "type": "property_and_conditions"
+      },
+      {
+         "conditions": [],
+         "property": {
+            "file_links": [],
+            "name": "Target Mass",
+            "notes": "",
+            "origin": "computed",
+            "template": null,
+            "type": "property",
+            "value": {
+               "nominal": 17.1996,
+               "type": "nominal_real",
+               "units": "gram"
+            }
+         },
+         "type": "property_and_conditions"
+      }
+   ],
+   "tags": [],
+   "template": {
+      "id": "0fb87d5c-2459-4820-98d3-0343359af765",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "material_spec",
+   "uids": {
+      "auto": "6060a47e-f052-49fc-b051-f47c61a4b769"
+   }
+}

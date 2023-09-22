@@ -1,0 +1,38 @@
+{
+   "file_links": [],
+   "name": "Arc Melted Alloy (AAB08-VAM-A)",
+   "notes": null,
+   "process": {
+      "id": "1354c93e-d93f-4c8d-9a2b-3e8dca2e5922",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "properties": [
+      {
+         "conditions": [],
+         "property": {
+            "file_links": [],
+            "name": "Form",
+            "notes": "",
+            "origin": "predicted",
+            "template": null,
+            "type": "property",
+            "value": {
+               "category": "Ingot",
+               "type": "nominal_categorical"
+            }
+         },
+         "type": "property_and_conditions"
+      }
+   ],
+   "tags": [],
+   "template": {
+      "id": "439773c0-b197-459a-b41b-5d37a83571a5",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "material_spec",
+   "uids": {
+      "auto": "247d33b3-c701-4842-b8b1-ad7ccd7a30f3"
+   }
+}

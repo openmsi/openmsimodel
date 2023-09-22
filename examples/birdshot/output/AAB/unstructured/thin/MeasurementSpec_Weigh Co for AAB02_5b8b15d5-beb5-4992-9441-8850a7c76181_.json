@@ -1,0 +1,17 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Weigh Co for AAB02",
+   "notes": null,
+   "parameters": [],
+   "tags": [],
+   "template": {
+      "id": "c7332160-0bfb-4063-a3a9-550acd57e7bd",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "measurement_spec",
+   "uids": {
+      "auto": "5b8b15d5-beb5-4992-9441-8850a7c76181"
+   }
+}

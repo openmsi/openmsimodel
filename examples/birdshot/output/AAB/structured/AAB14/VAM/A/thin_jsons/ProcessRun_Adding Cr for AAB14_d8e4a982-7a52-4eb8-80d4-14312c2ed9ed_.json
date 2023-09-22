@@ -1,0 +1,22 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Adding Cr for AAB14",
+   "notes": null,
+   "parameters": [],
+   "source": null,
+   "spec": {
+      "id": "cf6f2aab-ac7d-423d-bdbf-cb4cf894dba2",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB14",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "process_run",
+   "uids": {
+      "auto": "d8e4a982-7a52-4eb8-80d4-14312c2ed9ed"
+   }
+}

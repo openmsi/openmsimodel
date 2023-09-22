@@ -1,0 +1,22 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Extract sample from Alloy (AAB11-VAM-A): Traveler",
+   "notes": null,
+   "parameters": [],
+   "source": null,
+   "spec": {
+      "id": "0113f034-8078-40a5-86d4-2e5f8e610de3",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB11",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "process_run",
+   "uids": {
+      "auto": "4db771ef-b037-4c95-b895-c9de5b15efd6"
+   }
+}

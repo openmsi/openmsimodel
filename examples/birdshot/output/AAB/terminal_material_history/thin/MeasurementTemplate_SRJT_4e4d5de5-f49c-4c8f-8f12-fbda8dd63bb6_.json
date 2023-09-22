@@ -1,0 +1,86 @@
+{
+   "conditions": [],
+   "description": "Strain rate jump measurement",
+   "name": "SRJT",
+   "parameters": [],
+   "properties": [
+      [
+         {
+            "id": "ab88791d-ff6e-4196-8102-0c679a21f99e",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         null
+      ],
+      [
+         {
+            "id": "435a92a9-2942-4c19-b5b0-39bea129fb37",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         null
+      ],
+      [
+         {
+            "id": "d9905377-6c92-47eb-863a-2d129a0c7a39",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         null
+      ],
+      [
+         {
+            "id": "222f3ec4-7068-434f-ad92-2b2ea6fe7e67",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         null
+      ],
+      [
+         {
+            "id": "8094d8e7-5bad-442e-8fd8-c3ceed88323f",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         null
+      ],
+      [
+         {
+            "id": "167dbe4a-e859-43e5-b97b-c1b89a09e363",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         null
+      ],
+      [
+         {
+            "id": "f9b4b207-e260-4b33-ac07-634dc2996183",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         null
+      ],
+      [
+         {
+            "id": "6e703b87-05b3-4cf1-8313-4a2d24444ba7",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         null
+      ],
+      [
+         {
+            "id": "693eba85-371d-425b-a0b3-0e272182efc0",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         null
+      ]
+   ],
+   "tags": [],
+   "type": "measurement_template",
+   "uids": {
+      "auto": "4e4d5de5-f49c-4c8f-8f12-fbda8dd63bb6",
+      "persistent_id": 13
+   }
+}

@@ -1,0 +1,17 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Weigh Ni for AAB08",
+   "notes": null,
+   "parameters": [],
+   "tags": [],
+   "template": {
+      "id": "567fb862-c2a8-4363-87b0-2d84c625ca1e",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "measurement_spec",
+   "uids": {
+      "auto": "1e61c902-f88f-4f5b-9162-e4e347d6cc29"
+   }
+}

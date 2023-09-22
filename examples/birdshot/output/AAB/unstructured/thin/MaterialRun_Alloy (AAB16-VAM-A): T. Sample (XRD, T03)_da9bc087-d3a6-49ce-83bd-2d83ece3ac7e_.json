@@ -1,0 +1,25 @@
+{
+   "file_links": [],
+   "name": "Alloy (AAB16-VAM-A): T. Sample (XRD, T03)",
+   "notes": null,
+   "process": {
+      "id": "4d43aa9e-71a3-4f59-a823-a3af0188dcc3",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "sample_type": null,
+   "spec": {
+      "id": "85feea38-ee24-4071-a581-0c965b88b39c",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB16",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "material_run",
+   "uids": {
+      "auto": "da9bc087-d3a6-49ce-83bd-2d83ece3ac7e"
+   }
+}

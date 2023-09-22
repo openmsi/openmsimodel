@@ -1,0 +1,16 @@
+{
+   "bounds": {
+      "default_units": "minute",
+      "lower_bound": 0,
+      "type": "real_bounds",
+      "upper_bound": 120
+   },
+   "description": null,
+   "name": "Soak Time",
+   "tags": [],
+   "type": "parameter_template",
+   "uids": {
+      "auto": "061d9aa9-18ac-436d-ac93-52efdb2f41e0",
+      "persistent_id": 36
+   }
+}

@@ -1,0 +1,107 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "material": {
+      "id": "74a07b29-4e49-4394-924c-b471586e3d06",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "name": "Tensile charact. for Alloy (AAB13-VAM-A) (T08)",
+   "notes": null,
+   "parameters": [],
+   "properties": [
+      {
+         "file_links": [],
+         "name": "Elastic Modulus, GPa",
+         "notes": "",
+         "origin": "measured",
+         "template": null,
+         "type": "property",
+         "value": {
+            "nominal": 190.3230420461882,
+            "type": "nominal_real",
+            "units": "gigapascal"
+         }
+      },
+      {
+         "file_links": [],
+         "name": "Yield Strength, MPa",
+         "notes": "",
+         "origin": "measured",
+         "template": null,
+         "type": "property",
+         "value": {
+            "nominal": 268.54636400587304,
+            "type": "nominal_real",
+            "units": "megapascal"
+         }
+      },
+      {
+         "file_links": [],
+         "name": "UTS, MPa",
+         "notes": "",
+         "origin": "measured",
+         "template": null,
+         "type": "property",
+         "value": {
+            "nominal": 582.0389603112749,
+            "type": "nominal_real",
+            "units": "megapascal"
+         }
+      },
+      {
+         "file_links": [],
+         "name": "Elongation, %",
+         "notes": "",
+         "origin": "measured",
+         "template": null,
+         "type": "property",
+         "value": {
+            "nominal": 26.488493262389234,
+            "type": "nominal_real",
+            "units": "dimensionless"
+         }
+      },
+      {
+         "file_links": [],
+         "name": "Strain Hardening, MPa",
+         "notes": "",
+         "origin": "measured",
+         "template": null,
+         "type": "property",
+         "value": {
+            "nominal": 854.7482411793954,
+            "type": "nominal_real",
+            "units": "megapascal"
+         }
+      },
+      {
+         "file_links": [],
+         "name": "dUTS_dY",
+         "notes": "",
+         "origin": "measured",
+         "template": null,
+         "type": "property",
+         "value": {
+            "nominal": 2.167368612365743,
+            "type": "nominal_real",
+            "units": "dimensionless"
+         }
+      }
+   ],
+   "source": null,
+   "spec": {
+      "id": "e5ca9077-bc45-40a4-ade2-c3244be14c36",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB13",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "measurement_run",
+   "uids": {
+      "auto": "d2d05e19-f887-4571-bcb7-94a0da1ee7ca"
+   }
+}

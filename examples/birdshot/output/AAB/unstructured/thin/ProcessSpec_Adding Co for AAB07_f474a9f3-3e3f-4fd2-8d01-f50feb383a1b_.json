@@ -1,0 +1,17 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Adding Co for AAB07",
+   "notes": null,
+   "parameters": [],
+   "tags": [],
+   "template": {
+      "id": "b0fcfefa-b2bc-425e-8302-cea7a7ccc1a9",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "process_spec",
+   "uids": {
+      "auto": "f474a9f3-3e3f-4fd2-8d01-f50feb383a1b"
+   }
+}

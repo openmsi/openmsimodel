@@ -1,0 +1,30 @@
+{
+   "absolute_quantity": null,
+   "file_links": [],
+   "labels": [],
+   "mass_fraction": null,
+   "material": {
+      "id": "ecb08e38-a62b-4d36-9a87-7290de8ad0cd",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "name": "Cr in AAB09 Ing.",
+   "notes": null,
+   "number_fraction": null,
+   "process": {
+      "id": "08fd882f-3c21-4332-b3a8-fd063948fd21",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "spec": {
+      "id": "f3354bf0-f8c6-4141-82d0-fbac06eec5d2",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [],
+   "type": "ingredient_run",
+   "uids": {
+      "auto": "d5528b59-940a-4576-9108-a19a01897ecb"
+   },
+   "volume_fraction": null
+}

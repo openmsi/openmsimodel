@@ -1,0 +1,22 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Adding V for AAB16",
+   "notes": null,
+   "parameters": [],
+   "source": null,
+   "spec": {
+      "id": "b6682394-2055-4da5-a2b7-134fbd6b686a",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB16",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "process_run",
+   "uids": {
+      "auto": "6eba71df-71a6-4c5a-94ae-a36b4585d592"
+   }
+}

@@ -1,0 +1,63 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "material": {
+      "id": "8c408d06-8368-4ef7-a93b-0d6eb569b7c7",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "name": "Weigh V for AAB09",
+   "notes": null,
+   "parameters": [],
+   "properties": [
+      {
+         "file_links": [],
+         "name": "Weighed Mass",
+         "notes": null,
+         "origin": "unknown",
+         "template": null,
+         "type": "property",
+         "value": {
+            "nominal": 1.3294,
+            "type": "nominal_real",
+            "units": "gram"
+         }
+      },
+      {
+         "file_links": [],
+         "name": "Mass Loss",
+         "notes": null,
+         "origin": "specified",
+         "template": {
+            "id": "04282189-fa4b-4ac1-b3ea-6fb89fdda3bb",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         "type": "property",
+         "value": {
+            "nominal": 0.0,
+            "type": "nominal_real",
+            "units": "gram"
+         }
+      }
+   ],
+   "source": {
+      "performed_by": "Wenle & Daniel",
+      "performed_date": "2022-11-04",
+      "type": "performed_source"
+   },
+   "spec": {
+      "id": "6b637134-57fd-403c-9423-07bd2602dbf1",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB09",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "measurement_run",
+   "uids": {
+      "auto": "20c33435-f6b0-402c-9695-aacbb68e8286"
+   }
+}

@@ -1,0 +1,22 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Adding Co for AAB05",
+   "notes": null,
+   "parameters": [],
+   "source": null,
+   "spec": {
+      "id": "fa89bcc0-a97f-4d26-a685-07a8c621bed2",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB05",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "process_run",
+   "uids": {
+      "auto": "4b6eeb1e-5a84-40e0-972e-93ac797fe537"
+   }
+}

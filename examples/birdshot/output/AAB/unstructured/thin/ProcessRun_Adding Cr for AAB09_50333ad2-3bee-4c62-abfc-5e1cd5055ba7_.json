@@ -1,0 +1,22 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Adding Cr for AAB09",
+   "notes": null,
+   "parameters": [],
+   "source": null,
+   "spec": {
+      "id": "d8c8f3dc-e217-49d3-b8ca-f51496ce48ba",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB09",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "process_run",
+   "uids": {
+      "auto": "50333ad2-3bee-4c62-abfc-5e1cd5055ba7"
+   }
+}

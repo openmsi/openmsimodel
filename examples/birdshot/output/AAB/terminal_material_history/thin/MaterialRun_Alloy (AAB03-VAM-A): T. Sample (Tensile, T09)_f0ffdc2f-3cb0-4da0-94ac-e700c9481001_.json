@@ -1,0 +1,25 @@
+{
+   "file_links": [],
+   "name": "Alloy (AAB03-VAM-A): T. Sample (Tensile, T09)",
+   "notes": null,
+   "process": {
+      "id": "6b5d5b5e-ed9f-4dbd-bb72-dbd0f9cbdb39",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "sample_type": null,
+   "spec": {
+      "id": "a792d683-33d1-40d4-9b70-b7e4460c2882",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB03",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "material_run",
+   "uids": {
+      "auto": "f0ffdc2f-3cb0-4da0-94ac-e700c9481001"
+   }
+}

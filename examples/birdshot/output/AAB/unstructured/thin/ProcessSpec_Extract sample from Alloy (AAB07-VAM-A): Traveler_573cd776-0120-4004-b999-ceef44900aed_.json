@@ -1,0 +1,17 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Extract sample from Alloy (AAB07-VAM-A): Traveler",
+   "notes": null,
+   "parameters": [],
+   "tags": [],
+   "template": {
+      "id": "5bb4d453-5cc2-4721-9909-085ddc2bb909",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "process_spec",
+   "uids": {
+      "auto": "573cd776-0120-4004-b999-ceef44900aed"
+   }
+}

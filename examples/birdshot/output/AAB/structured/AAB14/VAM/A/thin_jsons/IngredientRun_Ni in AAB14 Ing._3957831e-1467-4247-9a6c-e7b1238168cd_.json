@@ -1,0 +1,30 @@
+{
+   "absolute_quantity": null,
+   "file_links": [],
+   "labels": [],
+   "mass_fraction": null,
+   "material": {
+      "id": "ee5b0adc-ccb7-464f-a0e4-eb7a467783d7",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "name": "Ni in AAB14 Ing.",
+   "notes": null,
+   "number_fraction": null,
+   "process": {
+      "id": "4215e6e8-68bf-4427-a5de-1a7b2c422fd6",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "spec": {
+      "id": "4821ca78-c582-4b10-bd0b-023adc3c701e",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [],
+   "type": "ingredient_run",
+   "uids": {
+      "auto": "3957831e-1467-4247-9a6c-e7b1238168cd"
+   },
+   "volume_fraction": null
+}

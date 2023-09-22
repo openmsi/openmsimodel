@@ -1,0 +1,22 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Adding V for AAB14",
+   "notes": null,
+   "parameters": [],
+   "source": null,
+   "spec": {
+      "id": "967bdf3c-59c9-495d-8c22-9e9609758e27",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB14",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "process_run",
+   "uids": {
+      "auto": "26856589-47d8-4b4c-879a-04b5fe30a37d"
+   }
+}

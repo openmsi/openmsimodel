@@ -1,0 +1,21 @@
+{
+   "file_links": [],
+   "name": "Composition AAB16",
+   "notes": null,
+   "process": {
+      "id": "1ec453a3-13cb-4109-9f42-1ffdecbbcb11",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "properties": [],
+   "tags": [],
+   "template": {
+      "id": "04f0bb4e-805a-474b-84da-224f5547b143",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "material_spec",
+   "uids": {
+      "auto": "ab7ccb48-9188-4107-86cb-773ddfa00883"
+   }
+}

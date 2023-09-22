@@ -1,0 +1,22 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Mix elements of AAB10",
+   "notes": null,
+   "parameters": [],
+   "source": null,
+   "spec": {
+      "id": "0d217a2c-2206-4278-bfd5-df7666660641",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB10",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "process_run",
+   "uids": {
+      "auto": "0b69ca58-63f5-4be8-86c3-646236e22911"
+   }
+}

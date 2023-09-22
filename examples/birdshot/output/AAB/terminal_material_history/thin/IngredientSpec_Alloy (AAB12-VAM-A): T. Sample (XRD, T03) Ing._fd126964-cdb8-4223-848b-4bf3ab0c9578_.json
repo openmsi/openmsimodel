@@ -1,0 +1,25 @@
+{
+   "absolute_quantity": null,
+   "file_links": [],
+   "labels": [],
+   "mass_fraction": null,
+   "material": {
+      "id": "682b1bc4-dc21-4279-bdf1-2f74422d4ac6",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "name": "Alloy (AAB12-VAM-A): T. Sample (XRD, T03) Ing.",
+   "notes": null,
+   "number_fraction": null,
+   "process": {
+      "id": "02a51b16-55f6-4ccd-a8cf-56bdb6d02cd3",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [],
+   "type": "ingredient_spec",
+   "uids": {
+      "auto": "fd126964-cdb8-4223-848b-4bf3ab0c9578"
+   },
+   "volume_fraction": null
+}

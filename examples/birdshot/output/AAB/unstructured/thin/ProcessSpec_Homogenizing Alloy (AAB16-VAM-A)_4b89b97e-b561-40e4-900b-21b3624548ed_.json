@@ -1,0 +1,17 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Homogenizing Alloy (AAB16-VAM-A)",
+   "notes": null,
+   "parameters": [],
+   "tags": [],
+   "template": {
+      "id": "27de135d-ce07-4730-9314-4fa40e7960be",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "process_spec",
+   "uids": {
+      "auto": "4b89b97e-b561-40e4-900b-21b3624548ed"
+   }
+}

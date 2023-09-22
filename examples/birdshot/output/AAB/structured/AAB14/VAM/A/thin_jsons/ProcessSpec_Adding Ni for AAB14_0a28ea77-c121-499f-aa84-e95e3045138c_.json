@@ -1,0 +1,17 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Adding Ni for AAB14",
+   "notes": null,
+   "parameters": [],
+   "tags": [],
+   "template": {
+      "id": "7a0002a0-3a8a-4a04-a705-c28c011ffba9",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "process_spec",
+   "uids": {
+      "auto": "0a28ea77-c121-499f-aa84-e95e3045138c"
+   }
+}

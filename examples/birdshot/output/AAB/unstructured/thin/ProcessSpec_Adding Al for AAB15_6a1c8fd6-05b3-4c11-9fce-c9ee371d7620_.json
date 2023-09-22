@@ -1,0 +1,17 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Adding Al for AAB15",
+   "notes": null,
+   "parameters": [],
+   "tags": [],
+   "template": {
+      "id": "b0fcfefa-b2bc-425e-8302-cea7a7ccc1a9",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "process_spec",
+   "uids": {
+      "auto": "6a1c8fd6-05b3-4c11-9fce-c9ee371d7620"
+   }
+}

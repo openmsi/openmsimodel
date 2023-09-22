@@ -1,0 +1,17 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "SRJT charact. for AAB03",
+   "notes": null,
+   "parameters": [],
+   "tags": [],
+   "template": {
+      "id": "a65b10a8-2d74-4e96-bf71-5f85d8078537",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "measurement_spec",
+   "uids": {
+      "auto": "bd0f9268-d222-4fa9-a1ef-7730a0e1c8e6"
+   }
+}

@@ -1,0 +1,28 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "material": {
+      "id": "9d419ca2-625d-401a-80ce-fb3c0208bf39",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "name": "NI charact. for Alloy (AAB11-VAM-A) (T04)",
+   "notes": null,
+   "parameters": [],
+   "properties": [],
+   "source": null,
+   "spec": {
+      "id": "d29aca13-2f6f-4406-bf10-c11f57e4a1ef",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB11",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "measurement_run",
+   "uids": {
+      "auto": "1bfe824a-58aa-418c-b5cf-44123485ac45"
+   }
+}

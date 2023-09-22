@@ -1,0 +1,17 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Weigh Arc Melted Alloy (AAB07-VAM-A)",
+   "notes": null,
+   "parameters": [],
+   "tags": [],
+   "template": {
+      "id": "c7332160-0bfb-4063-a3a9-550acd57e7bd",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "measurement_spec",
+   "uids": {
+      "auto": "af1e0e20-5f31-45f9-8eff-1423d82d799c"
+   }
+}

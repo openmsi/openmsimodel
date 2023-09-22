@@ -1,0 +1,22 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Adding V for AAB09",
+   "notes": null,
+   "parameters": [],
+   "source": null,
+   "spec": {
+      "id": "917552d2-84cc-4f9a-925c-ec5ce9a87688",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB09",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "process_run",
+   "uids": {
+      "auto": "4d6f1e59-c7ad-4119-84af-ec14ecd7b3ff"
+   }
+}

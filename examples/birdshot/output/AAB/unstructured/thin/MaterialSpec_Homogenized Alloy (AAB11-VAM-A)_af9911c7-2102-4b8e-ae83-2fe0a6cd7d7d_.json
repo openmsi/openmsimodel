@@ -1,0 +1,38 @@
+{
+   "file_links": [],
+   "name": "Homogenized Alloy (AAB11-VAM-A)",
+   "notes": null,
+   "process": {
+      "id": "4e070fdd-839a-4fbb-9814-095b9d6ac6e6",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "properties": [
+      {
+         "conditions": [],
+         "property": {
+            "file_links": [],
+            "name": "Form",
+            "notes": "",
+            "origin": "predicted",
+            "template": null,
+            "type": "property",
+            "value": {
+               "category": "Ingot",
+               "type": "nominal_categorical"
+            }
+         },
+         "type": "property_and_conditions"
+      }
+   ],
+   "tags": [],
+   "template": {
+      "id": "ef74c657-6da3-49a2-8b8c-db9f85c36d66",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "material_spec",
+   "uids": {
+      "auto": "af9911c7-2102-4b8e-ae83-2fe0a6cd7d7d"
+   }
+}

@@ -1,0 +1,17 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Weigh Al for AAB13",
+   "notes": null,
+   "parameters": [],
+   "tags": [],
+   "template": {
+      "id": "c7332160-0bfb-4063-a3a9-550acd57e7bd",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "measurement_spec",
+   "uids": {
+      "auto": "44313fe4-6b0e-45a9-bbb0-2979deb614a6"
+   }
+}

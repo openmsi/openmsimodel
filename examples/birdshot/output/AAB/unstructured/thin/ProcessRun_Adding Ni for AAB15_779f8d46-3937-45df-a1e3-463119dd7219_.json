@@ -1,0 +1,22 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Adding Ni for AAB15",
+   "notes": null,
+   "parameters": [],
+   "source": null,
+   "spec": {
+      "id": "3d36cf72-5359-42c2-bf3f-149fd57ea952",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB15",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "process_run",
+   "uids": {
+      "auto": "779f8d46-3937-45df-a1e3-463119dd7219"
+   }
+}

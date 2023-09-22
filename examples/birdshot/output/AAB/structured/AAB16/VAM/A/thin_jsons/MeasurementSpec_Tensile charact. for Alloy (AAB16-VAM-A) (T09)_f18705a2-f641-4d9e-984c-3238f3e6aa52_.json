@@ -1,0 +1,17 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Tensile charact. for Alloy (AAB16-VAM-A) (T09)",
+   "notes": null,
+   "parameters": [],
+   "tags": [],
+   "template": {
+      "id": "fb7dc810-080f-43bf-8cf9-f91a4990f951",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "measurement_spec",
+   "uids": {
+      "auto": "f18705a2-f641-4d9e-984c-3238f3e6aa52"
+   }
+}

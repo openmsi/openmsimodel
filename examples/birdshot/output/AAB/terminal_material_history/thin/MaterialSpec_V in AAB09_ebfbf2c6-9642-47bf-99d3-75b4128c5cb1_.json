@@ -1,0 +1,56 @@
+{
+   "file_links": [],
+   "name": "V in AAB09",
+   "notes": null,
+   "process": {
+      "id": "61bd4ca5-2fc8-4819-9392-30d26c1ca5d6",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "properties": [
+      {
+         "conditions": [],
+         "property": {
+            "file_links": [],
+            "name": "Composition Percentage",
+            "notes": "",
+            "origin": "predicted",
+            "template": null,
+            "type": "property",
+            "value": {
+               "nominal": 5.0,
+               "type": "nominal_real",
+               "units": "dimensionless"
+            }
+         },
+         "type": "property_and_conditions"
+      },
+      {
+         "conditions": [],
+         "property": {
+            "file_links": [],
+            "name": "Target Mass",
+            "notes": "",
+            "origin": "computed",
+            "template": null,
+            "type": "property",
+            "value": {
+               "nominal": 1.3284,
+               "type": "nominal_real",
+               "units": "gram"
+            }
+         },
+         "type": "property_and_conditions"
+      }
+   ],
+   "tags": [],
+   "template": {
+      "id": "70b30b0f-776a-4170-be9b-0962be16b96f",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "material_spec",
+   "uids": {
+      "auto": "ebfbf2c6-9642-47bf-99d3-75b4128c5cb1"
+   }
+}

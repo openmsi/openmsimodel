@@ -1,0 +1,17 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Setting traveler for Alloy (AAB01-VAM-A)",
+   "notes": null,
+   "parameters": [],
+   "tags": [],
+   "template": {
+      "id": "5170bcf6-ec5a-4f82-bd84-caf8173cbace",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "process_spec",
+   "uids": {
+      "auto": "1039a540-efad-451c-a4c7-70715998da05"
+   }
+}

@@ -1,0 +1,22 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Setting traveler for Alloy (AAB08-VAM-A)",
+   "notes": null,
+   "parameters": [],
+   "source": null,
+   "spec": {
+      "id": "63557950-6068-49d2-987a-68b29046ae87",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB08",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "process_run",
+   "uids": {
+      "auto": "bd27961c-2c61-4e28-816c-8221d216b270"
+   }
+}

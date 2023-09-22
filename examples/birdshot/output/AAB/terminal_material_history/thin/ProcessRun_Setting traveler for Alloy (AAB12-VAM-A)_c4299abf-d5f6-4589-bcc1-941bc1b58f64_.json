@@ -1,0 +1,22 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Setting traveler for Alloy (AAB12-VAM-A)",
+   "notes": null,
+   "parameters": [],
+   "source": null,
+   "spec": {
+      "id": "af247a4d-ea67-471f-937d-f7efd6949c83",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB12",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "process_run",
+   "uids": {
+      "auto": "c4299abf-d5f6-4589-bcc1-941bc1b58f64"
+   }
+}

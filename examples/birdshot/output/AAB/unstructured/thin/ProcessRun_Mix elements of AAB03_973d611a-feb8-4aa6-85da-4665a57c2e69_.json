@@ -1,0 +1,22 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Mix elements of AAB03",
+   "notes": null,
+   "parameters": [],
+   "source": null,
+   "spec": {
+      "id": "a465257f-0652-45f0-9242-4a6499776582",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB03",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "process_run",
+   "uids": {
+      "auto": "973d611a-feb8-4aa6-85da-4665a57c2e69"
+   }
+}

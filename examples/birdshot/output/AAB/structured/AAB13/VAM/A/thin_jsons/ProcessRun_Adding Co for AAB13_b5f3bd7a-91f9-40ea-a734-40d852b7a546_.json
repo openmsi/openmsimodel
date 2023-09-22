@@ -1,0 +1,22 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Adding Co for AAB13",
+   "notes": null,
+   "parameters": [],
+   "source": null,
+   "spec": {
+      "id": "98e42f6c-7b1c-47a4-9edb-85ade9a4f5f1",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB13",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "process_run",
+   "uids": {
+      "auto": "b5f3bd7a-91f9-40ea-a734-40d852b7a546"
+   }
+}

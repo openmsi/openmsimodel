@@ -1,0 +1,22 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Adding Fe for AAB06",
+   "notes": null,
+   "parameters": [],
+   "source": null,
+   "spec": {
+      "id": "c172013d-f859-401f-a684-735ed7d36c40",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB06",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "process_run",
+   "uids": {
+      "auto": "314aab01-80f6-47e7-a0dd-a7d94251fd9a"
+   }
+}

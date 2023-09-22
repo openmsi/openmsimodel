@@ -1,0 +1,16 @@
+{
+   "bounds": {
+      "default_units": "pascal",
+      "lower_bound": 0,
+      "type": "real_bounds",
+      "upper_bound": 1000
+   },
+   "description": null,
+   "name": "SD, HV",
+   "tags": [],
+   "type": "property_template",
+   "uids": {
+      "auto": "f1a2ae79-bcdd-41bc-9709-ed943922acb1",
+      "persistent_id": 52
+   }
+}

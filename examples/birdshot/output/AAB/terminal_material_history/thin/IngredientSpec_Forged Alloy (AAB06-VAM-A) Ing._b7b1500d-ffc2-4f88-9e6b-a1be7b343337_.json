@@ -1,0 +1,25 @@
+{
+   "absolute_quantity": null,
+   "file_links": [],
+   "labels": [],
+   "mass_fraction": null,
+   "material": {
+      "id": "741f7a64-f56b-4d45-878a-c888364edb13",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "name": "Forged Alloy (AAB06-VAM-A) Ing.",
+   "notes": null,
+   "number_fraction": null,
+   "process": {
+      "id": "1bbe5de1-e6bb-493b-973a-bb97eaa6e651",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [],
+   "type": "ingredient_spec",
+   "uids": {
+      "auto": "b7b1500d-ffc2-4f88-9e6b-a1be7b343337"
+   },
+   "volume_fraction": null
+}

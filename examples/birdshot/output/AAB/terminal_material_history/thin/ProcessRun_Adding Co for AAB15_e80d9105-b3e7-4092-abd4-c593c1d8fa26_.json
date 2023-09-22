@@ -1,0 +1,22 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Adding Co for AAB15",
+   "notes": null,
+   "parameters": [],
+   "source": null,
+   "spec": {
+      "id": "53b20cea-3884-46f3-838e-df1c01c5f555",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB15",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "process_run",
+   "uids": {
+      "auto": "e80d9105-b3e7-4092-abd4-c593c1d8fa26"
+   }
+}

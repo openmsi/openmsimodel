@@ -1,0 +1,25 @@
+{
+   "absolute_quantity": null,
+   "file_links": [],
+   "labels": [],
+   "mass_fraction": null,
+   "material": {
+      "id": "42e4bc26-d442-4d3b-96d9-37dce27d754d",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "name": "Alloy (AAB10-VAM-A): T. Sample (Tensile, T08) Ing.",
+   "notes": null,
+   "number_fraction": null,
+   "process": {
+      "id": "54a89066-33b3-4003-ada1-8bc1ca372cd6",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [],
+   "type": "ingredient_spec",
+   "uids": {
+      "auto": "43ddde19-7acb-4460-89ca-133743edb54e"
+   },
+   "volume_fraction": null
+}

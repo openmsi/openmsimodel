@@ -1,0 +1,30 @@
+{
+   "absolute_quantity": null,
+   "file_links": [],
+   "labels": [],
+   "mass_fraction": null,
+   "material": {
+      "id": "8d0fca5c-a604-4ec3-99aa-e15619dcfbbf",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "name": " Tensile Traveler samples Ing.",
+   "notes": null,
+   "number_fraction": null,
+   "process": {
+      "id": "e8ddef08-c9d3-447d-b553-adff00c52eff",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "spec": {
+      "id": "ab8442cf-95b6-47e0-8541-7e580e022f2d",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [],
+   "type": "ingredient_run",
+   "uids": {
+      "auto": "8b3b46dc-0308-4e79-8811-3208a690929e"
+   },
+   "volume_fraction": null
+}

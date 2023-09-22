@@ -1,0 +1,17 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Tensile charact. for Alloy (AAB05-VAM-A) (T08)",
+   "notes": null,
+   "parameters": [],
+   "tags": [],
+   "template": {
+      "id": "96d68339-5338-413d-8366-8a0dcaa3dbe9",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "measurement_spec",
+   "uids": {
+      "auto": "b957b0de-f4c7-49d7-a52b-f2c78ffff1c3"
+   }
+}

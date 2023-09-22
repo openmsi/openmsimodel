@@ -1,0 +1,22 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Adding V for AAB12",
+   "notes": null,
+   "parameters": [],
+   "source": null,
+   "spec": {
+      "id": "91d5b106-34d1-4c42-9e26-00ff9b4a946b",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB12",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "process_run",
+   "uids": {
+      "auto": "6ab7087e-f7ec-45a4-b3f2-e8851c0b668a"
+   }
+}

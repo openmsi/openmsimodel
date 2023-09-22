@@ -1,0 +1,17 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "NI charact. for Alloy (AAB14-VAM-A) (T04)",
+   "notes": null,
+   "parameters": [],
+   "tags": [],
+   "template": {
+      "id": "85d0c25d-6bff-42ab-b5e3-5bcad00023af",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "measurement_spec",
+   "uids": {
+      "auto": "8cac6ff0-e2d4-4956-a3dd-45585ac413cb"
+   }
+}

@@ -1,0 +1,28 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "material": {
+      "id": "4fec902c-f4fc-4728-b8e0-bb731952b174",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "name": "SEM charact. for Alloy (AAB08-VAM-A) (T02)",
+   "notes": null,
+   "parameters": [],
+   "properties": [],
+   "source": null,
+   "spec": {
+      "id": "b7703dc6-e4d6-4711-8983-14cd6c285480",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB08",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "measurement_run",
+   "uids": {
+      "auto": "cb411ea2-5c7f-42c3-98f8-e3769e48e7f8"
+   }
+}

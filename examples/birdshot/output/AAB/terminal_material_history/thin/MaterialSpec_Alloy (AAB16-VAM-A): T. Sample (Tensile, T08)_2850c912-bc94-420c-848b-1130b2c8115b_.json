@@ -1,0 +1,21 @@
+{
+   "file_links": [],
+   "name": "Alloy (AAB16-VAM-A): T. Sample (Tensile, T08)",
+   "notes": null,
+   "process": {
+      "id": "17fdee94-cce4-42a8-8536-28aa302b3f1b",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "properties": [],
+   "tags": [],
+   "template": {
+      "id": "a0c5b901-2818-401a-8495-79dd9e6aae43",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "material_spec",
+   "uids": {
+      "auto": "2850c912-bc94-420c-848b-1130b2c8115b"
+   }
+}

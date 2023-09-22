@@ -1,0 +1,17 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Adding Al for AAB13",
+   "notes": null,
+   "parameters": [],
+   "tags": [],
+   "template": {
+      "id": "b0fcfefa-b2bc-425e-8302-cea7a7ccc1a9",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "process_spec",
+   "uids": {
+      "auto": "9e3c2585-c755-4608-9b93-adc36bec91b8"
+   }
+}

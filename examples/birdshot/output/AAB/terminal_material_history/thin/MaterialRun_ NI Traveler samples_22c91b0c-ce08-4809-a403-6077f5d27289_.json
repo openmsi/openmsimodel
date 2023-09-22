@@ -1,0 +1,21 @@
+{
+   "file_links": [],
+   "name": " NI Traveler samples",
+   "notes": null,
+   "process": {
+      "id": "d3773ce9-3d5e-4bc1-8e87-8606b90c0801",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "sample_type": null,
+   "spec": {
+      "id": "770a5f0a-9fb7-4f66-b8a7-f9eb7e9cda0b",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [],
+   "type": "material_run",
+   "uids": {
+      "auto": "22c91b0c-ce08-4809-a403-6077f5d27289"
+   }
+}

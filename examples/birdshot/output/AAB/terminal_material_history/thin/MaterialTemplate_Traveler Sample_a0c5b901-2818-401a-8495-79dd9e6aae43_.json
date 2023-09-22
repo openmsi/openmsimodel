@@ -1,0 +1,11 @@
+{
+   "description": "Traveler sample",
+   "name": "Traveler Sample",
+   "properties": [],
+   "tags": [],
+   "type": "material_template",
+   "uids": {
+      "auto": "a0c5b901-2818-401a-8495-79dd9e6aae43",
+      "persistent_id": 46
+   }
+}

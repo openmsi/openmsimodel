@@ -15,6 +15,9 @@ class MSSQLDatabase:
             self.DATABASE = DATABASE
         self.ENGINE = self.__create_engine()
 
+    # def executed_casjobs_query(self):
+    #     pass
+
     def execPyMSSQL(self, statement):
         with pymssql.connect(
             self.SERVER, self.AUTH["user"], self.AUTH["pwd"], self.DATABASE

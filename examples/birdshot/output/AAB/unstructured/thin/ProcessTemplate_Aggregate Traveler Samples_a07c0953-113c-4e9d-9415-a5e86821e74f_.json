@@ -1,0 +1,14 @@
+{
+   "allowed_labels": [],
+   "allowed_names": [],
+   "conditions": [],
+   "description": null,
+   "name": "Aggregate Traveler Samples",
+   "parameters": [],
+   "tags": [],
+   "type": "process_template",
+   "uids": {
+      "auto": "a07c0953-113c-4e9d-9415-a5e86821e74f",
+      "persistent_id": 61
+   }
+}

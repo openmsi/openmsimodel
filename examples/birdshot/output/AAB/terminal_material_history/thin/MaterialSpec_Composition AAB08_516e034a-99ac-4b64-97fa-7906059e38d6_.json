@@ -1,0 +1,21 @@
+{
+   "file_links": [],
+   "name": "Composition AAB08",
+   "notes": null,
+   "process": {
+      "id": "c9bb4b06-5c55-466b-bf09-aaf6cdfe6bd0",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "properties": [],
+   "tags": [],
+   "template": {
+      "id": "04f0bb4e-805a-474b-84da-224f5547b143",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "material_spec",
+   "uids": {
+      "auto": "516e034a-99ac-4b64-97fa-7906059e38d6"
+   }
+}

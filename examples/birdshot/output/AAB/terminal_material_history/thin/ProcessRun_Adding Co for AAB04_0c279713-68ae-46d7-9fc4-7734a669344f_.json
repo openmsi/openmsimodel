@@ -1,0 +1,22 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Adding Co for AAB04",
+   "notes": null,
+   "parameters": [],
+   "source": null,
+   "spec": {
+      "id": "c3bf32c1-152b-41c3-8253-1f3cbf3a9558",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB04",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "process_run",
+   "uids": {
+      "auto": "0c279713-68ae-46d7-9fc4-7734a669344f"
+   }
+}

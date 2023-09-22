@@ -1,0 +1,16 @@
+{
+   "bounds": {
+      "default_units": "dimensionless",
+      "lower_bound": 0,
+      "type": "real_bounds",
+      "upper_bound": 100
+   },
+   "description": null,
+   "name": "dUTS_dY",
+   "tags": [],
+   "type": "property_template",
+   "uids": {
+      "auto": "bf6f85f1-771f-47ef-bb59-d71a07daac00",
+      "persistent_id": 60
+   }
+}

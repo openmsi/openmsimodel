@@ -1,0 +1,17 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Summarize inputs to B.O",
+   "notes": null,
+   "parameters": [],
+   "tags": [],
+   "template": {
+      "id": "f9e6fd27-98cb-404b-ba31-3a54133dba14",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "process_spec",
+   "uids": {
+      "auto": "2e4013a8-7367-4d88-8ce4-21a2799d3bfc"
+   }
+}

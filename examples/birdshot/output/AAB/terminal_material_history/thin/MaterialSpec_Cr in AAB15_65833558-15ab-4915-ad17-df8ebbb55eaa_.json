@@ -1,0 +1,56 @@
+{
+   "file_links": [],
+   "name": "Cr in AAB15",
+   "notes": null,
+   "process": {
+      "id": "108a9edd-fdb1-4a1b-8b99-666d650fa877",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "properties": [
+      {
+         "conditions": [],
+         "property": {
+            "file_links": [],
+            "name": "Composition Percentage",
+            "notes": "",
+            "origin": "predicted",
+            "template": null,
+            "type": "property",
+            "value": {
+               "nominal": 10.0,
+               "type": "nominal_real",
+               "units": "dimensionless"
+            }
+         },
+         "type": "property_and_conditions"
+      },
+      {
+         "conditions": [],
+         "property": {
+            "file_links": [],
+            "name": "Target Mass",
+            "notes": "",
+            "origin": "computed",
+            "template": null,
+            "type": "property",
+            "value": {
+               "nominal": 2.811,
+               "type": "nominal_real",
+               "units": "gram"
+            }
+         },
+         "type": "property_and_conditions"
+      }
+   ],
+   "tags": [],
+   "template": {
+      "id": "70b30b0f-776a-4170-be9b-0962be16b96f",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "material_spec",
+   "uids": {
+      "auto": "65833558-15ab-4915-ad17-df8ebbb55eaa"
+   }
+}

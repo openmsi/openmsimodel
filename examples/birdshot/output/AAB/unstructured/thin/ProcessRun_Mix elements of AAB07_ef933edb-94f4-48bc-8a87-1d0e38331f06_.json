@@ -1,0 +1,22 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Mix elements of AAB07",
+   "notes": null,
+   "parameters": [],
+   "source": null,
+   "spec": {
+      "id": "4dbebabd-5542-47ce-936a-2b87436cb160",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB07",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "process_run",
+   "uids": {
+      "auto": "ef933edb-94f4-48bc-8a87-1d0e38331f06"
+   }
+}

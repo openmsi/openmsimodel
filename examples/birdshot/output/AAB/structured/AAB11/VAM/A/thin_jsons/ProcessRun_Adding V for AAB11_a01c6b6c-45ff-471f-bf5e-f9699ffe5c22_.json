@@ -1,0 +1,22 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Adding V for AAB11",
+   "notes": null,
+   "parameters": [],
+   "source": null,
+   "spec": {
+      "id": "447ab818-d82f-470e-9ce2-440f59d56c5a",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB11",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "process_run",
+   "uids": {
+      "auto": "a01c6b6c-45ff-471f-bf5e-f9699ffe5c22"
+   }
+}

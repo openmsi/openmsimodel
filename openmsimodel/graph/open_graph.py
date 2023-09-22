@@ -34,10 +34,12 @@ class OpenGraph(Runnable):
     )
 
     # instance attributes
-    def __init__(self, name, dirpath, output):
+    # TODO: move build_graph function params to obj + store pygraphviz and networkx as obj attr
+    def __init__(self, name, dirpath, output, restrictive=False):
         self.name = name
         self.dirpath = pathlib.Path(dirpath) if not (type(dirpath) == list) else dirpath
-        self.output = pathlib.Path(output)
+        self.output = pathlib.Path(output)  # TODO: REQUIRES FULL PATH NOW; FIX
+        self.restrictive = restrictive
         self.svg_path = None
         self.dot_path = None
 
@@ -86,19 +88,6 @@ class OpenGraph(Runnable):
         # adding objects to graph one by one
         for i, obj_data in enumerate(gemd_objects):
             # if "raw_jsons" in obj:  # FIXME
-            #     continue
-            # obj_data = obj
-            # if type(obj) == str:  # path
-            #     fp = open(obj, "r")
-            #     obj_data = json.load(fp)
-            # if not (
-            #     type(obj_data) == dict and "type" in obj_data.keys()
-            # ):  # FIXME helps when reading a full mat history, or a list, in the same folder as others single jsons
-            #     continue
-            # if type(obj_data) == list:
-            #     continue
-            # print(obj_data)
-            # print(type(obj_data))
             obj_type = obj_data["type"]
             if (
                 obj_type.startswith("parameter")
@@ -111,7 +100,7 @@ class OpenGraph(Runnable):
                 continue
             obj_uid = obj_data["uids"][uuid_to_track]
             obj_name = obj_data["name"]
-            name_mapping[obj_uid] = "{},  {}".format(obj_name, obj_uid[:3])
+            name_mapping[obj_uid] = "{} [{}]".format(obj_name, obj_uid[:3])
             self.handle_gemd_obj(
                 G,
                 obj_uid,
@@ -124,7 +113,7 @@ class OpenGraph(Runnable):
             if i % 1000 == 0:
                 print("{} gemd objects processed...".format(i))
 
-        # converting to grapviz
+        # converting to grapviz and relabelling according to uid -> name
         relabeled_G = self.map_to_graphviz(G, name_mapping)
 
         # # plotting
@@ -164,7 +153,17 @@ class OpenGraph(Runnable):
         """
         if obj_type.startswith("process"):
             if obj_type.endswith(which):  # TODO: add "which" equals all to add both
-                G.add_node(uid, color="red")
+                G.add_node(
+                    uid,
+                    # font_size=400,
+                    # size=50,
+                    # font_color="white",
+                    # font_name="Gentium Book Basic",
+                    # style="filled",
+                    # fillcolor="#D70040",
+                    # weight=1.5,
+                    color="red",
+                )
                 self.add_gemd_assets(
                     G,
                     uid,
@@ -179,7 +178,12 @@ class OpenGraph(Runnable):
                 G.add_node(uid, color="blue")
                 process = obj_data["process"]["id"]
                 G.add_edge(uid, process)
-                # G.add_edge(process, uid)
+                if (
+                    not self.restrictive
+                ):  # no material -> ingredient = helps separate and restrict
+                    if "material" in obj_data and obj_data["material"]:
+                        material = obj_data["material"]["id"]
+                        G.add_edge(material, uid)
                 self.add_gemd_assets(
                     G,
                     uid,
@@ -189,9 +193,6 @@ class OpenGraph(Runnable):
                     assets_to_add,
                     add_separate_node,
                 )
-                if "material" in obj_data and obj_data["material"]:
-                    material = obj_data["material"]["id"]
-                    G.add_edge(material, uid)
         elif obj_type.startswith("material"):
             if obj_type.endswith(which):
                 G.add_node(uid, color="green")
@@ -204,13 +205,13 @@ class OpenGraph(Runnable):
                     assets_to_add,
                     add_separate_node,
                 )
-                # if "process" in obj_data and obj_data["process"]:
+                # if not self.restrictive:
                 if obj_data["process"] and obj_data["process"]:
                     process = obj_data["process"]["id"]
                     G.add_edge(process, uid)  # ?
         elif obj_type.startswith("measurement"):
             if obj_type.endswith(which):
-                G.add_node(uid, color="purple")
+                G.add_node(uid, shape="rectangle", color="purple")
                 self.add_gemd_assets(
                     G,
                     uid,
@@ -220,6 +221,7 @@ class OpenGraph(Runnable):
                     assets_to_add,
                     add_separate_node,
                 )
+                # if not self.restrictive:
                 if "material" in obj_data and obj_data["material"]:
                     material = obj_data["material"]["id"]
                     G.add_edge(uid, material)

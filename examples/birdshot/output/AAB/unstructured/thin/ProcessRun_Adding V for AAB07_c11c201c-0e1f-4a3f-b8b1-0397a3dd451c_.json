@@ -1,0 +1,22 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Adding V for AAB07",
+   "notes": null,
+   "parameters": [],
+   "source": null,
+   "spec": {
+      "id": "7b321e5e-2223-4afa-8825-e2795064132f",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB07",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "process_run",
+   "uids": {
+      "auto": "c11c201c-0e1f-4a3f-b8b1-0397a3dd451c"
+   }
+}

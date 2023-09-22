@@ -1,0 +1,17 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Forging Alloy (AAB13-VAM-A)",
+   "notes": null,
+   "parameters": [],
+   "tags": [],
+   "template": {
+      "id": "7fa3a5ac-b0a0-452c-a289-7fffba1e8ebb",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "process_spec",
+   "uids": {
+      "auto": "9a52e672-3345-4002-97c1-7bd20245b92d"
+   }
+}

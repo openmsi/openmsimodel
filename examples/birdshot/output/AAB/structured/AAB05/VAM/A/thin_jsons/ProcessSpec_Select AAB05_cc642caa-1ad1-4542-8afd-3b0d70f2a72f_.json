@@ -1,0 +1,17 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Select AAB05",
+   "notes": null,
+   "parameters": [],
+   "tags": [],
+   "template": {
+      "id": "d2054685-fd97-4069-9ec8-213ecd0ffe2b",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "process_spec",
+   "uids": {
+      "auto": "cc642caa-1ad1-4542-8afd-3b0d70f2a72f"
+   }
+}

@@ -1,0 +1,21 @@
+{
+   "file_links": [],
+   "name": "Forged Alloy (AAB04-VAM-A)",
+   "notes": null,
+   "process": {
+      "id": "38b9b538-f93c-44e6-b02f-fa58cbc15652",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "properties": [],
+   "tags": [],
+   "template": {
+      "id": "ef74c657-6da3-49a2-8b8c-db9f85c36d66",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "material_spec",
+   "uids": {
+      "auto": "3ee15dc1-da28-4f9e-9df1-f99d3581cb39"
+   }
+}

@@ -1,0 +1,16 @@
+{
+   "bounds": {
+      "default_units": "dimensionless",
+      "lower_bound": 0,
+      "type": "real_bounds",
+      "upper_bound": 100
+   },
+   "description": null,
+   "name": "Elongation, %",
+   "tags": [],
+   "type": "property_template",
+   "uids": {
+      "auto": "f898b68e-2022-4598-8534-ca55f274ef42",
+      "persistent_id": 58
+   }
+}

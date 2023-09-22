@@ -1,0 +1,25 @@
+{
+   "absolute_quantity": null,
+   "file_links": [],
+   "labels": [],
+   "mass_fraction": null,
+   "material": {
+      "id": "13edebac-7c9f-49b0-921a-88d3013b8aa1",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "name": "Alloy (AAB07-VAM-A): T. Sample (NI, T04) Ing.",
+   "notes": null,
+   "number_fraction": null,
+   "process": {
+      "id": "79ba0d8f-f45c-412c-ad79-b475520be477",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [],
+   "type": "ingredient_spec",
+   "uids": {
+      "auto": "05d6d98e-363c-4a6b-bc1e-b49df824069f"
+   },
+   "volume_fraction": null
+}

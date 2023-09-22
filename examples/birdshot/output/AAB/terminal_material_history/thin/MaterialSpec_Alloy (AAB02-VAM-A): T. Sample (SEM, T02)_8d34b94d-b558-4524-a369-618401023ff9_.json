@@ -1,0 +1,21 @@
+{
+   "file_links": [],
+   "name": "Alloy (AAB02-VAM-A): T. Sample (SEM, T02)",
+   "notes": null,
+   "process": {
+      "id": "8f747867-8f98-476b-90e4-cf2c45ec90fd",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "properties": [],
+   "tags": [],
+   "template": {
+      "id": "a0c5b901-2818-401a-8495-79dd9e6aae43",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "material_spec",
+   "uids": {
+      "auto": "8d34b94d-b558-4524-a369-618401023ff9"
+   }
+}

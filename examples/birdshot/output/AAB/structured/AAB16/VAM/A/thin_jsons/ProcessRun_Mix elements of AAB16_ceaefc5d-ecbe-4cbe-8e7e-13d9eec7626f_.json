@@ -1,0 +1,22 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Mix elements of AAB16",
+   "notes": null,
+   "parameters": [],
+   "source": null,
+   "spec": {
+      "id": "22f3a9b9-3a7c-46a1-8533-03e365d9b2eb",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB16",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "process_run",
+   "uids": {
+      "auto": "ceaefc5d-ecbe-4cbe-8e7e-13d9eec7626f"
+   }
+}

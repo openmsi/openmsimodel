@@ -1,0 +1,22 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Adding Ni for AAB03",
+   "notes": null,
+   "parameters": [],
+   "source": null,
+   "spec": {
+      "id": "980e197d-690d-4393-8cc0-bf0d47fb4aa5",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB03",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "process_run",
+   "uids": {
+      "auto": "feb67abe-4e25-4d69-8d9e-dc27dab80d08"
+   }
+}

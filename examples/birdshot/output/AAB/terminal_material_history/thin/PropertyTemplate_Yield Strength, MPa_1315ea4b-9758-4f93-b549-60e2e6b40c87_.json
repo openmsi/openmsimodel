@@ -1,0 +1,16 @@
+{
+   "bounds": {
+      "default_units": "megapascal",
+      "lower_bound": -10000,
+      "type": "real_bounds",
+      "upper_bound": 10000
+   },
+   "description": null,
+   "name": "Yield Strength, MPa",
+   "tags": [],
+   "type": "property_template",
+   "uids": {
+      "auto": "1315ea4b-9758-4f93-b549-60e2e6b40c87",
+      "persistent_id": 56
+   }
+}

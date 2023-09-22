@@ -3,12 +3,12 @@ from openmsimodel.workflow.folder_or_file import FolderOrFile
 from openmsimodel.subworkflow.process_block import ProcessBlock
 from openmsimodel.entity.base import Material, Process, Measurement, Ingredient
 
-from openmsimodel.entity.processes.birdshot.aggregate_summary_sheet import (
-    AggregateSummarySheet,
+from openmsimodel.entity.processes.birdshot.summarize import (
+    Summarize,
 )
 from openmsimodel.entity.processes.birdshot.infer_compositions import InferCompositions
 from openmsimodel.entity.processes.birdshot.select_composition import SelectComposition
-from openmsimodel.entity.processes.birdshot.aggregate_material import AggregateMaterial
+from openmsimodel.entity.processes.birdshot.add_material import AddMaterial
 from openmsimodel.entity.processes.birdshot.mixing import Mixing
 from openmsimodel.entity.processes.birdshot.arc_melting import ArcMelting
 from openmsimodel.entity.processes.birdshot.homogenization import Homogenization
@@ -22,7 +22,7 @@ from openmsimodel.entity.processes.birdshot.aggregate_traveler_samples import (
 )
 
 
-from openmsimodel.entity.materials.birdshot.summary_sheet import SummarySheet
+from openmsimodel.entity.materials.birdshot.summary import Summary
 from openmsimodel.entity.materials.birdshot.inferred_alloy_compositions import (
     InferredAlloyCompositions,
 )
@@ -67,11 +67,6 @@ from gemd.entity.util import make_instance
 from gemd.entity import PerformedSource, FileLink
 from gemd.json import GEMDJson
 from gemd.util.impl import recursive_foreach
-
-# helpers folder is specific to birdshot, and found in the birdshot gemd/helpers folder
-# from helpers.attribute_templates import ATTR_TEMPL
-# from helpers.object_templates import OBJ_TEMPL
-# from helpers.object_specs import OBJ_SPECS
 
 # TODO: write ingredients?
 # TODO: add number/quantity attribute to SuggestedCompositions
@@ -140,6 +135,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
                         )
                     )
 
+            # TODO: link this to the last node
             inferred_alloy_compositions = InferredAlloyCompositions(
                 "Inferred Alloy Compositions"
             )
@@ -289,7 +285,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
                 ingredients=ings,
                 process=aggregate_traveler_samples_process,
                 material=traveler_samples_material,
-                _type="procedural",
+                _type="manual",
             )
             aggregate_traveler_samples_block.link_within()
             for traveler_sample_block in traveler_samples_blocks[traveler_sample_type]:
@@ -300,15 +296,16 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
             terminal_blocks.append(aggregate_traveler_samples_block)
 
         ############## block -2: aggregation of summary sheet block
-        aggregate_summary_sheet_process = AggregateSummarySheet("Aggregate sheet")
-        summary_sheet_material = SummarySheet("Summary sheet")
-        aggregate_summary_sheet_block = ProcessBlock(
-            name="Aggregating Summary Sheet",
+        # FIXME
+        aggregate_summary_process = Summarize("Summarize inputs to B.O")
+        summary_material = Summary("Summary")
+        summary_block = ProcessBlock(
+            name="Summary",
             workflow=self,
             ingredients=[],
-            process=aggregate_summary_sheet_process,
-            material=summary_sheet_material,
-            _type="procedural",
+            process=aggregate_summary_process,
+            material=summary_material,
+            _type="manual",
         )
 
         def link_traveler_samples_to_summary_sheet():
@@ -320,42 +317,35 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
             for terminal_block in terminal_blocks:
                 ingredient_name = "{} Ing.".format(terminal_block.material._run.name)
                 ingredient = Ingredient(ingredient_name)
-                aggregate_summary_sheet_block.ingredients[ingredient.name] = ingredient
-                aggregate_summary_sheet_block.link_within()
-                aggregate_summary_sheet_block.link_prior(
+                summary_block.ingredients[ingredient.name] = ingredient
+                summary_block.link_within()
+                summary_block.link_prior(
                     terminal_block, ingredient_name_to_link=ingredient_name
                 )
-            self.subs[
-                aggregate_summary_sheet_block.name
-            ] = aggregate_summary_sheet_block
-            # self.terminal_blocks[
-            #     aggregate_summary_sheet_block.name
-            # ] = aggregate_summary_sheet_block
+            self.subs[summary_block.name] = summary_block
 
         # an important step to link all the measurements on traveler samples to the summary sheet of the NEXT iteration
         link_traveler_samples_to_summary_sheet()
 
         ############## block -1: Bayesian Optimization block
-        summary_sheet_ingredient_name = aggregate_summary_sheet_block.material._run.name
-        summary_sheet_ingredient = Ingredient(
-            "{} Ing.".format(summary_sheet_ingredient_name)
-        )
+        summary_sheet_name = summary_block.material._run.name
+        summary_ingredient = Ingredient("{} Ing.".format(summary_sheet_name))
         infer_compositions_process = InferCompositions("Infer comp. using B.O.")
         infer_next_compositions_block = ProcessBlock(
             name="Infer Compositions",
             workflow=self,
-            ingredients=[summary_sheet_ingredient],
+            ingredients=[summary_ingredient],
             process=infer_compositions_process,
             material=None,
-            _type="procedural",
+            _type="manual",
         )
 
         infer_next_compositions_block.link_within()
         infer_next_compositions_block.link_prior(
-            aggregate_summary_sheet_block,
-            ingredient_name_to_link=summary_sheet_ingredient._run.name,
+            summary_block,
+            ingredient_name_to_link=summary_ingredient._run.name,
         )
-        self.subs[aggregate_summary_sheet_block.name] = aggregate_summary_sheet_block
+        self.subs[summary_block.name] = summary_block
 
         # assigning terminal material
         self.terminal_material = infer_next_compositions_block.process.run
@@ -374,34 +364,52 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
 
         def read_details():
             try:
-                processing_details = json.load(
-                    open(
-                        os.path.join(
-                            item_path,
-                            "{}-processing-details-v1.json".format(
-                                fabrication_method_lowercase
-                            ),
+                item_path_content = os.listdir(item_path)
+                processing_details = list(
+                    filter(lambda x: "processing-details" in x, item_path_content)
+                )
+                if len(processing_details) == 0:
+                    processing_details = {}
+                else:
+                    assert len(processing_details) == 1
+                    processing_details = json.load(
+                        open(
+                            os.path.join(
+                                item_path,
+                                processing_details[0],
+                            )
                         )
                     )
+
+                synthesis_details = list(
+                    filter(lambda x: "synthesis-details" in x, item_path_content)
                 )
-                synthesis_details = json.load(
-                    open(
-                        os.path.join(
-                            item_path,
-                            "{}-synthesis-details-v1.json".format(
-                                fabrication_method_lowercase
-                            ),
+                if len(synthesis_details) == 0:
+                    synthesis_details = {}
+                else:
+                    assert len(synthesis_details) == 1
+                    synthesis_details = json.load(
+                        open(
+                            os.path.join(
+                                item_path,
+                                synthesis_details[0],
+                            )
                         )
                     )
-                )
-                traveler = json.load(
-                    open(
-                        os.path.join(
-                            item_path,
-                            "{}-traveler-v1.json".format(fabrication_method_lowercase),
+
+                traveler = list(filter(lambda x: "traveler" in x, item_path_content))
+                if len(traveler) == 0:
+                    traveler = {}
+                else:
+                    assert len(traveler) == 1
+                    traveler = json.load(
+                        open(
+                            os.path.join(
+                                item_path,
+                                traveler[0],
+                            )
                         )
                     )
-                )
                 yymm = traveler["data"]["Sample ID"]["Year & Month"]
                 return processing_details, synthesis_details
             except:
@@ -495,18 +503,21 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
             element_property,
         ) in composition_tags:  # TODO: if aggregate_or_buy
             composition_ingredient = Ingredient(composition_ingredient_name)
-            aggregating_material_process = AggregateMaterial(
-                f"Aggregating {element_name} for {composition_id}"
+            adding_material_process = AddMaterial(
+                f"Adding {element_name} for {composition_id}"
             )
-            aggregating_material_process._set_tags(
+            adding_material_process._set_tags(
                 tags=common_tags,
-                spec_or_run=aggregating_material_process.run,
+                spec_or_run=adding_material_process.run,
             )
             composition_element_material = Element(
                 "{} in {}".format(element_name, composition_id)
             )
 
-            preparation_metadata = synthesis_details["data"]["Material Preparation"][""]
+            # preparation_metadata = synthesis_details["data"]["Material Preparation"][""]
+            preparation_metadata = synthesis_details["data"]["Material Preparation"][
+                "Process Overview"
+            ]
             weighting_performed_source = PerformedSource(
                 preparation_metadata["Completed By"],
                 preparation_metadata["Finish Date"],
@@ -574,13 +585,13 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
 
             composition_elements.append(composition_element_material)
             block2 = ProcessBlock(
-                name="Aggregating {} for {}".format(element_name, short_name),
+                name="Adding {} for {}".format(element_name, short_name),
                 workflow=self,
                 ingredients=[composition_ingredient],
-                process=aggregating_material_process,
+                process=adding_material_process,
                 material=composition_element_material,
                 measurements=[weighting_measurement],
-                _type="procedural",
+                _type="manual",
             )
             block2.link_within()
             block2.link_prior(
@@ -611,7 +622,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         )
         srjt_measurement = SRJT(f"SRJT charact. for {composition_id}")
         srjt_measurement._set_tags(
-            tags=common_tags,
+            tags=(("composition_id", composition_id)),
             spec_or_run=srjt_measurement.run,
         )
 
@@ -681,9 +692,13 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         prior_block,
     ):
         ############## block 4
-        melted_alloy_properties = synthesis_details["data"]["Arc Melting"]["   "]
+        melted_alloy_properties = synthesis_details["data"]["Arc Melting"][
+            "Ingot Mass Information"
+        ]
 
-        arc_melting_metadata = synthesis_details["data"]["Arc Melting"][" "]
+        arc_melting_metadata = synthesis_details["data"]["Arc Melting"][
+            "Process Overview"
+        ]
         arc_melting_performed_source = PerformedSource(
             arc_melting_metadata["Completed By"],
             arc_melting_metadata["Finish Date"],
@@ -692,7 +707,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         alloy_ingredient_name = "{} Ing.".format(alloy_common_name)
         alloy_ingredient = Ingredient(alloy_ingredient_name)
 
-        arc_melting_process = ArcMelting("Arc melting {}".format(alloy_common_name))
+        arc_melting_process = ArcMelting("Arc melting of {}".format(alloy_common_name))
 
         def gen_arc_melting_tags():
             arc_melting_tags = ()
@@ -716,7 +731,9 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         )
 
         def set_arc_melting_process_params():
-            arc_melting_parameters = synthesis_details["data"]["Arc Melting"]["  "]
+            arc_melting_parameters = synthesis_details["data"]["Arc Melting"][
+                "VAM Details"
+            ]
             for attribute_name, attribute_value in arc_melting_parameters.items():
                 if type(attribute_value) == str:
                     value = NominalCategorical(attribute_value)
@@ -1096,6 +1113,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
             return
 
         not_empty = False
+
         # check that there is at least one file (!= folder) inside of the item folder
         if os.path.isdir(item_path):
             for p in os.listdir(item_path):
@@ -1137,8 +1155,12 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
                     measurement_name, alloy_common_name, measurement_id
                 )
             )
+            measurement_tags = (
+                ("measurement_name", measurement_name),
+                ("measurement_id", measurement_id),
+            ) + common_tags
             measurement._set_tags(
-                tags=common_tags,
+                tags=measurement_tags,
                 spec_or_run=measurement.run,
             )
 
@@ -1243,15 +1265,8 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         end = time.time()
         print(f"Time elapsed: {end - start}")
 
-    def dumps(self, obj, destination=None,  overwrite=False):
+    def dumps(self, obj, destination=None, overwrite=False):
         self.local_out_destination = self.output / "unstructured/raw"
-        # if destination:  # adding overwrite options
-        #     self.local_out_destination = destination
-        # else:  # notifying user that folder is not empty
-        #     if not len(os.listdir(self.local_out_destination)) == 0:
-        #         print("Folder is not empty.")
-        # if not os.path.exists(self.local_out_destination):
-        #     os.makedirs(self.local_out_destination)
         if destination:  # adding overwrite options
             self.local_out_destination = destination
         if overwrite:
@@ -1269,15 +1284,21 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         end = time.time()
         print(f"Time elapsed: {end - start}")
 
-    def thin_structured_dumps(self):
+    def thin_structured_dumps(self, overwrite=False):
         """
         dumps the entire model into a JSON per object, each representing the 'thin' version' of the object
         in which pointers (i.e., true value) are replaced by links (e.g., uuid).
         """
+        root = self.output / "structured"
+        if overwrite:
+            if os.path.exists(root):
+                shutil.rmtree(root)
+        if not os.path.exists(root):
+            os.makedirs(root)
         self.dump_function = self.encoder.thin_dumps
         print("Executing thin structured dumps...")
         start = time.time()
-        self.structured_dump_loop(mode="thin")
+        self.structured_dump_loop(root, mode="thin")
         end = time.time()
         print(f"Time elapsed: {end - start}")
 
@@ -1292,12 +1313,12 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         end = time.time()
         print(f"Time elapsed: {end - start}")
 
-    def structured_dump_loop(self, mode="thin"):
+    def structured_dump_loop(self, root, mode="thin"):
         """
         helper function that navigates the blocks of the models and
         """
         for composition_id in gen_compositions(self.root):
-            composition_id_path = self.output / "structured" / composition_id
+            composition_id_path = root / composition_id
             for fabrication_method in self.terminal_blocks[composition_id].keys():
                 if fabrication_method == "DED":
                     continue

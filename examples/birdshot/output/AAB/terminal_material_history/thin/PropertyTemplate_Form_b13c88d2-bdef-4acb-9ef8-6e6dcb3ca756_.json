@@ -1,0 +1,16 @@
+{
+   "bounds": {
+      "categories": [
+         "Ingot"
+      ],
+      "type": "categorical_bounds"
+   },
+   "description": null,
+   "name": "Form",
+   "tags": [],
+   "type": "property_template",
+   "uids": {
+      "auto": "b13c88d2-bdef-4acb-9ef8-6e6dcb3ca756",
+      "persistent_id": 12
+   }
+}

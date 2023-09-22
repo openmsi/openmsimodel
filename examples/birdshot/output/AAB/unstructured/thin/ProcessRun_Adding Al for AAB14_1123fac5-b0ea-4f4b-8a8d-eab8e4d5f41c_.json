@@ -1,0 +1,22 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Adding Al for AAB14",
+   "notes": null,
+   "parameters": [],
+   "source": null,
+   "spec": {
+      "id": "2e18bb7f-e10d-404e-813c-5f0267458e61",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB14",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "process_run",
+   "uids": {
+      "auto": "1123fac5-b0ea-4f4b-8a8d-eab8e4d5f41c"
+   }
+}

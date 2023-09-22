@@ -1,0 +1,80 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "material": {
+      "id": "807ab434-f537-4028-83b9-8e6e37c57e63",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "name": "XRD charact. for Alloy (AAB06-VAM-A) (T03)",
+   "notes": null,
+   "parameters": [],
+   "properties": [
+      {
+         "file_links": [],
+         "name": "Phase",
+         "notes": "",
+         "origin": "measured",
+         "template": null,
+         "type": "property",
+         "value": {
+            "category": "FCC",
+            "type": "nominal_categorical"
+         }
+      },
+      {
+         "file_links": [],
+         "name": "Lattice Parameter",
+         "notes": "",
+         "origin": "measured",
+         "template": null,
+         "type": "property",
+         "value": {
+            "nominal": 3.5665985446994966,
+            "type": "nominal_real",
+            "units": "centimeter"
+         }
+      },
+      {
+         "file_links": [],
+         "name": "Hardness, HV",
+         "notes": "",
+         "origin": "measured",
+         "template": null,
+         "type": "property",
+         "value": {
+            "nominal": 225.95999999999998,
+            "type": "nominal_real",
+            "units": "pascal"
+         }
+      },
+      {
+         "file_links": [],
+         "name": "SD, HV",
+         "notes": "",
+         "origin": "measured",
+         "template": null,
+         "type": "property",
+         "value": {
+            "nominal": 8.376037249200845,
+            "type": "nominal_real",
+            "units": "pascal"
+         }
+      }
+   ],
+   "source": null,
+   "spec": {
+      "id": "6841f9fc-3c25-4c7c-98be-4e212a24e6d1",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB06",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "measurement_run",
+   "uids": {
+      "auto": "697ca3fc-d421-40fd-83fa-b4af897bbfc7"
+   }
+}

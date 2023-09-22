@@ -1,0 +1,28 @@
+{
+   "description": "Individual ingredient of a composition",
+   "name": "Element",
+   "properties": [
+      [
+         {
+            "id": "ee6b92ea-ae77-4db8-b625-7b5ee6bb6fe8",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         null
+      ],
+      [
+         {
+            "id": "f2b81ac1-6cce-4387-ab09-f887e34afeb4",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         null
+      ]
+   ],
+   "tags": [],
+   "type": "material_template",
+   "uids": {
+      "auto": "ce226fc3-8c31-4f22-a37a-728714004ce6",
+      "persistent_id": 4
+   }
+}

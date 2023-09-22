@@ -1,1 +1,5 @@
 persistent_id,name,type
+0,Inferred Alloy Compositions,material_template
+1,Summarize,process_template
+2,Summary,material_template
+3,Infer Compositions,process_template

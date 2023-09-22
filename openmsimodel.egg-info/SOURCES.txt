@@ -28,7 +28,7 @@ openmsimodel/entity/materials/birdshot/alloy.py
 openmsimodel/entity/materials/birdshot/composition.py
 openmsimodel/entity/materials/birdshot/element.py
 openmsimodel/entity/materials/birdshot/inferred_alloy_compositions.py
-openmsimodel/entity/materials/birdshot/summary_sheet.py
+openmsimodel/entity/materials/birdshot/summary.py
 openmsimodel/entity/materials/birdshot/traveler.py
 openmsimodel/entity/materials/birdshot/traveler_sample.py
 openmsimodel/entity/materials/birdshot/traveler_samples.py
@@ -46,8 +46,7 @@ openmsimodel/entity/processes/__init__.py
 openmsimodel/entity/processes/buy_starting_materials.py
 openmsimodel/entity/processes/homogenization.py
 openmsimodel/entity/processes/birdshot/__init__.py
-openmsimodel/entity/processes/birdshot/aggregate_material.py
-openmsimodel/entity/processes/birdshot/aggregate_summary_sheet.py
+openmsimodel/entity/processes/birdshot/add_material.py
 openmsimodel/entity/processes/birdshot/aggregate_traveler_samples.py
 openmsimodel/entity/processes/birdshot/arc_melting.py
 openmsimodel/entity/processes/birdshot/forging.py
@@ -57,6 +56,7 @@ openmsimodel/entity/processes/birdshot/mixing.py
 openmsimodel/entity/processes/birdshot/select_composition.py
 openmsimodel/entity/processes/birdshot/setting_traveler.py
 openmsimodel/entity/processes/birdshot/setting_traveler_sample.py
+openmsimodel/entity/processes/birdshot/summarize.py
 openmsimodel/stores/__init__.py
 openmsimodel/stores/gemd_template_store.py
 openmsimodel/subworkflow/__init__.py
@@ -66,6 +66,7 @@ openmsimodel/utilities/__init__.py
 openmsimodel/utilities/argument_parsing.py
 openmsimodel/utilities/attributes.py
 openmsimodel/utilities/cached_isinstance_functions.py
+openmsimodel/utilities/graph_tools.py
 openmsimodel/utilities/has_argument_parser.py
 openmsimodel/utilities/has_arguments.py
 openmsimodel/utilities/logging.py
@@ -81,4 +82,5 @@ openmsimodel/utilities/attr_utils/utils.py
 openmsimodel/workflow/__init__.py
 openmsimodel/workflow/birdshot_workflow.py
 openmsimodel/workflow/folder_or_file.py
+openmsimodel/workflow/old_birdshot_workflow.py
 openmsimodel/workflow/workflow.py

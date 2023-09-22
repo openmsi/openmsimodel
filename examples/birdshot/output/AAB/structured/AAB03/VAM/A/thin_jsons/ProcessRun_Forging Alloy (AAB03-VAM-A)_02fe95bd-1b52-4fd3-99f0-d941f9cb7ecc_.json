@@ -1,0 +1,90 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Forging Alloy (AAB03-VAM-A)",
+   "notes": null,
+   "parameters": [
+      {
+         "file_links": [],
+         "name": "Press Temperature",
+         "notes": null,
+         "origin": "specified",
+         "template": {
+            "id": "599ba42a-e23c-499c-9317-4db94873bfbf",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         "type": "parameter",
+         "value": {
+            "nominal": 395.0,
+            "type": "nominal_real",
+            "units": "kelvin"
+         }
+      },
+      {
+         "file_links": [],
+         "name": "Soak Time",
+         "notes": null,
+         "origin": "specified",
+         "template": null,
+         "type": "parameter",
+         "value": {
+            "nominal": 30.0,
+            "type": "nominal_real",
+            "units": "minute"
+         }
+      },
+      {
+         "file_links": [],
+         "name": "Temperature",
+         "notes": null,
+         "origin": "specified",
+         "template": null,
+         "type": "parameter",
+         "value": {
+            "nominal": 1150.0,
+            "type": "nominal_real",
+            "units": "kelvin"
+         }
+      },
+      {
+         "file_links": [],
+         "name": "Maximum Load Step",
+         "notes": null,
+         "origin": "specified",
+         "template": {
+            "id": "d4a4c1ed-ae66-4a0d-87ec-aba389ada35a",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         "type": "parameter",
+         "value": {
+            "nominal": 67.52,
+            "type": "nominal_real",
+            "units": "pascal"
+         }
+      }
+   ],
+   "source": {
+      "performed_by": "Robert & Michael",
+      "performed_date": "2022-11-09",
+      "type": "performed_source"
+   },
+   "spec": {
+      "id": "26e383a6-cadc-4042-96f0-7b3fd6064523",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB03",
+      "batch::A",
+      "fabrication_method::VAM",
+      "start_date::2022-11-08",
+      "finish_date::2022-11-09",
+      "time_spent::7"
+   ],
+   "type": "process_run",
+   "uids": {
+      "auto": "02fe95bd-1b52-4fd3-99f0-d941f9cb7ecc"
+   }
+}

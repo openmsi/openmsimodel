@@ -1,0 +1,59 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "material": {
+      "id": "63968a2f-cb3b-4908-bf25-1f4bfdd6566b",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "name": "Weigh Arc Melted Alloy (AAB13-VAM-A)",
+   "notes": null,
+   "parameters": [],
+   "properties": [
+      {
+         "file_links": [],
+         "name": "Weighed Mass",
+         "notes": null,
+         "origin": "unknown",
+         "template": null,
+         "type": "property",
+         "value": {
+            "nominal": 29.9439,
+            "type": "nominal_real",
+            "units": "gram"
+         }
+      },
+      {
+         "file_links": [],
+         "name": "Mass Loss",
+         "notes": null,
+         "origin": "unknown",
+         "template": null,
+         "type": "property",
+         "value": {
+            "nominal": 0.14,
+            "type": "nominal_real",
+            "units": "gram"
+         }
+      }
+   ],
+   "source": {
+      "performed_by": "Daniel",
+      "performed_date": "2022-11-05",
+      "type": "performed_source"
+   },
+   "spec": {
+      "id": "fe5c354c-e612-47c7-b1fa-cddfd746252e",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB13",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "measurement_run",
+   "uids": {
+      "auto": "2ae5f2d7-9952-4cff-8ee2-a80e7898bf30"
+   }
+}

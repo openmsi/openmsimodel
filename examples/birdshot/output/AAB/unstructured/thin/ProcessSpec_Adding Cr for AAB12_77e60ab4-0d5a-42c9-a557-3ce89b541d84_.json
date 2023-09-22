@@ -1,0 +1,17 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Adding Cr for AAB12",
+   "notes": null,
+   "parameters": [],
+   "tags": [],
+   "template": {
+      "id": "b0fcfefa-b2bc-425e-8302-cea7a7ccc1a9",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "process_spec",
+   "uids": {
+      "auto": "77e60ab4-0d5a-42c9-a557-3ce89b541d84"
+   }
+}

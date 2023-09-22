@@ -1,0 +1,161 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Homogenizing Alloy (AAB08-VAM-A)",
+   "notes": null,
+   "parameters": [
+      {
+         "file_links": [],
+         "name": "Atmosphere",
+         "notes": null,
+         "origin": "specified",
+         "template": null,
+         "type": "parameter",
+         "value": {
+            "category": "Ar",
+            "type": "nominal_categorical"
+         }
+      },
+      {
+         "file_links": [],
+         "name": "Cooling Rate",
+         "notes": null,
+         "origin": "specified",
+         "template": null,
+         "type": "parameter",
+         "value": {
+            "category": "FC",
+            "type": "nominal_categorical"
+         }
+      },
+      {
+         "file_links": [],
+         "name": "Duration",
+         "notes": null,
+         "origin": "specified",
+         "template": null,
+         "type": "parameter",
+         "value": {
+            "nominal": 24.0,
+            "type": "nominal_real",
+            "units": "hour"
+         }
+      },
+      {
+         "file_links": [],
+         "name": "Pressure",
+         "notes": null,
+         "origin": "specified",
+         "template": null,
+         "type": "parameter",
+         "value": {
+            "nominal": 5.0,
+            "type": "nominal_real",
+            "units": "pascal"
+         }
+      },
+      {
+         "file_links": [],
+         "name": "Temperature",
+         "notes": null,
+         "origin": "specified",
+         "template": null,
+         "type": "parameter",
+         "value": {
+            "nominal": 1150.0,
+            "type": "nominal_real",
+            "units": "kelvin"
+         }
+      },
+      {
+         "file_links": [],
+         "name": "Purging Sequence 1 Pressure",
+         "notes": null,
+         "origin": "specified",
+         "template": {
+            "id": "f5410cd8-90b0-4136-a2d7-2bbd54f66bf9",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         "type": "parameter",
+         "value": {
+            "nominal": 4.4e-05,
+            "type": "nominal_real",
+            "units": "pascal"
+         }
+      },
+      {
+         "file_links": [],
+         "name": "Purging Sequence 2 Pressure",
+         "notes": null,
+         "origin": "specified",
+         "template": {
+            "id": "f5410cd8-90b0-4136-a2d7-2bbd54f66bf9",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         "type": "parameter",
+         "value": {
+            "nominal": 3.7e-05,
+            "type": "nominal_real",
+            "units": "pascal"
+         }
+      },
+      {
+         "file_links": [],
+         "name": "Purging Sequence 3 Pressure",
+         "notes": null,
+         "origin": "specified",
+         "template": {
+            "id": "f5410cd8-90b0-4136-a2d7-2bbd54f66bf9",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         "type": "parameter",
+         "value": {
+            "nominal": 1.8e-05,
+            "type": "nominal_real",
+            "units": "pascal"
+         }
+      },
+      {
+         "file_links": [],
+         "name": "Purging Sequence 4 Pressure",
+         "notes": null,
+         "origin": "specified",
+         "template": {
+            "id": "f5410cd8-90b0-4136-a2d7-2bbd54f66bf9",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         "type": "parameter",
+         "value": {
+            "nominal": 1.8e-05,
+            "type": "nominal_real",
+            "units": "pascal"
+         }
+      }
+   ],
+   "source": {
+      "performed_by": "Michael",
+      "performed_date": "2022-11-09",
+      "type": "performed_source"
+   },
+   "spec": {
+      "id": "87a9964a-27b1-429a-a413-2fd257eac529",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB08",
+      "batch::A",
+      "fabrication_method::VAM",
+      "start_date::2022-11-05",
+      "finish_date::2022-11-09",
+      "time_spent::6"
+   ],
+   "type": "process_run",
+   "uids": {
+      "auto": "1aab6acd-0462-4d49-9ab7-aedf4fffb5b6"
+   }
+}

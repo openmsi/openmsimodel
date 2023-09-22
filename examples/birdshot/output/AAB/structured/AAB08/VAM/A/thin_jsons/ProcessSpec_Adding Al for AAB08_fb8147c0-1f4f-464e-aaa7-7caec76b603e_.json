@@ -1,0 +1,17 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Adding Al for AAB08",
+   "notes": null,
+   "parameters": [],
+   "tags": [],
+   "template": {
+      "id": "7a0002a0-3a8a-4a04-a705-c28c011ffba9",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "process_spec",
+   "uids": {
+      "auto": "fb8147c0-1f4f-464e-aaa7-7caec76b603e"
+   }
+}

@@ -1,0 +1,120 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "material": {
+      "id": "85d2b58d-4a88-4fec-83d7-2e515d5f3f1f",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "name": "SRJT charact. for AAB14",
+   "notes": null,
+   "parameters": [],
+   "properties": [
+      {
+         "file_links": [],
+         "name": "Strain Rate Sensitivity Exponent",
+         "notes": "",
+         "origin": "measured",
+         "template": null,
+         "type": "property",
+         "value": {
+            "nominal": 0.0073520794167777,
+            "type": "nominal_real",
+            "units": "dimensionless"
+         }
+      },
+      {
+         "file_links": [],
+         "name": "Strain Rate Sensitivity Exponent Std. Dev.",
+         "notes": "",
+         "origin": "measured",
+         "template": null,
+         "type": "property",
+         "value": {
+            "nominal": 0.0016378594216555,
+            "type": "nominal_real",
+            "units": "dimensionless"
+         }
+      },
+      {
+         "file_links": [],
+         "name": "Avg. Raw Hardness (Gpa)",
+         "notes": "",
+         "origin": "measured",
+         "template": null,
+         "type": "property",
+         "value": {
+            "nominal": 2.46,
+            "type": "nominal_real",
+            "units": "gigapascal"
+         }
+      },
+      {
+         "file_links": [],
+         "name": "Avg. Raw Modulus (Gpa)",
+         "notes": "",
+         "origin": "measured",
+         "template": null,
+         "type": "property",
+         "value": {
+            "nominal": 188.766666666667,
+            "type": "nominal_real",
+            "units": "gigapascal"
+         }
+      },
+      {
+         "file_links": [],
+         "name": "Avg. Pile-up Ratio",
+         "notes": "",
+         "origin": "measured",
+         "template": null,
+         "type": "property",
+         "value": {
+            "nominal": 91.3688333333333,
+            "type": "nominal_real",
+            "units": "dimensionless"
+         }
+      },
+      {
+         "file_links": [],
+         "name": "Avg. Corrected Hardness (Gpa)",
+         "notes": "",
+         "origin": "measured",
+         "template": null,
+         "type": "property",
+         "value": {
+            "nominal": 2.24709801,
+            "type": "nominal_real",
+            "units": "gigapascal"
+         }
+      },
+      {
+         "file_links": [],
+         "name": "Avg. Corrected Modulus (Gpa)",
+         "notes": "",
+         "origin": "measured",
+         "template": null,
+         "type": "property",
+         "value": {
+            "nominal": 172.478153033333,
+            "type": "nominal_real",
+            "units": "gigapascal"
+         }
+      }
+   ],
+   "source": null,
+   "spec": {
+      "id": "03bbfbc9-b228-49e4-8f3e-ccc05a4682c5",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB14",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "measurement_run",
+   "uids": {
+      "auto": "064eca8f-cf6a-424b-a882-704d56aa1f04"
+   }
+}

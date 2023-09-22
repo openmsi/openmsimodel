@@ -1,0 +1,20 @@
+{
+   "description": "Alloy generated with a unique composition and synthesis parameters",
+   "name": "Alloy",
+   "properties": [
+      [
+         {
+            "id": "b13c88d2-bdef-4acb-9ef8-6e6dcb3ca756",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         null
+      ]
+   ],
+   "tags": [],
+   "type": "material_template",
+   "uids": {
+      "auto": "439773c0-b197-459a-b41b-5d37a83571a5",
+      "persistent_id": 11
+   }
+}

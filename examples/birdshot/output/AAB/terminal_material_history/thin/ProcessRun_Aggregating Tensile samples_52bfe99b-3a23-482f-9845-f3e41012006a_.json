@@ -1,0 +1,18 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Aggregating Tensile samples",
+   "notes": null,
+   "parameters": [],
+   "source": null,
+   "spec": {
+      "id": "5f5d55b4-9e6f-4006-9532-19e0d5968dad",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [],
+   "type": "process_run",
+   "uids": {
+      "auto": "52bfe99b-3a23-482f-9845-f3e41012006a"
+   }
+}

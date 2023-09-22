@@ -1,0 +1,25 @@
+{
+   "absolute_quantity": null,
+   "file_links": [],
+   "labels": [],
+   "mass_fraction": null,
+   "material": {
+      "id": "94dafb34-880a-4637-9e5c-9a3400786a8f",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "name": " XRD Traveler samples Ing.",
+   "notes": null,
+   "number_fraction": null,
+   "process": {
+      "id": "2b36bc04-52ab-4e32-b9f2-cda898516e46",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [],
+   "type": "ingredient_spec",
+   "uids": {
+      "auto": "c781cf79-78bf-4b25-b0ca-8d965dfaacf5"
+   },
+   "volume_fraction": null
+}

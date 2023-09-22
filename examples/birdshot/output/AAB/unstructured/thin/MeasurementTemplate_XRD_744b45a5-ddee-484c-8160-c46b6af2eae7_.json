@@ -1,0 +1,46 @@
+{
+   "conditions": [],
+   "description": "XRD measurement",
+   "name": "XRD",
+   "parameters": [],
+   "properties": [
+      [
+         {
+            "id": "73583591-2a11-443d-8af1-8681922cd1c1",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         null
+      ],
+      [
+         {
+            "id": "c1b26e3b-4524-4ce5-a52b-54ad4718b06d",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         null
+      ],
+      [
+         {
+            "id": "4598604e-3caa-4798-b8d5-baeb86c87f1d",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         null
+      ],
+      [
+         {
+            "id": "f1a2ae79-bcdd-41bc-9709-ed943922acb1",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         null
+      ]
+   ],
+   "tags": [],
+   "type": "measurement_template",
+   "uids": {
+      "auto": "744b45a5-ddee-484c-8160-c46b6af2eae7",
+      "persistent_id": 48
+   }
+}

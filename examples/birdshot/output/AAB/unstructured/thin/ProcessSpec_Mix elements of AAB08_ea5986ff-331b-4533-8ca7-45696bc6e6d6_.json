@@ -1,0 +1,17 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Mix elements of AAB08",
+   "notes": null,
+   "parameters": [],
+   "tags": [],
+   "template": {
+      "id": "487ca8f6-f2aa-4a48-a0ae-bac2969b5f89",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "process_spec",
+   "uids": {
+      "auto": "ea5986ff-331b-4533-8ca7-45696bc6e6d6"
+   }
+}

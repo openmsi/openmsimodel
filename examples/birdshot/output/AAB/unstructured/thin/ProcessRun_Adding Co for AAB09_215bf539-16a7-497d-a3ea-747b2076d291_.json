@@ -1,0 +1,22 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Adding Co for AAB09",
+   "notes": null,
+   "parameters": [],
+   "source": null,
+   "spec": {
+      "id": "924b4fdc-2140-4aff-b2d4-c3b37dbf8d76",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB09",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "process_run",
+   "uids": {
+      "auto": "215bf539-16a7-497d-a3ea-747b2076d291"
+   }
+}

@@ -1,0 +1,17 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "XRD charact. for Alloy (AAB10-VAM-A) (T03)",
+   "notes": null,
+   "parameters": [],
+   "tags": [],
+   "template": {
+      "id": "73e15981-b9aa-48e9-8d6f-34c9fb60b0ec",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "measurement_spec",
+   "uids": {
+      "auto": "907e0468-4183-4da0-a136-8c1c603cbf55"
+   }
+}

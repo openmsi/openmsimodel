@@ -1,0 +1,36 @@
+strict digraph "" {
+	graph [bb="0,0,980.07,180"];
+	node [label="\N",
+		nodesep=0.4,
+		ranksep=1
+	];
+	"Alloy (AAB16-VAM-A): Traveler Ing. [082]"	 [color=blue,
+		height=0.5,
+		pos="282.07,162",
+		width=5.687];
+	"Extract sample from Alloy (AAB16-VAM-A): Traveler [97b]"	 [color=red,
+		height=0.5,
+		pos="282.07,90",
+		tags="{0: 'composition_id::AAB16', 1: 'batch::A', 2: 'fabrication_method::VAM'}",
+		width=7.8354];
+	"Alloy (AAB16-VAM-A): Traveler Ing. [082]" -> "Extract sample from Alloy (AAB16-VAM-A): Traveler [97b]"	 [pos="e,282.07,108.41 282.07,143.83 282.07,136.13 282.07,126.97 282.07,118.42"];
+	"Alloy (AAB16-VAM-A): T. Sample (Tensile, T09) [966]"	 [color=green,
+		height=0.5,
+		pos="531.07,18",
+		tags="{0: 'composition_id::AAB16', 1: 'batch::A', 2: 'fabrication_method::VAM'}",
+		width=7.1133];
+	"Extract sample from Alloy (AAB16-VAM-A): Traveler [97b]" -> "Alloy (AAB16-VAM-A): T. Sample (Tensile, T09) [966]"	 [pos="e,470.36,35.556 342.99,72.387 378.54,62.107 423.55,49.092 460.62,38.371"];
+	"Tensile charact. for Alloy (AAB16-VAM-A) (T09) [52e]"	 ["Elastic Modulus, GPa"="Elastic Modulus, GPa, 179.53242393457296 gigapascal",
+		"Elongation, %"="Elongation, %, 1.0524554141810671 dimensionless",
+		"Strain Hardening, MPa"="Strain Hardening, MPa, nan megapascal",
+		"UTS, MPa"="UTS, MPa, 340.9597282102867 megapascal",
+		"Yield Strength, MPa"="Yield Strength, MPa, 319.5385621325805 megapascal",
+		color=purple,
+		dUTS_dY="dUTS_dY, 1.0670378120710773 dimensionless",
+		height=0.5,
+		pos="781.07,90",
+		shape=rectangle,
+		tags="{0: 'composition_id::AAB16', 1: 'batch::A', 2: 'fabrication_method::VAM'}",
+		width=5.5278];
+	"Tensile charact. for Alloy (AAB16-VAM-A) (T09) [52e]" -> "Alloy (AAB16-VAM-A): T. Sample (Tensile, T09) [966]"	 [pos="e,592.14,35.585 718.31,71.924 682.86,61.715 638.44,48.922 601.77,38.36"];
+}

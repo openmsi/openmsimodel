@@ -1,0 +1,14 @@
+{
+   "allowed_labels": [],
+   "allowed_names": [],
+   "conditions": [],
+   "description": "Adding the correct ingredients to produce a mixture that can go through\n                fabrication procedure\n                ",
+   "name": "Add Material",
+   "parameters": [],
+   "tags": [],
+   "type": "process_template",
+   "uids": {
+      "auto": "b0fcfefa-b2bc-425e-8302-cea7a7ccc1a9",
+      "persistent_id": 3
+   }
+}

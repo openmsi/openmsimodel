@@ -1,0 +1,30 @@
+{
+   "absolute_quantity": null,
+   "file_links": [],
+   "labels": [],
+   "mass_fraction": null,
+   "material": {
+      "id": "3ffab69e-7a22-4a88-9a32-6a566ebd6dc6",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "name": "Alloy (AAB15-VAM-A) Ing.",
+   "notes": null,
+   "number_fraction": null,
+   "process": {
+      "id": "d24bf6d6-45e8-470f-8347-71fb0cd037d1",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "spec": {
+      "id": "07d26539-aa91-479f-9237-264d91f4ca1a",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [],
+   "type": "ingredient_run",
+   "uids": {
+      "auto": "d9e1fe0e-04ce-41ec-8155-7a95baca1cbe"
+   },
+   "volume_fraction": null
+}

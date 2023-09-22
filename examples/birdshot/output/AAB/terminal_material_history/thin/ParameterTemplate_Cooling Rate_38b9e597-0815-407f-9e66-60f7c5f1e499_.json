@@ -1,0 +1,16 @@
+{
+   "bounds": {
+      "categories": [
+         "FC"
+      ],
+      "type": "categorical_bounds"
+   },
+   "description": null,
+   "name": "Cooling Rate",
+   "tags": [],
+   "type": "parameter_template",
+   "uids": {
+      "auto": "38b9e597-0815-407f-9e66-60f7c5f1e499",
+      "persistent_id": 34
+   }
+}

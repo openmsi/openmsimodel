@@ -1,0 +1,16 @@
+{
+   "bounds": {
+      "default_units": "gigapascal",
+      "lower_bound": 0,
+      "type": "real_bounds",
+      "upper_bound": 500
+   },
+   "description": null,
+   "name": "Elastic Modulus, GPa",
+   "tags": [],
+   "type": "property_template",
+   "uids": {
+      "auto": "49281850-523c-4618-9920-06f04b0e0548",
+      "persistent_id": 55
+   }
+}

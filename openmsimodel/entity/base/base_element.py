@@ -439,16 +439,11 @@ class BaseElement(ABC):
         return filelinks_dict
 
     # TODO: add a 'update_spec' function to != the 1:1 / template:spec duality
-    def all_gemd(self) -> list:
+    def return_all_gemd(self) -> list:
         if self.__class__.__name__ == "Ingredient":
             return [self.spec, self.run]
         else:
             return [self.TEMPLATE, self.spec, self.run]
-        # _all_gemd = []
-        # if hasattr(self, '_TEMPLATE') and self._TEMPLATE:
-        #     _all_gemd.append(self._TEMPLATE)
-        # _all_gemd.extend([self._TEMPLATE, self.spec(), self.run()])
-        # return _all_gemd
 
     # @abstractmethod
     # def to_form(self) -> str:

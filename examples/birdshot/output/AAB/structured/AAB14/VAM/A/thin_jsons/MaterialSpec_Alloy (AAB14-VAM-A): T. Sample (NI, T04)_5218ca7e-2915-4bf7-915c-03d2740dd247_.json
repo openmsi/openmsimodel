@@ -1,0 +1,21 @@
+{
+   "file_links": [],
+   "name": "Alloy (AAB14-VAM-A): T. Sample (NI, T04)",
+   "notes": null,
+   "process": {
+      "id": "5a3524bc-ca23-4087-893f-c98ceaa2ea75",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "properties": [],
+   "tags": [],
+   "template": {
+      "id": "1aa64aa2-3c9c-4b6b-adfc-778af3df3ea5",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "material_spec",
+   "uids": {
+      "auto": "5218ca7e-2915-4bf7-915c-03d2740dd247"
+   }
+}

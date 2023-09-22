@@ -1,0 +1,17 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Infer comp. using B.O.",
+   "notes": null,
+   "parameters": [],
+   "tags": [],
+   "template": {
+      "id": "dda61ba2-606e-4401-92aa-fc9e6efcd889",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "process_spec",
+   "uids": {
+      "auto": "1a8f6837-81cb-4c67-9a45-c78076e99057"
+   }
+}

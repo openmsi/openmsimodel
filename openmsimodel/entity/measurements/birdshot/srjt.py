@@ -36,6 +36,20 @@ class SRJT(Measurement):
     define_attribute(
         _ATTRS,
         template=PropertyTemplate(
+            name="Corrected Hardness Std. Dev.", bounds=RealBounds(0, 1, "")
+        ),
+    )
+
+    define_attribute(
+        _ATTRS,
+        template=PropertyTemplate(
+            name="Corrected Modulus Std. Dev.", bounds=RealBounds(0, 1, "")
+        ),
+    )
+
+    define_attribute(
+        _ATTRS,
+        template=PropertyTemplate(
             name="Avg. Corrected Modulus (Gpa)", bounds=RealBounds(0, 400, "GPa")
         ),
     )

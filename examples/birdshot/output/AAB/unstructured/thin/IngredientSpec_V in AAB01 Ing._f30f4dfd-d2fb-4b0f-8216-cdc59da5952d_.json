@@ -1,0 +1,25 @@
+{
+   "absolute_quantity": null,
+   "file_links": [],
+   "labels": [],
+   "mass_fraction": null,
+   "material": {
+      "id": "2d20a4d5-79c6-41ec-baf8-65c25a7d18f5",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "name": "V in AAB01 Ing.",
+   "notes": null,
+   "number_fraction": null,
+   "process": {
+      "id": "24c1bcc1-bc10-42b9-bc70-b554132fb56f",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [],
+   "type": "ingredient_spec",
+   "uids": {
+      "auto": "f30f4dfd-d2fb-4b0f-8216-cdc59da5952d"
+   },
+   "volume_fraction": null
+}

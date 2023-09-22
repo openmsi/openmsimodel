@@ -1,0 +1,21 @@
+{
+   "file_links": [],
+   "name": "Summary",
+   "notes": null,
+   "process": {
+      "id": "e8ddef08-c9d3-447d-b553-adff00c52eff",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "sample_type": null,
+   "spec": {
+      "id": "5eca0b9f-985d-4ae6-8be8-e9166d7b516b",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [],
+   "type": "material_run",
+   "uids": {
+      "auto": "b74c7db4-df59-4ca6-924f-15255fc49c02"
+   }
+}

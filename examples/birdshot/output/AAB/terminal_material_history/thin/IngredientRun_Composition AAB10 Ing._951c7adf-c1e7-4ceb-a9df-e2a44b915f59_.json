@@ -1,0 +1,30 @@
+{
+   "absolute_quantity": null,
+   "file_links": [],
+   "labels": [],
+   "mass_fraction": null,
+   "material": {
+      "id": "9763a04e-6e24-42cf-88f6-52808f1f5e85",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "name": "Composition AAB10 Ing.",
+   "notes": null,
+   "number_fraction": null,
+   "process": {
+      "id": "e6e54cf3-3a5d-447c-b883-23418c6eb0c6",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "spec": {
+      "id": "d8553240-8baa-4320-acb2-50906f41df55",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [],
+   "type": "ingredient_run",
+   "uids": {
+      "auto": "951c7adf-c1e7-4ceb-a9df-e2a44b915f59"
+   },
+   "volume_fraction": null
+}

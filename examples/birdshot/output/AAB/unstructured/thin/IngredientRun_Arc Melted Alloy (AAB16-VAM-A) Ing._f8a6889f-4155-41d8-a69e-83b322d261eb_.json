@@ -1,0 +1,30 @@
+{
+   "absolute_quantity": null,
+   "file_links": [],
+   "labels": [],
+   "mass_fraction": null,
+   "material": {
+      "id": "d039ed01-90b4-4cbe-a554-3aad1a9bde88",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "name": "Arc Melted Alloy (AAB16-VAM-A) Ing.",
+   "notes": null,
+   "number_fraction": null,
+   "process": {
+      "id": "8ad0f9d2-6bb5-44f7-bb67-79647ad7a14d",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "spec": {
+      "id": "6ec5d1f9-2de5-4db3-9289-59fbaeaea0a4",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [],
+   "type": "ingredient_run",
+   "uids": {
+      "auto": "f8a6889f-4155-41d8-a69e-83b322d261eb"
+   },
+   "volume_fraction": null
+}

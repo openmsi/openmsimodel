@@ -1,0 +1,25 @@
+{
+   "file_links": [],
+   "name": "Cr in AAB05",
+   "notes": null,
+   "process": {
+      "id": "30d74d79-651d-49b1-b1a5-56840b450469",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "sample_type": "production",
+   "spec": {
+      "id": "c839545d-afc3-4f42-b648-37e896f5b039",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB05",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "material_run",
+   "uids": {
+      "auto": "12432c61-1331-48a2-89cd-2fc6e1dc40cd"
+   }
+}

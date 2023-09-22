@@ -1,0 +1,17 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Adding V for AAB05",
+   "notes": null,
+   "parameters": [],
+   "tags": [],
+   "template": {
+      "id": "7a0002a0-3a8a-4a04-a705-c28c011ffba9",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "process_spec",
+   "uids": {
+      "auto": "99f41109-ba82-4722-847a-325c8afdbaba"
+   }
+}

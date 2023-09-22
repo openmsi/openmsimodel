@@ -1,0 +1,21 @@
+{
+   "file_links": [],
+   "name": "Composition AAB12",
+   "notes": null,
+   "process": {
+      "id": "394d8bcc-2e42-403d-98ad-97df1e36762a",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "properties": [],
+   "tags": [],
+   "template": {
+      "id": "3141e5d3-2504-4248-8d61-8afd9e55cebd",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "material_spec",
+   "uids": {
+      "auto": "7daaf1d4-290e-4d32-80f1-1c7e861af5ca"
+   }
+}

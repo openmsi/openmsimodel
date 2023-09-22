@@ -1,0 +1,14 @@
+{
+   "allowed_labels": [],
+   "allowed_names": [],
+   "conditions": [],
+   "description": "Applying Bayezian Optimization based on multi-inputs/multi-output\n        objectives to generated new composition space, with data extracted \n        from summary sheet aggregated by various experimental teams\n        ",
+   "name": "Infer Compositions",
+   "parameters": [],
+   "tags": [],
+   "type": "process_template",
+   "uids": {
+      "auto": "7b6fb0fd-98c7-44b5-a71c-4064ee7574e3",
+      "persistent_id": 65
+   }
+}

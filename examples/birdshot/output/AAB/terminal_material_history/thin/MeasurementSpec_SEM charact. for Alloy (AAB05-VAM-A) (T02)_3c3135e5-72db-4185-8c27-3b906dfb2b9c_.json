@@ -1,0 +1,17 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "SEM charact. for Alloy (AAB05-VAM-A) (T02)",
+   "notes": null,
+   "parameters": [],
+   "tags": [],
+   "template": {
+      "id": "929835c8-620d-47e3-bb6f-9edc93891747",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "measurement_spec",
+   "uids": {
+      "auto": "3c3135e5-72db-4185-8c27-3b906dfb2b9c"
+   }
+}

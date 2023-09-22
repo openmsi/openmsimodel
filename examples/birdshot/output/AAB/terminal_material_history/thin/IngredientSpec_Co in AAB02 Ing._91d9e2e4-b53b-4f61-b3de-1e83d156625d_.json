@@ -1,0 +1,25 @@
+{
+   "absolute_quantity": null,
+   "file_links": [],
+   "labels": [],
+   "mass_fraction": null,
+   "material": {
+      "id": "35be1c15-05cf-40cc-9ecd-18a242857421",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "name": "Co in AAB02 Ing.",
+   "notes": null,
+   "number_fraction": null,
+   "process": {
+      "id": "0c405b51-035b-4b87-b4fc-1d48aec5301c",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [],
+   "type": "ingredient_spec",
+   "uids": {
+      "auto": "91d9e2e4-b53b-4f61-b3de-1e83d156625d"
+   },
+   "volume_fraction": null
+}

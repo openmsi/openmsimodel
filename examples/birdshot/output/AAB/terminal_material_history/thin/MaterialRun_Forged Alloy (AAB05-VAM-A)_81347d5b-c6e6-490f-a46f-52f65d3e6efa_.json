@@ -1,0 +1,25 @@
+{
+   "file_links": [],
+   "name": "Forged Alloy (AAB05-VAM-A)",
+   "notes": null,
+   "process": {
+      "id": "73905cdf-f9f2-4e33-98cd-eb8685887cdf",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "sample_type": null,
+   "spec": {
+      "id": "d1a67acc-89b9-477e-a2e4-485402280325",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB05",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "material_run",
+   "uids": {
+      "auto": "81347d5b-c6e6-490f-a46f-52f65d3e6efa"
+   }
+}

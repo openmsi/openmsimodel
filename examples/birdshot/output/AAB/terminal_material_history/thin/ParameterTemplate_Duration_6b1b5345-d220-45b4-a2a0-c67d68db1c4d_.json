@@ -1,0 +1,16 @@
+{
+   "bounds": {
+      "default_units": "hour",
+      "lower_bound": 0,
+      "type": "real_bounds",
+      "upper_bound": 72
+   },
+   "description": null,
+   "name": "Duration",
+   "tags": [],
+   "type": "parameter_template",
+   "uids": {
+      "auto": "6b1b5345-d220-45b4-a2a0-c67d68db1c4d",
+      "persistent_id": 31
+   }
+}

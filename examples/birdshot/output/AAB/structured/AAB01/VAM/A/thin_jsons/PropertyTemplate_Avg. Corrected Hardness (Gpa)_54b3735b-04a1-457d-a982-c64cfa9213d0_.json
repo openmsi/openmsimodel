@@ -1,0 +1,16 @@
+{
+   "bounds": {
+      "default_units": "gigapascal",
+      "lower_bound": 0,
+      "type": "real_bounds",
+      "upper_bound": 5
+   },
+   "description": null,
+   "name": "Avg. Corrected Hardness (Gpa)",
+   "tags": [],
+   "type": "property_template",
+   "uids": {
+      "auto": "54b3735b-04a1-457d-a982-c64cfa9213d0",
+      "persistent_id": 14
+   }
+}

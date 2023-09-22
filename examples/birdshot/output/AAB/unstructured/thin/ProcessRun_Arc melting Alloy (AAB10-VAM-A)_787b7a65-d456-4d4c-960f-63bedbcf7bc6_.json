@@ -1,0 +1,103 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Arc melting Alloy (AAB10-VAM-A)",
+   "notes": null,
+   "parameters": [
+      {
+         "file_links": [],
+         "name": "Initial Purging Times",
+         "notes": null,
+         "origin": "specified",
+         "template": null,
+         "type": "parameter",
+         "value": {
+            "nominal": 3.0,
+            "type": "nominal_real",
+            "units": "hour"
+         }
+      },
+      {
+         "file_links": [],
+         "name": "Vacuum Before Melt",
+         "notes": null,
+         "origin": "specified",
+         "template": null,
+         "type": "parameter",
+         "value": {
+            "nominal": 5e-05,
+            "type": "nominal_real",
+            "units": "dimensionless"
+         }
+      },
+      {
+         "file_links": [],
+         "name": "Argon Pressure",
+         "notes": null,
+         "origin": "specified",
+         "template": null,
+         "type": "parameter",
+         "value": {
+            "category": "850-900",
+            "type": "nominal_categorical"
+         }
+      },
+      {
+         "file_links": [],
+         "name": "Diffusion",
+         "notes": null,
+         "origin": "specified",
+         "template": null,
+         "type": "parameter",
+         "value": {
+            "category": "Before Each Melt",
+            "type": "nominal_categorical"
+         }
+      },
+      {
+         "file_links": [],
+         "name": "Ingot Location",
+         "notes": null,
+         "origin": "specified",
+         "template": null,
+         "type": "parameter",
+         "value": {
+            "nominal": 4.0,
+            "type": "nominal_real",
+            "units": "dimensionless"
+         }
+      }
+   ],
+   "source": {
+      "performed_by": "Daniel",
+      "performed_date": "2022-11-05",
+      "type": "performed_source"
+   },
+   "spec": {
+      "id": "99db332c-7375-4008-866d-ff4b3ecbad4e",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB10",
+      "batch::A",
+      "fabrication_method::VAM",
+      "start_date::2022-11-03",
+      "finish_date::2022-11-05",
+      "time_spent::3",
+      "Full Ingot::7::175",
+      "Full Ingot::6::175",
+      "Full Ingot::5::145",
+      "Full Ingot::4::175",
+      "Full Ingot::3::145",
+      "Full Ingot::2::145",
+      "Full Ingot::1::110",
+      "3 Part Sections::3::110",
+      "3 Part Sections::2::90",
+      "3 Part Sections::1::90"
+   ],
+   "type": "process_run",
+   "uids": {
+      "auto": "787b7a65-d456-4d4c-960f-63bedbcf7bc6"
+   }
+}

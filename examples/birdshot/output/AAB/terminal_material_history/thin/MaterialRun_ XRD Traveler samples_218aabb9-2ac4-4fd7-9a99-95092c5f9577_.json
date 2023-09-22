@@ -1,0 +1,21 @@
+{
+   "file_links": [],
+   "name": " XRD Traveler samples",
+   "notes": null,
+   "process": {
+      "id": "0dfe18bb-8e9b-4eb2-9a14-152dba79f91c",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "sample_type": null,
+   "spec": {
+      "id": "1f224608-e45e-4f97-aec4-e26b0f38d0b4",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [],
+   "type": "material_run",
+   "uids": {
+      "auto": "218aabb9-2ac4-4fd7-9a99-95092c5f9577"
+   }
+}

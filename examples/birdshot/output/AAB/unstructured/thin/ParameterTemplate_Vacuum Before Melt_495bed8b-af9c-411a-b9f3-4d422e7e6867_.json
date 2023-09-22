@@ -1,0 +1,16 @@
+{
+   "bounds": {
+      "default_units": "dimensionless",
+      "lower_bound": 0,
+      "type": "real_bounds",
+      "upper_bound": 15
+   },
+   "description": null,
+   "name": "Vacuum Before Melt",
+   "tags": [],
+   "type": "parameter_template",
+   "uids": {
+      "auto": "495bed8b-af9c-411a-b9f3-4d422e7e6867",
+      "persistent_id": 28
+   }
+}

@@ -1,0 +1,25 @@
+{
+   "file_links": [],
+   "name": "V in AAB10",
+   "notes": null,
+   "process": {
+      "id": "f01d5ecb-8e62-4886-b5a4-179b1c700023",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "sample_type": "production",
+   "spec": {
+      "id": "3c9c0cd6-13f4-48be-9644-1061f330ed34",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB10",
+      "batch::A",
+      "fabrication_method::VAM"
+   ],
+   "type": "material_run",
+   "uids": {
+      "auto": "f4b23e3d-ef97-4c79-8fba-216dcfaad908"
+   }
+}

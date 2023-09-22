@@ -11,6 +11,11 @@ edge_table_name = "GEMDEdge"
 
 
 def show_models():
+    """shows all models in the database.
+
+    Returns:
+        _type_: str
+    """
     return """select distinct * from GEMDModel"""
 
 
@@ -29,6 +34,15 @@ def top_elements(model_id, nb, gemd_type):
 
 
 def display_all(model_id, type_to_display):
+    """displays all the gemd objects of a certain type in the model.
+
+    Args:
+        model_id (int): id of the model to query
+        type_to_display (str): object type to display
+
+    Returns:
+        _type_: str
+    """
     return f""" select * from {type_to_display} where model_id={model_id}"""
 
 
@@ -70,6 +84,14 @@ def gemd_types_query():
 
 
 def reachable_nodes_query(uid):
+    """returns all the elements that can be reached from the material.
+
+    Args:
+        uid (str): unique identifier of object to query with
+
+    Returns:
+        _type_: str
+    """
     return f"""
         with gr as (
         select c.uid as node_uid
@@ -107,7 +129,7 @@ def to_node_query(model_id):
     """returns all elements that can reach a given node, for all nodes in the model.
 
     Args:
-        model_id (str): id of the model to query
+        model_id (str): id of the model to query from
 
     Returns:
         _type_: str
@@ -166,6 +188,14 @@ def multiple_paths_nodes_query(model_id):
 
 
 def return_all_paths(model_id):
+    """return all paths between all nodes, if exst.
+
+    Args:
+        model_id (str): id of the model to query from
+
+    Returns:
+        _type_: str
+    """
     return f"""
         with gr as (
         select c.uid as root_uid

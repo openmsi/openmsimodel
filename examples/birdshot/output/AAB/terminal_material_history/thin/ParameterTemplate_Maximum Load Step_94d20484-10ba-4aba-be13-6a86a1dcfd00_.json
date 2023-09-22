@@ -1,0 +1,16 @@
+{
+   "bounds": {
+      "default_units": "pascal",
+      "lower_bound": 0,
+      "type": "real_bounds",
+      "upper_bound": 200
+   },
+   "description": null,
+   "name": "Maximum Load Step",
+   "tags": [],
+   "type": "parameter_template",
+   "uids": {
+      "auto": "94d20484-10ba-4aba-be13-6a86a1dcfd00",
+      "persistent_id": 37
+   }
+}

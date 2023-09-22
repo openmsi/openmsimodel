@@ -15,6 +15,7 @@ from inspect import getmembers, isfunction
 local = True
 try:
     from IPython import get_ipython
+
     exec_env = get_ipython().__class__.__name__
     if exec_env == "ZMQInteractiveShell":  # ran locally
         local = False
@@ -71,11 +72,12 @@ class OpenDB(Runnable):
             query (_type_): _description_
             name (_type_): _description_
         """
+        print(query)
         output_file = os.path.join(
             self.output,
             name
-            + str(time.strftime("%_m%d%Y%H%M", time.localtime()))
             + "_"
+            + str(time.strftime("%m%d%Y_%H%M_", time.localtime()))
             + str(random.randint(0, 10000))
             + ".csv",
         )
@@ -84,8 +86,6 @@ class OpenDB(Runnable):
         if not dump:
             with open(output_file, "a") as fp:
                 w = csv.writer(fp)
-                w.writerow("\n")
-                w.writerow([query])
         return sql_results
 
     @classmethod
@@ -146,7 +146,7 @@ class OpenDB(Runnable):
                             function,
                             function_accronym,
                         ) in open_db.listed_functions.items():
-                            open_db.logger.info(
+                            print(
                                 f"-  name: {function_name}, acronym: {function_accronym}, description: {function.__doc__} "
                             )
 
