@@ -1,0 +1,17 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Weigh Fe for AAB11",
+   "notes": null,
+   "parameters": [],
+   "tags": [],
+   "template": {
+      "id": "640fa254-d2b9-416d-b4b0-dea4906180c8",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "measurement_spec",
+   "uids": {
+      "auto": "371ebcec-0ade-4f7c-ab18-8608fbd501b1"
+   }
+}

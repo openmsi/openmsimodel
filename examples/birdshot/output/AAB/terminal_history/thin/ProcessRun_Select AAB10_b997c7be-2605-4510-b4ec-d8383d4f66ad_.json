@@ -1,0 +1,39 @@
+{
+   "conditions": [],
+   "file_links": [
+      {
+         "filename": "root",
+         "type": "file_link",
+         "url": "/srv/hemi01-j01/openmsimodel/examples/birdshot/input/data/AAB/VAM/A/AAB10/T01"
+      },
+      {
+         "filename": "T06",
+         "type": "file_link",
+         "url": "/srv/hemi01-j01/openmsimodel/examples/birdshot/input/data/AAB/VAM/A/AAB10/T01/T06"
+      }
+   ],
+   "name": "Select AAB10",
+   "notes": null,
+   "parameters": [],
+   "source": null,
+   "spec": {
+      "id": "ed78ce40-7890-47e5-8b78-641e7579b841",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB10",
+      "batch::A",
+      "fabrication_method::VAM",
+      "Co::20",
+      "Cr::5",
+      "Fe::25",
+      "Ni::45",
+      "V::0",
+      "Al::5"
+   ],
+   "type": "process_run",
+   "uids": {
+      "auto": "b997c7be-2605-4510-b4ec-d8383d4f66ad"
+   }
+}

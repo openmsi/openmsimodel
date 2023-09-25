@@ -1,0 +1,21 @@
+{
+   "file_links": [],
+   "name": "Alloy (AAB13-VAM-A)",
+   "notes": null,
+   "process": {
+      "id": "174bbc13-6145-40a4-b4e1-d30b9236f68a",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "properties": [],
+   "tags": [],
+   "template": {
+      "id": "ddb70c7c-9463-46c4-bd11-ea872301a9f5",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "material_spec",
+   "uids": {
+      "auto": "c2c403f6-56a5-4090-91ce-95f9ff3cd5b3"
+   }
+}

@@ -1,0 +1,17 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Aggregating SEM samples",
+   "notes": null,
+   "parameters": [],
+   "tags": [],
+   "template": {
+      "id": "dbc0c2ef-8ef2-4d77-ba30-5c78d1d53e08",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "process_spec",
+   "uids": {
+      "auto": "aa9b9cb3-33cc-4c24-a492-e709c42a25e0"
+   }
+}

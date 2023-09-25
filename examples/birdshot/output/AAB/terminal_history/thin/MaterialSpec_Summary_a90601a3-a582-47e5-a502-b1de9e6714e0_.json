@@ -1,0 +1,21 @@
+{
+   "file_links": [],
+   "name": "Summary",
+   "notes": null,
+   "process": {
+      "id": "ede8f59c-475d-43eb-9d35-4e4b2a871b17",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "properties": [],
+   "tags": [],
+   "template": {
+      "id": "07acca13-90e9-4bee-ab28-4784994a61a9",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "material_spec",
+   "uids": {
+      "auto": "a90601a3-a582-47e5-a502-b1de9e6714e0"
+   }
+}

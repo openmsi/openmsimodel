@@ -114,10 +114,16 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
 
     def build(self):
         # ingesting the results of the summary sheet, which is associated with each composition space, and workflow object
-        ingest_synthesis_results(
-            self.iteration, self.synthesis_path, self.file_links, self.measurements
-        )
+        if 'AAA' in self.srjt_path:
+            ingest_aaa_synthesis_results(
+                self.iteration, self.synthesis_path, self.file_links, self.measurements
+            )
+        else:
+            ingest_synthesis_results(
+                self.iteration, self.synthesis_path, self.file_links, self.measurements
+            )
 
+        
         ingest_srjt_results(self.srjt_path, self.output, self.measurements)
 
         ############## block 1: first infer_compositions_block
@@ -175,10 +181,15 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         path_offset = 6
         tree_folders_and_files = self.make_tree(FolderOrFile, self.root)
 
+        # with open(self.output / "folder_structure.txt", "w") as fp:
+        #     for p in tree_folders_and_files:
+        #         fp.write(p.displayable() + "\n")
+
         ############## blocks from 2 to (n-3)
         # looping through all the folders and files in the tree structure
         for item in tree_folders_and_files:
             item_path = str(item.root)
+            # print(item_path)
             if os.path.isfile(item_path):
                 continue
             onlyfiles = [
@@ -189,6 +200,8 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
             # /AAA/VAM/B/AAA01/T01 or /AAA/DED/A/AAA01-AAA08/AAA01
             if item.depth >= 4:
                 is_ded = "DED" in item_path
+                if is_ded:  # FIXME
+                    continue
                 split_item_path = substring_after(item_path, str(self.root))
                 if split_item_path[0] == "/":  # avoiding first '/'
                     split_item_path = split_item_path[1:]
@@ -204,8 +217,10 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
                         composition_id = split_item_path[3]
                 else:
                     composition_id = split_item_path[2]
+                # if not is_ded:
+                #     print(only_files)
                 if (item.depth == 4 and not is_ded) or (item.depth == 5 and is_ded):
-                    if onlyfiles:
+                    if onlyfiles or is_ded:  # FIXME
                         self.process(
                             item_path,
                             composition_id,
@@ -218,6 +233,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
                 if (
                     (item.depth >= 5 and not is_ded) or (item.depth >= 6 and is_ded)
                 ) and (onlyfiles):
+                    # print(item_path)
                     self.process_measurement(
                         item_path,
                         composition_id,
@@ -416,6 +432,8 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
                 return {}, {}
 
         processing_details, synthesis_details = read_details()
+        # if len(processing_details) == 0 or len(synthesis_details) == 0:
+        #     return
 
         (
             long_name,
@@ -503,6 +521,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
             element_property,
         ) in composition_tags:  # TODO: if aggregate_or_buy
             composition_ingredient = Ingredient(composition_ingredient_name)
+
             adding_material_process = AddMaterial(
                 f"Adding {element_name} for {composition_id}"
             )
@@ -514,20 +533,54 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
                 "{} in {}".format(element_name, composition_id)
             )
 
-            # preparation_metadata = synthesis_details["data"]["Material Preparation"][""]
-            preparation_metadata = synthesis_details["data"]["Material Preparation"][
-                "Process Overview"
-            ]
-            weighting_performed_source = PerformedSource(
-                preparation_metadata["Completed By"],
-                preparation_metadata["Finish Date"],
-            )
+            # source obj
+            weighting_performed_source = None
+            if synthesis_details:
+                preparation_metadata = synthesis_details["data"][
+                    "Material Preparation"
+                ]["Process Overview"]
+                weighting_performed_source = PerformedSource(
+                    preparation_metadata["Completed By"],
+                    preparation_metadata["Finish Date"],
+                )
+
+            target_mass = None
+            weighted_mass = None
 
             def set_composition_element_material_params_and_tags():
-                target_mass = synthesis_details["data"]["Material Preparation"][
-                    "Target Mass"
-                ][element_name]
-
+                if synthesis_details:
+                    target_mass = synthesis_details["data"]["Material Preparation"][
+                        "Target Mass"
+                    ][element_name]
+                    weighted_mass = synthesis_details["data"]["Material Preparation"][
+                        "Weighed Mass"
+                    ][element_name]
+                    composition_element_material._update_attributes(
+                        AttrType=PropertyAndConditions,
+                        attributes=(
+                            # PropertyAndConditions(
+                            #     property=Property(
+                            #         "Composition Percentage",
+                            #         value=NominalReal(float(element_property), ""),
+                            #         origin="predicted",
+                            #         notes="",
+                            #         file_links=[],
+                            #     ),
+                            #     conditions=[],
+                            # ),
+                            PropertyAndConditions(
+                                property=Property(
+                                    "Target Mass",
+                                    value=NominalReal(float(target_mass), "g"),
+                                    origin="computed",
+                                    notes="",
+                                    file_links=[],
+                                ),
+                                conditions=[],
+                            ),
+                        ),
+                        which="spec",
+                    )
                 composition_element_material._update_attributes(
                     AttrType=PropertyAndConditions,
                     attributes=(
@@ -541,18 +594,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
                             ),
                             conditions=[],
                         ),
-                        PropertyAndConditions(
-                            property=Property(
-                                "Target Mass",
-                                value=NominalReal(float(target_mass), "g"),
-                                origin="computed",
-                                notes="",
-                                file_links=[],
-                            ),
-                            conditions=[],
-                        ),
                     ),
-                    which="spec",
                 )
                 composition_element_material._set_tags(
                     tags=common_tags,
@@ -569,18 +611,16 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
                 tags=common_tags,
                 spec_or_run=weighting_measurement.run,
             )
-            weighted_mass = synthesis_details["data"]["Material Preparation"][
-                "Weighed Mass"
-            ][element_name]
-            weighting_measurement._update_attributes(
-                AttrType=Property,
-                attributes=(
-                    Property(
-                        "Weighed Mass", value=NominalReal(float(weighted_mass), "g")
+            if weighted_mass:
+                weighting_measurement._update_attributes(
+                    AttrType=Property,
+                    attributes=(
+                        Property(
+                            "Weighed Mass", value=NominalReal(float(weighted_mass), "g")
+                        ),
                     ),
-                ),
-                which="run",
-            )
+                    which="run",
+                )
             weighting_measurement._run.source = weighting_performed_source
 
             composition_elements.append(composition_element_material)
@@ -692,17 +732,21 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         prior_block,
     ):
         ############## block 4
-        melted_alloy_properties = synthesis_details["data"]["Arc Melting"][
-            "Ingot Mass Information"
-        ]
+        arc_melting_performed_source = None
+        arc_melting_metadata = None
+        melted_alloy_properties = None
+        if synthesis_details:
+            melted_alloy_properties = synthesis_details["data"]["Arc Melting"][
+                "Ingot Mass Information"
+            ]
 
-        arc_melting_metadata = synthesis_details["data"]["Arc Melting"][
-            "Process Overview"
-        ]
-        arc_melting_performed_source = PerformedSource(
-            arc_melting_metadata["Completed By"],
-            arc_melting_metadata["Finish Date"],
-        )
+            arc_melting_metadata = synthesis_details["data"]["Arc Melting"][
+                "Process Overview"
+            ]
+            arc_melting_performed_source = PerformedSource(
+                arc_melting_metadata["Completed By"],
+                arc_melting_metadata["Finish Date"],
+            )
 
         alloy_ingredient_name = "{} Ing.".format(alloy_common_name)
         alloy_ingredient = Ingredient(alloy_ingredient_name)
@@ -712,15 +756,17 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         def gen_arc_melting_tags():
             arc_melting_tags = ()
             for name in ["3 Part Sections", "Full Ingot"]:
-                _d = synthesis_details["data"]["Arc Melting"][name]
-                for key, value in _d.items():
-                    tag_name = "{}::{}".format(name, key)
-                    arc_melting_tags = ((tag_name, str(value)),) + arc_melting_tags
-            arc_melting_tags = (
-                ("start_date", arc_melting_metadata["Start Date"]),
-                ("finish_date", arc_melting_metadata["Finish Date"]),
-                ("time_spent", str(arc_melting_metadata["Time Spent"])),
-            ) + arc_melting_tags
+                if synthesis_details:
+                    _d = synthesis_details["data"]["Arc Melting"][name]
+                    for key, value in _d.items():
+                        tag_name = "{}::{}".format(name, key)
+                        arc_melting_tags = ((tag_name, str(value)),) + arc_melting_tags
+            if arc_melting_metadata:
+                arc_melting_tags = (
+                    ("start_date", arc_melting_metadata["Start Date"]),
+                    ("finish_date", arc_melting_metadata["Finish Date"]),
+                    ("time_spent", str(arc_melting_metadata["Time Spent"])),
+                ) + arc_melting_tags
             return arc_melting_tags
 
         arc_melting_tags = gen_arc_melting_tags()
@@ -731,24 +777,25 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         )
 
         def set_arc_melting_process_params():
-            arc_melting_parameters = synthesis_details["data"]["Arc Melting"][
-                "VAM Details"
-            ]
-            for attribute_name, attribute_value in arc_melting_parameters.items():
-                if type(attribute_value) == str:
-                    value = NominalCategorical(attribute_value)
-                else:
-                    unit = ""
-                    if attribute_name == "Initial Purging Times":
-                        unit = "hour"
-                    value = NominalReal(attribute_value, unit)
-                arc_melting_process._update_attributes(
-                    AttrType=Parameter,
-                    attributes=(
-                        Parameter(attribute_name, value=value, origin="specified"),
-                    ),
-                    which="run",
-                )
+            if synthesis_details:
+                arc_melting_parameters = synthesis_details["data"]["Arc Melting"][
+                    "VAM Details"
+                ]
+                for attribute_name, attribute_value in arc_melting_parameters.items():
+                    if type(attribute_value) == str:
+                        value = NominalCategorical(attribute_value)
+                    else:
+                        unit = ""
+                        if attribute_name == "Initial Purging Times":
+                            unit = "hour"
+                        value = NominalReal(attribute_value, unit)
+                    arc_melting_process._update_attributes(
+                        AttrType=Parameter,
+                        attributes=(
+                            Parameter(attribute_name, value=value, origin="specified"),
+                        ),
+                        which="run",
+                    )
 
         set_arc_melting_process_params()
         arc_melting_process._run.source = arc_melting_performed_source
@@ -782,22 +829,25 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
             tags=common_tags,
             spec_or_run=weighting_alloy_measurement.run,
         )
-        weighting_alloy_measurement._update_attributes(
-            AttrType=Property,
-            attributes=(
-                Property(
-                    "Weighed Mass",
-                    value=NominalReal(
-                        float(melted_alloy_properties["Final Ingot Mass"]), "g"
+        if melted_alloy_properties:
+            weighting_alloy_measurement._update_attributes(
+                AttrType=Property,
+                attributes=(
+                    Property(
+                        "Weighed Mass",
+                        value=NominalReal(
+                            float(melted_alloy_properties["Final Ingot Mass"]), "g"
+                        ),
+                    ),
+                    Property(
+                        "Mass Loss",
+                        value=NominalReal(
+                            float(melted_alloy_properties["Mass Loss"]), "g"
+                        ),
                     ),
                 ),
-                Property(
-                    "Mass Loss",
-                    value=NominalReal(float(melted_alloy_properties["Mass Loss"]), "g"),
-                ),
-            ),
-            which="run",
-        )
+                which="run",
+            )
         weighting_alloy_measurement._run.source = arc_melting_performed_source
 
         block4 = ProcessBlock(
@@ -814,13 +864,16 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         self.subs[block4.name] = block4
 
         ############## block 5
-        homogenization_metadata = processing_details["data"]["Homogenization"][
-            "Process Overview"
-        ]
-        homogenization_performed_source = PerformedSource(
-            homogenization_metadata["Completed By"],
-            homogenization_metadata["Finish Date"],
-        )
+        homogenization_metadata = None
+        homogenization_performed_source = None
+        if processing_details:
+            homogenization_metadata = processing_details["data"]["Homogenization"][
+                "Process Overview"
+            ]
+            homogenization_performed_source = PerformedSource(
+                homogenization_metadata["Completed By"],
+                homogenization_metadata["Finish Date"],
+            )
 
         melted_alloy_ingredient_name = "Arc Melted {} Ing.".format(alloy_common_name)
         melted_alloy_ingredient = Ingredient(melted_alloy_ingredient_name)
@@ -828,75 +881,84 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         homogenization_process = Homogenization(
             "Homogenizing {}".format(alloy_common_name)
         )
-        homogenization_tags = (
-            ("start_date", homogenization_metadata["Start Date"]),
-            ("finish_date", homogenization_metadata["Finish Date"]),
-            ("time_spent", str(homogenization_metadata["Time Spent"])),
-        )
-        homogenization_and_common_tags = common_tags + homogenization_tags
+        homogenization_and_common_tags = common_tags
+        if homogenization_metadata:
+            homogenization_tags = (
+                ("start_date", homogenization_metadata["Start Date"]),
+                ("finish_date", homogenization_metadata["Finish Date"]),
+                ("time_spent", str(homogenization_metadata["Time Spent"])),
+            )
+            homogenization_and_common_tags += homogenization_tags
         homogenization_process._set_tags(
             tags=homogenization_and_common_tags,
             spec_or_run=homogenization_process.run,
         )
 
         def set_homogenization_process_params():
-            homogenization_parameters = processing_details["data"]["Homogenization"][
-                "Thermal Conditions"
-            ]
-            homogenization_parameters_2 = processing_details["data"]["Homogenization"][
-                "Purging Sequence Pressure"
-            ]
-            for attribute_name, attribute_value in homogenization_parameters.items():
-                if type(attribute_value) == str:
-                    value = NominalCategorical(attribute_value)
-                else:
-                    unit = ""
-                    if attribute_name == "Temperature":
-                        unit = "Kelvin"
-                    elif attribute_name == "Pressure":
-                        unit = "Pa"
-                    elif attribute_name == "Duration":
-                        unit = "hours"
-                    value = NominalReal(attribute_value, unit)
-                homogenization_process._update_attributes(
-                    AttrType=Parameter,
-                    attributes=(
-                        Parameter(attribute_name, value=value, origin="specified"),
-                    ),
-                    which="run",
-                )
-            for purging_step, purging_pressure in homogenization_parameters_2.items():
-                if not purging_pressure:
-                    continue
-                value = NominalReal(purging_pressure, "Pa")
-                homogenization_process._update_attributes(
-                    AttrType=Parameter,
-                    attributes=(
-                        Parameter(
-                            "Purging Sequence {} Pressure".format(purging_step),
-                            value=value,
-                            template=homogenization_process._ATTRS["parameters"][
-                                "Pressure"
-                            ]["obj"],
-                            origin="specified",
+            if processing_details:
+                homogenization_parameters = processing_details["data"][
+                    "Homogenization"
+                ]["Thermal Conditions"]
+                homogenization_parameters_2 = processing_details["data"][
+                    "Homogenization"
+                ]["Purging Sequence Pressure"]
+                for (
+                    attribute_name,
+                    attribute_value,
+                ) in homogenization_parameters.items():
+                    if type(attribute_value) == str:
+                        value = NominalCategorical(attribute_value)
+                    else:
+                        unit = ""
+                        if attribute_name == "Temperature":
+                            unit = "Kelvin"
+                        elif attribute_name == "Pressure":
+                            unit = "Pa"
+                        elif attribute_name == "Duration":
+                            unit = "hours"
+                        value = NominalReal(attribute_value, unit)
+                    homogenization_process._update_attributes(
+                        AttrType=Parameter,
+                        attributes=(
+                            Parameter(attribute_name, value=value, origin="specified"),
                         ),
-                    ),
-                    which="run",
-                )
-            homogenization_process._update_attributes(
-                AttrType=Parameter,
-                attributes=(
-                    Parameter(
-                        "Purging Sequence {} Pressure".format(purging_step),
-                        value=value,
-                        template=homogenization_process._ATTRS["parameters"][
-                            "Pressure"
-                        ]["obj"],
-                        origin="specified",
-                    ),
-                ),
-                which="run",
-            )
+                        which="run",
+                    )
+                for (
+                    purging_step,
+                    purging_pressure,
+                ) in homogenization_parameters_2.items():
+                    if not purging_pressure:
+                        continue
+                    value = NominalReal(purging_pressure, "Pa")
+                    homogenization_process._update_attributes(
+                        AttrType=Parameter,
+                        attributes=(
+                            Parameter(
+                                "Purging Sequence {} Pressure".format(purging_step),
+                                value=value,
+                                template=homogenization_process._ATTRS["parameters"][
+                                    "Pressure"
+                                ]["obj"],
+                                origin="specified",
+                            ),
+                        ),
+                        which="run",
+                    )
+                    homogenization_process._update_attributes(
+                        AttrType=Parameter,
+                        attributes=(
+                            Parameter(
+                                "Purging Sequence {} Pressure".format(purging_step),
+                                value=value,
+                                template=homogenization_process._ATTRS["parameters"][
+                                    "Pressure"
+                                ]["obj"],
+                                origin="specified",
+                            ),
+                        ),
+                        which="run",
+                    )
 
         set_homogenization_process_params()
         homogenization_process._run.source = homogenization_performed_source
@@ -935,23 +997,28 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         self.subs[block5.name] = block5
 
         ############## block 6
-        forging_metadata = processing_details["data"]["Forging"]["Process Overview"]
-        forging_performed_source = PerformedSource(
-            forging_metadata["Completed By"],
-            forging_metadata["Finish Date"],
-        )
-        forging_tags = (
-            ("start_date", forging_metadata["Start Date"]),
-            ("finish_date", forging_metadata["Finish Date"]),
-            ("time_spent", str(forging_metadata["Time Spent"])),
-        )
+        forging_performed_source = None
+        forging_tags = None
+        if processing_details:
+            forging_metadata = processing_details["data"]["Forging"]["Process Overview"]
+            forging_performed_source = PerformedSource(
+                forging_metadata["Completed By"],
+                forging_metadata["Finish Date"],
+            )
+            forging_tags = (
+                ("start_date", forging_metadata["Start Date"]),
+                ("finish_date", forging_metadata["Finish Date"]),
+                ("time_spent", str(forging_metadata["Time Spent"])),
+            )
 
         homogenized_alloy_ingredient_name = "Homogenized {} Ing.".format(
             alloy_common_name
         )
         homogenized_alloy_ingredient = Ingredient(homogenized_alloy_ingredient_name)
         forging_process = Forging("Forging {}".format(alloy_common_name))
-        forging_and_common_tags = common_tags + forging_tags
+        forging_and_common_tags = common_tags
+        if forging_tags:
+            forging_and_common_tags += forging_tags
         forging_process._set_tags(
             tags=forging_and_common_tags,
             spec_or_run=forging_process.run,
@@ -959,45 +1026,9 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
 
         def set_forging_process_params():
             attribute_name = "Press Temperature"
-            press_temperature = processing_details["data"]["Forging"][attribute_name]
-            value = NominalReal(press_temperature, "Kelvin")
-            forging_process._update_attributes(
-                AttrType=Parameter,
-                attributes=(
-                    Parameter(
-                        attribute_name,
-                        value=value,
-                        origin="specified",
-                        template=forging_process._ATTRS["parameters"]["Temperature"][
-                            "obj"
-                        ],
-                    ),
-                ),
-                which="run",
-            )
-            forging_params = processing_details["data"]["Forging"]["Ingot Condition"]
-            forging_params_2 = processing_details["data"]["Forging"]["Maximum Load"]
-            for attribute_name, attribute_value in forging_params.items():
-                unit = ""
-                if attribute_name == "Temperature":
-                    unit = "Kelvin"
-                elif attribute_name == "Soak Time":
-                    unit = "minutes"
-                value = NominalReal(attribute_value, unit)
-                forging_process._update_attributes(
-                    AttrType=Parameter,
-                    attributes=(
-                        Parameter(attribute_name, value=value, origin="specified"),
-                    ),
-                    which="run",
-                )
-
-            for i, maximum_load_step_dict in enumerate(forging_params_2):
-                attribute_name = next(iter(maximum_load_step_dict.keys()))
-                attribute_value = next(iter(maximum_load_step_dict.values()))
-
-                value = NominalReal(attribute_value, "Pa")
-                name = "{} {}".format(attribute_name, i)
+            if processing_details:
+                press_temperature = processing_details["data"]["Forging"][attribute_name]
+                value = NominalReal(press_temperature, "Kelvin")
                 forging_process._update_attributes(
                     AttrType=Parameter,
                     attributes=(
@@ -1005,13 +1036,50 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
                             attribute_name,
                             value=value,
                             origin="specified",
-                            template=forging_process._ATTRS["parameters"][
-                                "Maximum Load Step"
-                            ]["obj"],
+                            template=forging_process._ATTRS["parameters"]["Temperature"][
+                                "obj"
+                            ],
                         ),
                     ),
                     which="run",
                 )
+                forging_params = processing_details["data"]["Forging"]["Ingot Condition"]
+                forging_params_2 = processing_details["data"]["Forging"]["Maximum Load"]
+                for attribute_name, attribute_value in forging_params.items():
+                    unit = ""
+                    if attribute_name == "Temperature":
+                        unit = "Kelvin"
+                    elif attribute_name == "Soak Time":
+                        unit = "minutes"
+                    value = NominalReal(attribute_value, unit)
+                    forging_process._update_attributes(
+                        AttrType=Parameter,
+                        attributes=(
+                            Parameter(attribute_name, value=value, origin="specified"),
+                        ),
+                        which="run",
+                    )
+
+                for i, maximum_load_step_dict in enumerate(forging_params_2):
+                    attribute_name = next(iter(maximum_load_step_dict.keys()))
+                    attribute_value = next(iter(maximum_load_step_dict.values()))
+
+                    value = NominalReal(attribute_value, "Pa")
+                    name = "{} {}".format(attribute_name, i)
+                    forging_process._update_attributes(
+                        AttrType=Parameter,
+                        attributes=(
+                            Parameter(
+                                attribute_name,
+                                value=value,
+                                origin="specified",
+                                template=forging_process._ATTRS["parameters"][
+                                    "Maximum Load Step"
+                                ]["obj"],
+                            ),
+                        ),
+                        which="run",
+                    )
             forging_process._run.source = forging_performed_source
 
         set_forging_process_params()
@@ -1025,30 +1093,32 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         def set_capture_dimensions_measurement_properties():
             for stage in ["Before", "After"]:
                 name = "Ingot Dimensions {}".format(stage)
-                _dict = processing_details["data"]["Forging"][name]
+                
                 capture_dimensions_measurement = MeasureDimensions(name)
                 capture_dimensions_measurement._set_tags(
                     tags=common_tags,
                     spec_or_run=capture_dimensions_measurement.run,
                 )
                 capture_dimensions_measurement._run.source = forging_performed_source
-                for attribute_name, attribute_value in _dict.items():
-                    property_name = "{} {}".format(attribute_name, stage)
-                    value = NominalReal(attribute_value, "cm")
-                    capture_dimensions_measurement._update_attributes(
-                        AttrType=Property,
-                        attributes=(
-                            Property(
-                                property_name,
-                                value=value,
-                                origin="specified",
-                                template=capture_dimensions_measurement._ATTRS[
-                                    "properties"
-                                ][attribute_name]["obj"],
+                if processing_details:
+                    _dict = processing_details["data"]["Forging"][name]
+                    for attribute_name, attribute_value in _dict.items():
+                        property_name = "{} {}".format(attribute_name, stage)
+                        value = NominalReal(attribute_value, "cm")
+                        capture_dimensions_measurement._update_attributes(
+                            AttrType=Property,
+                            attributes=(
+                                Property(
+                                    property_name,
+                                    value=value,
+                                    origin="specified",
+                                    template=capture_dimensions_measurement._ATTRS[
+                                        "properties"
+                                    ][attribute_name]["obj"],
+                                ),
                             ),
-                        ),
-                        which="run",
-                    )
+                            which="run",
+                        )
 
         set_capture_dimensions_measurement_properties()
 
@@ -1089,6 +1159,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         )
         block7.link_within()
         block7.link_prior(block6, ingredient_name_to_link=forged_alloy_ingredient_name)
+        # print(block7)
         self.subs[block7.name] = block7
         self.terminal_blocks[composition_id][fabrication_method][batch] = block7
 
@@ -1131,6 +1202,9 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         if not_empty:
             measurement_name = item_path.split("/")[-1]
             measurement_id = item_path.split("/")[-2]
+            # if measurement option in self.measurements.keys():
+            if not (measurement_name in self.measurement_types.keys()):
+                return
             measurement_obj = self.measurement_types[measurement_name]
             traveler_ingredient_name = "{}: Traveler Ing.".format(alloy_common_name)
             traveler_ingredient = Ingredient(traveler_ingredient_name)
@@ -1170,7 +1244,6 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
             if m:
                 for attribute_name, attribute_value in m.items():
                     attribute_name = attribute_name.replace("/", "_")
-
                     if not type(attribute_value) == str:  # FIXME
                         unit = measurement._ATTRS["properties"][attribute_name][
                             "obj"
@@ -1413,10 +1486,72 @@ def return_common_items(composition_id, fabrication_method, batch, yymm=None):
         common_tags = (("yymm", yymm),) + common_tags
     return long_name, short_name, alloy_common_name, common_tags
 
+def ingest_aaa_synthesis_results(iteration, synthesis_path, file_links, measurements):
+    df = pd.read_excel(synthesis_path)
+    file_links["Summary Sheet"] = FileLink(
+        filename=str(synthesis_path).split("/")[-1], url=str(synthesis_path)
+    )
+    new_header = df.iloc[1]
+    core_df = df[2:19]
+    core_df.columns = new_header
+    column_names = list(core_df.columns.values)
+    core_df = core_df.reset_index()
+    for row_index, row in core_df.iterrows():
+        if row_index == 0:
+            sub_header_row = row
+            continue
+        name = row["Alloy"]
+        split_name = name.split("_")
+        composition_id = split_name[0]
+        yymm = split_name[1]
+        fabrication_method = split_name[2]
+        batch = split_name[3]
+
+        # target composition
+        target_composition_column = column_names[1]
+        for i in range(2, 8):
+            element_name = sub_header_row[i]
+            composition = row[i]
+            measurements[composition_id][target_composition_column][
+                element_name
+            ] = composition
+
+        # T05: averaged measured composition and difference
+        measurement_id = row[8]
+        average_composition_column = column_names[8]
+        composition_difference_column = column_names[14]
+        for i in range(9, 15):
+            element_name = sub_header_row[i]
+            average_composition = row[i]
+            composition_difference = row[i + 6]
+            measurements[composition_id][fabrication_method][batch][measurement_id][
+                average_composition_column
+            ][element_name] = average_composition
+            measurements[composition_id][fabrication_method][batch][measurement_id][
+                composition_difference_column
+            ][element_name] = composition_difference
+
+
+        # T03: phase/lattice parameters
+        measurement_id = row[21]
+
+        # phase_column = column_names[21]
+        lattice_parameter_column = column_names[22-1]
+
+        # phase = row[22]
+        lattice_parameter = row[23-1]
+
+        # measurements[composition_id][fabrication_method][batch][measurement_id][
+        #     phase_column
+        # ] = phase
+        measurements[composition_id][fabrication_method][batch][measurement_id][
+            lattice_parameter_column
+        ] = lattice_parameter
+
+        
+
 
 def ingest_synthesis_results(iteration, synthesis_path, file_links, measurements):
-    # file_link_name = "HTMDEC {} Summary Synthesis Results.xlsx".format(iteration)
-    # file_link_path = os.path.join(sample_data_folder, file_link_name)
     df = pd.read_excel(synthesis_path)
     file_links["Summary Sheet"] = FileLink(
         filename=str(synthesis_path).split("/")[-1], url=str(synthesis_path)
@@ -1600,6 +1735,9 @@ def ingest_synthesis_results(iteration, synthesis_path, file_links, measurements
     strain_rate_and_temperature_df.columns = new_header
 
 
+def ingest_aaa_srjt_results(srjt_path, output, measurements):
+
+
 def ingest_srjt_results(srjt_path, output, measurements):
     # FIXME: add file link
     # Convert the Excel file to CSV using LibreOffice
@@ -1625,9 +1763,12 @@ def ingest_srjt_results(srjt_path, output, measurements):
     subprocess.run(["rm", output / output_file])
 
     columns = list(df.columns)
+    sample_name_column = list(filter(lambda x: "Sample Name" in x, columns))[0]
+
     for i in range(len(df)):
-        composition_id = df.loc[i, "Sample Name"]
-        for y in range(1, len(columns)):
+        composition_id = df.loc[i, sample_name_column]
+        for y in range(2, len(columns)):
+            # print(columns[y])
             measurements[composition_id]["SRJT"][columns[y]] = df.loc[i, columns[y]]
 
 

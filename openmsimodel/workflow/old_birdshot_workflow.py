@@ -180,9 +180,9 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         tree_folders_and_files = self.make_tree(FolderOrFile, self.root)
 
         # print(self.displayable())
-        with open(self.output / "structure.txt", "w") as fp:
-            for p in tree_folders_and_files:
-                fp.write(p.displayable() + "\n")
+        # with open(self.output / "folder_structure.txt", "w") as fp:
+        #     for p in tree_folders_and_files:
+        #         fp.write(p.displayable() + "\n")
 
         ############## blocks from 2 to (n-3)
         # looping through all the folders and files in the tree structure
@@ -1248,13 +1248,6 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
 
     def dumps(self, obj, destination=None, overwrite=False):
         self.local_out_destination = self.output / "terminal_history/raw"
-        # if destination:  # adding overwrite options
-        #     self.local_out_destination = destination
-        # else:  # notifying user that folder is not empty
-        #     if not len(os.listdir(self.local_out_destination)) == 0:
-        #         print("Folder is not empty.")
-        # if not os.path.exists(self.local_out_destination):
-        #     os.makedirs(self.local_out_destination)
         if destination:  # adding overwrite options
             self.local_out_destination = destination
         if overwrite:
@@ -1607,6 +1600,7 @@ def ingest_srjt_results(srjt_path, output, measurements):
     subprocess.run(["rm", output / output_file])
 
     columns = list(df.columns)
+    # sample_name_coulmn =
     for i in range(len(df)):
         composition_id = df.loc[i, "Sample Name"]
         for y in range(1, len(columns)):

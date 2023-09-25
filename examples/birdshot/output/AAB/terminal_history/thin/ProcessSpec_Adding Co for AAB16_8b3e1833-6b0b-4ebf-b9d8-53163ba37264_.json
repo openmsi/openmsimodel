@@ -1,0 +1,17 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Adding Co for AAB16",
+   "notes": null,
+   "parameters": [],
+   "tags": [],
+   "template": {
+      "id": "84f89c89-bd99-4fcc-81fb-f7ce3aa30788",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "process_spec",
+   "uids": {
+      "auto": "8b3e1833-6b0b-4ebf-b9d8-53163ba37264"
+   }
+}

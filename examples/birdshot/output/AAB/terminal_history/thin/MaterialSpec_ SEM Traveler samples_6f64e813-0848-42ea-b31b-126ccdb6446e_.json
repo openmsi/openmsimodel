@@ -1,0 +1,21 @@
+{
+   "file_links": [],
+   "name": " SEM Traveler samples",
+   "notes": null,
+   "process": {
+      "id": "aa9b9cb3-33cc-4c24-a492-e709c42a25e0",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "properties": [],
+   "tags": [],
+   "template": {
+      "id": "f4fc8049-e0b1-4132-8032-83e6dd820dc0",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "material_spec",
+   "uids": {
+      "auto": "6f64e813-0848-42ea-b31b-126ccdb6446e"
+   }
+}

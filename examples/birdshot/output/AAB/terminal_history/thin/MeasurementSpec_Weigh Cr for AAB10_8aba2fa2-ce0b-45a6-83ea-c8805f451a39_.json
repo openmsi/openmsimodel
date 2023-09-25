@@ -1,0 +1,17 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Weigh Cr for AAB10",
+   "notes": null,
+   "parameters": [],
+   "tags": [],
+   "template": {
+      "id": "640fa254-d2b9-416d-b4b0-dea4906180c8",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "measurement_spec",
+   "uids": {
+      "auto": "8aba2fa2-ce0b-45a6-83ea-c8805f451a39"
+   }
+}

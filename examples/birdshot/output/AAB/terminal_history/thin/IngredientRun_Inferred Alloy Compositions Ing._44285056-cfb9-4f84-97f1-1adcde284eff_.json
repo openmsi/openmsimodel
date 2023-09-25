@@ -1,0 +1,30 @@
+{
+   "absolute_quantity": null,
+   "file_links": [],
+   "labels": [],
+   "mass_fraction": null,
+   "material": {
+      "id": "9ea6e3ea-3637-45f4-9d76-a7185a7aa972",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "name": "Inferred Alloy Compositions Ing.",
+   "notes": null,
+   "number_fraction": null,
+   "process": {
+      "id": "6ca90721-a98d-497a-a0c9-cc31afbf82fe",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "spec": {
+      "id": "70a104a6-a162-4692-932c-9fdc7e7d228e",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [],
+   "type": "ingredient_run",
+   "uids": {
+      "auto": "44285056-cfb9-4f84-97f1-1adcde284eff"
+   },
+   "volume_fraction": null
+}

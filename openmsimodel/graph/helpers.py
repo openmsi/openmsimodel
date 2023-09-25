@@ -19,4 +19,7 @@ def launch_graph_widget(g):
     w = GraphWidget(graph=g)
     w.set_node_color_mapping(node_color_mapping)
     w.directed = True
+    # w.circular_layout()
+    w.hierarchic_layout()
+    # w.orthogonal_layout()
     w.show()

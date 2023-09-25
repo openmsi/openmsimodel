@@ -1,0 +1,25 @@
+{
+   "absolute_quantity": null,
+   "file_links": [],
+   "labels": [],
+   "mass_fraction": null,
+   "material": {
+      "id": "6f64e813-0848-42ea-b31b-126ccdb6446e",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "name": " SEM Traveler samples Ing.",
+   "notes": null,
+   "number_fraction": null,
+   "process": {
+      "id": "ede8f59c-475d-43eb-9d35-4e4b2a871b17",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [],
+   "type": "ingredient_spec",
+   "uids": {
+      "auto": "0243a859-05bb-4816-a802-116758ea8830"
+   },
+   "volume_fraction": null
+}

@@ -1,0 +1,16 @@
+{
+   "bounds": {
+      "default_units": "centimeter",
+      "lower_bound": 0,
+      "type": "real_bounds",
+      "upper_bound": 100
+   },
+   "description": "Length of alloy",
+   "name": "Length",
+   "tags": [],
+   "type": "property_template",
+   "uids": {
+      "auto": "5b32a750-4c44-4e58-a1c2-5da080755796",
+      "persistent_id": 39
+   }
+}

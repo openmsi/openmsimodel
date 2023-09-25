@@ -1,0 +1,16 @@
+{
+   "bounds": {
+      "default_units": "pascal",
+      "lower_bound": 0,
+      "type": "real_bounds",
+      "upper_bound": 20
+   },
+   "description": null,
+   "name": "Pressure",
+   "tags": [],
+   "type": "parameter_template",
+   "uids": {
+      "auto": "d0ade03f-7c58-4e80-9a4e-e08c97b5f573",
+      "persistent_id": 30
+   }
+}

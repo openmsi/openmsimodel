@@ -81,6 +81,7 @@ class OpenGraph(Runnable):
         nb_disregarded = 0
 
         gemd_objects = read_gemd_data(self.dirpath, encoder)
+        # gemd_objects = gemd_objects[:100]
 
         if len(gemd_objects) == 0:
             return

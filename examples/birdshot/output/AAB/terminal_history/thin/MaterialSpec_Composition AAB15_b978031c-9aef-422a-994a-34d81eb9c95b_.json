@@ -1,0 +1,21 @@
+{
+   "file_links": [],
+   "name": "Composition AAB15",
+   "notes": null,
+   "process": {
+      "id": "27749fc2-e983-4793-b795-d4ea832b37df",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "properties": [],
+   "tags": [],
+   "template": {
+      "id": "75f84c5d-0515-431c-b40e-39758bc29a60",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "material_spec",
+   "uids": {
+      "auto": "b978031c-9aef-422a-994a-34d81eb9c95b"
+   }
+}

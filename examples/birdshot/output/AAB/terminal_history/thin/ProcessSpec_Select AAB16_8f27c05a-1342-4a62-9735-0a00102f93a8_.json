@@ -1,0 +1,17 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Select AAB16",
+   "notes": null,
+   "parameters": [],
+   "tags": [],
+   "template": {
+      "id": "ee92363f-e567-45fa-80d2-8a117da49404",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "process_spec",
+   "uids": {
+      "auto": "8f27c05a-1342-4a62-9735-0a00102f93a8"
+   }
+}

@@ -1,0 +1,14 @@
+{
+   "allowed_labels": [],
+   "allowed_names": [],
+   "conditions": [],
+   "description": "extracting a single sample, such as T01, from the traveler\n                ",
+   "name": "Setting Traveler Sample",
+   "parameters": [],
+   "tags": [],
+   "type": "process_template",
+   "uids": {
+      "auto": "6e47ef8d-5e4f-4bce-858f-41b3496081ac",
+      "persistent_id": 45
+   }
+}

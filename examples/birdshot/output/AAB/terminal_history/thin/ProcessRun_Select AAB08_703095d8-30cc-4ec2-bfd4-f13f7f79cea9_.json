@@ -1,0 +1,39 @@
+{
+   "conditions": [],
+   "file_links": [
+      {
+         "filename": "root",
+         "type": "file_link",
+         "url": "/srv/hemi01-j01/openmsimodel/examples/birdshot/input/data/AAB/VAM/A/AAB08/T01"
+      },
+      {
+         "filename": "vam-traveler-v1.json",
+         "type": "file_link",
+         "url": "/srv/hemi01-j01/openmsimodel/examples/birdshot/input/data/AAB/VAM/A/AAB08/T01/vam-traveler-v1.json"
+      }
+   ],
+   "name": "Select AAB08",
+   "notes": null,
+   "parameters": [],
+   "source": null,
+   "spec": {
+      "id": "59394254-7e05-40d2-a210-68fd5a949d79",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB08",
+      "batch::A",
+      "fabrication_method::VAM",
+      "Co::5",
+      "Cr::10",
+      "Fe::30",
+      "Ni::50",
+      "V::5",
+      "Al::0"
+   ],
+   "type": "process_run",
+   "uids": {
+      "auto": "703095d8-30cc-4ec2-bfd4-f13f7f79cea9"
+   }
+}

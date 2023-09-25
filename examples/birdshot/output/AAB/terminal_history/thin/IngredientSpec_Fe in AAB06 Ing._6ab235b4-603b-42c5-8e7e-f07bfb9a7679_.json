@@ -1,0 +1,25 @@
+{
+   "absolute_quantity": null,
+   "file_links": [],
+   "labels": [],
+   "mass_fraction": null,
+   "material": {
+      "id": "a01ab53b-1bba-4791-b877-9c40892120f9",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "name": "Fe in AAB06 Ing.",
+   "notes": null,
+   "number_fraction": null,
+   "process": {
+      "id": "183e2f0f-8ad1-48ff-becb-f1d86f707ace",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [],
+   "type": "ingredient_spec",
+   "uids": {
+      "auto": "6ab235b4-603b-42c5-8e7e-f07bfb9a7679"
+   },
+   "volume_fraction": null
+}

@@ -1,0 +1,18 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Aggregating NI samples",
+   "notes": null,
+   "parameters": [],
+   "source": null,
+   "spec": {
+      "id": "a1ec2f80-5867-4de0-b2a8-576f7e955417",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [],
+   "type": "process_run",
+   "uids": {
+      "auto": "f3358bb6-b9a7-4715-a5a2-3ba67a14773b"
+   }
+}

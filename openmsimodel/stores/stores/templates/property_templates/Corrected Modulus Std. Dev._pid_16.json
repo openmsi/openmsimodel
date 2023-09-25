@@ -1,0 +1,16 @@
+{
+   "bounds": {
+      "default_units": "dimensionless",
+      "lower_bound": 0,
+      "type": "real_bounds",
+      "upper_bound": 1
+   },
+   "description": null,
+   "name": "Corrected Modulus Std. Dev.",
+   "tags": [],
+   "type": "property_template",
+   "uids": {
+      "auto": "ce426c81-757c-4422-90f1-57421fd44c0d",
+      "persistent_id": 16
+   }
+}

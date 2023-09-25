@@ -1,0 +1,42 @@
+{
+   "file_links": [
+      {
+         "filename": "root",
+         "type": "file_link",
+         "url": "/srv/hemi01-j01/openmsimodel/examples/birdshot/input/data/AAB/VAM/A/AAB15/T01"
+      },
+      {
+         "filename": "T04",
+         "type": "file_link",
+         "url": "/srv/hemi01-j01/openmsimodel/examples/birdshot/input/data/AAB/VAM/A/AAB15/T01/T04"
+      }
+   ],
+   "name": "Composition AAB15",
+   "notes": null,
+   "process": {
+      "id": "c2ee6e0d-cb28-4d4e-80e9-0526d90b9d7b",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "sample_type": null,
+   "spec": {
+      "id": "b978031c-9aef-422a-994a-34d81eb9c95b",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "tags": [
+      "composition_id::AAB15",
+      "batch::A",
+      "fabrication_method::VAM",
+      "Co::5",
+      "Cr::10",
+      "Fe::20",
+      "Ni::55.00000000000001",
+      "V::5",
+      "Al::5"
+   ],
+   "type": "material_run",
+   "uids": {
+      "auto": "91432e15-ab7a-44f4-911f-d058314cd72d"
+   }
+}
