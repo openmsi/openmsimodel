@@ -1,8 +1,13 @@
 from openmsimodel.workflow.workflow import Workflow
-from openmsimodel.entity.base import Ingredient, Measurement, Material, Process
+from openmsimodel.entity.base.ingredient import Ingredient
+from openmsimodel.entity.base.measurement import Measurement
+from openmsimodel.entity.base.material import Material
+from openmsimodel.entity.base.process import Process
 from openmsimodel.entity.base.base_element import BaseElement
 from openmsimodel.subworkflow.subworkflow import Subworkflow
 from typing import ClassVar, Type, Optional
+from openmsimodel.entity.base.helpers import from_spec_or_run
+from openmsimodel.utilities.typing import Spec, Run
 
 
 class ProcessBlock(Subworkflow):
@@ -143,19 +148,6 @@ class ProcessBlock(Subworkflow):
                 posterior_block.ingredients[name].spec.material = self.material.spec
                 posterior_block.ingredients[name].run.material = self.material.run
 
-    def from_(self, any):
-        if isinstance_base_element(any):
-            if isinstance(any, Material):
-                self.material = any
-            if isinstance(any, Process):
-                self.process = any
-            elif isinstance(any, Ingredient):
-                self.ingredients[any.name] = any
-            elif isinstance(any, Measurement):
-                self.measurements[any.name] = any
-            self.link_within()
-        # elif
-
     def return_all(self) -> list:
         _all = []
         for i in self.ingredients.values():
@@ -205,3 +197,30 @@ class ProcessBlock(Subworkflow):
                 f"measurements must have unique names. Found a duplicate: {measurement.name}"
             )
         self.measurements[measurement.name] = measurement
+
+    @classmethod
+    def from_spec_or_run(
+        cls,
+        name: str,
+        *,
+        notes: Optional[str] = None,
+        spec: Spec = None,
+        run: Run = None,
+    ):
+        initial = from_spec_or_run(name=name, notes=notes, spec=spec, run=run)
+        # if isinstance(initial, Material):
+
+    # @classmethod
+    # def from_(self, any):
+    #     if isinstance_base_element(any):
+    #         if isinstance(any, Material):
+    #             self.material = any
+    #         if isinstance(any, Process):
+    #             self.process = any
+    #         elif isinstance(any, Ingredient):
+    #             self.ingredients[any.name] = any
+    #         elif isinstance(any, Measurement):
+    #             self.measurements[any.name] = any
+    #         self.link_within()
+    # elif isinstance_all_gemd(any):
+    #     if isinstance(any, Material):

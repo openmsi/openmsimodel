@@ -1,7 +1,10 @@
 from openmsimodel.workflow.workflow import Workflow
 from openmsimodel.workflow.folder_or_file import FolderOrFile
 from openmsimodel.subworkflow.process_block import ProcessBlock
-from openmsimodel.entity.base import Material, Process, Measurement, Ingredient
+from openmsimodel.entity.base.material import Material
+from openmsimodel.entity.base.process import Process
+from openmsimodel.entity.base.measurement import Measurement
+from openmsimodel.entity.base.ingredient import Ingredient
 
 from openmsimodel.entity.processes.birdshot.summarize import (
     Summarize,
@@ -114,7 +117,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
 
     def build(self):
         # ingesting the results of the summary sheet, which is associated with each composition space, and workflow object
-        if 'AAA' in self.srjt_path:
+        if "AAA" in str(self.synthesis_path):
             ingest_aaa_synthesis_results(
                 self.iteration, self.synthesis_path, self.file_links, self.measurements
             )
@@ -123,7 +126,6 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
                 self.iteration, self.synthesis_path, self.file_links, self.measurements
             )
 
-        
         ingest_srjt_results(self.srjt_path, self.output, self.measurements)
 
         ############## block 1: first infer_compositions_block
@@ -145,6 +147,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
             inferred_alloy_compositions = InferredAlloyCompositions(
                 "Inferred Alloy Compositions"
             )
+
             inferred_alloy_compositions._set_tags(
                 tags=compositions_tags,
                 spec_or_run=inferred_alloy_compositions.run,
@@ -173,6 +176,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
             infer_compositions_block,
             inferred_alloy_compositions,
         ) = create_infer_compositions_block()
+        self.initial_material = inferred_alloy_compositions.run
 
         self.subs[infer_compositions_block.name] = infer_compositions_block
 
@@ -364,7 +368,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         self.subs[summary_block.name] = summary_block
 
         # assigning terminal material
-        self.terminal_material = infer_next_compositions_block.process.run
+        self.terminal_process = infer_next_compositions_block.process.run
 
     def process(
         self,
@@ -662,7 +666,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         )
         srjt_measurement = SRJT(f"SRJT charact. for {composition_id}")
         srjt_measurement._set_tags(
-            tags=(("composition_id", composition_id)),
+            tags=(("composition_id", composition_id),),
             spec_or_run=srjt_measurement.run,
         )
 
@@ -1027,7 +1031,9 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         def set_forging_process_params():
             attribute_name = "Press Temperature"
             if processing_details:
-                press_temperature = processing_details["data"]["Forging"][attribute_name]
+                press_temperature = processing_details["data"]["Forging"][
+                    attribute_name
+                ]
                 value = NominalReal(press_temperature, "Kelvin")
                 forging_process._update_attributes(
                     AttrType=Parameter,
@@ -1036,14 +1042,16 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
                             attribute_name,
                             value=value,
                             origin="specified",
-                            template=forging_process._ATTRS["parameters"]["Temperature"][
-                                "obj"
-                            ],
+                            template=forging_process._ATTRS["parameters"][
+                                "Temperature"
+                            ]["obj"],
                         ),
                     ),
                     which="run",
                 )
-                forging_params = processing_details["data"]["Forging"]["Ingot Condition"]
+                forging_params = processing_details["data"]["Forging"][
+                    "Ingot Condition"
+                ]
                 forging_params_2 = processing_details["data"]["Forging"]["Maximum Load"]
                 for attribute_name, attribute_value in forging_params.items():
                     unit = ""
@@ -1093,7 +1101,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         def set_capture_dimensions_measurement_properties():
             for stage in ["Before", "After"]:
                 name = "Ingot Dimensions {}".format(stage)
-                
+
                 capture_dimensions_measurement = MeasureDimensions(name)
                 capture_dimensions_measurement._set_tags(
                     tags=common_tags,
@@ -1245,6 +1253,11 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
                 for attribute_name, attribute_value in m.items():
                     attribute_name = attribute_name.replace("/", "_")
                     if not type(attribute_value) == str:  # FIXME
+                        if (  # FIXME
+                            measurement_name == "SEM"
+                            and attribute_name == "Lattice Parameter"
+                        ):
+                            break
                         unit = measurement._ATTRS["properties"][attribute_name][
                             "obj"
                         ].bounds.default_units
@@ -1353,6 +1366,7 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
         print("Executing raw dumps...")
         self.dump_function = self.encoder.dumps
         start = time.time()
+        # self.encoder.dumps(obj)
         recursive_foreach(obj, self.local_out)
         end = time.time()
         print(f"Time elapsed: {end - start}")
@@ -1417,22 +1431,11 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
                     if self.testing_mode:
                         return
 
+    def link_posterior(self, workflow):
+        self.terminal_process.output_material = workflow.initial_material
+
     def link_prior(self, workflow):
-        for composition_id in workflow.terminal_blocks.keys():
-            for fabrication_method in workflow.terminal_blocks[composition_id].keys():
-                for batch in workflow.terminal_blocks[composition_id][
-                    fabrication_method
-                ].keys():
-                    terminal_block = workflow.terminal_blocks[composition_id][
-                        fabrication_method
-                    ][batch]
-                    self.subs[
-                        "Infer Compositions"
-                    ].material._spec.process = terminal_block.process._spec
-                    self.subs[
-                        "Infer Compositions"
-                    ].material._run.process = terminal_block.process._run
-                    # terminal_block.link_posterior(workflow.blocks['Infer Compositions'], ingredient_name_to_link=)
+        self.initial_material.process = workflow.terminal_process
 
     @classmethod
     def get_command_line_arguments(cls):
@@ -1458,7 +1461,11 @@ class BIRDSHOTWorfklow(Workflow, FolderOrFile):
 
         with open(os.path.join(args.output, "log.txt"), "w") as sys.stderr:
             workflow.build()
-            workflow.thin_dumps(workflow.terminal_material)
+            workflow.encoder.dumps(
+                workflow.terminal_process
+            )  # triggers uuid assignment
+            workflow.thin_dumps(workflow.terminal_process)
+            # workflow.dumps(workflow.terminal_process)
             workflow.thin_structured_dumps()
 
 
@@ -1485,6 +1492,7 @@ def return_common_items(composition_id, fabrication_method, batch, yymm=None):
     if yymm:
         common_tags = (("yymm", yymm),) + common_tags
     return long_name, short_name, alloy_common_name, common_tags
+
 
 def ingest_aaa_synthesis_results(iteration, synthesis_path, file_links, measurements):
     df = pd.read_excel(synthesis_path)
@@ -1531,24 +1539,29 @@ def ingest_aaa_synthesis_results(iteration, synthesis_path, file_links, measurem
                 composition_difference_column
             ][element_name] = composition_difference
 
-
-        # T03: phase/lattice parameters
+        ######## T03: phase/lattice parameters
         measurement_id = row[21]
 
-        # phase_column = column_names[21]
-        lattice_parameter_column = column_names[22-1]
+        lattice_parameter_column = column_names[22 - 1]
 
-        # phase = row[22]
-        lattice_parameter = row[23-1]
+        lattice_parameter = row[23 - 1]
 
-        # measurements[composition_id][fabrication_method][batch][measurement_id][
-        #     phase_column
-        # ] = phase
         measurements[composition_id][fabrication_method][batch][measurement_id][
             lattice_parameter_column
         ] = lattice_parameter
 
-        
+        # T03: hardness, HV, SD, HV
+        measurement_id = row[24 - 1]
+        hardness_column = column_names[24 - 1]
+        sd_hv_column = column_names[25 - 1]
+        hardness = row[25 - 1]
+        sd_hv = row[26 - 1]
+        measurements[composition_id][fabrication_method][batch][measurement_id][
+            hardness_column
+        ] = hardness
+        measurements[composition_id][fabrication_method][batch][measurement_id][
+            sd_hv_column
+        ] = sd_hv
 
 
 def ingest_synthesis_results(iteration, synthesis_path, file_links, measurements):
@@ -1735,7 +1748,7 @@ def ingest_synthesis_results(iteration, synthesis_path, file_links, measurements
     strain_rate_and_temperature_df.columns = new_header
 
 
-def ingest_aaa_srjt_results(srjt_path, output, measurements):
+# def ingest_aaa_srjt_results(srjt_path, output, measurements):
 
 
 def ingest_srjt_results(srjt_path, output, measurements):

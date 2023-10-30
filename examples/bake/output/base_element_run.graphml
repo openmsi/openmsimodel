@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><key id="d5" for="node" attr.name="object" attr.type="string"/>
+<key id="d4" for="node" attr.name="type" attr.type="string"/>
+<key id="d3" for="node" attr.name="uuid" attr.type="string"/>
+<key id="d2" for="node" attr.name="shape" attr.type="string"/>
+<key id="d1" for="node" attr.name="color" attr.type="string"/>
+<key id="d0" for="graph" attr.name="name" attr.type="string"/>
+<graph edgedefault="directed"><data key="d0">base_element</data>
+<node id="Cake [7fd90d25-450a-4f83-9583-37456a9bf09e, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">7fd90d25-450a-4f83-9583-37456a9bf09e</data>
+  <data key="d4">material_run</data>
+  <data key="d5">{'file_links': [], 'name': 'Cake', 'notes': None, 'process': {'id': '96c69eb7-e5b4-48ec-a8f1-3f4159d8313b', 'scope': 'auto', 'type': 'link_by_uid'}, 'sample_type': 'unknown', 'spec': {'id': 'cake', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': [], 'type': 'material_run', 'uids': {'auto': '7fd90d25-450a-4f83-9583-37456a9bf09e'}}</data>
+</node>
+<node id="96c69eb7-e5b4-48ec-a8f1-3f4159d8313b"/>
+<edge source="96c69eb7-e5b4-48ec-a8f1-3f4159d8313b" target="Cake [7fd90d25-450a-4f83-9583-37456a9bf09e, material_run]"/>
+</graph></graphml>

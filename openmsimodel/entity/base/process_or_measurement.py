@@ -16,7 +16,7 @@ from gemd import (
     PerformedSource,
 )
 
-from openmsimodel.entity.base.base_element import BaseElement
+from .base_element import BaseElement
 from openmsimodel.utilities.typing import SpecOrRunLiteral
 from openmsimodel.utilities.attributes import finalize_template
 
@@ -209,10 +209,10 @@ class ProcessOrMeasurement(BaseElement):
             If `email` is invalid.
         """
 
-        if not re.fullmatch(r"[^@]+@[^@]+\.[^@]+", email):
-            raise ValueError(
-                'Invalid email. Must contain a single "@" and at least one "." after the "@".'
-            )
+        # if not re.fullmatch(r"[^@]+@[^@]+\.[^@]+", email):
+        #     raise ValueError(
+        #         'Invalid email. Must contain a single "@" and at least one "." after the "@".'
+        #     )
 
         if iso_date is not None:
             iso_date = datetime.fromisoformat(iso_date).isoformat(timespec="auto")

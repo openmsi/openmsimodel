@@ -264,6 +264,23 @@ class OpenMSIModelParser(ArgumentParser):
                 "help": "whether or not to add attributes file links, or tags as a separate node or as an attribute of NetworkX node ",
             },
         ],
+        "add_bidirectional_edges": [
+            "optional",
+            {
+                "action": "store_true",
+                "default": False,
+                "help": "whether or not to add biredictional edges. ",
+            },
+        ],
+        "layout": [
+            "optional",
+            {
+                "type": str,
+                "choices": ["raw", "visualization"],
+                "default": "visualization",
+                "help": "determines the layout of the graph as desired for different purposes, like visualization",
+            },
+        ],
         "launch_notebook": [
             "optional",
             {
@@ -292,7 +309,7 @@ class OpenMSIModelParser(ArgumentParser):
             "optional",
             {
                 "type": str,
-                "choices": ["run", "spec"],
+                "choices": ["run", "spec", "template", "all"],
                 "default": "run",
                 "help": "which of runs or specs to plot",
             },

@@ -1,0 +1,1199 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><key id="d5" for="node" attr.name="object" attr.type="string"/>
+<key id="d4" for="node" attr.name="type" attr.type="string"/>
+<key id="d3" for="node" attr.name="uuid" attr.type="string"/>
+<key id="d2" for="node" attr.name="shape" attr.type="string"/>
+<key id="d1" for="node" attr.name="color" attr.type="string"/>
+<key id="d0" for="graph" attr.name="name" attr.type="string"/>
+<graph edgedefault="directed"><data key="d0">cake</data>
+<node id="Cake [cake-d576929a6c518c058db29324c13db0c3, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">cake-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">material_run</data>
+  <data key="d5">{'file_links': [{'filename': 'Photo', 'type': 'file_link', 'url': 'https://storcpdkenticomedia.blob.core.windows.net/media/recipemanagementsystem/media/recipe-media-files/recipes/retail/x17/16730-beckys-butter-cake-600x600.jpg?ext=.jpg'}], 'name': 'Cake', 'notes': 'The spec says "Butter cake recipe reminiscent of the 1-2-3-4 cake that Grandma may have baked."; Très délicieux! 😀', 'process': {'id': 'icing-cake-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'sample_type': 'unknown', 'spec': {'id': 'cake', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['cake::butter cake', 'dessert::baked::cake', 'iced::chocolate'], 'type': 'material_run', 'uids': {'citrine-demo': 'cake-d576929a6c518c058db29324c13db0c3'}}</data>
+</node>
+<node id="Icing Cake [icing-cake-d576929a6c518c058db29324c13db0c3, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">icing-cake-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">process_run</data>
+  <data key="d5">{'conditions': [], 'file_links': [], 'name': 'Icing Cake', 'notes': 'The spec says "The act of covering a baked output with frosting"', 'parameters': [], 'source': {'performed_by': 'gwash', 'performed_date': '2015-03-14', 'type': 'performed_source'}, 'spec': {'id': 'icing-cake', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['spreading'], 'type': 'process_run', 'uids': {'citrine-demo': 'icing-cake-d576929a6c518c058db29324c13db0c3'}}</data>
+</node>
+<node id="Cake [cake, material_spec]">
+  <data key="d1">green</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">cake</data>
+  <data key="d4">material_spec</data>
+  <data key="d5">{'file_links': [{'filename': "Becky's Butter Cake", 'type': 'file_link', 'url': 'https://www.landolakes.com/recipe/16730/becky-s-butter-cake/'}], 'name': 'Cake', 'notes': 'Butter cake recipe reminiscent of the 1-2-3-4 cake that Grandma may have baked.', 'process': {'id': 'icing-cake', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'properties': [{'conditions': [], 'property': {'file_links': [], 'name': 'Tastiness', 'notes': None, 'origin': 'specified', 'template': {'id': 'tastiness', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'property', 'value': {'nominal': 5, 'type': 'nominal_integer'}}, 'type': 'property_and_conditions'}], 'tags': ['cake::butter cake', 'dessert::baked::cake', 'iced::chocolate'], 'template': {'id': 'dessert', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'material_spec', 'uids': {'citrine-demo': 'cake'}}</data>
+</node>
+<node id="Final Appearance [appearance--cake-d576929a6c518c058db29324c13db0c3, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">appearance--cake-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">{'conditions': [], 'file_links': [], 'material': {'id': 'cake-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'name': 'Final Appearance', 'notes': None, 'parameters': [], 'properties': [{'file_links': [], 'name': 'Visual Appeal', 'notes': None, 'origin': 'measured', 'template': None, 'type': 'property', 'value': {'nominal': 5, 'type': 'nominal_integer'}}], 'source': None, 'spec': {'id': 'appearance', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': [], 'type': 'measurement_run', 'uids': {'citrine-demo': 'appearance--cake-d576929a6c518c058db29324c13db0c3'}}</data>
+</node>
+<node id="Appearance [appearance, measurement_spec]">
+  <data key="d1">purple</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">appearance</data>
+  <data key="d4">measurement_spec</data>
+  <data key="d5">{'conditions': [], 'file_links': [], 'name': 'Appearance', 'notes': None, 'parameters': [], 'tags': [], 'template': None, 'type': 'measurement_spec', 'uids': {'citrine-demo': 'appearance'}}</data>
+</node>
+<node id="Final Taste [taste--cake-d576929a6c518c058db29324c13db0c3, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">taste--cake-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">{'conditions': [], 'file_links': [], 'material': {'id': 'cake-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'name': 'Final Taste', 'notes': None, 'parameters': [], 'properties': [{'file_links': [], 'name': 'Tastiness', 'notes': None, 'origin': 'measured', 'template': {'id': 'tastiness', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'property', 'value': {'lower_bound': 4, 'type': 'uniform_integer', 'upper_bound': 5}}], 'source': None, 'spec': {'id': 'taste', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': [], 'type': 'measurement_run', 'uids': {'citrine-demo': 'taste--cake-d576929a6c518c058db29324c13db0c3'}}</data>
+</node>
+<node id="Taste [taste, measurement_spec]">
+  <data key="d1">purple</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">taste</data>
+  <data key="d4">measurement_spec</data>
+  <data key="d5">{'conditions': [], 'file_links': [], 'name': 'Taste', 'notes': None, 'parameters': [], 'tags': [], 'template': {'id': 'taste-test', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'measurement_spec', 'uids': {'citrine-demo': 'taste'}}</data>
+</node>
+<node id="Tastiness [tastiness, property_template]">
+  <data key="d1">black</data>
+  <data key="d2">trapezium</data>
+  <data key="d3">tastiness</data>
+  <data key="d4">property_template</data>
+  <data key="d5">{'bounds': {'lower_bound': 1, 'type': 'integer_bounds', 'upper_bound': 10}, 'description': 'Yumminess on a fairly arbitrary scale', 'name': 'Tastiness', 'tags': [], 'type': 'property_template', 'uids': {'citrine-demo': 'tastiness'}}</data>
+</node>
+<node id="Taste test [taste-test, measurement_template]">
+  <data key="d1">purple</data>
+  <data key="d2">triangle</data>
+  <data key="d3">taste-test</data>
+  <data key="d4">measurement_template</data>
+  <data key="d5">{'conditions': [], 'description': None, 'name': 'Taste test', 'parameters': [], 'properties': [[{'id': 'tastiness', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, None]], 'tags': [], 'type': 'measurement_template', 'uids': {'citrine-demo': 'taste-test'}}</data>
+</node>
+<node id="Icing Cake [icing-cake, process_spec]">
+  <data key="d1">red</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">icing-cake</data>
+  <data key="d4">process_spec</data>
+  <data key="d5">{'conditions': [], 'file_links': [], 'name': 'Icing Cake', 'notes': 'The act of covering a baked output with frosting', 'parameters': [], 'tags': ['spreading'], 'template': {'id': 'icing', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'process_spec', 'uids': {'citrine-demo': 'icing-cake'}}</data>
+</node>
+<node id="baked cake [baked-cake--icing-cake-d576929a6c518c058db29324c13db0c3, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">baked-cake--icing-cake-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">{'absolute_quantity': None, 'file_links': [], 'labels': ['substrate'], 'mass_fraction': None, 'material': {'id': 'baked-cake-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'name': 'baked cake', 'notes': None, 'number_fraction': None, 'process': {'id': 'icing-cake-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'spec': {'id': 'baked-cake--icing-cake', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['substrate'], 'type': 'ingredient_run', 'uids': {'citrine-demo': 'baked-cake--icing-cake-d576929a6c518c058db29324c13db0c3'}, 'volume_fraction': None}</data>
+</node>
+<node id="Baked Cake [baked-cake-d576929a6c518c058db29324c13db0c3, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">baked-cake-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">material_run</data>
+  <data key="d5">{'file_links': [], 'name': 'Baked Cake', 'notes': 'The spec says "The cakey part of the cake"', 'process': {'id': 'baking-baked-cake-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'sample_type': 'unknown', 'spec': {'id': 'baked-cake', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['substrate'], 'type': 'material_run', 'uids': {'citrine-demo': 'baked-cake-d576929a6c518c058db29324c13db0c3'}}</data>
+</node>
+<node id="baked cake [baked-cake--icing-cake, ingredient_spec]">
+  <data key="d1">blue</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">baked-cake--icing-cake</data>
+  <data key="d4">ingredient_spec</data>
+  <data key="d5">{'absolute_quantity': None, 'file_links': [], 'labels': ['substrate'], 'mass_fraction': None, 'material': {'id': 'baked-cake', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'name': 'baked cake', 'notes': None, 'number_fraction': None, 'process': {'id': 'icing-cake', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['substrate'], 'type': 'ingredient_spec', 'uids': {'citrine-demo': 'baked-cake--icing-cake'}, 'volume_fraction': None}</data>
+</node>
+<node id="Baking Baked Cake [baking-baked-cake-d576929a6c518c058db29324c13db0c3, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">baking-baked-cake-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">process_run</data>
+  <data key="d5">{'conditions': [{'file_links': [], 'name': 'Cooking time', 'notes': None, 'origin': 'measured', 'template': {'id': 'cooking-time', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'condition', 'value': {'nominal': 48.0, 'type': 'nominal_real', 'units': 'minute'}}, {'file_links': [], 'name': 'Oven temperature', 'notes': None, 'origin': 'measured', 'template': None, 'type': 'condition', 'value': {'nominal': 362.0, 'type': 'nominal_real', 'units': 'degree_Fahrenheit'}}], 'file_links': [], 'name': 'Baking Baked Cake', 'notes': 'The spec says "Using heat to convert batter into a solid matrix"', 'parameters': [], 'source': {'performed_by': 'gwash', 'performed_date': '2015-03-14', 'type': 'performed_source'}, 'spec': {'id': 'baking-baked-cake', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['oven::baking'], 'type': 'process_run', 'uids': {'citrine-demo': 'baking-baked-cake-d576929a6c518c058db29324c13db0c3'}}</data>
+</node>
+<node id="Baked Cake [baked-cake, material_spec]">
+  <data key="d1">green</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">baked-cake</data>
+  <data key="d4">material_spec</data>
+  <data key="d5">{'file_links': [], 'name': 'Baked Cake', 'notes': 'The cakey part of the cake', 'process': {'id': 'baking-baked-cake', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'properties': [{'conditions': [], 'property': {'file_links': [], 'name': 'Toothpick test', 'notes': None, 'origin': 'unknown', 'template': {'id': 'toothpick-test', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'property', 'value': {'category': 'completely clean', 'type': 'nominal_categorical'}}, 'type': 'property_and_conditions'}, {'conditions': [], 'property': {'file_links': [], 'name': 'Color', 'notes': None, 'origin': 'specified', 'template': {'id': 'color', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'property', 'value': {'category': 'Golden brown', 'type': 'nominal_categorical'}}, 'type': 'property_and_conditions'}], 'tags': ['substrate'], 'template': {'id': 'baked-good', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'material_spec', 'uids': {'citrine-demo': 'baked-cake'}}</data>
+</node>
+<node id="Baking doneness [doneness--baked-cake-d576929a6c518c058db29324c13db0c3, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">doneness--baked-cake-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">{'conditions': [], 'file_links': [], 'material': {'id': 'baked-cake-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'name': 'Baking doneness', 'notes': None, 'parameters': [], 'properties': [{'file_links': [], 'name': 'Toothpick test', 'notes': None, 'origin': 'measured', 'template': {'id': 'toothpick-test', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'property', 'value': {'category': 'crumbs', 'type': 'nominal_categorical'}}, {'file_links': [], 'name': 'Color', 'notes': None, 'origin': 'measured', 'template': {'id': 'color', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'property', 'value': {'probabilities': {'Deep brown': 0.3, 'Golden brown': 0.65, 'Pale': 0.05}, 'type': 'discrete_categorical'}}], 'source': None, 'spec': {'id': 'doneness', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': [], 'type': 'measurement_run', 'uids': {'citrine-demo': 'doneness--baked-cake-d576929a6c518c058db29324c13db0c3'}}</data>
+</node>
+<node id="Doneness test [doneness, measurement_template]">
+  <data key="d1">purple</data>
+  <data key="d2">triangle</data>
+  <data key="d3">doneness</data>
+  <data key="d4">measurement_spec</data>
+  <data key="d5">{'conditions': [], 'file_links': [], 'name': 'Doneness', 'notes': None, 'parameters': [], 'tags': [], 'template': {'id': 'doneness', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'measurement_spec', 'uids': {'citrine-demo': 'doneness'}}</data>
+</node>
+<node id="Baked color [color, property_template]">
+  <data key="d1">black</data>
+  <data key="d2">trapezium</data>
+  <data key="d3">color</data>
+  <data key="d4">property_template</data>
+  <data key="d5">{'bounds': {'categories': ['Black', 'Deep brown', 'Golden brown', 'Pale'], 'type': 'categorical_bounds'}, 'description': 'Visual observation of the color of a baked good', 'name': 'Baked color', 'tags': [], 'type': 'property_template', 'uids': {'citrine-demo': 'color'}}</data>
+</node>
+<node id="Toothpick test [toothpick-test, property_template]">
+  <data key="d1">black</data>
+  <data key="d2">trapezium</data>
+  <data key="d3">toothpick-test</data>
+  <data key="d4">property_template</data>
+  <data key="d5">{'bounds': {'categories': ['completely clean', 'crumbs', 'wet'], 'type': 'categorical_bounds'}, 'description': 'Results of inserting a toothpick to check doneness', 'name': 'Toothpick test', 'tags': [], 'type': 'property_template', 'uids': {'citrine-demo': 'toothpick-test'}}</data>
+</node>
+<node id="Baking Baked Cake [baking-baked-cake, process_spec]">
+  <data key="d1">red</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">baking-baked-cake</data>
+  <data key="d4">process_spec</data>
+  <data key="d5">{'conditions': [{'file_links': [], 'name': 'Cooking time', 'notes': None, 'origin': 'specified', 'template': {'id': 'cooking-time', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'condition', 'value': {'mean': 50, 'std': 5, 'type': 'normal_real', 'units': 'minute'}}], 'file_links': [], 'name': 'Baking Baked Cake', 'notes': 'Using heat to convert batter into a solid matrix', 'parameters': [{'file_links': [], 'name': 'Oven temperature setting', 'notes': None, 'origin': 'specified', 'template': {'id': 'oven-temperature-setting', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'parameter', 'value': {'nominal': 350.0, 'type': 'nominal_real', 'units': 'degree_Fahrenheit'}}], 'tags': ['oven::baking'], 'template': {'id': 'baking', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'process_spec', 'uids': {'citrine-demo': 'baking-baked-cake'}}</data>
+</node>
+<node id="batter [batter--baking-baked-cake-d576929a6c518c058db29324c13db0c3, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">batter--baking-baked-cake-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">{'absolute_quantity': None, 'file_links': [], 'labels': ['precursor'], 'mass_fraction': None, 'material': {'id': 'batter-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'name': 'batter', 'notes': None, 'number_fraction': None, 'process': {'id': 'baking-baked-cake-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'spec': {'id': 'batter--baking-baked-cake', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['mixture'], 'type': 'ingredient_run', 'uids': {'citrine-demo': 'batter--baking-baked-cake-d576929a6c518c058db29324c13db0c3'}, 'volume_fraction': None}</data>
+</node>
+<node id="Batter [batter-d576929a6c518c058db29324c13db0c3, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">batter-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">material_run</data>
+  <data key="d5">{'file_links': [], 'name': 'Batter', 'notes': 'The spec says "The fluid that converts to cake with heat"', 'process': {'id': 'mixing-batter-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'sample_type': 'unknown', 'spec': {'id': 'batter', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['mixture'], 'type': 'material_run', 'uids': {'citrine-demo': 'batter-d576929a6c518c058db29324c13db0c3'}}</data>
+</node>
+<node id="batter [batter--baking-baked-cake, ingredient_spec]">
+  <data key="d1">blue</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">batter--baking-baked-cake</data>
+  <data key="d4">ingredient_spec</data>
+  <data key="d5">{'absolute_quantity': None, 'file_links': [], 'labels': ['precursor'], 'mass_fraction': None, 'material': {'id': 'batter', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'name': 'batter', 'notes': None, 'number_fraction': None, 'process': {'id': 'baking-baked-cake', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['mixture'], 'type': 'ingredient_spec', 'uids': {'citrine-demo': 'batter--baking-baked-cake'}, 'volume_fraction': None}</data>
+</node>
+<node id="Mixing Batter [mixing-batter-d576929a6c518c058db29324c13db0c3, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">mixing-batter-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">process_run</data>
+  <data key="d5">{'conditions': [], 'file_links': [], 'name': 'Mixing Batter', 'notes': 'The spec says "Combining ingredients to make a baking feedstock"', 'parameters': [], 'source': {'performed_by': 'gwash', 'performed_date': '2015-03-14', 'type': 'performed_source'}, 'spec': {'id': 'mixing-batter', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['mixing'], 'type': 'process_run', 'uids': {'citrine-demo': 'mixing-batter-d576929a6c518c058db29324c13db0c3'}}</data>
+</node>
+<node id="Batter [batter, material_spec]">
+  <data key="d1">green</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">batter</data>
+  <data key="d4">material_spec</data>
+  <data key="d5">{'file_links': [], 'name': 'Batter', 'notes': 'The fluid that converts to cake with heat', 'process': {'id': 'mixing-batter', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'properties': [], 'tags': ['mixture'], 'template': {'id': 'generic-material', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'material_spec', 'uids': {'citrine-demo': 'batter'}}</data>
+</node>
+<node id="Mixing Batter [mixing-batter, process_spec]">
+  <data key="d1">red</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">mixing-batter</data>
+  <data key="d4">process_spec</data>
+  <data key="d5">{'conditions': [], 'file_links': [], 'name': 'Mixing Batter', 'notes': 'Combining ingredients to make a baking feedstock', 'parameters': [{'file_links': [], 'name': 'Mixer speed setting', 'notes': None, 'origin': 'specified', 'template': {'id': 'mixer-speed-setting', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'parameter', 'value': {'nominal': 2, 'type': 'nominal_integer'}}], 'tags': ['mixing'], 'template': {'id': 'mixing', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'process_spec', 'uids': {'citrine-demo': 'mixing-batter'}}</data>
+</node>
+<node id="milk [milk--mixing-batter-d576929a6c518c058db29324c13db0c3, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">milk--mixing-batter-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">{'absolute_quantity': {'mean': 0.9723210738148822, 'std': 0.05, 'type': 'normal_real', 'units': 'cup'}, 'file_links': [], 'labels': ['wet'], 'mass_fraction': None, 'material': {'id': 'milk-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'name': 'milk', 'notes': None, 'number_fraction': None, 'process': {'id': 'mixing-batter-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'spec': {'id': 'milk--mixing-batter', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['raw material', 'produce', 'dairy'], 'type': 'ingredient_run', 'uids': {'citrine-demo': 'milk--mixing-batter-d576929a6c518c058db29324c13db0c3'}, 'volume_fraction': None}</data>
+</node>
+<node id="Greenbrook Milk [milk-d576929a6c518c058db29324c13db0c3, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">milk-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">material_run</data>
+  <data key="d5">{'file_links': [], 'name': 'Greenbrook Milk', 'notes': None, 'process': {'id': 'procuring-milk-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'sample_type': 'unknown', 'spec': {'id': 'milk', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['raw material', 'produce', 'dairy'], 'type': 'material_run', 'uids': {'citrine-demo': 'milk-d576929a6c518c058db29324c13db0c3'}}</data>
+</node>
+<node id="milk [milk--mixing-batter, ingredient_spec]">
+  <data key="d1">blue</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">milk--mixing-batter</data>
+  <data key="d4">ingredient_spec</data>
+  <data key="d5">{'absolute_quantity': {'nominal': 1.0, 'type': 'nominal_real', 'units': 'cup'}, 'file_links': [], 'labels': ['wet'], 'mass_fraction': None, 'material': {'id': 'milk', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'name': 'milk', 'notes': None, 'number_fraction': None, 'process': {'id': 'mixing-batter', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['raw material', 'produce', 'dairy'], 'type': 'ingredient_spec', 'uids': {'citrine-demo': 'milk--mixing-batter'}, 'volume_fraction': None}</data>
+</node>
+<node id="Procuring Greenbrook Milk [procuring-milk-d576929a6c518c058db29324c13db0c3, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">procuring-milk-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">process_run</data>
+  <data key="d5">{'conditions': [], 'file_links': [], 'name': 'Procuring Greenbrook Milk', 'notes': 'The spec says "Purchasing milk"', 'parameters': [], 'source': {'performed_by': 'hamilton', 'performed_date': '2015-02-17', 'type': 'performed_source'}, 'spec': {'id': 'procuring-milk', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['purchase::produce'], 'type': 'process_run', 'uids': {'citrine-demo': 'procuring-milk-d576929a6c518c058db29324c13db0c3'}}</data>
+</node>
+<node id="Milk [milk, material_spec]">
+  <data key="d1">green</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">milk</data>
+  <data key="d4">material_spec</data>
+  <data key="d5">{'file_links': [], 'name': 'Milk', 'notes': '', 'process': {'id': 'procuring-milk', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'properties': [], 'tags': ['raw material', 'produce', 'dairy'], 'template': {'id': 'generic-material', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'material_spec', 'uids': {'citrine-demo': 'milk'}}</data>
+</node>
+<node id="Procuring Milk [procuring-milk, process_spec]">
+  <data key="d1">red</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">procuring-milk</data>
+  <data key="d4">process_spec</data>
+  <data key="d5">{'conditions': [], 'file_links': [], 'name': 'Procuring Milk', 'notes': 'Purchasing milk', 'parameters': [], 'tags': ['purchase::produce'], 'template': {'id': 'procuring', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'process_spec', 'uids': {'citrine-demo': 'procuring-milk'}}</data>
+</node>
+<node id="Procuring [procuring, process_template]">
+  <data key="d1">red</data>
+  <data key="d2">triangle</data>
+  <data key="d3">procuring</data>
+  <data key="d4">process_template</data>
+  <data key="d5">{'allowed_labels': [], 'allowed_names': [], 'conditions': [], 'description': "Buyin' stuff", 'name': 'Procuring', 'parameters': [], 'tags': [], 'type': 'process_template', 'uids': {'citrine-demo': 'procuring'}}</data>
+</node>
+<node id="Generic [generic-material, material_template]">
+  <data key="d1">green</data>
+  <data key="d2">triangle</data>
+  <data key="d3">generic-material</data>
+  <data key="d4">material_template</data>
+  <data key="d5">{'description': None, 'name': 'Generic', 'properties': [], 'tags': [], 'type': 'material_template', 'uids': {'citrine-demo': 'generic-material'}}</data>
+</node>
+<node id="Mixing [mixing, process_template]">
+  <data key="d1">red</data>
+  <data key="d2">triangle</data>
+  <data key="d3">mixing</data>
+  <data key="d4">process_template</data>
+  <data key="d5">{'allowed_labels': ['wet', 'dry', 'leavening', 'seasoning', 'sweetener', 'shortening', 'flavoring'], 'allowed_names': [], 'conditions': [], 'description': 'Physically combining ingredients', 'name': 'Mixing', 'parameters': [[{'id': 'mixer-speed-setting', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, None]], 'tags': [], 'type': 'process_template', 'uids': {'citrine-demo': 'mixing'}}</data>
+</node>
+<node id="dry ingredients [dry-ingredients--mixing-batter, ingredient_spec]">
+  <data key="d1">blue</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">dry-ingredients--mixing-batter</data>
+  <data key="d4">ingredient_spec</data>
+  <data key="d5">{'absolute_quantity': {'nominal': 3.052, 'type': 'nominal_real', 'units': 'cup'}, 'file_links': [], 'labels': ['dry'], 'mass_fraction': None, 'material': {'id': 'dry-ingredients', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'name': 'dry ingredients', 'notes': None, 'number_fraction': None, 'process': {'id': 'mixing-batter', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['mixture'], 'type': 'ingredient_spec', 'uids': {'citrine-demo': 'dry-ingredients--mixing-batter'}, 'volume_fraction': None}</data>
+</node>
+<node id="Dry Ingredients [dry-ingredients, material_spec]">
+  <data key="d1">green</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">dry-ingredients</data>
+  <data key="d4">material_spec</data>
+  <data key="d5">{'file_links': [], 'name': 'Dry Ingredients', 'notes': 'The dry fraction of a batter', 'process': {'id': 'mixing-dry-ingredients', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'properties': [], 'tags': ['mixture'], 'template': {'id': 'generic-material', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'material_spec', 'uids': {'citrine-demo': 'dry-ingredients'}}</data>
+</node>
+<node id="Mixing Dry Ingredients [mixing-dry-ingredients, process_spec]">
+  <data key="d1">red</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">mixing-dry-ingredients</data>
+  <data key="d4">process_spec</data>
+  <data key="d5">{'conditions': [], 'file_links': [], 'name': 'Mixing Dry Ingredients', 'notes': 'Combining dry ingredients to make a baking feedstock', 'parameters': [], 'tags': ['mixing'], 'template': {'id': 'mixing', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'process_spec', 'uids': {'citrine-demo': 'mixing-dry-ingredients'}}</data>
+</node>
+<node id="salt [salt--mixing-dry-ingredients, ingredient_spec]">
+  <data key="d1">blue</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">salt--mixing-dry-ingredients</data>
+  <data key="d4">ingredient_spec</data>
+  <data key="d5">{'absolute_quantity': None, 'file_links': [], 'labels': ['dry', 'seasoning'], 'mass_fraction': None, 'material': {'id': 'salt', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'name': 'salt', 'notes': None, 'number_fraction': None, 'process': {'id': 'mixing-dry-ingredients', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['raw material', 'seasoning', 'dry-goods'], 'type': 'ingredient_spec', 'uids': {'citrine-demo': 'salt--mixing-dry-ingredients'}, 'volume_fraction': {'nominal': 0.0034, 'type': 'nominal_real', 'units': 'dimensionless'}}</data>
+</node>
+<node id="Salt [salt, material_spec]">
+  <data key="d1">green</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">salt</data>
+  <data key="d4">material_spec</data>
+  <data key="d5">{'file_links': [], 'name': 'Salt', 'notes': 'Plain old NaCl', 'process': {'id': 'procuring-salt', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'properties': [{'conditions': [], 'property': {'file_links': [], 'name': 'Formula', 'notes': None, 'origin': 'unknown', 'template': None, 'type': 'property', 'value': {'formula': 'NaCl', 'type': 'empirical_formula'}}, 'type': 'property_and_conditions'}], 'tags': ['raw material', 'seasoning', 'dry-goods'], 'template': {'id': 'formulaic-material', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'material_spec', 'uids': {'citrine-demo': 'salt'}}</data>
+</node>
+<node id="Procuring Salt [procuring-salt, process_spec]">
+  <data key="d1">red</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">procuring-salt</data>
+  <data key="d4">process_spec</data>
+  <data key="d5">{'conditions': [], 'file_links': [], 'name': 'Procuring Salt', 'notes': 'Purchasing salt', 'parameters': [], 'tags': ['purchase::dry-goods'], 'template': {'id': 'procuring', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'process_spec', 'uids': {'citrine-demo': 'procuring-salt'}}</data>
+</node>
+<node id="Formulaic Material [formulaic-material, material_template]">
+  <data key="d1">green</data>
+  <data key="d2">triangle</data>
+  <data key="d3">formulaic-material</data>
+  <data key="d4">material_template</data>
+  <data key="d5">{'description': 'A material with chemical characterization', 'name': 'Formulaic Material', 'properties': [[{'id': 'chemical-formula', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, None], [{'id': 'molecular-structure', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, None]], 'tags': [], 'type': 'material_template', 'uids': {'citrine-demo': 'formulaic-material'}}</data>
+</node>
+<node id="Chemical Formula [chemical-formula, property_template]">
+  <data key="d1">black</data>
+  <data key="d2">trapezium</data>
+  <data key="d3">chemical-formula</data>
+  <data key="d4">property_template</data>
+  <data key="d5">{'bounds': {'components': ['Ac', 'Ag', 'Al', 'Am', 'Ar', 'As', 'At', 'Au', 'B', 'Ba', 'Be', 'Bi', 'Bk', 'Br', 'C', 'Ca', 'Cd', 'Ce', 'Cf', 'Cl', 'Cm', 'Co', 'Cr', 'Cs', 'Cu', 'Dy', 'Er', 'Es', 'Eu', 'F', 'Fe', 'Fm', 'Fr', 'Ga', 'Gd', 'Ge', 'H', 'He', 'Hf', 'Hg', 'Ho', 'I', 'In', 'Ir', 'K', 'Kr', 'La', 'Li', 'Lr', 'Lu', 'Md', 'Mg', 'Mn', 'Mo', 'N', 'Na', 'Nb', 'Nd', 'Ne', 'Ni', 'No', 'Np', 'O', 'Os', 'P', 'Pa', 'Pb', 'Pd', 'Pm', 'Po', 'Pr', 'Pt', 'Pu', 'Ra', 'Rb', 'Re', 'Rh', 'Rn', 'Ru', 'S', 'Sb', 'Sc', 'Se', 'Si', 'Sm', 'Sn', 'Sr', 'Ta', 'Tb', 'Tc', 'Te', 'Th', 'Ti', 'Tl', 'Tm', 'U', 'V', 'W', 'Xe', 'Y', 'Yb', 'Zn', 'Zr'], 'type': 'composition_bounds'}, 'description': 'The chemical formula of a material', 'name': 'Chemical Formula', 'tags': [], 'type': 'property_template', 'uids': {'citrine-demo': 'chemical-formula'}}</data>
+</node>
+<node id="Molecular Structure [molecular-structure, property_template]">
+  <data key="d1">black</data>
+  <data key="d2">trapezium</data>
+  <data key="d3">molecular-structure</data>
+  <data key="d4">property_template</data>
+  <data key="d5">{'bounds': {'type': 'molecular_structure_bounds'}, 'description': 'The molecular structure of the material', 'name': 'Molecular Structure', 'tags': [], 'type': 'property_template', 'uids': {'citrine-demo': 'molecular-structure'}}</data>
+</node>
+<node id="baking powder [baking-powder--mixing-dry-ingredients, ingredient_spec]">
+  <data key="d1">blue</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">baking-powder--mixing-dry-ingredients</data>
+  <data key="d4">ingredient_spec</data>
+  <data key="d5">{'absolute_quantity': None, 'file_links': [], 'labels': ['leavening', 'dry'], 'mass_fraction': None, 'material': {'id': 'baking-powder', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'name': 'baking powder', 'notes': None, 'number_fraction': None, 'process': {'id': 'mixing-dry-ingredients', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['raw material', 'leavening', 'dry-goods'], 'type': 'ingredient_spec', 'uids': {'citrine-demo': 'baking-powder--mixing-dry-ingredients'}, 'volume_fraction': {'nominal': 0.0137, 'type': 'nominal_real', 'units': 'dimensionless'}}</data>
+</node>
+<node id="Baking Powder [baking-powder, material_spec]">
+  <data key="d1">green</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">baking-powder</data>
+  <data key="d4">material_spec</data>
+  <data key="d5">{'file_links': [], 'name': 'Baking Powder', 'notes': 'Leavening agent for cake', 'process': {'id': 'procuring-baking-powder', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'properties': [], 'tags': ['raw material', 'leavening', 'dry-goods'], 'template': {'id': 'generic-material', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'material_spec', 'uids': {'citrine-demo': 'baking-powder'}}</data>
+</node>
+<node id="Procuring Baking Powder [procuring-baking-powder, process_spec]">
+  <data key="d1">red</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">procuring-baking-powder</data>
+  <data key="d4">process_spec</data>
+  <data key="d5">{'conditions': [], 'file_links': [], 'name': 'Procuring Baking Powder', 'notes': 'Purchasing baking powder', 'parameters': [], 'tags': ['purchase::dry-goods'], 'template': {'id': 'procuring', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'process_spec', 'uids': {'citrine-demo': 'procuring-baking-powder'}}</data>
+</node>
+<node id="flour [flour--mixing-dry-ingredients, ingredient_spec]">
+  <data key="d1">blue</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">flour--mixing-dry-ingredients</data>
+  <data key="d4">ingredient_spec</data>
+  <data key="d5">{'absolute_quantity': None, 'file_links': [], 'labels': ['dry'], 'mass_fraction': None, 'material': {'id': 'flour', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'name': 'flour', 'notes': None, 'number_fraction': None, 'process': {'id': 'mixing-dry-ingredients', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['raw material', 'flour', 'dry-goods'], 'type': 'ingredient_spec', 'uids': {'citrine-demo': 'flour--mixing-dry-ingredients'}, 'volume_fraction': {'nominal': 0.9829, 'type': 'nominal_real', 'units': 'dimensionless'}}</data>
+</node>
+<node id="Flour [flour, material_spec]">
+  <data key="d1">green</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">flour</data>
+  <data key="d4">material_spec</data>
+  <data key="d5">{'file_links': [], 'name': 'Flour', 'notes': 'All-purpose flour', 'process': {'id': 'procuring-flour', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'properties': [{'conditions': [{'file_links': [], 'name': 'Serving Size', 'notes': None, 'origin': 'specified', 'template': {'id': 'sample-mass', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'condition', 'value': {'nominal': 30.0, 'type': 'nominal_real', 'units': 'gram'}}], 'property': {'file_links': [], 'name': 'Nutritional Information', 'notes': None, 'origin': 'specified', 'template': {'id': 'nutritional-information', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'property', 'value': {'quantities': {'dietary-fiber': 1, 'other': 4, 'other-carbohydrate': 20, 'protein': 4, 'sugars': 1}, 'type': 'nominal_composition'}}, 'type': 'property_and_conditions'}], 'tags': ['raw material', 'flour', 'dry-goods'], 'template': {'id': 'nutritional-material', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'material_spec', 'uids': {'citrine-demo': 'flour'}}</data>
+</node>
+<node id="Procuring Flour [procuring-flour, process_spec]">
+  <data key="d1">red</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">procuring-flour</data>
+  <data key="d4">process_spec</data>
+  <data key="d5">{'conditions': [], 'file_links': [], 'name': 'Procuring Flour', 'notes': 'Purchasing all purpose flour', 'parameters': [], 'tags': ['purchase::dry-goods'], 'template': {'id': 'procuring', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'process_spec', 'uids': {'citrine-demo': 'procuring-flour'}}</data>
+</node>
+<node id="Nutritional Material [nutritional-material, material_template]">
+  <data key="d1">green</data>
+  <data key="d2">triangle</data>
+  <data key="d3">nutritional-material</data>
+  <data key="d4">material_template</data>
+  <data key="d5">{'description': 'A material with FDA Nutrition Facts attached', 'name': 'Nutritional Material', 'properties': [[{'id': 'nutritional-information', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, None]], 'tags': [], 'type': 'material_template', 'uids': {'citrine-demo': 'nutritional-material'}}</data>
+</node>
+<node id="Sample Mass [sample-mass, condition_template]">
+  <data key="d1">black</data>
+  <data key="d2">trapezium</data>
+  <data key="d3">sample-mass</data>
+  <data key="d4">condition_template</data>
+  <data key="d5">{'bounds': {'default_units': 'gram', 'lower_bound': 0.001, 'type': 'real_bounds', 'upper_bound': 10000.0}, 'description': 'Sample size in mass units, to go along with FDA Nutrition Facts', 'name': 'Sample Mass', 'tags': [], 'type': 'condition_template', 'uids': {'citrine-demo': 'sample-mass'}}</data>
+</node>
+<node id="Nutritional Information [nutritional-information, property_template]">
+  <data key="d1">black</data>
+  <data key="d2">trapezium</data>
+  <data key="d3">nutritional-information</data>
+  <data key="d4">property_template</data>
+  <data key="d5">{'bounds': {'components': ['calcium', 'cholesterol', 'dietary-fiber', 'iron', 'other', 'other-carbohydrate', 'other-fat', 'potassium', 'protein', 'saturated-fat', 'sodium', 'sugars', 'trans-fat', 'vitamin-d'], 'type': 'composition_bounds'}, 'description': 'FDA Nutrition Facts, mass basis.  Please be attentive to g vs. mg.  `other-carbohydrate` and `other-fat` are the total values minus the broken-out quantities. Other is the difference between the total and the serving size.', 'name': 'Nutritional Information', 'tags': [], 'type': 'property_template', 'uids': {'citrine-demo': 'nutritional-information'}}</data>
+</node>
+<node id="Mixer speed setting [mixer-speed-setting, parameter_template]">
+  <data key="d1">black</data>
+  <data key="d2">trapezium</data>
+  <data key="d3">mixer-speed-setting</data>
+  <data key="d4">parameter_template</data>
+  <data key="d5">{'bounds': {'lower_bound': 0, 'type': 'integer_bounds', 'upper_bound': 10}, 'description': 'What speed setting to use on the mixer', 'name': 'Mixer speed setting', 'tags': [], 'type': 'parameter_template', 'uids': {'citrine-demo': 'mixer-speed-setting'}}</data>
+</node>
+<node id="wet ingredients [wet-ingredients--mixing-batter, ingredient_spec]">
+  <data key="d1">blue</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">wet-ingredients--mixing-batter</data>
+  <data key="d4">ingredient_spec</data>
+  <data key="d5">{'absolute_quantity': None, 'file_links': [], 'labels': ['wet'], 'mass_fraction': None, 'material': {'id': 'wet-ingredients', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'name': 'wet ingredients', 'notes': None, 'number_fraction': None, 'process': {'id': 'mixing-batter', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['mixture'], 'type': 'ingredient_spec', 'uids': {'citrine-demo': 'wet-ingredients--mixing-batter'}, 'volume_fraction': None}</data>
+</node>
+<node id="Wet Ingredients [wet-ingredients, material_spec]">
+  <data key="d1">green</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">wet-ingredients</data>
+  <data key="d4">material_spec</data>
+  <data key="d5">{'file_links': [], 'name': 'Wet Ingredients', 'notes': 'The wet fraction of a batter', 'process': {'id': 'mixing-wet-ingredients', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'properties': [], 'tags': ['mixture'], 'template': {'id': 'generic-material', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'material_spec', 'uids': {'citrine-demo': 'wet-ingredients'}}</data>
+</node>
+<node id="Mixing Wet Ingredients [mixing-wet-ingredients, process_spec]">
+  <data key="d1">red</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">mixing-wet-ingredients</data>
+  <data key="d4">process_spec</data>
+  <data key="d5">{'conditions': [], 'file_links': [], 'name': 'Mixing Wet Ingredients', 'notes': 'Combining wet ingredients to make a baking feedstock', 'parameters': [{'file_links': [], 'name': 'Mixer speed setting', 'notes': None, 'origin': 'specified', 'template': {'id': 'mixer-speed-setting', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'parameter', 'value': {'nominal': 2, 'type': 'nominal_integer'}}], 'tags': ['mixing'], 'template': {'id': 'mixing', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'process_spec', 'uids': {'citrine-demo': 'mixing-wet-ingredients'}}</data>
+</node>
+<node id="vanilla [vanilla--mixing-wet-ingredients, ingredient_spec]">
+  <data key="d1">blue</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">vanilla--mixing-wet-ingredients</data>
+  <data key="d4">ingredient_spec</data>
+  <data key="d5">{'absolute_quantity': {'nominal': 2.0, 'type': 'nominal_real', 'units': 'teaspoon'}, 'file_links': [], 'labels': ['wet', 'flavoring'], 'mass_fraction': None, 'material': {'id': 'vanilla', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'name': 'vanilla', 'notes': None, 'number_fraction': None, 'process': {'id': 'mixing-wet-ingredients', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['raw material', 'seasoning'], 'type': 'ingredient_spec', 'uids': {'citrine-demo': 'vanilla--mixing-wet-ingredients'}, 'volume_fraction': None}</data>
+</node>
+<node id="Vanilla [vanilla, material_spec]">
+  <data key="d1">green</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">vanilla</data>
+  <data key="d4">material_spec</data>
+  <data key="d5">{'file_links': [], 'name': 'Vanilla', 'notes': 'Vanilla Extract is mostly alcohol but the most important component is vanillin (see attached structure)', 'process': {'id': 'procuring-vanilla', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'properties': [{'conditions': [], 'property': {'file_links': [], 'name': 'Component Structure', 'notes': None, 'origin': 'unknown', 'template': {'id': 'molecular-structure', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'property', 'value': {'inchi': 'InChI=1S/C8H8O3/c1-11-8-4-6(5-9)2-3-7(8)10/h2-5,10H,1H3', 'type': 'inchi'}}, 'type': 'property_and_conditions'}], 'tags': ['raw material', 'seasoning'], 'template': {'id': 'generic-material', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'material_spec', 'uids': {'citrine-demo': 'vanilla'}}</data>
+</node>
+<node id="Procuring Vanilla [procuring-vanilla, process_spec]">
+  <data key="d1">red</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">procuring-vanilla</data>
+  <data key="d4">process_spec</data>
+  <data key="d5">{'conditions': [], 'file_links': [], 'name': 'Procuring Vanilla', 'notes': 'Purchasing vanilla', 'parameters': [], 'tags': ['purchase::solution'], 'template': {'id': 'procuring', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'process_spec', 'uids': {'citrine-demo': 'procuring-vanilla'}}</data>
+</node>
+<node id="eggs [eggs--mixing-wet-ingredients, ingredient_spec]">
+  <data key="d1">blue</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">eggs--mixing-wet-ingredients</data>
+  <data key="d4">ingredient_spec</data>
+  <data key="d5">{'absolute_quantity': {'nominal': 4.0, 'type': 'nominal_real', 'units': 'dimensionless'}, 'file_links': [], 'labels': ['wet'], 'mass_fraction': None, 'material': {'id': 'eggs', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'name': 'eggs', 'notes': None, 'number_fraction': None, 'process': {'id': 'mixing-wet-ingredients', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['raw material', 'produce'], 'type': 'ingredient_spec', 'uids': {'citrine-demo': 'eggs--mixing-wet-ingredients'}, 'volume_fraction': None}</data>
+</node>
+<node id="Eggs [eggs, material_spec]">
+  <data key="d1">green</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">eggs</data>
+  <data key="d4">material_spec</data>
+  <data key="d5">{'file_links': [], 'name': 'Eggs', 'notes': 'A custard waiting to happen', 'process': {'id': 'procuring-eggs', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'properties': [], 'tags': ['raw material', 'produce'], 'template': {'id': 'generic-material', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'material_spec', 'uids': {'citrine-demo': 'eggs'}}</data>
+</node>
+<node id="Procuring Eggs [procuring-eggs, process_spec]">
+  <data key="d1">red</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">procuring-eggs</data>
+  <data key="d4">process_spec</data>
+  <data key="d5">{'conditions': [], 'file_links': [], 'name': 'Procuring Eggs', 'notes': 'Purchasing eggs', 'parameters': [], 'tags': ['purchase::produce'], 'template': {'id': 'procuring', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'process_spec', 'uids': {'citrine-demo': 'procuring-eggs'}}</data>
+</node>
+<node id="butter [butter--mixing-wet-ingredients, ingredient_spec]">
+  <data key="d1">blue</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">butter--mixing-wet-ingredients</data>
+  <data key="d4">ingredient_spec</data>
+  <data key="d5">{'absolute_quantity': {'nominal': 1.0, 'type': 'nominal_real', 'units': 'cup'}, 'file_links': [], 'labels': ['wet', 'shortening'], 'mass_fraction': None, 'material': {'id': 'butter', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'name': 'butter', 'notes': None, 'number_fraction': None, 'process': {'id': 'mixing-wet-ingredients', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['raw material', 'produce', 'shortening', 'dairy'], 'type': 'ingredient_spec', 'uids': {'citrine-demo': 'butter--mixing-wet-ingredients'}, 'volume_fraction': None}</data>
+</node>
+<node id="Butter [butter, material_spec]">
+  <data key="d1">green</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">butter</data>
+  <data key="d4">material_spec</data>
+  <data key="d5">{'file_links': [], 'name': 'Butter', 'notes': 'Shortening for making rich, buttery baked goods', 'process': {'id': 'procuring-butter', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'properties': [], 'tags': ['raw material', 'produce', 'shortening', 'dairy'], 'template': {'id': 'generic-material', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'material_spec', 'uids': {'citrine-demo': 'butter'}}</data>
+</node>
+<node id="Procuring Butter [procuring-butter, process_spec]">
+  <data key="d1">red</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">procuring-butter</data>
+  <data key="d4">process_spec</data>
+  <data key="d5">{'conditions': [], 'file_links': [], 'name': 'Procuring Butter', 'notes': 'Purchasing butter', 'parameters': [], 'tags': ['purchase::produce'], 'template': {'id': 'procuring', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'process_spec', 'uids': {'citrine-demo': 'procuring-butter'}}</data>
+</node>
+<node id="sugar [sugar--mixing-wet-ingredients, ingredient_spec]">
+  <data key="d1">blue</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">sugar--mixing-wet-ingredients</data>
+  <data key="d4">ingredient_spec</data>
+  <data key="d5">{'absolute_quantity': {'nominal': 2.0, 'type': 'nominal_real', 'units': 'cup'}, 'file_links': [], 'labels': ['wet', 'sweetener'], 'mass_fraction': None, 'material': {'id': 'sugar', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'name': 'sugar', 'notes': None, 'number_fraction': None, 'process': {'id': 'mixing-wet-ingredients', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['raw material', 'sweetener', 'dry-goods'], 'type': 'ingredient_spec', 'uids': {'citrine-demo': 'sugar--mixing-wet-ingredients'}, 'volume_fraction': None}</data>
+</node>
+<node id="Sugar [sugar, material_spec]">
+  <data key="d1">green</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">sugar</data>
+  <data key="d4">material_spec</data>
+  <data key="d5">{'file_links': [], 'name': 'Sugar', 'notes': 'Sugar', 'process': {'id': 'procuring-sugar', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'properties': [{'conditions': [], 'property': {'file_links': [], 'name': 'Formula', 'notes': None, 'origin': 'unknown', 'template': None, 'type': 'property', 'value': {'formula': 'C12H22O11', 'type': 'empirical_formula'}}, 'type': 'property_and_conditions'}, {'conditions': [], 'property': {'file_links': [], 'name': 'SMILES', 'notes': None, 'origin': 'unknown', 'template': {'id': 'molecular-structure', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'property', 'value': {'smiles': 'C(C1C(C(C(C(O1)OC2(C(C(C(O2)CO)O)O)CO)O)O)O)O', 'type': 'smiles'}}, 'type': 'property_and_conditions'}], 'tags': ['raw material', 'sweetener', 'dry-goods'], 'template': {'id': 'formulaic-material', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'material_spec', 'uids': {'citrine-demo': 'sugar'}}</data>
+</node>
+<node id="Procuring Sugar [procuring-sugar, process_spec]">
+  <data key="d1">red</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">procuring-sugar</data>
+  <data key="d4">process_spec</data>
+  <data key="d5">{'conditions': [], 'file_links': [], 'name': 'Procuring Sugar', 'notes': 'Purchasing granulated sugar', 'parameters': [], 'tags': ['purchase::dry-goods'], 'template': {'id': 'procuring', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'process_spec', 'uids': {'citrine-demo': 'procuring-sugar'}}</data>
+</node>
+<node id="dry ingredients [dry-ingredients--mixing-batter-d576929a6c518c058db29324c13db0c3, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">dry-ingredients--mixing-batter-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">{'absolute_quantity': {'mean': 2.930681527767544, 'std': 0.1526, 'type': 'normal_real', 'units': 'cup'}, 'file_links': [], 'labels': ['dry'], 'mass_fraction': None, 'material': {'id': 'dry-ingredients-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'name': 'dry ingredients', 'notes': None, 'number_fraction': None, 'process': {'id': 'mixing-batter-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'spec': {'id': 'dry-ingredients--mixing-batter', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['mixture'], 'type': 'ingredient_run', 'uids': {'citrine-demo': 'dry-ingredients--mixing-batter-d576929a6c518c058db29324c13db0c3'}, 'volume_fraction': None}</data>
+</node>
+<node id="Dry Ingredients [dry-ingredients-d576929a6c518c058db29324c13db0c3, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">dry-ingredients-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">material_run</data>
+  <data key="d5">{'file_links': [], 'name': 'Dry Ingredients', 'notes': 'The spec says "The dry fraction of a batter"', 'process': {'id': 'mixing-dry-ingredients-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'sample_type': 'unknown', 'spec': {'id': 'dry-ingredients', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['mixture'], 'type': 'material_run', 'uids': {'citrine-demo': 'dry-ingredients-d576929a6c518c058db29324c13db0c3'}}</data>
+</node>
+<node id="Mixing Dry Ingredients [mixing-dry-ingredients-d576929a6c518c058db29324c13db0c3, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">mixing-dry-ingredients-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">process_run</data>
+  <data key="d5">{'conditions': [], 'file_links': [], 'name': 'Mixing Dry Ingredients', 'notes': 'The spec says "Combining dry ingredients to make a baking feedstock"', 'parameters': [], 'source': {'performed_by': 'gwash', 'performed_date': '2015-03-14', 'type': 'performed_source'}, 'spec': {'id': 'mixing-dry-ingredients', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['mixing'], 'type': 'process_run', 'uids': {'citrine-demo': 'mixing-dry-ingredients-d576929a6c518c058db29324c13db0c3'}}</data>
+</node>
+<node id="salt [salt--mixing-dry-ingredients-d576929a6c518c058db29324c13db0c3, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">salt--mixing-dry-ingredients-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">{'absolute_quantity': None, 'file_links': [], 'labels': ['dry', 'seasoning'], 'mass_fraction': None, 'material': {'id': 'salt-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'name': 'salt', 'notes': None, 'number_fraction': None, 'process': {'id': 'mixing-dry-ingredients-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'spec': {'id': 'salt--mixing-dry-ingredients', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['raw material', 'seasoning', 'dry-goods'], 'type': 'ingredient_run', 'uids': {'citrine-demo': 'salt--mixing-dry-ingredients-d576929a6c518c058db29324c13db0c3'}, 'volume_fraction': {'mean': 0.008640667744667676, 'std': 0.005, 'type': 'normal_real', 'units': 'dimensionless'}}</data>
+</node>
+<node id="Acme Salt [salt-d576929a6c518c058db29324c13db0c3, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">salt-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">material_run</data>
+  <data key="d5">{'file_links': [], 'name': 'Acme Salt', 'notes': 'The spec says "Plain old NaCl"', 'process': {'id': 'procuring-salt-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'sample_type': 'unknown', 'spec': {'id': 'salt', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['raw material', 'seasoning', 'dry-goods'], 'type': 'material_run', 'uids': {'citrine-demo': 'salt-d576929a6c518c058db29324c13db0c3'}}</data>
+</node>
+<node id="Procuring Acme Salt [procuring-salt-d576929a6c518c058db29324c13db0c3, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">procuring-salt-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">process_run</data>
+  <data key="d5">{'conditions': [], 'file_links': [], 'name': 'Procuring Acme Salt', 'notes': 'The spec says "Purchasing salt"', 'parameters': [], 'source': {'performed_by': 'hamilton', 'performed_date': '2015-02-17', 'type': 'performed_source'}, 'spec': {'id': 'procuring-salt', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['purchase::dry-goods'], 'type': 'process_run', 'uids': {'citrine-demo': 'procuring-salt-d576929a6c518c058db29324c13db0c3'}}</data>
+</node>
+<node id="Salt elemental analysis [elemental analysis--salt-d576929a6c518c058db29324c13db0c3, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">elemental analysis--salt-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">{'conditions': [{'file_links': [], 'name': 'Sample Mass', 'notes': None, 'origin': 'measured', 'template': {'id': 'sample-mass', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'condition', 'value': {'mean': 99.91884975934369, 'std': 1.5, 'type': 'normal_real', 'units': 'milligram'}}], 'file_links': [], 'material': {'id': 'salt-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'name': 'Salt elemental analysis', 'notes': None, 'parameters': [{'file_links': [], 'name': 'Expected Sample Mass', 'notes': None, 'origin': 'specified', 'template': {'id': 'expected-sample-mass', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'parameter', 'value': {'nominal': 0.1, 'type': 'nominal_real', 'units': 'gram'}}], 'properties': [{'file_links': [], 'name': 'Composition', 'notes': None, 'origin': 'measured', 'template': {'id': 'chemical-formula', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'property', 'value': {'formula': 'NaClCa0.006Si0.006O0.018K0.000015I0.000015', 'type': 'empirical_formula'}}], 'source': None, 'spec': {'id': 'elemental analysis', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': [], 'type': 'measurement_run', 'uids': {'citrine-demo': 'elemental analysis--salt-d576929a6c518c058db29324c13db0c3'}}</data>
+</node>
+<node id="Elemental analysis [elemental analysis, measurement_spec]">
+  <data key="d1">purple</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">elemental analysis</data>
+  <data key="d4">measurement_spec</data>
+  <data key="d5">{'conditions': [{'file_links': [], 'name': 'Sample Mass', 'notes': None, 'origin': 'specified', 'template': {'id': 'sample-mass', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'condition', 'value': {'nominal': 100.0, 'type': 'nominal_real', 'units': 'milligram'}}], 'file_links': [], 'name': 'Elemental analysis', 'notes': None, 'parameters': [{'file_links': [], 'name': 'Expected Sample Mass', 'notes': None, 'origin': 'specified', 'template': {'id': 'expected-sample-mass', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'parameter', 'value': {'nominal': 0.1, 'type': 'nominal_real', 'units': 'gram'}}], 'tags': [], 'template': {'id': 'elemental-analysis', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'measurement_spec', 'uids': {'citrine-demo': 'elemental analysis'}}</data>
+</node>
+<node id="Expected Sample Mass [expected-sample-mass, parameter_template]">
+  <data key="d1">black</data>
+  <data key="d2">trapezium</data>
+  <data key="d3">expected-sample-mass</data>
+  <data key="d4">parameter_template</data>
+  <data key="d5">{'bounds': {'default_units': 'gram', 'lower_bound': 0.001, 'type': 'real_bounds', 'upper_bound': 10000.0}, 'description': 'Specified sample size in mass units, to go along with FDA Nutrition Facts', 'name': 'Expected Sample Mass', 'tags': [], 'type': 'parameter_template', 'uids': {'citrine-demo': 'expected-sample-mass'}}</data>
+</node>
+<node id="Elemental Analysis [elemental-analysis, measurement_template]">
+  <data key="d1">purple</data>
+  <data key="d2">triangle</data>
+  <data key="d3">elemental-analysis</data>
+  <data key="d4">measurement_template</data>
+  <data key="d5">{'conditions': [[{'id': 'sample-mass', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, None]], 'description': None, 'name': 'Elemental Analysis', 'parameters': [[{'id': 'expected-sample-mass', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, None]], 'properties': [[{'id': 'chemical-formula', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, None]], 'tags': [], 'type': 'measurement_template', 'uids': {'citrine-demo': 'elemental-analysis'}}</data>
+</node>
+<node id="baking powder [baking-powder--mixing-dry-ingredients-d576929a6c518c058db29324c13db0c3, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">baking-powder--mixing-dry-ingredients-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">{'absolute_quantity': None, 'file_links': [], 'labels': ['leavening', 'dry'], 'mass_fraction': None, 'material': {'id': 'baking-powder-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'name': 'baking powder', 'notes': None, 'number_fraction': None, 'process': {'id': 'mixing-dry-ingredients-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'spec': {'id': 'baking-powder--mixing-dry-ingredients', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['raw material', 'leavening', 'dry-goods'], 'type': 'ingredient_run', 'uids': {'citrine-demo': 'baking-powder--mixing-dry-ingredients-d576929a6c518c058db29324c13db0c3'}, 'volume_fraction': {'mean': 0.01879049251244904, 'std': 0.005, 'type': 'normal_real', 'units': 'dimensionless'}}</data>
+</node>
+<node id="Acme Baking Powder [baking-powder-d576929a6c518c058db29324c13db0c3, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">baking-powder-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">material_run</data>
+  <data key="d5">{'file_links': [], 'name': 'Acme Baking Powder', 'notes': 'The spec says "Leavening agent for cake"', 'process': {'id': 'procuring-baking-powder-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'sample_type': 'unknown', 'spec': {'id': 'baking-powder', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['raw material', 'leavening', 'dry-goods'], 'type': 'material_run', 'uids': {'citrine-demo': 'baking-powder-d576929a6c518c058db29324c13db0c3'}}</data>
+</node>
+<node id="Procuring Acme Baking Powder [procuring-baking-powder-d576929a6c518c058db29324c13db0c3, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">procuring-baking-powder-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">process_run</data>
+  <data key="d5">{'conditions': [], 'file_links': [], 'name': 'Procuring Acme Baking Powder', 'notes': 'The spec says "Purchasing baking powder"', 'parameters': [], 'source': {'performed_by': 'hamilton', 'performed_date': '2015-02-17', 'type': 'performed_source'}, 'spec': {'id': 'procuring-baking-powder', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['purchase::dry-goods'], 'type': 'process_run', 'uids': {'citrine-demo': 'procuring-baking-powder-d576929a6c518c058db29324c13db0c3'}}</data>
+</node>
+<node id="flour [flour--mixing-dry-ingredients-d576929a6c518c058db29324c13db0c3, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">flour--mixing-dry-ingredients-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">{'absolute_quantity': None, 'file_links': [], 'labels': ['dry'], 'mass_fraction': None, 'material': {'id': 'flour-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'name': 'flour', 'notes': None, 'number_fraction': None, 'process': {'id': 'mixing-dry-ingredients-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'spec': {'id': 'flour--mixing-dry-ingredients', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['raw material', 'flour', 'dry-goods'], 'type': 'ingredient_run', 'uids': {'citrine-demo': 'flour--mixing-dry-ingredients-d576929a6c518c058db29324c13db0c3'}, 'volume_fraction': {'mean': 0.987429797219438, 'std': 0.005, 'type': 'normal_real', 'units': 'dimensionless'}}</data>
+</node>
+<node id="A1 Flour [flour-d576929a6c518c058db29324c13db0c3, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">flour-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">material_run</data>
+  <data key="d5">{'file_links': [], 'name': 'A1 Flour', 'notes': 'The spec says "All-purpose flour"', 'process': {'id': 'procuring-flour-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'sample_type': 'unknown', 'spec': {'id': 'flour', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['raw material', 'flour', 'dry-goods'], 'type': 'material_run', 'uids': {'citrine-demo': 'flour-d576929a6c518c058db29324c13db0c3'}}</data>
+</node>
+<node id="Procuring A1 Flour [procuring-flour-d576929a6c518c058db29324c13db0c3, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">procuring-flour-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">process_run</data>
+  <data key="d5">{'conditions': [], 'file_links': [], 'name': 'Procuring A1 Flour', 'notes': 'The spec says "Purchasing all purpose flour"', 'parameters': [], 'source': {'performed_by': 'hamilton', 'performed_date': '2015-02-17', 'type': 'performed_source'}, 'spec': {'id': 'procuring-flour', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['purchase::dry-goods'], 'type': 'process_run', 'uids': {'citrine-demo': 'procuring-flour-d576929a6c518c058db29324c13db0c3'}}</data>
+</node>
+<node id="Flour nutritional analysis [nutritional analysis--flour-d576929a6c518c058db29324c13db0c3, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">nutritional analysis--flour-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">{'conditions': [{'file_links': [], 'name': 'Sample Mass', 'notes': None, 'origin': 'measured', 'template': {'id': 'sample-mass', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'condition', 'value': {'mean': 99.08690088584619, 'std': 1.5, 'type': 'normal_real', 'units': 'milligram'}}], 'file_links': [], 'material': {'id': 'flour-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'name': 'Flour nutritional analysis', 'notes': None, 'parameters': [{'file_links': [], 'name': 'Expected Sample Mass', 'notes': None, 'origin': 'specified', 'template': {'id': 'expected-sample-mass', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'parameter', 'value': {'nominal': 0.1, 'type': 'nominal_real', 'units': 'gram'}}], 'properties': [{'file_links': [], 'name': 'Nutritional Information', 'notes': None, 'origin': 'measured', 'template': {'id': 'nutritional-information', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'property', 'value': {'quantities': {'dietary-fiber': 0.992044205530397, 'other': 3.981161669377761, 'other-carbohydrate': 19.943591752193853, 'protein': 3.9875164577983178, 'sugars': 0.9975985460127468}, 'type': 'nominal_composition'}}], 'source': None, 'spec': {'id': 'nutritional analysis', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': [], 'type': 'measurement_run', 'uids': {'citrine-demo': 'nutritional analysis--flour-d576929a6c518c058db29324c13db0c3'}}</data>
+</node>
+<node id="Nutritional analysis [nutritional analysis, measurement_spec]">
+  <data key="d1">purple</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">nutritional analysis</data>
+  <data key="d4">measurement_spec</data>
+  <data key="d5">{'conditions': [{'file_links': [], 'name': 'Sample Mass', 'notes': None, 'origin': 'specified', 'template': {'id': 'sample-mass', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'condition', 'value': {'nominal': 100.0, 'type': 'nominal_real', 'units': 'milligram'}}], 'file_links': [], 'name': 'Nutritional analysis', 'notes': None, 'parameters': [{'file_links': [], 'name': 'Expected Sample Mass', 'notes': None, 'origin': 'specified', 'template': {'id': 'expected-sample-mass', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'parameter', 'value': {'nominal': 0.1, 'type': 'nominal_real', 'units': 'gram'}}], 'tags': [], 'template': {'id': 'nutritional-analysis', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'measurement_spec', 'uids': {'citrine-demo': 'nutritional analysis'}}</data>
+</node>
+<node id="Nutritional Analysis [nutritional-analysis, measurement_template]">
+  <data key="d1">purple</data>
+  <data key="d2">triangle</data>
+  <data key="d3">nutritional-analysis</data>
+  <data key="d4">measurement_template</data>
+  <data key="d5">{'conditions': [[{'id': 'sample-mass', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, None]], 'description': None, 'name': 'Nutritional Analysis', 'parameters': [[{'id': 'expected-sample-mass', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, None]], 'properties': [[{'id': 'nutritional-information', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, None]], 'tags': [], 'type': 'measurement_template', 'uids': {'citrine-demo': 'nutritional-analysis'}}</data>
+</node>
+<node id="wet ingredients [wet-ingredients--mixing-batter-d576929a6c518c058db29324c13db0c3, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">wet-ingredients--mixing-batter-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">{'absolute_quantity': None, 'file_links': [], 'labels': ['wet'], 'mass_fraction': None, 'material': {'id': 'wet-ingredients-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'name': 'wet ingredients', 'notes': None, 'number_fraction': None, 'process': {'id': 'mixing-batter-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'spec': {'id': 'wet-ingredients--mixing-batter', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['mixture'], 'type': 'ingredient_run', 'uids': {'citrine-demo': 'wet-ingredients--mixing-batter-d576929a6c518c058db29324c13db0c3'}, 'volume_fraction': None}</data>
+</node>
+<node id="Wet Ingredients [wet-ingredients-d576929a6c518c058db29324c13db0c3, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">wet-ingredients-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">material_run</data>
+  <data key="d5">{'file_links': [], 'name': 'Wet Ingredients', 'notes': 'The spec says "The wet fraction of a batter"', 'process': {'id': 'mixing-wet-ingredients-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'sample_type': 'unknown', 'spec': {'id': 'wet-ingredients', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['mixture'], 'type': 'material_run', 'uids': {'citrine-demo': 'wet-ingredients-d576929a6c518c058db29324c13db0c3'}}</data>
+</node>
+<node id="Mixing Wet Ingredients [mixing-wet-ingredients-d576929a6c518c058db29324c13db0c3, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">mixing-wet-ingredients-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">process_run</data>
+  <data key="d5">{'conditions': [], 'file_links': [], 'name': 'Mixing Wet Ingredients', 'notes': 'The spec says "Combining wet ingredients to make a baking feedstock"', 'parameters': [], 'source': {'performed_by': 'gwash', 'performed_date': '2015-03-14', 'type': 'performed_source'}, 'spec': {'id': 'mixing-wet-ingredients', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['mixing'], 'type': 'process_run', 'uids': {'citrine-demo': 'mixing-wet-ingredients-d576929a6c518c058db29324c13db0c3'}}</data>
+</node>
+<node id="vanilla [vanilla--mixing-wet-ingredients-d576929a6c518c058db29324c13db0c3, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">vanilla--mixing-wet-ingredients-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">{'absolute_quantity': {'mean': 2.020403745809996, 'std': 0.1, 'type': 'normal_real', 'units': 'teaspoon'}, 'file_links': [], 'labels': ['wet', 'flavoring'], 'mass_fraction': None, 'material': {'id': 'vanilla-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'name': 'vanilla', 'notes': None, 'number_fraction': None, 'process': {'id': 'mixing-wet-ingredients-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'spec': {'id': 'vanilla--mixing-wet-ingredients', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['raw material', 'seasoning'], 'type': 'ingredient_run', 'uids': {'citrine-demo': 'vanilla--mixing-wet-ingredients-d576929a6c518c058db29324c13db0c3'}, 'volume_fraction': None}</data>
+</node>
+<node id="A1 Vanilla [vanilla-d576929a6c518c058db29324c13db0c3, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">vanilla-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">material_run</data>
+  <data key="d5">{'file_links': [], 'name': 'A1 Vanilla', 'notes': 'The spec says "Vanilla Extract is mostly alcohol but the most important component is vanillin (see attached structure)"', 'process': {'id': 'procuring-vanilla-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'sample_type': 'unknown', 'spec': {'id': 'vanilla', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['raw material', 'seasoning'], 'type': 'material_run', 'uids': {'citrine-demo': 'vanilla-d576929a6c518c058db29324c13db0c3'}}</data>
+</node>
+<node id="Procuring A1 Vanilla [procuring-vanilla-d576929a6c518c058db29324c13db0c3, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">procuring-vanilla-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">process_run</data>
+  <data key="d5">{'conditions': [], 'file_links': [], 'name': 'Procuring A1 Vanilla', 'notes': 'The spec says "Purchasing vanilla"', 'parameters': [], 'source': {'performed_by': 'hamilton', 'performed_date': '2015-02-17', 'type': 'performed_source'}, 'spec': {'id': 'procuring-vanilla', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['purchase::solution'], 'type': 'process_run', 'uids': {'citrine-demo': 'procuring-vanilla-d576929a6c518c058db29324c13db0c3'}}</data>
+</node>
+<node id="eggs [eggs--mixing-wet-ingredients-d576929a6c518c058db29324c13db0c3, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">eggs--mixing-wet-ingredients-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">{'absolute_quantity': {'mean': 4.086407845168961, 'std': 0.2, 'type': 'normal_real', 'units': 'dimensionless'}, 'file_links': [], 'labels': ['wet'], 'mass_fraction': None, 'material': {'id': 'eggs-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'name': 'eggs', 'notes': None, 'number_fraction': None, 'process': {'id': 'mixing-wet-ingredients-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'spec': {'id': 'eggs--mixing-wet-ingredients', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['raw material', 'produce'], 'type': 'ingredient_run', 'uids': {'citrine-demo': 'eggs--mixing-wet-ingredients-d576929a6c518c058db29324c13db0c3'}, 'volume_fraction': None}</data>
+</node>
+<node id="Greenbrook Eggs [eggs-d576929a6c518c058db29324c13db0c3, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">eggs-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">material_run</data>
+  <data key="d5">{'file_links': [], 'name': 'Greenbrook Eggs', 'notes': 'The spec says "A custard waiting to happen"', 'process': {'id': 'procuring-eggs-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'sample_type': 'unknown', 'spec': {'id': 'eggs', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['raw material', 'produce'], 'type': 'material_run', 'uids': {'citrine-demo': 'eggs-d576929a6c518c058db29324c13db0c3'}}</data>
+</node>
+<node id="Procuring Greenbrook Eggs [procuring-eggs-d576929a6c518c058db29324c13db0c3, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">procuring-eggs-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">process_run</data>
+  <data key="d5">{'conditions': [], 'file_links': [], 'name': 'Procuring Greenbrook Eggs', 'notes': 'The spec says "Purchasing eggs"', 'parameters': [], 'source': {'performed_by': 'hamilton', 'performed_date': '2015-02-17', 'type': 'performed_source'}, 'spec': {'id': 'procuring-eggs', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['purchase::produce'], 'type': 'process_run', 'uids': {'citrine-demo': 'procuring-eggs-d576929a6c518c058db29324c13db0c3'}}</data>
+</node>
+<node id="butter [butter--mixing-wet-ingredients-d576929a6c518c058db29324c13db0c3, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">butter--mixing-wet-ingredients-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">{'absolute_quantity': {'mean': 1.0044941480603216, 'std': 0.05, 'type': 'normal_real', 'units': 'cup'}, 'file_links': [], 'labels': ['wet', 'shortening'], 'mass_fraction': None, 'material': {'id': 'butter-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'name': 'butter', 'notes': None, 'number_fraction': None, 'process': {'id': 'mixing-wet-ingredients-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'spec': {'id': 'butter--mixing-wet-ingredients', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['raw material', 'produce', 'shortening', 'dairy'], 'type': 'ingredient_run', 'uids': {'citrine-demo': 'butter--mixing-wet-ingredients-d576929a6c518c058db29324c13db0c3'}, 'volume_fraction': None}</data>
+</node>
+<node id="Fresh Farm Butter [butter-d576929a6c518c058db29324c13db0c3, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">butter-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">material_run</data>
+  <data key="d5">{'file_links': [], 'name': 'Fresh Farm Butter', 'notes': 'The spec says "Shortening for making rich, buttery baked goods"', 'process': {'id': 'procuring-butter-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'sample_type': 'unknown', 'spec': {'id': 'butter', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['raw material', 'produce', 'shortening', 'dairy'], 'type': 'material_run', 'uids': {'citrine-demo': 'butter-d576929a6c518c058db29324c13db0c3'}}</data>
+</node>
+<node id="Procuring Fresh Farm Butter [procuring-butter-d576929a6c518c058db29324c13db0c3, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">procuring-butter-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">process_run</data>
+  <data key="d5">{'conditions': [], 'file_links': [], 'name': 'Procuring Fresh Farm Butter', 'notes': 'The spec says "Purchasing butter"', 'parameters': [], 'source': {'performed_by': 'hamilton', 'performed_date': '2015-02-17', 'type': 'performed_source'}, 'spec': {'id': 'procuring-butter', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['purchase::produce'], 'type': 'process_run', 'uids': {'citrine-demo': 'procuring-butter-d576929a6c518c058db29324c13db0c3'}}</data>
+</node>
+<node id="sugar [sugar--mixing-wet-ingredients-d576929a6c518c058db29324c13db0c3, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">sugar--mixing-wet-ingredients-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">{'absolute_quantity': {'mean': 1.9898418092567707, 'std': 0.1, 'type': 'normal_real', 'units': 'cup'}, 'file_links': [], 'labels': ['wet', 'sweetener'], 'mass_fraction': None, 'material': {'id': 'sugar-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'name': 'sugar', 'notes': None, 'number_fraction': None, 'process': {'id': 'mixing-wet-ingredients-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'spec': {'id': 'sugar--mixing-wet-ingredients', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['raw material', 'sweetener', 'dry-goods'], 'type': 'ingredient_run', 'uids': {'citrine-demo': 'sugar--mixing-wet-ingredients-d576929a6c518c058db29324c13db0c3'}, 'volume_fraction': None}</data>
+</node>
+<node id="Reliable Sugar [sugar-d576929a6c518c058db29324c13db0c3, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">sugar-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">material_run</data>
+  <data key="d5">{'file_links': [], 'name': 'Reliable Sugar', 'notes': 'The spec says "Sugar"', 'process': {'id': 'procuring-sugar-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'sample_type': 'unknown', 'spec': {'id': 'sugar', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['raw material', 'sweetener', 'dry-goods'], 'type': 'material_run', 'uids': {'citrine-demo': 'sugar-d576929a6c518c058db29324c13db0c3'}}</data>
+</node>
+<node id="Procuring Reliable Sugar [procuring-sugar-d576929a6c518c058db29324c13db0c3, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">procuring-sugar-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">process_run</data>
+  <data key="d5">{'conditions': [], 'file_links': [], 'name': 'Procuring Reliable Sugar', 'notes': 'The spec says "Purchasing granulated sugar"', 'parameters': [], 'source': {'performed_by': 'hamilton', 'performed_date': '2015-02-17', 'type': 'performed_source'}, 'spec': {'id': 'procuring-sugar', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['purchase::dry-goods'], 'type': 'process_run', 'uids': {'citrine-demo': 'procuring-sugar-d576929a6c518c058db29324c13db0c3'}}</data>
+</node>
+<node id="Baking [baking, process_template]">
+  <data key="d1">red</data>
+  <data key="d2">triangle</data>
+  <data key="d3">baking</data>
+  <data key="d4">process_template</data>
+  <data key="d5">{'allowed_labels': ['precursor'], 'allowed_names': ['batter'], 'conditions': [[{'id': 'oven-temperature', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, {'default_units': 'degree_Fahrenheit', 'lower_bound': 0, 'type': 'real_bounds', 'upper_bound': 700}]], 'description': 'Using heat to promote chemical reactions in a material', 'name': 'Baking', 'parameters': [[{'id': 'oven-temperature-setting', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, {'default_units': 'degree_Fahrenheit', 'lower_bound': 100, 'type': 'real_bounds', 'upper_bound': 550}]], 'tags': [], 'type': 'process_template', 'uids': {'citrine-demo': 'baking'}}</data>
+</node>
+<node id="Baked Good [baked-good, material_template]">
+  <data key="d1">green</data>
+  <data key="d2">triangle</data>
+  <data key="d3">baked-good</data>
+  <data key="d4">material_template</data>
+  <data key="d5">{'description': None, 'name': 'Baked Good', 'properties': [[{'id': 'toothpick-test', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, None], [{'id': 'color', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, None]], 'tags': [], 'type': 'material_template', 'uids': {'citrine-demo': 'baked-good'}}</data>
+</node>
+<node id="Cooking time [cooking-time, condition_template]">
+  <data key="d1">black</data>
+  <data key="d2">trapezium</data>
+  <data key="d3">cooking-time</data>
+  <data key="d4">condition_template</data>
+  <data key="d5">{'bounds': {'default_units': 'hour', 'lower_bound': 0, 'type': 'real_bounds', 'upper_bound': 168.0}, 'description': 'The time elapsed during a cooking process', 'name': 'Cooking time', 'tags': [], 'type': 'condition_template', 'uids': {'citrine-demo': 'cooking-time'}}</data>
+</node>
+<node id="Oven temperature setting [oven-temperature-setting, parameter_template]">
+  <data key="d1">black</data>
+  <data key="d2">trapezium</data>
+  <data key="d3">oven-temperature-setting</data>
+  <data key="d4">parameter_template</data>
+  <data key="d5">{'bounds': {'default_units': 'kelvin', 'lower_bound': 0, 'type': 'real_bounds', 'upper_bound': 2000.0}, 'description': 'Where the knob points', 'name': 'Oven temperature setting', 'tags': [], 'type': 'parameter_template', 'uids': {'citrine-demo': 'oven-temperature-setting'}}</data>
+</node>
+<node id="Oven temperature [oven-temperature, condition_template]">
+  <data key="d1">black</data>
+  <data key="d2">trapezium</data>
+  <data key="d3">oven-temperature</data>
+  <data key="d4">condition_template</data>
+  <data key="d5">{'bounds': {'default_units': 'kelvin', 'lower_bound': 0, 'type': 'real_bounds', 'upper_bound': 2000.0}, 'description': 'Actual temperature measured by the thermocouple', 'name': 'Oven temperature', 'tags': [], 'type': 'condition_template', 'uids': {'citrine-demo': 'oven-temperature'}}</data>
+</node>
+<node id="Icing [icing, process_template]">
+  <data key="d1">red</data>
+  <data key="d2">triangle</data>
+  <data key="d3">icing</data>
+  <data key="d4">process_template</data>
+  <data key="d5">{'allowed_labels': ['coating', 'substrate'], 'allowed_names': [], 'conditions': [], 'description': 'Applying a coating to a substrate', 'name': 'Icing', 'parameters': [], 'tags': [], 'type': 'process_template', 'uids': {'citrine-demo': 'icing'}}</data>
+</node>
+<node id="frosting [frosting--icing-cake, ingredient_spec]">
+  <data key="d1">blue</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">frosting--icing-cake</data>
+  <data key="d4">ingredient_spec</data>
+  <data key="d5">{'absolute_quantity': {'nominal': 0.751, 'type': 'nominal_real', 'units': 'kilogram'}, 'file_links': [], 'labels': ['coating'], 'mass_fraction': None, 'material': {'id': 'frosting', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'name': 'frosting', 'notes': 'Seems like a lot of frosting', 'number_fraction': None, 'process': {'id': 'icing-cake', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['frosting::chocolate', 'topping::chocolate'], 'type': 'ingredient_spec', 'uids': {'citrine-demo': 'frosting--icing-cake'}, 'volume_fraction': None}</data>
+</node>
+<node id="Frosting [frosting, material_spec]">
+  <data key="d1">green</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">frosting</data>
+  <data key="d4">material_spec</data>
+  <data key="d5">{'file_links': [], 'name': 'Frosting', 'notes': 'Chocolate frosting', 'process': {'id': 'mixing-frosting', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'properties': [], 'tags': ['frosting::chocolate', 'topping::chocolate'], 'template': {'id': 'dessert', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'material_spec', 'uids': {'citrine-demo': 'frosting'}}</data>
+</node>
+<node id="Mixing Frosting [mixing-frosting, process_spec]">
+  <data key="d1">red</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">mixing-frosting</data>
+  <data key="d4">process_spec</data>
+  <data key="d5">{'conditions': [], 'file_links': [], 'name': 'Mixing Frosting', 'notes': 'Combining ingredients to make a sweet frosting', 'parameters': [{'file_links': [], 'name': 'Mixer speed setting', 'notes': None, 'origin': 'specified', 'template': {'id': 'mixer-speed-setting', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'parameter', 'value': {'nominal': 2, 'type': 'nominal_integer'}}], 'tags': ['mixing'], 'template': {'id': 'mixing', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'process_spec', 'uids': {'citrine-demo': 'mixing-frosting'}}</data>
+</node>
+<node id="Dessert [dessert, material_template]">
+  <data key="d1">green</data>
+  <data key="d2">triangle</data>
+  <data key="d3">dessert</data>
+  <data key="d4">material_template</data>
+  <data key="d5">{'description': None, 'name': 'Dessert', 'properties': [[{'id': 'tastiness', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, None]], 'tags': [], 'type': 'material_template', 'uids': {'citrine-demo': 'dessert'}}</data>
+</node>
+<node id="powdered sugar [powdered-sugar--mixing-frosting, ingredient_spec]">
+  <data key="d1">blue</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">powdered-sugar--mixing-frosting</data>
+  <data key="d4">ingredient_spec</data>
+  <data key="d5">{'absolute_quantity': None, 'file_links': [], 'labels': ['flavoring'], 'mass_fraction': {'nominal': 0.6387, 'type': 'nominal_real', 'units': 'dimensionless'}, 'material': {'id': 'powdered-sugar', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'name': 'powdered sugar', 'notes': None, 'number_fraction': None, 'process': {'id': 'mixing-frosting', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['raw material', 'sweetener', 'dry-goods'], 'type': 'ingredient_spec', 'uids': {'citrine-demo': 'powdered-sugar--mixing-frosting'}, 'volume_fraction': None}</data>
+</node>
+<node id="Powdered Sugar [powdered-sugar, material_spec]">
+  <data key="d1">green</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">powdered-sugar</data>
+  <data key="d4">material_spec</data>
+  <data key="d5">{'file_links': [], 'name': 'Powdered Sugar', 'notes': 'Granulated sugar mixed with corn starch', 'process': {'id': 'procuring-powdered-sugar', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'properties': [], 'tags': ['raw material', 'sweetener', 'dry-goods'], 'template': {'id': 'generic-material', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'material_spec', 'uids': {'citrine-demo': 'powdered-sugar'}}</data>
+</node>
+<node id="Procuring Powdered Sugar [procuring-powdered-sugar, process_spec]">
+  <data key="d1">red</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">procuring-powdered-sugar</data>
+  <data key="d4">process_spec</data>
+  <data key="d5">{'conditions': [], 'file_links': [], 'name': 'Procuring Powdered Sugar', 'notes': 'Purchasing powdered sugar', 'parameters': [], 'tags': ['purchase::dry-goods'], 'template': {'id': 'procuring', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'process_spec', 'uids': {'citrine-demo': 'procuring-powdered-sugar'}}</data>
+</node>
+<node id="chocolate [chocolate--mixing-frosting, ingredient_spec]">
+  <data key="d1">blue</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">chocolate--mixing-frosting</data>
+  <data key="d4">ingredient_spec</data>
+  <data key="d5">{'absolute_quantity': None, 'file_links': [], 'labels': ['flavoring'], 'mass_fraction': {'nominal': 0.1132, 'type': 'nominal_real', 'units': 'dimensionless'}, 'material': {'id': 'chocolate', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'name': 'chocolate', 'notes': None, 'number_fraction': None, 'process': {'id': 'mixing-frosting', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['raw material'], 'type': 'ingredient_spec', 'uids': {'citrine-demo': 'chocolate--mixing-frosting'}, 'volume_fraction': None}</data>
+</node>
+<node id="Chocolate [chocolate, material_spec]">
+  <data key="d1">green</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">chocolate</data>
+  <data key="d4">material_spec</data>
+  <data key="d5">{'file_links': [], 'name': 'Chocolate', 'notes': '', 'process': {'id': 'procuring-chocolate', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'properties': [], 'tags': ['raw material'], 'template': {'id': 'generic-material', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'material_spec', 'uids': {'citrine-demo': 'chocolate'}}</data>
+</node>
+<node id="Procuring Chocolate [procuring-chocolate, process_spec]">
+  <data key="d1">red</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">procuring-chocolate</data>
+  <data key="d4">process_spec</data>
+  <data key="d5">{'conditions': [], 'file_links': [], 'name': 'Procuring Chocolate', 'notes': 'Purchasing chocolate', 'parameters': [], 'tags': ['purchase::dry-goods'], 'template': {'id': 'procuring', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'process_spec', 'uids': {'citrine-demo': 'procuring-chocolate'}}</data>
+</node>
+<node id="milk [milk--mixing-frosting, ingredient_spec]">
+  <data key="d1">blue</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">milk--mixing-frosting</data>
+  <data key="d4">ingredient_spec</data>
+  <data key="d5">{'absolute_quantity': None, 'file_links': [], 'labels': [], 'mass_fraction': {'nominal': 0.0816, 'type': 'nominal_real', 'units': 'dimensionless'}, 'material': {'id': 'milk', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'name': 'milk', 'notes': None, 'number_fraction': None, 'process': {'id': 'mixing-frosting', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['raw material', 'produce', 'dairy'], 'type': 'ingredient_spec', 'uids': {'citrine-demo': 'milk--mixing-frosting'}, 'volume_fraction': None}</data>
+</node>
+<node id="vanilla [vanilla--mixing-frosting, ingredient_spec]">
+  <data key="d1">blue</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">vanilla--mixing-frosting</data>
+  <data key="d4">ingredient_spec</data>
+  <data key="d5">{'absolute_quantity': None, 'file_links': [], 'labels': ['flavoring'], 'mass_fraction': {'nominal': 0.0231, 'type': 'nominal_real', 'units': 'dimensionless'}, 'material': {'id': 'vanilla', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'name': 'vanilla', 'notes': None, 'number_fraction': None, 'process': {'id': 'mixing-frosting', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['raw material', 'seasoning'], 'type': 'ingredient_spec', 'uids': {'citrine-demo': 'vanilla--mixing-frosting'}, 'volume_fraction': None}</data>
+</node>
+<node id="butter [butter--mixing-frosting, ingredient_spec]">
+  <data key="d1">blue</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">butter--mixing-frosting</data>
+  <data key="d4">ingredient_spec</data>
+  <data key="d5">{'absolute_quantity': None, 'file_links': [], 'labels': ['shortening'], 'mass_fraction': {'nominal': 0.1434, 'type': 'nominal_real', 'units': 'dimensionless'}, 'material': {'id': 'butter', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'name': 'butter', 'notes': None, 'number_fraction': None, 'process': {'id': 'mixing-frosting', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['raw material', 'produce', 'shortening', 'dairy'], 'type': 'ingredient_spec', 'uids': {'citrine-demo': 'butter--mixing-frosting'}, 'volume_fraction': None}</data>
+</node>
+<node id="frosting [frosting--icing-cake-d576929a6c518c058db29324c13db0c3, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">frosting--icing-cake-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">{'absolute_quantity': {'mean': 0.7742382272965047, 'std': 0.03755, 'type': 'normal_real', 'units': 'kilogram'}, 'file_links': [], 'labels': ['coating'], 'mass_fraction': None, 'material': {'id': 'frosting-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'name': 'frosting', 'notes': 'The spec says "Seems like a lot of frosting"', 'number_fraction': None, 'process': {'id': 'icing-cake-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'spec': {'id': 'frosting--icing-cake', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['frosting::chocolate', 'topping::chocolate'], 'type': 'ingredient_run', 'uids': {'citrine-demo': 'frosting--icing-cake-d576929a6c518c058db29324c13db0c3'}, 'volume_fraction': None}</data>
+</node>
+<node id="Frosting [frosting-d576929a6c518c058db29324c13db0c3, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">frosting-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">material_run</data>
+  <data key="d5">{'file_links': [], 'name': 'Frosting', 'notes': 'The spec says "Chocolate frosting"', 'process': {'id': 'mixing-frosting-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'sample_type': 'unknown', 'spec': {'id': 'frosting', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['frosting::chocolate', 'topping::chocolate'], 'type': 'material_run', 'uids': {'citrine-demo': 'frosting-d576929a6c518c058db29324c13db0c3'}}</data>
+</node>
+<node id="Mixing Frosting [mixing-frosting-d576929a6c518c058db29324c13db0c3, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">mixing-frosting-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">process_run</data>
+  <data key="d5">{'conditions': [], 'file_links': [], 'name': 'Mixing Frosting', 'notes': 'The spec says "Combining ingredients to make a sweet frosting"', 'parameters': [], 'source': {'performed_by': 'gwash', 'performed_date': '2015-03-14', 'type': 'performed_source'}, 'spec': {'id': 'mixing-frosting', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['mixing'], 'type': 'process_run', 'uids': {'citrine-demo': 'mixing-frosting-d576929a6c518c058db29324c13db0c3'}}</data>
+</node>
+<node id="Frosting Sweetness [sweetness--frosting-d576929a6c518c058db29324c13db0c3, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">sweetness--frosting-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">{'conditions': [], 'file_links': [], 'material': {'id': 'frosting-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'name': 'Frosting Sweetness', 'notes': None, 'parameters': [], 'properties': [{'file_links': [], 'name': 'Sweetness (Sucrose-basis)', 'notes': None, 'origin': 'measured', 'template': None, 'type': 'property', 'value': {'nominal': 1.7, 'type': 'nominal_real', 'units': 'dimensionless'}}], 'source': None, 'spec': {'id': 'sweetness', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': [], 'type': 'measurement_run', 'uids': {'citrine-demo': 'sweetness--frosting-d576929a6c518c058db29324c13db0c3'}}</data>
+</node>
+<node id="Sweetness [sweetness, measurement_spec]">
+  <data key="d1">purple</data>
+  <data key="d2">rectangle</data>
+  <data key="d3">sweetness</data>
+  <data key="d4">measurement_spec</data>
+  <data key="d5">{'conditions': [], 'file_links': [], 'name': 'Sweetness', 'notes': None, 'parameters': [], 'tags': [], 'template': None, 'type': 'measurement_spec', 'uids': {'citrine-demo': 'sweetness'}}</data>
+</node>
+<node id="Frosting Taste [taste--frosting-d576929a6c518c058db29324c13db0c3, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">taste--frosting-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">{'conditions': [], 'file_links': [], 'material': {'id': 'frosting-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'name': 'Frosting Taste', 'notes': None, 'parameters': [], 'properties': [{'file_links': [], 'name': 'Tastiness', 'notes': None, 'origin': 'measured', 'template': {'id': 'tastiness', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'property', 'value': {'nominal': 4, 'type': 'nominal_integer'}}], 'source': None, 'spec': {'id': 'taste', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': [], 'type': 'measurement_run', 'uids': {'citrine-demo': 'taste--frosting-d576929a6c518c058db29324c13db0c3'}}</data>
+</node>
+<node id="powdered sugar [powdered-sugar--mixing-frosting-d576929a6c518c058db29324c13db0c3, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">powdered-sugar--mixing-frosting-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">{'absolute_quantity': None, 'file_links': [], 'labels': ['flavoring'], 'mass_fraction': {'lower_bound': 0.5752450757806378, 'type': 'uniform_real', 'units': 'dimensionless', 'upper_bound': 0.6391150757806378}, 'material': {'id': 'powdered-sugar-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'name': 'powdered sugar', 'notes': None, 'number_fraction': None, 'process': {'id': 'mixing-frosting-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'spec': {'id': 'powdered-sugar--mixing-frosting', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['raw material', 'sweetener', 'dry-goods'], 'type': 'ingredient_run', 'uids': {'citrine-demo': 'powdered-sugar--mixing-frosting-d576929a6c518c058db29324c13db0c3'}, 'volume_fraction': None}</data>
+</node>
+<node id="A1 Powdered Sugar [powdered-sugar-d576929a6c518c058db29324c13db0c3, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">powdered-sugar-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">material_run</data>
+  <data key="d5">{'file_links': [], 'name': 'A1 Powdered Sugar', 'notes': 'The spec says "Granulated sugar mixed with corn starch"', 'process': {'id': 'procuring-powdered-sugar-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'sample_type': 'unknown', 'spec': {'id': 'powdered-sugar', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['raw material', 'sweetener', 'dry-goods'], 'type': 'material_run', 'uids': {'citrine-demo': 'powdered-sugar-d576929a6c518c058db29324c13db0c3'}}</data>
+</node>
+<node id="Procuring A1 Powdered Sugar [procuring-powdered-sugar-d576929a6c518c058db29324c13db0c3, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">procuring-powdered-sugar-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">process_run</data>
+  <data key="d5">{'conditions': [], 'file_links': [], 'name': 'Procuring A1 Powdered Sugar', 'notes': 'The spec says "Purchasing powdered sugar"', 'parameters': [], 'source': {'performed_by': 'hamilton', 'performed_date': '2015-02-17', 'type': 'performed_source'}, 'spec': {'id': 'procuring-powdered-sugar', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['purchase::dry-goods'], 'type': 'process_run', 'uids': {'citrine-demo': 'procuring-powdered-sugar-d576929a6c518c058db29324c13db0c3'}}</data>
+</node>
+<node id="Sugar elemental analysis [elemental analysis--powdered-sugar-d576929a6c518c058db29324c13db0c3, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">elemental analysis--powdered-sugar-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">{'conditions': [{'file_links': [], 'name': 'Sample Mass', 'notes': None, 'origin': 'measured', 'template': {'id': 'sample-mass', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'condition', 'value': {'mean': 99.24965232570642, 'std': 1.5, 'type': 'normal_real', 'units': 'milligram'}}], 'file_links': [], 'material': {'id': 'powdered-sugar-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'name': 'Sugar elemental analysis', 'notes': None, 'parameters': [], 'properties': [{'file_links': [], 'name': 'Composition', 'notes': None, 'origin': 'measured', 'template': {'id': 'chemical-formula', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'type': 'property', 'value': {'formula': 'C11.996H21.995O10.997S0.00015', 'type': 'empirical_formula'}}], 'source': None, 'spec': {'id': 'elemental analysis', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': [], 'type': 'measurement_run', 'uids': {'citrine-demo': 'elemental analysis--powdered-sugar-d576929a6c518c058db29324c13db0c3'}}</data>
+</node>
+<node id="chocolate [chocolate--mixing-frosting-d576929a6c518c058db29324c13db0c3, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">chocolate--mixing-frosting-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">{'absolute_quantity': None, 'file_links': [], 'labels': ['flavoring'], 'mass_fraction': {'lower_bound': 0.1097829379512667, 'type': 'uniform_real', 'units': 'dimensionless', 'upper_bound': 0.12110293795126671}, 'material': {'id': 'chocolate-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'name': 'chocolate', 'notes': None, 'number_fraction': None, 'process': {'id': 'mixing-frosting-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'spec': {'id': 'chocolate--mixing-frosting', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['raw material'], 'type': 'ingredient_run', 'uids': {'citrine-demo': 'chocolate--mixing-frosting-d576929a6c518c058db29324c13db0c3'}, 'volume_fraction': None}</data>
+</node>
+<node id="Reliable Chocolate [chocolate-d576929a6c518c058db29324c13db0c3, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">chocolate-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">material_run</data>
+  <data key="d5">{'file_links': [], 'name': 'Reliable Chocolate', 'notes': None, 'process': {'id': 'procuring-chocolate-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'sample_type': 'unknown', 'spec': {'id': 'chocolate', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['raw material'], 'type': 'material_run', 'uids': {'citrine-demo': 'chocolate-d576929a6c518c058db29324c13db0c3'}}</data>
+</node>
+<node id="Procuring Reliable Chocolate [procuring-chocolate-d576929a6c518c058db29324c13db0c3, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">procuring-chocolate-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">process_run</data>
+  <data key="d5">{'conditions': [], 'file_links': [], 'name': 'Procuring Reliable Chocolate', 'notes': 'The spec says "Purchasing chocolate"', 'parameters': [], 'source': {'performed_by': 'hamilton', 'performed_date': '2015-02-17', 'type': 'performed_source'}, 'spec': {'id': 'procuring-chocolate', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['purchase::dry-goods'], 'type': 'process_run', 'uids': {'citrine-demo': 'procuring-chocolate-d576929a6c518c058db29324c13db0c3'}}</data>
+</node>
+<node id="milk [milk--mixing-frosting-d576929a6c518c058db29324c13db0c3, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">milk--mixing-frosting-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">{'absolute_quantity': None, 'file_links': [], 'labels': [], 'mass_fraction': {'lower_bound': 0.0757074301480406, 'type': 'uniform_real', 'units': 'dimensionless', 'upper_bound': 0.08386743014804059}, 'material': {'id': 'milk-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'name': 'milk', 'notes': None, 'number_fraction': None, 'process': {'id': 'mixing-frosting-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'spec': {'id': 'milk--mixing-frosting', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['raw material', 'produce', 'dairy'], 'type': 'ingredient_run', 'uids': {'citrine-demo': 'milk--mixing-frosting-d576929a6c518c058db29324c13db0c3'}, 'volume_fraction': None}</data>
+</node>
+<node id="vanilla [vanilla--mixing-frosting-d576929a6c518c058db29324c13db0c3, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">vanilla--mixing-frosting-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">{'absolute_quantity': None, 'file_links': [], 'labels': ['flavoring'], 'mass_fraction': {'lower_bound': 0.021287374790468525, 'type': 'uniform_real', 'units': 'dimensionless', 'upper_bound': 0.023597374790468525}, 'material': {'id': 'vanilla-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'name': 'vanilla', 'notes': None, 'number_fraction': None, 'process': {'id': 'mixing-frosting-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'spec': {'id': 'vanilla--mixing-frosting', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['raw material', 'seasoning'], 'type': 'ingredient_run', 'uids': {'citrine-demo': 'vanilla--mixing-frosting-d576929a6c518c058db29324c13db0c3'}, 'volume_fraction': None}</data>
+</node>
+<node id="butter [butter--mixing-frosting-d576929a6c518c058db29324c13db0c3, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">butter--mixing-frosting-d576929a6c518c058db29324c13db0c3</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">{'absolute_quantity': None, 'file_links': [], 'labels': ['shortening'], 'mass_fraction': {'lower_bound': 0.14000850580995353, 'type': 'uniform_real', 'units': 'dimensionless', 'upper_bound': 0.15434850580995355}, 'material': {'id': 'butter-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'name': 'butter', 'notes': None, 'number_fraction': None, 'process': {'id': 'mixing-frosting-d576929a6c518c058db29324c13db0c3', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'spec': {'id': 'butter--mixing-frosting', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': ['raw material', 'produce', 'shortening', 'dairy'], 'type': 'ingredient_run', 'uids': {'citrine-demo': 'butter--mixing-frosting-d576929a6c518c058db29324c13db0c3'}, 'volume_fraction': None}</data>
+</node>
+<edge source="Cake [cake-d576929a6c518c058db29324c13db0c3, material_run]" target="Cake [cake, material_spec]"/>
+<edge source="Icing Cake [icing-cake-d576929a6c518c058db29324c13db0c3, process_run]" target="Cake [cake-d576929a6c518c058db29324c13db0c3, material_run]"/>
+<edge source="Icing Cake [icing-cake-d576929a6c518c058db29324c13db0c3, process_run]" target="Icing Cake [icing-cake, process_spec]"/>
+<edge source="Cake [cake, material_spec]" target="Dessert [dessert, material_template]"/>
+<edge source="Final Appearance [appearance--cake-d576929a6c518c058db29324c13db0c3, measurement_run]" target="Cake [cake-d576929a6c518c058db29324c13db0c3, material_run]"/>
+<edge source="Final Appearance [appearance--cake-d576929a6c518c058db29324c13db0c3, measurement_run]" target="Appearance [appearance, measurement_spec]"/>
+<edge source="Final Taste [taste--cake-d576929a6c518c058db29324c13db0c3, measurement_run]" target="Cake [cake-d576929a6c518c058db29324c13db0c3, material_run]"/>
+<edge source="Final Taste [taste--cake-d576929a6c518c058db29324c13db0c3, measurement_run]" target="Taste [taste, measurement_spec]"/>
+<edge source="Taste [taste, measurement_spec]" target="Taste test [taste-test, measurement_template]"/>
+<edge source="Taste test [taste-test, measurement_template]" target="Tastiness [tastiness, property_template]"/>
+<edge source="Icing Cake [icing-cake, process_spec]" target="Icing [icing, process_template]"/>
+<edge source="Icing Cake [icing-cake, process_spec]" target="Cake [cake, material_spec]"/>
+<edge source="baked cake [baked-cake--icing-cake-d576929a6c518c058db29324c13db0c3, ingredient_run]" target="Icing Cake [icing-cake-d576929a6c518c058db29324c13db0c3, process_run]"/>
+<edge source="baked cake [baked-cake--icing-cake-d576929a6c518c058db29324c13db0c3, ingredient_run]" target="baked cake [baked-cake--icing-cake, ingredient_spec]"/>
+<edge source="Baked Cake [baked-cake-d576929a6c518c058db29324c13db0c3, material_run]" target="baked cake [baked-cake--icing-cake-d576929a6c518c058db29324c13db0c3, ingredient_run]"/>
+<edge source="Baked Cake [baked-cake-d576929a6c518c058db29324c13db0c3, material_run]" target="Baked Cake [baked-cake, material_spec]"/>
+<edge source="baked cake [baked-cake--icing-cake, ingredient_spec]" target="Icing Cake [icing-cake, process_spec]"/>
+<edge source="Baking Baked Cake [baking-baked-cake-d576929a6c518c058db29324c13db0c3, process_run]" target="Baked Cake [baked-cake-d576929a6c518c058db29324c13db0c3, material_run]"/>
+<edge source="Baking Baked Cake [baking-baked-cake-d576929a6c518c058db29324c13db0c3, process_run]" target="Baking Baked Cake [baking-baked-cake, process_spec]"/>
+<edge source="Baked Cake [baked-cake, material_spec]" target="Baked Good [baked-good, material_template]"/>
+<edge source="Baked Cake [baked-cake, material_spec]" target="baked cake [baked-cake--icing-cake, ingredient_spec]"/>
+<edge source="Baking doneness [doneness--baked-cake-d576929a6c518c058db29324c13db0c3, measurement_run]" target="Baked Cake [baked-cake-d576929a6c518c058db29324c13db0c3, material_run]"/>
+<edge source="Baking doneness [doneness--baked-cake-d576929a6c518c058db29324c13db0c3, measurement_run]" target="Doneness test [doneness, measurement_template]"/>
+<edge source="Doneness test [doneness, measurement_template]" target="Doneness test [doneness, measurement_template]"/>
+<edge source="Doneness test [doneness, measurement_template]" target="Toothpick test [toothpick-test, property_template]"/>
+<edge source="Doneness test [doneness, measurement_template]" target="Baked color [color, property_template]"/>
+<edge source="Baking Baked Cake [baking-baked-cake, process_spec]" target="Baking [baking, process_template]"/>
+<edge source="Baking Baked Cake [baking-baked-cake, process_spec]" target="Baked Cake [baked-cake, material_spec]"/>
+<edge source="batter [batter--baking-baked-cake-d576929a6c518c058db29324c13db0c3, ingredient_run]" target="Baking Baked Cake [baking-baked-cake-d576929a6c518c058db29324c13db0c3, process_run]"/>
+<edge source="batter [batter--baking-baked-cake-d576929a6c518c058db29324c13db0c3, ingredient_run]" target="batter [batter--baking-baked-cake, ingredient_spec]"/>
+<edge source="Batter [batter-d576929a6c518c058db29324c13db0c3, material_run]" target="batter [batter--baking-baked-cake-d576929a6c518c058db29324c13db0c3, ingredient_run]"/>
+<edge source="Batter [batter-d576929a6c518c058db29324c13db0c3, material_run]" target="Batter [batter, material_spec]"/>
+<edge source="batter [batter--baking-baked-cake, ingredient_spec]" target="Baking Baked Cake [baking-baked-cake, process_spec]"/>
+<edge source="Mixing Batter [mixing-batter-d576929a6c518c058db29324c13db0c3, process_run]" target="Batter [batter-d576929a6c518c058db29324c13db0c3, material_run]"/>
+<edge source="Mixing Batter [mixing-batter-d576929a6c518c058db29324c13db0c3, process_run]" target="Mixing Batter [mixing-batter, process_spec]"/>
+<edge source="Batter [batter, material_spec]" target="Generic [generic-material, material_template]"/>
+<edge source="Batter [batter, material_spec]" target="batter [batter--baking-baked-cake, ingredient_spec]"/>
+<edge source="Mixing Batter [mixing-batter, process_spec]" target="Mixing [mixing, process_template]"/>
+<edge source="Mixing Batter [mixing-batter, process_spec]" target="Batter [batter, material_spec]"/>
+<edge source="milk [milk--mixing-batter-d576929a6c518c058db29324c13db0c3, ingredient_run]" target="Mixing Batter [mixing-batter-d576929a6c518c058db29324c13db0c3, process_run]"/>
+<edge source="milk [milk--mixing-batter-d576929a6c518c058db29324c13db0c3, ingredient_run]" target="milk [milk--mixing-batter, ingredient_spec]"/>
+<edge source="Greenbrook Milk [milk-d576929a6c518c058db29324c13db0c3, material_run]" target="milk [milk--mixing-batter-d576929a6c518c058db29324c13db0c3, ingredient_run]"/>
+<edge source="Greenbrook Milk [milk-d576929a6c518c058db29324c13db0c3, material_run]" target="Milk [milk, material_spec]"/>
+<edge source="Greenbrook Milk [milk-d576929a6c518c058db29324c13db0c3, material_run]" target="milk [milk--mixing-frosting-d576929a6c518c058db29324c13db0c3, ingredient_run]"/>
+<edge source="milk [milk--mixing-batter, ingredient_spec]" target="Mixing Batter [mixing-batter, process_spec]"/>
+<edge source="Procuring Greenbrook Milk [procuring-milk-d576929a6c518c058db29324c13db0c3, process_run]" target="Greenbrook Milk [milk-d576929a6c518c058db29324c13db0c3, material_run]"/>
+<edge source="Procuring Greenbrook Milk [procuring-milk-d576929a6c518c058db29324c13db0c3, process_run]" target="Procuring Milk [procuring-milk, process_spec]"/>
+<edge source="Milk [milk, material_spec]" target="Generic [generic-material, material_template]"/>
+<edge source="Milk [milk, material_spec]" target="milk [milk--mixing-batter, ingredient_spec]"/>
+<edge source="Milk [milk, material_spec]" target="milk [milk--mixing-frosting, ingredient_spec]"/>
+<edge source="Procuring Milk [procuring-milk, process_spec]" target="Procuring [procuring, process_template]"/>
+<edge source="Procuring Milk [procuring-milk, process_spec]" target="Milk [milk, material_spec]"/>
+<edge source="Mixing [mixing, process_template]" target="Mixer speed setting [mixer-speed-setting, parameter_template]"/>
+<edge source="dry ingredients [dry-ingredients--mixing-batter, ingredient_spec]" target="Mixing Batter [mixing-batter, process_spec]"/>
+<edge source="Dry Ingredients [dry-ingredients, material_spec]" target="dry ingredients [dry-ingredients--mixing-batter, ingredient_spec]"/>
+<edge source="Dry Ingredients [dry-ingredients, material_spec]" target="Generic [generic-material, material_template]"/>
+<edge source="Mixing Dry Ingredients [mixing-dry-ingredients, process_spec]" target="Dry Ingredients [dry-ingredients, material_spec]"/>
+<edge source="Mixing Dry Ingredients [mixing-dry-ingredients, process_spec]" target="Mixing [mixing, process_template]"/>
+<edge source="salt [salt--mixing-dry-ingredients, ingredient_spec]" target="Mixing Dry Ingredients [mixing-dry-ingredients, process_spec]"/>
+<edge source="Salt [salt, material_spec]" target="salt [salt--mixing-dry-ingredients, ingredient_spec]"/>
+<edge source="Salt [salt, material_spec]" target="Formulaic Material [formulaic-material, material_template]"/>
+<edge source="Procuring Salt [procuring-salt, process_spec]" target="Salt [salt, material_spec]"/>
+<edge source="Procuring Salt [procuring-salt, process_spec]" target="Procuring [procuring, process_template]"/>
+<edge source="Formulaic Material [formulaic-material, material_template]" target="Chemical Formula [chemical-formula, property_template]"/>
+<edge source="Formulaic Material [formulaic-material, material_template]" target="Molecular Structure [molecular-structure, property_template]"/>
+<edge source="baking powder [baking-powder--mixing-dry-ingredients, ingredient_spec]" target="Mixing Dry Ingredients [mixing-dry-ingredients, process_spec]"/>
+<edge source="Baking Powder [baking-powder, material_spec]" target="baking powder [baking-powder--mixing-dry-ingredients, ingredient_spec]"/>
+<edge source="Baking Powder [baking-powder, material_spec]" target="Generic [generic-material, material_template]"/>
+<edge source="Procuring Baking Powder [procuring-baking-powder, process_spec]" target="Baking Powder [baking-powder, material_spec]"/>
+<edge source="Procuring Baking Powder [procuring-baking-powder, process_spec]" target="Procuring [procuring, process_template]"/>
+<edge source="flour [flour--mixing-dry-ingredients, ingredient_spec]" target="Mixing Dry Ingredients [mixing-dry-ingredients, process_spec]"/>
+<edge source="Flour [flour, material_spec]" target="flour [flour--mixing-dry-ingredients, ingredient_spec]"/>
+<edge source="Flour [flour, material_spec]" target="Nutritional Material [nutritional-material, material_template]"/>
+<edge source="Procuring Flour [procuring-flour, process_spec]" target="Flour [flour, material_spec]"/>
+<edge source="Procuring Flour [procuring-flour, process_spec]" target="Procuring [procuring, process_template]"/>
+<edge source="Nutritional Material [nutritional-material, material_template]" target="Nutritional Information [nutritional-information, property_template]"/>
+<edge source="wet ingredients [wet-ingredients--mixing-batter, ingredient_spec]" target="Mixing Batter [mixing-batter, process_spec]"/>
+<edge source="Wet Ingredients [wet-ingredients, material_spec]" target="wet ingredients [wet-ingredients--mixing-batter, ingredient_spec]"/>
+<edge source="Wet Ingredients [wet-ingredients, material_spec]" target="Generic [generic-material, material_template]"/>
+<edge source="Mixing Wet Ingredients [mixing-wet-ingredients, process_spec]" target="Wet Ingredients [wet-ingredients, material_spec]"/>
+<edge source="Mixing Wet Ingredients [mixing-wet-ingredients, process_spec]" target="Mixing [mixing, process_template]"/>
+<edge source="vanilla [vanilla--mixing-wet-ingredients, ingredient_spec]" target="Mixing Wet Ingredients [mixing-wet-ingredients, process_spec]"/>
+<edge source="Vanilla [vanilla, material_spec]" target="vanilla [vanilla--mixing-wet-ingredients, ingredient_spec]"/>
+<edge source="Vanilla [vanilla, material_spec]" target="Generic [generic-material, material_template]"/>
+<edge source="Vanilla [vanilla, material_spec]" target="vanilla [vanilla--mixing-frosting, ingredient_spec]"/>
+<edge source="Procuring Vanilla [procuring-vanilla, process_spec]" target="Vanilla [vanilla, material_spec]"/>
+<edge source="Procuring Vanilla [procuring-vanilla, process_spec]" target="Procuring [procuring, process_template]"/>
+<edge source="eggs [eggs--mixing-wet-ingredients, ingredient_spec]" target="Mixing Wet Ingredients [mixing-wet-ingredients, process_spec]"/>
+<edge source="Eggs [eggs, material_spec]" target="eggs [eggs--mixing-wet-ingredients, ingredient_spec]"/>
+<edge source="Eggs [eggs, material_spec]" target="Generic [generic-material, material_template]"/>
+<edge source="Procuring Eggs [procuring-eggs, process_spec]" target="Eggs [eggs, material_spec]"/>
+<edge source="Procuring Eggs [procuring-eggs, process_spec]" target="Procuring [procuring, process_template]"/>
+<edge source="butter [butter--mixing-wet-ingredients, ingredient_spec]" target="Mixing Wet Ingredients [mixing-wet-ingredients, process_spec]"/>
+<edge source="Butter [butter, material_spec]" target="butter [butter--mixing-wet-ingredients, ingredient_spec]"/>
+<edge source="Butter [butter, material_spec]" target="Generic [generic-material, material_template]"/>
+<edge source="Butter [butter, material_spec]" target="butter [butter--mixing-frosting, ingredient_spec]"/>
+<edge source="Procuring Butter [procuring-butter, process_spec]" target="Butter [butter, material_spec]"/>
+<edge source="Procuring Butter [procuring-butter, process_spec]" target="Procuring [procuring, process_template]"/>
+<edge source="sugar [sugar--mixing-wet-ingredients, ingredient_spec]" target="Mixing Wet Ingredients [mixing-wet-ingredients, process_spec]"/>
+<edge source="Sugar [sugar, material_spec]" target="sugar [sugar--mixing-wet-ingredients, ingredient_spec]"/>
+<edge source="Sugar [sugar, material_spec]" target="Formulaic Material [formulaic-material, material_template]"/>
+<edge source="Procuring Sugar [procuring-sugar, process_spec]" target="Sugar [sugar, material_spec]"/>
+<edge source="Procuring Sugar [procuring-sugar, process_spec]" target="Procuring [procuring, process_template]"/>
+<edge source="dry ingredients [dry-ingredients--mixing-batter-d576929a6c518c058db29324c13db0c3, ingredient_run]" target="Mixing Batter [mixing-batter-d576929a6c518c058db29324c13db0c3, process_run]"/>
+<edge source="dry ingredients [dry-ingredients--mixing-batter-d576929a6c518c058db29324c13db0c3, ingredient_run]" target="dry ingredients [dry-ingredients--mixing-batter, ingredient_spec]"/>
+<edge source="Dry Ingredients [dry-ingredients-d576929a6c518c058db29324c13db0c3, material_run]" target="dry ingredients [dry-ingredients--mixing-batter-d576929a6c518c058db29324c13db0c3, ingredient_run]"/>
+<edge source="Dry Ingredients [dry-ingredients-d576929a6c518c058db29324c13db0c3, material_run]" target="Dry Ingredients [dry-ingredients, material_spec]"/>
+<edge source="Mixing Dry Ingredients [mixing-dry-ingredients-d576929a6c518c058db29324c13db0c3, process_run]" target="Dry Ingredients [dry-ingredients-d576929a6c518c058db29324c13db0c3, material_run]"/>
+<edge source="Mixing Dry Ingredients [mixing-dry-ingredients-d576929a6c518c058db29324c13db0c3, process_run]" target="Mixing Dry Ingredients [mixing-dry-ingredients, process_spec]"/>
+<edge source="salt [salt--mixing-dry-ingredients-d576929a6c518c058db29324c13db0c3, ingredient_run]" target="Mixing Dry Ingredients [mixing-dry-ingredients-d576929a6c518c058db29324c13db0c3, process_run]"/>
+<edge source="salt [salt--mixing-dry-ingredients-d576929a6c518c058db29324c13db0c3, ingredient_run]" target="salt [salt--mixing-dry-ingredients, ingredient_spec]"/>
+<edge source="Acme Salt [salt-d576929a6c518c058db29324c13db0c3, material_run]" target="salt [salt--mixing-dry-ingredients-d576929a6c518c058db29324c13db0c3, ingredient_run]"/>
+<edge source="Acme Salt [salt-d576929a6c518c058db29324c13db0c3, material_run]" target="Salt [salt, material_spec]"/>
+<edge source="Procuring Acme Salt [procuring-salt-d576929a6c518c058db29324c13db0c3, process_run]" target="Acme Salt [salt-d576929a6c518c058db29324c13db0c3, material_run]"/>
+<edge source="Procuring Acme Salt [procuring-salt-d576929a6c518c058db29324c13db0c3, process_run]" target="Procuring Salt [procuring-salt, process_spec]"/>
+<edge source="Salt elemental analysis [elemental analysis--salt-d576929a6c518c058db29324c13db0c3, measurement_run]" target="Acme Salt [salt-d576929a6c518c058db29324c13db0c3, material_run]"/>
+<edge source="Salt elemental analysis [elemental analysis--salt-d576929a6c518c058db29324c13db0c3, measurement_run]" target="Elemental analysis [elemental analysis, measurement_spec]"/>
+<edge source="Elemental analysis [elemental analysis, measurement_spec]" target="Elemental Analysis [elemental-analysis, measurement_template]"/>
+<edge source="Elemental Analysis [elemental-analysis, measurement_template]" target="Expected Sample Mass [expected-sample-mass, parameter_template]"/>
+<edge source="Elemental Analysis [elemental-analysis, measurement_template]" target="Sample Mass [sample-mass, condition_template]"/>
+<edge source="Elemental Analysis [elemental-analysis, measurement_template]" target="Chemical Formula [chemical-formula, property_template]"/>
+<edge source="baking powder [baking-powder--mixing-dry-ingredients-d576929a6c518c058db29324c13db0c3, ingredient_run]" target="Mixing Dry Ingredients [mixing-dry-ingredients-d576929a6c518c058db29324c13db0c3, process_run]"/>
+<edge source="baking powder [baking-powder--mixing-dry-ingredients-d576929a6c518c058db29324c13db0c3, ingredient_run]" target="baking powder [baking-powder--mixing-dry-ingredients, ingredient_spec]"/>
+<edge source="Acme Baking Powder [baking-powder-d576929a6c518c058db29324c13db0c3, material_run]" target="baking powder [baking-powder--mixing-dry-ingredients-d576929a6c518c058db29324c13db0c3, ingredient_run]"/>
+<edge source="Acme Baking Powder [baking-powder-d576929a6c518c058db29324c13db0c3, material_run]" target="Baking Powder [baking-powder, material_spec]"/>
+<edge source="Procuring Acme Baking Powder [procuring-baking-powder-d576929a6c518c058db29324c13db0c3, process_run]" target="Acme Baking Powder [baking-powder-d576929a6c518c058db29324c13db0c3, material_run]"/>
+<edge source="Procuring Acme Baking Powder [procuring-baking-powder-d576929a6c518c058db29324c13db0c3, process_run]" target="Procuring Baking Powder [procuring-baking-powder, process_spec]"/>
+<edge source="flour [flour--mixing-dry-ingredients-d576929a6c518c058db29324c13db0c3, ingredient_run]" target="Mixing Dry Ingredients [mixing-dry-ingredients-d576929a6c518c058db29324c13db0c3, process_run]"/>
+<edge source="flour [flour--mixing-dry-ingredients-d576929a6c518c058db29324c13db0c3, ingredient_run]" target="flour [flour--mixing-dry-ingredients, ingredient_spec]"/>
+<edge source="A1 Flour [flour-d576929a6c518c058db29324c13db0c3, material_run]" target="flour [flour--mixing-dry-ingredients-d576929a6c518c058db29324c13db0c3, ingredient_run]"/>
+<edge source="A1 Flour [flour-d576929a6c518c058db29324c13db0c3, material_run]" target="Flour [flour, material_spec]"/>
+<edge source="Procuring A1 Flour [procuring-flour-d576929a6c518c058db29324c13db0c3, process_run]" target="A1 Flour [flour-d576929a6c518c058db29324c13db0c3, material_run]"/>
+<edge source="Procuring A1 Flour [procuring-flour-d576929a6c518c058db29324c13db0c3, process_run]" target="Procuring Flour [procuring-flour, process_spec]"/>
+<edge source="Flour nutritional analysis [nutritional analysis--flour-d576929a6c518c058db29324c13db0c3, measurement_run]" target="A1 Flour [flour-d576929a6c518c058db29324c13db0c3, material_run]"/>
+<edge source="Flour nutritional analysis [nutritional analysis--flour-d576929a6c518c058db29324c13db0c3, measurement_run]" target="Nutritional analysis [nutritional analysis, measurement_spec]"/>
+<edge source="Nutritional analysis [nutritional analysis, measurement_spec]" target="Nutritional Analysis [nutritional-analysis, measurement_template]"/>
+<edge source="Nutritional Analysis [nutritional-analysis, measurement_template]" target="Expected Sample Mass [expected-sample-mass, parameter_template]"/>
+<edge source="Nutritional Analysis [nutritional-analysis, measurement_template]" target="Sample Mass [sample-mass, condition_template]"/>
+<edge source="Nutritional Analysis [nutritional-analysis, measurement_template]" target="Nutritional Information [nutritional-information, property_template]"/>
+<edge source="wet ingredients [wet-ingredients--mixing-batter-d576929a6c518c058db29324c13db0c3, ingredient_run]" target="Mixing Batter [mixing-batter-d576929a6c518c058db29324c13db0c3, process_run]"/>
+<edge source="wet ingredients [wet-ingredients--mixing-batter-d576929a6c518c058db29324c13db0c3, ingredient_run]" target="wet ingredients [wet-ingredients--mixing-batter, ingredient_spec]"/>
+<edge source="Wet Ingredients [wet-ingredients-d576929a6c518c058db29324c13db0c3, material_run]" target="wet ingredients [wet-ingredients--mixing-batter-d576929a6c518c058db29324c13db0c3, ingredient_run]"/>
+<edge source="Wet Ingredients [wet-ingredients-d576929a6c518c058db29324c13db0c3, material_run]" target="Wet Ingredients [wet-ingredients, material_spec]"/>
+<edge source="Mixing Wet Ingredients [mixing-wet-ingredients-d576929a6c518c058db29324c13db0c3, process_run]" target="Wet Ingredients [wet-ingredients-d576929a6c518c058db29324c13db0c3, material_run]"/>
+<edge source="Mixing Wet Ingredients [mixing-wet-ingredients-d576929a6c518c058db29324c13db0c3, process_run]" target="Mixing Wet Ingredients [mixing-wet-ingredients, process_spec]"/>
+<edge source="vanilla [vanilla--mixing-wet-ingredients-d576929a6c518c058db29324c13db0c3, ingredient_run]" target="Mixing Wet Ingredients [mixing-wet-ingredients-d576929a6c518c058db29324c13db0c3, process_run]"/>
+<edge source="vanilla [vanilla--mixing-wet-ingredients-d576929a6c518c058db29324c13db0c3, ingredient_run]" target="vanilla [vanilla--mixing-wet-ingredients, ingredient_spec]"/>
+<edge source="A1 Vanilla [vanilla-d576929a6c518c058db29324c13db0c3, material_run]" target="vanilla [vanilla--mixing-wet-ingredients-d576929a6c518c058db29324c13db0c3, ingredient_run]"/>
+<edge source="A1 Vanilla [vanilla-d576929a6c518c058db29324c13db0c3, material_run]" target="Vanilla [vanilla, material_spec]"/>
+<edge source="A1 Vanilla [vanilla-d576929a6c518c058db29324c13db0c3, material_run]" target="vanilla [vanilla--mixing-frosting-d576929a6c518c058db29324c13db0c3, ingredient_run]"/>
+<edge source="Procuring A1 Vanilla [procuring-vanilla-d576929a6c518c058db29324c13db0c3, process_run]" target="A1 Vanilla [vanilla-d576929a6c518c058db29324c13db0c3, material_run]"/>
+<edge source="Procuring A1 Vanilla [procuring-vanilla-d576929a6c518c058db29324c13db0c3, process_run]" target="Procuring Vanilla [procuring-vanilla, process_spec]"/>
+<edge source="eggs [eggs--mixing-wet-ingredients-d576929a6c518c058db29324c13db0c3, ingredient_run]" target="Mixing Wet Ingredients [mixing-wet-ingredients-d576929a6c518c058db29324c13db0c3, process_run]"/>
+<edge source="eggs [eggs--mixing-wet-ingredients-d576929a6c518c058db29324c13db0c3, ingredient_run]" target="eggs [eggs--mixing-wet-ingredients, ingredient_spec]"/>
+<edge source="Greenbrook Eggs [eggs-d576929a6c518c058db29324c13db0c3, material_run]" target="eggs [eggs--mixing-wet-ingredients-d576929a6c518c058db29324c13db0c3, ingredient_run]"/>
+<edge source="Greenbrook Eggs [eggs-d576929a6c518c058db29324c13db0c3, material_run]" target="Eggs [eggs, material_spec]"/>
+<edge source="Procuring Greenbrook Eggs [procuring-eggs-d576929a6c518c058db29324c13db0c3, process_run]" target="Greenbrook Eggs [eggs-d576929a6c518c058db29324c13db0c3, material_run]"/>
+<edge source="Procuring Greenbrook Eggs [procuring-eggs-d576929a6c518c058db29324c13db0c3, process_run]" target="Procuring Eggs [procuring-eggs, process_spec]"/>
+<edge source="butter [butter--mixing-wet-ingredients-d576929a6c518c058db29324c13db0c3, ingredient_run]" target="Mixing Wet Ingredients [mixing-wet-ingredients-d576929a6c518c058db29324c13db0c3, process_run]"/>
+<edge source="butter [butter--mixing-wet-ingredients-d576929a6c518c058db29324c13db0c3, ingredient_run]" target="butter [butter--mixing-wet-ingredients, ingredient_spec]"/>
+<edge source="Fresh Farm Butter [butter-d576929a6c518c058db29324c13db0c3, material_run]" target="butter [butter--mixing-wet-ingredients-d576929a6c518c058db29324c13db0c3, ingredient_run]"/>
+<edge source="Fresh Farm Butter [butter-d576929a6c518c058db29324c13db0c3, material_run]" target="Butter [butter, material_spec]"/>
+<edge source="Fresh Farm Butter [butter-d576929a6c518c058db29324c13db0c3, material_run]" target="butter [butter--mixing-frosting-d576929a6c518c058db29324c13db0c3, ingredient_run]"/>
+<edge source="Procuring Fresh Farm Butter [procuring-butter-d576929a6c518c058db29324c13db0c3, process_run]" target="Fresh Farm Butter [butter-d576929a6c518c058db29324c13db0c3, material_run]"/>
+<edge source="Procuring Fresh Farm Butter [procuring-butter-d576929a6c518c058db29324c13db0c3, process_run]" target="Procuring Butter [procuring-butter, process_spec]"/>
+<edge source="sugar [sugar--mixing-wet-ingredients-d576929a6c518c058db29324c13db0c3, ingredient_run]" target="Mixing Wet Ingredients [mixing-wet-ingredients-d576929a6c518c058db29324c13db0c3, process_run]"/>
+<edge source="sugar [sugar--mixing-wet-ingredients-d576929a6c518c058db29324c13db0c3, ingredient_run]" target="sugar [sugar--mixing-wet-ingredients, ingredient_spec]"/>
+<edge source="Reliable Sugar [sugar-d576929a6c518c058db29324c13db0c3, material_run]" target="sugar [sugar--mixing-wet-ingredients-d576929a6c518c058db29324c13db0c3, ingredient_run]"/>
+<edge source="Reliable Sugar [sugar-d576929a6c518c058db29324c13db0c3, material_run]" target="Sugar [sugar, material_spec]"/>
+<edge source="Procuring Reliable Sugar [procuring-sugar-d576929a6c518c058db29324c13db0c3, process_run]" target="Reliable Sugar [sugar-d576929a6c518c058db29324c13db0c3, material_run]"/>
+<edge source="Procuring Reliable Sugar [procuring-sugar-d576929a6c518c058db29324c13db0c3, process_run]" target="Procuring Sugar [procuring-sugar, process_spec]"/>
+<edge source="Baking [baking, process_template]" target="Oven temperature setting [oven-temperature-setting, parameter_template]"/>
+<edge source="Baking [baking, process_template]" target="Oven temperature [oven-temperature, condition_template]"/>
+<edge source="Baked Good [baked-good, material_template]" target="Toothpick test [toothpick-test, property_template]"/>
+<edge source="Baked Good [baked-good, material_template]" target="Baked color [color, property_template]"/>
+<edge source="frosting [frosting--icing-cake, ingredient_spec]" target="Icing Cake [icing-cake, process_spec]"/>
+<edge source="Frosting [frosting, material_spec]" target="frosting [frosting--icing-cake, ingredient_spec]"/>
+<edge source="Frosting [frosting, material_spec]" target="Dessert [dessert, material_template]"/>
+<edge source="Mixing Frosting [mixing-frosting, process_spec]" target="Frosting [frosting, material_spec]"/>
+<edge source="Mixing Frosting [mixing-frosting, process_spec]" target="Mixing [mixing, process_template]"/>
+<edge source="Dessert [dessert, material_template]" target="Tastiness [tastiness, property_template]"/>
+<edge source="powdered sugar [powdered-sugar--mixing-frosting, ingredient_spec]" target="Mixing Frosting [mixing-frosting, process_spec]"/>
+<edge source="Powdered Sugar [powdered-sugar, material_spec]" target="powdered sugar [powdered-sugar--mixing-frosting, ingredient_spec]"/>
+<edge source="Powdered Sugar [powdered-sugar, material_spec]" target="Generic [generic-material, material_template]"/>
+<edge source="Procuring Powdered Sugar [procuring-powdered-sugar, process_spec]" target="Powdered Sugar [powdered-sugar, material_spec]"/>
+<edge source="Procuring Powdered Sugar [procuring-powdered-sugar, process_spec]" target="Procuring [procuring, process_template]"/>
+<edge source="chocolate [chocolate--mixing-frosting, ingredient_spec]" target="Mixing Frosting [mixing-frosting, process_spec]"/>
+<edge source="Chocolate [chocolate, material_spec]" target="chocolate [chocolate--mixing-frosting, ingredient_spec]"/>
+<edge source="Chocolate [chocolate, material_spec]" target="Generic [generic-material, material_template]"/>
+<edge source="Procuring Chocolate [procuring-chocolate, process_spec]" target="Chocolate [chocolate, material_spec]"/>
+<edge source="Procuring Chocolate [procuring-chocolate, process_spec]" target="Procuring [procuring, process_template]"/>
+<edge source="milk [milk--mixing-frosting, ingredient_spec]" target="Mixing Frosting [mixing-frosting, process_spec]"/>
+<edge source="vanilla [vanilla--mixing-frosting, ingredient_spec]" target="Mixing Frosting [mixing-frosting, process_spec]"/>
+<edge source="butter [butter--mixing-frosting, ingredient_spec]" target="Mixing Frosting [mixing-frosting, process_spec]"/>
+<edge source="frosting [frosting--icing-cake-d576929a6c518c058db29324c13db0c3, ingredient_run]" target="Icing Cake [icing-cake-d576929a6c518c058db29324c13db0c3, process_run]"/>
+<edge source="frosting [frosting--icing-cake-d576929a6c518c058db29324c13db0c3, ingredient_run]" target="frosting [frosting--icing-cake, ingredient_spec]"/>
+<edge source="Frosting [frosting-d576929a6c518c058db29324c13db0c3, material_run]" target="frosting [frosting--icing-cake-d576929a6c518c058db29324c13db0c3, ingredient_run]"/>
+<edge source="Frosting [frosting-d576929a6c518c058db29324c13db0c3, material_run]" target="Frosting [frosting, material_spec]"/>
+<edge source="Mixing Frosting [mixing-frosting-d576929a6c518c058db29324c13db0c3, process_run]" target="Frosting [frosting-d576929a6c518c058db29324c13db0c3, material_run]"/>
+<edge source="Mixing Frosting [mixing-frosting-d576929a6c518c058db29324c13db0c3, process_run]" target="Mixing Frosting [mixing-frosting, process_spec]"/>
+<edge source="Frosting Sweetness [sweetness--frosting-d576929a6c518c058db29324c13db0c3, measurement_run]" target="Frosting [frosting-d576929a6c518c058db29324c13db0c3, material_run]"/>
+<edge source="Frosting Sweetness [sweetness--frosting-d576929a6c518c058db29324c13db0c3, measurement_run]" target="Sweetness [sweetness, measurement_spec]"/>
+<edge source="Frosting Taste [taste--frosting-d576929a6c518c058db29324c13db0c3, measurement_run]" target="Frosting [frosting-d576929a6c518c058db29324c13db0c3, material_run]"/>
+<edge source="Frosting Taste [taste--frosting-d576929a6c518c058db29324c13db0c3, measurement_run]" target="Taste [taste, measurement_spec]"/>
+<edge source="powdered sugar [powdered-sugar--mixing-frosting-d576929a6c518c058db29324c13db0c3, ingredient_run]" target="Mixing Frosting [mixing-frosting-d576929a6c518c058db29324c13db0c3, process_run]"/>
+<edge source="powdered sugar [powdered-sugar--mixing-frosting-d576929a6c518c058db29324c13db0c3, ingredient_run]" target="powdered sugar [powdered-sugar--mixing-frosting, ingredient_spec]"/>
+<edge source="A1 Powdered Sugar [powdered-sugar-d576929a6c518c058db29324c13db0c3, material_run]" target="powdered sugar [powdered-sugar--mixing-frosting-d576929a6c518c058db29324c13db0c3, ingredient_run]"/>
+<edge source="A1 Powdered Sugar [powdered-sugar-d576929a6c518c058db29324c13db0c3, material_run]" target="Powdered Sugar [powdered-sugar, material_spec]"/>
+<edge source="Procuring A1 Powdered Sugar [procuring-powdered-sugar-d576929a6c518c058db29324c13db0c3, process_run]" target="A1 Powdered Sugar [powdered-sugar-d576929a6c518c058db29324c13db0c3, material_run]"/>
+<edge source="Procuring A1 Powdered Sugar [procuring-powdered-sugar-d576929a6c518c058db29324c13db0c3, process_run]" target="Procuring Powdered Sugar [procuring-powdered-sugar, process_spec]"/>
+<edge source="Sugar elemental analysis [elemental analysis--powdered-sugar-d576929a6c518c058db29324c13db0c3, measurement_run]" target="A1 Powdered Sugar [powdered-sugar-d576929a6c518c058db29324c13db0c3, material_run]"/>
+<edge source="Sugar elemental analysis [elemental analysis--powdered-sugar-d576929a6c518c058db29324c13db0c3, measurement_run]" target="Elemental analysis [elemental analysis, measurement_spec]"/>
+<edge source="chocolate [chocolate--mixing-frosting-d576929a6c518c058db29324c13db0c3, ingredient_run]" target="Mixing Frosting [mixing-frosting-d576929a6c518c058db29324c13db0c3, process_run]"/>
+<edge source="chocolate [chocolate--mixing-frosting-d576929a6c518c058db29324c13db0c3, ingredient_run]" target="chocolate [chocolate--mixing-frosting, ingredient_spec]"/>
+<edge source="Reliable Chocolate [chocolate-d576929a6c518c058db29324c13db0c3, material_run]" target="chocolate [chocolate--mixing-frosting-d576929a6c518c058db29324c13db0c3, ingredient_run]"/>
+<edge source="Reliable Chocolate [chocolate-d576929a6c518c058db29324c13db0c3, material_run]" target="Chocolate [chocolate, material_spec]"/>
+<edge source="Procuring Reliable Chocolate [procuring-chocolate-d576929a6c518c058db29324c13db0c3, process_run]" target="Reliable Chocolate [chocolate-d576929a6c518c058db29324c13db0c3, material_run]"/>
+<edge source="Procuring Reliable Chocolate [procuring-chocolate-d576929a6c518c058db29324c13db0c3, process_run]" target="Procuring Chocolate [procuring-chocolate, process_spec]"/>
+<edge source="milk [milk--mixing-frosting-d576929a6c518c058db29324c13db0c3, ingredient_run]" target="Mixing Frosting [mixing-frosting-d576929a6c518c058db29324c13db0c3, process_run]"/>
+<edge source="milk [milk--mixing-frosting-d576929a6c518c058db29324c13db0c3, ingredient_run]" target="milk [milk--mixing-frosting, ingredient_spec]"/>
+<edge source="vanilla [vanilla--mixing-frosting-d576929a6c518c058db29324c13db0c3, ingredient_run]" target="Mixing Frosting [mixing-frosting-d576929a6c518c058db29324c13db0c3, process_run]"/>
+<edge source="vanilla [vanilla--mixing-frosting-d576929a6c518c058db29324c13db0c3, ingredient_run]" target="vanilla [vanilla--mixing-frosting, ingredient_spec]"/>
+<edge source="butter [butter--mixing-frosting-d576929a6c518c058db29324c13db0c3, ingredient_run]" target="Mixing Frosting [mixing-frosting-d576929a6c518c058db29324c13db0c3, process_run]"/>
+<edge source="butter [butter--mixing-frosting-d576929a6c518c058db29324c13db0c3, ingredient_run]" target="butter [butter--mixing-frosting, ingredient_spec]"/>
+</graph></graphml>

@@ -1,7 +1,7 @@
 from typing import ClassVar
 
 from gemd import MaterialTemplate
-from openmsimodel.entity.base import Material
+from openmsimodel.entity.base.material import Material
 from openmsimodel.utilities.attributes import (
     AttrsDict,
     define_attribute,

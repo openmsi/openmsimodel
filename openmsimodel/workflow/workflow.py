@@ -3,6 +3,7 @@ from collections import defaultdict
 import os
 import shutil
 import argparse
+import json
 from .folder_or_file import FolderOrFile
 
 # import sys
@@ -79,6 +80,10 @@ class Workflow(Runnable):
         """
         fn = "_".join([item.__class__.__name__, item.name, item.uids["auto"], ".json"])
         with open(os.path.join(self.local_out_destination, fn), "w") as fp:
+            # if self.dump_function.__name__ == "dumps":
+            #     result = json.loads(self.dump_function(item, indent=3))
+            #     fp.write(result)
+            # else:
             fp.write(self.dump_function(item, indent=3))
 
     #################### CLASS METHODS ####################

@@ -21,9 +21,6 @@ from ..utilities.logging import Logger
 
 # __all__ = ["GEMDTemplate", "GEMDTemplateStore"]
 
-global template_store_ids
-template_store_ids = []
-
 # TODO: chck types of errors returned
 
 
@@ -53,6 +50,19 @@ def ordered(obj):
         return obj
 
 
+class StoreConfig:
+    """
+    Managing the default configurations for activating store, which isn't the case for simplicity, and which store name to use by default
+    """
+
+    deployed: bool = False
+    designated_store_id: str = "global"
+    template_store_ids: list = []
+
+
+store_config = StoreConfig()
+
+
 class GEMDTemplateStore(ABC):
     """
     A class to hold and work with a set of GEMD template objects. Allows easier loading from
@@ -63,10 +73,10 @@ class GEMDTemplateStore(ABC):
         """
         encoder = a pre-created GEMD JSON encoder (optional)
         """
-        if id in template_store_ids:
+        if id in store_config.template_store_ids:
             raise NameError(f"template store with id {id} already exists.")
         self.id = id
-        template_store_ids.append(id)
+        store_config.template_store_ids.append(id)
         self.encoder = encoder  # TODO: separate from workflow one
         self.logger = Logger()
         self._n_from_files = 0
@@ -348,5 +358,10 @@ class GEMDTemplateStore(ABC):
 
 
 # if __name__ == "__main__":
-all_template_stores = {"global": GEMDTemplateStore("global", load_all_files=False)}
-all_template_stores["global"].initialize_store()
+if store_config.deployed:
+    all_template_stores = {
+        store_config.designated_store_id: GEMDTemplateStore(
+            designated_store_id, load_all_files=False
+        )
+    }
+    all_template_stores[designated_store_id].initialize_store()

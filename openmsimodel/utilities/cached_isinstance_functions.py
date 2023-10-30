@@ -61,7 +61,6 @@ isinstance_object_template = cached_isinstance_generator(ObjTemplate.__args__)
 isinstance_spec = cached_isinstance_generator(Spec.__args__)
 isinstance_run = cached_isinstance_generator(Run.__args__)
 
-
 isinstance_link_by_uid = cached_isinstance_generator(LinkByUID)
 isinstance_dict_serializable = cached_isinstance_generator(DictSerializable)
 

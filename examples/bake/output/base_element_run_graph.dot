@@ -1,0 +1,23 @@
+strict digraph base_element {
+	graph [bb="0,0,409.46,108",
+		name=base_element
+	];
+	node [label="\N",
+		nodesep=0.4,
+		ranksep=1
+	];
+	"Cake [276]"	 [color=green,
+		height=0.5,
+		object="{'file_links': [], 'name': 'Cake', 'notes': None, 'process': {'id': 'b4ecbb72-db19-4a94-ad24-10414bf19a22', 'scope': 'auto', 'type': '\
+link_by_uid'}, 'sample_type': 'unknown', 'spec': {'id': 'cake', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': [], 'type': '\
+material_run', 'uids': {'auto': '276dd0c0-6d80-4460-b256-c7247c8591e7'}}",
+		pos="204.73,18",
+		shape=s,
+		type=material_run,
+		uid="276dd0c0-6d80-4460-b256-c7247c8591e7",
+		width=1.3194];
+	"b4ecbb72-db19-4a94-ad24-10414bf19a22"	 [height=0.5,
+		pos="204.73,90",
+		width=5.687];
+	"b4ecbb72-db19-4a94-ad24-10414bf19a22" -> "Cake [276]"	 [pos="e,204.73,36.413 204.73,71.831 204.73,64.131 204.73,54.974 204.73,46.417"];
+}

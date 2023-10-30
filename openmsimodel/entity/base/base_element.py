@@ -11,14 +11,17 @@ from gemd.entity.util import make_instance
 # from gemd.util.impl import set_uuids
 from openmsimodel.entity.impl import assign_uuid
 
+from openmsimodel.utilities.cached_isinstance_functions import (
+    isinstance_template,
+    isinstance_spec,
+    isinstance_run,
+)
 from openmsimodel.utilities.typing import (
     Template,
     Spec,
     Run,
     SpecOrRun,
     SpecOrRunLiteral,
-    # TagsDict,
-    # FileLinksDict,
 )
 from openmsimodel.utilities.attributes import (
     AttrsDict,
@@ -31,7 +34,6 @@ from openmsimodel.utilities.attributes import (
 )
 
 from openmsimodel.utilities.logging import Logger
-
 import openmsimodel.stores.gemd_template_store as gemd_template_store
 
 __all__ = ["BaseElement"]
@@ -97,6 +99,7 @@ class BaseElement(ABC):
         has_template = hasattr(self, "TEMPLATE")
 
         if not has_template and not template:
+            # TODO: Change msg
             raise AttributeError(
                 f"TEMPLATE is not defined. Assign to 'template' parameter an instance of either {Template.__dict__['__args__']},\n OR create a new subclass with a defined TEMPLATE attribute."
             )
@@ -108,37 +111,42 @@ class BaseElement(ABC):
                     ResourceWarning,
                 )
             self.TEMPLATE = template
-            if ("persistent_id" in self.TEMPLATE.uids.keys()) or (
-                "auto" in self.TEMPLATE.uids.keys()
-            ):
-                raise KeyError(
-                    f'the "auto" and "persistent_id" uid keys are reserved. Use another key. '
-                )
+            # if ("persistent_id" in self.TEMPLATE.uids.keys()) or (
+            #     "auto" in self.TEMPLATE.uids.keys()
+            # ):
+            #     raise KeyError(
+            #         f'the "auto" and "persistent_id" uid keys are reserved. Use another key. '
+            #     )
 
             # TODO: Extend (or sync with external func that returns a dict for runs/specs
 
         # TODO: change from file when supporting file links
-        for i, store in enumerate(gemd_template_store.all_template_stores.values()):
-            self.TEMPLATE_WRAPPER[store.id] = store.register_new_template(
-                self.TEMPLATE,
-                from_file=False,
-                from_store=False,
-                from_memory=bool(template),
-                from_subclass=bool(has_template and not template),
-            )
-            if i == 0:  # first one is the the designated store for accessing template
-                designated_store_id = store.id
-                self.TEMPLATE = self.TEMPLATE_WRAPPER[designated_store_id].template
+        # registering the object templates
+        if gemd_template_store.store_config.deployed:
+            for i, store in enumerate(gemd_template_store.all_template_stores.values()):
+                self.TEMPLATE_WRAPPER[store.id] = store.register_new_template(
+                    self.TEMPLATE,
+                    from_file=False,
+                    from_store=False,
+                    from_memory=bool(template),
+                    from_subclass=bool(has_template and not template),
+                )
+                if store_config.designated_store_id == store.id:
+                    self.TEMPLATE = self.TEMPLATE_WRAPPER[designated_store_id].template
 
-        if template:
+        if (
+            template
+        ):  # FIXME: maybe dont need to check, just call all the time? even if redundant?
             self.prepare_attrs()
 
-        for i, store in enumerate(gemd_template_store.all_template_stores.values()):
-            for _attr_type in self._ATTRS.keys():
-                for _attr in self._ATTRS[_attr_type].values():
-                    gemd_template_store.all_template_stores[
-                        store.id
-                    ].register_new_template(_attr["obj"])
+        # registering the attribute templates
+        if gemd_template_store.store_config.deployed:
+            for i, store in enumerate(gemd_template_store.all_template_stores.values()):
+                for _attr_type in self._ATTRS.keys():
+                    for _attr in self._ATTRS[_attr_type].values():
+                        gemd_template_store.all_template_stores[
+                            store.id
+                        ].register_new_template(_attr["obj"])
 
         self._spec: Spec = self._SpecType(
             name=name, notes=notes, template=self.TEMPLATE
@@ -159,24 +167,6 @@ class BaseElement(ABC):
     @abstractmethod
     def run(self) -> Run:
         """The underlying GEMD run."""
-
-    @classmethod
-    @abstractmethod
-    def from_spec_or_run(
-        cls,
-        name: str,
-        *,
-        notes: Optional[str] = None,
-        spec: Spec = None,
-        run: Run = None,
-    ) -> "BaseElement":
-        """
-        Instantiate a `BaseElement` from a spec or run with appropriate validation.
-
-        Note that the spec's and run's name and notes will be set to `name` and
-        `notes`, the spec's template will be set to the class template,
-        and the run's spec will be set to this spec.
-        """
 
     ############################### ATTRIBUTES ###############################
 
@@ -445,6 +435,19 @@ class BaseElement(ABC):
         else:
             return [self.TEMPLATE, self.spec, self.run]
 
+    # @classmethod
+    # def from_(cls, any):
+    #     if isinstance_run(any):
+    #         # base_element = cls(any.name, template=any.template)
+    #         # base_element.spec = any.spec
+    #         # base_element.run = any
+    #     elif isinstance_spec(any):
+    #         base_element = cls(any.name, template=any.template)
+    #         base_element.spec = any
+    #     elif isinstance_template(any):
+    #         base_element = cls(any.name, template=any)
+    #     return base_element
+
     # @abstractmethod
     # def to_form(self) -> str:
     #     """Return a ``str`` specifying how to create a web form for this node."""
@@ -468,3 +471,4 @@ class BaseElement(ABC):
     #         fn = "_".join([obj.__class__.__name__, obj.name, obj.uids["auto"]])
     #         with open(os.path.join(destination, fn), "w") as fp:
     #             fp.write(encoder_func(obj, indent=3))
+

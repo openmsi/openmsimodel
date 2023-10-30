@@ -12,7 +12,7 @@ import matplotlib.colors as colors
 import matplotlib.cm as cmx
 import matplotlib.patches as mpatches
 from matplotlib import pylab
-
+from pathlib import Path
 
 # _encoder = None
 # _subdirpath = None
@@ -134,25 +134,23 @@ def read_gemd_data(dirpath, encoder):
         list: all gemd objects extracted from folder or file
     """
     gemd_objects = []
+    gemd_paths = []
     # try:
     if True:
         if type(dirpath) == list:
             print("Extracting list...")
-            # with open(dirpath) as fp:
-
             for obj in dirpath:
-                # print(obj)
-                # print(type(obj))
                 gemd_objects.append(json.loads(encoder.thin_dumps(obj)))
-            return gemd_objects
         elif os.path.isdir(dirpath):
             print("Extracting folder...")
             for dp, dn, filenames in os.walk(dirpath):
                 for f in filenames:
                     if f.endswith(".json"):
-                        with open(os.path.join(dp, f)) as fp:
+                        path = os.path.join(dp, f)
+                        with open(path) as fp:
                             gemd_objects.append(json.load(fp))
-        elif os.path.isfile(dirpath) and n.endswith(".json"):
+                            gemd_paths.append(Path(path))
+        elif os.path.isfile(dirpath) and str(dirpath).endswith(".json"):
             print("Extracting file...")
             with open(dirpath) as fp:
                 gemd_objects = json.load(fp)
@@ -164,7 +162,7 @@ def read_gemd_data(dirpath, encoder):
     #     )
     if len(gemd_objects) == 0:
         print(f"Couldn't extract any gemd object from {dirpath}")
-    return gemd_objects
+    return gemd_objects, gemd_paths
 
 
 def plot_graph(

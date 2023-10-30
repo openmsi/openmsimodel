@@ -1,0 +1,41 @@
+strict digraph "" {
+	graph [bb="0,0,616.43,396"];
+	node [label="\N",
+		nodesep=0.4,
+		ranksep=1
+	];
+	"SampleDiameter [177]"	 [SampleDiameter="SampleDiameter, 3.0 millimeter",
+		color=purple,
+		height=0.5,
+		pos="89.5,234",
+		shape=rectangle,
+		width=2.4861];
+	"Impact Sample [d30]"	 [color=green,
+		height=0.5,
+		pos="247.5,162",
+		width=3.015];
+	"SampleDiameter [177]" -> "Impact Sample [d30]"	 [pos="e,210.36,178.93 129.37,215.83 151.22,205.87 178.42,193.48 201.21,183.09"];
+	"Impact Sample [b05]"	 [color=blue,
+		height=0.5,
+		pos="247.5,90",
+		width=3.015];
+	"Impact Sample [d30]" -> "Impact Sample [b05]"	 [pos="e,247.5,108.41 247.5,143.83 247.5,136.13 247.5,126.97 247.5,118.42"];
+	"363c45d4-6f13-4ea9-8dd9-eb0a9d321f0b"	 [height=0.5,
+		pos="247.5,18",
+		width=5.6148];
+	"Impact Sample [b05]" -> "363c45d4-6f13-4ea9-8dd9-eb0a9d321f0b"	 [pos="e,247.5,36.413 247.5,71.831 247.5,64.131 247.5,54.974 247.5,46.417"];
+	"Sample [39c]"	 [color=blue,
+		height=0.5,
+		pos="406.5,306",
+		width=2.004];
+	"Impact Sample Cutting and Polishing [5f4]"	 [color=red,
+		height=0.5,
+		pos="406.5,234",
+		width=5.8314];
+	"Sample [39c]" -> "Impact Sample Cutting and Polishing [5f4]"	 [pos="e,406.5,252.41 406.5,287.83 406.5,280.13 406.5,270.97 406.5,262.42"];
+	"Impact Sample Cutting and Polishing [5f4]" -> "Impact Sample [d30]"	 [pos="e,284.98,178.97 367.2,216.2 345.13,206.21 317.46,193.68 294.28,183.18"];
+	"aa147525-4b23-4092-a970-5e576a0b12ca"	 [height=0.5,
+		pos="406.5,378",
+		width=5.7231];
+	"aa147525-4b23-4092-a970-5e576a0b12ca" -> "Sample [39c]"	 [pos="e,406.5,324.41 406.5,359.83 406.5,352.13 406.5,342.97 406.5,334.42"];
+}

@@ -2,7 +2,7 @@ from typing import ClassVar
 
 from gemd import ParameterTemplate, CategoricalBounds, NominalCategorical
 
-from openmsimodel.entity.base import Ingredient
+from openmsimodel.entity.base.ingredient import Ingredient
 from openmsimodel.utilities.attributes import (
     AttrsDict,
     define_attribute,

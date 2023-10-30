@@ -74,22 +74,38 @@ class Material(BaseElement):
         and the run's spec will be set to this spec.
         """
 
-        if spec is None and run is None:
-            raise ValueError("At least one of spec or run must be given.")
+        # if spec is None and run is None:
+        #     raise ValueError("At least one of spec or run must be given.")
 
-        material = cls(name, notes=notes)
+        # if spec is not None:
+        #     template = spec.template
+        # if run is not None:
+        #     spec = run.spec
+        #     template = spec.template
+        if run is not None:
+            if spec is None:
+                spec = run.spec
+            # template = spec.template
+        else:  # already checked that both can't be none, so only one scenario left
+            if spec is None:
+                raise ValueError("At least one of spec or run must be given.")
+        template = spec.template
+
+        material = cls(name, notes=notes, template=template)
 
         if spec is not None:
             if not isinstance(spec, MaterialSpec):
                 raise TypeError("spec must be a MaterialSpec.")
 
+            # template = spec.template
+
             material._spec = spec
 
             material.spec.name = name
             material.spec.notes = notes
-            material.spec.template = cls.TEMPLATE
+            # material.spec.template = cls.TEMPLATE
 
-            material.update_properties_and_conditions()
+            # material.update_properties_and_conditions()
 
         if run is not None:
             if not isinstance(run, MaterialRun):

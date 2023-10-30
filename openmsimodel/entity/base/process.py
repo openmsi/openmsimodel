@@ -48,10 +48,15 @@ class Process(ProcessOrMeasurement):
         and the run's spec will be set to this spec.
         """
 
-        if spec is None and run is None:
-            raise ValueError("At least one of spec or run must be given.")
+        if run is not None:
+            if spec is None:
+                spec = run.spec
+        else:  # already checked that both can't be none, so only one scenario left
+            if spec is None:
+                raise ValueError("At least one of spec or run must be given.")
+        template = spec.template
 
-        process = cls(name, notes=notes)
+        process = cls(name, notes=notes, template=template)
 
         if spec is not None:
             if not isinstance(spec, ProcessSpec):
@@ -61,7 +66,7 @@ class Process(ProcessOrMeasurement):
 
             process.spec.name = name
             process.spec.notes = notes
-            process.spec.template = cls.TEMPLATE
+            # process.spec.template = cls.TEMPLATE
 
             process.update_conditions(which="spec")
             process.update_parameters(which="spec")

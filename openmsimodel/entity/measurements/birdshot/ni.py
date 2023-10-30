@@ -2,7 +2,7 @@ from typing import ClassVar
 
 from gemd import MeasurementTemplate
 
-from openmsimodel.entity.base import Measurement
+from openmsimodel.entity.base.measurement import Measurement
 from openmsimodel.utilities.attributes import (
     AttrsDict,
     define_attribute,
