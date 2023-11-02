@@ -23,7 +23,7 @@ workflows:
     jobs:
       - build-and-code-check
       - run-tests
-      # - publish_to_pip
+      - publish_to_pypi
 
 ################# JOBS #################
 jobs:
@@ -45,7 +45,7 @@ jobs:
       - run:
           name: run tests in Python 3.9
           command: cd ~/project; python test/run_all_tests.py --no_pyflakes --no_pylint
-  publish_to_pip:
+  publish_to_pypi:
     docker:
       - image: python:3.9
     steps:
