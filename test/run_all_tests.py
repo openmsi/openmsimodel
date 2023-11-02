@@ -32,11 +32,6 @@ def main(args=None):
         help="Add this flag to skip running the unittest checks",
     )
     unittest_opts.add_argument(
-        "--no_kafka",
-        action="store_true",
-        help="Add this flag to skip running the unittest checks",
-    )
-    unittest_opts.add_argument(
         "--unittest_regex",
         type=re.compile,
         default=None,
