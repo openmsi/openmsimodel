@@ -642,6 +642,9 @@ class OpenGraph(Runnable):
 
 
 def main(args=None):
+    """
+    Main method to run from command line
+    """
     OpenGraph.run_from_command_line(args)
 
 

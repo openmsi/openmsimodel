@@ -1,6 +1,6 @@
 import setuptools
 
-version = "0.1"
+version = "0.0.1"
 
 setupkwargs = dict(
     name="openmsimodel",
@@ -9,16 +9,14 @@ setupkwargs = dict(
     url="https://github.com/openmsi/openmsimodel",
     author="Ali Rachidi",
     author_email="arachid1@jhu.edu",
-    # license="MIT",
-    # packages=['openmsimodel'],
+    license="MIT",
     packages=setuptools.find_packages(include=["openmsimodel*"]),
-    # packages=find_packages(),
     zip_safe=False,
     entry_points={
         "console_scripts": [
             "open_db=openmsimodel.db.open_db:main",
             "open_graph=openmsimodel.graph.open_graph:main",
-        ],
+        ]
     },
     python_requires=">=3.7,<3.10",
     install_requires=[
@@ -28,7 +26,6 @@ setupkwargs = dict(
         "SQLAlchemy==2.0.17",
         "PyInquirer",
         "prompt_toolkit",
-        # "setuptools==60.7.0",
         "numpy",
         "pandas",
         "methodtools",
