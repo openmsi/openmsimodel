@@ -16,6 +16,7 @@ openmsimodel/entity/__init__.py
 openmsimodel/entity/impl.py
 openmsimodel/entity/base/__init__.py
 openmsimodel/entity/base/base_element.py
+openmsimodel/entity/base/helpers.py
 openmsimodel/entity/base/ingredient.py
 openmsimodel/entity/base/material.py
 openmsimodel/entity/base/measurement.py
@@ -59,6 +60,7 @@ openmsimodel/entity/processes/birdshot/setting_traveler_sample.py
 openmsimodel/entity/processes/birdshot/summarize.py
 openmsimodel/stores/__init__.py
 openmsimodel/stores/gemd_template_store.py
+openmsimodel/stores/stores_config_.py
 openmsimodel/subworkflow/__init__.py
 openmsimodel/subworkflow/process_block.py
 openmsimodel/subworkflow/subworkflow.py
@@ -84,3 +86,4 @@ openmsimodel/workflow/birdshot_workflow.py
 openmsimodel/workflow/folder_or_file.py
 openmsimodel/workflow/old_birdshot_workflow.py
 openmsimodel/workflow/workflow.py
+test/test_example_1b.py

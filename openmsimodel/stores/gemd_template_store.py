@@ -28,6 +28,8 @@ class StoresConfig:
     Example:
     >>> from openmsimodel.stores.gemd_template_store import StoresConfig, stores_config
     >>> stores_config = StoresConfig(activated=True) # default name is local
+    >>> stores_config.designated_store_id
+    "local"
     >>> stores_config = StoresConfig(activated=True, designated_store_id="local_2")
 
     """

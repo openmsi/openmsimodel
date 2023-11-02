@@ -166,10 +166,13 @@ class Material(BaseElement):
     ) -> None:
         """
         Change or add expected properties (with conditions) of the material spec.
-        properties: PropertyAndConditions
-            The properties (with conditions) to change (by name) or add.
-        replace_all: bool, default False
+
+        :param properties:
+        :type properties: PropertyAndConditions
+        :param replace_all:
             If ``True``, remove any existing properties before adding new ones.
+        :type replace_all: bool
+        :default replace_all: False
         """
 
         self._update_attributes(

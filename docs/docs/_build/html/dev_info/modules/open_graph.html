@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OpenGraph &mdash; openmsimodel 0.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="OpenDB" href="open_db.html" />
+    <link rel="prev" title="Measurement" href="../api/measurement.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            openmsimodel
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Intro to OpenMSImodel:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation/getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Working with OpenMSIModel:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../user_info/structure.html">Structure</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API reference/dev info:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../api_reference.html">API reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../api_reference.html#top-level-classes">Top-level classes</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../api_reference.html#modules">Modules</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">OpenGraph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="open_db.html">OpenDB</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ci_testing.html">CI testing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">openmsimodel</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api_reference.html">API reference</a></li>
+      <li class="breadcrumb-item active">OpenGraph</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/dev_info/modules/open_graph.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="opengraph">
+<h1>OpenGraph<a class="headerlink" href="#opengraph" title="Permalink to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="openmsimodel.graph.open_graph.OpenGraph">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openmsimodel.graph.open_graph.</span></span><span class="sig-name descname"><span class="pre">OpenGraph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dirpath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layout</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_bidirectional_edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">restrictive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openmsimodel.graph.open_graph.OpenGraph" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Runnable</span></code></p>
+<p>this class provides modules to build and visualize a networkx or graphviz object from gemd objects.
+By taking folder path containing GEMD thin JSON files, it establishes the relationships
+between them by interpreting their uuids/links, and flexibly produces anything from
+a svg image with simple labels, to a dot products containing all the gemd assets,
+from attributes, file links or tags.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openmsimodel.graph.open_graph.OpenGraph.ARGUMENT_PARSER_TYPE">
+<span class="sig-name descname"><span class="pre">ARGUMENT_PARSER_TYPE</span></span><a class="headerlink" href="#openmsimodel.graph.open_graph.OpenGraph.ARGUMENT_PARSER_TYPE" title="Permalink to this definition"></a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">OpenMSIModelParser</span></code></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openmsimodel.graph.open_graph.OpenGraph.build_graph">
+<span class="sig-name descname"><span class="pre">build_graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">assets_to_add</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_separate_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">which</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uuid_to_track</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openmsimodel.graph.open_graph.OpenGraph.build_graph" title="Permalink to this definition"></a></dt>
+<dd><p>creates a NetworkX graph representation of the GEMD relationships by reading every object
+generated by the GEMDEncoder object, storing all of its links by uid, and forming directed relationships,
+such as ingredient-&gt;process, or process-&gt;material
+It then allows filtering the objects mapped (i.e., removing spec or runs,
+measurements or ingredients) and saves a NetworkX graph in “dot” as .png</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>which (bool): to plot a graph of specs, runs or templates
+add_separate_node (bool): bool to determine whether or not to add assets as attribute of related node, or as separate node
+assets_to_add (dict): dict to determine which of attributes, tags and/or file links to add to model
+update (bool, optional): bool to determinate updating instance variable svg_path and dot_path. Defaults to True.
+uuid_to_track (str, optional): _description_. Defaults to “auto”.</p>
+</dd>
+<dt>Returns:</dt><dd><p>NetworkX Graph G_nx: graph containing knowledge in question, with uuids as name
+PyGraphVIZ Graph G_pviz_relabeled: graph containing highlighted knowledge in question, with individual names assigned to uuids
+dict name_mapping: mapping from uuid to name</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openmsimodel.graph.open_graph.OpenGraph.handle_gemd_obj">
+<span class="sig-name descname"><span class="pre">handle_gemd_obj</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obj_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obj_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obj_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">which</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">assets_to_add</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_separate_node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openmsimodel.graph.open_graph.OpenGraph.handle_gemd_obj" title="Permalink to this definition"></a></dt>
+<dd><p>method to handle the addition of a gemd object</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>G (NetworkX graph): graph
+uid (str): uid of current object
+obj_data (dict): data of current object
+obj_type (str): type of current object
+which (bool): to plot a graph of specs, runs or templates, or all
+assets_to_add (dict): dict to determine which of attributes, tags and/or file links to add to model
+add_separate_node (bool):  bool to determine whether or not to add assets as attribute of related node, or as separate node</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openmsimodel.graph.open_graph.OpenGraph.map_to_graphviz">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">map_to_graphviz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openmsimodel.graph.open_graph.OpenGraph.map_to_graphviz" title="Permalink to this definition"></a></dt>
+<dd><p>helper method to map NetworkX graph to Graphviz graph</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>G (_type_): _description_
+name_mapping (_type_, optional): _description_. Defaults to None.</p>
+</dd>
+<dt>Returns:</dt><dd><p>_type_: _description_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openmsimodel.graph.open_graph.OpenGraph.slice_subgraph">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">slice_subgraph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uuid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">funcs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_current</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openmsimodel.graph.open_graph.OpenGraph.slice_subgraph" title="Permalink to this definition"></a></dt>
+<dd><p>applies paseed function(s) to graph object of interest with uuid=uuid.
+If elements are found to match the criteria, a subgraph containing all those elements is returned</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>G (NetworkX graph): knowledge graph in questoin
+uuid (str): uuid of current element of interest on which the functions are applied
+funcs (list): list of function(s) to apply to graph
+add_current (bool, optional): whether or not to add the current element of interest. Defaults to True.</p>
+</dd>
+</dl>
+<p>G (NetworkX graph): Graph to save</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openmsimodel.graph.open_graph.OpenGraph.return_uuid">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">return_uuid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">identifier</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openmsimodel.graph.open_graph.OpenGraph.return_uuid" title="Permalink to this definition"></a></dt>
+<dd><p>return the identifier of interest.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>identifier (str): identifier of object of interest</p>
+</dd>
+<dt>Returns:</dt><dd><p>str: identifier</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openmsimodel.graph.open_graph.OpenGraph.extract_subgraph">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extract_subgraph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">identifier</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openmsimodel.graph.open_graph.OpenGraph.extract_subgraph" title="Permalink to this definition"></a></dt>
+<dd><p>extract subgraph from graph knowledge, based on functions applied to element of interest to filter in additional desired elements.
+Examples includes neighbords, descendants, ancestors, etc.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>G (NetworkX graph): Graph to save
+identifier (str): uuid or identifier of element of interest
+func (func): function to determine whether graph element should be added to subgraph or not</p>
+</dd>
+<dt>Returns:</dt><dd><p>NetworkX graph: subgraph filtered based on passed criteria</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openmsimodel.graph.open_graph.OpenGraph.save_graph">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">save_graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">G_nx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">G_gviz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openmsimodel.graph.open_graph.OpenGraph.save_graph" title="Permalink to this definition"></a></dt>
+<dd><p>class method to save Graphviz graph.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>dest (Pathlib.Path): path where to save the graph
+G_nx (Networkx graph): Networkx version of graph
+G_gviz (Graphviz graph): Graphviz version of graph
+name (str): name of file to save graph to</p>
+</dd>
+<dt>Returns:</dt><dd><p>str: paths to, respectively, the dot and svg files</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openmsimodel.graph.open_graph.OpenGraph.get_argument_parser">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_argument_parser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openmsimodel.graph.open_graph.OpenGraph.get_argument_parser" title="Permalink to this definition"></a></dt>
+<dd><p>Get the argument parser used to run the code</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>args</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a>) – Any arguments to this method are names of arguments recognized
+by Argument parsers of the <code class="xref py py-attr docutils literal notranslate"><span class="pre">ARGUMENT_PARSER_TYPE</span></code> type</p></li>
+<li><p><strong>kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a>) – Any keyword arguments to this method define custom default values
+for their given arguments, whose names must be recognized by Argument parsers
+of the <code class="xref py py-attr docutils literal notranslate"><span class="pre">ARGUMENT_PARSER_TYPE</span></code> type</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An argument parser of the <code class="xref py py-attr docutils literal notranslate"><span class="pre">ARGUMENT_PARSER_TYPE</span></code> type to use
+for the object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openmsimodel.graph.open_graph.OpenGraph.get_command_line_arguments">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_command_line_arguments</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#openmsimodel.graph.open_graph.OpenGraph.get_command_line_arguments" title="Permalink to this definition"></a></dt>
+<dd><p>Get the list of argument names and the dictionary of argument names/default values
+to add to the argument parser</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>args, a list of argument names recognized by the argument parser</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)">list</a>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a>)</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>kwargs, a dictionary of default argument values keyed by argument names
+recognized by the argument parser</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openmsimodel.graph.open_graph.OpenGraph.run_from_command_line">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">run_from_command_line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openmsimodel.graph.open_graph.OpenGraph.run_from_command_line" title="Permalink to this definition"></a></dt>
+<dd><p>Run a <a class="reference internal" href="#openmsimodel.graph.open_graph.OpenGraph" title="openmsimodel.graph.open_graph.OpenGraph"><code class="xref py py-class docutils literal notranslate"><span class="pre">OpenGraph</span></code></a> directly from the command line
+Calls <code class="xref py py-func docutils literal notranslate"><span class="pre">reconstruct()</span></code> on a <a class="reference internal" href="#openmsimodel.graph.open_graph.OpenGraph" title="openmsimodel.graph.open_graph.OpenGraph"><code class="xref py py-class docutils literal notranslate"><span class="pre">OpenGraph</span></code></a> defined by
+command line (or given) arguments
+:param args: the list of arguments to send to the parser instead of getting them from sys.argv
+:type args: list, optional</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../api/measurement.html" class="btn btn-neutral float-left" title="Measurement" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="open_db.html" class="btn btn-neutral float-right" title="OpenDB" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Ali Rachidi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

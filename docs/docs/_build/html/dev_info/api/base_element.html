@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Base Element &mdash; openmsimodel 0.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Process Block" href="process_block.html" />
+    <link rel="prev" title="Subworkflow" href="subworkflow.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            openmsimodel
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Intro to OpenMSImodel:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation/getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Working with OpenMSIModel:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../user_info/structure.html">Structure</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API reference/dev info:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../api_reference.html">API reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../api_reference.html#top-level-classes">Top-level classes</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="workflow.html">Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="subworkflow.html">Subworkflow</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Base Element</a></li>
+<li class="toctree-l3"><a class="reference internal" href="process_block.html">Process Block</a></li>
+<li class="toctree-l3"><a class="reference internal" href="material.html">Material</a></li>
+<li class="toctree-l3"><a class="reference internal" href="process.html">Process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ingredient.html">Ingredient</a></li>
+<li class="toctree-l3"><a class="reference internal" href="measurement.html">Measurement</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference.html#modules">Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ci_testing.html">CI testing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">openmsimodel</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api_reference.html">API reference</a></li>
+      <li class="breadcrumb-item active">Base Element</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/dev_info/api/base_element.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="base-element">
+<h1>Base Element<a class="headerlink" href="#base-element" title="Permalink to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="openmsimodel.entity.base.base_element.BaseElement">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openmsimodel.entity.base.base_element.</span></span><span class="sig-name descname"><span class="pre">BaseElement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.ClassVar" title="(in Python v3.12)"><span class="pre">ClassVar</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.12)"><span class="pre">Union</span></a><span class="p"><span class="pre">[</span></span><span class="pre">PropertyTemplate</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ParameterTemplate</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ConditionTemplate</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">MaterialTemplate</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ProcessTemplate</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">MeasurementTemplate</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">notes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.12)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openmsimodel.entity.base.base_element.BaseElement" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></a></p>
+<p>Base class for materials, processes, and measurements.</p>
+<p><code class="docutils literal notranslate"><span class="pre">BaseElement</span></code> ‘s are thin wrappers for GEMD entities. One <code class="docutils literal notranslate"><span class="pre">BaseElement</span></code> contains
+a template, spec, and run for the same kind of entity (<code class="docutils literal notranslate"><span class="pre">Material</span></code>,
+<code class="docutils literal notranslate"><span class="pre">Process</span></code>, or <code class="docutils literal notranslate"><span class="pre">Measurement</span></code>) and helps to create, update, link, and
+output these.</p>
+<p>Note that <cite>name</cite> is the GEMD name given to the spec and run. The template
+name is the name of the subclass.</p>
+<p>To subclass:</p>
+<p>1. Instantiate <code class="docutils literal notranslate"><span class="pre">TEMPLATE</span></code> as follows:
+<code class="docutils literal notranslate"><span class="pre">TEMPLATE:</span> <span class="pre">ClassVar[Template]</span> <span class="pre">=</span> <span class="pre">Template(name=__name__)</span></code>,
+replacing <code class="docutils literal notranslate"><span class="pre">Template</span></code> with one of <code class="docutils literal notranslate"><span class="pre">MaterialTemplate</span></code>,
+<code class="docutils literal notranslate"><span class="pre">ProcessTemplate</span></code>, or <code class="docutils literal notranslate"><span class="pre">MeasurementTemplate</span></code>.</p>
+<p>2. Instantiate <code class="docutils literal notranslate"><span class="pre">_ATTRS</span></code> as follows:
+<code class="docutils literal notranslate"><span class="pre">_ATTRS</span></code>: ClassVar[AttrsDict] = _validate_temp_keys(TEMPLATE)</p>
+<p>3. Add conditions, parameters, and/or properties using
+<code class="docutils literal notranslate"><span class="pre">define_attribute(_ATTRS,</span> <span class="pre">...)</span></code> from the <code class="docutils literal notranslate"><span class="pre">qf_gemd.base.attributes</span></code>
+module.</p>
+<p>4. Call <code class="docutils literal notranslate"><span class="pre">finalize_template(_ATTRS,</span> <span class="pre">TEMPLATE)</span></code>, found in the
+<code class="docutils literal notranslate"><span class="pre">qf_gemd.base.attributes</span></code> module, to add attributes to <code class="docutils literal notranslate"><span class="pre">TEMPLATE</span></code>.</p>
+<ol class="arabic simple" start="5">
+<li><p>Follow any additional subclass directions.</p></li>
+</ol>
+<dl class="py property">
+<dt class="sig sig-object py" id="openmsimodel.entity.base.base_element.BaseElement.spec">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">spec</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.12)"><span class="pre">Union</span></a><span class="p"><span class="pre">[</span></span><span class="pre">MaterialSpec</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ProcessSpec</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">MeasurementSpec</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">IngredientSpec</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#openmsimodel.entity.base.base_element.BaseElement.spec" title="Permalink to this definition"></a></dt>
+<dd><p>The underlying GEMD spec.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="openmsimodel.entity.base.base_element.BaseElement.run">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">run</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.12)"><span class="pre">Union</span></a><span class="p"><span class="pre">[</span></span><span class="pre">MaterialRun</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ProcessRun</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">MeasurementRun</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">IngredientRun</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#openmsimodel.entity.base.base_element.BaseElement.run" title="Permalink to this definition"></a></dt>
+<dd><p>The underlying GEMD run.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openmsimodel.entity.base.base_element.BaseElement.update_tags">
+<span class="sig-name descname"><span class="pre">update_tags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replace_all</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">which</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.12)"><span class="pre">Literal</span></a><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'spec'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'run'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'both'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'spec'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#openmsimodel.entity.base.base_element.BaseElement.update_tags" title="Permalink to this definition"></a></dt>
+<dd><p>Change or add hierarchical tags.</p>
+<p>Each tag is represented by a <code class="docutils literal notranslate"><span class="pre">tuple</span></code> of hierarchical <code class="docutils literal notranslate"><span class="pre">str</span></code> s. For
+example, <code class="docutils literal notranslate"><span class="pre">('Quantum</span> <span class="pre">Design',</span> <span class="pre">'MPMS3')</span></code>, in that order, describes the
+make and model of a particular measurement instrument.</p>
+<p>When <cite>replace_all</cite> is <code class="docutils literal notranslate"><span class="pre">False</span></code>, any existing tags that are exactly the
+same as a new tag will not be duplicated. However, a tag that is the
+“child” of an existing tag will not override the “parent” tag. For
+example, it is possible to have all of the following at once:
+<code class="docutils literal notranslate"><span class="pre">('Quantum</span> <span class="pre">Design',</span> <span class="pre">'DynaCool')</span></code>,
+<code class="docutils literal notranslate"><span class="pre">('Quantum</span> <span class="pre">Design',</span> <span class="pre">'DynaCool',</span> <span class="pre">'1')</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">('Quantum</span> <span class="pre">Design',</span> <span class="pre">'DynaCool',</span> <span class="pre">'3')</span></code>.</p>
+<p>Internally, tag strings will be concatenated with <code class="docutils literal notranslate"><span class="pre">'::'</span></code> as
+recommended by the GEMD specification.</p>
+<dl class="simple">
+<dt>tags: tuple[str]</dt><dd><p>tuples representing tags to add. Each tuple should contain the
+components of a tag from most general to most specific.</p>
+</dd>
+<dt>replace_all: bool, default False</dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, remove any existing tags before adding new ones.</p>
+</dd>
+<dt>which: {‘spec’, ‘run’, ‘both’}, default ‘spec’</dt><dd><p>Whether to update the spec, run, or both.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openmsimodel.entity.base.base_element.BaseElement.remove_tags">
+<span class="sig-name descname"><span class="pre">remove_tags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">which</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.12)"><span class="pre">Literal</span></a><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'spec'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'run'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'both'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'spec'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#openmsimodel.entity.base.base_element.BaseElement.remove_tags" title="Permalink to this definition"></a></dt>
+<dd><p>Remove tags.</p>
+<p>See <cite>update_tags</cite> for tag format details. Tags are removed by exact
+comparison of the underlying hierarchcal <code class="docutils literal notranslate"><span class="pre">str</span></code> s.</p>
+<p>tags: tuple[str]
+<code class="docutils literal notranslate"><span class="pre">tuple</span></code> s representing tags to remove.
+which: {‘spec’, ‘run’, ‘both’}, default ‘spec’
+Whether to remove from the spec, run, or both.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openmsimodel.entity.base.base_element.BaseElement.get_tags_dict">
+<span class="sig-name descname"><span class="pre">get_tags_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#openmsimodel.entity.base.base_element.BaseElement.get_tags_dict" title="Permalink to this definition"></a></dt>
+<dd><p>Get a <code class="docutils literal notranslate"><span class="pre">dict</span></code> representing the hierarchical tags.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openmsimodel.entity.base.base_element.BaseElement.update_filelinks">
+<span class="sig-name descname"><span class="pre">update_filelinks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">filelinks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">FileLink</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replace_all</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">which</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.12)"><span class="pre">Literal</span></a><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'spec'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'run'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'both'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'spec'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#openmsimodel.entity.base.base_element.BaseElement.update_filelinks" title="Permalink to this definition"></a></dt>
+<dd><p>Change or add file links.</p>
+<p>filelinks: FileLink
+The file links to change or add.
+replace_all: bool, default False
+If <code class="docutils literal notranslate"><span class="pre">True</span></code>, remove any existing file links before adding new ones.
+which: {‘spec’, ‘run’, ‘both’}, default ‘spec’
+Whether to update the spec, run, or both.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openmsimodel.entity.base.base_element.BaseElement.remove_filelinks">
+<span class="sig-name descname"><span class="pre">remove_filelinks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">filelinks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">FileLink</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">which</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.12)"><span class="pre">Literal</span></a><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'spec'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'run'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'both'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'spec'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#openmsimodel.entity.base.base_element.BaseElement.remove_filelinks" title="Permalink to this definition"></a></dt>
+<dd><p>Remove file links.</p>
+<dl class="simple">
+<dt>filelinks: tuple[str]</dt><dd><p>The file links to remove by comparison of the underlying url and
+filename.</p>
+</dd>
+<dt>which: {‘spec’, ‘run’, ‘both’}, default ‘spec’</dt><dd><p>Whether to remove from the spec, run, or both.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openmsimodel.entity.base.base_element.BaseElement.get_filelinks_dict">
+<span class="sig-name descname"><span class="pre">get_filelinks_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#openmsimodel.entity.base.base_element.BaseElement.get_filelinks_dict" title="Permalink to this definition"></a></dt>
+<dd><p>Get string representations of the file links.</p>
+<dl class="simple">
+<dt>filelinks_dict: FileLinksDict</dt><dd><p>Strings representing the file links of the spec and run.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="subworkflow.html" class="btn btn-neutral float-left" title="Subworkflow" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="process_block.html" class="btn btn-neutral float-right" title="Process Block" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Ali Rachidi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>
