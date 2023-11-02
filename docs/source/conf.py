@@ -22,7 +22,7 @@ copyright = "2023, Ali Rachidi"
 author = "Ali Rachidi"
 
 # The full version, including alpha/beta/rc tags
-release = "0.1.2"
+release = "0.1.3"
 
 
 # -- General configuration ---------------------------------------------------
