@@ -44,17 +44,17 @@ jobs:
           <<: *pip_install_block
       - run:
           name: run tests in Python 3.9
-          command: cd ~/project; python test/run_all_tests.py --no_pyflakes --no_formatting --no_pylint
-  # publish_to_pip:
-  #   docker:
-  #     - image: python:3.9
-  #   steps:
-  #     - checkout
-  #     - run:
-  #         name: Publish to PyPI
-  #         command: |
-  #           pip install twine
-  #           twine upload --repository-url https://upload.pypi.org/legacy/ dist/*
-  #         environment:
-  #           TWINE_USERNAME: $PYPI_USERNAME
-  #           TWINE_PASSWORD: $PYPI_PASSWORD
+          command: cd ~/project; python test/run_all_tests.py --no_pyflakes --no_pylint
+  publish_to_pip:
+    docker:
+      - image: python:3.9
+    steps:
+      - checkout
+      - run:
+          name: Publish to PyPI
+          command: |
+            pip install twine
+            twine upload --repository-url https://upload.pypi.org/legacy/ dist/*
+          environment:
+            TWINE_USERNAME: $PYPI_USERNAME
+            TWINE_PASSWORD: $PYPI_PASSWORD
