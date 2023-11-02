@@ -72,6 +72,8 @@ class Material(BaseElement):
 
         Note that the spec's template will be set to the class template,
         and the run's spec will be set to this spec.
+
+        if a
         """
 
         # if spec is None and run is None:
@@ -82,11 +84,12 @@ class Material(BaseElement):
         # if run is not None:
         #     spec = run.spec
         #     template = spec.template
+        # ensures
         if run is not None:
             if spec is None:
                 spec = run.spec
             # template = spec.template
-        else:  # already checked that both can't be none, so only one scenario left
+        else:
             if spec is None:
                 raise ValueError("At least one of spec or run must be given.")
         template = spec.template

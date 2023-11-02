@@ -10,19 +10,14 @@ from openmsimodel.entity.impl import assign_uuid
 
 # import openmsimodel.stores.gemd_template_store as template_store
 # from template_store import GEMDTemplateStore, global_template_store
-from openmsimodel.stores.gemd_template_store import (
-    GEMDTemplateStore,
-    all_template_stores,
-    template_store_ids,
-)
+from openmsimodel.stores.gemd_template_store import GEMDTemplateStore, stores_config
 
-from openmsimodel.entity.base import (
-    BaseElement,
-    Process,
-    Measurement,
-    Ingredient,
-    Material,
-)
+from openmsimodel.entity.base.base_element import BaseElement
+from openmsimodel.entity.base.material import Material
+from openmsimodel.entity.base.process import Process
+from openmsimodel.entity.base.ingredient import Ingredient
+from openmsimodel.entity.base.measurement import Measurement
+
 
 from gemd import (
     NominalCategorical,

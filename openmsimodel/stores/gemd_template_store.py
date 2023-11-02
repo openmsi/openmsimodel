@@ -17,9 +17,45 @@ from openmsimodel.utilities.cached_isinstance_functions import (
     isinstance_object_template,
 )
 from openmsimodel.entity.impl import assign_uuid
-from ..utilities.logging import Logger
+from openmsimodel.utilities.logging import Logger
 
-# __all__ = ["GEMDTemplate", "GEMDTemplateStore"]
+
+# from openmsimodel.stores.common import GEMDTemplateStore, stores_config
+class StoresConfig:
+    """
+    Managing the default configurations for activating store, name of the default store and a list of ids of all template stores
+
+    Example:
+    >>> from openmsimodel.stores.gemd_template_store import StoresConfig, stores_config
+    >>> stores_config = StoresConfig(activated=True) # default name is local
+    >>> stores_config = StoresConfig(activated=True, designated_store_id="local_2")
+
+    """
+
+    # all_template_stores: dict
+    # activated: bool
+    # designated_store_id: str
+
+    def __init__(self, activated=False, designated_store_id: str = "local"):
+        self.all_template_stores = {}
+        self.activated = activated
+        if self.activated:
+            self.designated_store_id = designated_store_id
+            self.deploy_store(designated_store_id)
+
+    def deploy_store(self, name):
+        if name in self.all_template_stores.keys():
+            raise NameError(f"template store with id {name} already exists.")
+        self.all_template_stores[name] = GEMDTemplateStore(name, load_all_files=False)
+        self.all_template_stores[name].initialize_store()
+
+    def register_store(self, store):
+        if self.activated:
+            self.all_template_stores[name] = store
+            self.all_template_stores[name].initialize_store()
+
+
+stores_config = StoresConfig()
 
 # TODO: chck types of errors returned
 
@@ -41,44 +77,24 @@ class GEMDTemplate:  # TODO: move to typing
     from_subclass: bool
 
 
-def ordered(obj):
-    if isinstance(obj, dict):
-        return sorted((k, ordered(v)) for k, v in obj.items())
-    if isinstance(obj, list):
-        return sorted(ordered(x) for x in obj)
-    else:
-        return obj
-
-
-class StoreConfig:
-    """
-    Managing the default configurations for activating store, which isn't the case for simplicity, and which store name to use by default
-    """
-
-    deployed: bool = False
-    designated_store_id: str = "global"
-    template_store_ids: list = []
-
-
-store_config = StoreConfig()
-
-
 class GEMDTemplateStore(ABC):
     """
     A class to hold and work with a set of GEMD template objects. Allows easier loading from
     a template_type_root of json dump files coupled with one or more dictionaries of static, hard-coded templates
     """
 
+    _root = Path(__file__).parent / "stores/templates"
+
     def __init__(self, id, encoder=GEMDJson(), load_all_files=False):
         """
         encoder = a pre-created GEMD JSON encoder (optional)
         """
-        if id in store_config.template_store_ids:
-            raise NameError(f"template store with id {id} already exists.")
+
         self.id = id
-        store_config.template_store_ids.append(id)
+        if stores_config.activated:
+            stores_config.register_store(self.id)
         self.encoder = encoder  # TODO: separate from workflow one
-        self.logger = Logger()
+        # self.logger = Logger()
         self._n_from_files = 0
         self._n_hardcoded = 0
         self._property_templates = {}
@@ -99,8 +115,6 @@ class GEMDTemplateStore(ABC):
         }
         if load_all_files:
             self.register_all_templates_from_store()
-
-    _root = Path(__file__).parent / "stores/templates"
 
     @property
     def root(self):
@@ -355,13 +369,3 @@ class GEMDTemplateStore(ABC):
                 for name in tempdict[template_type].keys():
                     if tempdict[template_type][name].from_store:
                         yield tempdict[template_type][name].template
-
-
-# if __name__ == "__main__":
-if store_config.deployed:
-    all_template_stores = {
-        store_config.designated_store_id: GEMDTemplateStore(
-            designated_store_id, load_all_files=False
-        )
-    }
-    all_template_stores[designated_store_id].initialize_store()

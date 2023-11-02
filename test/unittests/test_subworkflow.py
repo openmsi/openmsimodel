@@ -14,22 +14,20 @@ from data.subclassing.measurement_example import MeasurementExample
 from data.subclassing.process_example import ProcessExample
 from openmsimodel.entity.impl import assign_uuid
 
-from openmsimodel.stores.gemd_template_store import (
-    GEMDTemplateStore,
-    all_template_stores,
-    template_store_ids,
-)
+# from openmsimodel.stores.gemd_template_store import (
+#     GEMDTemplateStore,
+#     all_template_stores,
+#     template_store_ids,
+# )
 
 from openmsimodel.workflow.workflow import Workflow
 from openmsimodel.subworkflow.process_block import ProcessBlock
 
-from openmsimodel.entity.base import (
-    BaseElement,
-    Process,
-    Measurement,
-    Ingredient,
-    Material,
-)
+from openmsimodel.entity.base.base_element import BaseElement
+from openmsimodel.entity.base.process import Process
+from openmsimodel.entity.base.material import Material
+from openmsimodel.entity.base.ingredient import Ingredient
+from openmsimodel.entity.base.measurement import Measurement
 
 from gemd import (
     NominalCategorical,
@@ -154,7 +152,6 @@ class TestSubworkflow(unittest.TestCase):
             process_block_1.add_process("wrong type")
         with self.assertRaises(TypeError):
             process_block_1.add_material("wrong type")
-
 
         with self.assertRaises(NameError):
             process_block_1.add_ingredient(Ingredient(f"ingredient 1"))

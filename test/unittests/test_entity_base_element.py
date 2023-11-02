@@ -20,13 +20,11 @@ import openmsimodel.stores.gemd_template_store as gemd_template_store
 
 gemd_template_store.all_template_stores = {"test": test_template_store}
 
-from openmsimodel.entity.base import (
-    BaseElement,
-    Process,
-    Measurement,
-    Ingredient,
-    Material,
-)
+from openmsimodel.entity.base.base_element import BaseElement
+from openmsimodel.entity.base.process import Process
+from openmsimodel.entity.base.material import Material
+from openmsimodel.entity.base.ingredient import Ingredient
+from openmsimodel.entity.base.measurement import Measurement
 
 from gemd import (
     NominalCategorical,

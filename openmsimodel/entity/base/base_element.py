@@ -122,7 +122,7 @@ class BaseElement(ABC):
 
         # TODO: change from file when supporting file links
         # registering the object templates
-        if gemd_template_store.store_config.deployed:
+        if gemd_template_store.stores_config.activated:
             for i, store in enumerate(gemd_template_store.all_template_stores.values()):
                 self.TEMPLATE_WRAPPER[store.id] = store.register_new_template(
                     self.TEMPLATE,
@@ -131,7 +131,7 @@ class BaseElement(ABC):
                     from_memory=bool(template),
                     from_subclass=bool(has_template and not template),
                 )
-                if store_config.designated_store_id == store.id:
+                if stores_config.designated_store_id == store.id:
                     self.TEMPLATE = self.TEMPLATE_WRAPPER[designated_store_id].template
 
         if (
@@ -140,7 +140,7 @@ class BaseElement(ABC):
             self.prepare_attrs()
 
         # registering the attribute templates
-        if gemd_template_store.store_config.deployed:
+        if gemd_template_store.stores_config.activated:
             for i, store in enumerate(gemd_template_store.all_template_stores.values()):
                 for _attr_type in self._ATTRS.keys():
                     for _attr in self._ATTRS[_attr_type].values():
@@ -471,4 +471,3 @@ class BaseElement(ABC):
     #         fn = "_".join([obj.__class__.__name__, obj.name, obj.uids["auto"]])
     #         with open(os.path.join(destination, fn), "w") as fp:
     #             fp.write(encoder_func(obj, indent=3))
-
