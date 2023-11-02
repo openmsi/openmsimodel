@@ -1,18 +1,69 @@
 version: 0.0.0
+
+################# Arguments to the pip install #################
+pip_install_block: &pip_install_block
+  pkg-manager: pip
+  args: .[test]
+
+################# Command to run tests #################
+run_tests_cmd: &run_tests_cmd
+  command: |
+    cd test/test_scripts
+    TESTCLASSES=$(circleci tests glob "test*.py" | sed -e 's/.py//' | circleci tests split)
+    python -m unittest $TESTCLASSES -v
+
+################# WORKFLOWS #################
+workflows:
+  build_and_test:
+    # For more details on extending your workflow, see the configuration docs: https://circleci.com/docs/2.0/configuration-reference/#workflows 
+    jobs:
+      - build-and-code-check
+      - run-tests
+      # - run-tests-no-kafka:
+      #     requires:
+      #       - build-and-code-check
+      # - run-tests:
+      #     requires:
+      #       - run-tests-no-kafka
+      # - check-repo:
+      #     requires:
+      #       - run-tests
+
+################# JOBS #################
 jobs:
-  build:
+  # Build the repo and check the code using pyflakes and pylint
+  build-and-code-check:
     docker:
-      - image: python:3.8  # Use the desired Python version
-
+      - image: python:3.8
     steps:
-      - checkout  # Checkout your code
-
+      - checkout
+      - python/install-packages:
+          <<: *pip_install_block
+      # - run:
+      #     name: code check
+      #     command: |
+      #       cd ~/project
+      #       python -m pyflakes .
+      #       black openmsimodel --check
+      #       black test --check
+      #       python -m pylint openmsimodel
+      #       python -m pylint --recursive=y test
+      #       cd -
+      # - persist_to_workspace:
+      #     root: .
+      #     paths:
+      #       - .
+            
+  run-tests:
+    docker:
+      - image: python:3.8
+    steps:
+      # - attach_workspace:
+      #   at: .
+      - python/install-packages:
+        <<: *pip_install_block
       - run:
-          name: Install Dependencies
-          command: |
-            pip install -r requirements.txt  # Install your project's dependencies
-            pip install pytest  # Install pytest
+        name: run tests in Python 3.8
+        <<: *run_tests_cmd
 
-      - run:
-          name: Run Tests
-          command: pytest
+

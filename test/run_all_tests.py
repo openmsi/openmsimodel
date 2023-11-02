@@ -4,7 +4,8 @@ from argparse import ArgumentParser
 
 # constants
 TOP_DIR_PATH = (pathlib.Path(__file__).parent.parent).resolve()
-UNITTEST_DIR_PATH = (pathlib.Path(__file__).parent / "unittests").resolve()
+UNITTEST_DIR_PATH = (pathlib.Path(__file__).parent / "test_scripts").resolve()
+
 # TEST_REPO_STATUS_SCRIPT_PATH = (
 #     pathlib.Path(__file__).parent / "test_repo_status.sh"
 # ).resolve()
@@ -102,7 +103,6 @@ def main(args=None):
                     for test in test_group:
                         if not args.unittest_regex.match(test._testMethodName):
                             test_name = test._testMethodName
-                            print(test_name)
                             msg = f"tests that don't match the regex '{args.unittest_regex}' are being skipped"
                             setattr(
                                 test,

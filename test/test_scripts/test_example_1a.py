@@ -7,29 +7,12 @@ from data.subclassing.incomplete_subclass import incompleteSubclass
 from data.subclassing.erroneous_subclass_1 import erroneousSubclass1  # FIXME ?
 from data.subclassing.arcmelting import ArcMelting
 
-# setting up stores for testing
-# from openmsimodel.stores.gemd_template_store import (
-#     GEMDTemplateStore,
-#     StoresConfig,
-#     store_tools.stores_config,
-# )
+from config import TEST_CONST
 
 import openmsimodel.stores.gemd_template_store as store_tools
 from openmsimodel.stores.gemd_template_store import GEMDTemplateStore, StoresConfig
 
-# test_root = Path(__file__).parent.parent / "data/stores/templates"
-# test_template_store = GEMDTemplateStore(id="test", load_all_files=False)
-# test_template_store.root = test_root
-# test_template_store.initialize_store()
-# test_template_store.register_all_templates_from_store()
-
-# setting global store = test store for testing
-# import openmsimodel.stores.gemd_template_store as gemd_template_store
-
-# gemd_template_store.all_template_stores = {"test": test_template_store}
-
-# testing type of initialization 1 (see 1b for type of initialization 2)
-test_root = Path(__file__).parent.parent / "data/stores/test_store"
+test_root = TEST_CONST.TEST_DIR_PATH / "data/stores/test_store"
 
 store_tools.stores_config = StoresConfig(
     activated=True, designated_store_id="test", designated_root=test_root
