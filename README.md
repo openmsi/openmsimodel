@@ -1,5 +1,5 @@
 # openmsimodel
-[! [PyPI](https://img.shields.io/pypi/v/openmsimodel)](https://pypi.org/project/openmsimodel/) [License](https://img.shields.io/github/license/openmsi/openmsimodel) 
+[![PyPI](https://img.shields.io/pypi/v/openmsimodel)](https://pypi.org/project/openmsimodel/) [License](https://img.shields.io/github/license/openmsi/openmsimodel) 
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/openmsimodel) 
 ![CircleCI](https://img.shields.io/circleci/build/github/openmsi/openmsistream/main) [![Documentation Status](https://readthedocs.org/projects/openmsimodel/badge/?version=latest)](https://openmsimodel.readthedocs.io/en/latest/?badge=latest) 
 
