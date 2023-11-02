@@ -1,9 +1,14 @@
-version: 0.0.1
+version: 2.1
+
+################# ORB #################
+orbs:
+  # See the orb documentation here: https://circleci.com/developer/orbs/orb/circleci/python
+  python: circleci/python@2.1.1
 
 ################# Arguments to the pip install #################
 pip_install_block: &pip_install_block
   pkg-manager: pip
-  args: .[test]
+  args: .
 
 ################# Command to run tests #################
 run_tests_cmd: &run_tests_cmd
@@ -29,13 +34,13 @@ jobs:
       - checkout
       - python/install-packages:
           <<: *pip_install_block
-
   run-tests:
     docker:
       - image: python:3.8
     steps:
+      - checkout
       - python/install-packages:
-        <<: *pip_install_block
+          <<: *pip_install_block
       - run:
-        name: run tests in Python 3.8
-        <<: *run_tests_cmd
+          name: run tests in Python 3.8
+          <<: *run_tests_cmd
