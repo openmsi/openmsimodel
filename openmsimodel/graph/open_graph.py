@@ -49,6 +49,8 @@ class OpenGraph(Runnable):
         self.name = name
         self.dirpath = pathlib.Path(dirpath) if not (type(dirpath) == list) else dirpath
         self.output = pathlib.Path(output)  # TODO: REQUIRES FULL PATH NOW; fix or keep?
+        if not self.output.exists():
+            raise FileNotFoundError(f"{self.output} does not exist.")
         # self.restrictive = restrictive
         self.layout = layout
         self.add_bidirectional_edges = add_bidirectional_edges
@@ -96,16 +98,18 @@ class OpenGraph(Runnable):
         nb_disregarded = 0
 
         gemd_objects, gemd_paths = read_gemd_data(self.dirpath, encoder)
-        # TODO: ADD short random sample
 
         if len(gemd_objects) == 0:
             print("No objects were found.")
             return
 
+        full_length = len(gemd_objects)
+        quarter_length = int(full_length / 4)
         if self.take_small_sample:
-            quarter_length = int(len(gemd_objects) / 4)
-            quarter = gemd_objects[:quarter_length]
-            gemd_objects, gemd_paths = gemd_objects[:quarter], gemd_paths[:quarter]
+            gemd_objects, gemd_paths = (
+                gemd_objects[:quarter_length],
+                gemd_paths[:quarter_length],
+            )
 
         # adding objects to graph one by one
         for i, obj_data in enumerate(gemd_objects):
@@ -133,8 +137,8 @@ class OpenGraph(Runnable):
                 )
             except IndexError:
                 continue
-            if i % 1000 == 0:  # TODO:
-                print("{} gemd objects processed...".format(i))
+            if i % quarter_length == 0:
+                print("{}/{} gemd objects processed...".format(i / full_length))
         print("Done.")
 
         # relabelling according to uid -> name
@@ -142,11 +146,10 @@ class OpenGraph(Runnable):
         if name_mapping:
             relabeled_G_nx = nx.relabel_nodes(G_nx, name_mapping)
 
-
         # converting to grapviz
         if relabeled_G_nx:
             relabeled_G_gviz = self.map_to_graphviz(relabeled_G_nx)
-        
+
         # # plotting
         dot_path, svg_path, graphml_path = self.save_graph(
             self.output,
@@ -268,7 +271,6 @@ class OpenGraph(Runnable):
                     assets_to_add,
                     add_separate_node,
                 )
-                # TODO: add add gemd_assets
             # adding attribute templates from object templates
             elif obj_type.endswith("template"):
                 if "parameters" in obj_data and obj_data["parameters"]:
@@ -547,6 +549,7 @@ class OpenGraph(Runnable):
         Returns:
             str: paths to, respectively, the dot and svg files
         """
+
         svg_path = os.path.join(dest, "{}.svg".format(name))
         dot_path = os.path.join(dest, "{}.dot".format(name))
         graphml_path = os.path.join(dest, "{}.graphml".format(name))

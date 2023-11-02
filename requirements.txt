@@ -13,5 +13,7 @@ ipython
 ipykernel
 openpyxl
 graphviz
+pygraphviz
 questionary
 webcolors
+jupyter

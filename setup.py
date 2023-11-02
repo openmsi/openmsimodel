@@ -35,8 +35,10 @@ setupkwargs = dict(
         "ipykernel",
         "openpyxl",
         "graphviz",
+        "pygraphviz",
         "questionary",
         "webcolors",
+        "jupyter",
     ],
     extras_require={},
 )

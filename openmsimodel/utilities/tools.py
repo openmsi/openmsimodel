@@ -160,8 +160,8 @@ def read_gemd_data(dirpath, encoder):
     #     raise IOError(  # FIXME
     #         f"couldn't extract GEMD data. Expected folder of JSONs or single JSON with 1+ objects. "
     #     )
-    if len(gemd_objects) == 0:
-        raise ValueError(f"Couldn't extract any gemd object from {dirpath}")
+    if len(gemd_objects) == 0: #FIXME: better message, like filenotfound
+        raise ValueError(f"Couldn't extract any gemd object from {dirpath}. ")
     return gemd_objects, gemd_paths
 
 
