@@ -42,5 +42,5 @@ jobs:
       - python/install-packages:
           <<: *pip_install_block
       - run:
-          name: run tests in Python 3.9
-          <<: *run_tests_cmd
+            name: run tests in Python 3.9
+            <<: *run_tests_cmd
