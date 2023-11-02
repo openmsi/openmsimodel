@@ -1,4 +1,4 @@
-version: 0.0.0
+version: 0.0.1
 
 ################# Arguments to the pip install #################
 pip_install_block: &pip_install_block
@@ -15,19 +15,9 @@ run_tests_cmd: &run_tests_cmd
 ################# WORKFLOWS #################
 workflows:
   build_and_test:
-    # For more details on extending your workflow, see the configuration docs: https://circleci.com/docs/2.0/configuration-reference/#workflows 
     jobs:
       - build-and-code-check
       - run-tests
-      # - run-tests-no-kafka:
-      #     requires:
-      #       - build-and-code-check
-      # - run-tests:
-      #     requires:
-      #       - run-tests-no-kafka
-      # - check-repo:
-      #     requires:
-      #       - run-tests
 
 ################# JOBS #################
 jobs:
@@ -39,31 +29,13 @@ jobs:
       - checkout
       - python/install-packages:
           <<: *pip_install_block
-      # - run:
-      #     name: code check
-      #     command: |
-      #       cd ~/project
-      #       python -m pyflakes .
-      #       black openmsimodel --check
-      #       black test --check
-      #       python -m pylint openmsimodel
-      #       python -m pylint --recursive=y test
-      #       cd -
-      # - persist_to_workspace:
-      #     root: .
-      #     paths:
-      #       - .
-            
+
   run-tests:
     docker:
       - image: python:3.8
     steps:
-      # - attach_workspace:
-      #   at: .
       - python/install-packages:
         <<: *pip_install_block
       - run:
         name: run tests in Python 3.8
         <<: *run_tests_cmd
-
-
