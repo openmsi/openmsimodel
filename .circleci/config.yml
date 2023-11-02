@@ -24,6 +24,12 @@ workflows:
       - build-and-code-check
       - run-tests
       # - publish_to_pypi
+  deploy:
+    jobs:
+      - deploy:
+          filters:
+            tags:
+              only: /^v\d+\.\d+\.\d+$/  # This regular expression matches version tags (e.g., v1.0.0)
 
 ################# JOBS #################
 jobs:
