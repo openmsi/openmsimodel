@@ -161,7 +161,7 @@ def read_gemd_data(dirpath, encoder):
     #         f"couldn't extract GEMD data. Expected folder of JSONs or single JSON with 1+ objects. "
     #     )
     if len(gemd_objects) == 0:
-        print(f"Couldn't extract any gemd object from {dirpath}")
+        raise ValueError(f"Couldn't extract any gemd object from {dirpath}")
     return gemd_objects, gemd_paths
 
 

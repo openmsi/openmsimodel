@@ -30,20 +30,20 @@ jobs:
   # Build the repo and check the code using pyflakes and pylint
   build-and-code-check:
     docker:
-      - image: python:3.9
+      - image: python:3.9.16
     steps:
       - checkout
       - python/install-packages:
           <<: *pip_install_block
   run-tests:
     docker:
-      - image: python:3.9
+      - image: python:3.9.16
     steps:
       - checkout
       - python/install-packages:
           <<: *pip_install_block
       - run:
-            name: run tests in Python 3.9
+            name: run tests in Python 3.9.16
             <<: *run_tests_cmd
   # publish_to_pip:
   #   docker:
