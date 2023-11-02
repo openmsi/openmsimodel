@@ -276,12 +276,18 @@ class OpenGraph(Runnable):
                 if "parameters" in obj_data and obj_data["parameters"]:
                     for parameter in obj_data["parameters"]:
                         G.add_edge(uid, parameter[0]["id"])
+                        if self.add_bidirectional_edges:
+                            G.add_edge(parameter[0]["id"], uid)
                 if "conditions" in obj_data and obj_data["conditions"]:
                     for condition in obj_data["conditions"]:
                         G.add_edge(uid, condition[0]["id"])
+                        if self.add_bidirectional_edges:
+                            G.add_edge(condition[0]["id"], uid)
                 if "properties" in obj_data and obj_data["properties"]:
                     for prop in obj_data["properties"]:
                         G.add_edge(uid, prop[0]["id"])
+                        if self.add_bidirectional_edges:
+                            G.add_edge(prop[0]["id"], uid)
 
             if obj_type.endswith("run"):
                 if "spec" in obj_data and "id" in obj_data["spec"]:

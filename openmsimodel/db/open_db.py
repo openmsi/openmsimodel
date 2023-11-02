@@ -117,11 +117,11 @@ class OpenDB(Runnable):
         :raises ValueError: If an error occurs while saving to the output file.
 
         :examples:
-        
+
         Example 1:
-        
+
         .. code-block:: python
-        
+
             result_df = self.load_model("example_model", "/path/to/model")
             query = "SELECT * FROM data"
             self.print_and_dump(result_df, query, "data_output")
@@ -247,7 +247,7 @@ class OpenDB(Runnable):
 
                 elif mode_question == "Custom Query":
                     # Enter a custom SQL query
-                    custom_query = select("Enter a custom query: ").ask()
+                    custom_query = input("Enter a custom query: ")
                     self.logger.info("Executing custom query...")
                     self.logger.info(f"query: {custom_query}")
 
