@@ -42,6 +42,11 @@ setupkwargs = dict(
         "jupyter",
     ],
     extras_require={},
+    classifiers=[
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.9",
+        "License :: OSI Approved :: MIT License",
+    ],
 )
 
 setupkwargs["extras_require"]["all"] = sum(setupkwargs["extras_require"].values(), [])
