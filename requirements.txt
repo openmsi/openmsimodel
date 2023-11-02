@@ -14,6 +14,7 @@ ipykernel
 openpyxl
 graphviz
 # pygraphviz
+sphinx_rtd_theme
 questionary
 webcolors
 jupyter
