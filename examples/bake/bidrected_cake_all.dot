@@ -2,10 +2,7 @@ digraph bidrected_cake {
 	graph [bb="0,0,12115,34220",
 		name=bidrected_cake
 	];
-	node [label="\N",
-		nodesep=0.4,
-		ranksep=1
-	];
+	node [label="\N"];
 	"Cake [cake-d576929a6c518c058db29324c13db0c3, material_run]"	 [color=green,
 		height=8.8825,
 		object="{'file_links': [{'filename': 'Photo', 'type': 'file_link', 'url': 'https://storcpdkenticomedia.blob.core.windows.net/media/recipemanagementsystem/\

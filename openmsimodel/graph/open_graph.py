@@ -35,19 +35,27 @@ class OpenGraph(Runnable):
         pathlib.Path(__file__).parent.resolve() / "open_graph_config/.config"
     )
 
-    # instance attributes
     # TODO: move build_graph function params to obj + store pygraphviz and networkx as obj attr
     def __init__(
-        self, name, dirpath, output, layout, add_bidirectional_edges, restrictive=False
+        self,
+        name,
+        dirpath,
+        output,
+        layout,
+        add_bidirectional_edges,
+        # restrictive=False,
+        take_small_sample=False,
     ):
         self.name = name
         self.dirpath = pathlib.Path(dirpath) if not (type(dirpath) == list) else dirpath
-        self.output = pathlib.Path(output)  # TODO: REQUIRES FULL PATH NOW; FIX
-        self.restrictive = restrictive
+        self.output = pathlib.Path(output)  # TODO: REQUIRES FULL PATH NOW; fix or keep?
+        # self.restrictive = restrictive
         self.layout = layout
         self.add_bidirectional_edges = add_bidirectional_edges
+        self.take_small_sample = take_small_sample
         self.svg_path = None
         self.dot_path = None
+        self.graphml_path = None
         self.shapes = {"run": "circle", "spec": "rectangle", "template": "triangle"}
 
     # instance method
@@ -88,10 +96,16 @@ class OpenGraph(Runnable):
         nb_disregarded = 0
 
         gemd_objects, gemd_paths = read_gemd_data(self.dirpath, encoder)
-        # gemd_objects = gemd_objects[:2000]
+        # TODO: ADD short random sample
 
         if len(gemd_objects) == 0:
+            print("No objects were found.")
             return
+
+        if self.take_small_sample:
+            quarter_length = int(len(gemd_objects) / 4)
+            quarter = gemd_objects[:quarter_length]
+            gemd_objects, gemd_paths = gemd_objects[:quarter], gemd_paths[:quarter]
 
         # adding objects to graph one by one
         for i, obj_data in enumerate(gemd_objects):
@@ -119,19 +133,20 @@ class OpenGraph(Runnable):
                 )
             except IndexError:
                 continue
-            if i % 1000 == 0:
+            if i % 1000 == 0:  # TODO:
                 print("{} gemd objects processed...".format(i))
         print("Done.")
 
         # relabelling according to uid -> name
-        print(name_mapping)
+        relabeled_G_nx = G_nx
         if name_mapping:
             relabeled_G_nx = nx.relabel_nodes(G_nx, name_mapping)
 
-        # converting to grapviz
-        # relabeled_G_gviz = self.map_to_graphviz(relabeled_G_nx)
-        relabeled_G_gviz = None
 
+        # converting to grapviz
+        if relabeled_G_nx:
+            relabeled_G_gviz = self.map_to_graphviz(relabeled_G_nx)
+        
         # # plotting
         dot_path, svg_path, graphml_path = self.save_graph(
             self.output,
@@ -140,7 +155,7 @@ class OpenGraph(Runnable):
             name="{}_{}".format(self.name, which),
         )
         if update:
-            self.update_paths(svg_path, dot_path)
+            self.update_paths(svg_path, dot_path, graphml_path)
 
         # info
         self.diagnostics(relabeled_G_nx, gemd_objects, nb_disregarded)
@@ -187,9 +202,9 @@ class OpenGraph(Runnable):
                 G.add_edge(uid, process)
                 if self.add_bidirectional_edges:
                     G.add_edge(process, uid)
-                if (
-                    not self.restrictive
-                ):  # no material -> ingredient = helps separate and restrict
+                    # if (
+                    # not self.restrictive
+                    # ):  # no material -> ingredient = helps separate and restrict
                     if "material" in obj_data and obj_data["material"]:
                         material = obj_data["material"]["id"]
                         G.add_edge(material, uid)
@@ -408,29 +423,50 @@ class OpenGraph(Runnable):
         if not self.add_bidirectional_edges:
             print("cycles in the graph: {}".format(list(nx.simple_cycles(G))))
         print(
-            "nb of disregarded elements: {}/{}".format(
+            "disregarder/total number of gemd objects: {}/{}".format(
                 nb_disregarded, len(gemd_objects)
             )
         )
         subgraphs = [G.subgraph(c).copy() for c in nx.strongly_connected_components(G)]
         # print("number of strongly connected components: {}".format(len(subgraphs)))
-        print("nb of isolates: {}".format(nx.number_of_isolates(G)))
+        print("total nb of isolates in the graph: {}".format(nx.number_of_isolates(G)))
 
     @classmethod
-    def launch(cls, dot_path, from_command_line=False):
+    def launch(cls, path, from_command_line=False):
         if from_command_line:
-            with open(cls.CONFIG_FILENAME, "w") as f:
-                f.write(dot_path)
-            os.system(
-                "jupyter notebook --notebook-dir={}".format(cls.IPYNB_FILENAME.parent)
-            )
+            # reading path to dot/graphml
+            config_file_path = (
+                cls.CONFIG_FILENAME
+            )  # TODO: add option to just pass another param?
+            try:
+                with open(config_file_path, "w") as f:
+                    f.write(path)
+            except FileNotFoundError:
+                print(f"Configuration file '{config_file_path}' not found.")
+            except Exception as e:
+                print(
+                    f"An error occurred while reading the configuration file: {str(e)}"
+                )
+
+            folder_path = cls.IPYNB_FILENAME.parent
+            if not os.path.exists(folder_path):
+                print(f"The folder '{folder_path}' does not exist.")
+                return
+            if not os.listdir(folder_path):
+                print(f"The folder '{folder_path}' is empty.")
+                return
+            print(f"Contents of the folder '{folder_path}':")
+            for item in os.listdir(folder_path):
+                print(item)
+            os.system("jupyter notebook --notebook-dir={}".format(folder_path))
             return None
         else:
             launch_graph_widget(dot_path)
 
-    def update_paths(self, svg_path, dot_path):
+    def update_paths(self, svg_path, dot_path, graphml_path):
         self.svg_path = svg_path
         self.dot_path = dot_path
+        self.graphml_path = graphml_path
 
     @classmethod
     def map_to_graphviz(cls, G):
@@ -515,42 +551,48 @@ class OpenGraph(Runnable):
         dot_path = os.path.join(dest, "{}.dot".format(name))
         graphml_path = os.path.join(dest, "{}.graphml".format(name))
 
-        # # writing svg file
-        # print("Dumping svg...")
-        # start = time.time()
-        # G_gviz.draw(svg_path)
-        # plt.close()
-        # end = time.time()
-        # print(f"Time elapsed: {end - start}")
+        if G_gviz:
+            # writing svg file
+            print("Dumping svg...")
+            start = time.time()
+            G_gviz.draw(svg_path)
+            plt.close()
+            end = time.time()
+            print(f"Time elapsed: {end - start}")
 
-        # # writing dot file
-        # print("Dumping dot...")
-        # start = time.time()
-        # with open(dot_path, "w") as f:
-        #     f.write(str(G_gviz))
-        # end = time.time()
-        # print(f"Time elapsed: {end - start}")
+            # writing dot file
+            print("Dumping dot...")
+            start = time.time()
+            with open(dot_path, "w") as f:
+                f.write(str(G_gviz))
+            end = time.time()
+            print(f"Time elapsed: {end - start}")
+        else:
+            print("Couldn't find GraphViz graph.")
 
-        # writing graphml
-        print("Dumping graphml...")
-        start = time.time()
+        if G_nx:
+            # writing graphml
+            print("Dumping graphml...")
+            start = time.time()
 
-        def dicts_to_str(G):
-            for node_name in G.nodes:
-                if "tags" in G.nodes[node_name] and G.nodes[node_name]["tags"]:
-                    G.nodes[node_name]["tags"] = str(G.nodes[node_name]["tags"])
-                if (
-                    "file_links" in G.nodes[node_name]
-                    and G.nodes[node_name]["file_links"]
-                ):
-                    G.nodes[node_name]["file_links"] = str(
-                        G.nodes[node_name]["file_links"]
-                    )
-            return G
+            def dicts_to_str(G):
+                for node_name in G.nodes:
+                    if "tags" in G.nodes[node_name] and G.nodes[node_name]["tags"]:
+                        G.nodes[node_name]["tags"] = str(G.nodes[node_name]["tags"])
+                    if (
+                        "file_links" in G.nodes[node_name]
+                        and G.nodes[node_name]["file_links"]
+                    ):
+                        G.nodes[node_name]["file_links"] = str(
+                            G.nodes[node_name]["file_links"]
+                        )
+                return G
 
-        nx.write_graphml_lxml(dicts_to_str(G_nx), graphml_path)
-        end = time.time()
-        print(f"Time elapsed: {end - start}")
+            nx.write_graphml_lxml(dicts_to_str(G_nx), graphml_path)
+            end = time.time()
+            print(f"Time elapsed: {end - start}")
+        else:
+            print("Couldn't find NetworkX graph.")
 
         print(
             "-- Saved graph to {}, {} and {}".format(dot_path, svg_path, graphml_path)
@@ -584,6 +626,7 @@ class OpenGraph(Runnable):
             "d",
             "uuid_to_track",
             "output",
+            "take_small_sample",
         ]
         kwargs = {**superkwargs}
         return args, kwargs
@@ -605,6 +648,7 @@ class OpenGraph(Runnable):
             args.output,
             args.layout,
             args.add_bidirectional_edges,
+            args.take_small_sample,
         )
         assets_to_add = {
             "add_attributes": args.add_attributes,
@@ -629,16 +673,16 @@ class OpenGraph(Runnable):
                 functions.append(nx.ancestors)
             identifier_G = cls.extract_subgraph(G, args.identifier, func=functions)
             identifier_G = cls.map_to_graphviz(identifier_G, name_mapping)
-            identifier_G_dot_path, _ = cls.save_graph(
+            identifier_G_dot_path, _, identifier_G_grapml_path = cls.save_graph(
                 args.output, identifier_G, "{}".format(args.identifier)
             )
 
         # launches interactive notebook
         if args.launch_notebook:
             if args.identifier:
-                viewer.launch(identifier_G_dot_path, from_command_line=True)
+                viewer.launch(identifier_G_grapml_path, from_command_line=True)
             else:
-                viewer.launch(viewer.dot_path, from_command_line=True)
+                viewer.launch(viewer.graphml_path, from_command_line=True)
 
 
 def main(args=None):

@@ -189,6 +189,14 @@ class OpenMSIModelParser(ArgumentParser):
             "positional",
             {"type": str, "help": "name of database to log on"},
         ],
+        "take_small_sample": [
+            "optional",
+            {
+                "type": bool,
+                "default": False,
+                "help": "whether to take a quarter of the total number of gemd objects",
+            },
+        ],
         "private_path": [
             "positional",
             {
