@@ -1,7 +1,7 @@
 Metadata-Version: 2.1
 Name: openmsimodel
-Version: 0.0.1
-Summary: data modelling package
+Version: 0.1.0
+Summary: OpenMSIModel uses the GEMD (Graphical Expression of Material Data) format to interact with generalized laboratory, analysis, and computational materials data. It allows to structure real scientific workflows into meaningful data structures, model them in graph and relational databases, explore on interactive graphical interfaces, and build long-term, shareable assets stores.
 Home-page: https://github.com/openmsi/openmsimodel
 Author: Ali Rachidi
 Author-email: arachid1@jhu.edu

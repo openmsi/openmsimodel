@@ -58,6 +58,10 @@ openmsimodel/entity/processes/birdshot/select_composition.py
 openmsimodel/entity/processes/birdshot/setting_traveler.py
 openmsimodel/entity/processes/birdshot/setting_traveler_sample.py
 openmsimodel/entity/processes/birdshot/summarize.py
+openmsimodel/graph/__init__.py
+openmsimodel/graph/helpers.py
+openmsimodel/graph/open_graph.py
+openmsimodel/graph/open_graph_config/__init__.py
 openmsimodel/stores/__init__.py
 openmsimodel/stores/gemd_template_store.py
 openmsimodel/stores/stores_config_.py
