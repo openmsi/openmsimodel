@@ -32,27 +32,37 @@ class StoresConfig:
 
     """
 
-    # all_template_stores: dict
-    # activated: bool
-    # designated_store_id: str
+    all_template_stores: dict
+    activated: bool
+    designated_store_id: str
+    designated_root: str
 
-    def __init__(self, activated=False, designated_store_id: str = "local"):
+    def __init__(
+        self,
+        activated=False,
+        designated_store_id: str = "local",
+        designated_root: str = Path(__file__) / "stores/local",
+    ):
         self.all_template_stores = {}
         self.activated = activated
         if self.activated:
             self.designated_store_id = designated_store_id
+            self.designated_root = designated_root
             self.deploy_store(designated_store_id)
 
     def deploy_store(self, name):
         if name in self.all_template_stores.keys():
             raise NameError(f"template store with id {name} already exists.")
         self.all_template_stores[name] = GEMDTemplateStore(name, load_all_files=False)
+        self.all_template_stores[name].root = self.designated_root
         self.all_template_stores[name].initialize_store()
 
     def register_store(self, store):
+        if store.id in self.all_template_stores.keys():
+            raise NameError(f"template store with id {store.name} already exists.")
         if self.activated:
-            self.all_template_stores[name] = store
-            self.all_template_stores[name].initialize_store()
+            self.all_template_stores[store.id] = store
+            self.all_template_stores[store.id].initialize_store()
 
 
 stores_config = StoresConfig()
@@ -77,13 +87,16 @@ class GEMDTemplate:  # TODO: move to typing
     from_subclass: bool
 
 
+# TODO: test if not root assigned
+
+
 class GEMDTemplateStore(ABC):
     """
     A class to hold and work with a set of GEMD template objects. Allows easier loading from
     a template_type_root of json dump files coupled with one or more dictionaries of static, hard-coded templates
     """
 
-    _root = Path(__file__).parent / "stores/templates"
+    # _root = Path(__file__).parent / "stores/global"
 
     def __init__(self, id, encoder=GEMDJson(), load_all_files=False):
         """
@@ -91,8 +104,6 @@ class GEMDTemplateStore(ABC):
         """
 
         self.id = id
-        if stores_config.activated:
-            stores_config.register_store(self.id)
         self.encoder = encoder  # TODO: separate from workflow one
         # self.logger = Logger()
         self._n_from_files = 0
@@ -115,6 +126,8 @@ class GEMDTemplateStore(ABC):
         }
         if load_all_files:
             self.register_all_templates_from_store()
+        if stores_config.activated:
+            stores_config.register_store(self)
 
     @property
     def root(self):
@@ -186,7 +199,9 @@ class GEMDTemplateStore(ABC):
         name = template.name
 
         if self.encoder.scope not in template.uids.keys():
-            assign_uuid(template, "auto")
+            assign_uuid(
+                template, "auto"
+            )  # TODO: fix this, has nothing to do with encoder. just change to if "auto"?
 
         dict_to_add_to = None
         if isinstance_attribute_template(
@@ -209,8 +224,10 @@ class GEMDTemplateStore(ABC):
                 warning_msg,
                 ResourceWarning,
             )
-            if self.encoder.scope not in dict_to_add_to[name].template.uids:
-                warning_msg = f"WARNING: template with name '{name}' found in store doesn't have 'auto' uid."
+            if (
+                self.encoder.scope not in dict_to_add_to[name].template.uids
+            ):  # FIXME: is this to handle in case any kind of files comes in?
+                warning_msg = f"WARNING: template with name '{name}' found in store doesn't have {self.encoder.scope} uid."
                 warnings.warn(
                     warning_msg,
                     ResourceWarning,

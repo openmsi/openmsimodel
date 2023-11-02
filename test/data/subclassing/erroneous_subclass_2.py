@@ -1,5 +1,5 @@
 from openmsimodel.entity.base.process import Process
-from openmsimodel.entity.base.process import Material
+from openmsimodel.entity.base.material import Material
 from gemd import (
     ProcessTemplate,
     MaterialTemplate,

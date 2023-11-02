@@ -102,6 +102,7 @@ def main(args=None):
                     for test in test_group:
                         if not args.unittest_regex.match(test._testMethodName):
                             test_name = test._testMethodName
+                            print(test_name)
                             msg = f"tests that don't match the regex '{args.unittest_regex}' are being skipped"
                             setattr(
                                 test,

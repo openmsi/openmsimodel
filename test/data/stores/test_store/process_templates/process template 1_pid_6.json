@@ -3,12 +3,13 @@
    "allowed_names": [],
    "conditions": [],
    "description": null,
-   "name": "dummy process template 1",
+   "name": "process template 1",
    "parameters": [],
    "tags": [],
    "type": "process_template",
    "uids": {
-      "auto": "a9ea38cf-90be-4d7c-adc5-6f784aa1f748",
-      "persistent_id": 0
+      "auto": "abbc64a8-d83d-4aef-b949-5886b1422614",
+      "gen": "uid_1",
+      "persistent_id": 6
    }
 }

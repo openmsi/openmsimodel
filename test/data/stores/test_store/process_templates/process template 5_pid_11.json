@@ -1,0 +1,23 @@
+{
+   "allowed_labels": [],
+   "allowed_names": [],
+   "conditions": [
+      [
+         {
+            "id": "uid_2",
+            "scope": "gen",
+            "type": "link_by_uid"
+         },
+         null
+      ]
+   ],
+   "description": null,
+   "name": "process template 5",
+   "parameters": [],
+   "tags": [],
+   "type": "process_template",
+   "uids": {
+      "auto": "a5dfae9e-0ab7-4d9c-aa23-4cfa58e8dec7",
+      "persistent_id": 11
+   }
+}

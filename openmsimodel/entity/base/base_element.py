@@ -34,7 +34,7 @@ from openmsimodel.utilities.attributes import (
 )
 
 from openmsimodel.utilities.logging import Logger
-import openmsimodel.stores.gemd_template_store as gemd_template_store
+import openmsimodel.stores.gemd_template_store as store_tools
 
 __all__ = ["BaseElement"]
 
@@ -122,8 +122,10 @@ class BaseElement(ABC):
 
         # TODO: change from file when supporting file links
         # registering the object templates
-        if gemd_template_store.stores_config.activated:
-            for i, store in enumerate(gemd_template_store.all_template_stores.values()):
+        if store_tools.stores_config.activated:
+            for i, store in enumerate(
+                store_tools.stores_config.all_template_stores.values()
+            ):
                 self.TEMPLATE_WRAPPER[store.id] = store.register_new_template(
                     self.TEMPLATE,
                     from_file=False,
@@ -131,8 +133,10 @@ class BaseElement(ABC):
                     from_memory=bool(template),
                     from_subclass=bool(has_template and not template),
                 )
-                if stores_config.designated_store_id == store.id:
-                    self.TEMPLATE = self.TEMPLATE_WRAPPER[designated_store_id].template
+                if store_tools.stores_config.designated_store_id == store.id:
+                    self.TEMPLATE = self.TEMPLATE_WRAPPER[
+                        store_tools.stores_config.designated_store_id
+                    ].template
 
         if (
             template
@@ -140,23 +144,22 @@ class BaseElement(ABC):
             self.prepare_attrs()
 
         # registering the attribute templates
-        if gemd_template_store.stores_config.activated:
-            for i, store in enumerate(gemd_template_store.all_template_stores.values()):
+        if store_tools.stores_config.activated:
+            for i, store in enumerate(
+                store_tools.stores_config.all_template_stores.values()
+            ):
                 for _attr_type in self._ATTRS.keys():
                     for _attr in self._ATTRS[_attr_type].values():
-                        gemd_template_store.all_template_stores[
+                        store_tools.stores_config.all_template_stores[
                             store.id
                         ].register_new_template(_attr["obj"])
 
         self._spec: Spec = self._SpecType(
             name=name, notes=notes, template=self.TEMPLATE
         )
-        # if spec the same as in store, use the one in store
-        # if not, use the one instantiated from template
-        # sce 1: diff template but same name
         self._run: Run = make_instance(self._spec)
         assign_uuid(self._spec, "auto")
-        assign_uuid(self._run, "auto")
+        assign_uuid(self._run, "auto")  # redundant?
 
     @property
     @abstractmethod
@@ -178,11 +181,11 @@ class BaseElement(ABC):
                     self._ATTRS, template=c[0]
                 )  # TODO: look into this weird format from GEMD (attr, bounds)
         if hasattr(self.TEMPLATE, "parameters"):
-            for p in self.TEMPLATE.parameters:
-                define_attribute(self._ATTRS, template=p[0])
+            for pa in self.TEMPLATE.parameters:
+                define_attribute(self._ATTRS, template=pa[0])
         if hasattr(self.TEMPLATE, "properties"):
-            for p in self.TEMPLATE.properties:
-                define_attribute(self._ATTRS, template=p[0])
+            for pr in self.TEMPLATE.properties:
+                define_attribute(self._ATTRS, template=pr[0])
         # finalize_template(self._ATTRS, self.TEMPLATE)
 
     def _update_attributes(

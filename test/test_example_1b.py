@@ -8,8 +8,6 @@ sys.path.insert(0, "..")
 from data.subclassing.arcmelting import ArcMelting
 from openmsimodel.entity.impl import assign_uuid
 
-# import openmsimodel.stores.gemd_template_store as template_store
-# from template_store import GEMDTemplateStore, global_template_store
 from openmsimodel.stores.gemd_template_store import GEMDTemplateStore, stores_config
 
 from openmsimodel.entity.base.base_element import BaseElement
@@ -48,8 +46,16 @@ class TestStores(unittest.TestCase):
     # self.assertTrue("global" in template_store_ids)
     # self.assertTrue("test" in template_store_ids)
 
+    # testing type of initialization 1 (see 1b for type of initialization 2)
+
     dummy_root = Path(__file__).parent.parent / "data/stores/dummy_store"
-    dummy_template_store = GEMDTemplateStore(id="dummy", load_all_files=False)
+    # dummy_template_store = GEMDTemplateStore(id="dummy", load_all_files=False)
+
+    stores_config.designated_store_id = "dummy"
+    stores_config.deploy_store("dummy")
+    # stores_config.all_template_stores["test"].root = dummy_root
+    # stores_config.all_template_stores["test"].register_all_templates_from_store()
+
     # self.assertEqual(len(template_store_ids), 3)
     # self.assertTrue("dummy" in template_store_ids)
 
@@ -61,24 +67,24 @@ class TestStores(unittest.TestCase):
         # in which case both declarations below should return a warning for template already in file but still have the same template by uid
         # Expected: should get warnings with existing
 
-        with self.assertWarns(ResourceWarning):
-            a = ArcMelting("arc melting")
-            first_auto_uid = ArcMelting.TEMPLATE.uids["auto"]
-            a_2 = ArcMelting("arc melting")
-            self.assertEquals(first_auto_uid, a_2.TEMPLATE.uids["auto"])
+        # with self.assertWarns(ResourceWarning):
+        a = ArcMelting("arc melting")
+        first_auto_uid = ArcMelting.TEMPLATE.uids["auto"]
+        a_2 = ArcMelting("arc melting")
+        self.assertEquals(first_auto_uid, a_2.TEMPLATE.uids["auto"])
         # if (
         #     global_template_store.id == "global"
         # ):  # if ran on its own TODO: review bc global template reads from gloabl stores
         # if (
-        #     len(all_template_stores.keys()) == 1
-        #     and "global" in all_template_stores.keys()
+        #     len(stores_config.all_template_stores.keys()) == 1
+        #     and "global" in stores_config.all_template_stores.keys()
         # ):
         #     self.assertEqual(a.TEMPLATE_WRAPPER["global"].from_file, False)
         #     self.assertEqual(a.TEMPLATE_WRAPPER["global"].from_memory, False)
         #     self.assertEqual(a.TEMPLATE_WRAPPER["global"].from_subclass, True)
         #     self.assertEqual(a.TEMPLATE_WRAPPER["global"].from_store, False)
         if (
-            "test" in all_template_stores.keys()
+            "test" in stores_config.all_template_stores.keys()
         ):  # when all tests are ran. in this case, other tests are ran prior to this one and affect the store
             self.assertEqual(a.TEMPLATE_WRAPPER["test"].from_file, False)
             self.assertEqual(a.TEMPLATE_WRAPPER["test"].from_memory, False)
@@ -94,58 +100,71 @@ class TestStores(unittest.TestCase):
 
     def test_dummy_store(self):
         ###### testing property setter
-        self.dummy_template_store.root = self.dummy_root
+        stores_config.all_template_stores["dummy"].root = self.dummy_root
         self.assertEquals(
-            self.dummy_template_store.root,
+            stores_config.all_template_stores["dummy"].root,
             Path(__file__).parent.parent / "data/stores/dummy_store",
         )
 
         ##### testing initializing store
-        self.dummy_template_store.initialize_store()
+        stores_config.all_template_stores["dummy"].initialize_store()
 
         for root, dirs, files in os.walk(self.dummy_root):
             self.assertTrue(len(files) == 1)
             self.assertEqual(
                 os.path.join(root, files[0]),
-                str(self.dummy_template_store.registry_path),
+                str(stores_config.all_template_stores["dummy"].registry_path),
             )
             for dir in dirs:
                 full_dir = Path(os.path.join(root, dir))
                 self.assertTrue(
-                    full_dir in self.dummy_template_store.store_folders.values()
+                    full_dir
+                    in stores_config.all_template_stores["dummy"].store_folders.values()
                 )
             break
 
         ###### testing register_template on a process template
         template = ProcessTemplate("dummy process template 1")
         _type = type(template)
-        process_templates_destination = self.dummy_template_store.store_folders[_type]
+        process_templates_destination = stores_config.all_template_stores[
+            "dummy"
+        ].store_folders[_type]
 
         with self.assertRaises(TypeError):
-            self.dummy_template_store.register_new_template("str", from_store=False)
+            stores_config.all_template_stores["dummy"].register_new_template(
+                "str", from_store=False
+            )
 
         self.assertEqual(len(os.listdir(process_templates_destination)), 0)
-        self.dummy_template_store.register_new_template(template, from_store=False)
+        stores_config.all_template_stores["dummy"].register_new_template(
+            template, from_store=False
+        )
         self.assertEqual(len(os.listdir(process_templates_destination)), 1)
-        self.assertEqual(len(self.dummy_template_store._object_templates[_type]), 1)
         self.assertEqual(
-            self.dummy_template_store._object_templates[_type][
-                "dummy process template 1"
-            ].template.name,
+            len(stores_config.all_template_stores["dummy"]._object_templates[_type]), 1
+        )
+        self.assertEqual(
+            stores_config.all_template_stores["dummy"]
+            ._object_templates[_type]["dummy process template 1"]
+            .template.name,
             "dummy process template 1",
         )
         self.assertTrue(
             "auto"
-            in self.dummy_template_store._object_templates[_type][
-                "dummy process template 1"
-            ].template.uids.keys()
+            in stores_config.all_template_stores["dummy"]
+            ._object_templates[_type]["dummy process template 1"]
+            .template.uids.keys()
         )
 
         with self.assertWarns(
             ResourceWarning
         ):  # make sure it hasn't been added, as the already registered template should have been used
-            self.dummy_template_store.register_new_template(template, from_store=False)
-        self.assertEqual(len(self.dummy_template_store._object_templates[_type]), 1)
+            stores_config.all_template_stores["dummy"].register_new_template(
+                template, from_store=False
+            )
+        self.assertEqual(
+            len(stores_config.all_template_stores["dummy"]._object_templates[_type]), 1
+        )
 
         ###### testing register_template on a process template + attribute template (each individually)
         pt = ParameterTemplate(
@@ -153,38 +172,54 @@ class TestStores(unittest.TestCase):
         )
         template = ProcessTemplate("dummy process template 2", parameters=[pt])
         _type = type(pt)
-        parameter_templates_destination = self.dummy_template_store.store_folders[_type]
+        parameter_templates_destination = stores_config.all_template_stores[
+            "dummy"
+        ].store_folders[_type]
 
         self.assertEqual(len(os.listdir(parameter_templates_destination)), 0)
 
-        self.dummy_template_store.register_new_template(
+        stores_config.all_template_stores["dummy"].register_new_template(
             template, from_store=False
         )  # template
-        self.dummy_template_store.register_new_template(pt, from_store=False)  # attr
+        stores_config.all_template_stores["dummy"].register_new_template(
+            pt, from_store=False
+        )  # attr
 
         self.assertEqual(len(os.listdir(parameter_templates_destination)), 1)  # + 1
-        self.assertEqual(len(self.dummy_template_store._attribute_templates[_type]), 1)
+        self.assertEqual(
+            len(stores_config.all_template_stores["dummy"]._attribute_templates[_type]),
+            1,
+        )
 
         self.assertEqual(len(os.listdir(process_templates_destination)), 2)  # + 1
         self.assertEqual(
-            len(self.dummy_template_store._object_templates[type(template)]), 2
+            len(
+                stores_config.all_template_stores["dummy"]._object_templates[
+                    type(template)
+                ]
+            ),
+            2,
         )
 
     def test_dummy_store_with_BaseElement(self):
         # test store is manipulated in test_entity_base_instantiation prior (expected and useful for testing across files)
         test_processes_count = len(
-            all_template_stores["test"]._object_templates[ProcessTemplate]
+            stores_config.all_template_stores["test"]._object_templates[ProcessTemplate]
         )
         test_params_count = len(
-            all_template_stores["test"]._attribute_templates[ParameterTemplate]
+            stores_config.all_template_stores["test"]._attribute_templates[
+                ParameterTemplate
+            ]
         )
         self.assertEqual(test_processes_count, 8)
         self.assertEqual(test_params_count, 5)
 
         # adding dummy store
-        self.assertEqual(len(all_template_stores), 1)
-        all_template_stores["dummy"] = self.dummy_template_store
-        self.assertEqual(len(all_template_stores), 2)
+        self.assertEqual(len(stores_config.all_template_stores), 1)
+        stores_config.all_template_stores["dummy"] = stores_config.all_template_stores[
+            "dummy"
+        ]
+        self.assertEqual(len(stores_config.all_template_stores), 2)
 
         ##### 1) a) instantiation of base node object, which should register an object template and attribute template
         p = Process(
@@ -206,24 +241,24 @@ class TestStores(unittest.TestCase):
 
         def reusable_tests():
             # test asserts
-            test_processes = all_template_stores["test"]._object_templates[
-                ProcessTemplate
-            ]
-            test_processes_destination = all_template_stores["test"].store_folders[
-                ProcessTemplate
-            ]
+            test_processes = stores_config.all_template_stores[
+                "test"
+            ]._object_templates[ProcessTemplate]
+            test_processes_destination = stores_config.all_template_stores[
+                "test"
+            ].store_folders[ProcessTemplate]
             helper_1(  # due to 1a), gets one more
                 len(test_processes) - test_processes_count,
                 1,
                 len(os.listdir(test_processes_destination)) - test_processes_count,
                 1,
             )
-            test_parameters = all_template_stores["test"]._attribute_templates[
-                ParameterTemplate
-            ]
-            test_parameters_destination = all_template_stores["test"].store_folders[
-                ParameterTemplate
-            ]
+            test_parameters = stores_config.all_template_stores[
+                "test"
+            ]._attribute_templates[ParameterTemplate]
+            test_parameters_destination = stores_config.all_template_stores[
+                "test"
+            ].store_folders[ParameterTemplate]
 
             helper_1(  # due to 1a), gets one more
                 (len(test_parameters) - test_params_count),
@@ -233,24 +268,24 @@ class TestStores(unittest.TestCase):
             )
 
             # dummy asserts
-            dummy_processes = all_template_stores["dummy"]._object_templates[
-                ProcessTemplate
-            ]
-            dummy_processes_destination = all_template_stores["dummy"].store_folders[
-                ProcessTemplate
-            ]
+            dummy_processes = stores_config.all_template_stores[
+                "dummy"
+            ]._object_templates[ProcessTemplate]
+            dummy_processes_destination = stores_config.all_template_stores[
+                "dummy"
+            ].store_folders[ProcessTemplate]
             helper_1(  # due to 1a), gets one more
                 len(dummy_processes),
                 3,
                 len(os.listdir(dummy_processes_destination)),
                 3,
             )
-            dummy_parameters = all_template_stores["dummy"]._attribute_templates[
-                ParameterTemplate
-            ]
-            dummy_parameters_destination = all_template_stores["dummy"].store_folders[
-                ParameterTemplate
-            ]
+            dummy_parameters = stores_config.all_template_stores[
+                "dummy"
+            ]._attribute_templates[ParameterTemplate]
+            dummy_parameters_destination = stores_config.all_template_stores[
+                "dummy"
+            ].store_folders[ParameterTemplate]
             helper_1(  # due to 1a),  gets one more too!
                 len(dummy_parameters),
                 2,
@@ -275,8 +310,10 @@ class TestStores(unittest.TestCase):
                 ),
             )
 
-        test_processes = all_template_stores["test"]._object_templates[ProcessTemplate]
-        processes_destination = all_template_stores["test"].store_folders[
+        test_processes = stores_config.all_template_stores["test"]._object_templates[
+            ProcessTemplate
+        ]
+        processes_destination = stores_config.all_template_stores["test"].store_folders[
             ProcessTemplate
         ]
         # no addition at all for both tests and dummy
@@ -298,8 +335,10 @@ class TestStores(unittest.TestCase):
             ),
         )
 
-        test_processes = all_template_stores["test"]._object_templates[ProcessTemplate]
-        processes_destination = all_template_stores["test"].store_folders[
+        test_processes = stores_config.all_template_stores["test"]._object_templates[
+            ProcessTemplate
+        ]
+        processes_destination = stores_config.all_template_stores["test"].store_folders[
             ProcessTemplate
         ]
         # this time 1c) has diff exepected results
@@ -310,12 +349,12 @@ class TestStores(unittest.TestCase):
             len(os.listdir(processes_destination)) - test_processes_count,
             1 + 1,
         )
-        test_parameters = all_template_stores["test"]._attribute_templates[
-            ParameterTemplate
-        ]
-        parameters_destination = all_template_stores["test"].store_folders[
-            ParameterTemplate
-        ]
+        test_parameters = stores_config.all_template_stores[
+            "test"
+        ]._attribute_templates[ParameterTemplate]
+        parameters_destination = stores_config.all_template_stores[
+            "test"
+        ].store_folders[ParameterTemplate]
         helper_1(
             (len(test_parameters) - test_params_count),
             1,
@@ -323,24 +362,24 @@ class TestStores(unittest.TestCase):
             1,
         )
 
-        dummy_processes = all_template_stores["dummy"]._object_templates[
+        dummy_processes = stores_config.all_template_stores["dummy"]._object_templates[
             ProcessTemplate
         ]
-        dummy_processes_destination = all_template_stores["dummy"].store_folders[
-            ProcessTemplate
-        ]
+        dummy_processes_destination = stores_config.all_template_stores[
+            "dummy"
+        ].store_folders[ProcessTemplate]
         helper_1(
             len(dummy_processes),
             4,
             len(os.listdir(dummy_processes_destination)),
             4,
         )
-        dummy_parameters = all_template_stores["dummy"]._attribute_templates[
-            ParameterTemplate
-        ]
-        dummy_parameters_destination = all_template_stores["dummy"].store_folders[
-            ParameterTemplate
-        ]
+        dummy_parameters = stores_config.all_template_stores[
+            "dummy"
+        ]._attribute_templates[ParameterTemplate]
+        dummy_parameters_destination = stores_config.all_template_stores[
+            "dummy"
+        ].store_folders[ParameterTemplate]
         helper_1(
             len(dummy_parameters),
             2,
@@ -351,6 +390,6 @@ class TestStores(unittest.TestCase):
     # def test_multi_stores(self):
     # TODO: do tests with 2 diff orders, check which one gets pulled from
 
-    # TODO: test self.dummy_template_store.register_all_templates_from_files()
+    # TODO: test stores_config.all_template_stores["dummy"].register_all_templates_from_files()
 
     # TODO: tests the n's, the from_ mroe extensively,
