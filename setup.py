@@ -1,6 +1,6 @@
 import setuptools
 
-version = "0.1.0"
+version = "0.1.1"
 
 setupkwargs = dict(
     name="openmsimodel",
@@ -36,6 +36,7 @@ setupkwargs = dict(
         "openpyxl",
         "graphviz",
         # "pygraphviz",
+        "sphinx_rtd_theme",
         "questionary",
         "webcolors",
         "jupyter",
