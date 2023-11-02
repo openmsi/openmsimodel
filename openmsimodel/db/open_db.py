@@ -1,3 +1,22 @@
+"""
+OpenDB - Database Interaction Tool
+==================================
+
+OpenDB is a command-line tool that allows interaction with a database for managing model artifacts. It provides capabilities for loading models, executing queries, and more.
+
+Usage:
+    python open_db.py [options]
+
+Options:
+    --database_name=<name>       Name of the database to connect to.
+    --private_path=<path>       Path to a JSON file containing database credentials.
+    --output=<path>             Path to the output directory.
+
+Example:
+    python open_db.py --database_name=GEMD_DB --private_path=credentials.json --output=output_dir
+
+"""
+
 import json
 import random
 import time
@@ -22,14 +41,25 @@ def create_acronym(phrase):
 
 
 class OpenDB(Runnable):
-    """Class to interact with model artefacts in a database, allowing long-term storage of assets, faster and richer data retrieval, etc.
-    The module typically extract knowledges directly from JSONs of GEMD objects, and maps the GEMD Json structure to SQL classes (see prepare_classes in queries.py).
-    JSONs remain the main method of communication across the packages, from model instantiatiation to graphers.
+    """
+    OpenDB - Database Interaction Tool
+
+    This tool allows interaction with a database for managing model artifacts. It provides capabilities for loading models, executing queries, and more.
     """
 
     ARGUMENT_PARSER_TYPE = OpenMSIModelParser
 
     def __init__(self, database_name, private_path, output):
+        """
+        Initialization of OpenDB instance.
+
+        :param database_name: Name of the database to connect to.
+        :type database_name: str
+        :param private_path: Path to a JSON file containing database credentials.
+        :type private_path: str
+        :param output: Path to the output directory.
+        :type output: str
+        """
         self.auth = None
         self.gemd_db = None
         self.output = output
@@ -54,6 +84,70 @@ class OpenDB(Runnable):
         except FileNotFoundError as e:
             self.logger.error(f"Error loading credentials: {e}")
             self.logger.warning("Database functionality disabled.")
+        try:
+            for function_name, function in getmembers(queries, isfunction):
+                acc = create_acronym(function_name)
+                self.listed_acronyms[acc] = function_name
+                self.listed_functions[function_name] = (function, acc)
+        except Exception as e:
+            print(f"Error while reading functions from 'queries': {e}")
+
+    def load_model(self, name, dirpath, uuid="auto"):
+        return queries.load_model_query(name, self.gemd_db, dirpath, uuid)
+
+    def create_tables(self):
+        return queries.create_tables_query()
+
+    def record_query_results(self, sql_results, query, name, dump=True):
+        """
+        Print query results and optionally save them to a CSV file.
+
+        :param sql_results: The results of the SQL query.
+        :type sql_results: DataFrame
+        :param query: The SQL query that produced the results.
+        :type query: str
+        :param name: A name to use for the output file.
+        :type name: str
+        :param dump: If True, save the results to a CSV file. Default is True.
+        :type dump: bool
+
+        :return: The input DataFrame (sql_results).
+        :rtype: DataFrame
+
+        :raises ValueError: If an error occurs while saving to the output file.
+
+        :examples:
+        
+        Example 1:
+        
+        .. code-block:: python
+        
+            result_df = self.load_model("example_model", "/path/to/model")
+            query = "SELECT * FROM data"
+            self.print_and_dump(result_df, query, "data_output")
+        """
+        print(f"Query: {query}")
+
+        timestamp = time.strftime("%m%d%Y_%H%M_", time.localtime())
+        random_suffix = random.randint(0, 10000)
+        output_file = os.path.join(
+            self.output, f"{name}_{timestamp}{random_suffix}.csv"
+        )
+
+        print(sql_results)
+
+        try:
+            if dump:
+                sql_results.to_csv(output_file, index=False)
+                print(f"Results saved to '{output_file}'")
+            else:
+                print("Results not saved to a file.")
+        except Exception as e:
+            error_message = f"Error saving results to '{output_file}': {e}"
+            print(error_message)
+            raise ValueError(error_message)
+
+        return sql_results
 
     def list_queries(self):
         """
@@ -69,53 +163,6 @@ class OpenDB(Runnable):
             max_doc_length = 240
             if len(function_doc) > max_doc_length:
                 function_doc = function_doc[:max_doc_length] + " ..."
-
-            print(f"- Name: {function_name}")
-            print(f"  Acronym: {function_acronym}")
-            print(f"  Description: {function_doc}")
-
-    def load_model(self, name, dirpath, uuid="auto"):
-        return queries.load_model_query(name, self.gemd_db, dirpath, uuid)
-
-    def create_tables(self):
-        return queries.create_tables_query()
-
-    def print_and_dump(self, sql_results, query, name, dump=True):
-        """_summary_
-
-        Args:
-            sql_results (_type_): _description_
-            query (_type_): _description_
-            name (_type_): _description_
-        """
-        print(query)
-        output_file = os.path.join(
-            self.output,
-            name
-            + "_"
-            + str(time.strftime("%m%d%Y_%H%M_", time.localtime()))
-            + str(random.randint(0, 10000))
-            + ".csv",
-        )
-        print(sql_results)
-        sql_results.to_csv(output_file)
-        if not dump:
-            with open(output_file, "a") as fp:
-                w = csv.writer(fp)
-        return sql_results
-
-    def list_queries(self):
-        for function_name, (
-            function,
-            function_acronym,
-        ) in self.listed_functions.items():
-            function_doc = function.__doc__ or "No documentation available"
-            function_doc = function_doc.strip()  # Remove leading/trailing whitespace
-
-            # Truncate long docstrings for better readability
-            max_doc_length = 240  # Adjust this value as needed
-            if len(function_doc) > max_doc_length:
-                function_doc = function_doc[:max_doc_length] + "..."
 
             print(f"- Name: {function_name}")
             print(f"  Acronym: {function_acronym}")
@@ -140,7 +187,7 @@ class OpenDB(Runnable):
                         # Create tables in the database schema
                         add_schema_query = queries.create_tables_query()
                         result = self.gemd_db.execute_query(add_schema_query)
-                        self.print_and_dump(
+                        self.record_query_results(
                             result, add_schema_query, "add_schema_query"
                         )
                     except Exception as e:
@@ -151,8 +198,10 @@ class OpenDB(Runnable):
                     # Input parameters for loading a model
                     params = input(
                         "Enter the appropriate parameters for loading a model (name and dirpath): "
-                    ).ask()
+                    )
                     params = params.split(" ")
+                    if len(params) != 2:
+                        raise ValueError("Expected two parameters (name and dirpath).")
                     self.load_model(params[0], params[1])
 
                 elif mode_question == "Listed Queries":
@@ -164,12 +213,14 @@ class OpenDB(Runnable):
                     if display_documentation:
                         self.list_queries()
 
-                    # Select a query and specify its required arguments
-                    selected_query = input("Enter query with its required arguments: ")
-                    selected_query = selected_query.split(" ")
-                    identifier = selected_query[0]
-
                     try:
+                        # Select a query and specify its required arguments
+                        selected_query = input(
+                            "Enter query with its required arguments: "
+                        )
+                        selected_query = selected_query.split(" ")
+                        identifier = selected_query[0]
+
                         if (
                             identifier in self.listed_acronyms.keys()
                             or identifier.upper() in self.listed_acronyms.keys()
@@ -189,7 +240,7 @@ class OpenDB(Runnable):
                         # Execute the selected query
                         selected_query = func(*selected_query[1:])
                         result = self.gemd_db.execute_query(selected_query)
-                        self.print_and_dump(result, selected_query, identifier)
+                        self.record_query_results(result, selected_query, identifier)
                     except Exception as e:
                         print(f"ERROR: {e}")
                         print("Try again.")
@@ -202,7 +253,7 @@ class OpenDB(Runnable):
 
                     try:
                         result = self.gemd_db.execute_query(custom_query)
-                        self.print_and_dump(result, custom_query, "custom_query")
+                        self.record_query_results(result, custom_query, "custom_query")
                     except Exception as e:
                         print(f"ERROR: {e}")
                         print("Try again.")
