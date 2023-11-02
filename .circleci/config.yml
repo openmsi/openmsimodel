@@ -54,6 +54,7 @@ jobs:
           name: Publish to PyPI
           command: |
             pip install twine
+            cd ~/; python setup.py sdist bdist_wheel
             twine upload --repository-url https://upload.pypi.org/legacy/ dist/*
           environment:
             TWINE_USERNAME: $PYPI_USERNAME
