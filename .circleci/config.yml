@@ -65,3 +65,12 @@ jobs:
           environment:
             TWINE_USERNAME: $PYPI_USERNAME
             TWINE_PASSWORD: $PYPI_PASSWORD
+  deploy:
+    docker:
+      - image: python:3.8
+    steps:
+      - checkout
+      - run:
+          name: Deploy
+          command: |
+            # Your deployment commands go here
