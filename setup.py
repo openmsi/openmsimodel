@@ -16,8 +16,8 @@ setupkwargs = dict(
     zip_safe=False,
     entry_points={
         "console_scripts": [
-            "open_graph=openmsimodel.graph.open_graph:main",
             "open_db=openmsimodel.db.open_db:main",
+            "open_graph=openmsimodel.graph.open_graph:main",
         ],
     },
     python_requires=">=3.7,<3.10",
