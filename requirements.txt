@@ -1,31 +1,3 @@
-# gemd==1.13.0
-# networkx
-# pymssql==2.2.8
-# SQLAlchemy==2.0.17
-# numpy
-# pandas
-# methodtools
-# matplotlib
-# questionary
-
-#         "gemd==1.13.0",
-#         "networkx",
-#         "pymssql==2.2.8",
-#         "SQLAlchemy==2.0.17",
-#         "PyInquirer",
-#         "prompt_toolkit",
-#         "numpy",
-#         "pandas",
-#         "methodtools",
-#         "matplotlib",
-#         "yfiles_jupyter_graphs",
-#         "ipython",
-#         "ipykernel",
-#         "openpyxl",
-#         "graphviz",
-#         "questionary",
-
-
 gemd==1.13.0
 networkx
 pymssql==2.2.8
@@ -42,3 +14,4 @@ ipykernel
 openpyxl
 graphviz
 questionary
+webcolors

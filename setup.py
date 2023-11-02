@@ -36,6 +36,7 @@ setupkwargs = dict(
         "openpyxl",
         "graphviz",
         "questionary",
+        "webcolors",
     ],
     extras_require={},
 )
