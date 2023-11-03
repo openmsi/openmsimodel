@@ -992,6 +992,8 @@
     <edge source="Taste [taste, measurement_spec]" target="Final Taste [taste--cake-d576929a6c518c058db29324c13db0c3, measurement_run]" />
     <edge source="Taste [taste, measurement_spec]" target="Taste test [taste-test, measurement_template]" />
     <edge source="Taste [taste, measurement_spec]" target="Frosting Taste [taste--frosting-d576929a6c518c058db29324c13db0c3, measurement_run]" />
+    <edge source="Tastiness [tastiness, property_template]" target="Taste test [taste-test, measurement_template]" />
+    <edge source="Tastiness [tastiness, property_template]" target="Dessert [dessert, material_template]" />
     <edge source="Taste test [taste-test, measurement_template]" target="Taste [taste, measurement_spec]" />
     <edge source="Taste test [taste-test, measurement_template]" target="Tastiness [tastiness, property_template]" />
     <edge source="Icing Cake [icing-cake, process_spec]" target="Icing Cake [icing-cake-d576929a6c518c058db29324c13db0c3, process_run]" />
@@ -1022,6 +1024,10 @@
     <edge source="Doneness test [doneness, measurement_template]" target="Doneness test [doneness, measurement_template]" />
     <edge source="Doneness test [doneness, measurement_template]" target="Toothpick test [toothpick-test, property_template]" />
     <edge source="Doneness test [doneness, measurement_template]" target="Baked color [color, property_template]" />
+    <edge source="Baked color [color, property_template]" target="Doneness test [doneness, measurement_template]" />
+    <edge source="Baked color [color, property_template]" target="Baked Good [baked-good, material_template]" />
+    <edge source="Toothpick test [toothpick-test, property_template]" target="Doneness test [doneness, measurement_template]" />
+    <edge source="Toothpick test [toothpick-test, property_template]" target="Baked Good [baked-good, material_template]" />
     <edge source="Baking Baked Cake [baking-baked-cake, process_spec]" target="Baking Baked Cake [baking-baked-cake-d576929a6c518c058db29324c13db0c3, process_run]" />
     <edge source="Baking Baked Cake [baking-baked-cake, process_spec]" target="batter [batter--baking-baked-cake, ingredient_spec]" />
     <edge source="Baking Baked Cake [baking-baked-cake, process_spec]" target="Baking [baking, process_template]" />
@@ -1122,6 +1128,9 @@
     <edge source="Formulaic Material [formulaic-material, material_template]" target="Chemical Formula [chemical-formula, property_template]" />
     <edge source="Formulaic Material [formulaic-material, material_template]" target="Molecular Structure [molecular-structure, property_template]" />
     <edge source="Formulaic Material [formulaic-material, material_template]" target="Sugar [sugar, material_spec]" />
+    <edge source="Chemical Formula [chemical-formula, property_template]" target="Formulaic Material [formulaic-material, material_template]" />
+    <edge source="Chemical Formula [chemical-formula, property_template]" target="Elemental Analysis [elemental-analysis, measurement_template]" />
+    <edge source="Molecular Structure [molecular-structure, property_template]" target="Formulaic Material [formulaic-material, material_template]" />
     <edge source="baking powder [baking-powder--mixing-dry-ingredients, ingredient_spec]" target="Mixing Dry Ingredients [mixing-dry-ingredients, process_spec]" />
     <edge source="baking powder [baking-powder--mixing-dry-ingredients, ingredient_spec]" target="Baking Powder [baking-powder, material_spec]" />
     <edge source="baking powder [baking-powder--mixing-dry-ingredients, ingredient_spec]" target="baking powder [baking-powder--mixing-dry-ingredients-d576929a6c518c058db29324c13db0c3, ingredient_run]" />
@@ -1144,6 +1153,11 @@
     <edge source="Procuring Flour [procuring-flour, process_spec]" target="Procuring A1 Flour [procuring-flour-d576929a6c518c058db29324c13db0c3, process_run]" />
     <edge source="Nutritional Material [nutritional-material, material_template]" target="Flour [flour, material_spec]" />
     <edge source="Nutritional Material [nutritional-material, material_template]" target="Nutritional Information [nutritional-information, property_template]" />
+    <edge source="Sample Mass [sample-mass, condition_template]" target="Elemental Analysis [elemental-analysis, measurement_template]" />
+    <edge source="Sample Mass [sample-mass, condition_template]" target="Nutritional Analysis [nutritional-analysis, measurement_template]" />
+    <edge source="Nutritional Information [nutritional-information, property_template]" target="Nutritional Material [nutritional-material, material_template]" />
+    <edge source="Nutritional Information [nutritional-information, property_template]" target="Nutritional Analysis [nutritional-analysis, measurement_template]" />
+    <edge source="Mixer speed setting [mixer-speed-setting, parameter_template]" target="Mixing [mixing, process_template]" />
     <edge source="wet ingredients [wet-ingredients--mixing-batter, ingredient_spec]" target="Mixing Batter [mixing-batter, process_spec]" />
     <edge source="wet ingredients [wet-ingredients--mixing-batter, ingredient_spec]" target="Wet Ingredients [wet-ingredients, material_spec]" />
     <edge source="wet ingredients [wet-ingredients--mixing-batter, ingredient_spec]" target="wet ingredients [wet-ingredients--mixing-batter-d576929a6c518c058db29324c13db0c3, ingredient_run]" />
@@ -1225,6 +1239,8 @@
     <edge source="Elemental analysis [elemental analysis, measurement_spec]" target="Salt elemental analysis [elemental analysis--salt-d576929a6c518c058db29324c13db0c3, measurement_run]" />
     <edge source="Elemental analysis [elemental analysis, measurement_spec]" target="Elemental Analysis [elemental-analysis, measurement_template]" />
     <edge source="Elemental analysis [elemental analysis, measurement_spec]" target="Sugar elemental analysis [elemental analysis--powdered-sugar-d576929a6c518c058db29324c13db0c3, measurement_run]" />
+    <edge source="Expected Sample Mass [expected-sample-mass, parameter_template]" target="Elemental Analysis [elemental-analysis, measurement_template]" />
+    <edge source="Expected Sample Mass [expected-sample-mass, parameter_template]" target="Nutritional Analysis [nutritional-analysis, measurement_template]" />
     <edge source="Elemental Analysis [elemental-analysis, measurement_template]" target="Elemental analysis [elemental analysis, measurement_spec]" />
     <edge source="Elemental Analysis [elemental-analysis, measurement_template]" target="Expected Sample Mass [expected-sample-mass, parameter_template]" />
     <edge source="Elemental Analysis [elemental-analysis, measurement_template]" target="Sample Mass [sample-mass, condition_template]" />
@@ -1306,6 +1322,8 @@
     <edge source="Baked Good [baked-good, material_template]" target="Baked Cake [baked-cake, material_spec]" />
     <edge source="Baked Good [baked-good, material_template]" target="Toothpick test [toothpick-test, property_template]" />
     <edge source="Baked Good [baked-good, material_template]" target="Baked color [color, property_template]" />
+    <edge source="Oven temperature setting [oven-temperature-setting, parameter_template]" target="Baking [baking, process_template]" />
+    <edge source="Oven temperature [oven-temperature, condition_template]" target="Baking [baking, process_template]" />
     <edge source="Icing [icing, process_template]" target="Icing Cake [icing-cake, process_spec]" />
     <edge source="frosting [frosting--icing-cake, ingredient_spec]" target="Icing Cake [icing-cake, process_spec]" />
     <edge source="frosting [frosting--icing-cake, ingredient_spec]" target="Frosting [frosting, material_spec]" />

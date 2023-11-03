@@ -11,6 +11,7 @@ setupkwargs = dict(
     author_email="arachid1@jhu.edu",
     license="MIT",
     packages=setuptools.find_packages(include=["openmsimodel*"]),
+    include_package_data=True,
     zip_safe=False,
     entry_points={
         "console_scripts": [
