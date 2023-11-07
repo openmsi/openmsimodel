@@ -25,7 +25,7 @@ It allows to structure real scientific workflows into meaningful data structures
    user_info/structure
 
 .. toctree::
-   :caption: API reference/dev info:
+   :caption: API reference:
 
    dev_info/api_reference
    dev_info/ci_testing

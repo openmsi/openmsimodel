@@ -159,7 +159,7 @@ class OpenGraph(Runnable):
             except IndexError:
                 continue
             if i % quarter_length == 0:
-                print("{}/{} gemd objects processed...".format(i / full_length))
+                print("{}/{} gemd objects processed...".format(i, full_length))
         print("Done.")
 
         # relabelling according to uid -> name
@@ -583,20 +583,20 @@ class OpenGraph(Runnable):
 
         if G_gviz:
             # writing svg file
-            print("Dumping svg...")
-            start = time.time()
-            G_gviz.draw(svg_path)
-            plt.close()
-            end = time.time()
-            print(f"Time elapsed: {end - start}")
+            # print("Dumping svg...")
+            # start = time.time()
+            # G_gviz.draw(svg_path)
+            # plt.close()
+            # end = time.time()
+            # print(f"Time elapsed: {end - start}")
 
             # writing dot file
             print("Dumping dot...")
-            start = time.time()
-            with open(dot_path, "w") as f:
-                f.write(str(G_gviz))
-            end = time.time()
-            print(f"Time elapsed: {end - start}")
+            # start = time.time()
+            # with open(dot_path, "w") as f:
+            #     f.write(str(G_gviz))
+            # end = time.time()
+            # print(f"Time elapsed: {end - start}")
         else:
             print("Couldn't find GraphViz graph.")
 

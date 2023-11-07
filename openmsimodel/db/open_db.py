@@ -168,6 +168,9 @@ class OpenDB(Runnable):
             print(f"  Acronym: {function_acronym}")
             print(f"  Description: {function_doc}")
 
+    def custom_query(self, query):
+        return self.gemd_db.execute_query(query)
+
     def interactive_mode(self):
         try:
             while True:
@@ -252,7 +255,8 @@ class OpenDB(Runnable):
                     self.logger.info(f"query: {custom_query}")
 
                     try:
-                        result = self.gemd_db.execute_query(custom_query)
+                        # result = self.gemd_db.execute_query(custom_query)
+                        result = self.custom_query(custom_query)
                         self.record_query_results(result, custom_query, "custom_query")
                     except Exception as e:
                         print(f"ERROR: {e}")

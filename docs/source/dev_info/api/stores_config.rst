@@ -1,5 +1,5 @@
 =============
-StoresCongi
+StoresConfig
 =============
 
 .. autoclass:: openmsimodel.stores.gemd_template_store.StoresConfig
