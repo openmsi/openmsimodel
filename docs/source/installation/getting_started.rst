@@ -22,9 +22,9 @@ Build a GEMD Object and wrap it with a BaseElement class:
     from gemd import MaterialTemplate, ProcessTemplate, MeasurementTemplate
     from openmsimodel.workflow.workflow import Workflow
     from openmsimodel.subworkflow.process_block import ProcessBlock
-    from openmsimodel.entity.base.material import Material
-    from openmsimodel.entity.base.process import Process
-    from openmsimodel.entity.base.measurement import Measurement
+    from openmsimodel.entity.gemd.material import Material
+    from openmsimodel.entity.gemd.process import Process
+    from openmsimodel.entity.gemd.measurement import Measurement
     from openmsimodel.db.open_db import OpenDB
     from openmsimodel.graph.open_graph import OpenGraph
 

@@ -490,7 +490,7 @@ class OpenGraph(Runnable):
             os.system("jupyter notebook --notebook-dir={}".format(folder_path))
             return None
         else:
-            launch_graph_widget(dot_path)
+            launch_graph_widget(path)
 
     def update_paths(self, svg_path, dot_path, graphml_path):
         self.svg_path = svg_path

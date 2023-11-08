@@ -1,0 +1,14 @@
+{
+   "allowed_labels": [],
+   "allowed_names": [],
+   "conditions": [],
+   "description": null,
+   "name": "Process template example",
+   "parameters": [],
+   "tags": [],
+   "type": "process_template",
+   "uids": {
+      "auto": "ad65f8d9-623f-40f5-8834-1ae007fd32e5",
+      "persistent_id": 19
+   }
+}

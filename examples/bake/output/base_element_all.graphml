@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><key id="d5" for="node" attr.name="object" attr.type="string"/>
+<key id="d4" for="node" attr.name="type" attr.type="string"/>
+<key id="d3" for="node" attr.name="uuid" attr.type="string"/>
+<key id="d2" for="node" attr.name="shape" attr.type="string"/>
+<key id="d1" for="node" attr.name="color" attr.type="string"/>
+<key id="d0" for="graph" attr.name="name" attr.type="string"/>
+<graph edgedefault="directed"><data key="d0">base_element</data>
+<node id="Dessert [2f381479-12b9-4452-8ef0-90144e4c4c2c, material_template]">
+  <data key="d1">green</data>
+  <data key="d2">triangle</data>
+  <data key="d3">2f381479-12b9-4452-8ef0-90144e4c4c2c</data>
+  <data key="d4">material_template</data>
+  <data key="d5">{'description': None, 'name': 'Dessert', 'properties': [[{'id': 'tastiness', 'scope': 'citrine-demo-template', 'type': 'link_by_uid'}, None]], 'tags': [], 'type': 'material_template', 'uids': {'auto': '2f381479-12b9-4452-8ef0-90144e4c4c2c', 'citrine-demo-template': 'dessert'}}</data>
+</node>
+<node id="tastiness"/>
+<node id="Cake [bc353411-12b5-4c6d-b7e1-a007cfdfb7df, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">bc353411-12b5-4c6d-b7e1-a007cfdfb7df</data>
+  <data key="d4">material_run</data>
+  <data key="d5">{'file_links': [], 'name': 'Cake', 'notes': None, 'process': {'id': '49f162f6-aea2-4b38-ad93-51b674518104', 'scope': 'auto', 'type': 'link_by_uid'}, 'sample_type': 'unknown', 'spec': {'id': 'cake', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': [], 'type': 'material_run', 'uids': {'auto': 'bc353411-12b5-4c6d-b7e1-a007cfdfb7df'}}</data>
+</node>
+<node id="49f162f6-aea2-4b38-ad93-51b674518104"/>
+<node id="cake"/>
+<edge source="Dessert [2f381479-12b9-4452-8ef0-90144e4c4c2c, material_template]" target="tastiness"/>
+<edge source="Cake [bc353411-12b5-4c6d-b7e1-a007cfdfb7df, material_run]" target="cake"/>
+<edge source="49f162f6-aea2-4b38-ad93-51b674518104" target="Cake [bc353411-12b5-4c6d-b7e1-a007cfdfb7df, material_run]"/>
+</graph></graphml>

@@ -12,7 +12,7 @@ from data.subclassing.alloy import Alloy
 from data.subclassing.material_example import MaterialExample
 from data.subclassing.measurement_example import MeasurementExample
 from data.subclassing.process_example import ProcessExample
-from openmsimodel.entity.impl import assign_uuid
+from openmsimodel.entity.gemd.impl import assign_uuid
 
 # from openmsimodel.stores.gemd_template_store import (
 #     GEMDTemplateStore,
@@ -23,11 +23,11 @@ from openmsimodel.entity.impl import assign_uuid
 from openmsimodel.workflow.workflow import Workflow
 from openmsimodel.subworkflow.process_block import ProcessBlock
 
-from openmsimodel.entity.base.base_element import BaseElement
-from openmsimodel.entity.base.process import Process
-from openmsimodel.entity.base.material import Material
-from openmsimodel.entity.base.ingredient import Ingredient
-from openmsimodel.entity.base.measurement import Measurement
+from openmsimodel.entity.gemd.gemd_base_element import GEMDBaseElement
+from openmsimodel.entity.gemd.process import Process
+from openmsimodel.entity.gemd.material import Material
+from openmsimodel.entity.gemd.ingredient import Ingredient
+from openmsimodel.entity.gemd.measurement import Measurement
 
 from gemd import (
     NominalCategorical,

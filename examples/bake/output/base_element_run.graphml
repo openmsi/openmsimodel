@@ -6,13 +6,13 @@
 <key id="d1" for="node" attr.name="color" attr.type="string"/>
 <key id="d0" for="graph" attr.name="name" attr.type="string"/>
 <graph edgedefault="directed"><data key="d0">base_element</data>
-<node id="Cake [7fd90d25-450a-4f83-9583-37456a9bf09e, material_run]">
+<node id="Cake [bc353411-12b5-4c6d-b7e1-a007cfdfb7df, material_run]">
   <data key="d1">green</data>
   <data key="d2">circle</data>
-  <data key="d3">7fd90d25-450a-4f83-9583-37456a9bf09e</data>
+  <data key="d3">bc353411-12b5-4c6d-b7e1-a007cfdfb7df</data>
   <data key="d4">material_run</data>
-  <data key="d5">{'file_links': [], 'name': 'Cake', 'notes': None, 'process': {'id': '96c69eb7-e5b4-48ec-a8f1-3f4159d8313b', 'scope': 'auto', 'type': 'link_by_uid'}, 'sample_type': 'unknown', 'spec': {'id': 'cake', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': [], 'type': 'material_run', 'uids': {'auto': '7fd90d25-450a-4f83-9583-37456a9bf09e'}}</data>
+  <data key="d5">{'file_links': [], 'name': 'Cake', 'notes': None, 'process': {'id': '49f162f6-aea2-4b38-ad93-51b674518104', 'scope': 'auto', 'type': 'link_by_uid'}, 'sample_type': 'unknown', 'spec': {'id': 'cake', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': [], 'type': 'material_run', 'uids': {'auto': 'bc353411-12b5-4c6d-b7e1-a007cfdfb7df'}}</data>
 </node>
-<node id="96c69eb7-e5b4-48ec-a8f1-3f4159d8313b"/>
-<edge source="96c69eb7-e5b4-48ec-a8f1-3f4159d8313b" target="Cake [7fd90d25-450a-4f83-9583-37456a9bf09e, material_run]"/>
+<node id="49f162f6-aea2-4b38-ad93-51b674518104"/>
+<edge source="49f162f6-aea2-4b38-ad93-51b674518104" target="Cake [bc353411-12b5-4c6d-b7e1-a007cfdfb7df, material_run]"/>
 </graph></graphml>

@@ -14,6 +14,8 @@ persistent_id,name,type
 12,process template 6,process_template
 13,process template,process_template
 14,material template,material_template
-15,Material,material_template
-16,Measurement template example,measurement_template
-17,Process template example,process_template
+15,Dessert,material_template
+16,Tastiness,property_template
+17,Material,material_template
+18,Measurement template example,measurement_template
+19,Process template example,process_template

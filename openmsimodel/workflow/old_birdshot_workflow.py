@@ -1,7 +1,7 @@
 from openmsimodel.workflow.workflow import Workflow
 from openmsimodel.workflow.folder_or_file import FolderOrFile
 from openmsimodel.subworkflow.process_block import ProcessBlock
-from openmsimodel.entity.base import Material, Process, Measurement, Ingredient
+from openmsimodel.entity.gemd import Material, Process, Measurement, Ingredient
 
 from openmsimodel.entity.processes.birdshot.summarize import (
     Summarize,

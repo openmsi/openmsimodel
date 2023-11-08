@@ -1,12 +1,12 @@
 from openmsimodel.workflow.workflow import Workflow
-from openmsimodel.entity.base.ingredient import Ingredient
-from openmsimodel.entity.base.measurement import Measurement
-from openmsimodel.entity.base.material import Material
-from openmsimodel.entity.base.process import Process
-from openmsimodel.entity.base.base_element import BaseElement
+from openmsimodel.entity.gemd.ingredient import Ingredient
+from openmsimodel.entity.gemd.measurement import Measurement
+from openmsimodel.entity.gemd.material import Material
+from openmsimodel.entity.gemd.process import Process
+from openmsimodel.entity.gemd.gemd_base_element import GEMDBaseElement
 from openmsimodel.subworkflow.subworkflow import Subworkflow
 from typing import ClassVar, Type, Optional
-from openmsimodel.entity.base.helpers import from_spec_or_run
+from openmsimodel.entity.gemd.helpers import from_spec_or_run
 from openmsimodel.utilities.typing import Spec, Run
 
 

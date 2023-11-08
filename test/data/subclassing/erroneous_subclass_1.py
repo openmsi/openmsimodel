@@ -1,5 +1,5 @@
-from openmsimodel.entity.base.process import Process
-from openmsimodel.entity.base.material import Material
+from openmsimodel.entity.gemd.process import Process
+from openmsimodel.entity.gemd.material import Material
 from openmsimodel.utilities.attributes import _validate_temp_keys, define_attribute
 
 from gemd import (

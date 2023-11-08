@@ -1,0 +1,20 @@
+strict digraph base_element {
+	graph [bb="0,0,604.45,676.45",
+		name=base_element
+	];
+	node [label="\N"];
+	"Cake [eb583205-59cd-4132-b5f6-d94cfb7d4da8, material_run]"	 [color=green,
+		height=8.3951,
+		object="{'file_links': [], 'name': 'Cake', 'notes': None, 'process': {'id': 'f39d2819-7220-4bc8-b072-ee6884f49542', 'scope': 'auto', 'type': '\
+link_by_uid'}, 'sample_type': 'unknown', 'spec': {'id': 'cake', 'scope': 'citrine-demo', 'type': 'link_by_uid'}, 'tags': [], 'type': '\
+material_run', 'uids': {'auto': 'eb583205-59cd-4132-b5f6-d94cfb7d4da8'}}",
+		pos="302.22,302.22",
+		shape=circle,
+		type=material_run,
+		uuid="eb583205-59cd-4132-b5f6-d94cfb7d4da8",
+		width=8.3951];
+	"f39d2819-7220-4bc8-b072-ee6884f49542"	 [height=0.5,
+		pos="302.22,658.45",
+		width=5.6509];
+	"f39d2819-7220-4bc8-b072-ee6884f49542" -> "Cake [eb583205-59cd-4132-b5f6-d94cfb7d4da8, material_run]"	 [pos="e,302.22,604.59 302.22,640.29 302.22,633.36 302.22,624.67 302.22,614.63"];
+}

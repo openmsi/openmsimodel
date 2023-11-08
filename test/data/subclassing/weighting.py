@@ -2,14 +2,12 @@ from typing import ClassVar
 
 from gemd import MeasurementTemplate, PropertyTemplate, RealBounds, NominalReal
 
-from openmsimodel.entity.base.measurement import Measurement
+from openmsimodel.entity.gemd.measurement import Measurement
 from openmsimodel.utilities.attributes import (
     AttrsDict,
     define_attribute,
     finalize_template,
 )
-
-__all__ = ["Weighting"]
 
 
 class Weighting(Measurement):

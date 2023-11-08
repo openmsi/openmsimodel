@@ -1,0 +1,16 @@
+{
+   "bounds": {
+      "lower_bound": 1,
+      "type": "integer_bounds",
+      "upper_bound": 10
+   },
+   "description": "Yumminess on a fairly arbitrary scale",
+   "name": "Tastiness",
+   "tags": [],
+   "type": "property_template",
+   "uids": {
+      "auto": "a99ff58a-6df1-478b-9629-cee02c1dbdc4",
+      "citrine-demo-template": "tastiness",
+      "persistent_id": 16
+   }
+}

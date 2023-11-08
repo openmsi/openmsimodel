@@ -16,7 +16,7 @@ from openmsimodel.utilities.cached_isinstance_functions import (
     isinstance_attribute_template,
     isinstance_object_template,
 )
-from openmsimodel.entity.impl import assign_uuid
+from openmsimodel.entity.gemd.impl import assign_uuid
 from openmsimodel.utilities.logging import Logger
 
 

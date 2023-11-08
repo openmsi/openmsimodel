@@ -22,16 +22,11 @@ store_tools.stores_config.all_template_stores[
     "test"
 ].register_all_templates_from_store()
 
-# store_tools.stores_config.designated_store_id = "test"
-# store_tools.stores_config.deploy_store("test")
-# store_tools.stores_config.all_template_stores["test"].register_all_templates_from_store()
-
-
-from openmsimodel.entity.base.base_element import BaseElement
-from openmsimodel.entity.base.process import Process
-from openmsimodel.entity.base.material import Material
-from openmsimodel.entity.base.ingredient import Ingredient
-from openmsimodel.entity.base.measurement import Measurement
+from openmsimodel.entity.gemd.gemd_base_element import GEMDBaseElement
+from openmsimodel.entity.gemd.process import Process
+from openmsimodel.entity.gemd.material import Material
+from openmsimodel.entity.gemd.ingredient import Ingredient
+from openmsimodel.entity.gemd.measurement import Measurement
 
 from gemd import (
     NominalCategorical,
@@ -53,7 +48,7 @@ from gemd.json import GEMDJson
 from gemd.entity.util import make_instance
 
 
-class TestEntityBaseElement(unittest.TestCase):
+class TestExample1a(unittest.TestCase):
     ct = ConditionTemplate(
         "location",
         uids={"gen": "uid_2"},
@@ -63,11 +58,11 @@ class TestEntityBaseElement(unittest.TestCase):
     # TODO: test define attributes when the same attribute is repassed
 
     def test_base_node_initialization(self):
-        """testing initialization of BaseElement object"""
+        """testing initialization of GEMDBaseElement object"""
         with self.assertRaises(
             TypeError
         ):  # abstract class can't instantiate on its own
-            b = BaseElement("base")
+            b = GEMDBaseElement("base")
 
     def test_incomplete_initializations(self):
         """testing initializing with incomplete or erroneous classes"""
@@ -159,7 +154,7 @@ class TestEntityBaseElement(unittest.TestCase):
         #     p = Process("process", template=pt)
 
     def test_all_initializations(self):
-        """testing initialization of all types of BaseElement object"""
+        """testing initialization of all types of GEMDBaseElement object"""
 
         self.assertTrue(len(store_tools.stores_config.all_template_stores.keys()), 1)
         self.assertTrue("test" in store_tools.stores_config.all_template_stores.keys())

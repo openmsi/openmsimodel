@@ -1,7 +1,7 @@
 from typing import ClassVar, Type, Optional
 from openmsimodel.workflow.workflow import Workflow
-from openmsimodel.entity.base.material import Material
-from openmsimodel.entity.base.base_element import BaseElement
+from openmsimodel.entity.gemd.material import Material
+from openmsimodel.entity.gemd.gemd_base_element import GEMDBaseElement
 from openmsimodel.utilities.runnable import Runnable
 
 

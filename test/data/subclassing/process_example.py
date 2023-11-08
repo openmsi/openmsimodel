@@ -9,7 +9,7 @@ from gemd import (
     NominalReal,
 )
 
-from openmsimodel.entity.base.process import Process
+from openmsimodel.entity.gemd.process import Process
 from openmsimodel.utilities.attributes import (
     AttrsDict,
     define_attribute,

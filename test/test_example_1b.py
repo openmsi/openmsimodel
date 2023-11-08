@@ -6,15 +6,15 @@ import os
 sys.path.insert(0, "..")
 
 from data.subclassing.arcmelting import ArcMelting
-from openmsimodel.entity.impl import assign_uuid
+from openmsimodel.entity.gemd.impl import assign_uuid
 
 from openmsimodel.stores.gemd_template_store import GEMDTemplateStore, stores_config
 
-from openmsimodel.entity.base.base_element import BaseElement
-from openmsimodel.entity.base.material import Material
-from openmsimodel.entity.base.process import Process
-from openmsimodel.entity.base.ingredient import Ingredient
-from openmsimodel.entity.base.measurement import Measurement
+from openmsimodel.entity.gemd.gemd_base_element import GEMDBaseElement
+from openmsimodel.entity.gemd.material import Material
+from openmsimodel.entity.gemd.process import Process
+from openmsimodel.entity.gemd.ingredient import Ingredient
+from openmsimodel.entity.gemd.measurement import Measurement
 
 
 from gemd import (

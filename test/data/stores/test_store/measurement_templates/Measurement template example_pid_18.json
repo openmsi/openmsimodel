@@ -1,0 +1,13 @@
+{
+   "conditions": [],
+   "description": null,
+   "name": "Measurement template example",
+   "parameters": [],
+   "properties": [],
+   "tags": [],
+   "type": "measurement_template",
+   "uids": {
+      "auto": "4ab61017-1aba-45e1-9464-b9e27e0dab3e",
+      "persistent_id": 18
+   }
+}
