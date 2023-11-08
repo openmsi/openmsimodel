@@ -4,6 +4,7 @@ from webcolors import name_to_hex
 
 
 def launch_graph_widget(g):
+    print("Launching {}".format(g))
     if type(g) == str:
         if g.endswith(".dot"):
             dot = nx.nx_pydot.read_dot(g)

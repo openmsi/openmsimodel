@@ -120,7 +120,7 @@ class OpenGraph(Runnable):
 
         gemd_objects, gemd_paths = read_gemd_data(self.source, encoder)
 
-        gemd_objects, gemd_paths = gemd_objects[:5000], gemd_paths[:5000]
+        # gemd_objects, gemd_paths = gemd_objects[:5000], gemd_paths[:5000]
 
         if len(gemd_objects) == 0:
             print("No objects were found.")
@@ -176,7 +176,8 @@ class OpenGraph(Runnable):
             self.output,
             relabeled_G_nx,
             relabeled_G_gviz,
-            name="{}_{}".format(self.name, self.which),
+            "{}_{}".format(self.name, self.which),
+            dump_svg_and_dot=self.dump_svg_and_dot,
         )
 
         self.update_paths(svg_path, dot_path, graphml_path)
@@ -423,7 +424,7 @@ class OpenGraph(Runnable):
         if not self.add_bidirectional_edges:
             print("cycles in the graph: {}".format(list(nx.simple_cycles(G))))
         print(
-            "disregarder/total number of gemd objects: {}/{}".format(
+            "disregarded/total number of gemd objects: {}/{}".format(
                 nb_disregarded, len(gemd_objects)
             )
         )
@@ -536,7 +537,7 @@ class OpenGraph(Runnable):
         return cls.slice_subgraph(G, uuid, func)
 
     @classmethod
-    def save_graph(cls, dest, G_nx, G_gviz, name):
+    def save_graph(cls, dest, G_nx, G_gviz, name, dump_svg_and_dot=False):
         """class method to save Graphviz graph.
 
         Args:
@@ -548,12 +549,13 @@ class OpenGraph(Runnable):
         Returns:
             str: paths to, respectively, the dot and svg files
         """
+        print("Saving graphs...")
 
         svg_path = os.path.join(dest, "{}.svg".format(name))
         dot_path = os.path.join(dest, "{}.dot".format(name))
         graphml_path = os.path.join(dest, "{}.graphml".format(name))
 
-        if G_gviz and self.dump_svg_and_dot:
+        if G_gviz and dump_svg_and_dot:
             # writing svg file
             print("Dumping svg...")
             start = time.time()
@@ -570,7 +572,7 @@ class OpenGraph(Runnable):
             end = time.time()
             print(f"Time elapsed: {end - start}")
         else:
-            print("Couldn't find GraphViz graph.")
+            print("Couldn't find GraphViz graph. Can't dump SVG and DOT files.")
 
         if G_nx:
             # writing graphml
@@ -578,16 +580,17 @@ class OpenGraph(Runnable):
             start = time.time()
 
             def dicts_to_str(G):
-                for node_name in G.nodes:
-                    if "tags" in G.nodes[node_name] and G.nodes[node_name]["tags"]:
-                        G.nodes[node_name]["tags"] = str(G.nodes[node_name]["tags"])
-                    if (
-                        "file_links" in G.nodes[node_name]
-                        and G.nodes[node_name]["file_links"]
-                    ):
-                        G.nodes[node_name]["file_links"] = str(
-                            G.nodes[node_name]["file_links"]
-                        )
+                if G.nodes:
+                    for node_name in G.nodes:
+                        if "tags" in G.nodes[node_name] and G.nodes[node_name]["tags"]:
+                            G.nodes[node_name]["tags"] = str(G.nodes[node_name]["tags"])
+                        if (
+                            "file_links" in G.nodes[node_name]
+                            and G.nodes[node_name]["file_links"]
+                        ):
+                            G.nodes[node_name]["file_links"] = str(
+                                G.nodes[node_name]["file_links"]
+                            )
                 return G
 
             nx.write_graphml_lxml(dicts_to_str(G_nx), graphml_path)
@@ -629,6 +632,7 @@ class OpenGraph(Runnable):
             "uuid_to_track",
             "output",
             "take_small_sample",
+            "dump_svg_and_dot",
         ]
         kwargs = {**superkwargs}
         return args, kwargs
@@ -651,6 +655,7 @@ class OpenGraph(Runnable):
             args.layout,
             args.add_bidirectional_edges,
             args.take_small_sample,
+            args.dump_svg_and_dot,
         )
         viewer.assets_to_add = {
             "add_attributes": args.add_attributes,
@@ -659,8 +664,6 @@ class OpenGraph(Runnable):
         }
         G, relabeled_G_gviz, name_mapping = viewer.build_graph(
             uuid_to_track=args.uuid_to_track,
-            # layout=args.layout,
-            # add_bidirectional_edges=args.add_bidirectional_edges
         )
 
         # reduces to elements with identifier and related nodes
@@ -671,9 +674,13 @@ class OpenGraph(Runnable):
             if args.a:
                 functions.append(nx.ancestors)
             identifier_G = cls.extract_subgraph(G, args.identifier, func=functions)
-            identifier_G = cls.map_to_graphviz(identifier_G, name_mapping)
+            # identifier_G = cls.map_to_graphviz(identifier_G) #FIXME?
             identifier_G_dot_path, _, identifier_G_grapml_path = cls.save_graph(
-                args.output, identifier_G, "{}".format(args.identifier)
+                args.output,
+                identifier_G,
+                None, #FIXME
+                "{}".format(args.identifier),
+                dump_svg_and_dot=args.dump_svg_and_dot,
             )
 
         # launches interactive notebook

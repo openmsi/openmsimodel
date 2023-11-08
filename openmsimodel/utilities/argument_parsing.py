@@ -222,6 +222,14 @@ class OpenMSIModelParser(ArgumentParser):
                 "help": "the iteration of the workflow (i.e., AAB)",
             },
         ],
+        "dump_svg_and_dot": [
+            "optional",
+            {
+                "type": bool,
+                "default": False,
+                "help": "whether to dump svg and dot, which can take time, or not",
+            },
+        ],
         "uuid_to_track": [
             "optional",
             {
