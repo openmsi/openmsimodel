@@ -16,12 +16,12 @@ from gemd import (
     PerformedSource,
 )
 
-from openmsimodel.entity.gemd.gemd_base_element import GEMDBaseElement
+from openmsimodel.entity.gemd.gemd_base_element import GEMDElement
 from openmsimodel.utilities.typing import SpecOrRunLiteral
 from openmsimodel.utilities.attributes import finalize_template
 
 
-class ProcessOrMeasurement(GEMDBaseElement):
+class ProcessOrMeasurement(GEMDElement):
     """Base class for processes and measurements."""
 
     _TempType: ClassVar[Type[Union[ProcessTemplate, MeasurementTemplate]]]

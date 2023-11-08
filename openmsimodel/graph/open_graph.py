@@ -41,20 +41,22 @@ class OpenGraph(Runnable):
     def __init__(
         self,
         name,
-        dirpath,
+        source,
         output,
-        layout,
-        add_bidirectional_edges,
-        # restrictive=False,
+        layout="raw",
+        add_bidirectional_edges=False,
         take_small_sample=False,
+        add_separate_node=False,
+        which="run",
+        assets_to_add={},
     ):
         """
         Initialize the OpenGraph object with provided parameters.
 
         :param name: Name of the graph.
         :type name: str
-        :param dirpath: Directory path containing GEMD JSON files or list of such paths.
-        :type dirpath: str or list
+        :param source: source of GEMD data,
+        :type source: str or list
         :param output: Path for saving output files.
         :type output: str
         :param layout: The layout parameter for the graph visualization.
@@ -66,23 +68,27 @@ class OpenGraph(Runnable):
         :raises FileNotFoundError: If the output path does not exist.
         """
         self.name = name
-        self.dirpath = pathlib.Path(dirpath) if not (type(dirpath) == list) else dirpath
+        self.source = pathlib.Path(source) if not (type(source) == list) else source
         self.output = pathlib.Path(output)  # TODO: REQUIRES FULL PATH NOW; fix or keep?
         if not self.output.exists():
             raise FileNotFoundError(f"{self.output} does not exist.")
-        # self.restrictive = restrictive
         self.layout = layout
         self.add_bidirectional_edges = add_bidirectional_edges
         self.take_small_sample = take_small_sample
+        self.add_separate_node = add_separate_node
+        self.which = which
+        self.assets_to_add = {
+            "add_attributes": 1,
+            "add_file_links": 1,
+            "add_tags": 1,
+        }
         self.svg_path = None
         self.dot_path = None
         self.graphml_path = None
         self.shapes = {"run": "circle", "spec": "rectangle", "template": "triangle"}
 
     # instance method
-    def build_graph(
-        self, assets_to_add, add_separate_node, which, update=True, uuid_to_track="auto"
-    ):
+    def build_graph(self, uuid_to_track="auto"):
         """
         Creates a NetworkX graph representation of the GEMD relationships.
 
@@ -90,14 +96,6 @@ class OpenGraph(Runnable):
         and forming directed relationships, such as ingredient->process or process->material.
         It allows for filtering the mapped objects and saves a NetworkX graph in "dot" format.
 
-        :param which: To plot a graph of specs, runs or templates.
-        :type which: bool
-        :param add_separate_node: Determines whether to add assets as attribute of related node or as a separate node.
-        :type add_separate_node: bool
-        :param assets_to_add: Dict to determine which attributes, tags, and/or file links to add to the model.
-        :type assets_to_add: dict
-        :param update: Determines whether to update the instance variable svg_path and dot_path.
-        :type update: bool, optional
         :param uuid_to_track: The uuid to track in the objects.
         :type uuid_to_track: str, optional
         :returns: A tuple of the NetworkX graph, a PyGraphVIZ graph, and a name mapping dictionary.
@@ -106,10 +104,10 @@ class OpenGraph(Runnable):
 
         print(
             "-- Building {}s of {}".format(
-                which,
-                self.dirpath
-                if not type(self.dirpath) == list
-                else f"list with {len(self.dirpath)} items",
+                self.which,
+                self.source
+                if not type(self.source) == list
+                else f"list with {len(self.source)} items",
             )
         )
         G_nx = nx.DiGraph(name=self.name)
@@ -118,7 +116,7 @@ class OpenGraph(Runnable):
         encoder = GEMDJson()
         nb_disregarded = 0
 
-        gemd_objects, gemd_paths = read_gemd_data(self.dirpath, encoder)
+        gemd_objects, gemd_paths = read_gemd_data(self.source, encoder)
 
         if len(gemd_objects) == 0:
             print("No objects were found.")
@@ -147,15 +145,10 @@ class OpenGraph(Runnable):
                 obj_data,
                 obj_type,
                 obj_state,
-                which,
-                assets_to_add,
-                add_separate_node,
             )
             try:
                 path = gemd_paths[i]
-                self.add_to_graph(
-                    G_nx, obj_uid, "source", path.name, add_separate_node=False
-                )
+                self.add_to_graph(G_nx, obj_uid, "source", path.name)
             except IndexError:
                 continue
             if i % quarter_length == 0:
@@ -176,10 +169,10 @@ class OpenGraph(Runnable):
             self.output,
             relabeled_G_nx,
             relabeled_G_gviz,
-            name="{}_{}".format(self.name, which),
+            name="{}_{}".format(self.name, self.which),
         )
-        if update:
-            self.update_paths(svg_path, dot_path, graphml_path)
+
+        self.update_paths(svg_path, dot_path, graphml_path)
 
         # info
         self.diagnostics(relabeled_G_nx, gemd_objects, nb_disregarded)
@@ -193,9 +186,6 @@ class OpenGraph(Runnable):
         obj_data,
         obj_type,
         obj_state,
-        which,
-        assets_to_add,
-        add_separate_node,
     ):
         """method to handle the addition of a gemd object
 
@@ -204,31 +194,23 @@ class OpenGraph(Runnable):
             uid (str): uid of current object
             obj_data (dict): data of current object
             obj_type (str): type of current object
-            which (bool): to plot a graph of specs, runs or templates, or all
-            assets_to_add (dict): dict to determine which of attributes, tags and/or file links to add to model
-            add_separate_node (bool):  bool to determine whether or not to add assets as attribute of related node, or as separate node
         """
         if obj_type.startswith("process"):
-            if obj_type.endswith(which) or which == "all":
+            if obj_type.endswith(self.which) or self.which == "all":
                 G.add_node(uid, color="red", shape=self.shapes[obj_state])
                 self.add_gemd_assets(
                     G,
                     uid,
                     obj_data,
                     obj_type,
-                    assets_to_add,
-                    add_separate_node,
                 )
         elif obj_type.startswith("ingredient"):  # TODO if node doesn't exist, create?
-            if obj_type.endswith(which) or which == "all":
+            if obj_type.endswith(self.which) or self.which == "all":
                 G.add_node(uid, color="blue", shape=self.shapes[obj_state])
                 process = obj_data["process"]["id"]
                 G.add_edge(uid, process)
                 if self.add_bidirectional_edges:
                     G.add_edge(process, uid)
-                    # if (
-                    # not self.restrictive
-                    # ):  # no material -> ingredient = helps separate and restrict
                     if "material" in obj_data and obj_data["material"]:
                         material = obj_data["material"]["id"]
                         G.add_edge(material, uid)
@@ -239,19 +221,15 @@ class OpenGraph(Runnable):
                     uid,
                     obj_data,
                     obj_type,
-                    assets_to_add,
-                    add_separate_node,
                 )
         elif obj_type.startswith("material"):
-            if obj_type.endswith(which) or which == "all":
+            if obj_type.endswith(self.which) or self.which == "all":
                 G.add_node(uid, color="green", shape=self.shapes[obj_state])
                 self.add_gemd_assets(
                     G,
                     uid,
                     obj_data,
                     obj_type,
-                    assets_to_add,
-                    add_separate_node,
                 )
                 # if not self.restrictive:
                 if "process" in obj_data and obj_data["process"]:
@@ -260,15 +238,13 @@ class OpenGraph(Runnable):
                     if self.add_bidirectional_edges:
                         G.add_edge(uid, process)
         elif obj_type.startswith("measurement"):
-            if obj_type.endswith(which) or which == "all":
+            if obj_type.endswith(self.which) or self.which == "all":
                 G.add_node(uid, color="purple", shape=self.shapes[obj_state])
                 self.add_gemd_assets(
                     G,
                     uid,
                     obj_data,
                     obj_type,
-                    assets_to_add,
-                    add_separate_node,
                 )
                 # if not self.restrictive:
                 if "material" in obj_data and obj_data["material"]:
@@ -277,20 +253,19 @@ class OpenGraph(Runnable):
                     if self.add_bidirectional_edges:
                         G.add_edge(material, uid)
 
-        if which == "all":
+        if self.which == "all":
             if (
                 obj_type.startswith("condition")
                 or obj_type.startswith("parameter")
                 or obj_type.startswith("property")
             ):
+                print("HERE")
                 G.add_node(uid, color="black", shape="trapezium")
                 self.add_gemd_assets(
                     G,
                     uid,
                     obj_data,
                     obj_type,
-                    assets_to_add,
-                    add_separate_node,
                 )
             # adding attribute templates from object templates
             elif obj_type.endswith("template"):
@@ -333,48 +308,38 @@ class OpenGraph(Runnable):
         uid,
         obj_data,
         obj_type,
-        assets_to_add,
-        add_separate_node,
     ):
-        self.add_to_graph(G, uid, "uuid", uid, add_separate_node=False)
-        self.add_to_graph(G, uid, "type", obj_type, add_separate_node=False)
+        self.add_to_graph(G, uid, "uuid", uid)
+        self.add_to_graph(G, uid, "type", obj_type)
         if self.layout == "raw":
-            self.add_to_graph(G, uid, "object", str(obj_data), add_separate_node=False)
+            self.add_to_graph(G, uid, "object", str(obj_data))
         elif self.layout == "visualization":
-            if assets_to_add["add_attributes"] and not (obj_type.endswith("template")):
+            if self.assets_to_add["add_attributes"] and not (
+                obj_type.endswith("template")
+            ):
                 if "parameters" in obj_data:
-                    self.handle_gemd_value(
-                        G, uid, obj_data["parameters"], add_separate_node
-                    )
+                    self.handle_gemd_value(G, uid, obj_data["parameters"])
                 if "properties" in obj_data:
-                    self.handle_gemd_value(
-                        G, uid, obj_data["properties"], add_separate_node
-                    )
+                    self.handle_gemd_value(G, uid, obj_data["properties"])
                 if "conditions" in obj_data:
-                    self.handle_gemd_value(
-                        G, uid, obj_data["conditions"], add_separate_node
-                    )
-            if assets_to_add["add_file_links"] and "file_links" in obj_data:
-                self.handle_gemd_value(
-                    G, uid, obj_data["file_links"], add_separate_node
-                )
-            if assets_to_add["add_tags"] and "tags" in obj_data:
-                self.handle_gemd_value(G, uid, obj_data["tags"], add_separate_node)
+                    self.handle_gemd_value(G, uid, obj_data["conditions"])
+            if self.assets_to_add["add_file_links"] and "file_links" in obj_data:
+                self.handle_gemd_value(G, uid, obj_data["file_links"])
+            if self.assets_to_add["add_tags"] and "tags" in obj_data:
+                self.handle_gemd_value(G, uid, obj_data["tags"])
 
-    def handle_gemd_value(self, G, uid, assets, add_separate_node):
+    def handle_gemd_value(self, G, uid, assets):
         # TODO: add pointing to templates?
         for att in assets:
             if type(att) in [list]:
                 continue
             if type(att) in [str]:
                 if "::" in att:  # is a gemd tag
-                    self.add_to_graph(G, uid, "tags", att, add_separate_node=False)
+                    self.add_to_graph(G, uid, "tags", att)
             elif att["type"]:  # is a gemd object
                 # reading gemd file links
                 if att["type"] == "file_link":
-                    self.add_to_graph(
-                        G, uid, "file_links", att["url"], add_separate_node=False
-                    )
+                    self.add_to_graph(G, uid, "file_links", att["url"])
                     continue
                 # reading gemd attributes
                 if att["type"] == "property_and_conditions":
@@ -427,10 +392,10 @@ class OpenGraph(Runnable):
                 elif value["type"] == "nominal_composition":
                     node_name = "{}, {}".format(att_name, value["quantities"])
 
-                self.add_to_graph(G, uid, att_name, node_name, add_separate_node)
+                self.add_to_graph(G, uid, att_name, node_name)
 
-    def add_to_graph(self, G, uid, att_name, node_name, add_separate_node):
-        if add_separate_node == True:  # add as a separate node
+    def add_to_graph(self, G, uid, att_name, node_name):
+        if self.add_separate_node == True:  # add as a separate node
             G.add_node(node_name, s="rectangle", color="orange")
             G.add_edge(uid, node_name)
             if self.add_bidirectional_edges:
@@ -522,7 +487,7 @@ class OpenGraph(Runnable):
 
         Args:
             G (NetworkX graph): knowledge graph in questoin
-            uuid (str): uuid of current element of interest on which the functions are applied
+            uuid (str): uuid of current element of interest on self.which the functions are applied
             funcs (list): list of function(s) to apply to graph
             add_current (bool, optional): whether or not to add the current element of interest. Defaults to True.
 
@@ -583,20 +548,20 @@ class OpenGraph(Runnable):
 
         if G_gviz:
             # writing svg file
-            # print("Dumping svg...")
-            # start = time.time()
-            # G_gviz.draw(svg_path)
-            # plt.close()
-            # end = time.time()
-            # print(f"Time elapsed: {end - start}")
+            print("Dumping svg...")
+            start = time.time()
+            G_gviz.draw(svg_path)
+            plt.close()
+            end = time.time()
+            print(f"Time elapsed: {end - start}")
 
             # writing dot file
             print("Dumping dot...")
-            # start = time.time()
-            # with open(dot_path, "w") as f:
-            #     f.write(str(G_gviz))
-            # end = time.time()
-            # print(f"Time elapsed: {end - start}")
+            start = time.time()
+            with open(dot_path, "w") as f:
+                f.write(str(G_gviz))
+            end = time.time()
+            print(f"Time elapsed: {end - start}")
         else:
             print("Couldn't find GraphViz graph.")
 
@@ -642,7 +607,7 @@ class OpenGraph(Runnable):
         args = [
             *superargs,
             "name",
-            "dirpath",
+            "source",
             "which",
             "identifier",
             "launch_notebook",
@@ -674,21 +639,18 @@ class OpenGraph(Runnable):
         args = parser.parse_args(args=args)
         viewer = cls(
             args.name,
-            args.dirpath,
+            args.source,
             args.output,
             args.layout,
             args.add_bidirectional_edges,
             args.take_small_sample,
         )
-        assets_to_add = {
+        viewer.assets_to_add = {
             "add_attributes": args.add_attributes,
             "add_file_links": args.add_file_links,
             "add_tags": args.add_tags,
         }
         G, relabeled_G_gviz, name_mapping = viewer.build_graph(
-            assets_to_add=assets_to_add,
-            add_separate_node=args.add_separate_node,
-            which=args.which,
             uuid_to_track=args.uuid_to_track,
             # layout=args.layout,
             # add_bidirectional_edges=args.add_bidirectional_edges

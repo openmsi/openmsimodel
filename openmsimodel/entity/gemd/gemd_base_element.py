@@ -8,7 +8,7 @@ from gemd import FileLink
 from gemd.entity.attribute.base_attribute import BaseAttribute
 from gemd.entity.util import make_instance
 
-from openmsimodel.entity.base_element import BaseElement
+from openmsimodel.entity.base_element import Element
 
 # from gemd.util.impl import set_uuids
 from openmsimodel.entity.gemd.impl import assign_uuid
@@ -38,11 +38,11 @@ from openmsimodel.utilities.logging import Logger
 import openmsimodel.stores.gemd_template_store as store_tools
 
 
-class GEMDBaseElement(BaseElement):
+class GEMDElement(Element):
     """
     Base class for materials, processes, and measurements.
 
-    ``BaseElement`` 's are thin wrappers for GEMD entities. One ``BaseElement`` contains
+    ``Element`` 's are thin wrappers for GEMD entities. One ``Element`` contains
     a template, spec, and run for the same kind of entity (``Material``,
     ``Process``, or ``Measurement``) and helps to create, update, link, and
     output these.
@@ -170,11 +170,21 @@ class GEMDBaseElement(BaseElement):
     def run(self) -> Run:
         """The underlying GEMD run."""
 
+    @property
     def assets(self) -> list:
+        _assets = []
         if self.__class__.__name__ == "Ingredient":
             return [self.spec, self.run]
         else:
-            return [self.TEMPLATE, self.spec, self.run]
+            _assets = [self.TEMPLATE, self.spec, self.run]
+        # if self.TEMPLATE:
+        #     if hasattr(self.TEMPLATE, "properties"):
+        #         _assets.extend(self.TEMPLATE.properties)
+        #     if hasattr(self.TEMPLATE, "conditions"):
+        #         _assets.extend(self.TEMPLATE.conditions)
+        #     if hasattr(self.TEMPLATE, "parameters"):
+        #         _assets.extend(self.TEMPLATE.parameters)
+        return _assets
 
     def assert_linked(self, uuid_key="auto"):
         if (

@@ -10,7 +10,7 @@ from openmsimodel.entity.gemd.impl import assign_uuid
 
 from openmsimodel.stores.gemd_template_store import GEMDTemplateStore, stores_config
 
-from openmsimodel.entity.gemd.gemd_base_element import GEMDBaseElement
+from openmsimodel.entity.gemd.gemd_base_element import GEMDElement
 from openmsimodel.entity.gemd.material import Material
 from openmsimodel.entity.gemd.process import Process
 from openmsimodel.entity.gemd.ingredient import Ingredient
@@ -201,7 +201,7 @@ class TestStores(unittest.TestCase):
             2,
         )
 
-    def test_dummy_store_with_BaseElement(self):
+    def test_dummy_store_with_Element(self):
         # test store is manipulated in test_entity_base_instantiation prior (expected and useful for testing across files)
         test_processes_count = len(
             stores_config.all_template_stores["test"]._object_templates[ProcessTemplate]

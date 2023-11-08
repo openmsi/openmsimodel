@@ -17,8 +17,6 @@ from openmsimodel.utilities.attributes import (
     finalize_template,
 )
 
-__all__ = ["Homogenization"]
-
 
 class Homogenization(Process):
     """Class representing homogenization cycle"""

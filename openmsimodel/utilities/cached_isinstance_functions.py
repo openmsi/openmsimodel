@@ -4,7 +4,7 @@ from gemd.entity.dict_serializable import DictSerializable
 
 from gemd.entity.object import MaterialRun, ProcessRun, IngredientRun, MeasurementRun
 
-# from openmsimodel.entity.gemd.gemd_base_element import GEMDBaseElement
+# from openmsimodel.entity.gemd.gemd_base_element import GEMDElement
 from openmsimodel.utilities.typing import (
     Spec,
     Run,
@@ -50,7 +50,7 @@ def cached_isinstance_generator(
 # from openmsimodel.utilities.attributes import _validate_temp_keys, define_attribute
 
 # Some cached isinstance functions to reduce overhead
-# isinstance_base_element = cached_isinstance_generator([BaseElement])
+# isinstance_base_element = cached_isinstance_generator([Element])
 
 isinstance_all_gemd = cached_isinstance_generator(AllGEMD.__args__)
 isinstance_all_gemd_minus_attr = cached_isinstance_generator(AllGEMDMinusAttr.__args__)

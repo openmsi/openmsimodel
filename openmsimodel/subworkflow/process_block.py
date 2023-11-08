@@ -3,7 +3,7 @@ from openmsimodel.entity.gemd.ingredient import Ingredient
 from openmsimodel.entity.gemd.measurement import Measurement
 from openmsimodel.entity.gemd.material import Material
 from openmsimodel.entity.gemd.process import Process
-from openmsimodel.entity.gemd.gemd_base_element import GEMDBaseElement
+from openmsimodel.entity.gemd.gemd_base_element import GEMDElement
 from openmsimodel.subworkflow.subworkflow import Subworkflow
 from typing import ClassVar, Type, Optional
 from openmsimodel.entity.gemd.helpers import from_spec_or_run
@@ -12,11 +12,31 @@ from openmsimodel.utilities.typing import Spec, Run
 
 class ProcessBlock(Subworkflow):
     """
-    ProcessBlock is a type of Subworkflow intended to represent consecutive BaseElements in the order of 'Ingredients', 'Process', 'Material', and 'Measurements'.
-    It is the natural order of GEMD objects, and of our BaseElements object, which are essentially GEMD wrappers. It is a loose class and can omit some elements of the block.
+    ProcessBlock is a type of Subworkflow intended to represent consecutive Elements in the order of 'Ingredients', 'Process', 'Material', and 'Measurements'.
+    It is the natural order of GEMD objects, and of our Elements object, which are essentially GEMD wrappers. It is a loose class and can omit some elements of the block.
     It can be a powerful way to manipulate, link, dump, etc, GEMD objects together, while Blocks themselves can be linked with one another, facilitating repeat
-    elements, linking for wide (i.e., many ingredients, many measurements) or vertical (i.e., long sequence of BaseElements) workflow, etc.
+    elements, linking for wide (i.e., many ingredients, many measurements) or vertical (i.e., long sequence of Elements) workflow, etc.
     """
+
+    @property
+    def assets(self) -> list:
+        _all = []
+        for i in self.ingredients.values():
+            _all.append(i)
+        if self.process:
+            _all.append(self.process)
+        if self.material:
+            _all.append(self.material)
+        for m in self.measurements.values():
+            _all.append(m)
+        return _all
+
+    @property
+    def gemd_assets(self) -> list:
+        _all_gemd = []
+        for obj in self.assets:
+            _all_gemd.extend(obj.assets)
+        return _all_gemd
 
     def __init__(  # FIXME
         self,
@@ -93,7 +113,7 @@ class ProcessBlock(Subworkflow):
         self.type = _type
 
     def link_within(self):
-        """this functions links the specs and runs of the BaseElements in the current block."""
+        """this functions links the specs and runs of the Elements in the current block."""
         # link ingredients to process
         if self.ingredients and self.process:
             for name in self.ingredients.keys():
@@ -147,24 +167,6 @@ class ProcessBlock(Subworkflow):
             if posterior_block.ingredients[name].run.name == ingredient_name_to_link:
                 posterior_block.ingredients[name].spec.material = self.material.spec
                 posterior_block.ingredients[name].run.material = self.material.run
-
-    def return_all(self) -> list:
-        _all = []
-        for i in self.ingredients.values():
-            _all.append(i)
-        if self.process:
-            _all.append(self.process)
-        if self.material:
-            _all.append(self.material)
-        for m in self.measurements.values():
-            _all.append(m)
-        return _all
-
-    def return_all_gemd(self) -> list:
-        _all_gemd = []
-        for obj in self.return_all():
-            _all_gemd.extend(obj.return_all_gemd())
-        return _all_gemd
 
     def add_ingredient(self, ingredient: Ingredient):
         """add ingredient to block"""

@@ -14,7 +14,7 @@ You can install OpenMSIModel using pip:
    pip install gemd
    pip install openmsimodel
 
-Build a GEMD Object and wrap it with a BaseElement class:
+Build a GEMD Object and wrap it with a Element class:
 
 .. code-block:: bash
 
@@ -86,7 +86,7 @@ OpenMSIModel provides several modules and classes for different aspects of mater
 
 - `ProcessBlock.py`: A type of Subworkflow that coalesces GEMD elements into natural structures, including materials, ingredients, processes, and new materials. ProcessBlocks simplify data retrieval and model building.
 
-- `BaseElement.py`: Serves as an interface and wrapper for data modeling formats like GEMD. It abstracts the use of GEMD and encapsulates functionalities for controlling templates, specifications, and runs.
+- `Element.py`: Serves as an interface and wrapper for data modeling formats like GEMD. It abstracts the use of GEMD and encapsulates functionalities for controlling templates, specifications, and runs.
 
 - `OpenGraph.py`: Provides modules to build and visualize networkx or graphviz objects from GEMD objects. It helps establish relationships between GEMD objects and produces various output formats.
 

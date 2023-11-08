@@ -181,9 +181,12 @@ class OpenMSIModelParser(ArgumentParser):
                 "help": "destination for artefacts generated during the creation of gemd models",
             },
         ],
-        "dirpath": [
+        "source": [
             "positional",
-            {"type": str, "help": "path to folder of GEMD json files"},
+            {
+                "type": str,
+                "help": "source of GEMD data, wheter path to folder, single file or memory objects ",
+            },
         ],
         "database_name": [
             "positional",

@@ -146,7 +146,7 @@ def update_attrs(
     replace_all: bool = False,
     which: SpecOrRunLiteral = "spec",
 ) -> None:
-    """Used by BaseElement to update attributes and link attribute templates."""
+    """Used by Element to update attributes and link attribute templates."""
 
     attr_dict_key, singular, plural = _validate_attr_type(AttrType)
     validate_state(which)
@@ -269,7 +269,7 @@ def remove_attrs(
     attr_names: tuple[str, ...],
     which: SpecOrRunLiteral = "spec",
 ) -> None:
-    """Used by BaseElement to remove attributes by name."""
+    """Used by Element to remove attributes by name."""
 
     _, singular, plural = _validate_attr_type(AttrType)
     validate_state(which)

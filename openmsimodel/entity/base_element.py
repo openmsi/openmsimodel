@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 
-class BaseElement(ABC):
+class Element(ABC):
     @property
     @abstractmethod
     def assets(self):

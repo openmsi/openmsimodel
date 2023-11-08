@@ -16,10 +16,10 @@ class TestArgumentParsing(unittest.TestCase):
         # basic instantiation
         parser = OpenMSIModelParser()
         parser.add_arguments(
-            "dirpath", "identifier", "add_attributes", "launch_notebook"
+            "source", "identifier", "add_attributes", "launch_notebook"
         )
         args = [
-            os.fspath(TEST_CONST.TEST_DATA_DIR_PATH / "dirpath"),
+            os.fspath(TEST_CONST.TEST_DATA_DIR_PATH / "source"),
             "--identifier",
             TEST_CONST.TEST_IDENTIFIER,
             "--launch_notebook",

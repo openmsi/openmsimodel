@@ -1,12 +1,12 @@
 from typing import ClassVar, Type, Optional
 from openmsimodel.workflow.workflow import Workflow
 from openmsimodel.entity.gemd.material import Material
-from openmsimodel.entity.gemd.gemd_base_element import GEMDBaseElement
+from openmsimodel.entity.gemd.gemd_base_element import GEMDElement
 from openmsimodel.utilities.runnable import Runnable
 
 
 class Subworkflow(Runnable):
-    """Subworkflow represents 1+ BaseElements that are grouped together for easier instantiation, manipulation, analysis, and more.
+    """Subworkflow represents 1+ Elements that are grouped together for easier instantiation, manipulation, analysis, and more.
     The grouping can be based on any rule or criteria of interest, such as consecutive elements, elements with a logical relationships or simply preference.
     """
 

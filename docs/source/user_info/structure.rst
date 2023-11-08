@@ -13,7 +13,7 @@ Components Overview:
 
 - `ProcessBlock.py`: ProcessBlocks are a type of Subworkflow designed to coalesce GEMD elements in their natural structure. They represent materials, ingredients, processes, and new materials. ProcessBlocks simplify data retrieval and model building.
 
-- `BaseElement.py`: BaseElement serves as an interface and wrapper for data modeling formats like GEMD. It abstracts the use of GEMD, encapsulating functionalities for controlling templates, specifications, and runs. Materials, processes, ingredients, and measurements extend BaseElement to provide specialized functionality.
+- `Element.py`: Element serves as an interface and wrapper for data modeling formats like GEMD. It abstracts the use of GEMD, encapsulating functionalities for controlling templates, specifications, and runs. Materials, processes, ingredients, and measurements extend Element to provide specialized functionality.
 
 - `OpenGraph.py`: This module offers capabilities to build and visualize networkx or graphviz objects from GEMD objects. It interprets relationships between GEMD elements using their UUIDs and produces various output formats, such as SVG and GraphML.
 

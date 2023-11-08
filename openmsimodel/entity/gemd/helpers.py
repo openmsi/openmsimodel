@@ -17,9 +17,9 @@ def from_spec_or_run(
     notes: Optional[str] = None,
     spec: Spec = None,
     run: Run = None,
-) -> "BaseElement":
+) -> "Element":
     """
-    Instantiate a `BaseElement` from a spec or run with appropriate validation.
+    Instantiate a `Element` from a spec or run with appropriate validation.
 
     Note that the spec's and run's name and notes will be set to `name` and
     `notes`, the spec's template will be set to the class template,

@@ -11,11 +11,11 @@ from gemd import IngredientSpec, IngredientRun, PropertyAndConditions
 from gemd.entity.util import make_instance
 from gemd.enumeration import SampleType
 
-from openmsimodel.entity.gemd.gemd_base_element import GEMDBaseElement
+from openmsimodel.entity.gemd.gemd_base_element import GEMDElement
 from .process import Process
 
 
-class Ingredient(GEMDBaseElement):
+class Ingredient(GEMDElement):
     """
     Base element for ingredients.
 
@@ -25,7 +25,7 @@ class Ingredient(GEMDBaseElement):
     _RunType = IngredientRun
 
     def __init__(self, name: str, *, notes: Optional[str] = None) -> None:
-        # BaseElement.__init__(self, name)
+        # Element.__init__(self, name)
         super(ABC, self).__init__()
         self.name = name
         self._spec: Spec = self._SpecType(name=name, notes=notes)

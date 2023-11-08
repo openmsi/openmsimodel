@@ -22,7 +22,7 @@ store_tools.stores_config.all_template_stores[
     "test"
 ].register_all_templates_from_store()
 
-from openmsimodel.entity.gemd.gemd_base_element import GEMDBaseElement
+from openmsimodel.entity.gemd.gemd_base_element import GEMDElement
 from openmsimodel.entity.gemd.process import Process
 from openmsimodel.entity.gemd.material import Material
 from openmsimodel.entity.gemd.ingredient import Ingredient
@@ -58,11 +58,11 @@ class TestExample1a(unittest.TestCase):
     # TODO: test define attributes when the same attribute is repassed
 
     def test_base_node_initialization(self):
-        """testing initialization of GEMDBaseElement object"""
+        """testing initialization of GEMDElement object"""
         with self.assertRaises(
             TypeError
         ):  # abstract class can't instantiate on its own
-            b = GEMDBaseElement("base")
+            b = GEMDElement("base")
 
     def test_incomplete_initializations(self):
         """testing initializing with incomplete or erroneous classes"""
@@ -154,7 +154,7 @@ class TestExample1a(unittest.TestCase):
         #     p = Process("process", template=pt)
 
     def test_all_initializations(self):
-        """testing initialization of all types of GEMDBaseElement object"""
+        """testing initialization of all types of GEMDElement object"""
 
         self.assertTrue(len(store_tools.stores_config.all_template_stores.keys()), 1)
         self.assertTrue("test" in store_tools.stores_config.all_template_stores.keys())

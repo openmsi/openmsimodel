@@ -23,7 +23,7 @@ from openmsimodel.entity.gemd.impl import assign_uuid
 from openmsimodel.workflow.workflow import Workflow
 from openmsimodel.subworkflow.process_block import ProcessBlock
 
-from openmsimodel.entity.gemd.gemd_base_element import GEMDBaseElement
+from openmsimodel.entity.gemd.gemd_base_element import GEMDElement
 from openmsimodel.entity.gemd.process import Process
 from openmsimodel.entity.gemd.material import Material
 from openmsimodel.entity.gemd.ingredient import Ingredient
