@@ -49,6 +49,7 @@ class OpenGraph(Runnable):
         add_separate_node=False,
         which="run",
         assets_to_add={},
+        dump_svg_and_dot=False,
     ):
         """
         Initialize the OpenGraph object with provided parameters.
@@ -82,6 +83,7 @@ class OpenGraph(Runnable):
             "add_file_links": 1,
             "add_tags": 1,
         }
+        self.dump_svg_and_dot = dump_svg_and_dot
         self.svg_path = None
         self.dot_path = None
         self.graphml_path = None
@@ -117,6 +119,8 @@ class OpenGraph(Runnable):
         nb_disregarded = 0
 
         gemd_objects, gemd_paths = read_gemd_data(self.source, encoder)
+
+        gemd_objects, gemd_paths = gemd_objects[:5000], gemd_paths[:5000]
 
         if len(gemd_objects) == 0:
             print("No objects were found.")
@@ -158,10 +162,13 @@ class OpenGraph(Runnable):
         # relabelling according to uid -> name
         relabeled_G_nx = G_nx
         if name_mapping:
+            print("Relabeling nodes...")
             relabeled_G_nx = nx.relabel_nodes(G_nx, name_mapping)
 
         # converting to grapviz
-        if relabeled_G_nx:
+        relabeled_G_gviz = None
+        if self.dump_svg_and_dot:
+            print("Converting to graphviz...")
             relabeled_G_gviz = self.map_to_graphviz(relabeled_G_nx)
 
         # # plotting
@@ -259,7 +266,6 @@ class OpenGraph(Runnable):
                 or obj_type.startswith("parameter")
                 or obj_type.startswith("property")
             ):
-                print("HERE")
                 G.add_node(uid, color="black", shape="trapezium")
                 self.add_gemd_assets(
                     G,
@@ -427,6 +433,7 @@ class OpenGraph(Runnable):
 
     @classmethod
     def launch(cls, path, from_command_line=False):
+        print("Launching {}...".format(path))
         if from_command_line:
             # reading path to dot/graphml
             config_file_path = (
@@ -546,7 +553,7 @@ class OpenGraph(Runnable):
         dot_path = os.path.join(dest, "{}.dot".format(name))
         graphml_path = os.path.join(dest, "{}.graphml".format(name))
 
-        if G_gviz:
+        if G_gviz and self.dump_svg_and_dot:
             # writing svg file
             print("Dumping svg...")
             start = time.time()

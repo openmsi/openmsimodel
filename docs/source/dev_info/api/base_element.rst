@@ -1,4 +1,4 @@
 =============
 Base Element
 =============
-.. autoclass:: openmsimodel.entity.base.base_element.Element
+.. autoclass:: openmsimodel.entity.base_element.Element

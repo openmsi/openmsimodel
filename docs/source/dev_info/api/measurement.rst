@@ -2,4 +2,4 @@
 Measurement
 =============
 
-.. autoclass:: openmsimodel.entity.base.measurement.Measurement
+.. autoclass:: openmsimodel.entity.gemd.measurement.Measurement

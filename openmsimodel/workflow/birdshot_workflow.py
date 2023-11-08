@@ -6,48 +6,48 @@ from openmsimodel.entity.gemd.process import Process
 from openmsimodel.entity.gemd.measurement import Measurement
 from openmsimodel.entity.gemd.ingredient import Ingredient
 
-from openmsimodel.entity.processes.birdshot.summarize import (
+from openmsimodel.entity.gemd.processes.birdshot.summarize import (
     Summarize,
 )
-from openmsimodel.entity.processes.birdshot.infer_compositions import InferCompositions
-from openmsimodel.entity.processes.birdshot.select_composition import SelectComposition
-from openmsimodel.entity.processes.birdshot.add_material import AddMaterial
-from openmsimodel.entity.processes.birdshot.mixing import Mixing
-from openmsimodel.entity.processes.birdshot.arc_melting import ArcMelting
-from openmsimodel.entity.processes.birdshot.homogenization import Homogenization
-from openmsimodel.entity.processes.birdshot.forging import Forging
-from openmsimodel.entity.processes.birdshot.setting_traveler import SettingTraveler
-from openmsimodel.entity.processes.birdshot.setting_traveler_sample import (
+from openmsimodel.entity.gemd.processes.birdshot.infer_compositions import InferCompositions
+from openmsimodel.entity.gemd.processes.birdshot.select_composition import SelectComposition
+from openmsimodel.entity.gemd.processes.birdshot.add_material import AddMaterial
+from openmsimodel.entity.gemd.processes.birdshot.mixing import Mixing
+from openmsimodel.entity.gemd.processes.birdshot.arc_melting import ArcMelting
+from openmsimodel.entity.gemd.processes.birdshot.homogenization import Homogenization
+from openmsimodel.entity.gemd.processes.birdshot.forging import Forging
+from openmsimodel.entity.gemd.processes.birdshot.setting_traveler import SettingTraveler
+from openmsimodel.entity.gemd.processes.birdshot.setting_traveler_sample import (
     SettingTravelerSample,
 )
-from openmsimodel.entity.processes.birdshot.aggregate_traveler_samples import (
+from openmsimodel.entity.gemd.processes.birdshot.aggregate_traveler_samples import (
     AggregateTravelerSamples,
 )
 
 
-from openmsimodel.entity.materials.birdshot.summary import Summary
-from openmsimodel.entity.materials.birdshot.inferred_alloy_compositions import (
+from openmsimodel.entity.gemd.materials.birdshot.summary import Summary
+from openmsimodel.entity.gemd.materials.birdshot.inferred_alloy_compositions import (
     InferredAlloyCompositions,
 )
-from openmsimodel.entity.materials.birdshot.composition import Composition
-from openmsimodel.entity.materials.birdshot.element import Element
-from openmsimodel.entity.materials.birdshot.alloy import Alloy
-from openmsimodel.entity.materials.birdshot.traveler import Traveler
-from openmsimodel.entity.materials.birdshot.traveler_sample import TravelerSample
-from openmsimodel.entity.materials.birdshot.traveler_samples import TravelerSamples
+from openmsimodel.entity.gemd.materials.birdshot.composition import Composition
+from openmsimodel.entity.gemd.materials.birdshot.element import Element
+from openmsimodel.entity.gemd.materials.birdshot.alloy import Alloy
+from openmsimodel.entity.gemd.materials.birdshot.traveler import Traveler
+from openmsimodel.entity.gemd.materials.birdshot.traveler_sample import TravelerSample
+from openmsimodel.entity.gemd.materials.birdshot.traveler_samples import TravelerSamples
 
-from openmsimodel.entity.measurements.birdshot.weighting import Weighting
-from openmsimodel.entity.measurements.birdshot.measure_dimensions import (
+from openmsimodel.entity.gemd.measurements.birdshot.weighting import Weighting
+from openmsimodel.entity.gemd.measurements.birdshot.measure_dimensions import (
     MeasureDimensions,
 )
-from openmsimodel.entity.measurements.birdshot.sem import SEM
-from openmsimodel.entity.measurements.birdshot.ni import NI
-from openmsimodel.entity.measurements.birdshot.xrd import XRD
-from openmsimodel.entity.measurements.birdshot.tensile import Tensile
-from openmsimodel.entity.measurements.birdshot.mounting_and_polishing import (
+from openmsimodel.entity.gemd.measurements.birdshot.sem import SEM
+from openmsimodel.entity.gemd.measurements.birdshot.ni import NI
+from openmsimodel.entity.gemd.measurements.birdshot.xrd import XRD
+from openmsimodel.entity.gemd.measurements.birdshot.tensile import Tensile
+from openmsimodel.entity.gemd.measurements.birdshot.mounting_and_polishing import (
     MountingAndPolishing,
 )
-from openmsimodel.entity.measurements.birdshot.srjt import SRJT
+from openmsimodel.entity.gemd.measurements.birdshot.srjt import SRJT
 
 from openmsimodel.utilities.tools import plot_graph
 from openmsimodel.utilities.argument_parsing import OpenMSIModelParser

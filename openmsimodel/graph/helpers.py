@@ -29,7 +29,6 @@ def launch_graph_widget(g):
 
     w = GraphWidget(graph=g)
     w.set_node_color_mapping(node_color_mapping)
-    # w.set_edge_color_mapping(node_color_mapping)
     w.directed = True
     w.hierarchic_layout()
     w.show()

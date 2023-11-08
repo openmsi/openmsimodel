@@ -2,4 +2,4 @@
 Material
 =============
 
-.. autoclass:: openmsimodel.entity.base.material.Material
+.. autoclass:: openmsimodel.entity.gemd.material.Material
