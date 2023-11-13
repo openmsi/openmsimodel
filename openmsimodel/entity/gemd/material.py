@@ -45,15 +45,20 @@ class Material(GEMDElement):
 
         self.set_sample_type(sample_type)
 
-    @property
-    def spec(self) -> MaterialSpec:
-        """The underlying material spec."""
-        return self._spec
+    # @property
+    # def template(self) -> MaterialTemplate:
+    #     """The underlying material template."""
+    #     return self.TEMPLATE
 
-    @property
-    def run(self) -> MaterialRun:
-        """The underlying material run."""
-        return self._run
+    # @property
+    # def spec(self) -> MaterialSpec:
+    #     """The underlying material spec."""
+    #     return self._spec
+
+    # @property
+    # def run(self) -> MaterialRun:
+    #     """The underlying material run."""
+    #     return self._run
 
     @classmethod
     def from_spec_or_run(
@@ -73,19 +78,9 @@ class Material(GEMDElement):
         if a
         """
 
-        # if spec is None and run is None:
-        #     raise ValueError("At least one of spec or run must be given.")
-
-        # if spec is not None:
-        #     template = spec.template
-        # if run is not None:
-        #     spec = run.spec
-        #     template = spec.template
-        # ensures
         if run is not None:
             if spec is None:
                 spec = run.spec
-            # template = spec.template
         else:
             if spec is None:
                 raise ValueError("At least one of spec or run must be given.")

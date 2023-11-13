@@ -31,15 +31,15 @@ class Ingredient(GEMDElement):
         self._spec: Spec = self._SpecType(name=name, notes=notes)
         self._run: Run = make_instance(self._spec)
 
-    @property
-    def spec(self) -> IngredientSpec:
-        """The underlying process spec."""
-        return self._spec
+    # @property
+    # def spec(self) -> IngredientSpec:
+    #     """The underlying process spec."""
+    #     return self._spec
 
-    @property
-    def run(self) -> IngredientRun:
-        """The underlying process run."""
-        return self._run
+    # @property
+    # def run(self) -> IngredientRun:
+    #     """The underlying process run."""
+    #     return self._run
 
     @classmethod
     def from_spec_or_run(

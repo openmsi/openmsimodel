@@ -20,15 +20,15 @@ class Process(ProcessOrMeasurement):
 
     TEMPLATE: ClassVar[ProcessTemplate]
 
-    @property
-    def spec(self) -> ProcessSpec:
-        """The underlying process spec."""
-        return self._spec
+    # @property
+    # def spec(self) -> ProcessSpec:
+    #     """The underlying process spec."""
+    #     return self._spec
 
-    @property
-    def run(self) -> ProcessRun:
-        """The underlying process run."""
-        return self._run
+    # @property
+    # def run(self) -> ProcessRun:
+    #     """The underlying process run."""
+    #     return self._run
 
     @classmethod
     def from_spec_or_run(

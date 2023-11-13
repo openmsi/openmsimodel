@@ -4,7 +4,7 @@ import os, warnings
 from abc import abstractmethod
 from typing import ClassVar, Type, Optional
 
-from gemd import FileLink
+from gemd import FileLink, Property
 from gemd.entity.attribute.base_attribute import BaseAttribute
 from gemd.entity.util import make_instance
 
@@ -161,14 +161,22 @@ class GEMDElement(Element):
         assign_uuid(self._run, "auto")  # redundant?
 
     @property
-    @abstractmethod
-    def spec(self) -> Spec:
-        """The underlying GEMD spec."""
+    # @abstractmethod
+    def template(self) -> Template:
+        """The underlying GEMD template."""
+        return self.TEMPLATE
 
     @property
-    @abstractmethod
+    # @abstractmethod
+    def spec(self) -> Spec:
+        """The underlying GEMD spec."""
+        return self._spec
+
+    @property
+    # @abstractmethod
     def run(self) -> Run:
         """The underlying GEMD run."""
+        return self._run
 
     @property
     def assets(self) -> list:
@@ -247,6 +255,51 @@ class GEMDElement(Element):
         """Remove attributes by name."""
 
         remove_attrs(self._ATTRS, self._spec, self._run, AttrType, attr_names, which)
+
+    # TODO: merge all properties stuff to base node?
+    def get_properties_dict(self):
+        """
+        Return a ``dict`` of measurement run properties.
+        The keys are the names of the properties.
+        Each value is a ``dict`` containing a value ``dict`` and origin ``str``.
+        """
+
+        return self._prop_dict(self._run.properties)
+
+    def update_properties(
+        self,
+        *properties: Property,
+        replace_all: bool = False,
+        which: SpecOrRunLiteral = "spec",
+    ) -> None:
+        """
+        Change or add measured properties of the measurement run.
+        properties: Property
+        The properties to change (by name) or add.
+        replace_all: bool, default False
+        If ``True``, remove any existing properties before adding new ones.
+        """
+
+        self._update_attributes(
+            AttrType=Property,
+            attributes=properties,
+            replace_all=replace_all,
+            which=which,
+        )
+
+    def remove_properties(self, *property_names: str) -> None:
+        """
+        Remove measured properties from the measurement run by name.
+
+        property_names: str
+            The names of properties to remove.
+
+
+        """
+
+        self._remove_attributes(
+            AttrType=Property, attr_names=property_names, which="run"
+        )
 
     ############################### TAGS ###############################
     def update_tags(

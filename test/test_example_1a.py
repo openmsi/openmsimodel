@@ -14,6 +14,8 @@ from openmsimodel.stores.gemd_template_store import GEMDTemplateStore, StoresCon
 
 test_root = TEST_CONST.TEST_DIR_PATH / "data/stores/test_store"
 
+
+# FIXME: THIS GETS IMPORTED ONCE AT THE BEGINNING, BUT SHOULD BE CALLED IN SETUP() FUNCTION
 store_tools.stores_config = StoresConfig(
     activated=True, designated_store_id="test", designated_root=test_root
 )
@@ -60,7 +62,7 @@ class TestExample1a(unittest.TestCase):
     def test_base_node_initialization(self):
         """testing initialization of GEMDElement object"""
         with self.assertRaises(
-            TypeError
+            AttributeError  # FIXME: used to be TypeError
         ):  # abstract class can't instantiate on its own
             b = GEMDElement("base")
 

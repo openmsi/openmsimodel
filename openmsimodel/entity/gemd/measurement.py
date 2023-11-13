@@ -13,9 +13,7 @@ from gemd.entity.util import make_instance
 
 # from openmsimodel.utilities.typing import ValueAndOrigin
 
-from .process_or_measurement import ProcessOrMeasurement
-
-__all__ = ["Measurement"]
+from openmsimodel.entity.gemd.process_or_measurement import ProcessOrMeasurement
 
 
 class Measurement(ProcessOrMeasurement):
@@ -34,6 +32,7 @@ class Measurement(ProcessOrMeasurement):
         self,
         name: str,
         *,
+        template: MeasurementTemplate = None,
         notes: Optional[str] = None,
         conditions: Optional[list[Condition]] = None,
         parameters: Optional[list[Parameter]] = None,
@@ -41,25 +40,29 @@ class Measurement(ProcessOrMeasurement):
         material: Optional[MaterialRun] = None
     ) -> None:
         super().__init__(
-            name, notes=notes, conditions=conditions, parameters=parameters
+            name,
+            template=template,
+            notes=notes,
+            conditions=conditions,
+            parameters=parameters,
         )
 
         if properties is None:
             properties = []
 
-        self.update_properties(properties=properties, replace_all=True)
+        self.update_properties(*properties, replace_all=True)
 
         self.set_material(material)
 
-    @property
-    def spec(self) -> MeasurementSpec:
-        """The underlying measurement spec."""
-        return self._spec
+    # @property
+    # def spec(self) -> MeasurementSpec:
+    #     """The underlying measurement spec."""
+    #     return self._spec
 
-    @property
-    def run(self) -> MeasurementRun:
-        """The underlying measurement run."""
-        return self._run
+    # @property
+    # def run(self) -> MeasurementRun:
+    #     """The underlying measurement run."""
+    #     return self._run
 
     @classmethod
     def from_spec_or_run(
@@ -76,11 +79,15 @@ class Measurement(ProcessOrMeasurement):
         Note that the spec's template will be set to the class template,
         and the run's spec will be set to this spec.
         """
+        if run is not None:
+            if spec is None:
+                spec = run.spec
+        else:
+            if spec is None:
+                raise ValueError("At least one of spec or run must be given.")
+        template = spec.template
 
-        if spec is None and run is None:
-            raise ValueError("At least one of spec or run must be given.")
-
-        measurement = cls(name, notes=notes)
+        measurement = cls(name, notes=notes, template=template)
 
         if spec is not None:
             if not isinstance(spec, MeasurementSpec):
@@ -90,10 +97,11 @@ class Measurement(ProcessOrMeasurement):
 
             measurement.spec.name = name
             measurement.spec.notes = notes
-            measurement.spec.template = cls.TEMPLATE
+            # measurex/ment.spec.template = cls.TEMPLATE
 
             measurement.update_conditions(which="spec")
             measurement.update_parameters(which="spec")
+            # measurement.update_properties(which="spec") #FIXME: send error in case they send msg that dont exist
 
         if run is not None:
             if not isinstance(run, MeasurementRun):
@@ -107,12 +115,13 @@ class Measurement(ProcessOrMeasurement):
 
             measurement.update_conditions(which="run")
             measurement.update_parameters(which="run")
-            measurement.update_properties()
+            measurement.update_properties(which="run")
 
             source = measurement.get_source()
-            measurement.set_source(
-                email=source["performed_by"], iso_date=source["performed_date"]
-            )
+            if source:
+                measurement.set_source(
+                    email=source["performed_by"], iso_date=source["performed_date"]
+                )
 
         else:
             measurement._run = make_instance(measurement.spec)
@@ -137,48 +146,6 @@ class Measurement(ProcessOrMeasurement):
         """
 
         self._run.material = material
-
-    # TODO: merge all properties stuff to base node?
-    def get_properties_dict(self):
-        """
-        Return a ``dict`` of measurement run properties.
-        The keys are the names of the properties.
-        Each value is a ``dict`` containing a value ``dict`` and origin ``str``.
-        """
-
-        return self._prop_dict(self._run.properties)
-
-    def update_properties(
-        self, properties: Property, replace_all: bool = False
-    ) -> None:
-        """
-        Change or add measured properties of the measurement run.
-        properties: Property
-        The properties to change (by name) or add.
-        replace_all: bool, default False
-        If ``True``, remove any existing properties before adding new ones.
-        """
-
-        self._update_attributes(
-            AttrType=Property,
-            attributes=properties,
-            replace_all=replace_all,
-            which="run",
-        )
-
-    def remove_properties(self, *property_names: str) -> None:
-        """
-        Remove measured properties from the measurement run by name.
-
-        property_names: str
-            The names of properties to remove.
-
-
-        """
-
-        self._remove_attributes(
-            AttrType=Property, attr_names=property_names, which="run"
-        )
 
     @staticmethod
     def _prop_dict(run_props: list[Property]):
