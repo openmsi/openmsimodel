@@ -9,8 +9,12 @@ from openmsimodel.entity.gemd.ingredient import Ingredient
 from openmsimodel.entity.gemd.processes.birdshot.summarize import (
     Summarize,
 )
-from openmsimodel.entity.gemd.processes.birdshot.infer_compositions import InferCompositions
-from openmsimodel.entity.gemd.processes.birdshot.select_composition import SelectComposition
+from openmsimodel.entity.gemd.processes.birdshot.infer_compositions import (
+    InferCompositions,
+)
+from openmsimodel.entity.gemd.processes.birdshot.select_composition import (
+    SelectComposition,
+)
 from openmsimodel.entity.gemd.processes.birdshot.add_material import AddMaterial
 from openmsimodel.entity.gemd.processes.birdshot.mixing import Mixing
 from openmsimodel.entity.gemd.processes.birdshot.arc_melting import ArcMelting
@@ -82,7 +86,7 @@ from gemd.util.impl import recursive_foreach
 # FIXME: in yfiles, Diffusion shows up with out " " as opposed to rest: fix
 
 
-class BIRDSHOTWorfklow(Workflow, FolderOrFile):
+class BIRDSHOTScienceKit(Workflow, FolderOrFile):
     def __init__(self, root, output, iteration, synthesis_path, srjt_path):
         """
         this function represents a TAMU workflow, from a list of compositions to tests, through their

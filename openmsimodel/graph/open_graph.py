@@ -72,7 +72,7 @@ class OpenGraph(Runnable):
         self.source = pathlib.Path(source) if not (type(source) == list) else source
         self.output = pathlib.Path(output)  # TODO: REQUIRES FULL PATH NOW; fix or keep?
         if not self.output.exists():
-r            raise FileNotFoundError(f"{self.output} does not exist.")
+            raise FileNotFoundError(f"{self.output} does not exist.")
         self.layout = layout
         self.add_bidirectional_edges = add_bidirectional_edges
         self.take_small_sample = take_small_sample

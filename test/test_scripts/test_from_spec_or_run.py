@@ -6,12 +6,16 @@ sys.path.insert(0, "..")
 from openmsimodel.workflow.workflow import Workflow
 from openmsimodel.subworkflow.process_block import ProcessBlock
 from openmsimodel.entity.gemd.material import Material
+from openmsimodel.entity.gemd.process import Process
+from openmsimodel.entity.gemd.measurement import Measurement
+from openmsimodel.entity.gemd.ingredient import Ingredient
 from openmsimodel.entity.gemd.helpers import from_spec_or_run
-from gemd.demo import cake
-
+from gemd import ProcessTemplate, MaterialTemplate, MeasurementTemplate
 import openmsimodel.stores.gemd_template_store as store_tools
 
 store_tools.stores_config.activated = False
+
+from gemd.demo import cake
 
 
 class TestFromSpecOrRun(unittest.TestCase):
@@ -256,12 +260,131 @@ class TestFromSpecOrRun(unittest.TestCase):
         )
 
     ################# Block #########################
-    def test_cake_block_from_material_successful(self):
-        cake_example = cake.make_cake(seed=42)
-        block = ProcessBlock.from_spec_or_run(
-            cake_example.name, notes=None, spec=cake_example.spec, run=cake_example
+    def test_materials_data_block_from_material_successful(self):
+        alloy_ingredient = Ingredient("Alloy Ingredient")
+        polishing_process = Process("Polishing", template=ProcessTemplate("Heating"))
+        polished_alloy = Material("Polished Alloy", template=MaterialTemplate("Alloy"))
+        first_temperature_measurement = Measurement(
+            "First Temperature", template=MeasurementTemplate("temperature")
         )
-        print(block.assets)
-        print(block.gemd_assets)
+        second_temperature_measurement = Measurement(
+            "Second Temperature", template=MeasurementTemplate("temperature")
+        )
+        polishing_block = ProcessBlock(
+            name=f"Polishing Alloy",
+            workflow=None,
+            material=polished_alloy,
+            ingredients=[alloy_ingredient],
+            process=polishing_process,
+            measurements=[
+                first_temperature_measurement,
+                second_temperature_measurement,
+            ],
+        )
+        polishing_block.link_within()
 
-    
+        identical_block = ProcessBlock.from_spec_or_run(
+            "identical_block",
+            notes=None,
+            spec=polishing_process.spec,
+            run=polishing_process.run,
+        )
+
+        self.assertEquals(
+            polishing_block.material.template.uids["auto"],
+            identical_block.material.template.uids["auto"],
+        )
+        self.assertEquals(
+            polishing_block.material.spec.uids["auto"],
+            identical_block.material.spec.uids["auto"],
+        )
+        self.assertEquals(
+            polishing_block.material.run.uids["auto"],
+            identical_block.material.run.uids["auto"],
+        )
+        self.assertEquals(
+            polishing_block.process.template.uids["auto"],
+            identical_block.process.template.uids["auto"],
+        )
+        self.assertEquals(
+            polishing_block.process.spec.uids["auto"],
+            identical_block.process.spec.uids["auto"],
+        )
+        self.assertEquals(
+            polishing_block.process.run.uids["auto"],
+            identical_block.process.run.uids["auto"],
+        )
+
+        for measurement_name in polishing_block.measurements.keys():
+            self.assertEquals(
+                polishing_block.measurements[measurement_name].template.uids["auto"],
+                identical_block.measurements[measurement_name].template.uids["auto"],
+            )
+            self.assertEquals(
+                polishing_block.measurements[measurement_name].spec.uids["auto"],
+                identical_block.measurements[measurement_name].spec.uids["auto"],
+            )
+            self.assertEquals(
+                polishing_block.measurements[measurement_name].run.uids["auto"],
+                identical_block.measurements[measurement_name].run.uids["auto"],
+            )
+
+        for ingredient_name in polishing_block.ingredients.keys():
+            self.assertEquals(
+                polishing_block.measurements[ingredient_name].template.uids["auto"],
+                identical_block.measurements[ingredient_name].template.uids["auto"],
+            )
+            self.assertEquals(
+                polishing_block.measurements[ingredient_name].spec.uids["auto"],
+                identical_block.measurements[ingredient_name].spec.uids["auto"],
+            )
+            self.assertEquals(
+                polishing_block.measurements[ingredient_name].run.uids["auto"],
+                identical_block.measurements[ingredient_name].run.uids["auto"],
+            )
+
+    ################# Block #########################
+    def test_materials_data_workflow_from_material_successful(self):
+        ###
+        alloy_ingredient = Ingredient("Alloy Ingredient")
+        polishing_process = Process("Polishing", template=ProcessTemplate("Heating"))
+        polished_alloy = Material("Polished Alloy", template=MaterialTemplate("Alloy"))
+        polishing_block = ProcessBlock(
+            name=f"Polishing Alloy",
+            workflow=None,
+            material=polished_alloy,
+            ingredients=[alloy_ingredient],
+            process=polishing_process,
+            measurements=[],
+        )
+        polishing_block.link_within()
+
+        ###
+        polished_alloy_ingredient = Ingredient("Polished Alloy Ingredient")
+        heating_process = Process(
+            "Heating",
+            template=ProcessTemplate(
+                "Heating",
+                parameters=ParameterTemplate(
+                    name="Temperature",
+                    bounds=RealBounds(0, 1500, "Kelvin"),
+                ),
+            ),
+        )
+        heated_alloy = Material("Heated Alloy", template=MaterialTemplate("Alloy"))
+        heating_block = ProcessBlock(
+            name=f"Heating Alloy",
+            workflow=None,
+            material=heated_alloy,
+            ingredients=[polished_alloy_ingredient],
+            process=heating_process,
+            measurements=[],
+        )
+        heating_block.link_within()
+        heating_block.link_prior(
+            polishing_block, ingredient_name_to_link="Polished Alloy Ingredient"
+        )
+
+        ####
+        # identical_workflow = Workflow.from_spec_or_run('identical workflow', notes=None, spec=, run=)
+        pass

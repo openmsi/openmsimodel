@@ -17,7 +17,7 @@ from gemd.util.impl import recursive_foreach
 
 
 # TODO: extend Logging
-class Workflow(Runnable):
+class ScienceKit(Runnable):
     """Class to model a workflow, typically a set of processing steps, experiments, and characterizations, into GEMD, a data model.
     the definition of a workflow is meant to be flexible to the needs of the user. Workflows can be composed
     to construct even larger GEMD graphs.
@@ -85,6 +85,24 @@ class Workflow(Runnable):
             #     fp.write(result)
             # else:
             fp.write(self.dump_function(item, indent=3))
+
+    @classmethod
+    def from_spec_or_run(
+        cls,
+        name: str,
+        *,
+        notes: Optional[str] = None,
+        spec: Spec = None,
+        run: Run = None,
+    ):
+        initial = ProcessBlock.from_spec_or_run(
+            run.name,
+            notes=None,
+            spec=spec,
+            run=run,
+        )
+
+    # @classmethod
 
     #################### CLASS METHODS ####################
 

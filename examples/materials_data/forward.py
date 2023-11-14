@@ -72,7 +72,7 @@ def main():
         spec=polishing_process.spec,
         run=polishing_process.run,
     )
-    r
+    print(block.assets)
 
 
 if __name__ == "__main__":

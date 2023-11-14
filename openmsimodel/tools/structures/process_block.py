@@ -4,13 +4,13 @@ from openmsimodel.entity.gemd.measurement import Measurement
 from openmsimodel.entity.gemd.material import Material
 from openmsimodel.entity.gemd.process import Process
 from openmsimodel.entity.gemd.gemd_base_element import GEMDElement
-from openmsimodel.subworkflow.subworkflow import Subworkflow
+from openmsimodel.tools.tool import Tool
 from typing import ClassVar, Type, Optional
 from openmsimodel.entity.gemd.helpers import from_spec_or_run
 from openmsimodel.utilities.typing import Spec, Run
 
 
-class ProcessBlock(Subworkflow):
+class ProcessBlock(Tool):
     """
     ProcessBlock is a type of Subworkflow intended to represent consecutive Elements in the order of 'Ingredients', 'Process', 'Material', and 'Measurements'.
     It is the natural order of GEMD objects, and of our Elements object, which are essentially GEMD wrappers. It is a loose class and can omit some elements of the block.
@@ -211,7 +211,6 @@ class ProcessBlock(Subworkflow):
         spec: Spec = None,
         run: Run = None,
     ):
-        initial = from_spec_or_run(name=name, notes=notes, spec=spec, run=run)
         process = None
         material = None
         traversed = {
@@ -223,20 +222,31 @@ class ProcessBlock(Subworkflow):
         ingredients = set()
         measurements = set()
 
+        initial = from_spec_or_run(name=name, notes=notes, spec=spec, run=run)
+
+        if initial.__class__.__name__ == "Process":
+            process = initial
+        elif initial.__class__.__name__ == "Material":
+            material = initial
+        elif initial.__class__.__name__ == "Ingredient":
+            ingredients.add(initial)
+        elif initial.__class__.__name__ == "Measurement":
+            measurements.add(initial)
+
         def traverse(element):
-            nonlocal traversed
-            if isinstance(element, Material):
+            nonlocal traversed, material, process, ingredients, measurements
+            if isinstance(element, Material):  #
                 if hasattr(element.run, "measurements"):
-                    for measurement_run in element.run.measurements:
-                        measurements.add(
-                            Measurement.from_spec_or_run(
-                                name=measurement_run.name,
-                                run=measurement_run,
-                                spec=measurement_run.spec,
-                            )
-                        )
                     if not traversed["measurements"]:
                         traversed["measurements"] = True
+                        for measurement_run in element.run.measurements:
+                            measurements.add(
+                                Measurement.from_spec_or_run(
+                                    name=measurement_run.name,
+                                    run=measurement_run,
+                                    spec=measurement_run.spec,
+                                )
+                            )
                 if hasattr(element.run, "process"):
                     obj = element.run.process
                     process = Process.from_spec_or_run(
@@ -245,7 +255,7 @@ class ProcessBlock(Subworkflow):
                     if not traversed["process"]:
                         traversed["process"] = True
                         traverse(process)
-            elif isinstance(element, Process):
+            elif isinstance(element, Process):  #
                 if hasattr(element.run, "output_material"):
                     obj = element.run.output_material
                     material = Material.from_spec_or_run(
@@ -259,14 +269,13 @@ class ProcessBlock(Subworkflow):
                         traverse(material)
 
                 if hasattr(element.run, "ingredients"):
-                    print("Entering the loop")
                     if not traversed["ingredients"]:
                         traversed["ingredients"] = True
                         for i, ingredient_run in enumerate(element.run.ingredients):
-                            print("Test")
-                            print(len(element.run.ingredients))
-                            print(i)
-                            print(ingredient_run)
+                            # print("Test")
+                            # print(len(element.run.ingredients))
+                            # print(i)
+                            # print(ingredient_run)
                             ingredients.add(
                                 Ingredient.from_spec_or_run(
                                     ingredient_run.name,
@@ -274,7 +283,7 @@ class ProcessBlock(Subworkflow):
                                     spec=ingredient_run.spec,
                                 )
                             )
-            elif isinstance(element, Ingredient):
+            elif isinstance(element, Ingredient):  #
                 if hasattr(element.run, "process"):
                     obj = element.run.process
                     process = Process.from_spec_or_run(
@@ -283,7 +292,7 @@ class ProcessBlock(Subworkflow):
                     if not traversed["process"]:
                         traversed["process"] = True
                         traverse(process)
-            elif isinstance(element, Measurement):
+            elif isinstance(element, Measurement):  #
                 if hasattr(element.run, "material"):
                     obj = element.run.material
                     material = Material.from_spec_or_run(
@@ -294,11 +303,11 @@ class ProcessBlock(Subworkflow):
                         traverse(material)
 
         traverse(initial)
-        # print(ingredients)
-        # print(measurements)
+        # print("final")
+        # print(process)
+        # print(material)
         # print([i.name for i in list(ingredients)])
-        # print([i.assets for i in list(ingredients)])
-        # print(measurements)
+        # print([i.name for i in list(measurements)])
         block = cls(
             name=name,
             process=process,
