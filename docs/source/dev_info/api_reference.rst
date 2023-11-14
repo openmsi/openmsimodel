@@ -4,21 +4,39 @@ API reference
 
 On the pages linked below we document the details of some of the main Python classes provided by OpenMSIModel. Users may find this reference helpful in extending OpenMSIModel classes for customized applications.
 
+
+Entity
+-----------------
+.. toctree::
+   :maxdepth: 1
+
+   entity/element
+   entity/material
+   entity/process
+   entity/ingredient
+   entity/measurement
+
 Tools
 -----------------
 
 .. toctree::
    :maxdepth: 1
-    
-   tools/science_kit 
+
    tools/tool
+
+.. toctree::
+   :maxdepth: 1
+   
    tools/materials_sequence
 
-   tools/element
-   tools/material
-   tools/process
-   tools/ingredient
-   tools/measurement
+
+Science Kit
+-----------------
+
+.. toctree::
+   :maxdepth: 1
+    
+   science_kit/science_kit 
 
 Graph
 -----------------
@@ -44,6 +62,7 @@ Stores
 .. toctree::
    :maxdepth: 1
 
+   stores/store
    stores/stores_config
 
    

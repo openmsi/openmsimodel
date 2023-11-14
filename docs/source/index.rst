@@ -23,7 +23,9 @@ It allows to structure real scientific workflows into meaningful data structures
 .. toctree::
    :caption: Working with OpenMSIModel:
 
+   user_info/entity/entity
    user_info/tools/tools
+   user_info/science_kit/science_kit
    user_info/graph/graph
    user_info/db/db
    user_info/stores/stores
