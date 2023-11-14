@@ -35,7 +35,11 @@ extensions = [
     "sphinx.ext.autosectionlabel",
     "sphinx.ext.intersphinx",
     "sphinx_rtd_theme",
+    "nbsphinx",
 ]
+
+nbsphinx_execute = 'never'
+nbsphinx_allow_errors = True
 
 # autodoc configs
 autodoc_default_options = {

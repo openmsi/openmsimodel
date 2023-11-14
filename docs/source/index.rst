@@ -23,12 +23,24 @@ It allows to structure real scientific workflows into meaningful data structures
 .. toctree::
    :caption: Working with OpenMSIModel:
 
-   user_info/structure
+   user_info/tools/tools
+   user_info/graph/graph
+   user_info/db/db
+   user_info/stores/stores
 
 .. toctree::
    :caption: Examples:
 
+   examples/materials_data
    examples/laser_shock
+   examples/birdshot
+   examples/cake
+
+.. toctree::
+   :caption: Additional information
+
+   additional_info/next_steps
+
 
 .. toctree::
    :caption: API reference:

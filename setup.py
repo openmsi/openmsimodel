@@ -38,6 +38,7 @@ setupkwargs = dict(
         "graphviz",
         # "pygraphviz",
         "sphinx_rtd_theme",
+        "nbsphinx",
         "questionary",
         "webcolors",
         "jupyter",
