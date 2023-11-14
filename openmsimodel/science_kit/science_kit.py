@@ -4,13 +4,12 @@ import os
 import shutil
 import argparse
 import json
-from .folder_or_file import FolderOrFile
+from typing import Optional
 
-# import sys
-# sys.path.append("..")
-# from openmsimodel.utilities.tools import *
+# from openmsimodel.structres.folder_or_file import FolderOrFile
 from openmsimodel.utilities.runnable import Runnable
 from openmsimodel.utilities.argument_parsing import OpenMSIModelParser
+from openmsimodel.utilities.typing import Spec, Run
 
 from gemd.json import GEMDJson
 from gemd.util.impl import recursive_foreach
@@ -18,8 +17,8 @@ from gemd.util.impl import recursive_foreach
 
 # TODO: extend Logging
 class ScienceKit(Runnable):
-    """Class to model a workflow, typically a set of processing steps, experiments, and characterizations, into GEMD, a data model.
-    the definition of a workflow is meant to be flexible to the needs of the user. Workflows can be composed
+    """Class to model a science_kit, typically a set of processing steps, experiments, and characterizations, into GEMD, a data model.
+    the definition of a science_kit is meant to be flexible to the needs of the user. Workflows can be composed
     to construct even larger GEMD graphs.
     It offers utilities functions to build the model flexibly, break it down into smaller, easier to
     manage blocks, or complete operations such as dumping and loading models into/from JSONs.
@@ -28,7 +27,7 @@ class ScienceKit(Runnable):
     ARGUMENT_PARSER_TYPE = OpenMSIModelParser
 
     def __init__(self, *args, **kwargs):
-        """Initialization of workflow"""
+        """Initialization of science_kit"""
         # self.root
         self.elements = []
         self.subs = defaultdict()
@@ -41,8 +40,8 @@ class ScienceKit(Runnable):
 
     def build(self):
         """
-        This function builds the entire GEMD model that represents a certain Workflow.
-        to be overwritten by child objects of Workflow that correspond to a specific workflow / user case.
+        This function builds the entire GEMD model that represents a certain ScienceKit.
+        to be overwritten by child objects of ScienceKit that correspond to a specific science_kit / user case.
         """
         pass
 
@@ -95,7 +94,7 @@ class ScienceKit(Runnable):
         spec: Spec = None,
         run: Run = None,
     ):
-        initial = ProcessBlock.from_spec_or_run(
+        initial = MaterialsSequence.from_spec_or_run(
             run.name,
             notes=None,
             spec=spec,
@@ -117,15 +116,15 @@ class ScienceKit(Runnable):
     def run_from_command_line(cls, args=None):
         parser = cls.get_argument_parser()
         args = parser.parse_args(args=args)
-        workflow = cls(*args)
-        workflow.build()
+        science_kit = cls(*args)
+        science_kit.build()
 
 
 def main(args=None):
     """
     Main method to run from command line
     """
-    Workflow.run_from_command_line(args)
+    ScienceKit.run_from_command_line(args)
 
 
 if __name__ == "__main__":

@@ -24,7 +24,7 @@ store_tools.stores_config.all_template_stores[
     "test"
 ].register_all_templates_from_store()
 
-from openmsimodel.entity.gemd.gemd_base_element import GEMDElement
+from openmsimodel.entity.gemd.gemd_element import GEMDElement
 from openmsimodel.entity.gemd.process import Process
 from openmsimodel.entity.gemd.material import Material
 from openmsimodel.entity.gemd.ingredient import Ingredient

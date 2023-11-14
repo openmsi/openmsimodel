@@ -16,7 +16,7 @@ from gemd import (
     PerformedSource,
 )
 
-from openmsimodel.entity.gemd.gemd_base_element import GEMDElement
+from openmsimodel.entity.gemd.gemd_element import GEMDElement
 from openmsimodel.utilities.typing import SpecOrRunLiteral
 from openmsimodel.utilities.attributes import finalize_template
 

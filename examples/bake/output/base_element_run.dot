@@ -1,6 +1,6 @@
-strict digraph base_element {
+strict digraph element {
 	graph [bb="0,0,604.45,676.45",
-		name=base_element
+		name=element
 	];
 	node [label="\N"];
 	"Cake [eb583205-59cd-4132-b5f6-d94cfb7d4da8, material_run]"	 [color=green,

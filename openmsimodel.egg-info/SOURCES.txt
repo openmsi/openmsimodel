@@ -16,7 +16,7 @@ openmsimodel/db/queries.py
 openmsimodel/entity/__init__.py
 openmsimodel/entity/impl.py
 openmsimodel/entity/base/__init__.py
-openmsimodel/entity/base/base_element.py
+openmsimodel/entity/base/element.py
 openmsimodel/entity/base/helpers.py
 openmsimodel/entity/base/ingredient.py
 openmsimodel/entity/base/material.py
@@ -86,9 +86,9 @@ openmsimodel/utilities/attr_utils/base_special_attrs.py
 openmsimodel/utilities/attr_utils/grp_attrs.py
 openmsimodel/utilities/attr_utils/seg_attrs.py
 openmsimodel/utilities/attr_utils/utils.py
-openmsimodel/workflow/__init__.py
-openmsimodel/workflow/birdshot_workflow.py
-openmsimodel/workflow/folder_or_file.py
-openmsimodel/workflow/old_birdshot_workflow.py
-openmsimodel/workflow/workflow.py
+openmsimodel/science_kit/__init__.py
+openmsimodel/science_kit/birdshot_workflow.py
+openmsimodel/science_kit/folder_or_file.py
+openmsimodel/science_kit/old_birdshot_workflow.py
+openmsimodel/science_kit/science_kit.py
 test/test_example_1b.py

@@ -1,5 +1,5 @@
 =============
-Workflow
+ScienceKit
 =============
 
-.. autoclass:: openmsimodel.workflow.workflow.Workflow
+.. autoclass:: openmsimodel.science_kit.science_kit.ScienceKit

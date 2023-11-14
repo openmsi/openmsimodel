@@ -106,7 +106,7 @@ class GEMDTemplateStore(ABC):
         """
 
         self.id = id
-        self.encoder = encoder  # TODO: separate from workflow one
+        self.encoder = encoder  # TODO: separate from science_kit one
         # self.logger = Logger()
         self._n_from_files = 0
         self._n_hardcoded = 0

@@ -6,27 +6,25 @@ from gemd import (
     ParameterTemplate,
     RealBounds,
 )
-from openmsimodel.workflow.workflow import Workflow
-from openmsimodel.subworkflow.process_block import ProcessBlock
+from openmsimodel.science_kit.science_kit import ScienceKit
+from openmsimodel.tools.structures.materials_sequence import MaterialsSequence
 from openmsimodel.entity.gemd.material import Material
 from openmsimodel.entity.gemd.process import Process
 from openmsimodel.entity.gemd.measurement import Measurement
 from openmsimodel.entity.gemd.ingredient import Ingredient
 from openmsimodel.db.open_db import OpenDB
-
-
-# from openmsimodel.graph.open_graph import OpenGraph
+from openmsimodel.graph.open_graph import OpenGraph
 
 
 def main():
-    workflow = Workflow()
+    science_kit = ScienceKit()
 
     alloy_ingredient = Ingredient("Alloy Ingredient")
     polishing_process = Process("Polishing", template=ProcessTemplate("Heating"))
     polished_alloy = Material("Polished Alloy", template=MaterialTemplate("Alloy"))
-    polishing_block = ProcessBlock(
+    polishing_block = MaterialsSequence(
         name=f"Polishing Alloy",
-        workflow=workflow,
+        science_kit=science_kit,
         material=polished_alloy,
         ingredients=[alloy_ingredient],
         process=polishing_process,
@@ -46,9 +44,9 @@ def main():
         ),
     )
     heated_alloy = Material("Heated Alloy", template=MaterialTemplate("Alloy"))
-    heating_block = ProcessBlock(
+    heating_block = MaterialsSequence(
         name=f"Heating Alloy",
-        workflow=workflow,
+        science_kit=science_kit,
         material=heated_alloy,
         ingredients=[polished_alloy_ingredient],
         process=heating_process,
@@ -61,12 +59,17 @@ def main():
 
     to_be_visualized = heating_block.gemd_assets
     output = str(Path().absolute() / "output")
-    # open_graph = OpenGraph(
-    #     name="heating", source=to_be_visualized, output=output, which="all"
-    # )
-    # G, relabeled_G, name_mapping = open_graph.build_graph()
+    output = "/srv/hemi01-j01/openmsimodel/examples/materials_data/output"
+    open_graph = OpenGraph(
+        name="heating",
+        source=to_be_visualized,
+        output=output,
+        which="all",
+        dump_svg_and_dot=True,
+    )
+    G, relabeled_G, name_mapping = open_graph.build_graph()
 
-    block = ProcessBlock.from_spec_or_run(
+    block = MaterialsSequence.from_spec_or_run(
         str(polishing_process.name + "_backward"),
         notes=None,
         spec=polishing_process.spec,

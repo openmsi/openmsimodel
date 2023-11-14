@@ -1,6 +1,6 @@
-strict digraph base_element {
+strict digraph element {
 	graph [bb="0,0,409.46,108",
-		name=base_element
+		name=element
 	];
 	node [label="\N",
 		nodesep=0.4,

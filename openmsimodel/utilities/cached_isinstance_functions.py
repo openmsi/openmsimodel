@@ -4,7 +4,7 @@ from gemd.entity.dict_serializable import DictSerializable
 
 from gemd.entity.object import MaterialRun, ProcessRun, IngredientRun, MeasurementRun
 
-# from openmsimodel.entity.gemd.gemd_base_element import GEMDElement
+# from openmsimodel.entity.gemd.gemd_element import GEMDElement
 from openmsimodel.utilities.typing import (
     Spec,
     Run,

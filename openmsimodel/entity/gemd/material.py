@@ -6,7 +6,7 @@ from gemd import MaterialTemplate, MaterialSpec, MaterialRun, PropertyAndConditi
 from gemd.entity.util import make_instance
 from gemd.enumeration import SampleType
 
-from openmsimodel.entity.gemd.gemd_base_element import GEMDElement
+from openmsimodel.entity.gemd.gemd_element import GEMDElement
 
 from openmsimodel.utilities.attributes import finalize_template
 from .process import Process

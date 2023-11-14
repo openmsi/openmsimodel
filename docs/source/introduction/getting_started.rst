@@ -20,8 +20,8 @@ Build a GEMD Object and wrap it with a Element class:
 
     from pathlib import Path 
     from gemd import MaterialTemplate, ProcessTemplate, MeasurementTemplate
-    from openmsimodel.workflow.workflow import Workflow
-    from openmsimodel.subworkflow.process_block import ProcessBlock
+    from openmsimodel.science_kit.science_kit import ScienceKit
+    from openmsimodel.tools.structures.materials_sequence import MaterialsSequence
     from openmsimodel.entity.gemd.material import Material
     from openmsimodel.entity.gemd.process import Process
     from openmsimodel.entity.gemd.measurement import Measurement
@@ -30,12 +30,12 @@ Build a GEMD Object and wrap it with a Element class:
 
 .. code-block:: bash
 
-    w = Workflow()
+    w = ScienceKit()
     process = Process("Heating", template=ProcessTemplate("Heating"))
     material = Material("Heated Alloy", template=MaterialTemplate("Heated Alloy"))
-    block = ProcessBlock(
+    block = MaterialsSequence(
         name=f"Heating Block",
-        workflow=w,
+        science_kit=w,
         material=material,
         ingredients={},
         process=process,
@@ -80,11 +80,11 @@ Usage
 
 OpenMSIModel provides several modules and classes for different aspects of materials data management. To begin using the library, you can explore the following modules:
 
-- `Workflow.py`: Contains knowledge about materials science workflows. It encapsulates the process of building GEMD models and offers reading and dumping functionalities.
+- `ScienceKit.py`: Contains knowledge about materials science workflows. It encapsulates the process of building GEMD models and offers reading and dumping functionalities.
 
-- `Subworkflow.py`: Represents Subworkflows, flexible structures for structuring, discovering, and serializing GEMD model elements. Subworkflows can be used for various purposes, such as organizing data or facilitating analysis.
+- `Tool.py`: Represents Subworkflows, flexible structures for structuring, discovering, and serializing GEMD model elements. Subworkflows can be used for various purposes, such as organizing data or facilitating analysis.
 
-- `ProcessBlock.py`: A type of Subworkflow that coalesces GEMD elements into natural structures, including materials, ingredients, processes, and new materials. ProcessBlocks simplify data retrieval and model building.
+- `MaterialsSequence.py`: A type of Tool that coalesces GEMD elements into natural structures, including materials, ingredients, processes, and new materials. ProcessBlocks simplify data retrieval and model building.
 
 - `Element.py`: Serves as an interface and wrapper for data modeling formats like GEMD. It abstracts the use of GEMD and encapsulates functionalities for controlling templates, specifications, and runs.
 

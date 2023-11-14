@@ -1,5 +1,5 @@
 =============
-Subworkflow
+Tool
 =============
 
-.. autoclass:: openmsimodel.subworkflow.subworkflow.Subworkflow
+.. autoclass:: openmsimodel.tools.tool.subworkflow.Tool

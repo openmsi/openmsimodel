@@ -10,9 +10,9 @@ Top-level classes
 .. toctree::
    :maxdepth: 1
 
-   api/workflow 
+   api/science_kit 
    api/subworkflow
-   api/base_element
+   api/element
    api/process_block 
    api/material
    api/process

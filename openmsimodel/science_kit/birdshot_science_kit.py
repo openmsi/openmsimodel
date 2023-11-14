@@ -1,6 +1,6 @@
-from openmsimodel.workflow.workflow import Workflow
-from openmsimodel.workflow.folder_or_file import FolderOrFile
-from openmsimodel.subworkflow.process_block import ProcessBlock
+from openmsimodel.science_kit.science_kit import ScienceKit
+from openmsimodel.science_kit.folder_or_file import FolderOrFile
+from openmsimodel.tools.structures.materials_sequence import MaterialsSequence
 from openmsimodel.entity.gemd.material import Material
 from openmsimodel.entity.gemd.process import Process
 from openmsimodel.entity.gemd.measurement import Measurement
@@ -86,17 +86,17 @@ from gemd.util.impl import recursive_foreach
 # FIXME: in yfiles, Diffusion shows up with out " " as opposed to rest: fix
 
 
-class BIRDSHOTScienceKit(Workflow, FolderOrFile):
+class BIRDSHOTScienceKit(ScienceKit, FolderOrFile):
     def __init__(self, root, output, iteration, synthesis_path, srjt_path):
         """
-        this function represents a TAMU workflow, from a list of compositions to tests, through their
+        this function represents a TAMU science_kit, from a list of compositions to tests, through their
         VAM and DED fabrications, their splits into travelers for numerous characterizations, all the way to
         using the characterization results to infer the next compositions using BO.
-        :param iteration: the iteration of the workflow (i.e., AAB)
+        :param iteration: the iteration of the science_kit (i.e., AAB)
         :param synthesis_path: the path to synthesis file (i.e., /Sample Data/Iteration2_AAB/HTMDEC AAB Summary Synthesis Results)
         :param srjt_path: the path to srjt file
         """
-        Workflow.__init__(self)
+        ScienceKit.__init__(self)
         # self.root gets set in FolderOrFile
         FolderOrFile.__init__(self, root, parent_path=None, is_last=False)
         self.encoder = GEMDJson()
@@ -120,7 +120,8 @@ class BIRDSHOTScienceKit(Workflow, FolderOrFile):
         self.testing_mode = False
 
     def build(self):
-        # ingesting the results of the summary sheet, which is associated with each composition space, and workflow object
+        # ingesting the results of the summary sheet, which is associated with each composition space, and science_kit object
+        print("Building...")
         if "AAA" in str(self.synthesis_path):
             ingest_aaa_synthesis_results(
                 self.iteration, self.synthesis_path, self.file_links, self.measurements
@@ -165,9 +166,9 @@ class BIRDSHOTScienceKit(Workflow, FolderOrFile):
                     supplied_links={"Summary Sheet": self.file_links["Summary Sheet"]},
                 )
             infer_compositions_block_name = "Infer Compositions"
-            infer_compositions_block = ProcessBlock(
+            infer_compositions_block = MaterialsSequence(
                 name=infer_compositions_block_name,
-                workflow=self,
+                science_kit=self,
                 ingredients=[],
                 process=None,
                 material=inferred_alloy_compositions,
@@ -303,9 +304,9 @@ class BIRDSHOTScienceKit(Workflow, FolderOrFile):
                 f" {traveler_sample_type} Traveler samples"
             )
 
-            aggregate_traveler_samples_block = ProcessBlock(
+            aggregate_traveler_samples_block = MaterialsSequence(
                 name=f"Aggregating {traveler_sample_type} Traveler Samples",
-                workflow=self,
+                science_kit=self,
                 ingredients=ings,
                 process=aggregate_traveler_samples_process,
                 material=traveler_samples_material,
@@ -323,9 +324,9 @@ class BIRDSHOTScienceKit(Workflow, FolderOrFile):
         # FIXME
         aggregate_summary_process = Summarize("Summarize inputs to B.O")
         summary_material = Summary("Summary")
-        summary_block = ProcessBlock(
+        summary_block = MaterialsSequence(
             name="Summary",
-            workflow=self,
+            science_kit=self,
             ingredients=[],
             process=aggregate_summary_process,
             material=summary_material,
@@ -355,9 +356,9 @@ class BIRDSHOTScienceKit(Workflow, FolderOrFile):
         summary_sheet_name = summary_block.material._run.name
         summary_ingredient = Ingredient("{} Ing.".format(summary_sheet_name))
         infer_compositions_process = InferCompositions("Infer comp. using B.O.")
-        infer_next_compositions_block = ProcessBlock(
+        infer_next_compositions_block = MaterialsSequence(
             name="Infer Compositions",
-            workflow=self,
+            science_kit=self,
             ingredients=[summary_ingredient],
             process=infer_compositions_process,
             material=None,
@@ -505,9 +506,9 @@ class BIRDSHOTScienceKit(Workflow, FolderOrFile):
             set_composition_material_and_select_composition_process_params_and_tags()
         )
 
-        block1 = ProcessBlock(
+        block1 = MaterialsSequence(
             name=f"Selecting Composition {composition_id}",
-            workflow=self,
+            science_kit=self,
             ingredients=[inferred_alloy_compositions_ingredient],
             process=select_composition_process,
             material=composition_material,
@@ -632,9 +633,9 @@ class BIRDSHOTScienceKit(Workflow, FolderOrFile):
             weighting_measurement._run.source = weighting_performed_source
 
             composition_elements.append(composition_element_material)
-            block2 = ProcessBlock(
+            block2 = MaterialsSequence(
                 name="Adding {} for {}".format(element_name, short_name),
-                workflow=self,
+                science_kit=self,
                 ingredients=[composition_ingredient],
                 process=adding_material_process,
                 material=composition_element_material,
@@ -699,9 +700,9 @@ class BIRDSHOTScienceKit(Workflow, FolderOrFile):
 
         # assigning srjt measurement to alloy at earlier phase due to measuremenet being indep. from batch/fab method
 
-        block3 = ProcessBlock(
+        block3 = MaterialsSequence(
             name="Mix elements of {}".format(composition_id),
-            workflow=self,
+            science_kit=self,
             ingredients=composition_element_ingredients,
             process=mixing_process,
             material=alloy_material,
@@ -858,9 +859,9 @@ class BIRDSHOTScienceKit(Workflow, FolderOrFile):
             )
         weighting_alloy_measurement._run.source = arc_melting_performed_source
 
-        block4 = ProcessBlock(
+        block4 = MaterialsSequence(
             name=f"Arc Melting of Alloy {alloy_common_name}",
-            workflow=self,
+            science_kit=self,
             ingredients=[alloy_ingredient],
             process=arc_melting_process,
             material=melted_alloy_material,
@@ -993,9 +994,9 @@ class BIRDSHOTScienceKit(Workflow, FolderOrFile):
             which="spec",
         )
 
-        block5 = ProcessBlock(
+        block5 = MaterialsSequence(
             name=f"Homogenization of Alloy {alloy_common_name}",
-            workflow=self,
+            science_kit=self,
             ingredients=[melted_alloy_ingredient],
             process=homogenization_process,
             material=homogenized_alloy_material,
@@ -1134,9 +1135,9 @@ class BIRDSHOTScienceKit(Workflow, FolderOrFile):
 
         set_capture_dimensions_measurement_properties()
 
-        block6 = ProcessBlock(
+        block6 = MaterialsSequence(
             name=f"Forging of Alloy {alloy_common_name}",
-            workflow=self,
+            science_kit=self,
             ingredients=[homogenized_alloy_ingredient],
             process=forging_process,
             material=forged_alloy_material,
@@ -1162,9 +1163,9 @@ class BIRDSHOTScienceKit(Workflow, FolderOrFile):
             tags=common_tags,
             spec_or_run=traveler_material.run,
         )
-        block7 = ProcessBlock(
+        block7 = MaterialsSequence(
             name=f"Setting up of Traveler {alloy_common_name}",
-            workflow=self,
+            science_kit=self,
             ingredients=[forged_alloy_ingredient],
             process=setting_traveler_process,
             material=traveler_material,
@@ -1282,11 +1283,11 @@ class BIRDSHOTScienceKit(Workflow, FolderOrFile):
                         which="run",
                     )
 
-            measurement_block = ProcessBlock(
+            measurement_block = MaterialsSequence(
                 name="Set {} T. Sample for {} ({}) charact.".format(
                     alloy_common_name, measurement_name, measurement_id
                 ),
-                workflow=self,
+                science_kit=self,
                 ingredients=[traveler_ingredient],
                 process=extract_sample_process,
                 material=traveler_sample,
@@ -1435,11 +1436,11 @@ class BIRDSHOTScienceKit(Workflow, FolderOrFile):
                     if self.testing_mode:
                         return
 
-    def link_posterior(self, workflow):
-        self.terminal_process.output_material = workflow.initial_material
+    def link_posterior(self, science_kit):
+        self.terminal_process.output_material = science_kit.initial_material
 
-    def link_prior(self, workflow):
-        self.initial_material.process = workflow.terminal_process
+    def link_prior(self, science_kit):
+        self.initial_material.process = science_kit.terminal_process
 
     @classmethod
     def get_command_line_arguments(cls):
@@ -1459,18 +1460,18 @@ class BIRDSHOTScienceKit(Workflow, FolderOrFile):
     def run_from_command_line(cls, args=None):
         parser = cls.get_argument_parser()
         args = parser.parse_args(args=args)
-        workflow = cls(
+        science_kit = cls(
             args.root, args.output, args.iteration, args.synthesis_path, args.srjt_path
         )
 
         with open(os.path.join(args.output, "log.txt"), "w") as sys.stderr:
-            workflow.build()
-            workflow.encoder.dumps(
-                workflow.terminal_process
-            )  # triggers uuid assignment
-            workflow.thin_dumps(workflow.terminal_process)
-            # workflow.dumps(workflow.terminal_process)
-            workflow.thin_structured_dumps()
+            science_kit.build()
+            # science_kit.encoder.dumps(
+            #     science_kit.terminal_process
+            # )
+            science_kit.thin_dumps(science_kit.terminal_process)
+            # science_kit.dumps(science_kit.terminal_process)
+            # science_kit.thin_structured_dumps()
 
 
 def gen_compositions(root):
@@ -1797,7 +1798,7 @@ def main(args=None):
     """
     Main method to run from command line
     """
-    BIRDSHOTWorfklow.run_from_command_line(args)
+    BIRDSHOTScienceKit.run_from_command_line(args)
 
 
 if __name__ == "__main__":

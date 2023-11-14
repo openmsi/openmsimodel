@@ -2,4 +2,4 @@
 Process Block
 =============
 
-.. autoclass:: openmsimodel.subworkflow.process_block.ProcessBlock
+.. autoclass:: openmsimodel.tools.tool.process_block.MaterialsSequence

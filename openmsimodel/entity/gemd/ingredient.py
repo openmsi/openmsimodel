@@ -11,7 +11,7 @@ from gemd import IngredientSpec, IngredientRun, PropertyAndConditions
 from gemd.entity.util import make_instance
 from gemd.enumeration import SampleType
 from openmsimodel.entity.gemd.impl import assign_uuid
-from openmsimodel.entity.gemd.gemd_base_element import GEMDElement
+from openmsimodel.entity.gemd.gemd_element import GEMDElement
 
 
 class Ingredient(GEMDElement):

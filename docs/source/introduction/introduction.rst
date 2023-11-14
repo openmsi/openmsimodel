@@ -4,7 +4,11 @@ Introduction
 
 OpenMSIModel is a powerful Python library that facilitates working with the GEMD (Graphical Expression of Material Data) format. It serves as a bridge between generalized laboratory, analysis, and computational materials data. OpenMSIModel allows you to structure complex scientific workflows into meaningful data structures, model them in graph and relational databases, explore them through interactive graphical interfaces, and build long-term, shareable assets stores.
 
-Key Features:
+Available on PyPI at https://pypi.org/project/openmsimodel and GitHub at https://github.com/openmsi/openmsimodel
+
+Official documentation at https://openmsimodel.readthedocs.io/en/latest/
+
+Key Features
 -------------
 
 - Efficiently structure and model scientific workflows.

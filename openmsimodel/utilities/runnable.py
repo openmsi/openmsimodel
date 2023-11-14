@@ -1,5 +1,5 @@
 """
-Class defining the general OpenMSIStream workflow for running from the command line
+Class defining the general OpenMSIStream science_kit for running from the command line
 (or as a Service/daemon)
 """
 

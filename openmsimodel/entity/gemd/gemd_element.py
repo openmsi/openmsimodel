@@ -8,7 +8,7 @@ from gemd import FileLink, Property
 from gemd.entity.attribute.base_attribute import BaseAttribute
 from gemd.entity.util import make_instance
 
-from openmsimodel.entity.base_element import Element
+from openmsimodel.entity.element import Element
 
 # from gemd.util.impl import set_uuids
 from openmsimodel.entity.gemd.impl import assign_uuid
@@ -528,15 +528,15 @@ class GEMDElement(Element):
     # @classmethod
     # def from_(cls, any):
     #     if isinstance_run(any):
-    #         # base_element = cls(any.name, template=any.template)
-    #         # base_element.spec = any.spec
-    #         # base_element.run = any
+    #         # element = cls(any.name, template=any.template)
+    #         # element.spec = any.spec
+    #         # element.run = any
     #     elif isinstance_spec(any):
-    #         base_element = cls(any.name, template=any.template)
-    #         base_element.spec = any
+    #         element = cls(any.name, template=any.template)
+    #         element.spec = any
     #     elif isinstance_template(any):
-    #         base_element = cls(any.name, template=any)
-    #     return base_element
+    #         element = cls(any.name, template=any)
+    #     return element
 
     # @abstractmethod
     # def to_form(self) -> str:
@@ -573,7 +573,7 @@ class GEMDElement(Element):
 # from gemd.entity.attribute.base_attribute import BaseAttribute
 # from gemd.entity.util import make_instance
 
-# from openmsimodel.entity.base_element import Element
+# from openmsimodel.entity.element import Element
 
 # # from gemd.util.impl import set_uuids
 # from openmsimodel.entity.gemd.impl import assign_uuid
@@ -1094,15 +1094,15 @@ class GEMDElement(Element):
 #     # @classmethod
 #     # def from_(cls, any):
 #     #     if isinstance_run(any):
-#     #         # base_element = cls(any.name, template=any.template)
-#     #         # base_element.spec = any.spec
-#     #         # base_element.run = any
+#     #         # element = cls(any.name, template=any.template)
+#     #         # element.spec = any.spec
+#     #         # element.run = any
 #     #     elif isinstance_spec(any):
-#     #         base_element = cls(any.name, template=any.template)
-#     #         base_element.spec = any
+#     #         element = cls(any.name, template=any.template)
+#     #         element.spec = any
 #     #     elif isinstance_template(any):
-#     #         base_element = cls(any.name, template=any)
-#     #     return base_element
+#     #         element = cls(any.name, template=any)
+#     #     return element
 
 #     # @abstractmethod
 #     # def to_form(self) -> str:

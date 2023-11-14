@@ -14,10 +14,11 @@ It allows to structure real scientific workflows into meaningful data structures
    :caption: Contents:
 
 .. toctree::
-   :caption: Introduction to OpenMSImodel:
+   :caption: Introduction to OpenMSIModel:
 
-   installation/introduction
-   installation/getting_started
+   introduction/introduction
+   introduction/installation
+   introduction/getting_started
 
 .. toctree::
    :caption: Working with OpenMSIModel:

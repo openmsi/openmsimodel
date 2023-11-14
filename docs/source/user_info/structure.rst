@@ -7,11 +7,11 @@ OpenMSIModel is designed with a modular and structured approach to materials dat
 Components Overview:
 ---------------------
 
-- `Workflow.py`: This module contains knowledge about materials science workflows. It serves as a central hub for building and managing GEMD models. The `build()` function within Workflow encapsulates the process of model creation, and it can ingest and structure existing GEMD models.
+- `ScienceKit.py`: This module contains knowledge about materials science workflows. It serves as a central hub for building and managing GEMD models. The `build()` function within ScienceKit encapsulates the process of model creation, and it can ingest and structure existing GEMD models.
 
-- `Subworkflow.py`: Subworkflows are flexible structures that can be used for various purposes, such as structuring, discovery, and serialization of GEMD model elements. They are essential for facilitating data analysis and exploration.
+- `Tool.py`: Subworkflows are flexible structures that can be used for various purposes, such as structuring, discovery, and serialization of GEMD model elements. They are essential for facilitating data analysis and exploration.
 
-- `ProcessBlock.py`: ProcessBlocks are a type of Subworkflow designed to coalesce GEMD elements in their natural structure. They represent materials, ingredients, processes, and new materials. ProcessBlocks simplify data retrieval and model building.
+- `MaterialsSequence.py`: ProcessBlocks are a type of Tool designed to coalesce GEMD elements in their natural structure. They represent materials, ingredients, processes, and new materials. ProcessBlocks simplify data retrieval and model building.
 
 - `Element.py`: Element serves as an interface and wrapper for data modeling formats like GEMD. It abstracts the use of GEMD, encapsulating functionalities for controlling templates, specifications, and runs. Materials, processes, ingredients, and measurements extend Element to provide specialized functionality.
 

@@ -1,28 +1,28 @@
-from openmsimodel.workflow.workflow import Workflow
+from openmsimodel.science_kit.science_kit import ScienceKit
 from openmsimodel.entity.gemd.ingredient import Ingredient
 from openmsimodel.entity.gemd.measurement import Measurement
 from openmsimodel.entity.gemd.material import Material
 from openmsimodel.entity.gemd.process import Process
-from openmsimodel.entity.gemd.gemd_base_element import GEMDElement
+from openmsimodel.entity.gemd.gemd_element import GEMDElement
 from openmsimodel.tools.tool import Tool
 from typing import ClassVar, Type, Optional
 from openmsimodel.entity.gemd.helpers import from_spec_or_run
 from openmsimodel.utilities.typing import Spec, Run
 
 
-class ProcessBlock(Tool):
+class MaterialsSequence(Tool):
     """
-    ProcessBlock is a type of Subworkflow intended to represent consecutive Elements in the order of 'Ingredients', 'Process', 'Material', and 'Measurements'.
+    MaterialsSequence is a type of Tool intended to represent consecutive Elements in the order of 'Ingredients', 'Process', 'Material', and 'Measurements'.
     It is the natural order of GEMD objects, and of our Elements object, which are essentially GEMD wrappers. It is a loose class and can omit some elements of the block.
     It can be a powerful way to manipulate, link, dump, etc, GEMD objects together, while Blocks themselves can be linked with one another, facilitating repeat
-    elements, linking for wide (i.e., many ingredients, many measurements) or vertical (i.e., long sequence of Elements) workflow, etc.
+    elements, linking for wide (i.e., many ingredients, many measurements) or vertical (i.e., long sequence of Elements) science_kit, etc.
     """
 
     def __init__(  # FIXME
         self,
         name: str,
         process: Optional[Process],
-        workflow: Workflow = None,
+        science_kit: ScienceKit = None,
         material: Optional[Material] = None,
         ingredients: Optional[
             dict
@@ -30,12 +30,12 @@ class ProcessBlock(Tool):
         measurements: Optional[dict] = {},
         _type: str = None,
     ):  # FIXME
-        """elementization of ProcessBlock.
+        """elementization of MaterialsSequence.
 
         Args:
             name (str): Block name
             process (Optional[Process]): process of block.
-            workflow (Workflow, optional): workflow that block belongs to. Defaults to None.
+            science_kit (ScienceKit, optional): science_kit that block belongs to. Defaults to None.
             material (Optional[Material], optional): material of block. Defaults to None.
             ingredients (Optional[list, dict], optional): Ingredients of block. Defaults to {}.
             measurements (Optional[list,dict], optional): Ingredients of block. Defaults to {}.
@@ -46,7 +46,7 @@ class ProcessBlock(Tool):
             TypeError: measurement must be of type "dict".
         """
 
-        Subworkflow.__init__(self, name, workflow=workflow)
+        Tool.__init__(self, name, science_kit=science_kit)
         # if process is None: #FIXME
         #     raise TypeError("'process' argument is not set. ")
         if (material and (not isinstance(material, Material))) or (
@@ -137,7 +137,7 @@ class ProcessBlock(Tool):
         #     print(f"measurements and material for block {self.name} were not linked. ")
 
     def link_prior(
-        self, prior_block: "ProcessBlock", ingredient_name_to_link: str
+        self, prior_block: "MaterialsSequence", ingredient_name_to_link: str
     ):  # TODO: change to 'current_ing_name'
         """links the prior block's material to current ingredient.
 
@@ -157,7 +157,7 @@ class ProcessBlock(Tool):
             )
 
     def link_posterior(
-        self, posterior_block: "ProcessBlock", ingredient_name_to_link: str
+        self, posterior_block: "MaterialsSequence", ingredient_name_to_link: str
     ):
         """link the posterior block's ingredient to current material
 
@@ -311,7 +311,7 @@ class ProcessBlock(Tool):
         block = cls(
             name=name,
             process=process,
-            workflow=None,
+            science_kit=None,
             material=material,
             ingredients=list(ingredients),
             measurements=list(measurements),

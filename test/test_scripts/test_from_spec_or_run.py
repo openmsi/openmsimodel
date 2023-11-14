@@ -3,14 +3,20 @@ from pathlib import Path
 import os
 
 sys.path.insert(0, "..")
-from openmsimodel.workflow.workflow import Workflow
-from openmsimodel.subworkflow.process_block import ProcessBlock
+from openmsimodel.science_kit.science_kit import ScienceKit
+from openmsimodel.tools.structures.materials_sequence import MaterialsSequence
 from openmsimodel.entity.gemd.material import Material
 from openmsimodel.entity.gemd.process import Process
 from openmsimodel.entity.gemd.measurement import Measurement
 from openmsimodel.entity.gemd.ingredient import Ingredient
 from openmsimodel.entity.gemd.helpers import from_spec_or_run
-from gemd import ProcessTemplate, MaterialTemplate, MeasurementTemplate
+from gemd import (
+    ProcessTemplate,
+    MaterialTemplate,
+    MeasurementTemplate,
+    ParameterTemplate,
+    RealBounds,
+)
 import openmsimodel.stores.gemd_template_store as store_tools
 
 store_tools.stores_config.activated = False
@@ -270,9 +276,9 @@ class TestFromSpecOrRun(unittest.TestCase):
         second_temperature_measurement = Measurement(
             "Second Temperature", template=MeasurementTemplate("temperature")
         )
-        polishing_block = ProcessBlock(
+        polishing_block = MaterialsSequence(
             name=f"Polishing Alloy",
-            workflow=None,
+            science_kit=None,
             material=polished_alloy,
             ingredients=[alloy_ingredient],
             process=polishing_process,
@@ -283,7 +289,7 @@ class TestFromSpecOrRun(unittest.TestCase):
         )
         polishing_block.link_within()
 
-        identical_block = ProcessBlock.from_spec_or_run(
+        identical_block = MaterialsSequence.from_spec_or_run(
             "identical_block",
             notes=None,
             spec=polishing_process.spec,
@@ -330,28 +336,28 @@ class TestFromSpecOrRun(unittest.TestCase):
             )
 
         for ingredient_name in polishing_block.ingredients.keys():
+            # self.assertEquals(
+            #     polishing_block.ingredients[ingredient_name].template.uids["auto"],
+            #     identical_block.ingredients[ingredient_name].template.uids["auto"],
+            # )
             self.assertEquals(
-                polishing_block.measurements[ingredient_name].template.uids["auto"],
-                identical_block.measurements[ingredient_name].template.uids["auto"],
+                polishing_block.ingredients[ingredient_name].spec.uids["auto"],
+                identical_block.ingredients[ingredient_name].spec.uids["auto"],
             )
             self.assertEquals(
-                polishing_block.measurements[ingredient_name].spec.uids["auto"],
-                identical_block.measurements[ingredient_name].spec.uids["auto"],
-            )
-            self.assertEquals(
-                polishing_block.measurements[ingredient_name].run.uids["auto"],
-                identical_block.measurements[ingredient_name].run.uids["auto"],
+                polishing_block.ingredients[ingredient_name].run.uids["auto"],
+                identical_block.ingredients[ingredient_name].run.uids["auto"],
             )
 
-    ################# Block #########################
+    ################# MaterialsSequence #########################
     def test_materials_data_workflow_from_material_successful(self):
         ###
         alloy_ingredient = Ingredient("Alloy Ingredient")
         polishing_process = Process("Polishing", template=ProcessTemplate("Heating"))
         polished_alloy = Material("Polished Alloy", template=MaterialTemplate("Alloy"))
-        polishing_block = ProcessBlock(
+        polishing_block = MaterialsSequence(
             name=f"Polishing Alloy",
-            workflow=None,
+            science_kit=None,
             material=polished_alloy,
             ingredients=[alloy_ingredient],
             process=polishing_process,
@@ -372,9 +378,9 @@ class TestFromSpecOrRun(unittest.TestCase):
             ),
         )
         heated_alloy = Material("Heated Alloy", template=MaterialTemplate("Alloy"))
-        heating_block = ProcessBlock(
+        heating_block = MaterialsSequence(
             name=f"Heating Alloy",
-            workflow=None,
+            science_kit=None,
             material=heated_alloy,
             ingredients=[polished_alloy_ingredient],
             process=heating_process,
@@ -385,6 +391,7 @@ class TestFromSpecOrRun(unittest.TestCase):
             polishing_block, ingredient_name_to_link="Polished Alloy Ingredient"
         )
 
-        ####
-        # identical_workflow = Workflow.from_spec_or_run('identical workflow', notes=None, spec=, run=)
-        pass
+        ############ Science Kit #########
+
+        # identical_workflow = ScienceKit.from_spec_or_run('identical science_kit', notes=None, spec=, run=)
+        # pass

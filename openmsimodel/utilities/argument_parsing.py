@@ -219,7 +219,7 @@ class OpenMSIModelParser(ArgumentParser):
             "optional",
             {
                 "type": str,
-                "help": "the iteration of the workflow (i.e., AAB)",
+                "help": "the iteration of the science_kit (i.e., AAB)",
             },
         ],
         "dump_svg_and_dot": [

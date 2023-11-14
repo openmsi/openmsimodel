@@ -5,7 +5,7 @@
 <key id="d2" for="node" attr.name="shape" attr.type="string"/>
 <key id="d1" for="node" attr.name="color" attr.type="string"/>
 <key id="d0" for="graph" attr.name="name" attr.type="string"/>
-<graph edgedefault="directed"><data key="d0">base_element</data>
+<graph edgedefault="directed"><data key="d0">element</data>
 <node id="Dessert [2f381479-12b9-4452-8ef0-90144e4c4c2c, material_template]">
   <data key="d1">green</data>
   <data key="d2">triangle</data>

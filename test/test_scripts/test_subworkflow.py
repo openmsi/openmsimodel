@@ -20,10 +20,10 @@ from openmsimodel.entity.gemd.impl import assign_uuid
 #     template_store_ids,
 # )
 
-from openmsimodel.workflow.workflow import Workflow
-from openmsimodel.subworkflow.process_block import ProcessBlock
+from openmsimodel.science_kit.science_kit import ScienceKit
+from openmsimodel.tools.structures.materials_sequence import MaterialsSequence
 
-from openmsimodel.entity.gemd.gemd_base_element import GEMDElement
+from openmsimodel.entity.gemd.gemd_element import GEMDElement
 from openmsimodel.entity.gemd.process import Process
 from openmsimodel.entity.gemd.material import Material
 from openmsimodel.entity.gemd.ingredient import Ingredient
@@ -55,9 +55,9 @@ def helper(id, w):
     material = MaterialExample(f"material {id}")
     process = ProcessExample(f"process {id}")
     measurement = MeasurementExample(f"measurement {id}")
-    process_block = ProcessBlock(
+    process_block = MaterialsSequence(
         name=f"Process Block {id}",
-        workflow=w,
+        science_kit=w,
         material=material,
         ingredients={ingredient.name: ingredient},
         process=process,
@@ -71,38 +71,38 @@ class TestSubworkflow(unittest.TestCase):
 
     def test_invalid_instantiations(self):
         """testing invalid cases for block instantiation/manipulation."""
-        w = Workflow()
+        w = ScienceKit()
         with self.assertRaises(TypeError):
-            process_block = ProcessBlock(
+            process_block = MaterialsSequence(
                 name=f"Process Block {id}",
-                workflow=w,
+                science_kit=w,
                 material="wrong type",  #
                 ingredients=[],
                 process=None,
                 measurements=[],
             )
         with self.assertRaises(TypeError):
-            process_block = ProcessBlock(
+            process_block = MaterialsSequence(
                 name=f"Process Block {id}",
-                workflow=w,
+                science_kit=w,
                 material=MaterialExample("material"),
                 ingredients=[],
                 process="wrong type",  #
                 measurements=[],
             )
         with self.assertRaises(TypeError):
-            process_block = ProcessBlock(
+            process_block = MaterialsSequence(
                 name=f"Process Block {id}",
-                workflow=w,
+                science_kit=w,
                 material=None,
                 ingredients="wrong type",  #
                 process=None,
                 measurements=[],
             )
         with self.assertRaises(TypeError):
-            process_block = ProcessBlock(
+            process_block = MaterialsSequence(
                 name=f"Process Block {id}",
-                workflow=w,
+                science_kit=w,
                 material=None,
                 ingredients=[],
                 process=None,
@@ -110,9 +110,9 @@ class TestSubworkflow(unittest.TestCase):
             )
 
         with self.assertRaises(TypeError):
-            process_block = ProcessBlock(
+            process_block = MaterialsSequence(
                 name=f"Process Block {id}",
-                workflow=w,
+                science_kit=w,
                 material=None,
                 ingredients=[MaterialExample("wrong type")],  #
                 process=None,
@@ -120,9 +120,9 @@ class TestSubworkflow(unittest.TestCase):
             )
 
         with self.assertRaises(TypeError):
-            process_block = ProcessBlock(
+            process_block = MaterialsSequence(
                 name=f"Process Block {id}",
-                workflow=w,
+                science_kit=w,
                 material=None,
                 ingredients=[],
                 process=None,
@@ -130,9 +130,9 @@ class TestSubworkflow(unittest.TestCase):
             )
 
         with self.assertRaises(NameError):
-            process_block = ProcessBlock(
+            process_block = MaterialsSequence(
                 name=f"Process Block {id}",
-                workflow=w,
+                science_kit=w,
                 material=None,
                 ingredients=[],
                 process=None,
@@ -161,7 +161,7 @@ class TestSubworkflow(unittest.TestCase):
     def test_process_block_instantiations(self):
         """this tests basic instantiations of ProcessBlocks and use of link_within / prior / posterior"""
 
-        w = Workflow()
+        w = ScienceKit()
 
         process_block_1 = helper(1, w)
         process_block_1.link_within()
@@ -307,7 +307,7 @@ class TestSubworkflow(unittest.TestCase):
 
     #     block4 = Block(
     #         name="Arc Melting of Alloy",
-    #         workflow=self,
+    #         science_kit=self,
     #         ingredients=[alloy_ingredient],
     #         process=arc_melting_process,
     #         material=melted_alloy_material,
