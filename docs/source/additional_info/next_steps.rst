@@ -2,7 +2,11 @@
 Next Steps
 =============
 
+2 big things for 0.2.0:
+- capability to organize into materials sequences and a science kit from folder/list of GEMD files
+- overall cleanup and testing, especially for element entity module
 
+_____
 
 New GEMD versions
 
@@ -10,15 +14,20 @@ GEMDLite
 
 * uses a txt based model building in conjusting with a global or local stores to instantiate a barebone GEMD model
 
-GEMDDataQuality
+Smaller/Larger GEMD
+
+ - GEMDAttributes
+
+ - GEMDTags
+
+ - GEMDFileLinks
+
+ - GEMDFileLinksPresentOrNot
+
+ - GEMDDataQuality
 
 checks if files are still present; checks colliding files from diff sources; tells u when ur naming patterns are inconsistent and where is the prob; tells u when the data is corrupted and can’t be opened; flags when our metadata and formats are not respected (data governance)    
 
-Smaller GEMD
-
- -  GEMDTags
-
- - GEMDFileLinks
 
 ___
 
@@ -43,3 +52,16 @@ ___
 RealTime OpenMSIModel
 
 Stateful OpenMSIModel
+
+---
+
+GUI for model visualization and building
+
+___ 
+
+Incorporating 
+
+___
+
+Benchmarking
+- opengraph perf with 5/6 figures (not $$$) number of nodes
