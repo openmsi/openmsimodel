@@ -22,7 +22,7 @@ class Subworkflow(Runnable):
         """
         self.name = name
         self.workflow = workflow
-        if self_assign:
+        if self.workflow and self_assign:
             self.workflow.subs[name] = self
 
     @classmethod

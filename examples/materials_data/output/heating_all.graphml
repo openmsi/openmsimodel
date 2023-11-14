@@ -6,71 +6,71 @@
 <key id="d1" for="node" attr.name="color" attr.type="string"/>
 <key id="d0" for="graph" attr.name="name" attr.type="string"/>
 <graph edgedefault="directed"><data key="d0">heating</data>
-<node id="Polished Alloy Ingredient [c9f29751-5416-4451-80da-b081ff72bdd9, ingredient_spec]">
+<node id="Polished Alloy Ingredient [f05330e3-0b0a-4880-bc49-a4208ea3d6ec, ingredient_spec]">
   <data key="d1">blue</data>
   <data key="d2">rectangle</data>
-  <data key="d3">c9f29751-5416-4451-80da-b081ff72bdd9</data>
+  <data key="d3">f05330e3-0b0a-4880-bc49-a4208ea3d6ec</data>
   <data key="d4">ingredient_spec</data>
-  <data key="d5">{'absolute_quantity': None, 'file_links': [], 'labels': [], 'mass_fraction': None, 'material': {'id': 'a7cb946c-e293-4ca2-8fc0-0afa194ae70e', 'scope': 'auto', 'type': 'link_by_uid'}, 'name': 'Polished Alloy Ingredient', 'notes': None, 'number_fraction': None, 'process': {'id': '06cf49e0-93ab-4de6-87aa-b2ddcad49332', 'scope': 'auto', 'type': 'link_by_uid'}, 'tags': [], 'type': 'ingredient_spec', 'uids': {'auto': 'c9f29751-5416-4451-80da-b081ff72bdd9'}, 'volume_fraction': None}</data>
+  <data key="d5">{'absolute_quantity': None, 'file_links': [], 'labels': [], 'mass_fraction': None, 'material': {'id': '0ba7e28b-232d-43e6-9921-5895f2da8163', 'scope': 'auto', 'type': 'link_by_uid'}, 'name': 'Polished Alloy Ingredient', 'notes': None, 'number_fraction': None, 'process': {'id': 'd0d2044d-6389-4a37-b173-2b51f46e0895', 'scope': 'auto', 'type': 'link_by_uid'}, 'tags': [], 'type': 'ingredient_spec', 'uids': {'auto': 'f05330e3-0b0a-4880-bc49-a4208ea3d6ec'}, 'volume_fraction': None}</data>
 </node>
-<node id="Heating [06cf49e0-93ab-4de6-87aa-b2ddcad49332, process_spec]">
+<node id="Heating [d0d2044d-6389-4a37-b173-2b51f46e0895, process_spec]">
   <data key="d1">red</data>
   <data key="d2">rectangle</data>
-  <data key="d3">06cf49e0-93ab-4de6-87aa-b2ddcad49332</data>
+  <data key="d3">d0d2044d-6389-4a37-b173-2b51f46e0895</data>
   <data key="d4">process_spec</data>
-  <data key="d5">{'conditions': [], 'file_links': [], 'name': 'Heating', 'notes': None, 'parameters': [], 'tags': [], 'template': {'id': 'daadc1ef-df0d-4d8a-afa3-638641722560', 'scope': 'auto', 'type': 'link_by_uid'}, 'type': 'process_spec', 'uids': {'auto': '06cf49e0-93ab-4de6-87aa-b2ddcad49332'}}</data>
+  <data key="d5">{'conditions': [], 'file_links': [], 'name': 'Heating', 'notes': None, 'parameters': [], 'tags': [], 'template': {'id': 'fb2a8d3d-5216-4940-884c-21984c29102e', 'scope': 'auto', 'type': 'link_by_uid'}, 'type': 'process_spec', 'uids': {'auto': 'd0d2044d-6389-4a37-b173-2b51f46e0895'}}</data>
 </node>
-<node id="Polished Alloy Ingredient [ad1cf34a-5961-4d30-88d5-20d32bff2405, ingredient_run]">
+<node id="Polished Alloy Ingredient [394b2205-88b7-430e-97aa-15af46faaae9, ingredient_run]">
   <data key="d1">blue</data>
   <data key="d2">circle</data>
-  <data key="d3">ad1cf34a-5961-4d30-88d5-20d32bff2405</data>
+  <data key="d3">394b2205-88b7-430e-97aa-15af46faaae9</data>
   <data key="d4">ingredient_run</data>
-  <data key="d5">{'absolute_quantity': None, 'file_links': [], 'labels': [], 'mass_fraction': None, 'material': {'id': 'ec5da4da-c0f3-4a4c-8fe0-0a6be46d1767', 'scope': 'auto', 'type': 'link_by_uid'}, 'name': 'Polished Alloy Ingredient', 'notes': None, 'number_fraction': None, 'process': {'id': '80994aaa-ea2a-48f1-8c49-a190bc85c40d', 'scope': 'auto', 'type': 'link_by_uid'}, 'spec': {'id': 'c9f29751-5416-4451-80da-b081ff72bdd9', 'scope': 'auto', 'type': 'link_by_uid'}, 'tags': [], 'type': 'ingredient_run', 'uids': {'auto': 'ad1cf34a-5961-4d30-88d5-20d32bff2405'}, 'volume_fraction': None}</data>
+  <data key="d5">{'absolute_quantity': None, 'file_links': [], 'labels': [], 'mass_fraction': None, 'material': {'id': 'c9dfdc26-e4e8-4afc-b9d3-8fcd7f3da7a6', 'scope': 'auto', 'type': 'link_by_uid'}, 'name': 'Polished Alloy Ingredient', 'notes': None, 'number_fraction': None, 'process': {'id': 'c7b3896c-e19e-4689-bf31-dd8a930b70ba', 'scope': 'auto', 'type': 'link_by_uid'}, 'spec': {'id': 'f05330e3-0b0a-4880-bc49-a4208ea3d6ec', 'scope': 'auto', 'type': 'link_by_uid'}, 'tags': [], 'type': 'ingredient_run', 'uids': {'auto': '394b2205-88b7-430e-97aa-15af46faaae9'}, 'volume_fraction': None}</data>
 </node>
-<node id="Heating [80994aaa-ea2a-48f1-8c49-a190bc85c40d, process_run]">
+<node id="Heating [c7b3896c-e19e-4689-bf31-dd8a930b70ba, process_run]">
   <data key="d1">red</data>
   <data key="d2">circle</data>
-  <data key="d3">80994aaa-ea2a-48f1-8c49-a190bc85c40d</data>
+  <data key="d3">c7b3896c-e19e-4689-bf31-dd8a930b70ba</data>
   <data key="d4">process_run</data>
-  <data key="d5">{'conditions': [], 'file_links': [], 'name': 'Heating', 'notes': None, 'parameters': [], 'source': None, 'spec': {'id': '06cf49e0-93ab-4de6-87aa-b2ddcad49332', 'scope': 'auto', 'type': 'link_by_uid'}, 'tags': [], 'type': 'process_run', 'uids': {'auto': '80994aaa-ea2a-48f1-8c49-a190bc85c40d'}}</data>
+  <data key="d5">{'conditions': [], 'file_links': [], 'name': 'Heating', 'notes': None, 'parameters': [], 'source': None, 'spec': {'id': 'd0d2044d-6389-4a37-b173-2b51f46e0895', 'scope': 'auto', 'type': 'link_by_uid'}, 'tags': [], 'type': 'process_run', 'uids': {'auto': 'c7b3896c-e19e-4689-bf31-dd8a930b70ba'}}</data>
 </node>
-<node id="Heating [daadc1ef-df0d-4d8a-afa3-638641722560, process_template]">
+<node id="Heating [fb2a8d3d-5216-4940-884c-21984c29102e, process_template]">
   <data key="d1">red</data>
   <data key="d2">triangle</data>
-  <data key="d3">daadc1ef-df0d-4d8a-afa3-638641722560</data>
+  <data key="d3">fb2a8d3d-5216-4940-884c-21984c29102e</data>
   <data key="d4">process_template</data>
-  <data key="d5">{'allowed_labels': [], 'allowed_names': [], 'conditions': [], 'description': None, 'name': 'Heating', 'parameters': [[{'id': 'b2a8c8b2-832a-4c1b-9b93-7cf8d94f2651', 'scope': 'auto', 'type': 'link_by_uid'}, None]], 'tags': [], 'type': 'process_template', 'uids': {'auto': 'daadc1ef-df0d-4d8a-afa3-638641722560'}}</data>
+  <data key="d5">{'allowed_labels': [], 'allowed_names': [], 'conditions': [], 'description': None, 'name': 'Heating', 'parameters': [[{'id': 'e2f0f462-b294-4000-bd86-f4c930c984b5', 'scope': 'auto', 'type': 'link_by_uid'}, None]], 'tags': [], 'type': 'process_template', 'uids': {'auto': 'fb2a8d3d-5216-4940-884c-21984c29102e'}}</data>
 </node>
-<node id="b2a8c8b2-832a-4c1b-9b93-7cf8d94f2651"/>
-<node id="Alloy [7c330892-92bb-4976-8f6d-b55b9105d656, material_template]">
+<node id="e2f0f462-b294-4000-bd86-f4c930c984b5"/>
+<node id="Alloy [d8471870-ba50-4e1c-ab5b-930eaa801b8c, material_template]">
   <data key="d1">green</data>
   <data key="d2">triangle</data>
-  <data key="d3">7c330892-92bb-4976-8f6d-b55b9105d656</data>
+  <data key="d3">d8471870-ba50-4e1c-ab5b-930eaa801b8c</data>
   <data key="d4">material_template</data>
-  <data key="d5">{'description': None, 'name': 'Alloy', 'properties': [], 'tags': [], 'type': 'material_template', 'uids': {'auto': '7c330892-92bb-4976-8f6d-b55b9105d656'}}</data>
+  <data key="d5">{'description': None, 'name': 'Alloy', 'properties': [], 'tags': [], 'type': 'material_template', 'uids': {'auto': 'd8471870-ba50-4e1c-ab5b-930eaa801b8c'}}</data>
 </node>
-<node id="Heated Alloy [fce72533-65b4-4372-9432-505eef3bf2f2, material_spec]">
+<node id="Heated Alloy [e13f3008-83e2-443b-b48a-5e48d05756c5, material_spec]">
   <data key="d1">green</data>
   <data key="d2">rectangle</data>
-  <data key="d3">fce72533-65b4-4372-9432-505eef3bf2f2</data>
+  <data key="d3">e13f3008-83e2-443b-b48a-5e48d05756c5</data>
   <data key="d4">material_spec</data>
-  <data key="d5">{'file_links': [], 'name': 'Heated Alloy', 'notes': None, 'process': {'id': '06cf49e0-93ab-4de6-87aa-b2ddcad49332', 'scope': 'auto', 'type': 'link_by_uid'}, 'properties': [], 'tags': [], 'template': {'id': '7c330892-92bb-4976-8f6d-b55b9105d656', 'scope': 'auto', 'type': 'link_by_uid'}, 'type': 'material_spec', 'uids': {'auto': 'fce72533-65b4-4372-9432-505eef3bf2f2'}}</data>
+  <data key="d5">{'file_links': [], 'name': 'Heated Alloy', 'notes': None, 'process': {'id': 'd0d2044d-6389-4a37-b173-2b51f46e0895', 'scope': 'auto', 'type': 'link_by_uid'}, 'properties': [], 'tags': [], 'template': {'id': 'd8471870-ba50-4e1c-ab5b-930eaa801b8c', 'scope': 'auto', 'type': 'link_by_uid'}, 'type': 'material_spec', 'uids': {'auto': 'e13f3008-83e2-443b-b48a-5e48d05756c5'}}</data>
 </node>
-<node id="Heated Alloy [643ccfad-f7f9-4271-ad5d-fdb93ef72107, material_run]">
+<node id="Heated Alloy [5a0ff2bc-c9ca-475c-ac8f-9788719a1f19, material_run]">
   <data key="d1">green</data>
   <data key="d2">circle</data>
-  <data key="d3">643ccfad-f7f9-4271-ad5d-fdb93ef72107</data>
+  <data key="d3">5a0ff2bc-c9ca-475c-ac8f-9788719a1f19</data>
   <data key="d4">material_run</data>
-  <data key="d5">{'file_links': [], 'name': 'Heated Alloy', 'notes': None, 'process': {'id': '80994aaa-ea2a-48f1-8c49-a190bc85c40d', 'scope': 'auto', 'type': 'link_by_uid'}, 'sample_type': None, 'spec': {'id': 'fce72533-65b4-4372-9432-505eef3bf2f2', 'scope': 'auto', 'type': 'link_by_uid'}, 'tags': [], 'type': 'material_run', 'uids': {'auto': '643ccfad-f7f9-4271-ad5d-fdb93ef72107'}}</data>
+  <data key="d5">{'file_links': [], 'name': 'Heated Alloy', 'notes': None, 'process': {'id': 'c7b3896c-e19e-4689-bf31-dd8a930b70ba', 'scope': 'auto', 'type': 'link_by_uid'}, 'sample_type': None, 'spec': {'id': 'e13f3008-83e2-443b-b48a-5e48d05756c5', 'scope': 'auto', 'type': 'link_by_uid'}, 'tags': [], 'type': 'material_run', 'uids': {'auto': '5a0ff2bc-c9ca-475c-ac8f-9788719a1f19'}}</data>
 </node>
-<edge source="Polished Alloy Ingredient [c9f29751-5416-4451-80da-b081ff72bdd9, ingredient_spec]" target="Heating [06cf49e0-93ab-4de6-87aa-b2ddcad49332, process_spec]"/>
-<edge source="Heating [06cf49e0-93ab-4de6-87aa-b2ddcad49332, process_spec]" target="Heating [daadc1ef-df0d-4d8a-afa3-638641722560, process_template]"/>
-<edge source="Heating [06cf49e0-93ab-4de6-87aa-b2ddcad49332, process_spec]" target="Heated Alloy [fce72533-65b4-4372-9432-505eef3bf2f2, material_spec]"/>
-<edge source="Polished Alloy Ingredient [ad1cf34a-5961-4d30-88d5-20d32bff2405, ingredient_run]" target="Heating [80994aaa-ea2a-48f1-8c49-a190bc85c40d, process_run]"/>
-<edge source="Polished Alloy Ingredient [ad1cf34a-5961-4d30-88d5-20d32bff2405, ingredient_run]" target="Polished Alloy Ingredient [c9f29751-5416-4451-80da-b081ff72bdd9, ingredient_spec]"/>
-<edge source="Heating [80994aaa-ea2a-48f1-8c49-a190bc85c40d, process_run]" target="Heating [06cf49e0-93ab-4de6-87aa-b2ddcad49332, process_spec]"/>
-<edge source="Heating [80994aaa-ea2a-48f1-8c49-a190bc85c40d, process_run]" target="Heated Alloy [643ccfad-f7f9-4271-ad5d-fdb93ef72107, material_run]"/>
-<edge source="Heating [daadc1ef-df0d-4d8a-afa3-638641722560, process_template]" target="b2a8c8b2-832a-4c1b-9b93-7cf8d94f2651"/>
-<edge source="Heated Alloy [fce72533-65b4-4372-9432-505eef3bf2f2, material_spec]" target="Alloy [7c330892-92bb-4976-8f6d-b55b9105d656, material_template]"/>
-<edge source="Heated Alloy [643ccfad-f7f9-4271-ad5d-fdb93ef72107, material_run]" target="Heated Alloy [fce72533-65b4-4372-9432-505eef3bf2f2, material_spec]"/>
+<edge source="Polished Alloy Ingredient [f05330e3-0b0a-4880-bc49-a4208ea3d6ec, ingredient_spec]" target="Heating [d0d2044d-6389-4a37-b173-2b51f46e0895, process_spec]"/>
+<edge source="Heating [d0d2044d-6389-4a37-b173-2b51f46e0895, process_spec]" target="Heating [fb2a8d3d-5216-4940-884c-21984c29102e, process_template]"/>
+<edge source="Heating [d0d2044d-6389-4a37-b173-2b51f46e0895, process_spec]" target="Heated Alloy [e13f3008-83e2-443b-b48a-5e48d05756c5, material_spec]"/>
+<edge source="Polished Alloy Ingredient [394b2205-88b7-430e-97aa-15af46faaae9, ingredient_run]" target="Heating [c7b3896c-e19e-4689-bf31-dd8a930b70ba, process_run]"/>
+<edge source="Polished Alloy Ingredient [394b2205-88b7-430e-97aa-15af46faaae9, ingredient_run]" target="Polished Alloy Ingredient [f05330e3-0b0a-4880-bc49-a4208ea3d6ec, ingredient_spec]"/>
+<edge source="Heating [c7b3896c-e19e-4689-bf31-dd8a930b70ba, process_run]" target="Heating [d0d2044d-6389-4a37-b173-2b51f46e0895, process_spec]"/>
+<edge source="Heating [c7b3896c-e19e-4689-bf31-dd8a930b70ba, process_run]" target="Heated Alloy [5a0ff2bc-c9ca-475c-ac8f-9788719a1f19, material_run]"/>
+<edge source="Heating [fb2a8d3d-5216-4940-884c-21984c29102e, process_template]" target="e2f0f462-b294-4000-bd86-f4c930c984b5"/>
+<edge source="Heated Alloy [e13f3008-83e2-443b-b48a-5e48d05756c5, material_spec]" target="Alloy [d8471870-ba50-4e1c-ab5b-930eaa801b8c, material_template]"/>
+<edge source="Heated Alloy [5a0ff2bc-c9ca-475c-ac8f-9788719a1f19, material_run]" target="Heated Alloy [e13f3008-83e2-443b-b48a-5e48d05756c5, material_spec]"/>
 </graph></graphml>

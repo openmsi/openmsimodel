@@ -4,6 +4,7 @@ import os
 
 sys.path.insert(0, "..")
 from openmsimodel.workflow.workflow import Workflow
+from openmsimodel.subworkflow.process_block import ProcessBlock
 from openmsimodel.entity.gemd.material import Material
 from openmsimodel.entity.gemd.helpers import from_spec_or_run
 from gemd.demo import cake
@@ -16,7 +17,7 @@ store_tools.stores_config.activated = False
 class TestFromSpecOrRun(unittest.TestCase):
     """this tests functions related to the subworkflow module."""
 
-    def test_cake_mat_from_spec_succesful(self):
+    def test_cake_mat_from_spec_successful(self):
         cake_example = cake.make_cake(seed=42)
         mat_from_spec = from_spec_or_run(
             name=cake_example.spec.name, spec=cake_example.spec
@@ -37,7 +38,7 @@ class TestFromSpecOrRun(unittest.TestCase):
             mat_from_spec.template.uids["citrine-demo-template"],
         )
 
-    def test_cake_mat_from_run_succesful(self):
+    def test_cake_mat_from_run_successful(self):
         cake_example = cake.make_cake(seed=42)
         mat_from_run = from_spec_or_run(name=cake_example.name, run=cake_example)
         self.assertEquals(mat_from_run.name, cake_example.name)
@@ -56,7 +57,7 @@ class TestFromSpecOrRun(unittest.TestCase):
             ],  # FIXME: have different auto uids
         )
 
-    def test_cake_mat_from_spec_and_run_succesful(self):
+    def test_cake_mat_from_spec_and_run_successful(self):
         cake_example = cake.make_cake(seed=42)
         mat_from_spec_and_run = from_spec_or_run(
             name=cake_example.name, run=cake_example, spec=cake_example.spec
@@ -97,7 +98,7 @@ class TestFromSpecOrRun(unittest.TestCase):
 
     ################# Process #########################
 
-    def test_cake_process_from_spec_succesful(self):
+    def test_cake_process_from_spec_successful(self):
         cake_example = cake.make_cake(seed=42)
         process_from_spec = from_spec_or_run(
             name=cake_example.process.spec.name, spec=cake_example.process.spec
@@ -112,7 +113,7 @@ class TestFromSpecOrRun(unittest.TestCase):
             process_from_spec.template.uids["citrine-demo-template"],
         )
 
-    def test_cake_process_from_run_succesful(self):
+    def test_cake_process_from_run_successful(self):
         cake_example = cake.make_cake(seed=42)
         process_from_run = from_spec_or_run(
             name=cake_example.process.name, run=cake_example.process
@@ -133,7 +134,7 @@ class TestFromSpecOrRun(unittest.TestCase):
             ],  # FIXME: have different auto uids
         )
 
-    def test_cake_process_from_spec_and_run_succesful(self):
+    def test_cake_process_from_spec_and_run_successful(self):
         cake_example = cake.make_cake(seed=42)
         process_from_spec_and_run = from_spec_or_run(
             name=cake_example.name,
@@ -156,7 +157,7 @@ class TestFromSpecOrRun(unittest.TestCase):
 
     ################# Measurement #########################
 
-    def test_cake_measurement_from_spec_succesful(self):
+    def test_cake_measurement_from_spec_successful(self):
         cake_example = cake.make_cake(seed=42)
         measurement_spec = cake_example.measurements[0].spec
         measurement_from_spec = from_spec_or_run(
@@ -172,7 +173,7 @@ class TestFromSpecOrRun(unittest.TestCase):
             measurement_from_spec.template.uids["citrine-demo-template"],
         )
 
-    def test_cake_measurement_from_run_succesful(self):
+    def test_cake_measurement_from_run_successful(self):
         cake_example = cake.make_cake(seed=42)
         measurement_run = cake_example.measurements[0]
         measurement_from_run = from_spec_or_run(
@@ -188,7 +189,7 @@ class TestFromSpecOrRun(unittest.TestCase):
             measurement_from_run.template.uids["citrine-demo-template"],
         )
 
-    def test_cake_measurement_from_spec_and_run_succesful(self):
+    def test_cake_measurement_from_spec_and_run_successful(self):
         cake_example = cake.make_cake(seed=42)
         measurement_run = cake_example.measurements[0]
         measurement_spec = measurement_run.spec
@@ -210,3 +211,57 @@ class TestFromSpecOrRun(unittest.TestCase):
         )
 
     # TODO: Test when run and spec THAT ARE NOT LINKED gets passes
+
+    ################# Ingredient #########################
+
+    def test_cake_ingredient_from_spec_successful(self):
+        cake_example = cake.make_cake(seed=42)
+        ingredient_spec = cake_example.process.ingredients[0].spec
+        ingredient_from_spec = from_spec_or_run(
+            name=ingredient_spec.name, spec=ingredient_spec
+        )
+        self.assertEquals(ingredient_from_spec.name, ingredient_spec.name)
+        self.assertEqual(
+            ingredient_spec.uids["citrine-demo"],
+            ingredient_from_spec.spec.uids["citrine-demo"],
+        )
+
+    def test_cake_ingredient_from_run_successful(self):
+        cake_example = cake.make_cake(seed=42)
+        ingredient_run = cake_example.process.ingredients[0]
+        ingredient_from_run = from_spec_or_run(
+            name=ingredient_run.name, run=ingredient_run
+        )
+        self.assertEquals(ingredient_from_run.name, ingredient_run.name)
+        self.assertEqual(
+            ingredient_run.uids["citrine-demo"],
+            ingredient_from_run.run.uids["citrine-demo"],
+        )
+
+    def test_cake_ingredient_from_spec_and_run_successful(self):
+        cake_example = cake.make_cake(seed=42)
+        ingredient_run = cake_example.process.ingredients[0]
+        ingredient_spec = ingredient_run.spec
+        ingredient_from_spec_and_run = from_spec_or_run(
+            name=ingredient_run.name, spec=ingredient_spec, run=ingredient_run
+        )
+        self.assertEquals(ingredient_from_spec_and_run.name, ingredient_run.name)
+        self.assertEqual(
+            ingredient_run.uids["citrine-demo"],
+            ingredient_from_spec_and_run.run.uids["citrine-demo"],
+        )
+        self.assertEqual(
+            ingredient_spec.uids["citrine-demo"],
+            ingredient_from_spec_and_run.spec.uids["citrine-demo"],
+        )
+
+    ################# Block #########################
+    def test_cake_block_from_material_successful(self):
+        cake_example = cake.make_cake(seed=42)
+        block = ProcessBlock.from_spec_or_run(
+            cake_example.name, notes=None, spec=cake_example.spec, run=cake_example
+        )
+        print(block.assets)
+        print(block.gemd_assets)
+
+    

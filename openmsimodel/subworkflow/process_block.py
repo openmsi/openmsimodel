@@ -18,26 +18,6 @@ class ProcessBlock(Subworkflow):
     elements, linking for wide (i.e., many ingredients, many measurements) or vertical (i.e., long sequence of Elements) workflow, etc.
     """
 
-    @property
-    def assets(self) -> list:
-        _all = []
-        for i in self.ingredients.values():
-            _all.append(i)
-        if self.process:
-            _all.append(self.process)
-        if self.material:
-            _all.append(self.material)
-        for m in self.measurements.values():
-            _all.append(m)
-        return _all
-
-    @property
-    def gemd_assets(self) -> list:
-        _all_gemd = []
-        for obj in self.assets:
-            _all_gemd.extend(obj.assets)
-        return _all_gemd
-
     def __init__(  # FIXME
         self,
         name: str,
@@ -50,7 +30,7 @@ class ProcessBlock(Subworkflow):
         measurements: Optional[dict] = {},
         _type: str = None,
     ):  # FIXME
-        """initialization of ProcessBlock.
+        """elementization of ProcessBlock.
 
         Args:
             name (str): Block name
@@ -111,6 +91,28 @@ class ProcessBlock(Subworkflow):
                 f"Expected measurements to be a list or dict; got {type(measurements)}"
             )
         self.type = _type
+
+    @property
+    def assets(self) -> list:
+        _all = []
+        for i in self.ingredients.values():
+            _all.append(i)
+        if self.process:
+            _all.append(self.process)
+        if self.material:
+            _all.append(self.material)
+        for m in self.measurements.values():
+            _all.append(m)
+        return _all
+
+    @property
+    def gemd_assets(self) -> list:
+        _all_gemd = []
+        for obj in self.assets:
+            _all_gemd.extend(obj.assets)
+        return _all_gemd
+
+    #######################################
 
     def link_within(self):
         """this functions links the specs and runs of the Elements in the current block."""
@@ -210,19 +212,135 @@ class ProcessBlock(Subworkflow):
         run: Run = None,
     ):
         initial = from_spec_or_run(name=name, notes=notes, spec=spec, run=run)
-        # if isinstance(initial, Material):
+        process = None
+        material = None
+        traversed = {
+            "process": False,
+            "measurements": False,
+            "material": False,
+            "ingredients": False,
+        }
+        ingredients = set()
+        measurements = set()
 
-    # @classmethod
-    # def from_(self, any):
-    #     if isinstance_base_element(any):
-    #         if isinstance(any, Material):
-    #             self.material = any
-    #         if isinstance(any, Process):
-    #             self.process = any
-    #         elif isinstance(any, Ingredient):
-    #             self.ingredients[any.name] = any
-    #         elif isinstance(any, Measurement):
-    #             self.measurements[any.name] = any
-    #         self.link_within()
-    # elif isinstance_all_gemd(any):
-    #     if isinstance(any, Material):
+        def traverse(element):
+            nonlocal traversed
+            if isinstance(element, Material):
+                if hasattr(element.run, "measurements"):
+                    for measurement_run in element.run.measurements:
+                        measurements.add(
+                            Measurement.from_spec_or_run(
+                                name=measurement_run.name,
+                                run=measurement_run,
+                                spec=measurement_run.spec,
+                            )
+                        )
+                    if not traversed["measurements"]:
+                        traversed["measurements"] = True
+                if hasattr(element.run, "process"):
+                    obj = element.run.process
+                    process = Process.from_spec_or_run(
+                        name=obj.name, run=obj, spec=obj.spec
+                    )
+                    if not traversed["process"]:
+                        traversed["process"] = True
+                        traverse(process)
+            elif isinstance(element, Process):
+                if hasattr(element.run, "output_material"):
+                    obj = element.run.output_material
+                    material = Material.from_spec_or_run(
+                        name=obj.name,
+                        run=obj,
+                        spec=obj.spec,
+                    )
+                    # FIXME: must be put prior but can cause issues since traverse hasn't techincally been successfully executed
+                    if not traversed["material"]:
+                        traversed["material"] = True
+                        traverse(material)
+
+                if hasattr(element.run, "ingredients"):
+                    print("Entering the loop")
+                    if not traversed["ingredients"]:
+                        traversed["ingredients"] = True
+                        for i, ingredient_run in enumerate(element.run.ingredients):
+                            print("Test")
+                            print(len(element.run.ingredients))
+                            print(i)
+                            print(ingredient_run)
+                            ingredients.add(
+                                Ingredient.from_spec_or_run(
+                                    ingredient_run.name,
+                                    run=ingredient_run,
+                                    spec=ingredient_run.spec,
+                                )
+                            )
+            elif isinstance(element, Ingredient):
+                if hasattr(element.run, "process"):
+                    obj = element.run.process
+                    process = Process.from_spec_or_run(
+                        name=obj.name, run=obj, spec=obj.spec
+                    )
+                    if not traversed["process"]:
+                        traversed["process"] = True
+                        traverse(process)
+            elif isinstance(element, Measurement):
+                if hasattr(element.run, "material"):
+                    obj = element.run.material
+                    material = Material.from_spec_or_run(
+                        name=obj.name, run=obj, spec=obj.spec
+                    )
+                    if not traversed["material"]:
+                        traversed["material"] = True
+                        traverse(material)
+
+        traverse(initial)
+        # print(ingredients)
+        # print(measurements)
+        # print([i.name for i in list(ingredients)])
+        # print([i.assets for i in list(ingredients)])
+        # print(measurements)
+        block = cls(
+            name=name,
+            process=process,
+            workflow=None,
+            material=material,
+            ingredients=list(ingredients),
+            measurements=list(measurements),
+        )
+        block.link_within()
+        return block
+
+
+# def find_linked_elements(start_element):
+#     linked_elements = set()
+
+#     def traverse(element):
+#         linked_elements.add(element)
+
+#         if hasattr(element, "measurements"):
+#             for measurement in element.measurements:
+#                 linked_elements.add(measurement)
+
+#         if hasattr(element, "material") and element.material:
+#             linked_elements.add(element.material)
+#             traverse(element.material)
+
+#     traverse(start_element)
+#     return linked_elements
+
+# if isinstance(element, Material):
+
+# @classmethod
+# def from_(self, any):
+#     if isinstance_base_element(any):
+#         if isinstance(any, Material):
+#             self.material = any
+#         if isinstance(any, Process):
+#             self.process = any
+#         elif isinstance(any, Ingredient):
+#             self.ingredients[any.name] = any
+#         elif isinstance(any, Measurement):
+#             self.measurements[any.name] = any
+#         self.link_within()
+# elif isinstance_all_gemd(any):
+#     if isinstance(any, Material):
