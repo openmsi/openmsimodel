@@ -59,8 +59,9 @@ GUI for model visualization and building
 
 ___ 
 
-Incorporating 
-
+Strategy:
+* capitalizing on stores and GEMDLite to lower entry and increase nb of users + in-house data  
+* gemd becomes a graph object with open_graph: what computational tools should we build for graphs or in python memory?
 ___
 
 Benchmarking
