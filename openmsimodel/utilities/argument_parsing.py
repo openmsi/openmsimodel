@@ -225,7 +225,7 @@ class OpenMSIModelParser(ArgumentParser):
         "dump_svg_and_dot": [
             "optional",
             {
-                "type": bool,
+                "action": "store_true",
                 "default": False,
                 "help": "whether to dump svg and dot, which can take time, or not",
             },

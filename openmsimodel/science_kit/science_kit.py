@@ -28,15 +28,23 @@ class ScienceKit(Runnable):
 
     def __init__(self, *args, **kwargs):
         """Initialization of science_kit"""
-        # self.root
+        # self.root = kwargs["root"]
         self.elements = []
-        self.subs = defaultdict()
+        self.subs = {}
         self.terminal_subs = defaultdict()
         # self.blocks = defaultdict()
         # self.terminal_blocks = defaultdict()
         # self.encoder = GEMDJson()
         # if "output" in args:
         #     self.output = args.output
+
+    @property
+    def assets(self):
+        _assets = []
+        if self.subs:
+            for sub in self.subs.values():
+                _assets.extend(sub.assets)
+        return _assets
 
     def build(self):
         """
@@ -71,18 +79,14 @@ class ScienceKit(Runnable):
         """
         pass
 
-    def local_out(self, item):
+    def out(self, item):
         """
         function object to run on individual item during recursion
         :param item: json item to write its destination
         se
         """
         fn = "_".join([item.__class__.__name__, item.name, item.uids["auto"], ".json"])
-        with open(os.path.join(self.local_out_destination, fn), "w") as fp:
-            # if self.dump_function.__name__ == "dumps":
-            #     result = json.loads(self.dump_function(item, indent=3))
-            #     fp.write(result)
-            # else:
+        with open(os.path.join(self.root, fn), "w") as fp:
             fp.write(self.dump_function(item, indent=3))
 
     @classmethod

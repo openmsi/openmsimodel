@@ -93,7 +93,7 @@ class MaterialsSequence(Tool):
         self.type = _type
 
     @property
-    def assets(self) -> list:
+    def element_assets(self) -> list:
         _all = []
         for i in self.ingredients.values():
             _all.append(i)
@@ -106,9 +106,9 @@ class MaterialsSequence(Tool):
         return _all
 
     @property
-    def gemd_assets(self) -> list:
+    def assets(self) -> list:
         _all_gemd = []
-        for obj in self.assets:
+        for obj in self.element_assets:
             _all_gemd.extend(obj.assets)
         return _all_gemd
 

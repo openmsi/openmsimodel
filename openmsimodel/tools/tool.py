@@ -26,11 +26,6 @@ class Tool(Runnable):
             self.science_kit.subs[name] = self
 
     @classmethod
-    def from_(self, any):
-        """returns a subworkflow instantiated from elements contained it. will vary based on subworkflow and element types."""
-        pass
-
-    @classmethod
     def get_command_line_arguments(cls):
         superargs, superkwargs = super().get_command_line_arguments()
         args = []

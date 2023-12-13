@@ -1441,7 +1441,7 @@ class BIRDSHOTScienceKit(ScienceKit, FolderOrFile):
 
     def link_prior(self, science_kit):
         self.initial_material.process = science_kit.terminal_process
-
+    
     @classmethod
     def get_command_line_arguments(cls):
         superargs, superkwargs = super().get_command_line_arguments()
@@ -1473,6 +1473,17 @@ class BIRDSHOTScienceKit(ScienceKit, FolderOrFile):
             # science_kit.dumps(science_kit.terminal_process)
             # science_kit.thin_structured_dumps()
 
+def main(args=None):
+    """
+    Main method to run from command line
+    """
+    BIRDSHOTScienceKit.run_from_command_line(args)
+
+
+if __name__ == "__main__":
+    main()
+
+######################################
 
 def gen_compositions(root):
     ids = []
@@ -1792,14 +1803,3 @@ def ingest_srjt_results(srjt_path, output, measurements):
 
 def substring_after(s, delim):
     return s.partition(delim)[2]
-
-
-def main(args=None):
-    """
-    Main method to run from command line
-    """
-    BIRDSHOTScienceKit.run_from_command_line(args)
-
-
-if __name__ == "__main__":
-    main()

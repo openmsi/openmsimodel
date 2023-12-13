@@ -162,13 +162,13 @@ class OpenGraph(Runnable):
         # relabelling according to uid -> name
         relabeled_G_nx = G_nx
         if name_mapping:
-            print("Relabeling nodes...")
+            print("Relabeling nodes ...")
             relabeled_G_nx = nx.relabel_nodes(G_nx, name_mapping)
 
         # converting to grapviz
         relabeled_G_gviz = None
         if self.dump_svg_and_dot:
-            print("Converting to graphviz...")
+            print("Generating Graphviz version...")
             relabeled_G_gviz = self.map_to_graphviz(relabeled_G_nx)
 
         # # plotting
@@ -217,13 +217,16 @@ class OpenGraph(Runnable):
                 G.add_node(uid, color="blue", shape=self.shapes[obj_state])
                 process = obj_data["process"]["id"]
                 G.add_edge(uid, process)
-                if self.add_bidirectional_edges:
-                    G.add_edge(process, uid)
-                    if "material" in obj_data and obj_data["material"]:
-                        material = obj_data["material"]["id"]
-                        G.add_edge(material, uid)
-                        if self.add_bidirectional_edges:
-                            G.add_edge(uid, material)
+                if "material" in obj_data and obj_data["material"]:
+                    material = obj_data["material"]["id"]
+                    G.add_edge(material, uid)
+                # if self.add_bidirectional_edges:
+                #     G.add_edge(process, uid)
+                #     if "material" in obj_data and obj_data["material"]:
+                #         material = obj_data["material"]["id"]
+                #         G.add_edge(material, uid)
+                #         if self.add_bidirectional_edges:
+                #             G.add_edge(uid, material)
                 self.add_gemd_assets(
                     G,
                     uid,
@@ -257,9 +260,66 @@ class OpenGraph(Runnable):
                 # if not self.restrictive:
                 if "material" in obj_data and obj_data["material"]:
                     material = obj_data["material"]["id"]
-                    G.add_edge(uid, material)
+                    # G.add_edge(uid, material)
+                    G.add_edge(material, uid)
                     if self.add_bidirectional_edges:
-                        G.add_edge(material, uid)
+                        # G.add_edge(material, uid)
+                        G.add_edge(uid, material)
+        # if obj_type.startswith("process"):
+        #     if obj_type.endswith(self.which) or self.which == "all":
+        #         G.add_node(uid, color="red", shape=self.shapes[obj_state])
+        #         self.add_gemd_assets(
+        #             G,
+        #             uid,
+        #             obj_data,
+        #             obj_type,
+        #         )
+        # elif obj_type.startswith("ingredient"):  # TODO if node doesn't exist, create?
+        #     if obj_type.endswith(self.which) or self.which == "all":
+        #         G.add_node(uid, color="blue", shape=self.shapes[obj_state])
+        #         process = obj_data["process"]["id"]
+        #         G.add_edge(uid, process)
+        #         if self.add_bidirectional_edges:
+        #             G.add_edge(process, uid)
+        #             if "material" in obj_data and obj_data["material"]:
+        #                 material = obj_data["material"]["id"]
+        #                 G.add_edge(material, uid)
+        #                 if self.add_bidirectional_edges:
+        #                     G.add_edge(uid, material)
+        #         self.add_gemd_assets(
+        #             G,
+        #             uid,
+        #             obj_data,
+        #             obj_type,
+        #         )
+        # elif obj_type.startswith("material"):
+        #     if obj_type.endswith(self.which) or self.which == "all":
+        #         G.add_node(uid, color="green", shape=self.shapes[obj_state])
+        #         self.add_gemd_assets(
+        #             G,
+        #             uid,
+        #             obj_data,
+        #             obj_type,
+        #         )
+        #         if "process" in obj_data and obj_data["process"]:
+        #             process = obj_data["process"]["id"]
+        #             G.add_edge(process, uid)  # ?
+        #             if self.add_bidirectional_edges:
+        #                 G.add_edge(uid, process)
+        # elif obj_type.startswith("measurement"):
+        #     if obj_type.endswith(self.which) or self.which == "all":
+        #         G.add_node(uid, color="purple", shape=self.shapes[obj_state])
+        #         self.add_gemd_assets(
+        #             G,
+        #             uid,
+        #             obj_data,
+        #             obj_type,
+        #         )
+        #         if "material" in obj_data and obj_data["material"]:
+        #             material = obj_data["material"]["id"]
+        #             G.add_edge(uid, material)
+        #             if self.add_bidirectional_edges:
+        #                 G.add_edge(material, uid)
 
         if self.which == "all":
             if (
@@ -319,7 +379,7 @@ class OpenGraph(Runnable):
         self.add_to_graph(G, uid, "uuid", uid)
         self.add_to_graph(G, uid, "type", obj_type)
         if self.layout == "raw":
-            self.add_to_graph(G, uid, "object", str(obj_data))
+            self.add_to_graph(G, uid, "object", json.dumps(obj_data))
         elif self.layout == "visualization":
             if self.assets_to_add["add_attributes"] and not (
                 obj_type.endswith("template")
@@ -413,11 +473,17 @@ class OpenGraph(Runnable):
                     if type(G.nodes[uid][att_name]) == dict:
                         count = len(G.nodes[uid][att_name])
                         G.nodes[uid][att_name][count] = node_name
+                        # G.add_node_attribute(uid, att_name, node_name)
                     return
                 if att_name in ["file_links", "tags"]:
                     G.nodes[uid][att_name] = {0: node_name}
+                    # G.add_node_attribute(uid, att_name, node_name)
                 else:
                     G.nodes[uid][att_name] = node_name
+                    # G.add_node_attribute(uid, att_name, node_name)
+                    # nx.set_node_attributes(
+                    #     G, values=node_name, name=att_name
+                    # )  # type=key_attr_type)
 
     def diagnostics(self, G, gemd_objects, nb_disregarded):
         print("-- Analysis --")
@@ -428,9 +494,11 @@ class OpenGraph(Runnable):
                 nb_disregarded, len(gemd_objects)
             )
         )
-        subgraphs = [G.subgraph(c).copy() for c in nx.strongly_connected_components(G)]
-        # print("number of strongly connected components: {}".format(len(subgraphs)))
+        subgraphs = [G.subgraph(c) for c in nx.strongly_connected_components(G)]
+        print("number of connected components: {}".format(len(subgraphs)))
         print("total nb of isolates in the graph: {}".format(nx.number_of_isolates(G)))
+        # ubgraphs = (self.digraph.subgraph(c).copy() for c in nx.strongly_connected_components(self.digraph))
+        # print(f"total nb of components in the graph: {nx.number_connected_components(G)}")
 
     @classmethod
     def launch(cls, path, from_command_line=False):
@@ -555,7 +623,7 @@ class OpenGraph(Runnable):
         dot_path = os.path.join(dest, "{}.dot".format(name))
         graphml_path = os.path.join(dest, "{}.graphml".format(name))
 
-        if G_gviz and dump_svg_and_dot:
+        if G_gviz is not None and dump_svg_and_dot:
             # writing svg file
             print("Dumping svg...")
             start = time.time()
@@ -571,10 +639,11 @@ class OpenGraph(Runnable):
                 f.write(str(G_gviz))
             end = time.time()
             print(f"Time elapsed: {end - start}")
+            print("-- Saved graph to {} and {} ".format(dot_path, svg_path))
         else:
             print("Couldn't find GraphViz graph. Can't dump SVG and DOT files.")
 
-        if G_nx:
+        if G_nx is not None:
             # writing graphml
             print("Dumping graphml...")
             start = time.time()
@@ -593,15 +662,14 @@ class OpenGraph(Runnable):
                             )
                 return G
 
-            nx.write_graphml_lxml(dicts_to_str(G_nx), graphml_path)
+            # nx.write_graphml_lxml(dicts_to_str(G_nx), graphml_path)
+            nx.write_graphml_lxml(G_nx, graphml_path, named_key_ids=True)
             end = time.time()
             print(f"Time elapsed: {end - start}")
+            print("-- Saved graph to {}".format(graphml_path))
         else:
             print("Couldn't find NetworkX graph.")
 
-        print(
-            "-- Saved graph to {}, {} and {}".format(dot_path, svg_path, graphml_path)
-        )
         return dot_path, svg_path, graphml_path
 
     @classmethod
@@ -655,7 +723,7 @@ class OpenGraph(Runnable):
             args.layout,
             args.add_bidirectional_edges,
             args.take_small_sample,
-            args.dump_svg_and_dot,
+            dump_svg_and_dot=args.dump_svg_and_dot,
         )
         viewer.assets_to_add = {
             "add_attributes": args.add_attributes,
@@ -678,9 +746,9 @@ class OpenGraph(Runnable):
             identifier_G_dot_path, _, identifier_G_grapml_path = cls.save_graph(
                 args.output,
                 identifier_G,
-                None, #FIXME
+                None,  # FIXME
                 "{}".format(args.identifier),
-                dump_svg_and_dot=args.dump_svg_and_dot,
+                dump_svg_and_dot=viewer.dump_svg_and_dot,
             )
 
         # launches interactive notebook
