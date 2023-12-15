@@ -333,6 +333,13 @@ class OpenMSIModelParser(ArgumentParser):
                 "help": "which of runs or specs to plot",
             },
         ],
+        "launch_pkg_filemaker_path": [
+            "positional",
+            {
+                "type": str,
+                "help": "path to csv file of Launch Package table extracted from the laser shock's filemaker db",
+            },
+        ],
     }
 
     #################### OVERLOADED FUNCTIONS ####################
