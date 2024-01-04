@@ -5,6 +5,8 @@ import os
 import shutil
 import json
 import csv
+from datetime import datetime
+import networkx as nx
 
 from openmsimodel.science_kit.science_kit import ScienceKit
 from openmsimodel.graph.open_graph import OpenGraph
@@ -13,6 +15,7 @@ from openmsimodel.graph.open_graph import OpenGraph
 def extract_record_ids(csv_file_path):
     # Initialize an empty dictionary to store the mapping
     flyer_id_to_record_ids = {}
+    record_ids_to_metadata = {}
 
     # Open the CSV file and read its contents
     with open(csv_file_path, mode="r") as csv_file:
@@ -22,7 +25,12 @@ def extract_record_ids(csv_file_path):
         for row in csv_reader:
             flyer_id = str(row["Flyer ID"])
             record_id = str(row["recordId"])
-
+            try:
+                date = datetime.strptime(str(row["Date"]), "%m/%d/%Y")
+            except ValueError as e:
+                print(e)
+                continue
+            record_ids_to_metadata[record_id] = date
             # Check if the Flyer ID is already a key in the dictionary
             if flyer_id.startswith("F"):
                 if flyer_id in flyer_id_to_record_ids:
@@ -32,8 +40,7 @@ def extract_record_ids(csv_file_path):
                     # Create a new list with the record ID as the first element
                     flyer_id_to_record_ids[flyer_id] = [record_id]
 
-    print(flyer_id_to_record_ids)
-    return flyer_id_to_record_ids
+    return flyer_id_to_record_ids, record_ids_to_metadata
 
 
 class JhuUcsbHTMDECScienceKit(ScienceKit):
@@ -42,81 +49,13 @@ class JhuUcsbHTMDECScienceKit(ScienceKit):
         self.root = Path(root)
         self.output = Path(output)
         self.encoder = GEMDJson()
-        self.flyer_id_to_record_ids = extract_record_ids(launch_pkg_filemaker_path)
-        # self.flyer_id_to_record_ids = {
-        #     "F072": [
-        #         2255,
-        #         2256,
-        #         2257,
-        #         2258,
-        #         2272,
-        #         2273,
-        #         2274,
-        #         2275,
-        #         2287,
-        #         2288,
-        #         2292,
-        #         2293,
-        #         2294,
-        #         2295,
-        #         2296,
-        #     ],
-        #     "F086": [2135, 2136],
-        #     "F104": [
-        #         2062,
-        #         2063,
-        #         2064,
-        #         2065,
-        #         2066,
-        #         2067,
-        #         2068,
-        #         2069,
-        #         2070,
-        #         2071,
-        #         2072,
-        #         2073,
-        #         2074,
-        #         2075,
-        #         2076,
-        #         2077,
-        #         2078,
-        #         2079,
-        #         2080,
-        #         2081,
-        #         2082,
-        #         2083,
-        #         2084,
-        #         2085,
-        #         2086,
-        #         2087,
-        #         2088,
-        #         2089,
-        #         2090,
-        #         2091,
-        #         2092,
-        #         2093,
-        #         2094,
-        #         2095,
-        #         2096,
-        #         2097,
-        #         2098,
-        #         2099,
-        #         2100,
-        #         2101,
-        #         2102,
-        #         2103,
-        #         2104,
-        #         2105,
-        #         2106,
-        #         2107,
-        #         2108,
-        #         2109,
-        #         2110,
-        #     ],
-        #     "F105": [1497],
-        # }
+        self.flyer_id_to_record_ids, self.record_ids_to_metadata = extract_record_ids(
+            launch_pkg_filemaker_path
+        )
 
     def build(self):
+        structured_data = []
+
         # Gather all the laser shock knowledge
         open_graph = OpenGraph("laser_shock", source=self.root, output=self.output)
         all_G, all_relabeled_G, all_name_mapping = open_graph.build_graph()
@@ -131,7 +70,6 @@ class JhuUcsbHTMDECScienceKit(ScienceKit):
                 try:
                     with open(
                         self.root
-                        # / "LaserShockLaunchPackage_recordId_1086.json"
                         / "LaserShockLaunchPackage_recordId_{}.json".format(record_id),
                         "r",
                     ) as f:
@@ -144,10 +82,47 @@ class JhuUcsbHTMDECScienceKit(ScienceKit):
                     all_G, all_name_mapping[identifier], [nx.descendants, nx.ancestors]
                 )
                 subgraph.name = all_name_mapping[identifier]
+                structured_data.append(
+                    [subgraph, self.record_ids_to_metadata[record_id]]
+                )
                 OpenGraph.save_graph(dest, subgraph, None, name=str(subgraph.name))
-                print(f"Saved to {dest}.")
 
-        # extend them with UCSB/Tim's work
+        # # build final graph
+        # structured_data = sorted(structured_data, key=lambda x: x[1])
+
+        # structured_graph = nx.Graph()
+        # for i in range(len(structured_data) - 1):
+        #     G = structured_data[i][0]
+        #     date = structured_data[i][1]
+        #     if structured_graph:
+        #         last_node_merged = max(structured_graph.nodes)
+        #         first_node_G = min(G.nodes)
+        #         edge_metadata = {
+        #             "order": i,
+        #             "date": str(date),
+        #             "from": from_name,
+        #             "to": G.name,
+        #         }
+        #         # # Check if the edge already exists
+        #         # if structured_graph.has_edge(last_node_merged, first_node_G):
+        #         #     # Update edge metadata if the edge exists
+        #         #     structured_graph[last_node_merged][first_node_G].update(
+        #         #         edge_metadata
+        #         #     )
+        #         # else:
+        #         #     # Add the edge if it doesn't exist
+        #         #     structured_graph.add_edge(
+        #         #         last_node_merged, first_node_G, **edge_metadata
+        #         #     )
+        #         structured_graph.add_edge(
+        #             last_node_merged, first_node_G, **edge_metadata
+        #         )
+        #     structured_graph = nx.compose(structured_graph, G)
+        #     from_name = G.name
+
+        # OpenGraph.save_graph(
+        #     self.output, structured_graph, None, name="structured_graph"
+        # )
 
     @classmethod
     def get_command_line_arguments(cls):

@@ -190,9 +190,9 @@ class BIRDSHOTScienceKit(ScienceKit, FolderOrFile):
         path_offset = 6
         tree_folders_and_files = self.make_tree(FolderOrFile, self.root)
 
-        # with open(self.output / "folder_structure.txt", "w") as fp:
-        #     for p in tree_folders_and_files:
-        #         fp.write(p.displayable() + "\n")
+        with open(self.output / "folder_structure.txt", "w") as fp:
+            for p in tree_folders_and_files:
+                fp.write(p.displayable() + "\n")
 
         ############## blocks from 2 to (n-3)
         # looping through all the folders and files in the tree structure
@@ -1441,7 +1441,7 @@ class BIRDSHOTScienceKit(ScienceKit, FolderOrFile):
 
     def link_prior(self, science_kit):
         self.initial_material.process = science_kit.terminal_process
-    
+
     @classmethod
     def get_command_line_arguments(cls):
         superargs, superkwargs = super().get_command_line_arguments()
@@ -1473,6 +1473,7 @@ class BIRDSHOTScienceKit(ScienceKit, FolderOrFile):
             # science_kit.dumps(science_kit.terminal_process)
             # science_kit.thin_structured_dumps()
 
+
 def main(args=None):
     """
     Main method to run from command line
@@ -1484,6 +1485,7 @@ if __name__ == "__main__":
     main()
 
 ######################################
+
 
 def gen_compositions(root):
     ids = []
