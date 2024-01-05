@@ -1,9 +1,72 @@
 from yfiles_jupyter_graphs import GraphWidget
 import networkx as nx
 from webcolors import name_to_hex
-from py2cytoscape import cyrest
 import ipycytoscape
+import traitlets
+import ipywidgets
+import IPython
 import json
+
+_style = [
+    {
+        "selector": "node",
+        "css": {
+            "content": "data(name)",
+            "text-valign": "center",
+            "background-color": "data(color)",
+        },
+    },
+    {"selector": "node:parent", "css": {"background-opacity": 0.333}},
+    {"selector": "edge", "style": {"width": 4, "line-color": "#9dbaea"}},
+    {
+        "selector": "edge.directed",
+        "style": {
+            "curve-style": "bezier",
+            "target-arrow-shape": "triangle",
+            "target-arrow-color": "#9dbaea",
+        },
+    },
+    {"selector": "edge.multiple_edges", "style": {"curve-style": "bezier"}},
+]
+
+
+class OpenMSIWidget(traitlets.HasTraits):
+    cyto_widget = traitlets.Instance(ipycytoscape.CytoscapeWidget)
+    json_display = traitlets.Instance(ipywidgets.Output)
+    graph = traitlets.Any()
+
+    @classmethod
+    def from_graphml(self, graphml_filename):
+        g = nx.read_graphml(graphml_filename)
+        for n, d in g.nodes(data=True):
+            d.update(json.loads(d.pop("object", "{}")))
+        return OpenMSIWidget(graph=g)
+
+    @traitlets.default("json_display")
+    def _default_json_display(self):
+        return ipywidgets.Output()
+
+    @traitlets.default("cyto_widget")
+    def _default_cyto_widget(self):
+        cw = ipycytoscape.CytoscapeWidget(ipywidgets.Layout(width="70%"))
+        cw.graph.add_graph_from_networkx(self.graph)
+        cw.set_style(_style)
+
+        def update_json(node):
+            with self.json_display:
+                self.json_display.clear_output(wait=True)
+                IPython.display.display(IPython.display.JSON(data=node["data"]))
+
+        cw.on("node", "click", update_json)
+        return cw
+
+    def _ipython_display_(self):
+        IPython.display.display(
+            ipywidgets.HBox(
+                [self.cyto_widget, self.json_display],
+                layout=ipywidgets.Layout(width="90%"),
+            )
+        )
 
 
 def launch_graph_widget(g, engine="yfiles"):
@@ -13,7 +76,8 @@ def launch_graph_widget(g, engine="yfiles"):
             dot = nx.nx_pydot.read_dot(g)
             g = nx.Graph(dot)
         elif g.endswith(".graphml"):
-            g = nx.read_graphml(g)
+            if engine == "yfiles":
+                g = nx.read_graphml(g)
     elif g.__class__ is not None and g.__class__.__name__ == "AGraph":
         g = nx.nx_agraph.from_agraph(g)
 
@@ -38,43 +102,25 @@ def launch_graph_widget(g, engine="yfiles"):
         w.hierarchic_layout()
         w.show()
     elif engine == "cytoscape":
-        g = nx.cytoscape_data(g)
-        cytoscapeobj = ipycytoscape.CytoscapeWidget()
-        cytoscapeobj.graph.add_graph_from_json(g["elements"])
-        # cytoscapeobj.graph_data = g  # .add_graph_from_json(g["elements"])
+        display(OpenMSIWidget.from_graphml(g))
+        # g = nx.cytoscape_data(g)
+        # cytoscapeobj = ipycytoscape.CytoscapeWidget()
+        # cytoscapeobj.graph.add_graph_from_json(g["elements"])
 
-        # # Add nodes from the graph data to the Cytoscape widget
-        for node_data in g["elements"]["nodes"]:
-            print(node_data)
-            break
-        #     node_id = node_data["data"]["id"]
-        #     node_style = {
-        #         "background-color": node_data["data"].get("color", "gray"),
-        #         "shape": node_data["data"].get("shape", "ellipse"),
-        #     }
-        #     cytoscapeobj.graph.add_node(node_id, **node_style)
+        # # # Add nodes from the graph data to the Cytoscape widget
+        # for node_data in g["elements"]["nodes"]:
+        #     print(node_data)
+        #     break
 
-        # # Add edges from the graph data to the Cytoscape widget
-        # for edge_data in g["elements"]["edges"]:
-        #     edge_id = edge_data["data"]["id"]
-        #     source_id = edge_data["data"]["source"]
-        #     target_id = edge_data["data"]["target"]
-        #     cytoscapeobj.graph.add_edge(source_id, target_id, id=edge_id)
+        # cytoscapeobj.set_style(
+        #     [
+        #         {
+        #             "selector": "node",
+        #             "id": "data(name)",
+        #             "css": {"background-color": "data(color)"},
+        #         },
+        #         {"selector": "edge", "css": {"line-color": "pink"}},
+        #     ]
+        # )
 
-        cytoscapeobj.set_style(
-            [
-                # {"selector": "node", "css": {"background-color": "red"}},
-                {
-                    "selector": "node",
-                    "id": "data(name)",
-                    "css": {"background-color": "data(color)"},
-                },
-                {"selector": "edge", "css": {"line-color": "pink"}},
-            ]
-        )
-
-        display(cytoscapeobj)
-
-        # print(cytoscapeobj)
-        # nx.cytoscape_data(G)
-        # cy.layout.apply(name="force-directed")
+        # display(cytoscapeobj)
