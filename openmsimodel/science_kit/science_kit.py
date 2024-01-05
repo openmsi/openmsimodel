@@ -87,6 +87,7 @@ class ScienceKit(Runnable):
         """
         fn = "_".join([item.__class__.__name__, item.name, item.uids["auto"], ".json"])
         with open(os.path.join(self.root, fn), "w") as fp:
+            print(item)
             fp.write(self.dump_function(item, indent=3))
 
     @classmethod

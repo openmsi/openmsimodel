@@ -38,13 +38,43 @@ def launch_graph_widget(g, engine="yfiles"):
         w.hierarchic_layout()
         w.show()
     elif engine == "cytoscape":
-        cytoscapeobj = ipycytoscape.CytoscapeWidget()
         g = nx.cytoscape_data(g)
-        # print(type(g))
-        # print(g.nodes.keys())
-        # print(g.nodes["Cake [cake-d576929a6c518c058db29324c13db0c3, material_run]"])
-        # print(g)
-        cytoscapeobj.graph_data = g
+        cytoscapeobj = ipycytoscape.CytoscapeWidget()
+        cytoscapeobj.graph.add_graph_from_json(g["elements"])
+        # cytoscapeobj.graph_data = g  # .add_graph_from_json(g["elements"])
+
+        # # Add nodes from the graph data to the Cytoscape widget
+        for node_data in g["elements"]["nodes"]:
+            print(node_data)
+            break
+        #     node_id = node_data["data"]["id"]
+        #     node_style = {
+        #         "background-color": node_data["data"].get("color", "gray"),
+        #         "shape": node_data["data"].get("shape", "ellipse"),
+        #     }
+        #     cytoscapeobj.graph.add_node(node_id, **node_style)
+
+        # # Add edges from the graph data to the Cytoscape widget
+        # for edge_data in g["elements"]["edges"]:
+        #     edge_id = edge_data["data"]["id"]
+        #     source_id = edge_data["data"]["source"]
+        #     target_id = edge_data["data"]["target"]
+        #     cytoscapeobj.graph.add_edge(source_id, target_id, id=edge_id)
+
+        cytoscapeobj.set_style(
+            [
+                # {"selector": "node", "css": {"background-color": "red"}},
+                {
+                    "selector": "node",
+                    "id": "data(name)",
+                    "css": {"background-color": "data(color)"},
+                },
+                {"selector": "edge", "css": {"line-color": "pink"}},
+            ]
+        )
+
         display(cytoscapeobj)
+
+        # print(cytoscapeobj)
         # nx.cytoscape_data(G)
         # cy.layout.apply(name="force-directed")

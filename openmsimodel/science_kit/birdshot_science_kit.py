@@ -190,9 +190,9 @@ class BIRDSHOTScienceKit(ScienceKit, FolderOrFile):
         path_offset = 6
         tree_folders_and_files = self.make_tree(FolderOrFile, self.root)
 
-        with open(self.output / "folder_structure.txt", "w") as fp:
-            for p in tree_folders_and_files:
-                fp.write(p.displayable() + "\n")
+        # with open(self.output / "folder_structure.txt", "w") as fp:
+        #     for p in tree_folders_and_files:
+        #         fp.write(p.displayable() + "\n")
 
         ############## blocks from 2 to (n-3)
         # looping through all the folders and files in the tree structure
@@ -269,7 +269,7 @@ class BIRDSHOTScienceKit(ScienceKit, FolderOrFile):
                             bypass=True,
                         )
 
-        add_average_tensile_measurement()
+        # add_average_tensile_measurement()
 
         ############## block -3: aggregation of traveler samples by category
         def extract_traveler_samples_blocks():
@@ -1352,7 +1352,7 @@ class BIRDSHOTScienceKit(ScienceKit, FolderOrFile):
         print("Executing thin dumps...")
         self.dump_function = self.encoder.thin_dumps
         start = time.time()
-        recursive_foreach(obj, self.local_out)
+        recursive_foreach(obj, self.out)
         end = time.time()
         print(f"Time elapsed: {end - start}")
 
@@ -1372,7 +1372,7 @@ class BIRDSHOTScienceKit(ScienceKit, FolderOrFile):
         self.dump_function = self.encoder.dumps
         start = time.time()
         # self.encoder.dumps(obj)
-        recursive_foreach(obj, self.local_out)
+        recursive_foreach(obj, self.out)
         end = time.time()
         print(f"Time elapsed: {end - start}")
 
@@ -1405,12 +1405,12 @@ class BIRDSHOTScienceKit(ScienceKit, FolderOrFile):
         end = time.time()
         print(f"Time elapsed: {end - start}")
 
-    def structured_dump_loop(self, root, mode="thin"):
+    def structured_dump_loop(self, mode="thin"):
         """
         helper function that navigates the blocks of the models and
         """
         for composition_id in gen_compositions(self.root):
-            composition_id_path = root / composition_id
+            composition_id_path = self.root / composition_id
             for fabrication_method in self.terminal_blocks[composition_id].keys():
                 if fabrication_method == "DED":
                     continue
@@ -1428,11 +1428,11 @@ class BIRDSHOTScienceKit(ScienceKit, FolderOrFile):
                         for _t in t:
                             if _t.process:
                                 for _obj in [_t.process._spec, _t.process._run]:
-                                    recursive_foreach(_obj, self.local_out)
+                                    recursive_foreach(_obj, self.out)
                     else:
                         if t.process:
                             for _obj in [t.process._spec, t.process._run]:
-                                recursive_foreach(_obj, self.local_out)
+                                recursive_foreach(_obj, self.out)
                     if self.testing_mode:
                         return
 

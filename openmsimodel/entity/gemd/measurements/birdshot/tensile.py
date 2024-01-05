@@ -32,7 +32,7 @@ class Tensile(Measurement):
         template=PropertyTemplate(
             name="Elastic Modulus, GPa", bounds=RealBounds(0, 500, "GPa")
         ),
-        # default_value=NominalReal(0, "GPa"),
+        default_value=NominalReal(0, "GPa")
     )
 
     define_attribute(
@@ -40,7 +40,7 @@ class Tensile(Measurement):
         template=PropertyTemplate(
             name="Yield Strength, MPa", bounds=RealBounds(-10000, 10000, "MPa")
         ),
-        # default_value=NominalReal(0, "MPa"),
+        default_value=NominalReal(0, "MPa")
     )
 
     define_attribute(
@@ -48,13 +48,13 @@ class Tensile(Measurement):
         template=PropertyTemplate(
             name="UTS, MPa", bounds=RealBounds(-10000, 10000, "MPa")
         ),
-        # default_value=NominalReal(0, "MPa"),
+        default_value=NominalReal(0, "MPa")
     )
 
     define_attribute(
         _ATTRS,
         template=PropertyTemplate(name="Elongation, %", bounds=RealBounds(0, 100, "")),
-        # default_value=NominalReal(0, "MPa"),
+        default_value=NominalReal(0, "MPa")
     )
 
     define_attribute(
@@ -62,13 +62,13 @@ class Tensile(Measurement):
         template=PropertyTemplate(
             name="Strain Hardening, MPa", bounds=RealBounds(-10000, 10000, "MPa")
         ),
-        # default_value=NominalReal(0, "MPa"),
+        default_value=NominalReal(0, "MPa")
     )
 
     define_attribute(
         _ATTRS,
         template=PropertyTemplate(name="dUTS_dY", bounds=RealBounds(0, 100, "")),
-        # default_value=NominalReal(0, "MPa"),
+        default_value=NominalReal(0, "MPa")
     )
 
     finalize_template(_ATTRS, TEMPLATE)
