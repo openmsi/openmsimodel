@@ -69,6 +69,14 @@ class OpenMSIWidget(traitlets.HasTraits):
         )
 
 
+def color_mapping(index, node):
+    try:
+        color = node["properties"]["color"]
+    except:
+        color = "white"
+    return name_to_hex(color)
+
+
 def launch_graph_widget(g, engine="yfiles"):
     print("Launching {}".format(g))
     if type(g) == str:
@@ -78,26 +86,19 @@ def launch_graph_widget(g, engine="yfiles"):
         elif g.endswith(".graphml"):
             if engine == "yfiles":
                 g = nx.read_graphml(g)
+    elif type(g) == list:
+        merged_graph = nx.read_graphml(g[0])
+        for i in range(1, len(g)):
+            next_graph = g[i]
+            next_graph_ml = nx.read_graphml(next_graph)
+            merged_graph = nx.compose(merged_graph, next_graph_ml)
+        g = merged_graph
     elif g.__class__ is not None and g.__class__.__name__ == "AGraph":
         g = nx.nx_agraph.from_agraph(g)
 
-    def node_color_mapping(index, node):
-        try:
-            color = node["properties"]["color"]
-        except:
-            color = "white"
-        return name_to_hex(color)
-
-    def edge_color_mapping(index, node):
-        try:
-            color = node["properties"]["color"]
-        except:
-            color = "white"
-        return name_to_hex(color)
-
     if engine == "yfiles":
         w = GraphWidget(graph=g)
-        w.set_node_color_mapping(node_color_mapping)
+        w.set_node_color_mapping(color_mapping)
         w.directed = True
         w.hierarchic_layout()
         w.show()

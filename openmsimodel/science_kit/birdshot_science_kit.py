@@ -75,16 +75,6 @@ from gemd.entity import PerformedSource, FileLink
 from gemd.json import GEMDJson
 from gemd.util.impl import recursive_foreach
 
-# TODO: write ingredients?
-# TODO: add number/quantity attribute to SuggestedCompositions
-# TODO: add ingredient attributes
-# TODO: add aggregate/purchasing details
-# TODO: change the _spec to _run? or not?
-# TODO: add form to alloy object (melted, etc)
-# TODO: figure out path offset automatically
-# TODO: figure out functions for naming output files (fn)
-# FIXME: in yfiles, Diffusion shows up with out " " as opposed to rest: fix
-
 
 class BIRDSHOTScienceKit(ScienceKit, FolderOrFile):
     def __init__(self, root, output, iteration, synthesis_path, srjt_path):
@@ -226,8 +216,6 @@ class BIRDSHOTScienceKit(ScienceKit, FolderOrFile):
                         composition_id = split_item_path[3]
                 else:
                     composition_id = split_item_path[2]
-                # if not is_ded:
-                #     print(only_files)
                 if (item.depth == 4 and not is_ded) or (item.depth == 5 and is_ded):
                     if onlyfiles or is_ded:  # FIXME
                         self.process(
@@ -242,7 +230,6 @@ class BIRDSHOTScienceKit(ScienceKit, FolderOrFile):
                 if (
                     (item.depth >= 5 and not is_ded) or (item.depth >= 6 and is_ded)
                 ) and (onlyfiles):
-                    # print(item_path)
                     self.process_measurement(
                         item_path,
                         composition_id,
@@ -269,7 +256,7 @@ class BIRDSHOTScienceKit(ScienceKit, FolderOrFile):
                             bypass=True,
                         )
 
-        # add_average_tensile_measurement()
+        add_average_tensile_measurement()
 
         ############## block -3: aggregation of traveler samples by category
         def extract_traveler_samples_blocks():
@@ -567,16 +554,6 @@ class BIRDSHOTScienceKit(ScienceKit, FolderOrFile):
                     composition_element_material._update_attributes(
                         AttrType=PropertyAndConditions,
                         attributes=(
-                            # PropertyAndConditions(
-                            #     property=Property(
-                            #         "Composition Percentage",
-                            #         value=NominalReal(float(element_property), ""),
-                            #         origin="predicted",
-                            #         notes="",
-                            #         file_links=[],
-                            #     ),
-                            #     conditions=[],
-                            # ),
                             PropertyAndConditions(
                                 property=Property(
                                     "Target Mass",
@@ -1280,7 +1257,7 @@ class BIRDSHOTScienceKit(ScienceKit, FolderOrFile):
                                 file_links=[],
                             ),
                         ),
-                        which="run",
+                        which="both",
                     )
 
             measurement_block = MaterialsSequence(

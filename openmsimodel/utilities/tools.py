@@ -152,15 +152,16 @@ def read_gemd_data(dirpath, encoder):
                             gemd_paths.append(Path(path))
         elif os.path.isfile(dirpath) and str(dirpath).endswith(".json"):
             print("Extracting file...")
-            with open(dirpath) as fp:
-                gemd_objects = json.load(fp)
+            if f.endswith(".json"):
+                with open(dirpath) as fp:
+                    gemd_objects = json.load(fp)
 
             #     gemd_objects = json.load(fp)
     # except:
     #     raise IOError(  # FIXME
     #         f"couldn't extract GEMD data. Expected folder of JSONs or single JSON with 1+ objects. "
     #     )
-    if len(gemd_objects) == 0: #FIXME: better message, like filenotfound
+    if len(gemd_objects) == 0:  # FIXME: better message, like filenotfound
         raise ValueError(f"Couldn't extract any gemd object from {dirpath}. ")
     return gemd_objects, gemd_paths
 
