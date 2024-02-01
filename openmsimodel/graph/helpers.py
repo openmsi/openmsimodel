@@ -79,21 +79,23 @@ def color_mapping(index, node):
 
 def launch_graph_widget(g, engine="yfiles"):
     print("Launching {}".format(g))
-    if type(g) == str:
+    if type(g) == str:  # passing a single dot or graphml file
         if g.endswith(".dot"):
             dot = nx.nx_pydot.read_dot(g)
             g = nx.Graph(dot)
         elif g.endswith(".graphml"):
             if engine == "yfiles":
                 g = nx.read_graphml(g)
-    elif type(g) == list:
+    elif type(g) == list:  # passing a list of graphml files
         merged_graph = nx.read_graphml(g[0])
         for i in range(1, len(g)):
             next_graph = g[i]
             next_graph_ml = nx.read_graphml(next_graph)
             merged_graph = nx.compose(merged_graph, next_graph_ml)
         g = merged_graph
-    elif g.__class__ is not None and g.__class__.__name__ == "AGraph":
+    elif (
+        g.__class__ is not None and g.__class__.__name__ == "AGraph"
+    ):  # passing a graph
         g = nx.nx_agraph.from_agraph(g)
 
     if engine == "yfiles":

@@ -3,7 +3,6 @@
 Installation
 =============
 
-------------
 
 .. code-block:: none
 
@@ -13,7 +12,7 @@ Installation
 External Requirements
 ---------------------
 
-for Mac users, especially with M1 chips, the following preliminary steps might be required:
+for Mac users, especially with M1 chips, the following steps might be required:
 
 .. code-block:: none
 
