@@ -5,4 +5,4 @@ Getting Started
 .. toctree::
 
    getting_started/overview
-   getting_started/visualization
+   getting_started/modules

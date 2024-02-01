@@ -37,10 +37,10 @@ class OpenMSIWidget(traitlets.HasTraits):
 
     @classmethod
     def from_graphml(self, graphml_filename):
-        g = nx.read_graphml(graphml_filename)
-        for n, d in g.nodes(data=True):
+        graph_source = nx.read_graphml(graphml_filename)
+        for n, d in graph_source.nodes(data=True):
             d.update(json.loads(d.pop("object", "{}")))
-        return OpenMSIWidget(graph=g)
+        return OpenMSIWidget(graph=graph_source)
 
     @traitlets.default("json_display")
     def _default_json_display(self):
@@ -77,41 +77,41 @@ def color_mapping(index, node):
     return name_to_hex(color)
 
 
-def launch_graph_widget(g, engine="yfiles"):
-    print("Launching {}".format(g))
-    if type(g) == str:  # passing a single dot or graphml file
-        if g.endswith(".dot"):
-            dot = nx.nx_pydot.read_dot(g)
-            g = nx.Graph(dot)
-        elif g.endswith(".graphml"):
+def launch_graph_widget(graph_source, engine="yfiles"):
+    print("Launching {}".format(graph_source))
+    if type(graph_source) == str:  # passing a single dot or graphml file
+        if graph_source.endswith(".dot"):
+            dot = nx.nx_pydot.read_dot(graph_source)
+            graph_source = nx.Graph(dot)
+        elif graph_source.endswith(".graphml"):
             if engine == "yfiles":
-                g = nx.read_graphml(g)
-    elif type(g) == list:  # passing a list of graphml files
-        merged_graph = nx.read_graphml(g[0])
-        for i in range(1, len(g)):
-            next_graph = g[i]
+                graph_source = nx.read_graphml(graph_source)
+    elif type(graph_source) == list:  # passing a list of graphml files
+        merged_graph = nx.read_graphml(graph_source[0])
+        for i in range(1, len(graph_source)):
+            next_graph = graph_source[i]
             next_graph_ml = nx.read_graphml(next_graph)
             merged_graph = nx.compose(merged_graph, next_graph_ml)
-        g = merged_graph
+        graph_source = merged_graph
     elif (
-        g.__class__ is not None and g.__class__.__name__ == "AGraph"
-    ):  # passing a graph
-        g = nx.nx_agraph.from_agraph(g)
+        graph_source.__class__ is not None and graph_source.__class__.__name__ == "AGraph"
+    ):  # passing a graph object of type AGraph from PyGraphviz
+        graph_source = nx.nx_agraph.from_agraph(graph_source)
 
     if engine == "yfiles":
-        w = GraphWidget(graph=g)
+        w = GraphWidget(graph=graph_source)
         w.set_node_color_mapping(color_mapping)
         w.directed = True
         w.hierarchic_layout()
         w.show()
     elif engine == "cytoscape":
-        display(OpenMSIWidget.from_graphml(g))
-        # g = nx.cytoscape_data(g)
+        display(OpenMSIWidget.from_graphml(graph_source))
+        # graph_source = nx.cytoscape_data(graph_source)
         # cytoscapeobj = ipycytoscape.CytoscapeWidget()
-        # cytoscapeobj.graph.add_graph_from_json(g["elements"])
+        # cytoscapeobj.graph.add_graph_from_json(graph_source["elements"])
 
         # # # Add nodes from the graph data to the Cytoscape widget
-        # for node_data in g["elements"]["nodes"]:
+        # for node_data in graph_source["elements"]["nodes"]:
         #     print(node_data)
         #     break
 
