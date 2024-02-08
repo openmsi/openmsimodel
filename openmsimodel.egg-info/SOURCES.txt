@@ -61,7 +61,7 @@ openmsimodel/entity/gemd/processes/birdshot/summarize.py
 openmsimodel/graph/__init__.py
 openmsimodel/graph/helpers.py
 openmsimodel/graph/open_graph.py
-openmsimodel/graph/open_graph_config/__init__.py
+openmsimodel/graph/open_graph_nb/__init__.py
 openmsimodel/science_kit/__init__.py
 openmsimodel/science_kit/birdshot_science_kit.py
 openmsimodel/science_kit/folder_or_file.py

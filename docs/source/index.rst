@@ -33,10 +33,8 @@ It allows to structure real scientific workflows into meaningful data structures
 .. toctree::
    :caption: Examples:
 
-   examples/materials_data
+   examples/materials_data/materials_data_example
    examples/laser_shock
-   examples/birdshot
-   examples/cake
 
 .. toctree::
    :caption: Additional information

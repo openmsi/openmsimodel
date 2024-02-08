@@ -254,11 +254,11 @@ def _set_attrs(
         existing_attrs = (
             {} if replace_all else {attr.name: attr for attr in spec_or_run.properties}
         )
-        spec_or_run.properties = {
+        spec_or_run.properties = list({
             **required_attrs,
             **existing_attrs,
             **supplied_attrs,
-        }.values()
+        }.values())
 
 
 def remove_attrs(

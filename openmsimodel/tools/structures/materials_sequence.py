@@ -21,12 +21,12 @@ class MaterialsSequence(Tool):
     def __init__(  # FIXME
         self,
         name: str,
-        process: Optional[Process],
         science_kit: ScienceKit = None,
-        material: Optional[Material] = None,
         ingredients: Optional[
             dict
         ] = {},  # TODO: names have to be unique? will that be a problem?
+        process: Optional[Process] = None,
+        material: Optional[Material] = None,
         measurements: Optional[dict] = {},
         _type: str = None,
     ):  # FIXME
