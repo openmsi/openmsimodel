@@ -24,17 +24,18 @@ class OpenGraph(Runnable):
 
     By taking a folder path containing GEMD thin JSON files, this class establishes the relationships
     between them by interpreting their uuids/links. It produces outputs ranging from
-    an SVG image or GraphML file with simple labels to dot products containing all GEMD assets,
+    an SVG image or GraphML file with simple labels to dot products containing all GEMD assets with flexibility,
     including attributes, file links, or tags.
     """
 
     ARGUMENT_PARSER_TYPE = OpenMSIModelParser
 
     IPYNB_FILENAME = pathlib.Path(
-        pathlib.Path(__file__).parent.resolve() / "open_graph_config/template.ipynb"
+        pathlib.Path(__file__).parent.resolve()
+        / "open_graph_nb/open_graph_nb_template.ipynb"
     )
     CONFIG_FILENAME = pathlib.Path(
-        pathlib.Path(__file__).parent.resolve() / "open_graph_config/.config"
+        pathlib.Path(__file__).parent.resolve() / "open_graph_nb/.config"
     )
 
     # TODO: move build_graph function params to obj + store pygraphviz and networkx as obj attr
@@ -48,7 +49,11 @@ class OpenGraph(Runnable):
         take_small_sample=False,
         add_separate_node=False,
         which="run",
-        assets_to_add={},
+        assets_to_add={
+            "add_attributes": 1,
+            "add_file_links": 1,
+            "add_tags": 1,
+        },
         dump_svg_and_dot=False,
     ):
         """
@@ -78,11 +83,7 @@ class OpenGraph(Runnable):
         self.take_small_sample = take_small_sample
         self.add_separate_node = add_separate_node
         self.which = which
-        self.assets_to_add = {
-            "add_attributes": 1,
-            "add_file_links": 1,
-            "add_tags": 1,
-        }
+        self.assets_to_add = assets_to_add
         self.dump_svg_and_dot = dump_svg_and_dot
         self.svg_path = None
         self.dot_path = None
@@ -90,7 +91,7 @@ class OpenGraph(Runnable):
         self.shapes = {"run": "circle", "spec": "rectangle", "template": "triangle"}
 
     # instance method
-    def build_graph(self, uuid_to_track="auto"):
+    def build_graph(self, save=False, uuid_to_track="auto"):
         """
         Creates a NetworkX graph representation of the GEMD relationships.
 
@@ -172,15 +173,16 @@ class OpenGraph(Runnable):
             relabeled_G_gviz = self.map_to_graphviz(relabeled_G_nx)
 
         # # plotting
-        dot_path, svg_path, graphml_path = self.save_graph(
-            self.output,
-            relabeled_G_nx,
-            relabeled_G_gviz,
-            "{}_{}".format(self.name, self.which),
-            dump_svg_and_dot=self.dump_svg_and_dot,
-        )
+        if save:
+            dot_path, svg_path, graphml_path = self.save_graph(
+                self.output,
+                relabeled_G_nx,
+                relabeled_G_gviz,
+                "{}_{}".format(self.name, self.which),
+                dump_svg_and_dot=self.dump_svg_and_dot,
+            )
 
-        self.update_paths(svg_path, dot_path, graphml_path)
+            self.update_paths(svg_path, dot_path, graphml_path)
 
         # info
         self.diagnostics(relabeled_G_nx, gemd_objects, nb_disregarded)
@@ -265,61 +267,6 @@ class OpenGraph(Runnable):
                     if self.add_bidirectional_edges:
                         # G.add_edge(material, uid)
                         G.add_edge(uid, material)
-        # if obj_type.startswith("process"):
-        #     if obj_type.endswith(self.which) or self.which == "all":
-        #         G.add_node(uid, color="red", shape=self.shapes[obj_state])
-        #         self.add_gemd_assets(
-        #             G,
-        #             uid,
-        #             obj_data,
-        #             obj_type,
-        #         )
-        # elif obj_type.startswith("ingredient"):  # TODO if node doesn't exist, create?
-        #     if obj_type.endswith(self.which) or self.which == "all":
-        #         G.add_node(uid, color="blue", shape=self.shapes[obj_state])
-        #         process = obj_data["process"]["id"]
-        #         G.add_edge(uid, process)
-        #         if self.add_bidirectional_edges:
-        #             G.add_edge(process, uid)
-        #             if "material" in obj_data and obj_data["material"]:
-        #                 material = obj_data["material"]["id"]
-        #                 G.add_edge(material, uid)
-        #                 if self.add_bidirectional_edges:
-        #                     G.add_edge(uid, material)
-        #         self.add_gemd_assets(
-        #             G,
-        #             uid,
-        #             obj_data,
-        #             obj_type,
-        #         )
-        # elif obj_type.startswith("material"):
-        #     if obj_type.endswith(self.which) or self.which == "all":
-        #         G.add_node(uid, color="green", shape=self.shapes[obj_state])
-        #         self.add_gemd_assets(
-        #             G,
-        #             uid,
-        #             obj_data,
-        #             obj_type,
-        #         )
-        #         if "process" in obj_data and obj_data["process"]:
-        #             process = obj_data["process"]["id"]
-        #             G.add_edge(process, uid)  # ?
-        #             if self.add_bidirectional_edges:
-        #                 G.add_edge(uid, process)
-        # elif obj_type.startswith("measurement"):
-        #     if obj_type.endswith(self.which) or self.which == "all":
-        #         G.add_node(uid, color="purple", shape=self.shapes[obj_state])
-        #         self.add_gemd_assets(
-        #             G,
-        #             uid,
-        #             obj_data,
-        #             obj_type,
-        #         )
-        #         if "material" in obj_data and obj_data["material"]:
-        #             material = obj_data["material"]["id"]
-        #             G.add_edge(uid, material)
-        #             if self.add_bidirectional_edges:
-        #                 G.add_edge(material, uid)
 
         if self.which == "all":
             if (

@@ -10,7 +10,8 @@ Entity
 .. toctree::
    :maxdepth: 1
 
-   entity/element
+   entity/core_element
+   entity/gemd_element
    entity/material
    entity/process
    entity/ingredient

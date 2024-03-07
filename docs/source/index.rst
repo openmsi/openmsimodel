@@ -26,8 +26,8 @@ It allows to structure real scientific workflows into meaningful data structures
    user_info/entity/entity
    user_info/tools/tools
    user_info/science_kit/science_kit
-   user_info/graph/graph
-   user_info/db/db
+   user_info/graph/open_graph
+   user_info/db/open_db
    user_info/stores/stores
 
 .. toctree::
@@ -37,10 +37,9 @@ It allows to structure real scientific workflows into meaningful data structures
    examples/laser_shock
 
 .. toctree::
-   :caption: Additional information
+   :caption: Additional Information
 
    additional_info/next_steps
-
 
 .. toctree::
    :caption: API reference:

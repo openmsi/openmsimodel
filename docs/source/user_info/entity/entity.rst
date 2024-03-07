@@ -4,10 +4,30 @@ Entity
 
 The 'Entity' API serves to abstractly manage the layer surrounding your data model, facilitating interaction with its components in a scalable manner, while simultaneously enhancing the capabilities of the model.
 
-If your production data, in its unaltered format, resides at level 0 of the data pyramid, and your data within your chosen model is at level 1, the 'Entity' API constitutes the second layer. This layer allows for the construction upon the semantics and rules of your data model, while abstracting its specifics for the user.
+If your production data, in its unaltered format, resides at level 0 of the data pyramid, and your data within your chosen model (i.e., GEMD) is at level 1, the 'Entity' API constitutes the second layer. This layer allows for the construction upon the semantics and rules of your data model, while abstracting its specifics for the user.
 
-The primary class within this API, the 'Element' class, aims to encapsulate the most fundamental elements within your chosen data model. For instance, it includes a function 'assets()' that consistently provides access to the core elements, regardless of the selected data model.
+The primary class within this API, the **'CoreElement'** class, aims to encapsulate the most fundamental elements within your chosen data model. For instance, it includes a function 'assets()' that consistently provides access to the core elements, regardless of the selected data model.
 
-In our context, GEMD (Graphical Expression of Materials Data) serves as the principal data model. Therefore, the 'Gemd_Element' class extends the 'Element' class, and is inherited by the 'Process', 'Material', 'Ingredient', and 'Measurement' classes. Consequently, instead of individually interacting with and managing GEMD Process Templates, Specifications, or Runs, they can all be handled under a single class, 'Process'. The same principle applies to 'Material', 'Measurement', and 'Ingredient'.
+In our context, GEMD (Graphical Expression of Materials Data) serves as the principal data model. Therefore, the **'GemdElement'** class extends the **'CoreElement'** class, and is inherited by the 'Process', 'Material', 'Ingredient', and 'Measurement' classes. Instead of individually interacting with and managing GEMD Process Templates, Specifications, or Runs, they can all be handled under a single class, 'Process', 'Material', 'Measurement', and 'Ingredient'.
 
-For instance, given that GEMD is a linked model, we have the capability to construct and adjust links within and between structures as needed. Additionally, the API serves as a wrapper around GEMD objects and includes the 'assets()' API for convenient access to resources.
+Among the added benefits of this structure:
+
+* Managing consistent naming across runs, specs and templates if desired
+
+* Accessing assets API() for convenient access to ressources
+
+* Accesing attributes, like properties, in more friendly formats like dictionnaries
+
+* Initializing GEMD Templates inside a persistent file
+
+* Adding the capability to remove and delete attributes
+
+* Avoiding redundant or duplicate specs and templates
+
+* Placing additional checks on the data
+
+* Storing gemd assets into stores, whether global or local, so templates and specs can be reused
+
+more importantly,
+
+* Less lines of code!

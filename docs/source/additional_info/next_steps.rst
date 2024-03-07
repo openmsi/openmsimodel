@@ -2,67 +2,52 @@
 Next Steps
 =============
 
-2 big things for 0.2.0:
-- capability to organize into materials sequences and a science kit from folder/list of GEMD files
-- overall cleanup and testing, especially for element entity module
-
-_____
-
-New GEMD versions
+New GEMD Versions
 
 GEMDLite
 
-* uses a txt based model building in conjusting with a global or local stores to instantiate a barebone GEMD model
+Introduce GEMDLite, a lightweight version of GEMD that uses a text-based model building approach.
+Utilize global or local stores to instantiate a barebones GEMD model, making it easier for users to get started.
 
 Smaller/Larger GEMD
 
- - GEMDAttributes
+Explore the possibility of creating versions of GEMD that are smaller or larger in scope, catering to different user needs.
 
- - GEMDTags
+GEMD Attributes, Tags, File Links, and Data Quality
 
- - GEMDFileLinks
+Enhance GEMD with new features related to attributes, tags, file links, and data quality.
+Implement checks to ensure files are still present, detect colliding files from different sources, and flag naming inconsistencies and data corruption.
 
- - GEMDFileLinksPresentOrNot
+Expanding Tools
 
- - GEMDDataQuality
+Structure Tools
 
-checks if files are still present; checks colliding files from diff sources; tells u when ur naming patterns are inconsistent and where is the prob; tells u when the data is corrupted and can’t be opened; flags when our metadata and formats are not respected (data governance)    
+Develop tools like RepeatSequence to find all sequences with the same structure.
+
+Implement MissingSequence to complete a sequence of GEMD objects based on inference from RepeatSequence.
+
+Statistics Tools
+
+Add basic statistical tools (e.g., average, standard deviation) for analyzing GEMD data.
+
+Agents
+
+Introduce an AiAgent that can act on GEMD data using the assets() API, providing advanced data manipulation capabilities.
 
 
-___
+Real-Time OpenMSIModel / Stateful OpenMSIModel
 
-Expanding tools
+Implement a stateful OpenMSIModel that can retain its state across multiple operations, enabling real-time data processing.
 
-- add structure tools
+GUI for Model Visualization and Building
 
-RepeatSequence (finds all sequences that have the same structure)
+Develop a graphical user interface (GUI) for visualizing and building GEMD models, making it easier for users to interact with the data.
 
-MissingSequence (complete a sequence of gemd objects based on inference from RepeatSequence )
+Strategy
 
-- add stastistics tools
-
-basic stats (e.g., avg, std) tools 
-
-- add agents
-
-AiAgent (which can acts on ur data using assets() API )
-
-___
-
-RealTime OpenMSIModel
-
-Stateful OpenMSIModel
-
----
-
-GUI for model visualization and building
-
-___ 
-
-Strategy:
-* capitalizing on stores and GEMDLite to lower entry and increase nb of users + in-house data  
-* gemd becomes a graph object with open_graph: what computational tools should we build for graphs or in python memory?
-___
+Capitalize on stores and GEMDLite to lower the entry barrier and increase the number of users.
+Transform GEMD into a graph object with Open Graph: exploring computational tools and Python memory management strategies for graph-based operations.
 
 Benchmarking
-- opengraph perf with 5/6 figures (not $$$) number of nodes
+
+Perform benchmarking of Open Graph performance, aiming for 5/6 figure metrics (not cost), such as the number of nodes, to evaluate scalability and efficiency.

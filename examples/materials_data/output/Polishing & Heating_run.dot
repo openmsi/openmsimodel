@@ -1,0 +1,94 @@
+strict digraph "Polishing & Heating" {
+	graph [bb="0,0,1701.1,5294.6",
+		name="Polishing & Heating"
+	];
+	node [label="\N"];
+	"Alloy Ingredient [0940d496-fb4c-44bf-a6f1-d689e8ad557b, ingredient_run]"	 [color=blue,
+		height=10.002,
+		object="{\"absolute_quantity\": null, \"file_links\": [], \"labels\": [], \"mass_fraction\": null, \"material\": null, \"name\": \"Alloy Ingredient\", \"\
+notes\": null, \"number_fraction\": null, \"process\": {\"id\": \"a9b84496-407b-448d-8a63-63e4eb20738b\", \"scope\": \"auto\", \"type\": \"link_\
+by_uid\"}, \"spec\": {\"id\": \"f19db0f5-6112-40e5-baa8-d43b63123d41\", \"scope\": \"auto\", \"type\": \"link_by_uid\"}, \"tags\": [], \"type\": \"ingredient_\
+run\", \"uids\": {\"auto\": \"0940d496-fb4c-44bf-a6f1-d689e8ad557b\"}, \"volume_fraction\": null}",
+		pos="847.76,4934.6",
+		shape=circle,
+		type=ingredient_run,
+		uuid="0940d496-fb4c-44bf-a6f1-d689e8ad557b",
+		width=10.002];
+	"Polishing [a9b84496-407b-448d-8a63-63e4eb20738b, process_run]"	 [color=red,
+		height=8.9728,
+		object="{\"conditions\": [], \"file_links\": [], \"name\": \"Polishing\", \"notes\": null, \"parameters\": [], \"source\": null, \"spec\": {\"id\": \"d9809002-ddc2-4823-9720-8db52cf17847\", \"\
+scope\": \"auto\", \"type\": \"link_by_uid\"}, \"tags\": [], \"type\": \"process_run\", \"uids\": {\"auto\": \"a9b84496-407b-448d-8a63-63e4eb20738b\"}}",
+		pos="847.76,4215.5",
+		shape=circle,
+		type=process_run,
+		uuid="a9b84496-407b-448d-8a63-63e4eb20738b",
+		width=8.9728];
+	"Alloy Ingredient [0940d496-fb4c-44bf-a6f1-d689e8ad557b, ingredient_run]" -> "Polishing [a9b84496-407b-448d-8a63-63e4eb20738b, process_run]"	 [pos="e,847.76,4538.5 847.76,4574.5 847.76,4565.9 847.76,4557.2 847.76,4548.6"];
+	"Polishing Alloy [7a32a469-de8a-4412-aeea-28c8667985e3, material_run]"	 [color=green,
+		height=9.695,
+		object="{\"file_links\": [], \"name\": \"Polishing Alloy\", \"notes\": null, \"process\": {\"id\": \"a9b84496-407b-448d-8a63-63e4eb20738b\", \"scope\": \"\
+auto\", \"type\": \"link_by_uid\"}, \"sample_type\": null, \"spec\": {\"id\": \"e1aac57c-9cb8-45e1-8961-c95c61c20685\", \"scope\": \"auto\", \"type\": \"\
+link_by_uid\"}, \"tags\": [], \"type\": \"material_run\", \"uids\": {\"auto\": \"7a32a469-de8a-4412-aeea-28c8667985e3\"}}",
+		pos="847.76,3507.5",
+		shape=circle,
+		type=material_run,
+		uuid="7a32a469-de8a-4412-aeea-28c8667985e3",
+		width=9.695];
+	"Polishing [a9b84496-407b-448d-8a63-63e4eb20738b, process_run]" -> "Polishing Alloy [7a32a469-de8a-4412-aeea-28c8667985e3, material_run]"	 [pos="e,847.76,3856.7 847.76,3892.3 847.76,3883.8 847.76,3875.2 847.76,3866.7"];
+	"Pre-Heating Temperature [064832c3-a226-43fc-981e-57c4112ae52c, measurement_run]"	 [color=purple,
+		height=11.771,
+		object="{\"conditions\": [], \"file_links\": [], \"material\": {\"id\": \"7a32a469-de8a-4412-aeea-28c8667985e3\", \"scope\": \"auto\", \"type\": \"link_by_\
+uid\"}, \"name\": \"Pre-Heating Temperature\", \"notes\": null, \"parameters\": [], \"properties\": [], \"source\": null, \"spec\": {\"id\": \"3a749bc8-91a8-4f35-adc9-7ee33fa3aceb\", \"\
+scope\": \"auto\", \"type\": \"link_by_uid\"}, \"tags\": [], \"type\": \"measurement_run\", \"uids\": {\"auto\": \"064832c3-a226-43fc-981e-57c4112ae52c\"}}",
+		pos="423.76,2698.7",
+		shape=circle,
+		type=measurement_run,
+		uuid="064832c3-a226-43fc-981e-57c4112ae52c",
+		width=11.771];
+	"Polishing Alloy [7a32a469-de8a-4412-aeea-28c8667985e3, material_run]" -> "Pre-Heating Temperature [064832c3-a226-43fc-981e-57c4112ae52c, measurement_run]"	 [pos="e,620.62,3074.2 685.65,3198.2 665.96,3160.7 645.65,3121.9 625.47,3083.4"];
+	"Polished Alloy Ingredient [9c295f0d-204b-4a40-bd7e-5d42ac10c7b4, ingredient_run]"	 [color=blue,
+		height=11.302,
+		object="{\"absolute_quantity\": null, \"file_links\": [], \"labels\": [], \"mass_fraction\": null, \"material\": {\"id\": \"7a32a469-de8a-4412-aeea-28c8667985e3\", \"\
+scope\": \"auto\", \"type\": \"link_by_uid\"}, \"name\": \"Polished Alloy Ingredient\", \"notes\": null, \"number_fraction\": null, \"process\": {\"\
+id\": \"03a7506c-8027-4d96-86d2-34a5cb76e07d\", \"scope\": \"auto\", \"type\": \"link_by_uid\"}, \"spec\": {\"id\": \"38f58d68-a3d7-4200-97ee-6cb8be42fbf1\", \"\
+scope\": \"auto\", \"type\": \"link_by_uid\"}, \"tags\": [], \"type\": \"ingredient_run\", \"uids\": {\"auto\": \"9c295f0d-204b-4a40-bd7e-5d42ac10c7b4\"}, \"\
+volume_fraction\": null}",
+		pos="1272.8,2698.7",
+		shape=circle,
+		type=ingredient_run,
+		uuid="9c295f0d-204b-4a40-bd7e-5d42ac10c7b4",
+		width=11.302];
+	"Polishing Alloy [7a32a469-de8a-4412-aeea-28c8667985e3, material_run]" -> "Polished Alloy Ingredient [9c295f0d-204b-4a40-bd7e-5d42ac10c7b4, ingredient_run]"	 [pos="e,1083.3,3059.1 1010.3,3198.2 1032.6,3155.7 1055.8,3111.6 1078.6,3068.1"];
+	"Heating [03a7506c-8027-4d96-86d2-34a5cb76e07d, process_run]"	 [color=red,
+		height=8.8103,
+		object="{\"conditions\": [], \"file_links\": [], \"name\": \"Heating\", \"notes\": null, \"parameters\": [], \"source\": null, \"spec\": {\"id\": \"ec4d06f2-ad2c-4d0d-b680-6d40ed68ce8f\", \"\
+scope\": \"auto\", \"type\": \"link_by_uid\"}, \"tags\": [], \"type\": \"process_run\", \"uids\": {\"auto\": \"03a7506c-8027-4d96-86d2-34a5cb76e07d\"}}",
+		pos="1272.8,1921.7",
+		shape=circle,
+		type=process_run,
+		uuid="03a7506c-8027-4d96-86d2-34a5cb76e07d",
+		width=8.8103];
+	"Polished Alloy Ingredient [9c295f0d-204b-4a40-bd7e-5d42ac10c7b4, ingredient_run]" -> "Heating [03a7506c-8027-4d96-86d2-34a5cb76e07d, process_run]"	 [pos="e,1272.8,2239.2 1272.8,2291.7 1272.8,2277.5 1272.8,2263.4 1272.8,2249.4"];
+	"Heated Alloy [72cc85f7-2991-4106-b5ca-4b1a6a68f676, material_run]"	 [color=green,
+		height=9.3881,
+		object="{\"file_links\": [], \"name\": \"Heated Alloy\", \"notes\": null, \"process\": {\"id\": \"03a7506c-8027-4d96-86d2-34a5cb76e07d\", \"scope\": \"auto\", \"\
+type\": \"link_by_uid\"}, \"sample_type\": null, \"spec\": {\"id\": \"615fa4d5-c049-4c23-b737-bd5a4f13b464\", \"scope\": \"auto\", \"type\": \"link_\
+by_uid\"}, \"tags\": [], \"type\": \"material_run\", \"uids\": {\"auto\": \"72cc85f7-2991-4106-b5ca-4b1a6a68f676\"}}",
+		pos="1272.8,1230.6",
+		shape=circle,
+		type=material_run,
+		uuid="72cc85f7-2991-4106-b5ca-4b1a6a68f676",
+		width=9.3881];
+	"Heating [03a7506c-8027-4d96-86d2-34a5cb76e07d, process_run]" -> "Heated Alloy [72cc85f7-2991-4106-b5ca-4b1a6a68f676, material_run]"	 [pos="e,1272.8,1568.7 1272.8,1604.5 1272.8,1595.9 1272.8,1587.4 1272.8,1578.8"];
+	"Post-Heating Temperature [5f96aa75-3c20-4bb8-94c1-85e3d61949e7, measurement_run]"	 [color=purple,
+		height=11.898,
+		object="{\"conditions\": [], \"file_links\": [], \"material\": {\"id\": \"72cc85f7-2991-4106-b5ca-4b1a6a68f676\", \"scope\": \"auto\", \"type\": \"link_by_\
+uid\"}, \"name\": \"Post-Heating Temperature\", \"notes\": null, \"parameters\": [], \"properties\": [], \"source\": null, \"spec\": {\"id\": \"0238aa68-39c2-41a7-905e-dacea29d5bc0\", \"\
+scope\": \"auto\", \"type\": \"link_by_uid\"}, \"tags\": [], \"type\": \"measurement_run\", \"uids\": {\"auto\": \"5f96aa75-3c20-4bb8-94c1-85e3d61949e7\"}}",
+		pos="1272.8,428.31",
+		shape=circle,
+		type=measurement_run,
+		uuid="5f96aa75-3c20-4bb8-94c1-85e3d61949e7",
+		width=11.898];
+	"Heated Alloy [72cc85f7-2991-4106-b5ca-4b1a6a68f676, material_run]" -> "Post-Heating Temperature [5f96aa75-3c20-4bb8-94c1-85e3d61949e7, measurement_run]"	 [pos="e,1272.8,856.89 1272.8,892.39 1272.8,883.93 1272.8,875.43 1272.8,866.9"];
+}
