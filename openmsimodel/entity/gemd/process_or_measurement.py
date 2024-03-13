@@ -60,9 +60,7 @@ class ProcessOrMeasurement(GEMDElement):
 
         self.update_parameters(*parameters, replace_all=True, which=which)
 
-    def get_conditions_dict(self):
-        """Return a ``dict`` of the spec and run conditions."""
-        return self._spec_run_dict(self._spec.conditions, self._run.conditions)
+    ############################### CONDITIONS ###############################
 
     def update_conditions(
         self,
@@ -116,9 +114,15 @@ class ProcessOrMeasurement(GEMDElement):
             AttrType=Condition, attr_names=condition_names, which=which
         )
 
+    def get_conditions_dict(self):
+        """Return a ``dict`` of the spec and run conditions."""
+        return self._spec_run_dict(self._spec.conditions, self._run.conditions)
+
     def get_parameters_dict(self):
         """Return a ``dict`` of the spec and run parameters."""
         return self._spec_run_dict(self._spec.parameters, self._run.parameters)
+
+    ############################### PARAMETERS ###############################
 
     def update_parameters(
         self,
@@ -248,44 +252,6 @@ class ProcessOrMeasurement(GEMDElement):
                     'value': None,
                     'origin': None
                 }
-            },
-            'Set temperature': {
-                'spec': {
-                    'value': {
-                        'nominal': 105,
-                        'units': 'K',
-                        'type': 'nominal_real'
-                    },
-                    'origin': 'specified'
-                },
-                'run': {
-                    'value': {
-                        'lower_bound': 104,
-                        'upper_bound': 106,
-                        'units': 'K',
-                        'type': 'uniform_real'
-                    },
-                    'origin': 'measured'
-                }
-            },
-            'Set pressure': {
-                'spec': {
-                    'value': {
-                        'nominal': 400,
-                        'units': 'millitorr',
-                        'type': 'nominal_real'
-                    },
-                    'origin': 'specified'
-                },
-                'run': {
-                    'value': {
-                        'mean': 399.9,
-                        'std': 0.5,
-                        'units': 'K',
-                        'type': 'normal_real'
-                    },
-                    'origin': 'measured'
-                }
             }
         }
         """
@@ -311,6 +277,3 @@ class ProcessOrMeasurement(GEMDElement):
                 attrs[name] = {"spec": None, "run": value_and_origin}
 
         return attrs
-
-    def to_form(self) -> str:
-        pass

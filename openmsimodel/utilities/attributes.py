@@ -148,11 +148,14 @@ def update_attrs(
 ) -> None:
     """Used by Element to update attributes and link attribute templates."""
 
+    # validates 'AttrType' and 'which' against their possible values
     attr_dict_key, singular, plural = _validate_attr_type(AttrType)
     validate_state(which)
 
+    # returns required attributes, defined as attributes with a default value
     required_attrs = _required_attrs(attrs, AttrType, attr_dict_key, plural)
 
+    # ensures that the attribute exists in the template
     # for attr in attributes:
     #     if attr.name not in attrs[plural]:
     #         raise ValueError(f'{singular.capitalize()} "{attr.name}" is not supported.')
@@ -160,19 +163,25 @@ def update_attrs(
     supplied_attrs = {attr.name: attr for attr in attributes}
 
     for attr_name, attr in supplied_attrs.items():
-        # TODO: quick fix for now for having multiple version of a same template (i.e., ambient ressure, purging pressure for the same parameter template: pressure )
+        # FIXME: quick fix for now for having multiple version of a same template (i.e., ambient ressure, purging pressure for the same parameter template: pressure )
         # TODO: applies to uncommented bloc of code above that caused errors
-        if attr_name not in attrs[plural].keys():  # TODO: improve fix?
+        # ensures that the attribute exists in the template
+        if attr_name not in attrs[plural].keys():
             if (
                 hasattr(attr, "template")
-                and attr.template.name not in attrs[plural].keys()
+                # and attr.template.name not in attrs[plural].keys()
             ):
-                raise KeyError(
-                    f"the '{attr_name}' attribute is not among the object defined attributes."
+                # raise KeyError(
+                #     f"the '{attr_name}' attribute is not among the object defined attributes."
+                # )
+                define_attribute(
+                    attrs,
+                    template=attr.template,
+                    # default_value=attr.template.default_value, #FIXME
                 )
             attr_name = attr.template.name  # FIXME
-        # if attr.template is not None or (attr.property is not None and attr.property.template is not None): #FIXME
-        #     continue
+
+        # reassigns the template of the supplied attr to the pre-definted attr template
         if type(attr) == PropertyAndConditions:
             if hasattr(attr, "property") and attr.property.template is not None:
                 attr.property.template = attrs[plural][attr_name]["obj"]
@@ -254,11 +263,13 @@ def _set_attrs(
         existing_attrs = (
             {} if replace_all else {attr.name: attr for attr in spec_or_run.properties}
         )
-        spec_or_run.properties = list({
-            **required_attrs,
-            **existing_attrs,
-            **supplied_attrs,
-        }.values())
+        spec_or_run.properties = list(
+            {
+                **required_attrs,
+                **existing_attrs,
+                **supplied_attrs,
+            }.values()
+        )
 
 
 def remove_attrs(
@@ -270,6 +281,9 @@ def remove_attrs(
     which: SpecOrRunLiteral = "spec",
 ) -> None:
     """Used by Element to remove attributes by name."""
+
+    if not (type(attr_names) == tuple):
+        raise TypeError("attr_names must be a tuple.")
 
     _, singular, plural = _validate_attr_type(AttrType)
     validate_state(which)

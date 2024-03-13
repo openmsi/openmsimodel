@@ -58,13 +58,6 @@ class Ingredient(GEMDElement):
             return [self.spec, self.run]
         else:
             _assets = [self.TEMPLATE, self.spec, self.run]
-        # if self.TEMPLATE:
-        #     if hasattr(self.TEMPLATE, "properties"):
-        #         _assets.extend(self.TEMPLATE.properties)
-        #     if hasattr(self.TEMPLATE, "conditions"):
-        #         _assets.extend(self.TEMPLATE.conditions)
-        #     if hasattr(self.TEMPLATE, "parameters"):
-        #         _assets.extend(self.TEMPLATE.parameters)
         return _assets
 
     def assert_linked(self, uuid_key="auto"):
@@ -153,9 +146,3 @@ class Ingredient(GEMDElement):
             ingredient._run = make_instance(ingredient.spec)
 
         return ingredient
-
-    def to_form(self) -> str:
-        pass
-
-    # TODO: from_material
-    # TODO: from_material_run_or_spec

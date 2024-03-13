@@ -54,16 +54,6 @@ class Measurement(ProcessOrMeasurement):
 
         self.set_material(material)
 
-    # @property
-    # def spec(self) -> MeasurementSpec:
-    #     """The underlying measurement spec."""
-    #     return self._spec
-
-    # @property
-    # def run(self) -> MeasurementRun:
-    #     """The underlying measurement run."""
-    #     return self._run
-
     @classmethod
     def from_spec_or_run(
         cls,
@@ -157,6 +147,3 @@ class Measurement(ProcessOrMeasurement):
         }
 
         return prop_dict
-
-    def to_form(self) -> str:
-        pass
