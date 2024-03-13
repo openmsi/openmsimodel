@@ -13,6 +13,10 @@ Official documentation at https://openmsimodel.readthedocs.io/en/latest/
 
 ## Installation:
 
+```
+pip install openmsimodel
+```
+
 for Mac Users:
 
 ```
@@ -22,4 +26,5 @@ python -m pip install \
     --global-option="-I$(brew --prefix graphviz)/include/" \
     --global-option="-L$(brew --prefix graphviz)/lib/" \
     pygraphviz
+pip install openmsimodel
 ```

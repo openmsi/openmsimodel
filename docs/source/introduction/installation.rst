@@ -22,4 +22,4 @@ for Mac users, especially with M1 chips, the following steps might be required:
         --global-option="-I$(brew --prefix graphviz)/include/" \
         --global-option="-L$(brew --prefix graphviz)/lib/" \
         pygraphviz
-
+    pip install openmsimodel
