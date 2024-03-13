@@ -86,7 +86,7 @@ class ProcessOrMeasurement(GEMDElement):
             If the name of a condition is not supported.
         """
 
-        self._update_attributes(
+        self.update_attributes(
             AttrType=Condition,
             attributes=conditions,
             replace_all=replace_all,
@@ -110,17 +110,13 @@ class ProcessOrMeasurement(GEMDElement):
             If the name of a condition is not supported.
         """
 
-        self._remove_attributes(
+        self.remove_attributes(
             AttrType=Condition, attr_names=condition_names, which=which
         )
 
     def get_conditions_dict(self):
         """Return a ``dict`` of the spec and run conditions."""
         return self._spec_run_dict(self._spec.conditions, self._run.conditions)
-
-    def get_parameters_dict(self):
-        """Return a ``dict`` of the spec and run parameters."""
-        return self._spec_run_dict(self._spec.parameters, self._run.parameters)
 
     ############################### PARAMETERS ###############################
 
@@ -148,7 +144,7 @@ class ProcessOrMeasurement(GEMDElement):
             If the name of a parameter is not supported.
         """
 
-        self._update_attributes(
+        self.update_attributes(
             AttrType=Parameter,
             attributes=parameters,
             replace_all=replace_all,
@@ -172,9 +168,14 @@ class ProcessOrMeasurement(GEMDElement):
             If the name of a parameter is not supported.
         """
 
-        self._remove_attributes(
+        self.remove_attributes(
             AttrType=Parameter, attr_names=parameter_names, which=which
         )
+    
+    def get_parameters_dict(self):
+        """Return a ``dict`` of the spec and run parameters."""
+        return self._spec_run_dict(self._spec.parameters, self._run.parameters)
+
 
     def get_source(self) -> dict[str, str]:
         """

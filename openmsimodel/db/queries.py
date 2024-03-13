@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from sqlalchemy.ext.automap import automap_base
-from openmsimodel.utilities.tools import read_gemd_data
+from openmsimodel.utilities.io import read_gemd_data
 from gemd.json import GEMDJson
 import json
 

@@ -13,22 +13,27 @@ Entity
    entity/core_element
    entity/gemd_element
    entity/material
-   entity/process
    entity/ingredient
+   entity/process_or_measurement
+   entity/process
    entity/measurement
 
-Tools
+Structures
 -----------------
 
 .. toctree::
    :maxdepth: 1
 
-   tools/tool
+   structures/structure
+   structures/materials_sequence
+
+Instruments
+-----------------
 
 .. toctree::
    :maxdepth: 1
-   
-   tools/materials_sequence
+
+   instruments/instrument
 
 
 Science Kit

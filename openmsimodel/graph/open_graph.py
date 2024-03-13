@@ -12,8 +12,8 @@ from gemd.json import GEMDJson
 
 from openmsimodel.utilities.argument_parsing import OpenMSIModelParser
 from openmsimodel.utilities.runnable import Runnable
-from openmsimodel.utilities.tools import read_gemd_data
 from openmsimodel.graph.helpers import launch_graph_widget
+from openmsimodel.utilities.io import read_gemd_data
 
 import time
 
@@ -44,6 +44,7 @@ class OpenGraph(Runnable):
         name,
         source,
         output,
+        science_kit=None,
         layout="raw",
         add_bidirectional_edges=False,
         take_small_sample=False,
@@ -78,6 +79,9 @@ class OpenGraph(Runnable):
         self.output = pathlib.Path(output)  # TODO: REQUIRES FULL PATH NOW; fix or keep?
         if not self.output.exists():
             raise FileNotFoundError(f"{self.output} does not exist.")
+        self.science_kit = science_kit
+        if self.science_kit:
+            self.science_kit.open_graphs[name] = self
         self.layout = layout
         self.add_bidirectional_edges = add_bidirectional_edges
         self.take_small_sample = take_small_sample

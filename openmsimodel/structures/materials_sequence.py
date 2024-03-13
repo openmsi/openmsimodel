@@ -4,15 +4,15 @@ from openmsimodel.entity.gemd.measurement import Measurement
 from openmsimodel.entity.gemd.material import Material
 from openmsimodel.entity.gemd.process import Process
 from openmsimodel.entity.gemd.gemd_element import GEMDElement
-from openmsimodel.tools.tool import Tool
+from openmsimodel.structures.structure import Structure
 from typing import ClassVar, Type, Optional
 from openmsimodel.entity.gemd.helpers import from_spec_or_run
 from openmsimodel.utilities.typing import Spec, Run
 
 
-class MaterialsSequence(Tool):
+class MaterialsSequence(Structure):
     """
-    MaterialsSequence is a type of Tool intended to represent consecutive Elements in the order of 'Ingredients', 'Process', 'Material', and 'Measurements'.
+    MaterialsSequence is a type of Structure intended to represent consecutive Elements in the order of 'Ingredients', 'Process', 'Material', and 'Measurements'.
     It is the natural order of GEMD objects, and of our Elements object, which are essentially GEMD wrappers. It is a loose class and can omit some elements of the block.
     It can be a powerful way to manipulate, link, dump, etc, GEMD objects together, while Blocks themselves can be linked with one another, facilitating repeat
     elements, linking for wide (i.e., many ingredients, many measurements) or vertical (i.e., long sequence of Elements) science_kit, etc.
@@ -46,7 +46,7 @@ class MaterialsSequence(Tool):
             TypeError: measurement must be of type "dict".
         """
 
-        Tool.__init__(self, name, science_kit=science_kit)
+        Structure.__init__(self, name, science_kit=science_kit)
         # if process is None: #FIXME
         #     raise TypeError("'process' argument is not set. ")
         if (material and (not isinstance(material, Material))) or (

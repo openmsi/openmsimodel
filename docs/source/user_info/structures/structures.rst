@@ -1,9 +1,8 @@
-=======
-Tools
-=======
+===========
+Structures
+===========
 
-
-In our toolkit, we developed additional data structures that are pivotal to facilitate the organization and manipulation of data elements within the GEMD (Graphical Expression of Materials Data) framework. These structures are primarily built around the **'CoreElement'** class, providing a means to establish logical relationships between various data entities.
+In our toolkit, we developed additional data structures that are pivotal to facilitate the organization and manipulation of data elements within the GEMD (Graphical Expression of Materials Data) framework. These structures are primarily built around the **'GEMDElement'** class, providing a means to establish logical relationships between various data entities.
 
 For instance, consider the MaterialsSequence, which represents the natural and common sequence of *ingredients* being used in a *process*, resulting in the generation of *materials*, from which emerge *measurements*. This sequence highlights the interconnectedness of these elements within the data model.
 

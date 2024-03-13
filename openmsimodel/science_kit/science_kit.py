@@ -26,25 +26,21 @@ class ScienceKit(Runnable):
 
     ARGUMENT_PARSER_TYPE = OpenMSIModelParser
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, version="0.0.1"):
         """Initialization of science_kit"""
         # self.root = kwargs["root"]
+        self.version = version
         self.elements = []
-        self.subs = {}
-        self.terminal_subs = defaultdict()
-        # self.blocks = defaultdict()
-        # self.terminal_blocks = defaultdict()
-        # self.encoder = GEMDJson()
-        # if "output" in args:
-        #     self.output = args.output
+        self.structures = {}
+        self.instruments = {}
+        self.open_graphs = {}
+        self.open_dbs = {}
 
-    @property
     def assets(self):
-        _assets = []
-        if self.subs:
-            for sub in self.subs.values():
-                _assets.extend(sub.assets)
-        return _assets
+        if self.structures:
+            for structure in self.structures.values():
+                self.elements.extend(structure.assets)
+        return self.elements
 
     def build(self):
         """
@@ -104,8 +100,6 @@ class ScienceKit(Runnable):
             spec=spec,
             run=run,
         )
-
-    # @classmethod
 
     #################### CLASS METHODS ####################
 

@@ -49,7 +49,7 @@ class OpenDB(Runnable):
 
     ARGUMENT_PARSER_TYPE = OpenMSIModelParser
 
-    def __init__(self, database_name, private_path, output):
+    def __init__(self, database_name, private_path, output, science_kit=None):
         """
         Initialization of OpenDB instance.
 
@@ -66,7 +66,9 @@ class OpenDB(Runnable):
         self.listed_functions = {}
         self.listed_acronyms = {}
         self.logger = Logger()
-
+        self.science_kit = science_kit
+        if self.science_kit:
+            self.science_kit.open_dbs[database_name] = self
         self.setup(database_name, private_path)
 
     def setup(self, database_name, private_path):

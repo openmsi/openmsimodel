@@ -8,7 +8,7 @@ If your production data, in its unaltered format, resides at level 0 of the data
 
 The primary class within this API, the **'CoreElement'** class, is the first layer. It aims to encapsulate the most fundamental elements within your chosen data model. For instance, it includes a function 'assets()' that consistently provides access to the core elements, regardless of the selected data model.
 
-In our context, GEMD (Graphical Expression of Materials Data) serves as the principal data model. Therefore, the **'GemdElement'** class extends the **'CoreElement'** class as the second layer. It is inherited by the **'Process'**, **'Material'**, **'Ingredient'**, and **'Measurement'** classes, which constitute the third layer. Instead of individually interacting with and managing GEMD Process Templates, Specifications, or Runs, these two together help handle all the details under a single class, and provides refactored approaches and extensions to GEMD.
+In our context, GEMD (Graphical Expression of Materials Data) serves as the principal data model. Therefore, the **'GEMDElement'** class extends the **'CoreElement'** class as the second layer. It is inherited by the **'Process'**, **'Material'**, **'Ingredient'**, and **'Measurement'** classes, which constitute the third layer. Instead of individually interacting with and managing GEMD Process Templates, Specifications, or Runs, these two together help handle all the details under a single class, and provides refactored approaches and extensions to GEMD.
 
 Among the added benefits of these layers:
 
@@ -32,11 +32,8 @@ more importantly,
 
 * Less lines of code for development!
 
-Learn more about our layers:
-
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
-   
-    core_element
-    gemd_elements
+   :caption: Learn more about our layers:
+
+   core_element
+   gemd_element

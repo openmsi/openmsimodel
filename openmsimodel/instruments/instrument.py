@@ -5,15 +5,11 @@ from openmsimodel.entity.gemd.gemd_element import GEMDElement
 from openmsimodel.utilities.runnable import Runnable
 
 
-class Tool(Runnable):
-    """Tool represents 1+ Elements that are grouped together for easier instantiation, manipulation, analysis, and more.
-    The grouping can be based on any rule or criteria of interest, such as consecutive elements, elements with a logical relationships or simply preference.
-    """
-
+class Instrument(Runnable):
     def __init__(
         self, name: str, *, science_kit: ScienceKit = None, self_assign: bool = True
     ):
-        """initialization of Tool.
+        """initialization of Instrument.
 
         Args:
             name (str): name of subworkflow
@@ -23,7 +19,7 @@ class Tool(Runnable):
         self.name = name
         self.science_kit = science_kit
         if self.science_kit and self_assign:
-            self.science_kit.subs[name] = self
+            self.science_kit.instruments[name] = self
 
     @classmethod
     def get_command_line_arguments(cls):

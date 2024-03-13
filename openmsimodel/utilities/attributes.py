@@ -169,7 +169,7 @@ def update_attrs(
         if attr_name not in attrs[plural].keys():
             if (
                 hasattr(attr, "template")
-                # and attr.template.name not in attrs[plural].keys()
+                # and attr.template.name not in attrs[plural].keys() #FIXME
             ):
                 # raise KeyError(
                 #     f"the '{attr_name}' attribute is not among the object defined attributes."

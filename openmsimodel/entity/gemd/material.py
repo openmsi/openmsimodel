@@ -7,7 +7,7 @@ from gemd.entity.util import make_instance
 from gemd.enumeration import SampleType
 
 from openmsimodel.entity.gemd.gemd_element import GEMDElement
-
+from openmsimodel.utilities.typing import SpecOrRunLiteral
 from openmsimodel.utilities.attributes import finalize_template
 from .process import Process
 
@@ -154,7 +154,10 @@ class Material(GEMDElement):
         return self._prop_cond_dict(self._spec.properties)
 
     def update_properties_and_conditions(
-        self, *properties: PropertyAndConditions, replace_all: bool = False
+        self,
+        *properties: PropertyAndConditions,
+        replace_all: bool = False,
+        which: SpecOrRunLiteral = "spec"
     ) -> None:
         """
         Change or add expected properties (with conditions) of the material spec.
@@ -167,14 +170,16 @@ class Material(GEMDElement):
         :default replace_all: False
         """
 
-        self._update_attributes(
+        self.update_attributes(
             AttrType=PropertyAndConditions,
             attributes=properties,
             replace_all=replace_all,
-            which="spec",
+            which=which,
         )
 
-    def remove_properties(self, *property_names: str) -> None:
+    def remove_properties(
+        self, *property_names: str, which: SpecOrRunLiteral = "spec"
+    ) -> None:
         """
         Remove expected properties from the material spec by name.
 
@@ -183,8 +188,8 @@ class Material(GEMDElement):
 
         """
 
-        self._remove_attributes(
-            AttrType=PropertyAndConditions, attr_names=property_names, which="spec"
+        self.remove_attributes(
+            AttrType=PropertyAndConditions, attr_names=property_names, which=which
         )
 
     def get_sample_type(self) -> SampleType:

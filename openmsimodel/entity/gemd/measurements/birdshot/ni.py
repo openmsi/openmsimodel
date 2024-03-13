@@ -21,13 +21,4 @@ class NI(Measurement):
 
     _ATTRS: ClassVar[AttrsDict] = {"conditions": {}, "parameters": {}, "properties": {}}
 
-    # define_attribute(
-    #     _ATTRS,
-    #     template=ParameterTemplate(
-    #         name='Supplier',
-    #         bounds=CategoricalBounds(categories=[''])
-    #     ),
-    #     default_value=NominalCategorical('')
-    # )
-
     finalize_template(_ATTRS, TEMPLATE)

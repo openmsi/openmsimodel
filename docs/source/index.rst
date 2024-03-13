@@ -24,8 +24,9 @@ It allows to structure real scientific workflows into meaningful data structures
    :caption: Working with OpenMSIModel:
 
    user_info/entity/entity
-   user_info/tools/tools
    user_info/science_kit/science_kit
+   user_info/structures/structures
+   user_info/instruments/instruments
    user_info/graph/open_graph
    user_info/db/open_db
    user_info/stores/stores

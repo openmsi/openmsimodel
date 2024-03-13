@@ -218,6 +218,27 @@ class GEMDElement(CoreElement):
 
     ############################### ATTRIBUTES ###############################
 
+    def update_attributes(
+        self,
+        AttrType: Type[BaseAttribute],
+        attributes: tuple[BaseAttribute],
+        replace_all: bool = False,
+        which: SpecOrRunLiteral = "spec",
+    ) -> None:
+        """Updates the attributes of the spec or run with the specified attributes of the given attribute type (e.g., Property, Parameter, Condition)."""
+        update_attrs(
+            self._ATTRS, self._spec, self._run, AttrType, attributes, replace_all, which
+        )
+
+    def remove_attributes(
+        self,
+        AttrType: Type[BaseAttribute],
+        attr_names: tuple[str, ...],
+        which: SpecOrRunLiteral = "spec",
+    ) -> None:
+        """Removes the attributes with the specified names from the spec or run of the given attribute type (e.g., Property, Parameter, Condition)."""
+        remove_attrs(self._ATTRS, self._spec, self._run, AttrType, attr_names, which)
+
     def prepare_attrs(self):
         """Prepares the attributes for the element based on its template, including conditions, parameters, and properties."""
         self._ATTRS = _validate_temp_keys(self.TEMPLATE)
@@ -233,27 +254,6 @@ class GEMDElement(CoreElement):
             for pr in self.TEMPLATE.properties:
                 define_attribute(self._ATTRS, template=pr[0])
         finalize_template(self._ATTRS, self.TEMPLATE)
-
-    def _update_attributes(
-        self,
-        AttrType: Type[BaseAttribute],
-        attributes: tuple[BaseAttribute],
-        replace_all: bool = False,
-        which: SpecOrRunLiteral = "spec",
-    ) -> None:
-        """Updates the attributes of the spec or run with the specified attributes of the given attribute type (e.g., Property, Parameter, Condition)."""
-        update_attrs(
-            self._ATTRS, self._spec, self._run, AttrType, attributes, replace_all, which
-        )
-
-    def _remove_attributes(
-        self,
-        AttrType: Type[BaseAttribute],
-        attr_names: tuple[str, ...],
-        which: SpecOrRunLiteral = "spec",
-    ) -> None:
-        """Removes the attributes with the specified names from the spec or run of the given attribute type (e.g., Property, Parameter, Condition)."""
-        remove_attrs(self._ATTRS, self._spec, self._run, AttrType, attr_names, which)
 
     ############################### PROPERTIES ###############################
 
@@ -274,14 +274,14 @@ class GEMDElement(CoreElement):
             Whether to update the spec, run, or both.
         """
 
-        self._update_attributes(
+        self.update_attributes(
             AttrType=Property,
             attributes=properties,
             replace_all=replace_all,
             which=which,
         )
 
-    def remove_properties(self, *property_names: str) -> None: #FIXME: add 'which'
+    def remove_properties(self, *property_names: str) -> None:  # FIXME: add 'which'
         """
         Remove measured properties from the measurement run or spec by name.
 
@@ -290,13 +290,9 @@ class GEMDElement(CoreElement):
 
         """
 
-        self._remove_attributes(
+        self.remove_attributes(
             AttrType=Property, attr_names=property_names, which="spec"
         )
-    
-    # def get_properties_dict(self):
-    #     """Returns a dictionary of the run properties, including their names, values, and origins."""
-    #     return self._prop_dict(self._run.properties)
 
     ############################### TAGS ###############################
     def update_tags(
@@ -389,18 +385,6 @@ class GEMDElement(CoreElement):
 
         tag_strs = [cls._TAG_SEP.join(tag) for tag in tags]
         spec_or_run.tags = [tag for tag in spec_or_run.tags if tag not in tag_strs]
-
-    # @staticmethod
-    # def _build_tags_dict(tags: list[str], parent_dict: dict, tag_sep: str) -> None:
-    #     """Build a spec or run hierarchical tags ``dict``."""
-
-    #     for tag_str in tags:
-    #         tag_tup = tag_str.split(tag_sep)
-    #         parent = parent_dict
-    #         for component in tag_tup:
-    #             if component not in parent:
-    #                 parent[component] = {}
-    #             parent = parent[component]
 
     def get_tags_dict(self):
         """Get a ``dict`` representing the hierarchical tags."""
