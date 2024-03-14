@@ -1,3 +1,5 @@
+"""Base class for measurements."""
+
 from typing import ClassVar, Optional
 
 from gemd import (
@@ -10,8 +12,6 @@ from gemd import (
     Property,
 )
 from gemd.entity.util import make_instance
-
-# from openmsimodel.utilities.typing import ValueAndOrigin
 
 from openmsimodel.entity.gemd.process_or_measurement import ProcessOrMeasurement
 
@@ -87,11 +87,9 @@ class Measurement(ProcessOrMeasurement):
 
             measurement.spec.name = name
             measurement.spec.notes = notes
-            # measurex/ment.spec.template = cls.TEMPLATE
 
             measurement.update_conditions(which="spec")
             measurement.update_parameters(which="spec")
-            # measurement.update_properties(which="spec") #FIXME: send error in case they send msg that dont exist
 
         if run is not None:
             if not isinstance(run, MeasurementRun):

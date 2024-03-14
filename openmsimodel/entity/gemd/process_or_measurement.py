@@ -30,8 +30,6 @@ class ProcessOrMeasurement(GEMDElement):
 
     TEMPLATE: ClassVar[Union[ProcessTemplate, MeasurementTemplate]]
 
-    # {'brand1': {'model1': ('id1', 'id2', etc.), etc.}, etc.}
-    # e.g. {'Quantum Design': {'DynaCool': ['1', '2', '3']}}
     INSTRUMENTS: ClassVar[dict[str, dict[str, tuple]]]
 
     # TODO: measurement specs dont take properties but runs do
@@ -171,11 +169,10 @@ class ProcessOrMeasurement(GEMDElement):
         self.remove_attributes(
             AttrType=Parameter, attr_names=parameter_names, which=which
         )
-    
+
     def get_parameters_dict(self):
         """Return a ``dict`` of the spec and run parameters."""
         return self._spec_run_dict(self._spec.parameters, self._run.parameters)
-
 
     def get_source(self) -> dict[str, str]:
         """
@@ -211,11 +208,6 @@ class ProcessOrMeasurement(GEMDElement):
         ValueError
             If `email` is invalid.
         """
-
-        # if not re.fullmatch(r"[^@]+@[^@]+\.[^@]+", email):
-        #     raise ValueError(
-        #         'Invalid email. Must contain a single "@" and at least one "." after the "@".'
-        #     )
 
         if iso_date is not None:
             iso_date = datetime.fromisoformat(iso_date).isoformat(timespec="auto")

@@ -1,3 +1,11 @@
+"""
+This module defines the `GEMDElement` class, which serves as a foundational element for materials, processes, and measurements in the GEMD (Graphical Expression of Materials Data) framework. 
+
+The class provides functionality for creating, updating, linking, and outputting these entities. 
+
+It includes methods for managing attributes such as properties, tags, and file links, making it a versatile tool for working with materials data.
+"""
+
 import os, warnings
 from abc import abstractmethod
 from typing import ClassVar, Type, Optional
@@ -9,7 +17,6 @@ from gemd.entity.util import make_instance
 from openmsimodel.entity.core_element import CoreElement
 
 0
-# from gemd.util.impl import set_uuids
 from openmsimodel.entity.gemd.impl import assign_uuid
 from openmsimodel.utilities.cached_isinstance_functions import (
     isinstance_template,
@@ -115,14 +122,7 @@ class GEMDElement(CoreElement):
                         ResourceWarning,
                     )
                 self.TEMPLATE = template
-                # if ("persistent_id" in self.TEMPLATE.uids.keys()) or (
-                #     uuid in self.TEMPLATE.uids.keys()
-                # ):
-                #     raise KeyError(
-                #         f'the uuid and "persistent_id" uid keys are reserved. Use another key. '
-                #     )
-
-                # TODO: Extend (or sync with external func that returns a dict for runs/specs
+                # FIXME: keep persistent id as reserved?
 
             # TODO: change from file when supporting file links
             # registering the object templates
@@ -163,7 +163,7 @@ class GEMDElement(CoreElement):
             )
             self._run: Run = make_instance(self._spec)
             assign_uuid(self._spec, "auto")
-            assign_uuid(self._run, "auto")  # redundant?
+            assign_uuid(self._run, "auto")  # FIXME: redundant?
 
     @property
     # @abstractmethod
@@ -194,7 +194,12 @@ class GEMDElement(CoreElement):
         return _assets
 
     def assert_linked(self, uuid_key="auto"):
-        """Checks if the spec and run are properly linked to their templates using the specified UUID key."""
+        """
+        Checks if the spec and run are properly linked to their templates using the specified UUID key.
+
+        Parameters:
+            uuid_key (str, optional): The UUID key to check for linking. Defaults to "auto".
+        """
         if (
             uuid_key in self.spec.template.uids.keys()
             and uuid_key in self.TEMPLATE.uids.keys()
@@ -217,7 +222,6 @@ class GEMDElement(CoreElement):
             print(f"uuid key: {uuid_key} not found in either specs.")
 
     ############################### ATTRIBUTES ###############################
-
     def update_attributes(
         self,
         AttrType: Type[BaseAttribute],

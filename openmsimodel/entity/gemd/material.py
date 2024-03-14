@@ -45,21 +45,6 @@ class Material(GEMDElement):
 
         self.set_sample_type(sample_type)
 
-    # @property
-    # def template(self) -> MaterialTemplate:
-    #     """The underlying material template."""
-    #     return self.TEMPLATE
-
-    # @property
-    # def spec(self) -> MaterialSpec:
-    #     """The underlying material spec."""
-    #     return self._spec
-
-    # @property
-    # def run(self) -> MaterialRun:
-    #     """The underlying material run."""
-    #     return self._run
-
     @classmethod
     def from_spec_or_run(
         cls,
@@ -92,15 +77,10 @@ class Material(GEMDElement):
             if not isinstance(spec, MaterialSpec):
                 raise TypeError("spec must be a MaterialSpec.")
 
-            # template = spec.template
-
             material._spec = spec
 
             material.spec.name = name
             material.spec.notes = notes
-            # material.spec.template = cls.TEMPLATE
-
-            # material.update_properties_and_conditions()
 
         if run is not None:
             if not isinstance(run, MaterialRun):
@@ -230,6 +210,3 @@ class Material(GEMDElement):
         }
 
         return prop_cond_dict
-
-    def to_form(self) -> str:
-        pass

@@ -24,9 +24,7 @@ class Ingredient(GEMDElement):
     _RunType = IngredientRun
 
     def __init__(self, name: str, *, notes: Optional[str] = None) -> None:
-        # Element.__init__(self, name)
         super().__init__(name, notes=notes, is_not_ingredient=False)
-        # super(ABC, self).__init__()
         self.name = name
         self._spec: Spec = self._SpecType(name=name, notes=notes)
         self._run: Run = make_instance(self._spec)
@@ -106,9 +104,7 @@ class Ingredient(GEMDElement):
         else:  # already checked that both can't be none, so only one scenario left
             if spec is None:
                 raise ValueError("At least one of spec or run must be given.")
-        # template = spec.template
 
-        # ingredient = cls(name, notes=notes, template=template)
         ingredient = cls(name, notes=notes)
 
         if spec is not None:
@@ -119,9 +115,6 @@ class Ingredient(GEMDElement):
 
             ingredient.spec.name = name
             ingredient.spec.notes = notes
-            # ingredient.spec.template = cls.TEMPLATE
-            # ingredient.update_conditions(which="spec")
-            # ingredient.update_parameters(which="spec")
 
         if run is not None:
             if not isinstance(run, IngredientRun):
@@ -129,18 +122,8 @@ class Ingredient(GEMDElement):
 
             ingredient._run = run
 
-            # ingredient.run.name = name
             ingredient.run.notes = notes
             ingredient.run.spec = ingredient.spec
-
-            # ingredient.update_conditions(which="run")
-            # ingredient.update_parameters(which="run")
-
-            # source = ingredient.get_source()
-            # if source:
-            #     ingredient.set_source(
-            #         email=source["performed_by"], iso_date=source["performed_date"]
-            #     )
 
         else:
             ingredient._run = make_instance(ingredient.spec)

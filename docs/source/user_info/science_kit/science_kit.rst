@@ -11,9 +11,9 @@ ScienceKit is designed to encompass the entire knowledge of the science kit, cap
 
 The definition of a science kit is meant to be flexible to the needs of the user, allowing workflows to be composed to construct even larger GEMD graphs. The **build()** method is meant to be overwritten by child objects of ScienceKit that correspond to a specific science kit or user case.
 
-The **thin_dumps()** method dumps the entire model into a JSON per object, each representing the 'thin' version of the object in which pointers (i.e., true value) are replaced by links (e.g., uuid). Similarly, the **dumps()** method dumps the entire model into a single JSON, which contains all the model objects with data pointers.
+The **dumps()** method dumps the entire model into a JSON per object, each representing the 'thin' version of the object in which pointers (i.e., true value) are replaced by links (e.g., uuid). 
 
-The class also includes methods for loading models (**thin_loads()** and **loads()**) from JSONs, as well as an out() method to run on individual items during recursion.
+The class also includes methods for loading models (**loads()**) from JSONs, as well as an out() method to run on individual items during recursion.
 
 The **from_spec_or_run()** class method is used to initialize a ScienceKit object from a spec or a run, adding on all its connected components, providing powerful ways to create objects. 
 

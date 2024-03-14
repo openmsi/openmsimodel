@@ -6,7 +6,6 @@ import argparse
 import json
 from typing import Optional
 
-# from openmsimodel.structres.folder_or_file import FolderOrFile
 from openmsimodel.utilities.runnable import Runnable
 from openmsimodel.utilities.argument_parsing import OpenMSIModelParser
 from openmsimodel.utilities.typing import Spec, Run
@@ -17,9 +16,8 @@ from gemd.util.impl import recursive_foreach
 
 # TODO: extend Logging
 class ScienceKit(Runnable):
-    """Class to model a science_kit, typically a set of processing steps, experiments, and characterizations, into GEMD, a data model.
-    the definition of a science_kit is meant to be flexible to the needs of the user. Workflows can be composed
-    to construct even larger GEMD graphs.
+    """Class to model a science_kit, an all-encompassing structure for your data models, graphs, databases, etc.
+    the definition of a science_kit is meant to be flexible to the needs of the user.
     It offers utilities functions to build the model flexibly, break it down into smaller, easier to
     manage blocks, or complete operations such as dumping and loading models into/from JSONs.
     """
@@ -28,7 +26,6 @@ class ScienceKit(Runnable):
 
     def __init__(self, version="0.0.1"):
         """Initialization of science_kit"""
-        # self.root = kwargs["root"]
         self.version = version
         self.elements = []
         self.structures = {}
@@ -49,29 +46,17 @@ class ScienceKit(Runnable):
         """
         pass
 
-    def thin_dumps(self):
+    def dumps(self):
         """
         dumps the entire model into a JSON per object, each representing the 'thin' version' of the object
         in which pointers (i.e., true value) are replaced by links (e.g., uuid).
         """
         pass
 
-    def dumps(self):
-        """
-        dumps the entire model into a single JSON, which contains all the model objects with data pointers (!= links).
-        """
-        pass
-
-    def thin_loads(self):
+    def loads(self):
         """
         loads the entire model from a list of JSONs, each representing the 'thin' version' of the model object
         in which pointers (i.e., true value) are replaced by links (e.g., uuid).
-        """
-        pass
-
-    def loads(self):
-        """
-        loads the entire model from a single JSON, which contains all the model objects with data pointers (!= links)
         """
         pass
 

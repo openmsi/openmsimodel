@@ -91,7 +91,6 @@ def define_attribute(
             "template must be an instance of ConditionTemplate, "
             "ParameterTemplate, or PropertyTemplate."
         )
-    key2 = "obj"
 
     if bounds is not None and not isinstance(bounds, BaseBounds):
         raise TypeError("bounds must be an instance of BaseBounds.")
@@ -104,6 +103,7 @@ def define_attribute(
             f'attribute template of type "{key1}" cannot be assigned to attributes dictionary with keys "{cls_attrs.keys()}".'
         )
 
+    key2 = "obj"
     cls_attrs[key1][template.name] = {
         key2: template,
         "bounds": bounds,
@@ -138,7 +138,7 @@ def finalize_template(cls_attrs: AttrsDict, cls_template: Template) -> None:
 
 
 def update_attrs(
-    attrs: AttrsDict,
+    attrs_dict: AttrsDict,
     spec: Spec,
     run: Run,
     AttrType: Type[Union[BaseAttribute, PropertyAndConditions]],
@@ -153,41 +153,30 @@ def update_attrs(
     validate_state(which)
 
     # returns required attributes, defined as attributes with a default value
-    required_attrs = _required_attrs(attrs, AttrType, attr_dict_key, plural)
-
-    # ensures that the attribute exists in the template
-    # for attr in attributes:
-    #     if attr.name not in attrs[plural]:
-    #         raise ValueError(f'{singular.capitalize()} "{attr.name}" is not supported.')
+    required_attrs = _required_attrs(attrs_dict, AttrType, attr_dict_key, plural)
 
     supplied_attrs = {attr.name: attr for attr in attributes}
 
     for attr_name, attr in supplied_attrs.items():
         # FIXME: quick fix for now for having multiple version of a same template (i.e., ambient ressure, purging pressure for the same parameter template: pressure )
         # TODO: applies to uncommented bloc of code above that caused errors
-        # ensures that the attribute exists in the template
-        if attr_name not in attrs[plural].keys():
-            if (
-                hasattr(attr, "template")
-                # and attr.template.name not in attrs[plural].keys() #FIXME
-            ):
-                # raise KeyError(
-                #     f"the '{attr_name}' attribute is not among the object defined attributes."
-                # )
+        # ensures that the attribute exists in the template and registers it to attrs_dict
+        if attr_name not in attrs_dict[plural].keys():
+            if hasattr(attr, "template"):
                 define_attribute(
-                    attrs,
+                    attrs_dict,
                     template=attr.template,
                     # default_value=attr.template.default_value, #FIXME
                 )
             attr_name = attr.template.name  # FIXME
 
-        # reassigns the template of the supplied attr to the pre-definted attr template
+        # reassigns the template of the supplied attr to the pre-defined attr template
         if type(attr) == PropertyAndConditions:
             if hasattr(attr, "property") and attr.property.template is not None:
-                attr.property.template = attrs[plural][attr_name]["obj"]
+                attr.property.template = attrs_dict[plural][attr_name]["obj"]
         else:
             if attr.template is not None:
-                attr.template = attrs[plural][attr_name][
+                attr.template = attrs_dict[plural][attr_name][
                     "obj"
                 ]  # TODO: fix attr_name, change to temp_name and set temp_name to whole name or to template.name based on if found
 
@@ -198,7 +187,7 @@ def update_attrs(
 
 
 def _required_attrs(
-    attrs: AttrsDict,
+    attrs_dict: AttrsDict,
     AttrType: Type[Union[BaseAttribute, PropertyAndConditions]],
     attr_dict_key: str,
     plural: str,
@@ -217,7 +206,7 @@ def _required_attrs(
                     origin=Origin.SPECIFIED,
                 )
             )
-            for attr_name, attr_dict in attrs[plural].items()
+            for attr_name, attr_dict in attrs_dict[plural].items()
             if attr_dict["default_value"] is not None
         }
     return {
@@ -227,7 +216,7 @@ def _required_attrs(
             template=attr_dict["obj"],
             origin=Origin.SPECIFIED,
         )
-        for attr_name, attr_dict in attrs[plural].items()
+        for attr_name, attr_dict in attrs_dict[plural].items()
         if attr_dict["default_value"] is not None
     }
 
@@ -273,7 +262,7 @@ def _set_attrs(
 
 
 def remove_attrs(
-    attrs: AttrsDict,
+    attrs_dict: AttrsDict,
     spec: Spec,
     run: Run,
     AttrType: Type[Union[BaseAttribute, PropertyAndConditions]],
@@ -290,12 +279,12 @@ def remove_attrs(
 
     required_names = [
         attr_name
-        for attr_name, attr_dict, in attrs[plural].items()
+        for attr_name, attr_dict, in attrs_dict[plural].items()
         if attr_dict["default_value"] is not None
     ]
 
     for name in attr_names:
-        if name not in attrs[plural]:
+        if name not in attrs_dict[plural]:
             raise ValueError(f'{singular.capitalize()} "{name}" is not supported.')
         if name in required_names:
             raise ValueError(f'May not remove required {singular} "{name}".')

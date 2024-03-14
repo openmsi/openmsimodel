@@ -125,8 +125,6 @@ class OpenGraph(Runnable):
 
         gemd_objects, gemd_paths = read_gemd_data(self.source, encoder)
 
-        # gemd_objects, gemd_paths = gemd_objects[:5000], gemd_paths[:5000]
-
         if len(gemd_objects) == 0:
             print("No objects were found.")
             return
@@ -226,13 +224,13 @@ class OpenGraph(Runnable):
                 if "material" in obj_data and obj_data["material"]:
                     material = obj_data["material"]["id"]
                     G.add_edge(material, uid)
-                # if self.add_bidirectional_edges:
-                #     G.add_edge(process, uid)
-                #     if "material" in obj_data and obj_data["material"]:
-                #         material = obj_data["material"]["id"]
-                #         G.add_edge(material, uid)
-                #         if self.add_bidirectional_edges:
-                #             G.add_edge(uid, material)
+                if self.add_bidirectional_edges:
+                    G.add_edge(process, uid)
+                    if "material" in obj_data and obj_data["material"]:
+                        material = obj_data["material"]["id"]
+                        G.add_edge(material, uid)
+                        if self.add_bidirectional_edges:
+                            G.add_edge(uid, material)
                 self.add_gemd_assets(
                     G,
                     uid,
@@ -266,10 +264,8 @@ class OpenGraph(Runnable):
                 # if not self.restrictive:
                 if "material" in obj_data and obj_data["material"]:
                     material = obj_data["material"]["id"]
-                    # G.add_edge(uid, material)
                     G.add_edge(material, uid)
                     if self.add_bidirectional_edges:
-                        # G.add_edge(material, uid)
                         G.add_edge(uid, material)
 
         if self.which == "all":
@@ -428,13 +424,8 @@ class OpenGraph(Runnable):
                     return
                 if att_name in ["file_links", "tags"]:
                     G.nodes[uid][att_name] = {0: node_name}
-                    # G.add_node_attribute(uid, att_name, node_name)
                 else:
                     G.nodes[uid][att_name] = node_name
-                    # G.add_node_attribute(uid, att_name, node_name)
-                    # nx.set_node_attributes(
-                    #     G, values=node_name, name=att_name
-                    # )  # type=key_attr_type)
 
     def diagnostics(self, G, gemd_objects, nb_disregarded):
         print("-- Analysis --")
@@ -448,8 +439,6 @@ class OpenGraph(Runnable):
         subgraphs = [G.subgraph(c) for c in nx.strongly_connected_components(G)]
         print("number of connected components: {}".format(len(subgraphs)))
         print("total nb of isolates in the graph: {}".format(nx.number_of_isolates(G)))
-        # ubgraphs = (self.digraph.subgraph(c).copy() for c in nx.strongly_connected_components(self.digraph))
-        # print(f"total nb of components in the graph: {nx.number_connected_components(G)}")
 
     @classmethod
     def launch(cls, path, from_command_line=False):
@@ -502,8 +491,6 @@ class OpenGraph(Runnable):
         """
 
         G = nx.nx_agraph.to_agraph(G)
-        # G.node_attr.update(nodesep=0.4)
-        # G.node_attr.update(ranksep=1)
         G.layout(prog="dot")
         return G
 
@@ -693,7 +680,6 @@ class OpenGraph(Runnable):
             if args.a:
                 functions.append(nx.ancestors)
             identifier_G = cls.extract_subgraph(G, args.identifier, func=functions)
-            # identifier_G = cls.map_to_graphviz(identifier_G) #FIXME?
             identifier_G_dot_path, _, identifier_G_grapml_path = cls.save_graph(
                 args.output,
                 identifier_G,

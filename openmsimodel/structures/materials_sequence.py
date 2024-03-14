@@ -272,10 +272,6 @@ class MaterialsSequence(Structure):
                     if not traversed["ingredients"]:
                         traversed["ingredients"] = True
                         for i, ingredient_run in enumerate(element.run.ingredients):
-                            # print("Test")
-                            # print(len(element.run.ingredients))
-                            # print(i)
-                            # print(ingredient_run)
                             ingredients.add(
                                 Ingredient.from_spec_or_run(
                                     ingredient_run.name,
@@ -303,11 +299,6 @@ class MaterialsSequence(Structure):
                         traverse(material)
 
         traverse(initial)
-        # print("final")
-        # print(process)
-        # print(material)
-        # print([i.name for i in list(ingredients)])
-        # print([i.name for i in list(measurements)])
         block = cls(
             name=name,
             process=process,
@@ -318,38 +309,3 @@ class MaterialsSequence(Structure):
         )
         block.link_within()
         return block
-
-
-# def find_linked_elements(start_element):
-#     linked_elements = set()
-
-#     def traverse(element):
-#         linked_elements.add(element)
-
-#         if hasattr(element, "measurements"):
-#             for measurement in element.measurements:
-#                 linked_elements.add(measurement)
-
-#         if hasattr(element, "material") and element.material:
-#             linked_elements.add(element.material)
-#             traverse(element.material)
-
-#     traverse(start_element)
-#     return linked_elements
-
-# if isinstance(element, Material):
-
-# @classmethod
-# def from_(self, any):
-#     if isinstance_base_element(any):
-#         if isinstance(any, Material):
-#             self.material = any
-#         if isinstance(any, Process):
-#             self.process = any
-#         elif isinstance(any, Ingredient):
-#             self.ingredients[any.name] = any
-#         elif isinstance(any, Measurement):
-#             self.measurements[any.name] = any
-#         self.link_within()
-# elif isinstance_all_gemd(any):
-#     if isinstance(any, Material):
