@@ -158,12 +158,21 @@ class GEMDElement(CoreElement):
                                 store.id
                             ].register_new_template(_attr["obj"])
 
-            self._spec: Spec = self._SpecType(
-                name=name, notes=notes, template=self.TEMPLATE
-            )
+            self._spec: Spec = self._SpecType(name=name, template=self.TEMPLATE)
             self._run: Run = make_instance(self._spec)
             assign_uuid(self._spec, "auto")
             assign_uuid(self._run, "auto")  # FIXME: redundant?
+
+    def generate_new_spec_run(self):
+        if hasattr(self, "TEMPLATE"):
+            self._spec: Spec = self._SpecType(name=self.name, template=self.TEMPLATE)
+        else:
+            self._spec: Spec = self._SpecType(name=self.name)
+        self._run: Run = make_instance(self._spec)
+        assign_uuid(self._spec, "auto")
+        assign_uuid(self._run, "auto")  # FIXME: redundant?
+        self.assert_linked()
+        return self
 
     @property
     # @abstractmethod

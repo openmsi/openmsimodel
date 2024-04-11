@@ -60,8 +60,12 @@ class Ingredient(GEMDElement):
 
     def assert_linked(self, uuid_key="auto"):
         if (
-            uuid_key in self.spec.template.uids.keys()
-            and uuid_key in self.TEMPLATE.uids.keys()
+            hasattr(self.spec, "template")
+            and hasattr(self.spec.template, "uids")
+            and (
+                uuid_key in self.spec.template.uids.keys()
+                and uuid_key in self.TEMPLATE.uids.keys()
+            )
         ):
             if not self.spec.template.uids[uuid_key] == self.TEMPLATE.uids[uuid_key]:
                 print(
