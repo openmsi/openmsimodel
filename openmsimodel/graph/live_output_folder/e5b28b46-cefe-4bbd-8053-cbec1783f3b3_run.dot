@@ -1,0 +1,49 @@
+strict digraph "e5b28b46-cefe-4bbd-8053-cbec1783f3b3" {
+	graph [bb="0,0,722.74,2700",
+		name="e5b28b46-cefe-4bbd-8053-cbec1783f3b3"
+	];
+	node [label="\N"];
+	"mixture [f0deaa96-3c2d-47a4-b056-0fea9e362f78, ingredient_run]"	 [color=blue,
+		height=8.8825,
+		object="{\"absolute_quantity\": null, \"file_links\": [], \"labels\": [], \"mass_fraction\": null, \"material\": null, \"name\": \"mixture\", \"notes\": \
+null, \"number_fraction\": null, \"process\": {\"id\": \"5ed954d4-9fb4-439f-9668-92b6e2873638\", \"scope\": \"auto\", \"type\": \"link_by_uid\"}, \"\
+spec\": {\"id\": \"6f27493b-0102-4e07-ab71-bd301a0c0cb1\", \"scope\": \"auto\", \"type\": \"link_by_uid\"}, \"tags\": [], \"type\": \"ingredient_run\", \"\
+uids\": {\"auto\": \"f0deaa96-3c2d-47a4-b056-0fea9e362f78\"}, \"volume_fraction\": null}",
+		pos="361.37,2380.2",
+		shape=circle,
+		type=ingredient_run,
+		uuid="f0deaa96-3c2d-47a4-b056-0fea9e362f78",
+		width=8.8825];
+	"heating [5ed954d4-9fb4-439f-9668-92b6e2873638, process_run]"	 [color=red,
+		height=8.6478,
+		object="{\"conditions\": [], \"file_links\": [], \"name\": \"heating\", \"notes\": null, \"parameters\": [], \"source\": null, \"spec\": {\"id\": \"30e16783-b277-4df5-b6e5-c5de201b804e\", \"\
+scope\": \"auto\", \"type\": \"link_by_uid\"}, \"tags\": [], \"type\": \"process_run\", \"uids\": {\"auto\": \"5ed954d4-9fb4-439f-9668-92b6e2873638\"}}",
+		pos="361.37,1713.1",
+		shape=circle,
+		type=process_run,
+		uuid="5ed954d4-9fb4-439f-9668-92b6e2873638",
+		width=8.6478];
+	"mixture [f0deaa96-3c2d-47a4-b056-0fea9e362f78, ingredient_run]" -> "heating [5ed954d4-9fb4-439f-9668-92b6e2873638, process_run]"	 [pos="e,361.37,2024.5 361.37,2060.3 361.37,2051.7 361.37,2043.1 361.37,2034.5"];
+	"metal [cb0ee262-75d9-47fa-b3ed-cb08290af632, material_run]"	 [color=green,
+		height=8.4312,
+		object="{\"file_links\": [], \"name\": \"metal\", \"notes\": null, \"process\": {\"id\": \"5ed954d4-9fb4-439f-9668-92b6e2873638\", \"scope\": \"auto\", \"type\": \"\
+link_by_uid\"}, \"sample_type\": \"unknown\", \"spec\": {\"id\": \"b4aa9ed4-2f94-4e9e-8031-7832dbd47bf8\", \"scope\": \"auto\", \"type\": \"link_by_\
+uid\"}, \"tags\": [], \"type\": \"material_run\", \"uids\": {\"auto\": \"cb0ee262-75d9-47fa-b3ed-cb08290af632\"}}",
+		pos="361.37,1062.3",
+		shape=circle,
+		type=material_run,
+		uuid="cb0ee262-75d9-47fa-b3ed-cb08290af632",
+		width=8.4312];
+	"heating [5ed954d4-9fb4-439f-9668-92b6e2873638, process_run]" -> "metal [cb0ee262-75d9-47fa-b3ed-cb08290af632, material_run]"	 [pos="e,361.37,1366.2 361.37,1401.5 361.37,1393.1 361.37,1384.8 361.37,1376.4"];
+	"temperature [e7f01687-4d1c-41da-a9dc-6387f3496387, measurement_run]"	 [color=purple,
+		height=10.038,
+		object="{\"conditions\": [], \"file_links\": [], \"material\": {\"id\": \"cb0ee262-75d9-47fa-b3ed-cb08290af632\", \"scope\": \"auto\", \"type\": \"link_by_\
+uid\"}, \"name\": \"temperature\", \"notes\": null, \"parameters\": [], \"properties\": [], \"source\": null, \"spec\": {\"id\": \"598f42e1-4a23-4b72-a180-2719c570029e\", \"\
+scope\": \"auto\", \"type\": \"link_by_uid\"}, \"tags\": [], \"type\": \"measurement_run\", \"uids\": {\"auto\": \"e7f01687-4d1c-41da-a9dc-6387f3496387\"}}",
+		pos="361.37,361.37",
+		shape=circle,
+		type=measurement_run,
+		uuid="e7f01687-4d1c-41da-a9dc-6387f3496387",
+		width=10.038];
+	"metal [cb0ee262-75d9-47fa-b3ed-cb08290af632, material_run]" -> "temperature [e7f01687-4d1c-41da-a9dc-6387f3496387, measurement_run]"	 [pos="e,361.37,722.99 361.37,758.66 361.37,750.15 361.37,741.61 361.37,733.05"];
+}

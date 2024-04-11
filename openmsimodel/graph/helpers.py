@@ -2,7 +2,7 @@ from yfiles_jupyter_graphs import GraphWidget
 import networkx as nx
 from webcolors import name_to_hex
 import json
-from openmsimodel.graph.openmsimodel_widget import OpenMSIModelWidget
+from openmsimodel.graph.open_graph_widget import OpenGraphWidget
 
 
 def color_mapping(index, node):

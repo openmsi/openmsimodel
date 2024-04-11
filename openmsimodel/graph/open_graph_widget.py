@@ -4,6 +4,8 @@ import ipywidgets
 import IPython
 import networkx as nx
 import json
+import glob
+import os
 
 _style = [
     {
@@ -28,17 +30,28 @@ _style = [
 ]
 
 
-class OpenMSIModelWidget(traitlets.HasTraits):
+class OpenGraphWidget(traitlets.HasTraits):
     cyto_widget = traitlets.Instance(ipycytoscape.CytoscapeWidget)
     json_display = traitlets.Instance(ipywidgets.Output)
     graph = traitlets.Any()
+
+    @classmethod
+    def from_graphml_folder(self, graphml_folder):
+        target = graphml_folder + "/*.graphml"
+        graphml_filenames = glob.glob(target)
+        entire_graph = nx.DiGraph()
+        for graphml_filename in graphml_filenames:
+            individual_graph = self.from_graphml(graphml_filename).graph
+            entire_graph.add_nodes_from(individual_graph.nodes(data=True))
+            entire_graph.add_edges_from(individual_graph.edges(data=True))
+        return OpenGraphWidget(graph=entire_graph)
 
     @classmethod
     def from_graphml(self, graphml_filename):
         graph_source = nx.read_graphml(graphml_filename)
         for n, d in graph_source.nodes(data=True):
             d.update(json.loads(d.pop("object", "{}")))
-        return OpenMSIModelWidget(graph=graph_source)
+        return OpenGraphWidget(graph=graph_source)
 
     @traitlets.default("json_display")
     def _default_json_display(self):

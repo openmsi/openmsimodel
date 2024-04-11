@@ -15,6 +15,7 @@ import uuid
 class LiveOpenGraph(FileSystemEventHandler):
     mapping = {}
     output_folder = "./live_output_folder"
+    open_graphs = []
 
     def on_created(self, event):
         if event.is_directory:
@@ -25,12 +26,12 @@ class LiveOpenGraph(FileSystemEventHandler):
         file_extension = os.path.splitext(filepath)[1]
         if file_extension in self.mapping.keys():
             to_be_visualized = define_run(self.mapping[file_extension])
-            dump_graph(to_be_visualized, self.output_folder)
         else:
             to_be_visualized = define_spec(
                 file_extension, self.mapping, self.output_folder
             )
-            dump_graph(to_be_visualized, self.output_folder)
+        open_graph = dump_graph(to_be_visualized, self.output_folder)
+        self.open_graphs.append(open_graph)
 
 
 def dump_graph(to_be_visualized, output):
@@ -43,10 +44,10 @@ def dump_graph(to_be_visualized, output):
         dump_svg_and_dot=True,
     )
     G, relabeled_G, name_mapping = open_graph.build_graph(save=True)
+    return open_graph
 
 
 def define_run(mapping):
-    print(mapping[2])
     for ingredient in mapping[2]:
         ingredient.generate_new_spec_run()
     for measurement in mapping[3]:
@@ -76,7 +77,6 @@ def define_spec(file_extension, mapping, output):
     )
     mapping[file_extension] = [material, process, [ingredient], [measurement]]
     return define_run(mapping[file_extension])
-    # dump_graph(to_be_visualized, output)
 
 
 if __name__ == "__main__":
