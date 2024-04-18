@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><key id="object" for="node" attr.name="object" attr.type="string"/>
+<key id="type" for="node" attr.name="type" attr.type="string"/>
+<key id="uuid" for="node" attr.name="uuid" attr.type="string"/>
+<key id="shape" for="node" attr.name="shape" attr.type="string"/>
+<key id="color" for="node" attr.name="color" attr.type="string"/>
+<key id="name" for="graph" attr.name="name" attr.type="string"/>
+<graph edgedefault="directed"><data key="name">7ba856bb-f299-408e-a418-0cd36afb8fde</data>
+<node id="mixture [40d6405b-08dd-414d-98ac-13668a9beb2f, ingredient_run]">
+  <data key="color">blue</data>
+  <data key="shape">circle</data>
+  <data key="uuid">40d6405b-08dd-414d-98ac-13668a9beb2f</data>
+  <data key="type">ingredient_run</data>
+  <data key="object">{"absolute_quantity": null, "file_links": [], "labels": [], "mass_fraction": null, "material": null, "name": "mixture", "notes": null, "number_fraction": null, "process": {"id": "09a847fa-02c9-4caa-8531-b3509abddf09", "scope": "auto", "type": "link_by_uid"}, "spec": {"id": "ddf3e949-a0a5-4e1a-bdb6-c84593a9b20a", "scope": "auto", "type": "link_by_uid"}, "tags": [], "type": "ingredient_run", "uids": {"auto": "40d6405b-08dd-414d-98ac-13668a9beb2f"}, "volume_fraction": null}</data>
+</node>
+<node id="heating [09a847fa-02c9-4caa-8531-b3509abddf09, process_run]">
+  <data key="color">red</data>
+  <data key="shape">circle</data>
+  <data key="uuid">09a847fa-02c9-4caa-8531-b3509abddf09</data>
+  <data key="type">process_run</data>
+  <data key="object">{"conditions": [], "file_links": [], "name": "heating", "notes": null, "parameters": [], "source": null, "spec": {"id": "963d83ac-be37-49d1-8b32-40c350bdc602", "scope": "auto", "type": "link_by_uid"}, "tags": [], "type": "process_run", "uids": {"auto": "09a847fa-02c9-4caa-8531-b3509abddf09"}}</data>
+</node>
+<node id="ceramic [0486862f-6676-44f6-8b2b-69e48abc49a1, material_run]">
+  <data key="color">green</data>
+  <data key="shape">circle</data>
+  <data key="uuid">0486862f-6676-44f6-8b2b-69e48abc49a1</data>
+  <data key="type">material_run</data>
+  <data key="object">{"file_links": [], "name": "ceramic", "notes": null, "process": {"id": "09a847fa-02c9-4caa-8531-b3509abddf09", "scope": "auto", "type": "link_by_uid"}, "sample_type": "unknown", "spec": {"id": "e6b396fd-5146-4da1-9575-4d818aa666fe", "scope": "auto", "type": "link_by_uid"}, "tags": [], "type": "material_run", "uids": {"auto": "0486862f-6676-44f6-8b2b-69e48abc49a1"}}</data>
+</node>
+<node id="temperature [8254dd68-5624-421e-9063-4fece37162e8, measurement_run]">
+  <data key="color">purple</data>
+  <data key="shape">circle</data>
+  <data key="uuid">8254dd68-5624-421e-9063-4fece37162e8</data>
+  <data key="type">measurement_run</data>
+  <data key="object">{"conditions": [], "file_links": [], "material": {"id": "0486862f-6676-44f6-8b2b-69e48abc49a1", "scope": "auto", "type": "link_by_uid"}, "name": "temperature", "notes": null, "parameters": [], "properties": [], "source": null, "spec": {"id": "711837dd-f6db-4399-85a0-2bd55e704cde", "scope": "auto", "type": "link_by_uid"}, "tags": [], "type": "measurement_run", "uids": {"auto": "8254dd68-5624-421e-9063-4fece37162e8"}}</data>
+</node>
+<edge source="mixture [40d6405b-08dd-414d-98ac-13668a9beb2f, ingredient_run]" target="heating [09a847fa-02c9-4caa-8531-b3509abddf09, process_run]"/>
+<edge source="heating [09a847fa-02c9-4caa-8531-b3509abddf09, process_run]" target="ceramic [0486862f-6676-44f6-8b2b-69e48abc49a1, material_run]"/>
+<edge source="ceramic [0486862f-6676-44f6-8b2b-69e48abc49a1, material_run]" target="temperature [8254dd68-5624-421e-9063-4fece37162e8, measurement_run]"/>
+</graph></graphml>
