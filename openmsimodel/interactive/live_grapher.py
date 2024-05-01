@@ -11,12 +11,10 @@ from openmsimodel.structures.materials_sequence import MaterialsSequence
 from openmsimodel.graph.open_graph import OpenGraph
 import uuid
 
-# from gemd_schema import
 
-
-class LiveOpenGraph(FileSystemEventHandler):
+class liveGrapher(FileSystemEventHandler):
     mapping = {}
-    output_folder = "./live_output_folder"
+    output_folder = "./live_grapher_output"
     open_graphs = []
 
     def on_created(self, event):
@@ -66,45 +64,45 @@ def define_run(mapping):
     return materials_sequence.assets
 
 
-# def define_spec(file_extension, mapping, output):
-#     material_name = input("Enter material name: ")
-#     material = Material(name=material_name, template=MaterialTemplate(material_name))
-#     process_name = input("Enter process name: ")
-#     process = Process(name=process_name, template=ProcessTemplate(process_name))
-#     ingredient_name = input("Enter ingredient name: ")
-#     ingredient = Ingredient(name=ingredient_name)
-#     measurement_name = input("Enter measurement name: ")
-#     measurement = Measurement(
-#         name=measurement_name, template=MeasurementTemplate(measurement_name)
-#     )
-
-#     mapping[file_extension] = [material, process, [ingredient], [measurement]]
-#     return define_run(mapping[file_extension])
-
-
 def define_spec(file_extension, mapping, output):
-    template = {}
-    for key, value in process_template_schema["properties"].items():
-        field_name = key
-        field_type = value.get("type")
-        field_description = value.get("description", "")
+    measurement_name = input("Enter measurement name: ")
+    measurement = Measurement(
+        name=measurement_name, template=MeasurementTemplate(measurement_name)
+    )
+    material_name = input("Enter material name: ")
+    material = Material(name=material_name, template=MaterialTemplate(material_name))
+    process_name = input("Enter process name: ")
+    process = Process(name=process_name, template=ProcessTemplate(process_name))
+    ingredient_name = input("Enter ingredient name: ")
+    ingredient = Ingredient(name=ingredient_name)
 
-        if field_type == "array":
-            template[field_name] = questionary.text(field_description).ask()
-        elif field_type == "string":
-            template[field_name] = questionary.text(field_description).ask()
-        # Add more conditions for other field types as needed...
+    mapping[file_extension] = [material, process, [ingredient], [measurement]]
+    return define_run(mapping[file_extension])
 
-    # Validate the input based on the schema
-    validate(instance=template, schema=process_template_schema)
 
-    # Use the populated template object
-    print(template)
+# def define_spec(file_extension, mapping, output):
+# template = {}
+# for key, value in object_templates["properties"].items():
+#     field_name = key
+#     field_type = value.get("type")
+#     field_description = value.get("description", "")
+
+#     if field_type == "array":
+#         template[field_name] = questionary.text(field_description).ask()
+#     elif field_type == "string":
+#         template[field_name] = questionary.text(field_description).ask()
+#     # Add more conditions for other field types as needed...
+
+# # Validate the input based on the schema
+# validate(instance=template, schema=process_template_schema)
+
+# # Use the populated template object
+# print(template)
 
 
 if __name__ == "__main__":
-    folder_to_watch = "./folder_to_watch"
-    event_handler = LiveOpenGraph()
+    folder_to_watch = "./live_grapher_input"
+    event_handler = liveGrapher()
     observer = Observer()
     observer.schedule(event_handler, folder_to_watch, recursive=False)
     observer.start()
