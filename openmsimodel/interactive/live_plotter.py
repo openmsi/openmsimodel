@@ -1,7 +1,9 @@
 import time
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
-from openmsimodel.graph.open_graph_widget import OpenGraphWidget
+# from openmsimodel.graph.open_graph_widget import OpenGraphWidget
+from openmsimodel.graph.helpers import launch_graph_widget
+from openmsimodel.utilities.io import read_graphml_from_folder
 import os
 
 class LivePlotter(FileSystemEventHandler):
@@ -12,11 +14,12 @@ class LivePlotter(FileSystemEventHandler):
     def on_created(self, event):
         if not event.is_directory and event.src_path.endswith(".graphml"):
             print(f"New graph found: {event.src_path}")
-            if self.current_display:
-                self.current_display.close()
-            self.current_display = self.display_func(
-                OpenGraphWidget.from_graphml_folder(os.path.dirname(event.src_path))
-            )
+            # if self.current_display:
+            #     self.current_display.close()
+            launch_graph_widget(graph_source=read_graphml_from_folder(os.path.dirname(event.src_path)), engine='yfiles')
+            # self.current_display = self.display_func(
+            #     OpenGraphWidget.from_graphml_folder(os.path.dirname(event.src_path))
+            # )
 
 
 def watch_folder_to_plot(folder_path, display_func):

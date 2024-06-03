@@ -12,7 +12,6 @@ def color_mapping(index, node):
         color = "white"
     return name_to_hex(color)
 
-
 def launch_graph_widget(graph_source, engine="yfiles"):
     print("Launching {}".format(graph_source))
     if type(graph_source) == str:  # passing a single dot or graphml file
@@ -42,4 +41,4 @@ def launch_graph_widget(graph_source, engine="yfiles"):
         w.hierarchic_layout()
         w.show()
     elif engine == "cytoscape":
-        display(OpenMSIModelWidget.from_graphml(graph_source))
+        display(OpenGraphWidget.from_graphml(graph_source))

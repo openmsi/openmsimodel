@@ -1,6 +1,24 @@
 import json
 import os
+from pathlib import Path
+import glob
+import networkx as nx
 
+def from_graphml(graphml_filename):
+    graph_source = nx.read_graphml(graphml_filename)
+    for n, d in graph_source.nodes(data=True):
+        d.update(json.loads(d.pop("object", "{}")))
+    return graph_source
+
+def read_graphml_from_folder(graphml_folder):
+    target = graphml_folder + "/*.graphml"
+    graphml_filenames = glob.glob(target)
+    entire_graph = nx.DiGraph()
+    for graphml_filename in graphml_filenames:
+        individual_graph = from_graphml(graphml_filename)
+        entire_graph.add_nodes_from(individual_graph.nodes(data=True))
+        entire_graph.add_edges_from(individual_graph.edges(data=True))
+    return entire_graph
 
 def read_gemd_data(dirpath, encoder):
     """helper to extract GEMD data from all scenarios, whether folder of JSONs or single JSON, thin or full, etc.

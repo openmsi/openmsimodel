@@ -2,6 +2,9 @@ import setuptools
 
 version = "0.1.6"
 
+with open('requirements.txt') as f:
+    requirements = f.read().splitlines()
+
 setupkwargs = dict(
     name="openmsimodel",
     version=version,
@@ -20,28 +23,7 @@ setupkwargs = dict(
         ]
     },
     python_requires=">=3.7,<3.10",
-    install_requires=[
-        "gemd==1.13.0",
-        "networkx",
-        "pymssql==2.2.8",
-        "SQLAlchemy==2.0.17",
-        "PyInquirer",
-        "prompt_toolkit",
-        "numpy",
-        "pandas",
-        "methodtools",
-        "matplotlib",
-        "yfiles_jupyter_graphs",
-        "ipython",
-        "ipykernel",
-        "openpyxl",
-        "graphviz",
-        "sphinx_rtd_theme",
-        "ipycytoscape",
-        "questionary",
-        "webcolors",
-        "jupyter",
-    ],
+    install_requires=requirements,
     extras_require={},
     classifiers=[
         "Programming Language :: Python :: 3.7",

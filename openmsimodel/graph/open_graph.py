@@ -56,6 +56,7 @@ class OpenGraph(Runnable):
             "add_tags": 1,
         },
         dump_svg_and_dot=False,
+        uuid_to_track="auto"
     ):
         """
         Initialize the OpenGraph object with provided parameters.
@@ -66,7 +67,7 @@ class OpenGraph(Runnable):
         :type source: str or list
         :param output: Path for saving output files.
         :type output: str
-        :param layout: The layout parameter for the graph visualization.
+        :param layout: The layout parameter for the graph. "raw" or "visualisation". 
         :type layout: str
         :param add_bidirectional_edges: Flag to add bidirectional edges between nodes.
         :type add_bidirectional_edges: bool
@@ -89,13 +90,14 @@ class OpenGraph(Runnable):
         self.which = which
         self.assets_to_add = assets_to_add
         self.dump_svg_and_dot = dump_svg_and_dot
+        self.uuid_to_track = uuid_to_track
         self.svg_path = None
         self.dot_path = None
         self.graphml_path = None
         self.shapes = {"run": "circle", "spec": "rectangle", "template": "triangle"}
 
     # instance method
-    def build_graph(self, save=False, uuid_to_track="auto"):
+    def build_graph(self, save=False):
         """
         Creates a NetworkX graph representation of the GEMD relationships.
 
@@ -103,8 +105,8 @@ class OpenGraph(Runnable):
         and forming directed relationships, such as ingredient->process or process->material.
         It allows for filtering the mapped objects and saves a NetworkX graph in "dot" format.
 
-        :param uuid_to_track: The uuid to track in the objects.
-        :type uuid_to_track: str, optional
+        :param save: whether or not to save outputs to target folders.
+        :type save: Boolean, optional
         :returns: A tuple of the NetworkX graph, a PyGraphVIZ graph, and a name mapping dictionary.
         :rtype: tuple
         """
@@ -141,10 +143,11 @@ class OpenGraph(Runnable):
         for i, obj_data in enumerate(gemd_objects):
             obj_type = obj_data["type"]
             obj_state = obj_type.split("_")[-1]
-            if not (uuid_to_track in obj_data["uids"].keys()):
+            if not (self.uuid_to_track in obj_data["uids"].keys()):
                 continue
-            obj_uid = obj_data["uids"][uuid_to_track]
+            obj_uid = obj_data["uids"][self.uuid_to_track]
             obj_name = obj_data["name"]
+            # name_mapping[obj_uid] = "{}".format(obj_name, obj_uid, obj_type) #FIXME
             name_mapping[obj_uid] = "{} [{}, {}]".format(obj_name, obj_uid, obj_type)
             self.handle_gemd_obj(
                 G_nx,
@@ -220,17 +223,14 @@ class OpenGraph(Runnable):
             if obj_type.endswith(self.which) or self.which == "all":
                 G.add_node(uid, color="blue", shape=self.shapes[obj_state])
                 process = obj_data["process"]["id"]
-                G.add_edge(uid, process)
+                G.add_edge(uid, process, relationship='is used in')
                 if "material" in obj_data and obj_data["material"]:
                     material = obj_data["material"]["id"]
-                    G.add_edge(material, uid)
+                    G.add_edge(material, uid, relationship='becomes')
                 if self.add_bidirectional_edges:
-                    G.add_edge(process, uid)
+                    G.add_edge(process, uid, relationship='uses')
                     if "material" in obj_data and obj_data["material"]:
-                        material = obj_data["material"]["id"]
-                        G.add_edge(material, uid)
-                        if self.add_bidirectional_edges:
-                            G.add_edge(uid, material)
+                        G.add_edge(uid, material, relationship='is made out of')
                 self.add_gemd_assets(
                     G,
                     uid,
@@ -249,9 +249,9 @@ class OpenGraph(Runnable):
                 # if not self.restrictive:
                 if "process" in obj_data and obj_data["process"]:
                     process = obj_data["process"]["id"]
-                    G.add_edge(process, uid)  # ?
+                    G.add_edge(process, uid, relationship="creates")  # ?
                     if self.add_bidirectional_edges:
-                        G.add_edge(uid, process)
+                        G.add_edge(uid, process, relationship="is created by")
         elif obj_type.startswith("measurement"):
             if obj_type.endswith(self.which) or self.which == "all":
                 G.add_node(uid, color="purple", shape=self.shapes[obj_state])
@@ -264,9 +264,9 @@ class OpenGraph(Runnable):
                 # if not self.restrictive:
                 if "material" in obj_data and obj_data["material"]:
                     material = obj_data["material"]["id"]
-                    G.add_edge(material, uid)
+                    G.add_edge(material, uid, relationship="is measured with")
                     if self.add_bidirectional_edges:
-                        G.add_edge(uid, material)
+                        G.add_edge(uid, material, relationship="measures")
 
         if self.which == "all":
             if (
@@ -325,9 +325,10 @@ class OpenGraph(Runnable):
     ):
         self.add_to_graph(G, uid, "uuid", uid)
         self.add_to_graph(G, uid, "type", obj_type)
+        self.add_to_graph(G, uid, "short_name", f"{obj_data['name']}" )
         if self.layout == "raw":
             self.add_to_graph(G, uid, "object", json.dumps(obj_data))
-        elif self.layout == "visualization":
+        elif self.layout == "visualisation":
             if self.assets_to_add["add_attributes"] and not (
                 obj_type.endswith("template")
             ):
@@ -348,7 +349,7 @@ class OpenGraph(Runnable):
             if type(att) in [list]:
                 continue
             if type(att) in [str]:
-                if "::" in att:  # is a gemd tag
+                if "::" in att:  # is a gemd tag #FIXME
                     self.add_to_graph(G, uid, "tags", att)
             elif att["type"]:  # is a gemd object
                 # reading gemd file links
@@ -439,6 +440,54 @@ class OpenGraph(Runnable):
         subgraphs = [G.subgraph(c) for c in nx.strongly_connected_components(G)]
         print("number of connected components: {}".format(len(subgraphs)))
         print("total nb of isolates in the graph: {}".format(nx.number_of_isolates(G)))
+    
+    def update_paths(self, svg_path, dot_path, graphml_path):
+        self.svg_path = svg_path
+        self.dot_path = dot_path
+        self.graphml_path = graphml_path
+
+    @classmethod
+    def load_graphml(cls, file_path):
+        """
+        Load a GraphML file and return the graph object.
+
+        :param file_path: Path to the GraphML file.
+        :type file_path: str
+        :return: Graph object.
+        :rtype: networkx.Graph
+        """
+        return nx.read_graphml(file_path)
+    
+    @classmethod
+    def get_isolated_subgraphs(cls, graph):
+        """
+        Identify and extract isolated subgraphs (connected components) from a graph.
+
+        :param graph: The input graph.
+        :type graph: networkx.Graph
+        :return: List of isolated subgraphs.
+        :rtype: list of networkx.Graph
+        """
+        connected_components = list(nx.weakly_connected_components(graph))
+        subgraphs = [graph.subgraph(component).copy() for component in connected_components]
+        return subgraphs
+
+    
+    @classmethod
+    def save_subgraphs(cls, subgraphs, output_dir):
+        """
+        Save each isolated subgraph as a separate GraphML file.
+
+        :param subgraphs: List of isolated subgraphs.
+        :type subgraphs: list of networkx.Graph
+        :param output_dir: Directory to save the output GraphML files.
+        :type output_dir: str
+        """
+        if not os.path.exists(output_dir):
+            os.makedirs(output_dir)
+        for i, subgraph in enumerate(subgraphs):
+            output_path = f"{output_dir}/subgraph_{i}.graphml"
+            nx.write_graphml(subgraph, output_path)
 
     @classmethod
     def launch(cls, path, from_command_line=False):
@@ -472,11 +521,6 @@ class OpenGraph(Runnable):
             return None
         else:
             launch_graph_widget(path)
-
-    def update_paths(self, svg_path, dot_path, graphml_path):
-        self.svg_path = svg_path
-        self.dot_path = dot_path
-        self.graphml_path = graphml_path
 
     @classmethod
     def map_to_graphviz(cls, G):
@@ -600,8 +644,8 @@ class OpenGraph(Runnable):
                             )
                 return G
 
-            # nx.write_graphml_lxml(dicts_to_str(G_nx), graphml_path)
-            nx.write_graphml_lxml(G_nx, graphml_path, named_key_ids=True)
+            nx.write_graphml_lxml(dicts_to_str(G_nx), graphml_path, named_key_ids=True)
+            # nx.write_graphml_lxml(G_nx, graphml_path, named_key_ids=True)
             end = time.time()
             print(f"Time elapsed: {end - start}")
             print("-- Saved graph to {}".format(graphml_path))
@@ -661,6 +705,7 @@ class OpenGraph(Runnable):
             args.layout,
             args.add_bidirectional_edges,
             args.take_small_sample,
+            args.uuid_to_track,
             dump_svg_and_dot=args.dump_svg_and_dot,
         )
         viewer.assets_to_add = {
@@ -668,9 +713,7 @@ class OpenGraph(Runnable):
             "add_file_links": args.add_file_links,
             "add_tags": args.add_tags,
         }
-        G, relabeled_G_gviz, name_mapping = viewer.build_graph(
-            uuid_to_track=args.uuid_to_track,
-        )
+        G, relabeled_G_gviz, name_mapping = viewer.build_graph()
 
         # reduces to elements with identifier and related nodes
         if args.identifier:

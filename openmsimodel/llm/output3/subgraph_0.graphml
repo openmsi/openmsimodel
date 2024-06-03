@@ -1,0 +1,2424 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><key id="d28" for="edge" attr.name="relationship" attr.type="string"/>
+<key id="d27" for="node" attr.name="GlassThickness2" attr.type="string"/>
+<key id="d26" for="node" attr.name="FlyerCuttingDepthSuccess" attr.type="string"/>
+<key id="d25" for="node" attr.name="GlassThickness1" attr.type="string"/>
+<key id="d24" for="node" attr.name="FoilThickness3" attr.type="string"/>
+<key id="d23" for="node" attr.name="GlassThickness4" attr.type="string"/>
+<key id="d22" for="node" attr.name="FlyerCuttingCompleteness" attr.type="string"/>
+<key id="d21" for="node" attr.name="FoilThickness4" attr.type="string"/>
+<key id="d20" for="node" attr.name="Glasslength" attr.type="string"/>
+<key id="d19" for="node" attr.name="FoilThickness2" attr.type="string"/>
+<key id="d18" for="node" attr.name="TimetoCut" attr.type="string"/>
+<key id="d17" for="node" attr.name="GlassThickness3" attr.type="string"/>
+<key id="d16" for="node" attr.name="Glasswidth" attr.type="string"/>
+<key id="d15" for="node" attr.name="MaxVelocity" attr.type="string"/>
+<key id="d14" for="node" attr.name="SpallState" attr.type="string"/>
+<key id="d13" for="node" attr.name="FoilThickness1" attr.type="string"/>
+<key id="d12" for="node" attr.name="tags" attr.type="string"/>
+<key id="d11" for="node" attr.name="file_links" attr.type="string"/>
+<key id="d10" for="node" attr.name="VideoQuality" attr.type="string"/>
+<key id="d9" for="node" attr.name="ReturnSignalStrength" attr.type="string"/>
+<key id="d8" for="node" attr.name="FlyerCurvature" attr.type="string"/>
+<key id="d7" for="node" attr.name="FlyerTilt" attr.type="string"/>
+<key id="d6" for="node" attr.name="source" attr.type="string"/>
+<key id="d5" for="node" attr.name="short_name" attr.type="string"/>
+<key id="d4" for="node" attr.name="type" attr.type="string"/>
+<key id="d3" for="node" attr.name="uuid" attr.type="string"/>
+<key id="d2" for="node" attr.name="shape" attr.type="string"/>
+<key id="d1" for="node" attr.name="color" attr.type="string"/>
+<key id="d0" for="graph" attr.name="name" attr.type="string"/>
+<graph edgedefault="directed"><data key="d0">Laser_shock</data>
+<node id="Foil ID [1545d3ed-a641-4ab1-9bfc-6f1d4f49eb65, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">1545d3ed-a641-4ab1-9bfc-6f1d4f49eb65</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Foil ID</data>
+  <data key="d6">IngredientRun_Foil-ID_1545d3ed-a641-4ab1-9bfc-6f1d4f49eb65.json</data>
+</node>
+<node id="Borosilicate, T=0.25&quot; [b411ddc1-33c5-41a3-90a9-68d623c987b1, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">b411ddc1-33c5-41a3-90a9-68d623c987b1</data>
+  <data key="d4">material_run</data>
+  <data key="d5">Borosilicate, T=0.25"</data>
+  <data key="d6">MaterialRun_Borosilicate,-T=0.25"_b411ddc1-33c5-41a3-90a9-68d623c987b1.json</data>
+</node>
+<node id="Choosing Flyer [9e293a7f-4670-45a6-a002-7f296d5ccf15, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">9e293a7f-4670-45a6-a002-7f296d5ccf15</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_9e293a7f-4670-45a6-a002-7f296d5ccf15.json</data>
+</node>
+<node id="Flyer velocity analysis [90dda02e-8c52-46ff-8fe7-7e2bc1f93a1b, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">90dda02e-8c52-46ff-8fe7-7e2bc1f93a1b</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">Flyer velocity analysis</data>
+  <data key="d7">FlyerTilt, Significant</data>
+  <data key="d8">FlyerCurvature, Minor</data>
+  <data key="d9">ReturnSignalStrength, 15.0 dimensionless</data>
+  <data key="d10">VideoQuality, Good</data>
+  <data key="d11">{0: None, 1: None}</data>
+  <data key="d12">{0: 'NewEnergyMeasurement::Yes', 1: 'ExperimentDayCounter::00000', 2: 'recordId::2020', 3: 'modId::0', 4: 'ObjectType::LaserShockExperiment'}</data>
+  <data key="d6">MeasurementRun_Flyer-velocity-analysis_90dda02e-8c52-46ff-8fe7-7e2bc1f93a1b.json</data>
+</node>
+<node id="F086-R4C6 [0e286419-fa2f-4b0c-b3eb-f67d70696aae, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">0e286419-fa2f-4b0c-b3eb-f67d70696aae</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R4C6</data>
+  <data key="d12">{0: 'recordId::2138', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2138.json</data>
+</node>
+<node id="F086-R7C5 [cd02841d-4596-4c14-8507-ec1e25e7b0af, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">cd02841d-4596-4c14-8507-ec1e25e7b0af</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R7C5</data>
+  <data key="d12">{0: 'recordId::2158', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2158.json</data>
+</node>
+<node id="FoilThickness1 [d07c1879-708d-4563-add7-1fae3da14754, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">d07c1879-708d-4563-add7-1fae3da14754</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">FoilThickness1</data>
+  <data key="d13">FoilThickness1, 100.0 micrometer</data>
+  <data key="d6">MeasurementRun_FoilThickness1_d07c1879-708d-4563-add7-1fae3da14754.json</data>
+</node>
+<node id="Flyer Stack [c94de93f-ecc3-4deb-994e-1f89e095b730, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">c94de93f-ecc3-4deb-994e-1f89e095b730</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_c94de93f-ecc3-4deb-994e-1f89e095b730.json</data>
+</node>
+<node id="Choosing Flyer [ceefbed8-30fa-47b9-969c-a1c36087d04c, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">ceefbed8-30fa-47b9-969c-a1c36087d04c</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_ceefbed8-30fa-47b9-969c-a1c36087d04c.json</data>
+</node>
+<node id="Choosing Flyer [233dcb9a-e397-4d54-9b07-c2aecde376f3, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">233dcb9a-e397-4d54-9b07-c2aecde376f3</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_233dcb9a-e397-4d54-9b07-c2aecde376f3.json</data>
+</node>
+<node id="Choosing Flyer [ed2aeae9-e166-4b79-9d43-219f4a6ac2ca, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">ed2aeae9-e166-4b79-9d43-219f4a6ac2ca</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_ed2aeae9-e166-4b79-9d43-219f4a6ac2ca.json</data>
+</node>
+<node id="Choosing Flyer [cc74faff-def5-4f03-ad75-938e174ef478, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">cc74faff-def5-4f03-ad75-938e174ef478</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_cc74faff-def5-4f03-ad75-938e174ef478.json</data>
+</node>
+<node id="F086-R7C3 [acba79e8-2a45-47e0-893d-3551d52a4955, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">acba79e8-2a45-47e0-893d-3551d52a4955</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R7C3</data>
+  <data key="d12">{0: 'recordId::2156', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2156.json</data>
+</node>
+<node id="Flyer Stack [a0dba5aa-0e85-4520-b538-bfbe48b491bd, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">a0dba5aa-0e85-4520-b538-bfbe48b491bd</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_a0dba5aa-0e85-4520-b538-bfbe48b491bd.json</data>
+</node>
+<node id="Loctite Ablestik 24 [3849a934-165b-4e9f-b134-21324f792533, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">3849a934-165b-4e9f-b134-21324f792533</data>
+  <data key="d4">material_run</data>
+  <data key="d5">Loctite Ablestik 24</data>
+  <data key="d6">MaterialRun_Loctite-Ablestik-24_3849a934-165b-4e9f-b134-21324f792533.json</data>
+</node>
+<node id="Choosing Flyer [7013a410-625c-4e76-a016-a8d11cd4314d, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">7013a410-625c-4e76-a016-a8d11cd4314d</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_7013a410-625c-4e76-a016-a8d11cd4314d.json</data>
+</node>
+<node id="Choosing Flyer [acae4e23-4928-4a21-a65f-e4a0ef8c03dd, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">acae4e23-4928-4a21-a65f-e4a0ef8c03dd</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_acae4e23-4928-4a21-a65f-e4a0ef8c03dd.json</data>
+</node>
+<node id="Flyer Stack [a4a22e20-1ad6-4cc6-bc99-1372bbde5a5d, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">a4a22e20-1ad6-4cc6-bc99-1372bbde5a5d</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_a4a22e20-1ad6-4cc6-bc99-1372bbde5a5d.json</data>
+</node>
+<node id="Flyer Stack [96c52f5d-cd07-4ac0-86a2-85cac8e9ed33, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">96c52f5d-cd07-4ac0-86a2-85cac8e9ed33</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_96c52f5d-cd07-4ac0-86a2-85cac8e9ed33.json</data>
+</node>
+<node id="Flyer Stack [c9242ca4-61b4-4283-9f04-ba42e10f79c4, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">c9242ca4-61b4-4283-9f04-ba42e10f79c4</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_c9242ca4-61b4-4283-9f04-ba42e10f79c4.json</data>
+</node>
+<node id="F086-R2C7 [b932d0c3-d7c1-4429-bfd9-9de272add45b, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">b932d0c3-d7c1-4429-bfd9-9de272add45b</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R2C7</data>
+  <data key="d12">{0: 'recordId::2125', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2125.json</data>
+</node>
+<node id="Spall [b48003c3-7624-428d-bdf9-44103758e540, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">b48003c3-7624-428d-bdf9-44103758e540</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">Spall</data>
+  <data key="d9">ReturnSignalStrength, 15.0 dimensionless</data>
+  <data key="d10">VideoQuality, Good</data>
+  <data key="d14">SpallState, No visible</data>
+  <data key="d11">{0: None, 1: None}</data>
+  <data key="d12">{0: 'NewEnergyMeasurement::No', 1: 'ExperimentDayCounter::00007', 2: 'recordId::2027', 3: 'modId::4', 4: 'ObjectType::LaserShockExperiment'}</data>
+  <data key="d6">MeasurementRun_Spall_b48003c3-7624-428d-bdf9-44103758e540.json</data>
+</node>
+<node id="35fe450b-64a5-41e4-a0d7-8785035be9ca"/>
+<node id="Flyer velocity analysis [9cc50ac8-1df2-415e-8f66-33efe68a6e23, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">9cc50ac8-1df2-415e-8f66-33efe68a6e23</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">Flyer velocity analysis</data>
+  <data key="d7">FlyerTilt, Minor</data>
+  <data key="d8">FlyerCurvature, None</data>
+  <data key="d9">ReturnSignalStrength, 15.0 dimensionless</data>
+  <data key="d15">MaxVelocity, 195.0 meter / second</data>
+  <data key="d10">VideoQuality, Great</data>
+  <data key="d11">{0: None, 1: None}</data>
+  <data key="d12">{0: 'NewEnergyMeasurement::Yes', 1: 'ExperimentDayCounter::00000', 2: 'GrantFunding::BMG_Project', 3: 'recordId::1896', 4: 'modId::15', 5: 'ObjectType::LaserShockExperiment'}</data>
+  <data key="d6">MeasurementRun_Flyer-velocity-analysis_9cc50ac8-1df2-415e-8f66-33efe68a6e23.json</data>
+</node>
+<node id="F086-R5C2 [d27da365-f9fc-41c0-9211-4c6bb9a72a99, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">d27da365-f9fc-41c0-9211-4c6bb9a72a99</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R5C2</data>
+  <data key="d12">{0: 'recordId::2141', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2141.json</data>
+</node>
+<node id="Flyer Stack [1e10cca9-8565-4658-ac39-85c23293a2e2, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">1e10cca9-8565-4658-ac39-85c23293a2e2</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_1e10cca9-8565-4658-ac39-85c23293a2e2.json</data>
+</node>
+<node id="Choosing Flyer [9d284228-01d1-41f9-867a-283e56402529, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">9d284228-01d1-41f9-867a-283e56402529</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_9d284228-01d1-41f9-867a-283e56402529.json</data>
+</node>
+<node id="Choosing Flyer [ec591775-4b2e-4987-8d46-2e4f78380ecc, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">ec591775-4b2e-4987-8d46-2e4f78380ecc</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_ec591775-4b2e-4987-8d46-2e4f78380ecc.json</data>
+</node>
+<node id="Mixed Epoxy [9b8a7250-cc90-4dc7-a5fd-ffd64264a31c, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">9b8a7250-cc90-4dc7-a5fd-ffd64264a31c</data>
+  <data key="d4">material_run</data>
+  <data key="d5">Mixed Epoxy</data>
+  <data key="d6">MaterialRun_Mixed-Epoxy_9b8a7250-cc90-4dc7-a5fd-ffd64264a31c.json</data>
+</node>
+<node id="Glasswidth [dadeffe6-403c-4faa-af20-14085315ec6d, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">dadeffe6-403c-4faa-af20-14085315ec6d</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">Glasswidth</data>
+  <data key="d16">Glasswidth, 50.0 millimeter</data>
+  <data key="d6">MeasurementRun_Glasswidth_dadeffe6-403c-4faa-af20-14085315ec6d.json</data>
+</node>
+<node id="Flyer Stack [1567f871-d5bc-4633-ba22-eb33b7dad232, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">1567f871-d5bc-4633-ba22-eb33b7dad232</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_1567f871-d5bc-4633-ba22-eb33b7dad232.json</data>
+</node>
+<node id="Flyer Stack [50f9dd1b-e9ef-4fe3-b941-7a5ab4a8a9e1, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">50f9dd1b-e9ef-4fe3-b941-7a5ab4a8a9e1</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_50f9dd1b-e9ef-4fe3-b941-7a5ab4a8a9e1.json</data>
+</node>
+<node id="F086-R1C5 [58cdc783-e098-4ac7-9d6b-85180dc89aef, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">58cdc783-e098-4ac7-9d6b-85180dc89aef</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R1C5</data>
+  <data key="d12">{0: 'recordId::2116', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2116.json</data>
+</node>
+<node id="F086-R4C4 [2c4fecf2-dbda-4dc3-bb29-72672e96495d, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">2c4fecf2-dbda-4dc3-bb29-72672e96495d</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R4C4</data>
+  <data key="d12">{0: 'recordId::2136', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2136.json</data>
+</node>
+<node id="F086-R4C7 [21756972-bb68-4993-b53e-e966163c6950, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">21756972-bb68-4993-b53e-e966163c6950</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R4C7</data>
+  <data key="d12">{0: 'recordId::2139', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2139.json</data>
+</node>
+<node id="Choosing Flyer [082772c5-47f4-4dfb-b9d3-04af38bfa1f6, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">082772c5-47f4-4dfb-b9d3-04af38bfa1f6</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_082772c5-47f4-4dfb-b9d3-04af38bfa1f6.json</data>
+</node>
+<node id="Flyer Stack [a258f6b4-4a23-4ea5-a8bd-510f5ad8834a, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">a258f6b4-4a23-4ea5-a8bd-510f5ad8834a</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_a258f6b4-4a23-4ea5-a8bd-510f5ad8834a.json</data>
+</node>
+<node id="F086-R3C6 [1b3d7af8-781a-4c5d-bd0c-8cb8f15cd6c2, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">1b3d7af8-781a-4c5d-bd0c-8cb8f15cd6c2</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R3C6</data>
+  <data key="d12">{0: 'recordId::2131', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2131.json</data>
+</node>
+<node id="Flyer Stack [c1a8f9bc-030e-4499-87a7-5fd79d47fb9b, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">c1a8f9bc-030e-4499-87a7-5fd79d47fb9b</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_c1a8f9bc-030e-4499-87a7-5fd79d47fb9b.json</data>
+</node>
+<node id="Choosing Flyer [cd8d672f-016e-4f98-ba29-2cd8ee1e5ebf, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">cd8d672f-016e-4f98-ba29-2cd8ee1e5ebf</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_cd8d672f-016e-4f98-ba29-2cd8ee1e5ebf.json</data>
+</node>
+<node id="GlassThickness3 [80b52c93-23f8-433e-a489-01c2fdd24879, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">80b52c93-23f8-433e-a489-01c2fdd24879</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">GlassThickness3</data>
+  <data key="d17">GlassThickness3, 6.456 millimeter</data>
+  <data key="d6">MeasurementRun_GlassThickness3_80b52c93-23f8-433e-a489-01c2fdd24879.json</data>
+</node>
+<node id="Flyer Stack [27091d95-78f7-40f6-b459-4d1c9a488aa5, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">27091d95-78f7-40f6-b459-4d1c9a488aa5</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_27091d95-78f7-40f6-b459-4d1c9a488aa5.json</data>
+</node>
+<node id="Flyer Stack [b4843731-66fd-4527-93a3-460aa1b32bae, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">b4843731-66fd-4527-93a3-460aa1b32bae</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_b4843731-66fd-4527-93a3-460aa1b32bae.json</data>
+</node>
+<node id="TimetoCut [b966920e-a4c9-4c1b-bdfe-9327a5a9eafe, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">b966920e-a4c9-4c1b-bdfe-9327a5a9eafe</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">TimetoCut</data>
+  <data key="d18">TimetoCut, 80.0 minute</data>
+  <data key="d6">MeasurementRun_TimetoCut_b966920e-a4c9-4c1b-bdfe-9327a5a9eafe.json</data>
+</node>
+<node id="Flyer Stack [55e0e004-a87f-4cc5-9155-b39a405b4cb6, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">55e0e004-a87f-4cc5-9155-b39a405b4cb6</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_55e0e004-a87f-4cc5-9155-b39a405b4cb6.json</data>
+</node>
+<node id="Flyer Stack [1e0df12a-f94c-473e-9e2d-f33c9fcc316a, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">1e0df12a-f94c-473e-9e2d-f33c9fcc316a</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_1e0df12a-f94c-473e-9e2d-f33c9fcc316a.json</data>
+</node>
+<node id="Flyer Stack [7c7e0fd0-fc5e-4a00-a78c-d2cbddf0f169, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">7c7e0fd0-fc5e-4a00-a78c-d2cbddf0f169</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_7c7e0fd0-fc5e-4a00-a78c-d2cbddf0f169.json</data>
+</node>
+<node id="Choosing Flyer [c98b5891-236f-4c7d-ab1d-4bae32b8de14, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">c98b5891-236f-4c7d-ab1d-4bae32b8de14</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_c98b5891-236f-4c7d-ab1d-4bae32b8de14.json</data>
+</node>
+<node id="403794c7-68f6-46ed-a490-c0ef834529da"/>
+<node id="Choosing Flyer [611b7232-d522-45e5-bd4f-d4ca0b9ffd09, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">611b7232-d522-45e5-bd4f-d4ca0b9ffd09</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_611b7232-d522-45e5-bd4f-d4ca0b9ffd09.json</data>
+</node>
+<node id="F086-R6C1 [c53ef3e7-4128-4c18-ae7a-25cbe3975dd2, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">c53ef3e7-4128-4c18-ae7a-25cbe3975dd2</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R6C1</data>
+  <data key="d12">{0: 'recordId::2147', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2147.json</data>
+</node>
+<node id="Flyer Stack [377a6882-161d-4a60-a845-6d04f6703085, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">377a6882-161d-4a60-a845-6d04f6703085</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_377a6882-161d-4a60-a845-6d04f6703085.json</data>
+</node>
+<node id="4c2aeb32-84b4-418b-9ec4-8b3366f871ab"/>
+<node id="Choosing Flyer [c2d5d30b-5d1d-400f-a43c-c3878440b85a, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">c2d5d30b-5d1d-400f-a43c-c3878440b85a</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_c2d5d30b-5d1d-400f-a43c-c3878440b85a.json</data>
+</node>
+<node id="Flyer velocity analysis [1e176966-45e6-4e56-a283-5329a011257e, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">1e176966-45e6-4e56-a283-5329a011257e</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">Flyer velocity analysis</data>
+  <data key="d7">FlyerTilt, None</data>
+  <data key="d8">FlyerCurvature, None</data>
+  <data key="d9">ReturnSignalStrength, 15.0 dimensionless</data>
+  <data key="d15">MaxVelocity, 173.0 meter / second</data>
+  <data key="d10">VideoQuality, Great</data>
+  <data key="d11">{0: None, 1: None}</data>
+  <data key="d12">{0: 'NewEnergyMeasurement::No', 1: 'ExperimentDayCounter::00014', 2: 'GrantFunding::BMG_Project', 3: 'recordId::1911', 4: 'modId::1', 5: 'ObjectType::LaserShockExperiment'}</data>
+  <data key="d6">MeasurementRun_Flyer-velocity-analysis_1e176966-45e6-4e56-a283-5329a011257e.json</data>
+</node>
+<node id="F086-R4C3 [98db31e9-96ec-4717-8ea3-6ffdaad7c01c, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">98db31e9-96ec-4717-8ea3-6ffdaad7c01c</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R4C3</data>
+  <data key="d12">{0: 'recordId::2135', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2135.json</data>
+</node>
+<node id="F086-R6C5 [25e3edef-ae3b-4b05-8a3d-d48273d79d72, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">25e3edef-ae3b-4b05-8a3d-d48273d79d72</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R6C5</data>
+  <data key="d12">{0: 'recordId::2151', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2151.json</data>
+</node>
+<node id="Choosing Flyer [d2e436b9-a9d6-4991-ad74-5443ff81edea, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">d2e436b9-a9d6-4991-ad74-5443ff81edea</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_d2e436b9-a9d6-4991-ad74-5443ff81edea.json</data>
+</node>
+<node id="F086-R1C2 [12cc3dfe-eea3-41a4-aec3-6b28dfed6604, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">12cc3dfe-eea3-41a4-aec3-6b28dfed6604</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R1C2</data>
+  <data key="d12">{0: 'recordId::2113', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2113.json</data>
+</node>
+<node id="Flyer Stack [a32f8184-1bc5-4287-bb1c-1db3dbb80ffc, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">a32f8184-1bc5-4287-bb1c-1db3dbb80ffc</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_a32f8184-1bc5-4287-bb1c-1db3dbb80ffc.json</data>
+</node>
+<node id="F086-R5C3 [bdda1bdd-5c97-433c-a9b0-ad407f27749e, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">bdda1bdd-5c97-433c-a9b0-ad407f27749e</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R5C3</data>
+  <data key="d12">{0: 'recordId::2142', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2142.json</data>
+</node>
+<node id="FoilThickness2 [a2879182-c1c9-463b-810e-51d031f14748, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">a2879182-c1c9-463b-810e-51d031f14748</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">FoilThickness2</data>
+  <data key="d19">FoilThickness2, 98.0 micrometer</data>
+  <data key="d6">MeasurementRun_FoilThickness2_a2879182-c1c9-463b-810e-51d031f14748.json</data>
+</node>
+<node id="F086-R4C1 [c9200ab2-5d98-4fb3-85f1-33ea72eb260a, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">c9200ab2-5d98-4fb3-85f1-33ea72eb260a</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R4C1</data>
+  <data key="d12">{0: 'recordId::2133', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2133.json</data>
+</node>
+<node id="Flyer Stack [dbf54faf-eee9-4949-8e85-a45dbae2575e, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">dbf54faf-eee9-4949-8e85-a45dbae2575e</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_dbf54faf-eee9-4949-8e85-a45dbae2575e.json</data>
+</node>
+<node id="Mixed Epoxy [9d4792aa-eb59-4533-832e-d21dd8f97134, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">9d4792aa-eb59-4533-832e-d21dd8f97134</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Mixed Epoxy</data>
+  <data key="d6">IngredientRun_Mixed-Epoxy_9d4792aa-eb59-4533-832e-d21dd8f97134.json</data>
+</node>
+<node id="Purchasing Glass [c334c1bc-a53f-4570-bc20-a92a2e8adf0c, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">c334c1bc-a53f-4570-bc20-a92a2e8adf0c</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Purchasing Glass</data>
+  <data key="d6">ProcessRun_Purchasing-Glass_c334c1bc-a53f-4570-bc20-a92a2e8adf0c.json</data>
+</node>
+<node id="Flyer velocity analysis [5e458f26-85a1-4f40-9324-16be291c7c54, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">5e458f26-85a1-4f40-9324-16be291c7c54</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">Flyer velocity analysis</data>
+  <data key="d7">FlyerTilt, Significant</data>
+  <data key="d8">FlyerCurvature, None</data>
+  <data key="d9">ReturnSignalStrength, 15.0 dimensionless</data>
+  <data key="d15">MaxVelocity, 154.0 meter / second</data>
+  <data key="d10">VideoQuality, Good</data>
+  <data key="d11">{0: None, 1: None}</data>
+  <data key="d12">{0: 'NewEnergyMeasurement::No', 1: 'ExperimentDayCounter::00010', 2: 'GrantFunding::BMG_Project', 3: 'recordId::1907', 4: 'modId::2', 5: 'ObjectType::LaserShockExperiment'}</data>
+  <data key="d6">MeasurementRun_Flyer-velocity-analysis_5e458f26-85a1-4f40-9324-16be291c7c54.json</data>
+</node>
+<node id="F086-R7C2 [8329cc9a-c4c2-4a6a-ada7-1dbd59475a9f, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">8329cc9a-c4c2-4a6a-ada7-1dbd59475a9f</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R7C2</data>
+  <data key="d12">{0: 'recordId::2155', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2155.json</data>
+</node>
+<node id="Flyer velocity analysis [7446a62f-ac24-467a-bd26-7151129d4ac8, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">7446a62f-ac24-467a-bd26-7151129d4ac8</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">Flyer velocity analysis</data>
+  <data key="d7">FlyerTilt, Significant</data>
+  <data key="d8">FlyerCurvature, None</data>
+  <data key="d9">ReturnSignalStrength, 15.0 dimensionless</data>
+  <data key="d15">MaxVelocity, 152.0 meter / second</data>
+  <data key="d10">VideoQuality, Good</data>
+  <data key="d11">{0: None, 1: None}</data>
+  <data key="d12">{0: 'NewEnergyMeasurement::No', 1: 'ExperimentDayCounter::00009', 2: 'GrantFunding::BMG_Project', 3: 'recordId::1906', 4: 'modId::2', 5: 'ObjectType::LaserShockExperiment'}</data>
+  <data key="d6">MeasurementRun_Flyer-velocity-analysis_7446a62f-ac24-467a-bd26-7151129d4ac8.json</data>
+</node>
+<node id="Flyer Cutting Optimized v2 (2021-10-22) [9f7308b4-b8f2-4170-a6c0-129aa11c8633, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">9f7308b4-b8f2-4170-a6c0-129aa11c8633</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Flyer Cutting Optimized v2 (2021-10-22)</data>
+  <data key="d6">ProcessRun_Flyer-Cutting-Optimized-v2-(2021-10-22)_9f7308b4-b8f2-4170-a6c0-129aa11c8633.json</data>
+</node>
+<node id="Flyer Stack [829df15f-7a9f-4236-8e31-1b4c224a14b6, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">829df15f-7a9f-4236-8e31-1b4c224a14b6</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_829df15f-7a9f-4236-8e31-1b4c224a14b6.json</data>
+</node>
+<node id="Flyer Stack [980af889-c827-46a6-8402-da5f7e3631c7, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">980af889-c827-46a6-8402-da5f7e3631c7</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_980af889-c827-46a6-8402-da5f7e3631c7.json</data>
+</node>
+<node id="Choosing Flyer [4dbbb319-d21e-4b0b-a07a-0c9ff00dd392, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">4dbbb319-d21e-4b0b-a07a-0c9ff00dd392</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_4dbbb319-d21e-4b0b-a07a-0c9ff00dd392.json</data>
+</node>
+<node id="Flyer Stack [a831124c-6707-4a48-ba2c-9dfac977c313, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">a831124c-6707-4a48-ba2c-9dfac977c313</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_a831124c-6707-4a48-ba2c-9dfac977c313.json</data>
+</node>
+<node id="F086-R6C3 [c99b7a5d-9cd5-4ac2-8ea3-ad62966ee32a, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">c99b7a5d-9cd5-4ac2-8ea3-ad62966ee32a</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R6C3</data>
+  <data key="d12">{0: 'recordId::2149', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2149.json</data>
+</node>
+<node id="Choosing Flyer [cedb22e4-7ccd-4c9f-b721-3a30540f5edd, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">cedb22e4-7ccd-4c9f-b721-3a30540f5edd</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_cedb22e4-7ccd-4c9f-b721-3a30540f5edd.json</data>
+</node>
+<node id="Flyer Stack [b6bf3ded-84d1-4503-8fde-2d12f011a0e1, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">b6bf3ded-84d1-4503-8fde-2d12f011a0e1</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_b6bf3ded-84d1-4503-8fde-2d12f011a0e1.json</data>
+</node>
+<node id="F086-R1C1 [993ca0e3-48d6-44d5-8519-ecc5532f12ac, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">993ca0e3-48d6-44d5-8519-ecc5532f12ac</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R1C1</data>
+  <data key="d12">{0: 'recordId::2112', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2112.json</data>
+</node>
+<node id="Flyer Stack [d784e577-ef4a-4fc5-a22b-69ed2ea97bdb, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">d784e577-ef4a-4fc5-a22b-69ed2ea97bdb</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_d784e577-ef4a-4fc5-a22b-69ed2ea97bdb.json</data>
+</node>
+<node id="Flyer velocity analysis [6bf6af53-f7c5-4805-bc5d-974edc2885c8, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">6bf6af53-f7c5-4805-bc5d-974edc2885c8</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">Flyer velocity analysis</data>
+  <data key="d7">FlyerTilt, None</data>
+  <data key="d8">FlyerCurvature, None</data>
+  <data key="d9">ReturnSignalStrength, 15.0 dimensionless</data>
+  <data key="d10">VideoQuality, Amazing</data>
+  <data key="d11">{0: None, 1: None}</data>
+  <data key="d12">{0: 'NewEnergyMeasurement::Yes', 1: 'ExperimentDayCounter::00000', 2: 'GrantFunding::BMG_Project', 3: 'recordId::1897', 4: 'modId::6', 5: 'ObjectType::LaserShockExperiment'}</data>
+  <data key="d6">MeasurementRun_Flyer-velocity-analysis_6bf6af53-f7c5-4805-bc5d-974edc2885c8.json</data>
+</node>
+<node id="Mixing Epoxy [1ad1650b-49db-4cb6-85ff-5c8337a2ffaf, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">1ad1650b-49db-4cb6-85ff-5c8337a2ffaf</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Mixing Epoxy</data>
+  <data key="d6">ProcessRun_Mixing-Epoxy_1ad1650b-49db-4cb6-85ff-5c8337a2ffaf.json</data>
+</node>
+<node id="Choosing Flyer [9c4ac6ae-3351-43d3-af9f-60fa8ba4f7bb, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">9c4ac6ae-3351-43d3-af9f-60fa8ba4f7bb</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_9c4ac6ae-3351-43d3-af9f-60fa8ba4f7bb.json</data>
+</node>
+<node id="Flyer Stack [028e02f1-702f-49f2-8ad6-763eac2b462d, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">028e02f1-702f-49f2-8ad6-763eac2b462d</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_028e02f1-702f-49f2-8ad6-763eac2b462d.json</data>
+</node>
+<node id="F086-R1C4 [0d69df0c-c9d0-4c1d-ba3c-11c322c33eea, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">0d69df0c-c9d0-4c1d-ba3c-11c322c33eea</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R1C4</data>
+  <data key="d12">{0: 'recordId::2115', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2115.json</data>
+</node>
+<node id="Choosing Flyer [f3fe283a-5873-4c15-86be-b16316646716, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">f3fe283a-5873-4c15-86be-b16316646716</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_f3fe283a-5873-4c15-86be-b16316646716.json</data>
+</node>
+<node id="Flyer Stack [f846563d-5ad0-4b64-8d6d-8a0a8b6bb358, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">f846563d-5ad0-4b64-8d6d-8a0a8b6bb358</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_f846563d-5ad0-4b64-8d6d-8a0a8b6bb358.json</data>
+</node>
+<node id="F086-R6C7 [dc7e497d-10f0-4b70-bddf-33812a24793c, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">dc7e497d-10f0-4b70-bddf-33812a24793c</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R6C7</data>
+  <data key="d12">{0: 'recordId::2153', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2153.json</data>
+</node>
+<node id="Flyer Stack [06bf3a6e-1008-4ed6-8b59-151f82f7806e, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">06bf3a6e-1008-4ed6-8b59-151f82f7806e</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_06bf3a6e-1008-4ed6-8b59-151f82f7806e.json</data>
+</node>
+<node id="Glass Epoxy Foil Stack [fda0f8fc-1acd-4598-9081-7d8abf7503d2, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">fda0f8fc-1acd-4598-9081-7d8abf7503d2</data>
+  <data key="d4">material_run</data>
+  <data key="d5">Glass Epoxy Foil Stack</data>
+  <data key="d6">MaterialRun_Glass-Epoxy-Foil-Stack_fda0f8fc-1acd-4598-9081-7d8abf7503d2.json</data>
+</node>
+<node id="F086-R5C6 [eab91593-0ee1-4384-9b9b-41c29400fcca, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">eab91593-0ee1-4384-9b9b-41c29400fcca</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R5C6</data>
+  <data key="d12">{0: 'recordId::2145', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2145.json</data>
+</node>
+<node id="Glasslength [128b12b6-06f6-4c12-8b36-f2620e5a1d5a, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">128b12b6-06f6-4c12-8b36-f2620e5a1d5a</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">Glasslength</data>
+  <data key="d20">Glasslength, 50.0 millimeter</data>
+  <data key="d6">MeasurementRun_Glasslength_128b12b6-06f6-4c12-8b36-f2620e5a1d5a.json</data>
+</node>
+<node id="Spall [6efc39f3-e520-4628-8720-f08fae170989, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">6efc39f3-e520-4628-8720-f08fae170989</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">Spall</data>
+  <data key="d9">ReturnSignalStrength, 15.0 dimensionless</data>
+  <data key="d11">{0: None, 1: None}</data>
+  <data key="d12">{0: 'NewEnergyMeasurement::No', 1: 'ExperimentDayCounter::00003', 2: 'recordId::2023', 3: 'modId::1', 4: 'ObjectType::LaserShockExperiment'}</data>
+  <data key="d6">MeasurementRun_Spall_6efc39f3-e520-4628-8720-f08fae170989.json</data>
+</node>
+<node id="Choosing Flyer [f0f5bc0a-07a2-4a08-b1e0-8b917b74c24b, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">f0f5bc0a-07a2-4a08-b1e0-8b917b74c24b</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_f0f5bc0a-07a2-4a08-b1e0-8b917b74c24b.json</data>
+</node>
+<node id="FoilThickness4 [67a3d7f9-7862-46db-817a-e08ac85b5992, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">67a3d7f9-7862-46db-817a-e08ac85b5992</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">FoilThickness4</data>
+  <data key="d21">FoilThickness4, 102.0 micrometer</data>
+  <data key="d6">MeasurementRun_FoilThickness4_67a3d7f9-7862-46db-817a-e08ac85b5992.json</data>
+</node>
+<node id="Choosing Flyer [81c3ad6e-ad62-493b-9e83-64485d6f44ee, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">81c3ad6e-ad62-493b-9e83-64485d6f44ee</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_81c3ad6e-ad62-493b-9e83-64485d6f44ee.json</data>
+</node>
+<node id="Flyer Stack [e9f2ab62-dd6b-4009-ae85-b3a9d6a57f1c, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">e9f2ab62-dd6b-4009-ae85-b3a9d6a57f1c</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_e9f2ab62-dd6b-4009-ae85-b3a9d6a57f1c.json</data>
+</node>
+<node id="FlyerCuttingCompleteness [0b48e656-f0de-4e40-a2e0-bd0ca59f56c9, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">0b48e656-f0de-4e40-a2e0-bd0ca59f56c9</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">FlyerCuttingCompleteness</data>
+  <data key="d22">FlyerCuttingCompleteness, 100</data>
+  <data key="d6">MeasurementRun_FlyerCuttingCompleteness_0b48e656-f0de-4e40-a2e0-bd0ca59f56c9.json</data>
+</node>
+<node id="Choosing Flyer [6c1939c9-3be2-4e64-a2db-a5f9c50caf0e, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">6c1939c9-3be2-4e64-a2db-a5f9c50caf0e</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_6c1939c9-3be2-4e64-a2db-a5f9c50caf0e.json</data>
+</node>
+<node id="GlassThickness4 [2ed8496c-bf20-4428-993b-798af63716ee, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">2ed8496c-bf20-4428-993b-798af63716ee</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">GlassThickness4</data>
+  <data key="d23">GlassThickness4, 6.466 millimeter</data>
+  <data key="d6">MeasurementRun_GlassThickness4_2ed8496c-bf20-4428-993b-798af63716ee.json</data>
+</node>
+<node id="Choosing Flyer [b363dc89-b2d7-4b70-93ae-7ce7f0d74d78, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">b363dc89-b2d7-4b70-93ae-7ce7f0d74d78</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_b363dc89-b2d7-4b70-93ae-7ce7f0d74d78.json</data>
+</node>
+<node id="F086-R2C5 [a87633e3-9b37-4a3f-a3bd-ac5c9c941f72, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">a87633e3-9b37-4a3f-a3bd-ac5c9c941f72</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R2C5</data>
+  <data key="d12">{0: 'recordId::2123', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2123.json</data>
+</node>
+<node id="Spall [d0bccf39-2a7b-488c-8825-e84537bad16d, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">d0bccf39-2a7b-488c-8825-e84537bad16d</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">Spall</data>
+  <data key="d9">ReturnSignalStrength, 15.0 dimensionless</data>
+  <data key="d10">VideoQuality, Good</data>
+  <data key="d14">SpallState, No visible</data>
+  <data key="d11">{0: None, 1: None}</data>
+  <data key="d12">{0: 'NewEnergyMeasurement::No', 1: 'ExperimentDayCounter::00002', 2: 'recordId::2022', 3: 'modId::6', 4: 'ObjectType::LaserShockExperiment'}</data>
+  <data key="d6">MeasurementRun_Spall_d0bccf39-2a7b-488c-8825-e84537bad16d.json</data>
+</node>
+<node id="Flyer velocity analysis [0861e577-57cd-49d3-94d2-7812b5c26229, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">0861e577-57cd-49d3-94d2-7812b5c26229</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">Flyer velocity analysis</data>
+  <data key="d7">FlyerTilt, Significant</data>
+  <data key="d8">FlyerCurvature, Minor</data>
+  <data key="d9">ReturnSignalStrength, 15.0 dimensionless</data>
+  <data key="d10">VideoQuality, Good</data>
+  <data key="d11">{0: None, 1: None}</data>
+  <data key="d12">{0: 'NewEnergyMeasurement::No', 1: 'ExperimentDayCounter::00001', 2: 'recordId::2021', 3: 'modId::1', 4: 'ObjectType::LaserShockExperiment'}</data>
+  <data key="d6">MeasurementRun_Flyer-velocity-analysis_0861e577-57cd-49d3-94d2-7812b5c26229.json</data>
+</node>
+<node id="Choosing Flyer [2123b34f-fb8e-43ed-ad57-8e8cf8071352, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">2123b34f-fb8e-43ed-ad57-8e8cf8071352</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_2123b34f-fb8e-43ed-ad57-8e8cf8071352.json</data>
+</node>
+<node id="Epoxying a Flyer Stack [ba05c94d-fdfd-4b13-8ea4-b7d7d66095c8, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">ba05c94d-fdfd-4b13-8ea4-b7d7d66095c8</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Epoxying a Flyer Stack</data>
+  <data key="d6">ProcessRun_Epoxying-a-Flyer-Stack_ba05c94d-fdfd-4b13-8ea4-b7d7d66095c8.json</data>
+</node>
+<node id="Choosing Flyer [a7321f0e-8cfd-43b9-93f2-1e6817f3b56e, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">a7321f0e-8cfd-43b9-93f2-1e6817f3b56e</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_a7321f0e-8cfd-43b9-93f2-1e6817f3b56e.json</data>
+</node>
+<node id="Flyer Stack [fb8541ac-e060-4150-988d-684a9f5a173d, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">fb8541ac-e060-4150-988d-684a9f5a173d</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_fb8541ac-e060-4150-988d-684a9f5a173d.json</data>
+</node>
+<node id="F086-R1C3 [f45f4ab0-966d-4fed-acd2-7df854e0b9cc, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">f45f4ab0-966d-4fed-acd2-7df854e0b9cc</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R1C3</data>
+  <data key="d12">{0: 'recordId::2114', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2114.json</data>
+</node>
+<node id="Flyer velocity analysis [063e1beb-84df-4664-8ea8-4f2e2cc92a92, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">063e1beb-84df-4664-8ea8-4f2e2cc92a92</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">Flyer velocity analysis</data>
+  <data key="d7">FlyerTilt, Minor</data>
+  <data key="d8">FlyerCurvature, None</data>
+  <data key="d9">ReturnSignalStrength, 15.0 dimensionless</data>
+  <data key="d15">MaxVelocity, 153.0 meter / second</data>
+  <data key="d10">VideoQuality, Good</data>
+  <data key="d11">{0: None, 1: None}</data>
+  <data key="d12">{0: 'NewEnergyMeasurement::No', 1: 'ExperimentDayCounter::00008', 2: 'GrantFunding::BMG_Project', 3: 'recordId::1905', 4: 'modId::3', 5: 'ObjectType::LaserShockExperiment'}</data>
+  <data key="d6">MeasurementRun_Flyer-velocity-analysis_063e1beb-84df-4664-8ea8-4f2e2cc92a92.json</data>
+</node>
+<node id="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">4370a2d1-e854-4ede-9027-f56049d3b4ed</data>
+  <data key="d4">material_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d12">{0: 'FlyerID::F086', 1: 'recordId::106', 2: 'modId::11', 3: 'ObjectType::LaserShockFlyerStack'}</data>
+  <data key="d6">LaserShockFlyerStack_recordId_106.json</data>
+</node>
+<node id="Choosing Flyer [d1e54e49-fa7a-4532-a1d9-6a21a31c32b9, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">d1e54e49-fa7a-4532-a1d9-6a21a31c32b9</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_d1e54e49-fa7a-4532-a1d9-6a21a31c32b9.json</data>
+</node>
+<node id="Glass ID [96b3194f-888c-4e58-93b5-95ee762b76a6, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">96b3194f-888c-4e58-93b5-95ee762b76a6</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Glass ID</data>
+  <data key="d6">IngredientRun_Glass-ID_96b3194f-888c-4e58-93b5-95ee762b76a6.json</data>
+</node>
+<node id="Choosing Flyer [5d27a672-9c32-445e-880c-b7b82db99bba, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">5d27a672-9c32-445e-880c-b7b82db99bba</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_5d27a672-9c32-445e-880c-b7b82db99bba.json</data>
+</node>
+<node id="Flyer velocity analysis [6dd252fa-cc20-4f0e-9385-a732036a3d23, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">6dd252fa-cc20-4f0e-9385-a732036a3d23</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">Flyer velocity analysis</data>
+  <data key="d7">FlyerTilt, Significant</data>
+  <data key="d8">FlyerCurvature, Minor</data>
+  <data key="d9">ReturnSignalStrength, 15.0 dimensionless</data>
+  <data key="d10">VideoQuality, Good</data>
+  <data key="d11">{0: None, 1: None}</data>
+  <data key="d12">{0: 'NewEnergyMeasurement::Yes', 1: 'ExperimentDayCounter::00004', 2: 'recordId::2024', 3: 'modId::1', 4: 'ObjectType::LaserShockExperiment'}</data>
+  <data key="d6">MeasurementRun_Flyer-velocity-analysis_6dd252fa-cc20-4f0e-9385-a732036a3d23.json</data>
+</node>
+<node id="F086-R2C1 [5053492a-86b4-44a0-a2d8-002234fb24dc, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">5053492a-86b4-44a0-a2d8-002234fb24dc</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R2C1</data>
+  <data key="d12">{0: 'recordId::2119', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2119.json</data>
+</node>
+<node id="Flyer Stack [0e4f5bb3-d376-4bdc-a20e-580ea0ea5701, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">0e4f5bb3-d376-4bdc-a20e-580ea0ea5701</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_0e4f5bb3-d376-4bdc-a20e-580ea0ea5701.json</data>
+</node>
+<node id="F086-R1C6 [9b935826-795d-4bb8-aad1-0fc852e079e7, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">9b935826-795d-4bb8-aad1-0fc852e079e7</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R1C6</data>
+  <data key="d12">{0: 'recordId::2117', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2117.json</data>
+</node>
+<node id="Flyer Stack [190ddcfd-2c6e-42ae-aa42-734849f8a8c1, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">190ddcfd-2c6e-42ae-aa42-734849f8a8c1</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_190ddcfd-2c6e-42ae-aa42-734849f8a8c1.json</data>
+</node>
+<node id="Flyer Stack [4e908276-d143-4e14-a21d-651233fd1575, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">4e908276-d143-4e14-a21d-651233fd1575</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_4e908276-d143-4e14-a21d-651233fd1575.json</data>
+</node>
+<node id="F086-R2C3 [9471cb84-e3aa-464e-8edd-b99167f9e1a3, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">9471cb84-e3aa-464e-8edd-b99167f9e1a3</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R2C3</data>
+  <data key="d12">{0: 'recordId::2121', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2121.json</data>
+</node>
+<node id="F086-R6C6 [d182d5df-a5dd-474d-9855-68175033128b, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">d182d5df-a5dd-474d-9855-68175033128b</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R6C6</data>
+  <data key="d12">{0: 'recordId::2152', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2152.json</data>
+</node>
+<node id="Flyer velocity analysis [c75d6ed6-33c2-4b37-aefc-099271bcf5d9, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">c75d6ed6-33c2-4b37-aefc-099271bcf5d9</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">Flyer velocity analysis</data>
+  <data key="d7">FlyerTilt, None</data>
+  <data key="d8">FlyerCurvature, None</data>
+  <data key="d9">ReturnSignalStrength, 15.0 dimensionless</data>
+  <data key="d15">MaxVelocity, 150.0 meter / second</data>
+  <data key="d10">VideoQuality, Great</data>
+  <data key="d11">{0: None, 1: None}</data>
+  <data key="d12">{0: 'NewEnergyMeasurement::No', 1: 'ExperimentDayCounter::00011', 2: 'GrantFunding::BMG_Project', 3: 'recordId::1908', 4: 'modId::3', 5: 'ObjectType::LaserShockExperiment'}</data>
+  <data key="d6">MeasurementRun_Flyer-velocity-analysis_c75d6ed6-33c2-4b37-aefc-099271bcf5d9.json</data>
+</node>
+<node id="Choosing Flyer [ccbe37fc-b4a9-4d3c-8a79-8a5561970db4, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">ccbe37fc-b4a9-4d3c-8a79-8a5561970db4</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_ccbe37fc-b4a9-4d3c-8a79-8a5561970db4.json</data>
+</node>
+<node id="Choosing Flyer [2c1defb0-246c-4d02-a09c-a2e39db9cb84, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">2c1defb0-246c-4d02-a09c-a2e39db9cb84</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_2c1defb0-246c-4d02-a09c-a2e39db9cb84.json</data>
+</node>
+<node id="Choosing Flyer [80f8c8c1-519a-4884-9d7c-3b6a2c0a3e76, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">80f8c8c1-519a-4884-9d7c-3b6a2c0a3e76</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_80f8c8c1-519a-4884-9d7c-3b6a2c0a3e76.json</data>
+</node>
+<node id="F086-R1C7 [53167ce0-bde6-4903-93c0-ecec38dc9164, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">53167ce0-bde6-4903-93c0-ecec38dc9164</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R1C7</data>
+  <data key="d12">{0: 'recordId::2118', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2118.json</data>
+</node>
+<node id="Flyer Stack [5b3fccc7-b12d-4993-b738-a97c900fe14b, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">5b3fccc7-b12d-4993-b738-a97c900fe14b</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_5b3fccc7-b12d-4993-b738-a97c900fe14b.json</data>
+</node>
+<node id="Choosing Flyer [d91adab4-ccb2-4811-bbf1-8324c9889750, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">d91adab4-ccb2-4811-bbf1-8324c9889750</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_d91adab4-ccb2-4811-bbf1-8324c9889750.json</data>
+</node>
+<node id="F086-R2C4 [422a5938-ef14-4631-8dd8-0e0a1fa54326, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">422a5938-ef14-4631-8dd8-0e0a1fa54326</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R2C4</data>
+  <data key="d12">{0: 'recordId::2122', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2122.json</data>
+</node>
+<node id="Glass Epoxy Foil Stack [41136df0-84b7-4b7b-9600-ae91139d7b2f, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">41136df0-84b7-4b7b-9600-ae91139d7b2f</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Glass Epoxy Foil Stack</data>
+  <data key="d6">IngredientRun_Glass-Epoxy-Foil-Stack_41136df0-84b7-4b7b-9600-ae91139d7b2f.json</data>
+</node>
+<node id="Flyer Stack [4c1b1c64-9edb-42d7-b82b-973493bc6c9c, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">4c1b1c64-9edb-42d7-b82b-973493bc6c9c</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_4c1b1c64-9edb-42d7-b82b-973493bc6c9c.json</data>
+</node>
+<node id="Choosing Flyer [a90122f2-946b-4f61-b5c3-555a40933499, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">a90122f2-946b-4f61-b5c3-555a40933499</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_a90122f2-946b-4f61-b5c3-555a40933499.json</data>
+</node>
+<node id="Flyer Stack [ad87d3b7-a146-4800-8637-d43062aff3f3, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">ad87d3b7-a146-4800-8637-d43062aff3f3</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_ad87d3b7-a146-4800-8637-d43062aff3f3.json</data>
+</node>
+<node id="F086-R7C1 [ff03b074-b8ae-4dc7-a883-6947232604aa, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">ff03b074-b8ae-4dc7-a883-6947232604aa</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R7C1</data>
+  <data key="d12">{0: 'recordId::2154', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2154.json</data>
+</node>
+<node id="FoilThickness3 [27d92aa2-7cb3-4a5b-b527-1ffc60ed042b, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">27d92aa2-7cb3-4a5b-b527-1ffc60ed042b</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">FoilThickness3</data>
+  <data key="d24">FoilThickness3, 101.0 micrometer</data>
+  <data key="d6">MeasurementRun_FoilThickness3_27d92aa2-7cb3-4a5b-b527-1ffc60ed042b.json</data>
+</node>
+<node id="F086-R5C1 [6f3b271a-5daa-462a-90fc-6be168f7e815, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">6f3b271a-5daa-462a-90fc-6be168f7e815</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R5C1</data>
+  <data key="d12">{0: 'recordId::2140', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2140.json</data>
+</node>
+<node id="Flyer Stack [d8fc1951-51c9-4059-b2f9-6792a6678939, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">d8fc1951-51c9-4059-b2f9-6792a6678939</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_d8fc1951-51c9-4059-b2f9-6792a6678939.json</data>
+</node>
+<node id="Choosing Flyer [87c40221-b7bb-4c63-9511-6ce6443eb4a9, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">87c40221-b7bb-4c63-9511-6ce6443eb4a9</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_87c40221-b7bb-4c63-9511-6ce6443eb4a9.json</data>
+</node>
+<node id="Flyer Stack [b08e8439-8d66-487c-b0a1-2d16e3e016e8, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">b08e8439-8d66-487c-b0a1-2d16e3e016e8</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_b08e8439-8d66-487c-b0a1-2d16e3e016e8.json</data>
+</node>
+<node id="F086-R3C7 [59311d67-47dc-4193-bce3-9c2f5b4fa51f, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">59311d67-47dc-4193-bce3-9c2f5b4fa51f</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R3C7</data>
+  <data key="d12">{0: 'recordId::2132', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2132.json</data>
+</node>
+<node id="Flyer velocity analysis [92869028-b956-46c6-be21-cd97cfa0fbf0, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">92869028-b956-46c6-be21-cd97cfa0fbf0</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">Flyer velocity analysis</data>
+  <data key="d7">FlyerTilt, Significant</data>
+  <data key="d8">FlyerCurvature, None</data>
+  <data key="d9">ReturnSignalStrength, 15.0 dimensionless</data>
+  <data key="d10">VideoQuality, OK</data>
+  <data key="d11">{0: None, 1: None}</data>
+  <data key="d12">{0: 'NewEnergyMeasurement::Yes', 1: 'ExperimentDayCounter::00012', 2: 'GrantFunding::BMG_Project', 3: 'recordId::1909', 4: 'modId::5', 5: 'ObjectType::LaserShockExperiment'}</data>
+  <data key="d6">MeasurementRun_Flyer-velocity-analysis_92869028-b956-46c6-be21-cd97cfa0fbf0.json</data>
+</node>
+<node id="Choosing Flyer [c6cc38b9-56cb-407a-a476-9ba959c16ec0, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">c6cc38b9-56cb-407a-a476-9ba959c16ec0</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_c6cc38b9-56cb-407a-a476-9ba959c16ec0.json</data>
+</node>
+<node id="Choosing Flyer [e6addadf-6979-463d-a9d7-01abd0517a28, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">e6addadf-6979-463d-a9d7-01abd0517a28</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_e6addadf-6979-463d-a9d7-01abd0517a28.json</data>
+</node>
+<node id="Flyer Stack [362bfac5-56c2-485c-b829-92c3a46cc456, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">362bfac5-56c2-485c-b829-92c3a46cc456</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_362bfac5-56c2-485c-b829-92c3a46cc456.json</data>
+</node>
+<node id="GlassThickness1 [cebf4c37-8572-44ef-bac0-b07843bf3d0d, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">cebf4c37-8572-44ef-bac0-b07843bf3d0d</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">GlassThickness1</data>
+  <data key="d25">GlassThickness1, 6.464 millimeter</data>
+  <data key="d6">MeasurementRun_GlassThickness1_cebf4c37-8572-44ef-bac0-b07843bf3d0d.json</data>
+</node>
+<node id="Flyer velocity analysis [11c0508c-5f3c-4403-8e64-8113525805b7, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">11c0508c-5f3c-4403-8e64-8113525805b7</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">Flyer velocity analysis</data>
+  <data key="d7">FlyerTilt, Minor</data>
+  <data key="d8">FlyerCurvature, None</data>
+  <data key="d9">ReturnSignalStrength, 15.0 dimensionless</data>
+  <data key="d15">MaxVelocity, 153.0 meter / second</data>
+  <data key="d10">VideoQuality, Good</data>
+  <data key="d11">{0: None, 1: None}</data>
+  <data key="d12">{0: 'NewEnergyMeasurement::Yes', 1: 'ExperimentDayCounter::00006', 2: 'GrantFunding::BMG_Project', 3: 'recordId::1903', 4: 'modId::4', 5: 'ObjectType::LaserShockExperiment'}</data>
+  <data key="d6">MeasurementRun_Flyer-velocity-analysis_11c0508c-5f3c-4403-8e64-8113525805b7.json</data>
+</node>
+<node id="Flyer velocity analysis [979b05f9-3b0a-49a8-8ab3-5688eb070775, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">979b05f9-3b0a-49a8-8ab3-5688eb070775</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">Flyer velocity analysis</data>
+  <data key="d7">FlyerTilt, Minor</data>
+  <data key="d8">FlyerCurvature, None</data>
+  <data key="d9">ReturnSignalStrength, 15.0 dimensionless</data>
+  <data key="d10">VideoQuality, Good</data>
+  <data key="d11">{0: None, 1: None}</data>
+  <data key="d12">{0: 'NewEnergyMeasurement::Yes', 1: 'ExperimentDayCounter::00001', 2: 'GrantFunding::BMG_Project', 3: 'recordId::1898', 4: 'modId::2', 5: 'ObjectType::LaserShockExperiment'}</data>
+  <data key="d6">MeasurementRun_Flyer-velocity-analysis_979b05f9-3b0a-49a8-8ab3-5688eb070775.json</data>
+</node>
+<node id="Flyer velocity analysis [dbcaf372-c002-45fa-b771-543b5c36a75c, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">dbcaf372-c002-45fa-b771-543b5c36a75c</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">Flyer velocity analysis</data>
+  <data key="d7">FlyerTilt, Significant</data>
+  <data key="d8">FlyerCurvature, None</data>
+  <data key="d9">ReturnSignalStrength, 15.0 dimensionless</data>
+  <data key="d10">VideoQuality, Good</data>
+  <data key="d11">{0: None, 1: None}</data>
+  <data key="d12">{0: 'NewEnergyMeasurement::No', 1: 'ExperimentDayCounter::00013', 2: 'GrantFunding::BMG_Project', 3: 'recordId::1910', 4: 'modId::1', 5: 'ObjectType::LaserShockExperiment'}</data>
+  <data key="d6">MeasurementRun_Flyer-velocity-analysis_dbcaf372-c002-45fa-b771-543b5c36a75c.json</data>
+</node>
+<node id="Choosing Flyer [667036b5-4de9-4299-b342-1870a24e7fcd, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">667036b5-4de9-4299-b342-1870a24e7fcd</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_667036b5-4de9-4299-b342-1870a24e7fcd.json</data>
+</node>
+<node id="Flyer Stack [e6664d7c-4422-43b4-9b2e-111f889b5d0b, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">e6664d7c-4422-43b4-9b2e-111f889b5d0b</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_e6664d7c-4422-43b4-9b2e-111f889b5d0b.json</data>
+</node>
+<node id="F086-R2C6 [17619eb0-3301-4f3b-828f-fa4f35611247, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">17619eb0-3301-4f3b-828f-fa4f35611247</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R2C6</data>
+  <data key="d12">{0: 'recordId::2124', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2124.json</data>
+</node>
+<node id="F086-R7C6 [80ab2e66-0f89-4294-9d3f-57860a1744c0, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">80ab2e66-0f89-4294-9d3f-57860a1744c0</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R7C6</data>
+  <data key="d12">{0: 'recordId::2159', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2159.json</data>
+</node>
+<node id="Flyer velocity analysis [b1fbb425-ab1f-455c-8d2b-a4a0d2e9ea35, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">b1fbb425-ab1f-455c-8d2b-a4a0d2e9ea35</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">Flyer velocity analysis</data>
+  <data key="d7">FlyerTilt, Minor</data>
+  <data key="d8">FlyerCurvature, None</data>
+  <data key="d9">ReturnSignalStrength, 15.0 dimensionless</data>
+  <data key="d10">VideoQuality, Good</data>
+  <data key="d11">{0: None, 1: None}</data>
+  <data key="d12">{0: 'NewEnergyMeasurement::No', 1: 'ExperimentDayCounter::00002', 2: 'GrantFunding::BMG_Project', 3: 'recordId::1899', 4: 'modId::3', 5: 'ObjectType::LaserShockExperiment'}</data>
+  <data key="d6">MeasurementRun_Flyer-velocity-analysis_b1fbb425-ab1f-455c-8d2b-a4a0d2e9ea35.json</data>
+</node>
+<node id="Epoxy Part B [d95989d6-4cea-4cea-a3ce-29e5e4c5e3d1, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">d95989d6-4cea-4cea-a3ce-29e5e4c5e3d1</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Epoxy Part B</data>
+  <data key="d6">IngredientRun_Epoxy-Part-B_d95989d6-4cea-4cea-a3ce-29e5e4c5e3d1.json</data>
+</node>
+<node id="Flyer Stack [7a9e9433-73f3-41d5-b853-0b9d1a4c8438, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">7a9e9433-73f3-41d5-b853-0b9d1a4c8438</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_7a9e9433-73f3-41d5-b853-0b9d1a4c8438.json</data>
+</node>
+<node id="FlyerCuttingDepthSuccess [3af98c39-edc7-4797-867a-5cef877c441c, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">3af98c39-edc7-4797-867a-5cef877c441c</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">FlyerCuttingDepthSuccess</data>
+  <data key="d26">FlyerCuttingDepthSuccess, Complete</data>
+  <data key="d6">MeasurementRun_FlyerCuttingDepthSuccess_3af98c39-edc7-4797-867a-5cef877c441c.json</data>
+</node>
+<node id="F086-R3C2 [7171cf82-3138-4b36-a7c3-c23ee3476f01, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">7171cf82-3138-4b36-a7c3-c23ee3476f01</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R3C2</data>
+  <data key="d12">{0: 'recordId::2127', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2127.json</data>
+</node>
+<node id="F086-R6C2 [e0b94e65-5f44-48d3-8c76-c712935df418, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">e0b94e65-5f44-48d3-8c76-c712935df418</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R6C2</data>
+  <data key="d12">{0: 'recordId::2148', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2148.json</data>
+</node>
+<node id="Flyer velocity analysis [fc44fd45-1de4-4f7b-a2b5-edede1b7978b, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">fc44fd45-1de4-4f7b-a2b5-edede1b7978b</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">Flyer velocity analysis</data>
+  <data key="d7">FlyerTilt, Minor</data>
+  <data key="d8">FlyerCurvature, None</data>
+  <data key="d9">ReturnSignalStrength, 15.0 dimensionless</data>
+  <data key="d15">MaxVelocity, 150.0 meter / second</data>
+  <data key="d10">VideoQuality, Good</data>
+  <data key="d11">{0: None, 1: None}</data>
+  <data key="d12">{0: 'NewEnergyMeasurement::No', 1: 'ExperimentDayCounter::00007', 2: 'GrantFunding::BMG_Project', 3: 'recordId::1904', 4: 'modId::2', 5: 'ObjectType::LaserShockExperiment'}</data>
+  <data key="d6">MeasurementRun_Flyer-velocity-analysis_fc44fd45-1de4-4f7b-a2b5-edede1b7978b.json</data>
+</node>
+<node id="Flyer Stack [00fc0230-4365-45db-8370-020fe895ccfe, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">00fc0230-4365-45db-8370-020fe895ccfe</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_00fc0230-4365-45db-8370-020fe895ccfe.json</data>
+</node>
+<node id="Choosing Flyer [16191777-3269-4c3b-ba9c-3085755aea8e, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">16191777-3269-4c3b-ba9c-3085755aea8e</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_16191777-3269-4c3b-ba9c-3085755aea8e.json</data>
+</node>
+<node id="GlassThickness2 [b9b17268-1455-4b19-8c79-de7ca51a266b, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">b9b17268-1455-4b19-8c79-de7ca51a266b</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">GlassThickness2</data>
+  <data key="d27">GlassThickness2, 6.459 millimeter</data>
+  <data key="d6">MeasurementRun_GlassThickness2_b9b17268-1455-4b19-8c79-de7ca51a266b.json</data>
+</node>
+<node id="Epoxy Part A [708ff342-e8f5-4107-9fd0-83630b1632c0, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">708ff342-e8f5-4107-9fd0-83630b1632c0</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Epoxy Part A</data>
+  <data key="d6">IngredientRun_Epoxy-Part-A_708ff342-e8f5-4107-9fd0-83630b1632c0.json</data>
+</node>
+<node id="Choosing Flyer [0fb6520f-7fca-43d9-8f8a-08325b94e888, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">0fb6520f-7fca-43d9-8f8a-08325b94e888</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_0fb6520f-7fca-43d9-8f8a-08325b94e888.json</data>
+</node>
+<node id="F086-R3C5 [1247e39d-a6b8-4a77-a14f-a16061feec89, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">1247e39d-a6b8-4a77-a14f-a16061feec89</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R3C5</data>
+  <data key="d12">{0: 'recordId::2130', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2130.json</data>
+</node>
+<node id="Flyer velocity analysis [d7d11544-2a42-4640-840f-afe684d4c4a3, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">d7d11544-2a42-4640-840f-afe684d4c4a3</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">Flyer velocity analysis</data>
+  <data key="d7">FlyerTilt, None</data>
+  <data key="d8">FlyerCurvature, None</data>
+  <data key="d9">ReturnSignalStrength, 15.0 dimensionless</data>
+  <data key="d10">VideoQuality, Great</data>
+  <data key="d11">{0: None, 1: None}</data>
+  <data key="d12">{0: 'NewEnergyMeasurement::No', 1: 'ExperimentDayCounter::00005', 2: 'GrantFunding::BMG_Project', 3: 'recordId::1902', 4: 'modId::2', 5: 'ObjectType::LaserShockExperiment'}</data>
+  <data key="d6">MeasurementRun_Flyer-velocity-analysis_d7d11544-2a42-4640-840f-afe684d4c4a3.json</data>
+</node>
+<node id="Flyer Stack [c80ef477-0026-45bc-999a-dd8e9909f1b8, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">c80ef477-0026-45bc-999a-dd8e9909f1b8</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_c80ef477-0026-45bc-999a-dd8e9909f1b8.json</data>
+</node>
+<node id="F086-R5C5 [a16ccd79-738f-4b30-9636-863fc3456147, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">a16ccd79-738f-4b30-9636-863fc3456147</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R5C5</data>
+  <data key="d12">{0: 'recordId::2144', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2144.json</data>
+</node>
+<node id="Flyer Stack [47f67821-7f69-4860-a093-53c437a52e78, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">47f67821-7f69-4860-a093-53c437a52e78</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_47f67821-7f69-4860-a093-53c437a52e78.json</data>
+</node>
+<node id="F086-R5C4 [dcee073f-728a-4e96-9e73-4415eebecc12, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">dcee073f-728a-4e96-9e73-4415eebecc12</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R5C4</data>
+  <data key="d12">{0: 'recordId::2143', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2143.json</data>
+</node>
+<node id="F086-R7C4 [79000c7f-dac7-462c-bfc1-1567b91d5599, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">79000c7f-dac7-462c-bfc1-1567b91d5599</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R7C4</data>
+  <data key="d12">{0: 'recordId::2157', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2157.json</data>
+</node>
+<node id="F086-R6C4 [1c7f7d14-dc0a-4de4-a80f-26db6a755dfa, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">1c7f7d14-dc0a-4de4-a80f-26db6a755dfa</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R6C4</data>
+  <data key="d12">{0: 'recordId::2150', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2150.json</data>
+</node>
+<node id="Choosing Flyer [0673cf20-47ce-4263-a5b4-af4c5db09fa2, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">0673cf20-47ce-4263-a5b4-af4c5db09fa2</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_0673cf20-47ce-4263-a5b4-af4c5db09fa2.json</data>
+</node>
+<node id="Choosing Flyer [d0762c94-1496-4ec4-a124-a2e7754c852b, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">d0762c94-1496-4ec4-a124-a2e7754c852b</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_d0762c94-1496-4ec4-a124-a2e7754c852b.json</data>
+</node>
+<node id="Flyer Stack [99f99a0d-3bf0-4428-a868-31004d8037e3, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">99f99a0d-3bf0-4428-a868-31004d8037e3</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_99f99a0d-3bf0-4428-a868-31004d8037e3.json</data>
+</node>
+<node id="F086-R3C4 [c32331ed-5c18-4311-9585-58c58c815429, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">c32331ed-5c18-4311-9585-58c58c815429</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R3C4</data>
+  <data key="d12">{0: 'recordId::2129', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2129.json</data>
+</node>
+<node id="Purchasing Epoxy [4215056b-7279-4770-99fb-771106c294cf, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">4215056b-7279-4770-99fb-771106c294cf</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Purchasing Epoxy</data>
+  <data key="d6">ProcessRun_Purchasing-Epoxy_4215056b-7279-4770-99fb-771106c294cf.json</data>
+</node>
+<node id="Flyer velocity analysis [d1e962ef-614b-431d-a46e-732327a996eb, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">d1e962ef-614b-431d-a46e-732327a996eb</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">Flyer velocity analysis</data>
+  <data key="d7">FlyerTilt, None</data>
+  <data key="d8">FlyerCurvature, None</data>
+  <data key="d9">ReturnSignalStrength, 15.0 dimensionless</data>
+  <data key="d10">VideoQuality, Amazing</data>
+  <data key="d11">{0: None, 1: None}</data>
+  <data key="d12">{0: 'NewEnergyMeasurement::No', 1: 'ExperimentDayCounter::00004', 2: 'GrantFunding::BMG_Project', 3: 'recordId::1901', 4: 'modId::0', 5: 'ObjectType::LaserShockExperiment'}</data>
+  <data key="d6">MeasurementRun_Flyer-velocity-analysis_d1e962ef-614b-431d-a46e-732327a996eb.json</data>
+</node>
+<node id="F086-R3C3 [1a5d2433-be4e-4a00-8bb5-84e9c8e8bcee, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">1a5d2433-be4e-4a00-8bb5-84e9c8e8bcee</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R3C3</data>
+  <data key="d12">{0: 'recordId::2128', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2128.json</data>
+</node>
+<node id="Flyer Stack [ed0b908a-3015-40ab-9928-27337087e077, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">ed0b908a-3015-40ab-9928-27337087e077</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_ed0b908a-3015-40ab-9928-27337087e077.json</data>
+</node>
+<node id="Flyer velocity analysis [13b81364-c860-4b8e-9f93-7ba351d7d1e2, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">13b81364-c860-4b8e-9f93-7ba351d7d1e2</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">Flyer velocity analysis</data>
+  <data key="d7">FlyerTilt, None</data>
+  <data key="d8">FlyerCurvature, None</data>
+  <data key="d9">ReturnSignalStrength, 15.0 dimensionless</data>
+  <data key="d10">VideoQuality, Good</data>
+  <data key="d11">{0: None, 1: None}</data>
+  <data key="d12">{0: 'NewEnergyMeasurement::No', 1: 'ExperimentDayCounter::00005', 2: 'recordId::2025', 3: 'modId::2', 4: 'ObjectType::LaserShockExperiment'}</data>
+  <data key="d6">MeasurementRun_Flyer-velocity-analysis_13b81364-c860-4b8e-9f93-7ba351d7d1e2.json</data>
+</node>
+<node id="F086-R3C1 [f00cc0ab-d4ce-446d-bc11-aa4361bd58f8, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">f00cc0ab-d4ce-446d-bc11-aa4361bd58f8</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R3C1</data>
+  <data key="d12">{0: 'recordId::2126', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2126.json</data>
+</node>
+<node id="Flyer Stack [a243ce47-96e5-4385-b2f8-282b7270a2ac, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">a243ce47-96e5-4385-b2f8-282b7270a2ac</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_a243ce47-96e5-4385-b2f8-282b7270a2ac.json</data>
+</node>
+<node id="Choosing Flyer [6ace33ce-bda5-47d4-978a-c133579bd61f, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">6ace33ce-bda5-47d4-978a-c133579bd61f</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_6ace33ce-bda5-47d4-978a-c133579bd61f.json</data>
+</node>
+<node id="Choosing Flyer [91e56433-a989-4ff2-b086-b0ddedbda668, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">91e56433-a989-4ff2-b086-b0ddedbda668</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_91e56433-a989-4ff2-b086-b0ddedbda668.json</data>
+</node>
+<node id="Choosing Flyer [6725a1f7-0f7a-4894-a924-47efb95ee413, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">6725a1f7-0f7a-4894-a924-47efb95ee413</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_6725a1f7-0f7a-4894-a924-47efb95ee413.json</data>
+</node>
+<node id="F086-R7C7 [fc92a793-7850-4048-966f-2396faa1b5bd, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">fc92a793-7850-4048-966f-2396faa1b5bd</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R7C7</data>
+  <data key="d12">{0: 'recordId::2160', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2160.json</data>
+</node>
+<node id="Choosing Flyer [513c3de8-a99b-4c16-9595-31fd9152c029, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">513c3de8-a99b-4c16-9595-31fd9152c029</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_513c3de8-a99b-4c16-9595-31fd9152c029.json</data>
+</node>
+<node id="Flyer Stack [c72b0c14-4357-447a-9c90-2b5c534de065, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">c72b0c14-4357-447a-9c90-2b5c534de065</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_c72b0c14-4357-447a-9c90-2b5c534de065.json</data>
+</node>
+<node id="Flyer velocity analysis [8a17ec3b-18be-4459-897b-a34e1d4b8c48, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">8a17ec3b-18be-4459-897b-a34e1d4b8c48</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">Flyer velocity analysis</data>
+  <data key="d7">FlyerTilt, Minor</data>
+  <data key="d8">FlyerCurvature, None</data>
+  <data key="d9">ReturnSignalStrength, 15.0 dimensionless</data>
+  <data key="d10">VideoQuality, Good</data>
+  <data key="d11">{0: None, 1: None}</data>
+  <data key="d12">{0: 'NewEnergyMeasurement::No', 1: 'ExperimentDayCounter::00003', 2: 'GrantFunding::BMG_Project', 3: 'recordId::1900', 4: 'modId::1', 5: 'ObjectType::LaserShockExperiment'}</data>
+  <data key="d6">MeasurementRun_Flyer-velocity-analysis_8a17ec3b-18be-4459-897b-a34e1d4b8c48.json</data>
+</node>
+<node id="F086-R4C5 [4e295f66-2a02-4bf4-b518-ce6a98c1e487, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">4e295f66-2a02-4bf4-b518-ce6a98c1e487</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R4C5</data>
+  <data key="d12">{0: 'recordId::2137', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2137.json</data>
+</node>
+<node id="F086-R2C2 [3eac39cd-53d8-436e-8f7d-41d18f662c9a, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">3eac39cd-53d8-436e-8f7d-41d18f662c9a</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R2C2</data>
+  <data key="d12">{0: 'recordId::2120', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2120.json</data>
+</node>
+<node id="Flyer Stack [713bacc7-65db-4022-bc3e-0a2e546a373b, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">713bacc7-65db-4022-bc3e-0a2e546a373b</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_713bacc7-65db-4022-bc3e-0a2e546a373b.json</data>
+</node>
+<node id="Choosing Flyer [8167067f-ce49-4b32-9ab7-eb8be937f26a, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">8167067f-ce49-4b32-9ab7-eb8be937f26a</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_8167067f-ce49-4b32-9ab7-eb8be937f26a.json</data>
+</node>
+<node id="Flyer Stack [3fbe7db1-a939-4582-8d5d-00577e47c903, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">3fbe7db1-a939-4582-8d5d-00577e47c903</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_3fbe7db1-a939-4582-8d5d-00577e47c903.json</data>
+</node>
+<node id="42956759-d8dd-4636-bb8f-b9603ec9f15b"/>
+<node id="Flyer Stack [d0047dc5-328f-49f1-a87f-c93ebd1b946f, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">d0047dc5-328f-49f1-a87f-c93ebd1b946f</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">Flyer Stack</data>
+  <data key="d6">IngredientRun_Flyer-Stack_d0047dc5-328f-49f1-a87f-c93ebd1b946f.json</data>
+</node>
+<node id="F086-R4C2 [df3c3137-e183-42c7-949b-5973d534f212, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">df3c3137-e183-42c7-949b-5973d534f212</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R4C2</data>
+  <data key="d12">{0: 'recordId::2134', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2134.json</data>
+</node>
+<node id="Spall [fd9e7c14-0f87-4b84-8dfc-fdd2322f02ec, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">fd9e7c14-0f87-4b84-8dfc-fdd2322f02ec</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">Spall</data>
+  <data key="d9">ReturnSignalStrength, 15.0 dimensionless</data>
+  <data key="d10">VideoQuality, Good</data>
+  <data key="d14">SpallState, No visible</data>
+  <data key="d11">{0: None, 1: None}</data>
+  <data key="d12">{0: 'NewEnergyMeasurement::No', 1: 'ExperimentDayCounter::00006', 2: 'recordId::2026', 3: 'modId::1', 4: 'ObjectType::LaserShockExperiment'}</data>
+  <data key="d6">MeasurementRun_Spall_fd9e7c14-0f87-4b84-8dfc-fdd2322f02ec.json</data>
+</node>
+<node id="Choosing Flyer [e10654d1-9990-4517-bc23-4f05f4e655a8, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">e10654d1-9990-4517-bc23-4f05f4e655a8</data>
+  <data key="d4">process_run</data>
+  <data key="d5">Choosing Flyer</data>
+  <data key="d6">ProcessRun_Choosing-Flyer_e10654d1-9990-4517-bc23-4f05f4e655a8.json</data>
+</node>
+<node id="F086-R5C7 [67b74b2c-dca6-45c9-a069-d4d6ad78c26c, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">67b74b2c-dca6-45c9-a069-d4d6ad78c26c</data>
+  <data key="d4">material_run</data>
+  <data key="d5">F086-R5C7</data>
+  <data key="d12">{0: 'recordId::2146', 1: 'modId::0', 2: 'ObjectType::LaserShockLaunchPackage'}</data>
+  <data key="d6">LaserShockLaunchPackage_recordId_2146.json</data>
+</node>
+<edge source="Foil ID [1545d3ed-a641-4ab1-9bfc-6f1d4f49eb65, ingredient_run]" target="Epoxying a Flyer Stack [ba05c94d-fdfd-4b13-8ea4-b7d7d66095c8, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="Borosilicate, T=0.25&quot; [b411ddc1-33c5-41a3-90a9-68d623c987b1, material_run]" target="GlassThickness2 [b9b17268-1455-4b19-8c79-de7ca51a266b, measurement_run]">
+  <data key="d28">is measured with</data>
+</edge>
+<edge source="Borosilicate, T=0.25&quot; [b411ddc1-33c5-41a3-90a9-68d623c987b1, material_run]" target="GlassThickness4 [2ed8496c-bf20-4428-993b-798af63716ee, measurement_run]">
+  <data key="d28">is measured with</data>
+</edge>
+<edge source="Borosilicate, T=0.25&quot; [b411ddc1-33c5-41a3-90a9-68d623c987b1, material_run]" target="Glasswidth [dadeffe6-403c-4faa-af20-14085315ec6d, measurement_run]">
+  <data key="d28">is measured with</data>
+</edge>
+<edge source="Borosilicate, T=0.25&quot; [b411ddc1-33c5-41a3-90a9-68d623c987b1, material_run]" target="Glass ID [96b3194f-888c-4e58-93b5-95ee762b76a6, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Borosilicate, T=0.25&quot; [b411ddc1-33c5-41a3-90a9-68d623c987b1, material_run]" target="GlassThickness1 [cebf4c37-8572-44ef-bac0-b07843bf3d0d, measurement_run]">
+  <data key="d28">is measured with</data>
+</edge>
+<edge source="Borosilicate, T=0.25&quot; [b411ddc1-33c5-41a3-90a9-68d623c987b1, material_run]" target="GlassThickness3 [80b52c93-23f8-433e-a489-01c2fdd24879, measurement_run]">
+  <data key="d28">is measured with</data>
+</edge>
+<edge source="Borosilicate, T=0.25&quot; [b411ddc1-33c5-41a3-90a9-68d623c987b1, material_run]" target="Glasslength [128b12b6-06f6-4c12-8b36-f2620e5a1d5a, measurement_run]">
+  <data key="d28">is measured with</data>
+</edge>
+<edge source="Choosing Flyer [9e293a7f-4670-45a6-a002-7f296d5ccf15, process_run]" target="F086-R1C3 [f45f4ab0-966d-4fed-acd2-7df854e0b9cc, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Flyer Stack [c94de93f-ecc3-4deb-994e-1f89e095b730, ingredient_run]" target="Choosing Flyer [0fb6520f-7fca-43d9-8f8a-08325b94e888, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="Choosing Flyer [ceefbed8-30fa-47b9-969c-a1c36087d04c, process_run]" target="F086-R5C2 [d27da365-f9fc-41c0-9211-4c6bb9a72a99, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Choosing Flyer [233dcb9a-e397-4d54-9b07-c2aecde376f3, process_run]" target="F086-R7C2 [8329cc9a-c4c2-4a6a-ada7-1dbd59475a9f, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Choosing Flyer [ed2aeae9-e166-4b79-9d43-219f4a6ac2ca, process_run]" target="F086-R2C6 [17619eb0-3301-4f3b-828f-fa4f35611247, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Choosing Flyer [cc74faff-def5-4f03-ad75-938e174ef478, process_run]" target="F086-R6C2 [e0b94e65-5f44-48d3-8c76-c712935df418, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="F086-R7C3 [acba79e8-2a45-47e0-893d-3551d52a4955, material_run]" target="Flyer velocity analysis [13b81364-c860-4b8e-9f93-7ba351d7d1e2, measurement_run]">
+  <data key="d28">is measured with</data>
+</edge>
+<edge source="Flyer Stack [a0dba5aa-0e85-4520-b538-bfbe48b491bd, ingredient_run]" target="Choosing Flyer [4dbbb319-d21e-4b0b-a07a-0c9ff00dd392, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="Loctite Ablestik 24 [3849a934-165b-4e9f-b134-21324f792533, material_run]" target="Epoxy Part A [708ff342-e8f5-4107-9fd0-83630b1632c0, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Loctite Ablestik 24 [3849a934-165b-4e9f-b134-21324f792533, material_run]" target="Epoxy Part B [d95989d6-4cea-4cea-a3ce-29e5e4c5e3d1, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Choosing Flyer [7013a410-625c-4e76-a016-a8d11cd4314d, process_run]" target="F086-R5C7 [67b74b2c-dca6-45c9-a069-d4d6ad78c26c, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Choosing Flyer [acae4e23-4928-4a21-a65f-e4a0ef8c03dd, process_run]" target="F086-R4C2 [df3c3137-e183-42c7-949b-5973d534f212, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Flyer Stack [a4a22e20-1ad6-4cc6-bc99-1372bbde5a5d, ingredient_run]" target="Choosing Flyer [6ace33ce-bda5-47d4-978a-c133579bd61f, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="Flyer Stack [96c52f5d-cd07-4ac0-86a2-85cac8e9ed33, ingredient_run]" target="Choosing Flyer [082772c5-47f4-4dfb-b9d3-04af38bfa1f6, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="Flyer Stack [c9242ca4-61b4-4283-9f04-ba42e10f79c4, ingredient_run]" target="Choosing Flyer [acae4e23-4928-4a21-a65f-e4a0ef8c03dd, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="F086-R2C7 [b932d0c3-d7c1-4429-bfd9-9de272add45b, material_run]" target="Flyer velocity analysis [11c0508c-5f3c-4403-8e64-8113525805b7, measurement_run]">
+  <data key="d28">is measured with</data>
+</edge>
+<edge source="35fe450b-64a5-41e4-a0d7-8785035be9ca" target="FoilThickness3 [27d92aa2-7cb3-4a5b-b527-1ffc60ed042b, measurement_run]">
+  <data key="d28">is measured with</data>
+</edge>
+<edge source="35fe450b-64a5-41e4-a0d7-8785035be9ca" target="FoilThickness2 [a2879182-c1c9-463b-810e-51d031f14748, measurement_run]">
+  <data key="d28">is measured with</data>
+</edge>
+<edge source="35fe450b-64a5-41e4-a0d7-8785035be9ca" target="FoilThickness1 [d07c1879-708d-4563-add7-1fae3da14754, measurement_run]">
+  <data key="d28">is measured with</data>
+</edge>
+<edge source="35fe450b-64a5-41e4-a0d7-8785035be9ca" target="FoilThickness4 [67a3d7f9-7862-46db-817a-e08ac85b5992, measurement_run]">
+  <data key="d28">is measured with</data>
+</edge>
+<edge source="35fe450b-64a5-41e4-a0d7-8785035be9ca" target="Foil ID [1545d3ed-a641-4ab1-9bfc-6f1d4f49eb65, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="F086-R5C2 [d27da365-f9fc-41c0-9211-4c6bb9a72a99, material_run]" target="Spall [b48003c3-7624-428d-bdf9-44103758e540, measurement_run]">
+  <data key="d28">is measured with</data>
+</edge>
+<edge source="Flyer Stack [1e10cca9-8565-4658-ac39-85c23293a2e2, ingredient_run]" target="Choosing Flyer [513c3de8-a99b-4c16-9595-31fd9152c029, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="Choosing Flyer [9d284228-01d1-41f9-867a-283e56402529, process_run]" target="F086-R2C5 [a87633e3-9b37-4a3f-a3bd-ac5c9c941f72, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Choosing Flyer [ec591775-4b2e-4987-8d46-2e4f78380ecc, process_run]" target="F086-R5C6 [eab91593-0ee1-4384-9b9b-41c29400fcca, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Mixed Epoxy [9b8a7250-cc90-4dc7-a5fd-ffd64264a31c, material_run]" target="Mixed Epoxy [9d4792aa-eb59-4533-832e-d21dd8f97134, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [1567f871-d5bc-4633-ba22-eb33b7dad232, ingredient_run]" target="Choosing Flyer [e6addadf-6979-463d-a9d7-01abd0517a28, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="Flyer Stack [50f9dd1b-e9ef-4fe3-b941-7a5ab4a8a9e1, ingredient_run]" target="42956759-d8dd-4636-bb8f-b9603ec9f15b">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="F086-R1C5 [58cdc783-e098-4ac7-9d6b-85180dc89aef, material_run]" target="Flyer velocity analysis [8a17ec3b-18be-4459-897b-a34e1d4b8c48, measurement_run]">
+  <data key="d28">is measured with</data>
+</edge>
+<edge source="Choosing Flyer [082772c5-47f4-4dfb-b9d3-04af38bfa1f6, process_run]" target="F086-R4C3 [98db31e9-96ec-4717-8ea3-6ffdaad7c01c, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Flyer Stack [a258f6b4-4a23-4ea5-a8bd-510f5ad8834a, ingredient_run]" target="Choosing Flyer [91e56433-a989-4ff2-b086-b0ddedbda668, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="F086-R3C6 [1b3d7af8-781a-4c5d-bd0c-8cb8f15cd6c2, material_run]" target="Flyer velocity analysis [0861e577-57cd-49d3-94d2-7812b5c26229, measurement_run]">
+  <data key="d28">is measured with</data>
+</edge>
+<edge source="Flyer Stack [c1a8f9bc-030e-4499-87a7-5fd79d47fb9b, ingredient_run]" target="Choosing Flyer [d0762c94-1496-4ec4-a124-a2e7754c852b, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="Choosing Flyer [cd8d672f-016e-4f98-ba29-2cd8ee1e5ebf, process_run]" target="F086-R6C5 [25e3edef-ae3b-4b05-8a3d-d48273d79d72, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Flyer Stack [27091d95-78f7-40f6-b459-4d1c9a488aa5, ingredient_run]" target="Choosing Flyer [6725a1f7-0f7a-4894-a924-47efb95ee413, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="Flyer Stack [b4843731-66fd-4527-93a3-460aa1b32bae, ingredient_run]" target="Choosing Flyer [9c4ac6ae-3351-43d3-af9f-60fa8ba4f7bb, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="Flyer Stack [55e0e004-a87f-4cc5-9155-b39a405b4cb6, ingredient_run]" target="Choosing Flyer [f0f5bc0a-07a2-4a08-b1e0-8b917b74c24b, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="Flyer Stack [1e0df12a-f94c-473e-9e2d-f33c9fcc316a, ingredient_run]" target="Choosing Flyer [cc74faff-def5-4f03-ad75-938e174ef478, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="Flyer Stack [7c7e0fd0-fc5e-4a00-a78c-d2cbddf0f169, ingredient_run]" target="Choosing Flyer [ec591775-4b2e-4987-8d46-2e4f78380ecc, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="Choosing Flyer [c98b5891-236f-4c7d-ab1d-4bae32b8de14, process_run]" target="F086-R6C7 [dc7e497d-10f0-4b70-bddf-33812a24793c, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="403794c7-68f6-46ed-a490-c0ef834529da" target="F086-R5C3 [bdda1bdd-5c97-433c-a9b0-ad407f27749e, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Choosing Flyer [611b7232-d522-45e5-bd4f-d4ca0b9ffd09, process_run]" target="F086-R7C5 [cd02841d-4596-4c14-8507-ec1e25e7b0af, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Flyer Stack [377a6882-161d-4a60-a845-6d04f6703085, ingredient_run]" target="Choosing Flyer [611b7232-d522-45e5-bd4f-d4ca0b9ffd09, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="4c2aeb32-84b4-418b-9ec4-8b3366f871ab" target="F086-R4C6 [0e286419-fa2f-4b0c-b3eb-f67d70696aae, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Choosing Flyer [c2d5d30b-5d1d-400f-a43c-c3878440b85a, process_run]" target="F086-R6C3 [c99b7a5d-9cd5-4ac2-8ea3-ad62966ee32a, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="F086-R4C3 [98db31e9-96ec-4717-8ea3-6ffdaad7c01c, material_run]" target="Spall [6efc39f3-e520-4628-8720-f08fae170989, measurement_run]">
+  <data key="d28">is measured with</data>
+</edge>
+<edge source="Choosing Flyer [d2e436b9-a9d6-4991-ad74-5443ff81edea, process_run]" target="F086-R5C1 [6f3b271a-5daa-462a-90fc-6be168f7e815, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="F086-R1C2 [12cc3dfe-eea3-41a4-aec3-6b28dfed6604, material_run]" target="Flyer velocity analysis [6bf6af53-f7c5-4805-bc5d-974edc2885c8, measurement_run]">
+  <data key="d28">is measured with</data>
+</edge>
+<edge source="Flyer Stack [a32f8184-1bc5-4287-bb1c-1db3dbb80ffc, ingredient_run]" target="Choosing Flyer [ed2aeae9-e166-4b79-9d43-219f4a6ac2ca, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="F086-R4C1 [c9200ab2-5d98-4fb3-85f1-33ea72eb260a, material_run]" target="Spall [d0bccf39-2a7b-488c-8825-e84537bad16d, measurement_run]">
+  <data key="d28">is measured with</data>
+</edge>
+<edge source="Flyer Stack [dbf54faf-eee9-4949-8e85-a45dbae2575e, ingredient_run]" target="Choosing Flyer [0673cf20-47ce-4263-a5b4-af4c5db09fa2, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="Mixed Epoxy [9d4792aa-eb59-4533-832e-d21dd8f97134, ingredient_run]" target="Epoxying a Flyer Stack [ba05c94d-fdfd-4b13-8ea4-b7d7d66095c8, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="Purchasing Glass [c334c1bc-a53f-4570-bc20-a92a2e8adf0c, process_run]" target="Borosilicate, T=0.25&quot; [b411ddc1-33c5-41a3-90a9-68d623c987b1, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Flyer Cutting Optimized v2 (2021-10-22) [9f7308b4-b8f2-4170-a6c0-129aa11c8633, process_run]" target="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Flyer Stack [829df15f-7a9f-4236-8e31-1b4c224a14b6, ingredient_run]" target="Choosing Flyer [a90122f2-946b-4f61-b5c3-555a40933499, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="Flyer Stack [980af889-c827-46a6-8402-da5f7e3631c7, ingredient_run]" target="Choosing Flyer [7013a410-625c-4e76-a016-a8d11cd4314d, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="Choosing Flyer [4dbbb319-d21e-4b0b-a07a-0c9ff00dd392, process_run]" target="F086-R7C1 [ff03b074-b8ae-4dc7-a883-6947232604aa, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Flyer Stack [a831124c-6707-4a48-ba2c-9dfac977c313, ingredient_run]" target="Choosing Flyer [cd8d672f-016e-4f98-ba29-2cd8ee1e5ebf, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="Choosing Flyer [cedb22e4-7ccd-4c9f-b721-3a30540f5edd, process_run]" target="F086-R2C1 [5053492a-86b4-44a0-a2d8-002234fb24dc, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Flyer Stack [b6bf3ded-84d1-4503-8fde-2d12f011a0e1, ingredient_run]" target="4c2aeb32-84b4-418b-9ec4-8b3366f871ab">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="F086-R1C1 [993ca0e3-48d6-44d5-8519-ecc5532f12ac, material_run]" target="Flyer velocity analysis [9cc50ac8-1df2-415e-8f66-33efe68a6e23, measurement_run]">
+  <data key="d28">is measured with</data>
+</edge>
+<edge source="Flyer Stack [d784e577-ef4a-4fc5-a22b-69ed2ea97bdb, ingredient_run]" target="Choosing Flyer [b363dc89-b2d7-4b70-93ae-7ce7f0d74d78, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="Mixing Epoxy [1ad1650b-49db-4cb6-85ff-5c8337a2ffaf, process_run]" target="Mixed Epoxy [9b8a7250-cc90-4dc7-a5fd-ffd64264a31c, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Choosing Flyer [9c4ac6ae-3351-43d3-af9f-60fa8ba4f7bb, process_run]" target="F086-R3C6 [1b3d7af8-781a-4c5d-bd0c-8cb8f15cd6c2, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Flyer Stack [028e02f1-702f-49f2-8ad6-763eac2b462d, ingredient_run]" target="Choosing Flyer [9d284228-01d1-41f9-867a-283e56402529, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="F086-R1C4 [0d69df0c-c9d0-4c1d-ba3c-11c322c33eea, material_run]" target="Flyer velocity analysis [b1fbb425-ab1f-455c-8d2b-a4a0d2e9ea35, measurement_run]">
+  <data key="d28">is measured with</data>
+</edge>
+<edge source="Choosing Flyer [f3fe283a-5873-4c15-86be-b16316646716, process_run]" target="F086-R7C3 [acba79e8-2a45-47e0-893d-3551d52a4955, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Flyer Stack [f846563d-5ad0-4b64-8d6d-8a0a8b6bb358, ingredient_run]" target="Choosing Flyer [81c3ad6e-ad62-493b-9e83-64485d6f44ee, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="Flyer Stack [06bf3a6e-1008-4ed6-8b59-151f82f7806e, ingredient_run]" target="Choosing Flyer [9e293a7f-4670-45a6-a002-7f296d5ccf15, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="Glass Epoxy Foil Stack [fda0f8fc-1acd-4598-9081-7d8abf7503d2, material_run]" target="Glass Epoxy Foil Stack [41136df0-84b7-4b7b-9600-ae91139d7b2f, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Choosing Flyer [f0f5bc0a-07a2-4a08-b1e0-8b917b74c24b, process_run]" target="F086-R3C3 [1a5d2433-be4e-4a00-8bb5-84e9c8e8bcee, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Choosing Flyer [81c3ad6e-ad62-493b-9e83-64485d6f44ee, process_run]" target="F086-R7C6 [80ab2e66-0f89-4294-9d3f-57860a1744c0, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Flyer Stack [e9f2ab62-dd6b-4009-ae85-b3a9d6a57f1c, ingredient_run]" target="Choosing Flyer [2c1defb0-246c-4d02-a09c-a2e39db9cb84, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="Choosing Flyer [6c1939c9-3be2-4e64-a2db-a5f9c50caf0e, process_run]" target="F086-R4C1 [c9200ab2-5d98-4fb3-85f1-33ea72eb260a, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Choosing Flyer [b363dc89-b2d7-4b70-93ae-7ce7f0d74d78, process_run]" target="F086-R2C7 [b932d0c3-d7c1-4429-bfd9-9de272add45b, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="F086-R2C5 [a87633e3-9b37-4a3f-a3bd-ac5c9c941f72, material_run]" target="Flyer velocity analysis [063e1beb-84df-4664-8ea8-4f2e2cc92a92, measurement_run]">
+  <data key="d28">is measured with</data>
+</edge>
+<edge source="Choosing Flyer [2123b34f-fb8e-43ed-ad57-8e8cf8071352, process_run]" target="F086-R7C4 [79000c7f-dac7-462c-bfc1-1567b91d5599, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Epoxying a Flyer Stack [ba05c94d-fdfd-4b13-8ea4-b7d7d66095c8, process_run]" target="Glass Epoxy Foil Stack [fda0f8fc-1acd-4598-9081-7d8abf7503d2, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Choosing Flyer [a7321f0e-8cfd-43b9-93f2-1e6817f3b56e, process_run]" target="F086-R2C4 [422a5938-ef14-4631-8dd8-0e0a1fa54326, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Flyer Stack [fb8541ac-e060-4150-988d-684a9f5a173d, ingredient_run]" target="Choosing Flyer [80f8c8c1-519a-4884-9d7c-3b6a2c0a3e76, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="F086-R1C3 [f45f4ab0-966d-4fed-acd2-7df854e0b9cc, material_run]" target="Flyer velocity analysis [979b05f9-3b0a-49a8-8ab3-5688eb070775, measurement_run]">
+  <data key="d28">is measured with</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [5b3fccc7-b12d-4993-b738-a97c900fe14b, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [028e02f1-702f-49f2-8ad6-763eac2b462d, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="FlyerCuttingDepthSuccess [3af98c39-edc7-4797-867a-5cef877c441c, measurement_run]">
+  <data key="d28">is measured with</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [b6bf3ded-84d1-4503-8fde-2d12f011a0e1, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [377a6882-161d-4a60-a845-6d04f6703085, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [27091d95-78f7-40f6-b459-4d1c9a488aa5, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [1567f871-d5bc-4633-ba22-eb33b7dad232, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [0e4f5bb3-d376-4bdc-a20e-580ea0ea5701, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [c94de93f-ecc3-4deb-994e-1f89e095b730, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [4e908276-d143-4e14-a21d-651233fd1575, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [a831124c-6707-4a48-ba2c-9dfac977c313, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [a258f6b4-4a23-4ea5-a8bd-510f5ad8834a, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [1e0df12a-f94c-473e-9e2d-f33c9fcc316a, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [47f67821-7f69-4860-a093-53c437a52e78, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [713bacc7-65db-4022-bc3e-0a2e546a373b, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [980af889-c827-46a6-8402-da5f7e3631c7, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [829df15f-7a9f-4236-8e31-1b4c224a14b6, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [06bf3a6e-1008-4ed6-8b59-151f82f7806e, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [190ddcfd-2c6e-42ae-aa42-734849f8a8c1, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [a243ce47-96e5-4385-b2f8-282b7270a2ac, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [d784e577-ef4a-4fc5-a22b-69ed2ea97bdb, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [99f99a0d-3bf0-4428-a868-31004d8037e3, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="TimetoCut [b966920e-a4c9-4c1b-bdfe-9327a5a9eafe, measurement_run]">
+  <data key="d28">is measured with</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="FlyerCuttingCompleteness [0b48e656-f0de-4e40-a2e0-bd0ca59f56c9, measurement_run]">
+  <data key="d28">is measured with</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [3fbe7db1-a939-4582-8d5d-00577e47c903, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [ed0b908a-3015-40ab-9928-27337087e077, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [f846563d-5ad0-4b64-8d6d-8a0a8b6bb358, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [a0dba5aa-0e85-4520-b538-bfbe48b491bd, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [55e0e004-a87f-4cc5-9155-b39a405b4cb6, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [d8fc1951-51c9-4059-b2f9-6792a6678939, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [4c1b1c64-9edb-42d7-b82b-973493bc6c9c, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [d0047dc5-328f-49f1-a87f-c93ebd1b946f, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [dbf54faf-eee9-4949-8e85-a45dbae2575e, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [fb8541ac-e060-4150-988d-684a9f5a173d, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [b4843731-66fd-4527-93a3-460aa1b32bae, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [96c52f5d-cd07-4ac0-86a2-85cac8e9ed33, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [50f9dd1b-e9ef-4fe3-b941-7a5ab4a8a9e1, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [00fc0230-4365-45db-8370-020fe895ccfe, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [362bfac5-56c2-485c-b829-92c3a46cc456, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [c1a8f9bc-030e-4499-87a7-5fd79d47fb9b, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [a32f8184-1bc5-4287-bb1c-1db3dbb80ffc, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [7c7e0fd0-fc5e-4a00-a78c-d2cbddf0f169, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [ad87d3b7-a146-4800-8637-d43062aff3f3, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [c9242ca4-61b4-4283-9f04-ba42e10f79c4, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [c80ef477-0026-45bc-999a-dd8e9909f1b8, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [1e10cca9-8565-4658-ac39-85c23293a2e2, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [7a9e9433-73f3-41d5-b853-0b9d1a4c8438, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [e6664d7c-4422-43b4-9b2e-111f889b5d0b, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [b08e8439-8d66-487c-b0a1-2d16e3e016e8, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [c72b0c14-4357-447a-9c90-2b5c534de065, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [e9f2ab62-dd6b-4009-ae85-b3a9d6a57f1c, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Flyer Stack [4370a2d1-e854-4ede-9027-f56049d3b4ed, material_run]" target="Flyer Stack [a4a22e20-1ad6-4cc6-bc99-1372bbde5a5d, ingredient_run]">
+  <data key="d28">becomes</data>
+</edge>
+<edge source="Choosing Flyer [d1e54e49-fa7a-4532-a1d9-6a21a31c32b9, process_run]" target="F086-R4C4 [2c4fecf2-dbda-4dc3-bb29-72672e96495d, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Glass ID [96b3194f-888c-4e58-93b5-95ee762b76a6, ingredient_run]" target="Epoxying a Flyer Stack [ba05c94d-fdfd-4b13-8ea4-b7d7d66095c8, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="Choosing Flyer [5d27a672-9c32-445e-880c-b7b82db99bba, process_run]" target="F086-R1C1 [993ca0e3-48d6-44d5-8519-ecc5532f12ac, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="F086-R2C1 [5053492a-86b4-44a0-a2d8-002234fb24dc, material_run]" target="Flyer velocity analysis [92869028-b956-46c6-be21-cd97cfa0fbf0, measurement_run]">
+  <data key="d28">is measured with</data>
+</edge>
+<edge source="Flyer Stack [0e4f5bb3-d376-4bdc-a20e-580ea0ea5701, ingredient_run]" target="Choosing Flyer [a7321f0e-8cfd-43b9-93f2-1e6817f3b56e, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="F086-R1C6 [9b935826-795d-4bb8-aad1-0fc852e079e7, material_run]" target="Flyer velocity analysis [d1e962ef-614b-431d-a46e-732327a996eb, measurement_run]">
+  <data key="d28">is measured with</data>
+</edge>
+<edge source="Flyer Stack [190ddcfd-2c6e-42ae-aa42-734849f8a8c1, ingredient_run]" target="403794c7-68f6-46ed-a490-c0ef834529da">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="Flyer Stack [4e908276-d143-4e14-a21d-651233fd1575, ingredient_run]" target="Choosing Flyer [ceefbed8-30fa-47b9-969c-a1c36087d04c, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="F086-R2C3 [9471cb84-e3aa-464e-8edd-b99167f9e1a3, material_run]" target="Flyer velocity analysis [5e458f26-85a1-4f40-9324-16be291c7c54, measurement_run]">
+  <data key="d28">is measured with</data>
+</edge>
+<edge source="Choosing Flyer [ccbe37fc-b4a9-4d3c-8a79-8a5561970db4, process_run]" target="F086-R7C7 [fc92a793-7850-4048-966f-2396faa1b5bd, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Choosing Flyer [2c1defb0-246c-4d02-a09c-a2e39db9cb84, process_run]" target="F086-R3C4 [c32331ed-5c18-4311-9585-58c58c815429, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Choosing Flyer [80f8c8c1-519a-4884-9d7c-3b6a2c0a3e76, process_run]" target="F086-R1C5 [58cdc783-e098-4ac7-9d6b-85180dc89aef, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="F086-R1C7 [53167ce0-bde6-4903-93c0-ecec38dc9164, material_run]" target="Flyer velocity analysis [d7d11544-2a42-4640-840f-afe684d4c4a3, measurement_run]">
+  <data key="d28">is measured with</data>
+</edge>
+<edge source="Flyer Stack [5b3fccc7-b12d-4993-b738-a97c900fe14b, ingredient_run]" target="Choosing Flyer [d1e54e49-fa7a-4532-a1d9-6a21a31c32b9, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="Choosing Flyer [d91adab4-ccb2-4811-bbf1-8324c9889750, process_run]" target="F086-R5C4 [dcee073f-728a-4e96-9e73-4415eebecc12, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="F086-R2C4 [422a5938-ef14-4631-8dd8-0e0a1fa54326, material_run]" target="Flyer velocity analysis [7446a62f-ac24-467a-bd26-7151129d4ac8, measurement_run]">
+  <data key="d28">is measured with</data>
+</edge>
+<edge source="Glass Epoxy Foil Stack [41136df0-84b7-4b7b-9600-ae91139d7b2f, ingredient_run]" target="Flyer Cutting Optimized v2 (2021-10-22) [9f7308b4-b8f2-4170-a6c0-129aa11c8633, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="Flyer Stack [4c1b1c64-9edb-42d7-b82b-973493bc6c9c, ingredient_run]" target="Choosing Flyer [2123b34f-fb8e-43ed-ad57-8e8cf8071352, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="Choosing Flyer [a90122f2-946b-4f61-b5c3-555a40933499, process_run]" target="F086-R4C7 [21756972-bb68-4993-b53e-e966163c6950, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Flyer Stack [ad87d3b7-a146-4800-8637-d43062aff3f3, ingredient_run]" target="Choosing Flyer [c6cc38b9-56cb-407a-a476-9ba959c16ec0, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="F086-R7C1 [ff03b074-b8ae-4dc7-a883-6947232604aa, material_run]" target="Flyer velocity analysis [6dd252fa-cc20-4f0e-9385-a732036a3d23, measurement_run]">
+  <data key="d28">is measured with</data>
+</edge>
+<edge source="Flyer Stack [d8fc1951-51c9-4059-b2f9-6792a6678939, ingredient_run]" target="Choosing Flyer [16191777-3269-4c3b-ba9c-3085755aea8e, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="Choosing Flyer [87c40221-b7bb-4c63-9511-6ce6443eb4a9, process_run]" target="F086-R1C7 [53167ce0-bde6-4903-93c0-ecec38dc9164, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Flyer Stack [b08e8439-8d66-487c-b0a1-2d16e3e016e8, ingredient_run]" target="Choosing Flyer [ccbe37fc-b4a9-4d3c-8a79-8a5561970db4, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="Choosing Flyer [c6cc38b9-56cb-407a-a476-9ba959c16ec0, process_run]" target="F086-R1C4 [0d69df0c-c9d0-4c1d-ba3c-11c322c33eea, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Choosing Flyer [e6addadf-6979-463d-a9d7-01abd0517a28, process_run]" target="F086-R5C5 [a16ccd79-738f-4b30-9636-863fc3456147, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Flyer Stack [362bfac5-56c2-485c-b829-92c3a46cc456, ingredient_run]" target="Choosing Flyer [c98b5891-236f-4c7d-ab1d-4bae32b8de14, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="Choosing Flyer [667036b5-4de9-4299-b342-1870a24e7fcd, process_run]" target="F086-R3C1 [f00cc0ab-d4ce-446d-bc11-aa4361bd58f8, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Flyer Stack [e6664d7c-4422-43b4-9b2e-111f889b5d0b, ingredient_run]" target="Choosing Flyer [cedb22e4-7ccd-4c9f-b721-3a30540f5edd, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="F086-R2C6 [17619eb0-3301-4f3b-828f-fa4f35611247, material_run]" target="Flyer velocity analysis [fc44fd45-1de4-4f7b-a2b5-edede1b7978b, measurement_run]">
+  <data key="d28">is measured with</data>
+</edge>
+<edge source="Epoxy Part B [d95989d6-4cea-4cea-a3ce-29e5e4c5e3d1, ingredient_run]" target="Mixing Epoxy [1ad1650b-49db-4cb6-85ff-5c8337a2ffaf, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="Flyer Stack [7a9e9433-73f3-41d5-b853-0b9d1a4c8438, ingredient_run]" target="Choosing Flyer [6c1939c9-3be2-4e64-a2db-a5f9c50caf0e, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="F086-R3C2 [7171cf82-3138-4b36-a7c3-c23ee3476f01, material_run]" target="Flyer velocity analysis [1e176966-45e6-4e56-a283-5329a011257e, measurement_run]">
+  <data key="d28">is measured with</data>
+</edge>
+<edge source="Flyer Stack [00fc0230-4365-45db-8370-020fe895ccfe, ingredient_run]" target="Choosing Flyer [d2e436b9-a9d6-4991-ad74-5443ff81edea, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="Choosing Flyer [16191777-3269-4c3b-ba9c-3085755aea8e, process_run]" target="F086-R2C2 [3eac39cd-53d8-436e-8f7d-41d18f662c9a, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Epoxy Part A [708ff342-e8f5-4107-9fd0-83630b1632c0, ingredient_run]" target="Mixing Epoxy [1ad1650b-49db-4cb6-85ff-5c8337a2ffaf, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="Choosing Flyer [0fb6520f-7fca-43d9-8f8a-08325b94e888, process_run]" target="F086-R6C6 [d182d5df-a5dd-474d-9855-68175033128b, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Flyer Stack [c80ef477-0026-45bc-999a-dd8e9909f1b8, ingredient_run]" target="Choosing Flyer [e10654d1-9990-4517-bc23-4f05f4e655a8, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="Flyer Stack [47f67821-7f69-4860-a093-53c437a52e78, ingredient_run]" target="Choosing Flyer [87c40221-b7bb-4c63-9511-6ce6443eb4a9, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="Choosing Flyer [0673cf20-47ce-4263-a5b4-af4c5db09fa2, process_run]" target="F086-R3C7 [59311d67-47dc-4193-bce3-9c2f5b4fa51f, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Choosing Flyer [d0762c94-1496-4ec4-a124-a2e7754c852b, process_run]" target="F086-R3C5 [1247e39d-a6b8-4a77-a14f-a16061feec89, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Flyer Stack [99f99a0d-3bf0-4428-a868-31004d8037e3, ingredient_run]" target="Choosing Flyer [8167067f-ce49-4b32-9ab7-eb8be937f26a, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="F086-R3C4 [c32331ed-5c18-4311-9585-58c58c815429, material_run]" target="Flyer velocity analysis [90dda02e-8c52-46ff-8fe7-7e2bc1f93a1b, measurement_run]">
+  <data key="d28">is measured with</data>
+</edge>
+<edge source="Purchasing Epoxy [4215056b-7279-4770-99fb-771106c294cf, process_run]" target="Loctite Ablestik 24 [3849a934-165b-4e9f-b134-21324f792533, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Flyer Stack [ed0b908a-3015-40ab-9928-27337087e077, ingredient_run]" target="Choosing Flyer [233dcb9a-e397-4d54-9b07-c2aecde376f3, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="F086-R3C1 [f00cc0ab-d4ce-446d-bc11-aa4361bd58f8, material_run]" target="Flyer velocity analysis [dbcaf372-c002-45fa-b771-543b5c36a75c, measurement_run]">
+  <data key="d28">is measured with</data>
+</edge>
+<edge source="Flyer Stack [a243ce47-96e5-4385-b2f8-282b7270a2ac, ingredient_run]" target="Choosing Flyer [c2d5d30b-5d1d-400f-a43c-c3878440b85a, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="Choosing Flyer [6ace33ce-bda5-47d4-978a-c133579bd61f, process_run]" target="F086-R1C2 [12cc3dfe-eea3-41a4-aec3-6b28dfed6604, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Choosing Flyer [91e56433-a989-4ff2-b086-b0ddedbda668, process_run]" target="F086-R6C4 [1c7f7d14-dc0a-4de4-a80f-26db6a755dfa, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Choosing Flyer [6725a1f7-0f7a-4894-a924-47efb95ee413, process_run]" target="F086-R3C2 [7171cf82-3138-4b36-a7c3-c23ee3476f01, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Choosing Flyer [513c3de8-a99b-4c16-9595-31fd9152c029, process_run]" target="F086-R1C6 [9b935826-795d-4bb8-aad1-0fc852e079e7, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Flyer Stack [c72b0c14-4357-447a-9c90-2b5c534de065, ingredient_run]" target="Choosing Flyer [5d27a672-9c32-445e-880c-b7b82db99bba, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="F086-R4C5 [4e295f66-2a02-4bf4-b518-ce6a98c1e487, material_run]" target="Spall [fd9e7c14-0f87-4b84-8dfc-fdd2322f02ec, measurement_run]">
+  <data key="d28">is measured with</data>
+</edge>
+<edge source="F086-R2C2 [3eac39cd-53d8-436e-8f7d-41d18f662c9a, material_run]" target="Flyer velocity analysis [c75d6ed6-33c2-4b37-aefc-099271bcf5d9, measurement_run]">
+  <data key="d28">is measured with</data>
+</edge>
+<edge source="Flyer Stack [713bacc7-65db-4022-bc3e-0a2e546a373b, ingredient_run]" target="Choosing Flyer [d91adab4-ccb2-4811-bbf1-8324c9889750, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="Choosing Flyer [8167067f-ce49-4b32-9ab7-eb8be937f26a, process_run]" target="F086-R4C5 [4e295f66-2a02-4bf4-b518-ce6a98c1e487, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Flyer Stack [3fbe7db1-a939-4582-8d5d-00577e47c903, ingredient_run]" target="Choosing Flyer [667036b5-4de9-4299-b342-1870a24e7fcd, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="42956759-d8dd-4636-bb8f-b9603ec9f15b" target="F086-R6C1 [c53ef3e7-4128-4c18-ae7a-25cbe3975dd2, material_run]">
+  <data key="d28">creates</data>
+</edge>
+<edge source="Flyer Stack [d0047dc5-328f-49f1-a87f-c93ebd1b946f, ingredient_run]" target="Choosing Flyer [f3fe283a-5873-4c15-86be-b16316646716, process_run]">
+  <data key="d28">is used in</data>
+</edge>
+<edge source="Choosing Flyer [e10654d1-9990-4517-bc23-4f05f4e655a8, process_run]" target="F086-R2C3 [9471cb84-e3aa-464e-8edd-b99167f9e1a3, material_run]">
+  <data key="d28">creates</data>
+</edge>
+</graph></graphml>
