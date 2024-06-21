@@ -12,7 +12,10 @@ from openmsimodel.graph.open_graph import OpenGraph
 import uuid
 
 
-class liveGrapher(FileSystemEventHandler):
+class GEMDAutomation(FileSystemEventHandler):
+    '''
+    Class that watches a folder, and for every new file, it matches its file extension and/or regex to a GEMD backbone
+    '''
     mapping = {}
     output_folder = "./live_grapher_output"
     open_graphs = []

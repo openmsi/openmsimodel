@@ -1,0 +1,864 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><key id="relationship" for="edge" attr.name="relationship" attr.type="string"/>
+<key id="source" for="node" attr.name="source" attr.type="string"/>
+<key id="object" for="node" attr.name="object" attr.type="string"/>
+<key id="short_name" for="node" attr.name="short_name" attr.type="string"/>
+<key id="type" for="node" attr.name="type" attr.type="string"/>
+<key id="uuid" for="node" attr.name="uuid" attr.type="string"/>
+<key id="shape" for="node" attr.name="shape" attr.type="string"/>
+<key id="color" for="node" attr.name="color" attr.type="string"/>
+<key id="name" for="graph" attr.name="name" attr.type="string"/>
+<graph edgedefault="directed"><data key="name">example</data>
+<node id="Tensile charact. for Alloy (AAA01-VAM-B) (T10) [ec404417-87ed-4cfa-b8dd-979f2ab2783e, measurement_run]">
+  <data key="color">purple</data>
+  <data key="shape">circle</data>
+  <data key="uuid">ec404417-87ed-4cfa-b8dd-979f2ab2783e</data>
+  <data key="type">measurement_run</data>
+  <data key="short_name">Tensile charact. for Alloy (AAA01-VAM-B) (T10)</data>
+  <data key="object">{"conditions": [], "file_links": [], "material": {"id": "9a21aab4-5241-4a06-9722-07ac966152b7", "scope": "auto", "type": "link_by_uid"}, "name": "Tensile charact. for Alloy (AAA01-VAM-B) (T10)", "notes": null, "parameters": [], "properties": [], "source": null, "spec": {"id": "66d93019-6a7c-4ee2-9a7a-50ee1516cfe8", "scope": "auto", "type": "link_by_uid"}, "tags": ["measurement_name::Tensile", "measurement_id::T10", "composition_id::AAA01", "batch::B", "fabrication_method::VAM"], "type": "measurement_run", "uids": {"auto": "ec404417-87ed-4cfa-b8dd-979f2ab2783e"}}</data>
+  <data key="source">MeasurementRun_Tensile charact. for Alloy (AAA01-VAM-B) (T10)_ec404417-87ed-4cfa-b8dd-979f2ab2783e_.json</data>
+</node>
+<node id="Alloy (AAA01-VAM-B): T. Sample (Tensile, T10) [9a21aab4-5241-4a06-9722-07ac966152b7, material_run]">
+  <data key="color">green</data>
+  <data key="shape">circle</data>
+  <data key="uuid">9a21aab4-5241-4a06-9722-07ac966152b7</data>
+  <data key="type">material_run</data>
+  <data key="short_name">Alloy (AAA01-VAM-B): T. Sample (Tensile, T10)</data>
+  <data key="object">{"file_links": [], "name": "Alloy (AAA01-VAM-B): T. Sample (Tensile, T10)", "notes": null, "process": {"id": "04783018-5731-4d0a-bb08-a7e258c54a8b", "scope": "auto", "type": "link_by_uid"}, "sample_type": null, "spec": {"id": "eacb4c1f-81a9-4484-ae63-025ad0042864", "scope": "auto", "type": "link_by_uid"}, "tags": ["composition_id::AAA01", "batch::B", "fabrication_method::VAM"], "type": "material_run", "uids": {"auto": "9a21aab4-5241-4a06-9722-07ac966152b7"}}</data>
+  <data key="source">MaterialRun_Alloy (AAA01-VAM-B): T. Sample (Tensile, T10)_9a21aab4-5241-4a06-9722-07ac966152b7_.json</data>
+</node>
+<node id="Weigh V for AAA01 [1dfb0b04-8c06-499f-b1fc-650f69df6190, measurement_run]">
+  <data key="color">purple</data>
+  <data key="shape">circle</data>
+  <data key="uuid">1dfb0b04-8c06-499f-b1fc-650f69df6190</data>
+  <data key="type">measurement_run</data>
+  <data key="short_name">Weigh V for AAA01</data>
+  <data key="object">{"conditions": [], "file_links": [], "material": {"id": "0c4b53ec-e383-4341-97e9-cc4c694c65c2", "scope": "auto", "type": "link_by_uid"}, "name": "Weigh V for AAA01", "notes": null, "parameters": [], "properties": [{"file_links": [], "name": "Weighed Mass", "notes": null, "origin": "specified", "template": {"id": "589d6c5b-d225-4097-a5c7-309a572eb9b5", "scope": "auto", "type": "link_by_uid"}, "type": "property", "value": {"nominal": 0.0, "type": "nominal_real", "units": "gram"}}, {"file_links": [], "name": "Mass Loss", "notes": null, "origin": "specified", "template": {"id": "4a8b4a37-69dc-401f-a8e1-c6b5c6fb098f", "scope": "auto", "type": "link_by_uid"}, "type": "property", "value": {"nominal": 0.0, "type": "nominal_real", "units": "gram"}}], "source": {"performed_by": "Wenle &amp; Daniel", "performed_date": "2022-09-27", "type": "performed_source"}, "spec": {"id": "ca73b6d4-1564-4eb8-aca5-d577c79ebcc7", "scope": "auto", "type": "link_by_uid"}, "tags": ["composition_id::AAA01", "batch::B", "fabrication_method::VAM"], "type": "measurement_run", "uids": {"auto": "1dfb0b04-8c06-499f-b1fc-650f69df6190"}}</data>
+  <data key="source">MeasurementRun_Weigh V for AAA01_1dfb0b04-8c06-499f-b1fc-650f69df6190_.json</data>
+</node>
+<node id="V in AAA01 [0c4b53ec-e383-4341-97e9-cc4c694c65c2, material_run]">
+  <data key="color">green</data>
+  <data key="shape">circle</data>
+  <data key="uuid">0c4b53ec-e383-4341-97e9-cc4c694c65c2</data>
+  <data key="type">material_run</data>
+  <data key="short_name">V in AAA01</data>
+  <data key="object">{"file_links": [], "name": "V in AAA01", "notes": null, "process": {"id": "8fecc444-c99f-4519-9c83-215bb4786f46", "scope": "auto", "type": "link_by_uid"}, "sample_type": "production", "spec": {"id": "86167aba-b8f1-4ca8-bf66-4b825db199cf", "scope": "auto", "type": "link_by_uid"}, "tags": ["composition_id::AAA01", "batch::B", "fabrication_method::VAM"], "type": "material_run", "uids": {"auto": "0c4b53ec-e383-4341-97e9-cc4c694c65c2"}}</data>
+  <data key="source">MaterialRun_V in AAA01_0c4b53ec-e383-4341-97e9-cc4c694c65c2_.json</data>
+</node>
+<node id="Tensile charact. for Alloy (AAA01-VAM-B) (T08) [a6aebff0-1add-47a7-9cb1-d2de49fb37eb, measurement_run]">
+  <data key="color">purple</data>
+  <data key="shape">circle</data>
+  <data key="uuid">a6aebff0-1add-47a7-9cb1-d2de49fb37eb</data>
+  <data key="type">measurement_run</data>
+  <data key="short_name">Tensile charact. for Alloy (AAA01-VAM-B) (T08)</data>
+  <data key="object">{"conditions": [], "file_links": [], "material": {"id": "bb9dea38-658f-4a83-a05f-603f6a560d95", "scope": "auto", "type": "link_by_uid"}, "name": "Tensile charact. for Alloy (AAA01-VAM-B) (T08)", "notes": null, "parameters": [], "properties": [], "source": null, "spec": {"id": "81366ce6-3bff-4357-a1bb-ada0c5916421", "scope": "auto", "type": "link_by_uid"}, "tags": ["measurement_name::Tensile", "measurement_id::T08", "composition_id::AAA01", "batch::B", "fabrication_method::VAM"], "type": "measurement_run", "uids": {"auto": "a6aebff0-1add-47a7-9cb1-d2de49fb37eb"}}</data>
+  <data key="source">MeasurementRun_Tensile charact. for Alloy (AAA01-VAM-B) (T08)_a6aebff0-1add-47a7-9cb1-d2de49fb37eb_.json</data>
+</node>
+<node id="Alloy (AAA01-VAM-B): T. Sample (Tensile, T08) [bb9dea38-658f-4a83-a05f-603f6a560d95, material_run]">
+  <data key="color">green</data>
+  <data key="shape">circle</data>
+  <data key="uuid">bb9dea38-658f-4a83-a05f-603f6a560d95</data>
+  <data key="type">material_run</data>
+  <data key="short_name">Alloy (AAA01-VAM-B): T. Sample (Tensile, T08)</data>
+  <data key="object">{"file_links": [], "name": "Alloy (AAA01-VAM-B): T. Sample (Tensile, T08)", "notes": null, "process": {"id": "5d8ca121-339d-48e4-91fc-130141caa292", "scope": "auto", "type": "link_by_uid"}, "sample_type": null, "spec": {"id": "bb2cc4de-e0b9-4872-9e00-1ea4da662adf", "scope": "auto", "type": "link_by_uid"}, "tags": ["composition_id::AAA01", "batch::B", "fabrication_method::VAM"], "type": "material_run", "uids": {"auto": "bb9dea38-658f-4a83-a05f-603f6a560d95"}}</data>
+  <data key="source">MaterialRun_Alloy (AAA01-VAM-B): T. Sample (Tensile, T08)_bb9dea38-658f-4a83-a05f-603f6a560d95_.json</data>
+</node>
+<node id="Adding Co for AAA01 [4dbe8d0a-e687-40cf-8c63-ea0faa26a18c, process_run]">
+  <data key="color">red</data>
+  <data key="shape">circle</data>
+  <data key="uuid">4dbe8d0a-e687-40cf-8c63-ea0faa26a18c</data>
+  <data key="type">process_run</data>
+  <data key="short_name">Adding Co for AAA01</data>
+  <data key="object">{"conditions": [], "file_links": [], "name": "Adding Co for AAA01", "notes": null, "parameters": [], "source": null, "spec": {"id": "d787a6fe-5f3f-4c97-8c16-23cf84c1c858", "scope": "auto", "type": "link_by_uid"}, "tags": ["composition_id::AAA01", "batch::B", "fabrication_method::VAM"], "type": "process_run", "uids": {"auto": "4dbe8d0a-e687-40cf-8c63-ea0faa26a18c"}}</data>
+  <data key="source">ProcessRun_Adding Co for AAA01_4dbe8d0a-e687-40cf-8c63-ea0faa26a18c_.json</data>
+</node>
+<node id="Alloy (AAA01-VAM-B): Traveler [58ff7f19-3675-45d6-977a-a9151b903132, material_run]">
+  <data key="color">green</data>
+  <data key="shape">circle</data>
+  <data key="uuid">58ff7f19-3675-45d6-977a-a9151b903132</data>
+  <data key="type">material_run</data>
+  <data key="short_name">Alloy (AAA01-VAM-B): Traveler</data>
+  <data key="object">{"file_links": [], "name": "Alloy (AAA01-VAM-B): Traveler", "notes": null, "process": {"id": "b84185cd-f69c-468e-b0f4-8feb0d1c2306", "scope": "auto", "type": "link_by_uid"}, "sample_type": null, "spec": {"id": "ee7fc746-ab8b-41c9-8e04-15c69ca2af3e", "scope": "auto", "type": "link_by_uid"}, "tags": ["composition_id::AAA01", "batch::B", "fabrication_method::VAM"], "type": "material_run", "uids": {"auto": "58ff7f19-3675-45d6-977a-a9151b903132"}}</data>
+  <data key="source">MaterialRun_Alloy (AAA01-VAM-B): Traveler_58ff7f19-3675-45d6-977a-a9151b903132_.json</data>
+</node>
+<node id="Setting traveler for Alloy (AAA01-VAM-B) [b84185cd-f69c-468e-b0f4-8feb0d1c2306, process_run]">
+  <data key="color">red</data>
+  <data key="shape">circle</data>
+  <data key="uuid">b84185cd-f69c-468e-b0f4-8feb0d1c2306</data>
+  <data key="type">process_run</data>
+  <data key="short_name">Setting traveler for Alloy (AAA01-VAM-B)</data>
+  <data key="object">{"conditions": [], "file_links": [], "name": "Setting traveler for Alloy (AAA01-VAM-B)", "notes": null, "parameters": [], "source": null, "spec": {"id": "833e71af-dafa-44b3-8289-b73e711aac63", "scope": "auto", "type": "link_by_uid"}, "tags": ["composition_id::AAA01", "batch::B", "fabrication_method::VAM"], "type": "process_run", "uids": {"auto": "b84185cd-f69c-468e-b0f4-8feb0d1c2306"}}</data>
+  <data key="source">ProcessRun_Setting traveler for Alloy (AAA01-VAM-B)_b84185cd-f69c-468e-b0f4-8feb0d1c2306_.json</data>
+</node>
+<node id="Adding V for AAA01 [8fecc444-c99f-4519-9c83-215bb4786f46, process_run]">
+  <data key="color">red</data>
+  <data key="shape">circle</data>
+  <data key="uuid">8fecc444-c99f-4519-9c83-215bb4786f46</data>
+  <data key="type">process_run</data>
+  <data key="short_name">Adding V for AAA01</data>
+  <data key="object">{"conditions": [], "file_links": [], "name": "Adding V for AAA01", "notes": null, "parameters": [], "source": null, "spec": {"id": "93810f71-8762-40b8-89a2-d4fe5bd42d7e", "scope": "auto", "type": "link_by_uid"}, "tags": ["composition_id::AAA01", "batch::B", "fabrication_method::VAM"], "type": "process_run", "uids": {"auto": "8fecc444-c99f-4519-9c83-215bb4786f46"}}</data>
+  <data key="source">ProcessRun_Adding V for AAA01_8fecc444-c99f-4519-9c83-215bb4786f46_.json</data>
+</node>
+<node id="V in AAA01 Ing. [be36e4ba-60fe-43c8-82d3-a7a6f0787447, ingredient_run]">
+  <data key="color">blue</data>
+  <data key="shape">circle</data>
+  <data key="uuid">be36e4ba-60fe-43c8-82d3-a7a6f0787447</data>
+  <data key="type">ingredient_run</data>
+  <data key="short_name">V in AAA01 Ing.</data>
+  <data key="object">{"absolute_quantity": null, "file_links": [], "labels": [], "mass_fraction": null, "material": {"id": "0c4b53ec-e383-4341-97e9-cc4c694c65c2", "scope": "auto", "type": "link_by_uid"}, "name": "V in AAA01 Ing.", "notes": null, "number_fraction": null, "process": {"id": "49e89c90-c175-4c9e-b540-10f92b2aee97", "scope": "auto", "type": "link_by_uid"}, "spec": {"id": "b743122b-f202-4a83-80d2-99c4e78e7d01", "scope": "auto", "type": "link_by_uid"}, "tags": [], "type": "ingredient_run", "uids": {"auto": "be36e4ba-60fe-43c8-82d3-a7a6f0787447"}, "volume_fraction": null}</data>
+  <data key="source">IngredientRun_V in AAA01 Ing._be36e4ba-60fe-43c8-82d3-a7a6f0787447_.json</data>
+</node>
+<node id="Mix elements of AAA01 [49e89c90-c175-4c9e-b540-10f92b2aee97, process_run]">
+  <data key="color">red</data>
+  <data key="shape">circle</data>
+  <data key="uuid">49e89c90-c175-4c9e-b540-10f92b2aee97</data>
+  <data key="type">process_run</data>
+  <data key="short_name">Mix elements of AAA01</data>
+  <data key="object">{"conditions": [], "file_links": [], "name": "Mix elements of AAA01", "notes": null, "parameters": [], "source": null, "spec": {"id": "e473ae4f-710c-4446-a410-8f3c732eaa03", "scope": "auto", "type": "link_by_uid"}, "tags": ["composition_id::AAA01", "batch::B", "fabrication_method::VAM"], "type": "process_run", "uids": {"auto": "49e89c90-c175-4c9e-b540-10f92b2aee97"}}</data>
+  <data key="source">ProcessRun_Mix elements of AAA01_49e89c90-c175-4c9e-b540-10f92b2aee97_.json</data>
+</node>
+<node id="Al in AAA01 Ing. [880e2548-0e40-4689-b9cb-42086f91e770, ingredient_run]">
+  <data key="color">blue</data>
+  <data key="shape">circle</data>
+  <data key="uuid">880e2548-0e40-4689-b9cb-42086f91e770</data>
+  <data key="type">ingredient_run</data>
+  <data key="short_name">Al in AAA01 Ing.</data>
+  <data key="object">{"absolute_quantity": null, "file_links": [], "labels": [], "mass_fraction": null, "material": {"id": "f474691e-17e9-4e7f-b75a-720b1579ee33", "scope": "auto", "type": "link_by_uid"}, "name": "Al in AAA01 Ing.", "notes": null, "number_fraction": null, "process": {"id": "49e89c90-c175-4c9e-b540-10f92b2aee97", "scope": "auto", "type": "link_by_uid"}, "spec": {"id": "bf877c08-edca-45c8-93c6-8b2c38d98ed0", "scope": "auto", "type": "link_by_uid"}, "tags": [], "type": "ingredient_run", "uids": {"auto": "880e2548-0e40-4689-b9cb-42086f91e770"}, "volume_fraction": null}</data>
+  <data key="source">IngredientRun_Al in AAA01 Ing._880e2548-0e40-4689-b9cb-42086f91e770_.json</data>
+</node>
+<node id="Al in AAA01 [f474691e-17e9-4e7f-b75a-720b1579ee33, material_run]">
+  <data key="color">green</data>
+  <data key="shape">circle</data>
+  <data key="uuid">f474691e-17e9-4e7f-b75a-720b1579ee33</data>
+  <data key="type">material_run</data>
+  <data key="short_name">Al in AAA01</data>
+  <data key="object">{"file_links": [], "name": "Al in AAA01", "notes": null, "process": {"id": "7893d1f0-dbc4-4c34-b1a3-88645e907910", "scope": "auto", "type": "link_by_uid"}, "sample_type": "production", "spec": {"id": "e7c3147e-96a3-401d-ae96-df54b1fd2a34", "scope": "auto", "type": "link_by_uid"}, "tags": ["composition_id::AAA01", "batch::B", "fabrication_method::VAM"], "type": "material_run", "uids": {"auto": "f474691e-17e9-4e7f-b75a-720b1579ee33"}}</data>
+  <data key="source">MaterialRun_Al in AAA01_f474691e-17e9-4e7f-b75a-720b1579ee33_.json</data>
+</node>
+<node id="Forged Alloy (AAA01-VAM-B) [ac0964fc-de04-4f54-b52c-5a29bda53cca, material_run]">
+  <data key="color">green</data>
+  <data key="shape">circle</data>
+  <data key="uuid">ac0964fc-de04-4f54-b52c-5a29bda53cca</data>
+  <data key="type">material_run</data>
+  <data key="short_name">Forged Alloy (AAA01-VAM-B)</data>
+  <data key="object">{"file_links": [], "name": "Forged Alloy (AAA01-VAM-B)", "notes": null, "process": {"id": "bf95d429-d03d-4cb7-bc7a-abfbcfc83f75", "scope": "auto", "type": "link_by_uid"}, "sample_type": null, "spec": {"id": "8b2e960e-4e44-482b-aded-8285a89d1de6", "scope": "auto", "type": "link_by_uid"}, "tags": ["composition_id::AAA01", "batch::B", "fabrication_method::VAM"], "type": "material_run", "uids": {"auto": "ac0964fc-de04-4f54-b52c-5a29bda53cca"}}</data>
+  <data key="source">MaterialRun_Forged Alloy (AAA01-VAM-B)_ac0964fc-de04-4f54-b52c-5a29bda53cca_.json</data>
+</node>
+<node id="Forging Alloy (AAA01-VAM-B) [bf95d429-d03d-4cb7-bc7a-abfbcfc83f75, process_run]">
+  <data key="color">red</data>
+  <data key="shape">circle</data>
+  <data key="uuid">bf95d429-d03d-4cb7-bc7a-abfbcfc83f75</data>
+  <data key="type">process_run</data>
+  <data key="short_name">Forging Alloy (AAA01-VAM-B)</data>
+  <data key="object">{"conditions": [], "file_links": [], "name": "Forging Alloy (AAA01-VAM-B)", "notes": null, "parameters": [{"file_links": [], "name": "Press Temperature", "notes": null, "origin": "specified", "template": {"id": "ff4c2a6e-2e6f-4553-801d-3f89807aab0e", "scope": "auto", "type": "link_by_uid"}, "type": "parameter", "value": {"nominal": 397.0, "type": "nominal_real", "units": "kelvin"}}, {"file_links": [], "name": "Soak Time", "notes": null, "origin": "specified", "template": null, "type": "parameter", "value": {"nominal": 30.0, "type": "nominal_real", "units": "minute"}}, {"file_links": [], "name": "Temperature", "notes": null, "origin": "specified", "template": null, "type": "parameter", "value": {"nominal": 1100.0, "type": "nominal_real", "units": "kelvin"}}, {"file_links": [], "name": "Maximum Load Step", "notes": null, "origin": "specified", "template": {"id": "0e2670ce-3dc1-4cdf-a55f-f5b1f5038b68", "scope": "auto", "type": "link_by_uid"}, "type": "parameter", "value": {"nominal": 244.2, "type": "nominal_real", "units": "pascal"}}], "source": {"performed_by": "Robert &amp; Michael", "performed_date": "2022-10-03", "type": "performed_source"}, "spec": {"id": "51354dea-34d0-4ef7-ad49-c37b2923ed59", "scope": "auto", "type": "link_by_uid"}, "tags": ["composition_id::AAA01", "batch::B", "fabrication_method::VAM", "start_date::2022-09-30", "finish_date::2022-10-03", "time_spent::7:00"], "type": "process_run", "uids": {"auto": "bf95d429-d03d-4cb7-bc7a-abfbcfc83f75"}}</data>
+  <data key="source">ProcessRun_Forging Alloy (AAA01-VAM-B)_bf95d429-d03d-4cb7-bc7a-abfbcfc83f75_.json</data>
+</node>
+<node id="Homogenizing Alloy (AAA01-VAM-B) [e1db8e65-f1be-4764-a5e3-98f2ec4bc8ba, process_run]">
+  <data key="color">red</data>
+  <data key="shape">circle</data>
+  <data key="uuid">e1db8e65-f1be-4764-a5e3-98f2ec4bc8ba</data>
+  <data key="type">process_run</data>
+  <data key="short_name">Homogenizing Alloy (AAA01-VAM-B)</data>
+  <data key="object">{"conditions": [], "file_links": [], "name": "Homogenizing Alloy (AAA01-VAM-B)", "notes": null, "parameters": [{"file_links": [], "name": "Atmosphere", "notes": null, "origin": "specified", "template": null, "type": "parameter", "value": {"category": "Ar", "type": "nominal_categorical"}}, {"file_links": [], "name": "Cooling Rate", "notes": null, "origin": "specified", "template": null, "type": "parameter", "value": {"category": "FC", "type": "nominal_categorical"}}, {"file_links": [], "name": "Duration", "notes": null, "origin": "specified", "template": null, "type": "parameter", "value": {"nominal": 24.0, "type": "nominal_real", "units": "hour"}}, {"file_links": [], "name": "Pressure", "notes": null, "origin": "specified", "template": null, "type": "parameter", "value": {"nominal": 5.0, "type": "nominal_real", "units": "pascal"}}, {"file_links": [], "name": "Temperature", "notes": null, "origin": "specified", "template": null, "type": "parameter", "value": {"nominal": 1150.0, "type": "nominal_real", "units": "kelvin"}}, {"file_links": [], "name": "Purging Sequence 1 Pressure", "notes": null, "origin": "specified", "template": {"id": "3fccaf0b-5447-4297-9a18-ac900bc378ef", "scope": "auto", "type": "link_by_uid"}, "type": "parameter", "value": {"nominal": 4.8e-05, "type": "nominal_real", "units": "pascal"}}, {"file_links": [], "name": "Purging Sequence 2 Pressure", "notes": null, "origin": "specified", "template": {"id": "3fccaf0b-5447-4297-9a18-ac900bc378ef", "scope": "auto", "type": "link_by_uid"}, "type": "parameter", "value": {"nominal": 3.8e-05, "type": "nominal_real", "units": "pascal"}}, {"file_links": [], "name": "Purging Sequence 3 Pressure", "notes": null, "origin": "specified", "template": {"id": "3fccaf0b-5447-4297-9a18-ac900bc378ef", "scope": "auto", "type": "link_by_uid"}, "type": "parameter", "value": {"nominal": 3e-05, "type": "nominal_real", "units": "pascal"}}, {"file_links": [], "name": "Purging Sequence 4 Pressure", "notes": null, "origin": "specified", "template": {"id": "3fccaf0b-5447-4297-9a18-ac900bc378ef", "scope": "auto", "type": "link_by_uid"}, "type": "parameter", "value": {"nominal": 1.5e-05, "type": "nominal_real", "units": "pascal"}}], "source": {"performed_by": "Michael", "performed_date": "2022-10-02", "type": "performed_source"}, "spec": {"id": "4a6d6b0c-fd9b-4b4f-9a53-cc06d429a9bd", "scope": "auto", "type": "link_by_uid"}, "tags": ["composition_id::AAA01", "batch::B", "fabrication_method::VAM", "start_date::2022-09-28", "finish_date::2022-10-02", "time_spent::6:00"], "type": "process_run", "uids": {"auto": "e1db8e65-f1be-4764-a5e3-98f2ec4bc8ba"}}</data>
+  <data key="source">ProcessRun_Homogenizing Alloy (AAA01-VAM-B)_e1db8e65-f1be-4764-a5e3-98f2ec4bc8ba_.json</data>
+</node>
+<node id="Composition AAA01 Ing. [f8eb06e2-0e83-40d4-87dc-349c4a23d79f, ingredient_run]">
+  <data key="color">blue</data>
+  <data key="shape">circle</data>
+  <data key="uuid">f8eb06e2-0e83-40d4-87dc-349c4a23d79f</data>
+  <data key="type">ingredient_run</data>
+  <data key="short_name">Composition AAA01 Ing.</data>
+  <data key="object">{"absolute_quantity": null, "file_links": [], "labels": [], "mass_fraction": null, "material": {"id": "9cf4e2f4-3451-4e81-9861-f263dd1b72d4", "scope": "auto", "type": "link_by_uid"}, "name": "Composition AAA01 Ing.", "notes": null, "number_fraction": null, "process": {"id": "7893d1f0-dbc4-4c34-b1a3-88645e907910", "scope": "auto", "type": "link_by_uid"}, "spec": {"id": "fd300195-a010-4752-a9a4-1d82805c1b4b", "scope": "auto", "type": "link_by_uid"}, "tags": [], "type": "ingredient_run", "uids": {"auto": "f8eb06e2-0e83-40d4-87dc-349c4a23d79f"}, "volume_fraction": null}</data>
+  <data key="source">IngredientRun_Composition AAA01 Ing._f8eb06e2-0e83-40d4-87dc-349c4a23d79f_.json</data>
+</node>
+<node id="Adding Al for AAA01 [7893d1f0-dbc4-4c34-b1a3-88645e907910, process_run]">
+  <data key="color">red</data>
+  <data key="shape">circle</data>
+  <data key="uuid">7893d1f0-dbc4-4c34-b1a3-88645e907910</data>
+  <data key="type">process_run</data>
+  <data key="short_name">Adding Al for AAA01</data>
+  <data key="object">{"conditions": [], "file_links": [], "name": "Adding Al for AAA01", "notes": null, "parameters": [], "source": null, "spec": {"id": "47a0c98a-bf58-452f-9349-ce4acbe915c8", "scope": "auto", "type": "link_by_uid"}, "tags": ["composition_id::AAA01", "batch::B", "fabrication_method::VAM"], "type": "process_run", "uids": {"auto": "7893d1f0-dbc4-4c34-b1a3-88645e907910"}}</data>
+  <data key="source">ProcessRun_Adding Al for AAA01_7893d1f0-dbc4-4c34-b1a3-88645e907910_.json</data>
+</node>
+<node id="Composition AAA01 [9cf4e2f4-3451-4e81-9861-f263dd1b72d4, material_run]">
+  <data key="color">green</data>
+  <data key="shape">circle</data>
+  <data key="uuid">9cf4e2f4-3451-4e81-9861-f263dd1b72d4</data>
+  <data key="type">material_run</data>
+  <data key="short_name">Composition AAA01</data>
+  <data key="object">{"file_links": [{"filename": "root", "type": "file_link", "url": "/srv/hemi01-j01/htmdec/birdshot/final_data/AAA/VAM/B/AAA01/T01"}, {"filename": "T04", "type": "file_link", "url": "/srv/hemi01-j01/htmdec/birdshot/final_data/AAA/VAM/B/AAA01/T01/T04"}], "name": "Composition AAA01", "notes": null, "process": {"id": "ee9a5359-5f75-4bd1-83f0-3d85f80086fe", "scope": "auto", "type": "link_by_uid"}, "sample_type": null, "spec": {"id": "9e6a9a97-1751-419c-ae30-ecf529e894bd", "scope": "auto", "type": "link_by_uid"}, "tags": ["composition_id::AAA01", "batch::B", "fabrication_method::VAM", "Co::45", "Cr::10", "Fe::20", "Ni::15", "V::10", "Al::0"], "type": "material_run", "uids": {"auto": "9cf4e2f4-3451-4e81-9861-f263dd1b72d4"}}</data>
+  <data key="source">MaterialRun_Composition AAA01_9cf4e2f4-3451-4e81-9861-f263dd1b72d4_.json</data>
+</node>
+<node id="Co in AAA01 Ing. [7cc94ab6-7a03-46ff-b06d-3ec80aa7fac1, ingredient_run]">
+  <data key="color">blue</data>
+  <data key="shape">circle</data>
+  <data key="uuid">7cc94ab6-7a03-46ff-b06d-3ec80aa7fac1</data>
+  <data key="type">ingredient_run</data>
+  <data key="short_name">Co in AAA01 Ing.</data>
+  <data key="object">{"absolute_quantity": null, "file_links": [], "labels": [], "mass_fraction": null, "material": {"id": "4186442e-e8d6-4095-8f31-87d4dcd7bc0b", "scope": "auto", "type": "link_by_uid"}, "name": "Co in AAA01 Ing.", "notes": null, "number_fraction": null, "process": {"id": "49e89c90-c175-4c9e-b540-10f92b2aee97", "scope": "auto", "type": "link_by_uid"}, "spec": {"id": "e2acbd64-c098-44c6-a2f8-8a3ce83a6989", "scope": "auto", "type": "link_by_uid"}, "tags": [], "type": "ingredient_run", "uids": {"auto": "7cc94ab6-7a03-46ff-b06d-3ec80aa7fac1"}, "volume_fraction": null}</data>
+  <data key="source">IngredientRun_Co in AAA01 Ing._7cc94ab6-7a03-46ff-b06d-3ec80aa7fac1_.json</data>
+</node>
+<node id="Co in AAA01 [4186442e-e8d6-4095-8f31-87d4dcd7bc0b, material_run]">
+  <data key="color">green</data>
+  <data key="shape">circle</data>
+  <data key="uuid">4186442e-e8d6-4095-8f31-87d4dcd7bc0b</data>
+  <data key="type">material_run</data>
+  <data key="short_name">Co in AAA01</data>
+  <data key="object">{"file_links": [], "name": "Co in AAA01", "notes": null, "process": {"id": "4dbe8d0a-e687-40cf-8c63-ea0faa26a18c", "scope": "auto", "type": "link_by_uid"}, "sample_type": "production", "spec": {"id": "95beed7a-3b9b-48f9-9525-327b1e6afa47", "scope": "auto", "type": "link_by_uid"}, "tags": ["composition_id::AAA01", "batch::B", "fabrication_method::VAM"], "type": "material_run", "uids": {"auto": "4186442e-e8d6-4095-8f31-87d4dcd7bc0b"}}</data>
+  <data key="source">MaterialRun_Co in AAA01_4186442e-e8d6-4095-8f31-87d4dcd7bc0b_.json</data>
+</node>
+<node id="Adding Ni for AAA01 [49fffcab-b43c-4655-91b3-13fc461f5cd8, process_run]">
+  <data key="color">red</data>
+  <data key="shape">circle</data>
+  <data key="uuid">49fffcab-b43c-4655-91b3-13fc461f5cd8</data>
+  <data key="type">process_run</data>
+  <data key="short_name">Adding Ni for AAA01</data>
+  <data key="object">{"conditions": [], "file_links": [], "name": "Adding Ni for AAA01", "notes": null, "parameters": [], "source": null, "spec": {"id": "4cef3a8b-e8f9-483c-a686-5706647df535", "scope": "auto", "type": "link_by_uid"}, "tags": ["composition_id::AAA01", "batch::B", "fabrication_method::VAM"], "type": "process_run", "uids": {"auto": "49fffcab-b43c-4655-91b3-13fc461f5cd8"}}</data>
+  <data key="source">ProcessRun_Adding Ni for AAA01_49fffcab-b43c-4655-91b3-13fc461f5cd8_.json</data>
+</node>
+<node id="Weigh Arc Melted Alloy (AAA01-VAM-B) [aa550cbb-c16a-467e-b91c-7cb9f1e7719a, measurement_run]">
+  <data key="color">purple</data>
+  <data key="shape">circle</data>
+  <data key="uuid">aa550cbb-c16a-467e-b91c-7cb9f1e7719a</data>
+  <data key="type">measurement_run</data>
+  <data key="short_name">Weigh Arc Melted Alloy (AAA01-VAM-B)</data>
+  <data key="object">{"conditions": [], "file_links": [], "material": {"id": "05c39044-ca08-4ed6-ad0c-b5085ab967e8", "scope": "auto", "type": "link_by_uid"}, "name": "Weigh Arc Melted Alloy (AAA01-VAM-B)", "notes": null, "parameters": [], "properties": [{"file_links": [], "name": "Weighed Mass", "notes": null, "origin": "unknown", "template": null, "type": "property", "value": {"nominal": 30.0011, "type": "nominal_real", "units": "gram"}}, {"file_links": [], "name": "Mass Loss", "notes": null, "origin": "unknown", "template": null, "type": "property", "value": {"nominal": 0.01, "type": "nominal_real", "units": "gram"}}], "source": {"performed_by": "Daniel", "performed_date": "2022-09-29", "type": "performed_source"}, "spec": {"id": "549bf909-bcd0-45c8-a6bd-21495a7e2f8e", "scope": "auto", "type": "link_by_uid"}, "tags": ["composition_id::AAA01", "batch::B", "fabrication_method::VAM"], "type": "measurement_run", "uids": {"auto": "aa550cbb-c16a-467e-b91c-7cb9f1e7719a"}}</data>
+  <data key="source">MeasurementRun_Weigh Arc Melted Alloy (AAA01-VAM-B)_aa550cbb-c16a-467e-b91c-7cb9f1e7719a_.json</data>
+</node>
+<node id="Arc Melted Alloy (AAA01-VAM-B) [05c39044-ca08-4ed6-ad0c-b5085ab967e8, material_run]">
+  <data key="color">green</data>
+  <data key="shape">circle</data>
+  <data key="uuid">05c39044-ca08-4ed6-ad0c-b5085ab967e8</data>
+  <data key="type">material_run</data>
+  <data key="short_name">Arc Melted Alloy (AAA01-VAM-B)</data>
+  <data key="object">{"file_links": [], "name": "Arc Melted Alloy (AAA01-VAM-B)", "notes": null, "process": {"id": "b500a80d-5817-4477-8b43-0f5e032dbef8", "scope": "auto", "type": "link_by_uid"}, "sample_type": null, "spec": {"id": "e17464f0-9d2a-48f6-851b-c74e7c10d1fb", "scope": "auto", "type": "link_by_uid"}, "tags": ["composition_id::AAA01", "batch::B", "fabrication_method::VAM"], "type": "material_run", "uids": {"auto": "05c39044-ca08-4ed6-ad0c-b5085ab967e8"}}</data>
+  <data key="source">MaterialRun_Arc Melted Alloy (AAA01-VAM-B)_05c39044-ca08-4ed6-ad0c-b5085ab967e8_.json</data>
+</node>
+<node id="Alloy (AAA01-VAM-B): Traveler Ing. [4b4b4a98-8957-4b45-ac51-ff44d278d164, ingredient_run]">
+  <data key="color">blue</data>
+  <data key="shape">circle</data>
+  <data key="uuid">4b4b4a98-8957-4b45-ac51-ff44d278d164</data>
+  <data key="type">ingredient_run</data>
+  <data key="short_name">Alloy (AAA01-VAM-B): Traveler Ing.</data>
+  <data key="object">{"absolute_quantity": null, "file_links": [], "labels": [], "mass_fraction": null, "material": {"id": "58ff7f19-3675-45d6-977a-a9151b903132", "scope": "auto", "type": "link_by_uid"}, "name": "Alloy (AAA01-VAM-B): Traveler Ing.", "notes": null, "number_fraction": null, "process": {"id": "5d8ca121-339d-48e4-91fc-130141caa292", "scope": "auto", "type": "link_by_uid"}, "spec": {"id": "40444115-78bb-48be-8209-90b03f57a334", "scope": "auto", "type": "link_by_uid"}, "tags": [], "type": "ingredient_run", "uids": {"auto": "4b4b4a98-8957-4b45-ac51-ff44d278d164"}, "volume_fraction": null}</data>
+  <data key="source">IngredientRun_Alloy (AAA01-VAM-B): Traveler Ing._4b4b4a98-8957-4b45-ac51-ff44d278d164_.json</data>
+</node>
+<node id="Extract sample from Alloy (AAA01-VAM-B): Traveler [5d8ca121-339d-48e4-91fc-130141caa292, process_run]">
+  <data key="color">red</data>
+  <data key="shape">circle</data>
+  <data key="uuid">5d8ca121-339d-48e4-91fc-130141caa292</data>
+  <data key="type">process_run</data>
+  <data key="short_name">Extract sample from Alloy (AAA01-VAM-B): Traveler</data>
+  <data key="object">{"conditions": [], "file_links": [], "name": "Extract sample from Alloy (AAA01-VAM-B): Traveler", "notes": null, "parameters": [], "source": null, "spec": {"id": "f6db3453-7275-4bc4-a851-3accf41ddcbf", "scope": "auto", "type": "link_by_uid"}, "tags": ["composition_id::AAA01", "batch::B", "fabrication_method::VAM"], "type": "process_run", "uids": {"auto": "5d8ca121-339d-48e4-91fc-130141caa292"}}</data>
+  <data key="source">ProcessRun_Extract sample from Alloy (AAA01-VAM-B): Traveler_5d8ca121-339d-48e4-91fc-130141caa292_.json</data>
+</node>
+<node id="Extract sample from Alloy (AAA01-VAM-B): Traveler [04783018-5731-4d0a-bb08-a7e258c54a8b, process_run]">
+  <data key="color">red</data>
+  <data key="shape">circle</data>
+  <data key="uuid">04783018-5731-4d0a-bb08-a7e258c54a8b</data>
+  <data key="type">process_run</data>
+  <data key="short_name">Extract sample from Alloy (AAA01-VAM-B): Traveler</data>
+  <data key="object">{"conditions": [], "file_links": [], "name": "Extract sample from Alloy (AAA01-VAM-B): Traveler", "notes": null, "parameters": [], "source": null, "spec": {"id": "14ca2c8b-f0cc-4881-9ed7-a1d6abb4bbea", "scope": "auto", "type": "link_by_uid"}, "tags": ["composition_id::AAA01", "batch::B", "fabrication_method::VAM"], "type": "process_run", "uids": {"auto": "04783018-5731-4d0a-bb08-a7e258c54a8b"}}</data>
+  <data key="source">ProcessRun_Extract sample from Alloy (AAA01-VAM-B): Traveler_04783018-5731-4d0a-bb08-a7e258c54a8b_.json</data>
+</node>
+<node id="Weigh Al for AAA01 [d840ba2b-03d4-4a4b-a15d-b99ee1fd667c, measurement_run]">
+  <data key="color">purple</data>
+  <data key="shape">circle</data>
+  <data key="uuid">d840ba2b-03d4-4a4b-a15d-b99ee1fd667c</data>
+  <data key="type">measurement_run</data>
+  <data key="short_name">Weigh Al for AAA01</data>
+  <data key="object">{"conditions": [], "file_links": [], "material": {"id": "f474691e-17e9-4e7f-b75a-720b1579ee33", "scope": "auto", "type": "link_by_uid"}, "name": "Weigh Al for AAA01", "notes": null, "parameters": [], "properties": [{"file_links": [], "name": "Weighed Mass", "notes": null, "origin": "specified", "template": {"id": "589d6c5b-d225-4097-a5c7-309a572eb9b5", "scope": "auto", "type": "link_by_uid"}, "type": "property", "value": {"nominal": 0.0, "type": "nominal_real", "units": "gram"}}, {"file_links": [], "name": "Mass Loss", "notes": null, "origin": "specified", "template": {"id": "4a8b4a37-69dc-401f-a8e1-c6b5c6fb098f", "scope": "auto", "type": "link_by_uid"}, "type": "property", "value": {"nominal": 0.0, "type": "nominal_real", "units": "gram"}}], "source": {"performed_by": "Wenle &amp; Daniel", "performed_date": "2022-09-27", "type": "performed_source"}, "spec": {"id": "e69f815f-d376-444e-9224-579affe0ee27", "scope": "auto", "type": "link_by_uid"}, "tags": ["composition_id::AAA01", "batch::B", "fabrication_method::VAM"], "type": "measurement_run", "uids": {"auto": "d840ba2b-03d4-4a4b-a15d-b99ee1fd667c"}}</data>
+  <data key="source">MeasurementRun_Weigh Al for AAA01_d840ba2b-03d4-4a4b-a15d-b99ee1fd667c_.json</data>
+</node>
+<node id="Alloy (AAA01-VAM-B) [0a2d8dbf-51f8-43cf-b1f6-11c1642f9518, material_run]">
+  <data key="color">green</data>
+  <data key="shape">circle</data>
+  <data key="uuid">0a2d8dbf-51f8-43cf-b1f6-11c1642f9518</data>
+  <data key="type">material_run</data>
+  <data key="short_name">Alloy (AAA01-VAM-B)</data>
+  <data key="object">{"file_links": [], "name": "Alloy (AAA01-VAM-B)", "notes": null, "process": {"id": "49e89c90-c175-4c9e-b540-10f92b2aee97", "scope": "auto", "type": "link_by_uid"}, "sample_type": null, "spec": {"id": "d655a12c-3ee5-480b-ac03-4c0fdf1fbca0", "scope": "auto", "type": "link_by_uid"}, "tags": ["composition_id::AAA01", "batch::B", "fabrication_method::VAM"], "type": "material_run", "uids": {"auto": "0a2d8dbf-51f8-43cf-b1f6-11c1642f9518"}}</data>
+  <data key="source">MaterialRun_Alloy (AAA01-VAM-B)_0a2d8dbf-51f8-43cf-b1f6-11c1642f9518_.json</data>
+</node>
+<node id="SEM charact. for Alloy (AAA01-VAM-B) (T02) [677800f2-386d-439c-8bc2-8dadf0f46240, measurement_run]">
+  <data key="color">purple</data>
+  <data key="shape">circle</data>
+  <data key="uuid">677800f2-386d-439c-8bc2-8dadf0f46240</data>
+  <data key="type">measurement_run</data>
+  <data key="short_name">SEM charact. for Alloy (AAA01-VAM-B) (T02)</data>
+  <data key="object">{"conditions": [], "file_links": [], "material": {"id": "dcf76777-9b9c-4712-b9c2-e243c43ac8c4", "scope": "auto", "type": "link_by_uid"}, "name": "SEM charact. for Alloy (AAA01-VAM-B) (T02)", "notes": null, "parameters": [], "properties": [], "source": null, "spec": {"id": "cc5a5433-9abc-4a77-8574-cd2b1241a52f", "scope": "auto", "type": "link_by_uid"}, "tags": ["measurement_name::SEM", "measurement_id::T02", "composition_id::AAA01", "batch::B", "fabrication_method::VAM"], "type": "measurement_run", "uids": {"auto": "677800f2-386d-439c-8bc2-8dadf0f46240"}}</data>
+  <data key="source">MeasurementRun_SEM charact. for Alloy (AAA01-VAM-B) (T02)_677800f2-386d-439c-8bc2-8dadf0f46240_.json</data>
+</node>
+<node id="Alloy (AAA01-VAM-B): T. Sample (SEM, T02) [dcf76777-9b9c-4712-b9c2-e243c43ac8c4, material_run]">
+  <data key="color">green</data>
+  <data key="shape">circle</data>
+  <data key="uuid">dcf76777-9b9c-4712-b9c2-e243c43ac8c4</data>
+  <data key="type">material_run</data>
+  <data key="short_name">Alloy (AAA01-VAM-B): T. Sample (SEM, T02)</data>
+  <data key="object">{"file_links": [], "name": "Alloy (AAA01-VAM-B): T. Sample (SEM, T02)", "notes": null, "process": {"id": "6acd5994-a673-42c8-9f28-254b322a83cd", "scope": "auto", "type": "link_by_uid"}, "sample_type": null, "spec": {"id": "0ced2bf7-8cfd-493b-8b0d-119bda44fea5", "scope": "auto", "type": "link_by_uid"}, "tags": ["composition_id::AAA01", "batch::B", "fabrication_method::VAM"], "type": "material_run", "uids": {"auto": "dcf76777-9b9c-4712-b9c2-e243c43ac8c4"}}</data>
+  <data key="source">MaterialRun_Alloy (AAA01-VAM-B): T. Sample (SEM, T02)_dcf76777-9b9c-4712-b9c2-e243c43ac8c4_.json</data>
+</node>
+<node id="Cr in AAA01 [bdc3de98-21e8-466c-aa90-5d0c4b5982f1, material_run]">
+  <data key="color">green</data>
+  <data key="shape">circle</data>
+  <data key="uuid">bdc3de98-21e8-466c-aa90-5d0c4b5982f1</data>
+  <data key="type">material_run</data>
+  <data key="short_name">Cr in AAA01</data>
+  <data key="object">{"file_links": [], "name": "Cr in AAA01", "notes": null, "process": {"id": "5d12a695-19b4-4277-8869-cc3b4cd52d85", "scope": "auto", "type": "link_by_uid"}, "sample_type": "production", "spec": {"id": "9495d9c8-352c-4a84-a97a-f6de100dcf7a", "scope": "auto", "type": "link_by_uid"}, "tags": ["composition_id::AAA01", "batch::B", "fabrication_method::VAM"], "type": "material_run", "uids": {"auto": "bdc3de98-21e8-466c-aa90-5d0c4b5982f1"}}</data>
+  <data key="source">MaterialRun_Cr in AAA01_bdc3de98-21e8-466c-aa90-5d0c4b5982f1_.json</data>
+</node>
+<node id="Adding Cr for AAA01 [5d12a695-19b4-4277-8869-cc3b4cd52d85, process_run]">
+  <data key="color">red</data>
+  <data key="shape">circle</data>
+  <data key="uuid">5d12a695-19b4-4277-8869-cc3b4cd52d85</data>
+  <data key="type">process_run</data>
+  <data key="short_name">Adding Cr for AAA01</data>
+  <data key="object">{"conditions": [], "file_links": [], "name": "Adding Cr for AAA01", "notes": null, "parameters": [], "source": null, "spec": {"id": "63b93f62-da1e-4732-b8a5-c771e87d71c5", "scope": "auto", "type": "link_by_uid"}, "tags": ["composition_id::AAA01", "batch::B", "fabrication_method::VAM"], "type": "process_run", "uids": {"auto": "5d12a695-19b4-4277-8869-cc3b4cd52d85"}}</data>
+  <data key="source">ProcessRun_Adding Cr for AAA01_5d12a695-19b4-4277-8869-cc3b4cd52d85_.json</data>
+</node>
+<node id="Composition AAA01 Ing. [fe96e4ca-d3ae-4769-9a68-677697a65a54, ingredient_run]">
+  <data key="color">blue</data>
+  <data key="shape">circle</data>
+  <data key="uuid">fe96e4ca-d3ae-4769-9a68-677697a65a54</data>
+  <data key="type">ingredient_run</data>
+  <data key="short_name">Composition AAA01 Ing.</data>
+  <data key="object">{"absolute_quantity": null, "file_links": [], "labels": [], "mass_fraction": null, "material": {"id": "9cf4e2f4-3451-4e81-9861-f263dd1b72d4", "scope": "auto", "type": "link_by_uid"}, "name": "Composition AAA01 Ing.", "notes": null, "number_fraction": null, "process": {"id": "8fecc444-c99f-4519-9c83-215bb4786f46", "scope": "auto", "type": "link_by_uid"}, "spec": {"id": "0f84d36b-bc70-4676-9de9-a5ff7cd66e7d", "scope": "auto", "type": "link_by_uid"}, "tags": [], "type": "ingredient_run", "uids": {"auto": "fe96e4ca-d3ae-4769-9a68-677697a65a54"}, "volume_fraction": null}</data>
+  <data key="source">IngredientRun_Composition AAA01 Ing._fe96e4ca-d3ae-4769-9a68-677697a65a54_.json</data>
+</node>
+<node id="Alloy (AAA01-VAM-B): T. Sample (XRD, T02) [2fc05823-5188-47da-a001-5a2c7cfad5ea, material_run]">
+  <data key="color">green</data>
+  <data key="shape">circle</data>
+  <data key="uuid">2fc05823-5188-47da-a001-5a2c7cfad5ea</data>
+  <data key="type">material_run</data>
+  <data key="short_name">Alloy (AAA01-VAM-B): T. Sample (XRD, T02)</data>
+  <data key="object">{"file_links": [], "name": "Alloy (AAA01-VAM-B): T. Sample (XRD, T02)", "notes": null, "process": {"id": "9ff418c3-387c-4407-9b2a-ae2b2df161bb", "scope": "auto", "type": "link_by_uid"}, "sample_type": null, "spec": {"id": "7325800d-42af-4e21-9fcf-bed87a54466b", "scope": "auto", "type": "link_by_uid"}, "tags": ["composition_id::AAA01", "batch::B", "fabrication_method::VAM"], "type": "material_run", "uids": {"auto": "2fc05823-5188-47da-a001-5a2c7cfad5ea"}}</data>
+  <data key="source">MaterialRun_Alloy (AAA01-VAM-B): T. Sample (XRD, T02)_2fc05823-5188-47da-a001-5a2c7cfad5ea_.json</data>
+</node>
+<node id="Extract sample from Alloy (AAA01-VAM-B): Traveler [9ff418c3-387c-4407-9b2a-ae2b2df161bb, process_run]">
+  <data key="color">red</data>
+  <data key="shape">circle</data>
+  <data key="uuid">9ff418c3-387c-4407-9b2a-ae2b2df161bb</data>
+  <data key="type">process_run</data>
+  <data key="short_name">Extract sample from Alloy (AAA01-VAM-B): Traveler</data>
+  <data key="object">{"conditions": [], "file_links": [], "name": "Extract sample from Alloy (AAA01-VAM-B): Traveler", "notes": null, "parameters": [], "source": null, "spec": {"id": "64e5d527-8af7-4802-950e-3df639a42446", "scope": "auto", "type": "link_by_uid"}, "tags": ["composition_id::AAA01", "batch::B", "fabrication_method::VAM"], "type": "process_run", "uids": {"auto": "9ff418c3-387c-4407-9b2a-ae2b2df161bb"}}</data>
+  <data key="source">ProcessRun_Extract sample from Alloy (AAA01-VAM-B): Traveler_9ff418c3-387c-4407-9b2a-ae2b2df161bb_.json</data>
+</node>
+<node id="Alloy (AAA01-VAM-B) Ing. [10243e3d-1829-4f84-966b-eb0dde2f8e44, ingredient_run]">
+  <data key="color">blue</data>
+  <data key="shape">circle</data>
+  <data key="uuid">10243e3d-1829-4f84-966b-eb0dde2f8e44</data>
+  <data key="type">ingredient_run</data>
+  <data key="short_name">Alloy (AAA01-VAM-B) Ing.</data>
+  <data key="object">{"absolute_quantity": null, "file_links": [], "labels": [], "mass_fraction": null, "material": {"id": "0a2d8dbf-51f8-43cf-b1f6-11c1642f9518", "scope": "auto", "type": "link_by_uid"}, "name": "Alloy (AAA01-VAM-B) Ing.", "notes": null, "number_fraction": null, "process": {"id": "b500a80d-5817-4477-8b43-0f5e032dbef8", "scope": "auto", "type": "link_by_uid"}, "spec": {"id": "e4c5c987-1a87-4323-9bc9-cfd57d2296d8", "scope": "auto", "type": "link_by_uid"}, "tags": [], "type": "ingredient_run", "uids": {"auto": "10243e3d-1829-4f84-966b-eb0dde2f8e44"}, "volume_fraction": null}</data>
+  <data key="source">IngredientRun_Alloy (AAA01-VAM-B) Ing._10243e3d-1829-4f84-966b-eb0dde2f8e44_.json</data>
+</node>
+<node id="Arc melting of Alloy (AAA01-VAM-B) [b500a80d-5817-4477-8b43-0f5e032dbef8, process_run]">
+  <data key="color">red</data>
+  <data key="shape">circle</data>
+  <data key="uuid">b500a80d-5817-4477-8b43-0f5e032dbef8</data>
+  <data key="type">process_run</data>
+  <data key="short_name">Arc melting of Alloy (AAA01-VAM-B)</data>
+  <data key="object">{"conditions": [], "file_links": [], "name": "Arc melting of Alloy (AAA01-VAM-B)", "notes": null, "parameters": [{"file_links": [], "name": "Initial Purging Times", "notes": null, "origin": "specified", "template": null, "type": "parameter", "value": {"nominal": 3.0, "type": "nominal_real", "units": "hour"}}, {"file_links": [], "name": "Vacuum Before Melt", "notes": null, "origin": "specified", "template": null, "type": "parameter", "value": {"nominal": 5e-05, "type": "nominal_real", "units": "dimensionless"}}, {"file_links": [], "name": "Argon Pressure", "notes": null, "origin": "specified", "template": null, "type": "parameter", "value": {"category": "850-900", "type": "nominal_categorical"}}, {"file_links": [], "name": "Diffusion", "notes": null, "origin": "specified", "template": null, "type": "parameter", "value": {"category": "Before Each Melt", "type": "nominal_categorical"}}, {"file_links": [], "name": "Ingot Location", "notes": null, "origin": "specified", "template": null, "type": "parameter", "value": {"nominal": 3.0, "type": "nominal_real", "units": "dimensionless"}}], "source": {"performed_by": "Daniel", "performed_date": "2022-09-29", "type": "performed_source"}, "spec": {"id": "09b5c9bf-1729-48fc-9ca1-10a7a55a0c76", "scope": "auto", "type": "link_by_uid"}, "tags": ["composition_id::AAA01", "batch::B", "fabrication_method::VAM", "start_date::2022-09-27", "finish_date::2022-09-29", "time_spent::3:00", "Full Ingot::7::145", "Full Ingot::6::145", "Full Ingot::5::125", "Full Ingot::4::125", "Full Ingot::3::125", "Full Ingot::2::125", "Full Ingot::1::125", "3 Part Sections::3::90", "3 Part Sections::2::90", "3 Part Sections::1::90"], "type": "process_run", "uids": {"auto": "b500a80d-5817-4477-8b43-0f5e032dbef8"}}</data>
+  <data key="source">ProcessRun_Arc melting of Alloy (AAA01-VAM-B)_b500a80d-5817-4477-8b43-0f5e032dbef8_.json</data>
+</node>
+<node id="Arc Melted Alloy (AAA01-VAM-B) Ing. [be05605b-808b-4729-829c-90299e4dc62a, ingredient_run]">
+  <data key="color">blue</data>
+  <data key="shape">circle</data>
+  <data key="uuid">be05605b-808b-4729-829c-90299e4dc62a</data>
+  <data key="type">ingredient_run</data>
+  <data key="short_name">Arc Melted Alloy (AAA01-VAM-B) Ing.</data>
+  <data key="object">{"absolute_quantity": null, "file_links": [], "labels": [], "mass_fraction": null, "material": {"id": "05c39044-ca08-4ed6-ad0c-b5085ab967e8", "scope": "auto", "type": "link_by_uid"}, "name": "Arc Melted Alloy (AAA01-VAM-B) Ing.", "notes": null, "number_fraction": null, "process": {"id": "e1db8e65-f1be-4764-a5e3-98f2ec4bc8ba", "scope": "auto", "type": "link_by_uid"}, "spec": {"id": "dd402ed6-d08c-48e2-b248-089252af688f", "scope": "auto", "type": "link_by_uid"}, "tags": [], "type": "ingredient_run", "uids": {"auto": "be05605b-808b-4729-829c-90299e4dc62a"}, "volume_fraction": null}</data>
+  <data key="source">IngredientRun_Arc Melted Alloy (AAA01-VAM-B) Ing._be05605b-808b-4729-829c-90299e4dc62a_.json</data>
+</node>
+<node id="Select AAA01 [ee9a5359-5f75-4bd1-83f0-3d85f80086fe, process_run]">
+  <data key="color">red</data>
+  <data key="shape">circle</data>
+  <data key="uuid">ee9a5359-5f75-4bd1-83f0-3d85f80086fe</data>
+  <data key="type">process_run</data>
+  <data key="short_name">Select AAA01</data>
+  <data key="object">{"conditions": [], "file_links": [{"filename": "root", "type": "file_link", "url": "/srv/hemi01-j01/htmdec/birdshot/final_data/AAA/VAM/B/AAA01/T01"}, {"filename": "T04", "type": "file_link", "url": "/srv/hemi01-j01/htmdec/birdshot/final_data/AAA/VAM/B/AAA01/T01/T04"}], "name": "Select AAA01", "notes": null, "parameters": [], "source": null, "spec": {"id": "7e82818b-5058-4777-93df-186e52af41bc", "scope": "auto", "type": "link_by_uid"}, "tags": ["composition_id::AAA01", "batch::B", "fabrication_method::VAM", "Co::45", "Cr::10", "Fe::20", "Ni::15", "V::10", "Al::0"], "type": "process_run", "uids": {"auto": "ee9a5359-5f75-4bd1-83f0-3d85f80086fe"}}</data>
+  <data key="source">ProcessRun_Select AAA01_ee9a5359-5f75-4bd1-83f0-3d85f80086fe_.json</data>
+</node>
+<node id="Extract sample from Alloy (AAA01-VAM-B): Traveler [6acd5994-a673-42c8-9f28-254b322a83cd, process_run]">
+  <data key="color">red</data>
+  <data key="shape">circle</data>
+  <data key="uuid">6acd5994-a673-42c8-9f28-254b322a83cd</data>
+  <data key="type">process_run</data>
+  <data key="short_name">Extract sample from Alloy (AAA01-VAM-B): Traveler</data>
+  <data key="object">{"conditions": [], "file_links": [], "name": "Extract sample from Alloy (AAA01-VAM-B): Traveler", "notes": null, "parameters": [], "source": null, "spec": {"id": "8180975b-ce88-46ad-a4c8-78b9571f2583", "scope": "auto", "type": "link_by_uid"}, "tags": ["composition_id::AAA01", "batch::B", "fabrication_method::VAM"], "type": "process_run", "uids": {"auto": "6acd5994-a673-42c8-9f28-254b322a83cd"}}</data>
+  <data key="source">ProcessRun_Extract sample from Alloy (AAA01-VAM-B): Traveler_6acd5994-a673-42c8-9f28-254b322a83cd_.json</data>
+</node>
+<node id="Extract sample from Alloy (AAA01-VAM-B): Traveler [30f6cf95-a0ed-4529-8102-b3094960fe71, process_run]">
+  <data key="color">red</data>
+  <data key="shape">circle</data>
+  <data key="uuid">30f6cf95-a0ed-4529-8102-b3094960fe71</data>
+  <data key="type">process_run</data>
+  <data key="short_name">Extract sample from Alloy (AAA01-VAM-B): Traveler</data>
+  <data key="object">{"conditions": [], "file_links": [], "name": "Extract sample from Alloy (AAA01-VAM-B): Traveler", "notes": null, "parameters": [], "source": null, "spec": {"id": "8d9d9914-71ca-48f4-b99c-4e0c7eba5c91", "scope": "auto", "type": "link_by_uid"}, "tags": ["composition_id::AAA01", "batch::B", "fabrication_method::VAM"], "type": "process_run", "uids": {"auto": "30f6cf95-a0ed-4529-8102-b3094960fe71"}}</data>
+  <data key="source">ProcessRun_Extract sample from Alloy (AAA01-VAM-B): Traveler_30f6cf95-a0ed-4529-8102-b3094960fe71_.json</data>
+</node>
+<node id="Fe in AAA01 Ing. [7cad4edf-b87c-4957-84e4-8512cbf7dd86, ingredient_run]">
+  <data key="color">blue</data>
+  <data key="shape">circle</data>
+  <data key="uuid">7cad4edf-b87c-4957-84e4-8512cbf7dd86</data>
+  <data key="type">ingredient_run</data>
+  <data key="short_name">Fe in AAA01 Ing.</data>
+  <data key="object">{"absolute_quantity": null, "file_links": [], "labels": [], "mass_fraction": null, "material": {"id": "a2d7ac5c-265e-4058-ae5e-7d2bfee15e66", "scope": "auto", "type": "link_by_uid"}, "name": "Fe in AAA01 Ing.", "notes": null, "number_fraction": null, "process": {"id": "49e89c90-c175-4c9e-b540-10f92b2aee97", "scope": "auto", "type": "link_by_uid"}, "spec": {"id": "0ca0a9af-317c-4c78-9a23-e278cea42089", "scope": "auto", "type": "link_by_uid"}, "tags": [], "type": "ingredient_run", "uids": {"auto": "7cad4edf-b87c-4957-84e4-8512cbf7dd86"}, "volume_fraction": null}</data>
+  <data key="source">IngredientRun_Fe in AAA01 Ing._7cad4edf-b87c-4957-84e4-8512cbf7dd86_.json</data>
+</node>
+<node id="Fe in AAA01 [a2d7ac5c-265e-4058-ae5e-7d2bfee15e66, material_run]">
+  <data key="color">green</data>
+  <data key="shape">circle</data>
+  <data key="uuid">a2d7ac5c-265e-4058-ae5e-7d2bfee15e66</data>
+  <data key="type">material_run</data>
+  <data key="short_name">Fe in AAA01</data>
+  <data key="object">{"file_links": [], "name": "Fe in AAA01", "notes": null, "process": {"id": "e905bc20-4a8e-483a-9481-ff46e7c8a89d", "scope": "auto", "type": "link_by_uid"}, "sample_type": "production", "spec": {"id": "02d68e8e-23e8-46fa-bcb7-e729d43662d8", "scope": "auto", "type": "link_by_uid"}, "tags": ["composition_id::AAA01", "batch::B", "fabrication_method::VAM"], "type": "material_run", "uids": {"auto": "a2d7ac5c-265e-4058-ae5e-7d2bfee15e66"}}</data>
+  <data key="source">MaterialRun_Fe in AAA01_a2d7ac5c-265e-4058-ae5e-7d2bfee15e66_.json</data>
+</node>
+<node id="Alloy (AAA01-VAM-B): T. Sample (NI, T04) [a1158bb1-f492-4b6b-82a9-9c37f923b22b, material_run]">
+  <data key="color">green</data>
+  <data key="shape">circle</data>
+  <data key="uuid">a1158bb1-f492-4b6b-82a9-9c37f923b22b</data>
+  <data key="type">material_run</data>
+  <data key="short_name">Alloy (AAA01-VAM-B): T. Sample (NI, T04)</data>
+  <data key="object">{"file_links": [], "name": "Alloy (AAA01-VAM-B): T. Sample (NI, T04)", "notes": null, "process": {"id": "30f6cf95-a0ed-4529-8102-b3094960fe71", "scope": "auto", "type": "link_by_uid"}, "sample_type": null, "spec": {"id": "d8e19211-840c-43f8-b546-0b42673f3dff", "scope": "auto", "type": "link_by_uid"}, "tags": ["composition_id::AAA01", "batch::B", "fabrication_method::VAM"], "type": "material_run", "uids": {"auto": "a1158bb1-f492-4b6b-82a9-9c37f923b22b"}}</data>
+  <data key="source">MaterialRun_Alloy (AAA01-VAM-B): T. Sample (NI, T04)_a1158bb1-f492-4b6b-82a9-9c37f923b22b_.json</data>
+</node>
+<node id="Ni in AAA01 [26e97a49-8e77-497a-a9e9-e8fedb5ae537, material_run]">
+  <data key="color">green</data>
+  <data key="shape">circle</data>
+  <data key="uuid">26e97a49-8e77-497a-a9e9-e8fedb5ae537</data>
+  <data key="type">material_run</data>
+  <data key="short_name">Ni in AAA01</data>
+  <data key="object">{"file_links": [], "name": "Ni in AAA01", "notes": null, "process": {"id": "49fffcab-b43c-4655-91b3-13fc461f5cd8", "scope": "auto", "type": "link_by_uid"}, "sample_type": "production", "spec": {"id": "3c3c4a81-d36c-46ab-aafd-d70f3885325e", "scope": "auto", "type": "link_by_uid"}, "tags": ["composition_id::AAA01", "batch::B", "fabrication_method::VAM"], "type": "material_run", "uids": {"auto": "26e97a49-8e77-497a-a9e9-e8fedb5ae537"}}</data>
+  <data key="source">MaterialRun_Ni in AAA01_26e97a49-8e77-497a-a9e9-e8fedb5ae537_.json</data>
+</node>
+<node id="Alloy (AAA01-VAM-B): Traveler Ing. [8a722cbe-682d-47b5-b6b8-895a0e3f8bcd, ingredient_run]">
+  <data key="color">blue</data>
+  <data key="shape">circle</data>
+  <data key="uuid">8a722cbe-682d-47b5-b6b8-895a0e3f8bcd</data>
+  <data key="type">ingredient_run</data>
+  <data key="short_name">Alloy (AAA01-VAM-B): Traveler Ing.</data>
+  <data key="object">{"absolute_quantity": null, "file_links": [], "labels": [], "mass_fraction": null, "material": {"id": "58ff7f19-3675-45d6-977a-a9151b903132", "scope": "auto", "type": "link_by_uid"}, "name": "Alloy (AAA01-VAM-B): Traveler Ing.", "notes": null, "number_fraction": null, "process": {"id": "04783018-5731-4d0a-bb08-a7e258c54a8b", "scope": "auto", "type": "link_by_uid"}, "spec": {"id": "3bead1c5-da0f-4e13-8577-9d0d25349362", "scope": "auto", "type": "link_by_uid"}, "tags": [], "type": "ingredient_run", "uids": {"auto": "8a722cbe-682d-47b5-b6b8-895a0e3f8bcd"}, "volume_fraction": null}</data>
+  <data key="source">IngredientRun_Alloy (AAA01-VAM-B): Traveler Ing._8a722cbe-682d-47b5-b6b8-895a0e3f8bcd_.json</data>
+</node>
+<node id="Weigh Fe for AAA01 [c33c81d2-8fb6-4abe-a7a7-ce17dea6a9a0, measurement_run]">
+  <data key="color">purple</data>
+  <data key="shape">circle</data>
+  <data key="uuid">c33c81d2-8fb6-4abe-a7a7-ce17dea6a9a0</data>
+  <data key="type">measurement_run</data>
+  <data key="short_name">Weigh Fe for AAA01</data>
+  <data key="object">{"conditions": [], "file_links": [], "material": {"id": "a2d7ac5c-265e-4058-ae5e-7d2bfee15e66", "scope": "auto", "type": "link_by_uid"}, "name": "Weigh Fe for AAA01", "notes": null, "parameters": [], "properties": [{"file_links": [], "name": "Weighed Mass", "notes": null, "origin": "specified", "template": {"id": "589d6c5b-d225-4097-a5c7-309a572eb9b5", "scope": "auto", "type": "link_by_uid"}, "type": "property", "value": {"nominal": 0.0, "type": "nominal_real", "units": "gram"}}, {"file_links": [], "name": "Mass Loss", "notes": null, "origin": "specified", "template": {"id": "4a8b4a37-69dc-401f-a8e1-c6b5c6fb098f", "scope": "auto", "type": "link_by_uid"}, "type": "property", "value": {"nominal": 0.0, "type": "nominal_real", "units": "gram"}}], "source": {"performed_by": "Wenle &amp; Daniel", "performed_date": "2022-09-27", "type": "performed_source"}, "spec": {"id": "a302f27d-c203-4f7b-a571-2230804b1d96", "scope": "auto", "type": "link_by_uid"}, "tags": ["composition_id::AAA01", "batch::B", "fabrication_method::VAM"], "type": "measurement_run", "uids": {"auto": "c33c81d2-8fb6-4abe-a7a7-ce17dea6a9a0"}}</data>
+  <data key="source">MeasurementRun_Weigh Fe for AAA01_c33c81d2-8fb6-4abe-a7a7-ce17dea6a9a0_.json</data>
+</node>
+<node id="XRD charact. for Alloy (AAA01-VAM-B) (T02) [b89f5209-afd0-429b-8213-af8b39021a7b, measurement_run]">
+  <data key="color">purple</data>
+  <data key="shape">circle</data>
+  <data key="uuid">b89f5209-afd0-429b-8213-af8b39021a7b</data>
+  <data key="type">measurement_run</data>
+  <data key="short_name">XRD charact. for Alloy (AAA01-VAM-B) (T02)</data>
+  <data key="object">{"conditions": [], "file_links": [], "material": {"id": "2fc05823-5188-47da-a001-5a2c7cfad5ea", "scope": "auto", "type": "link_by_uid"}, "name": "XRD charact. for Alloy (AAA01-VAM-B) (T02)", "notes": null, "parameters": [], "properties": [{"file_links": [], "name": "Lattice Parameter", "notes": "", "origin": "measured", "template": null, "type": "property", "value": {"nominal": 3.577633106212685, "type": "nominal_real", "units": "centimeter"}}], "source": null, "spec": {"id": "15793e38-33e2-448b-bec7-1b51ebafaa07", "scope": "auto", "type": "link_by_uid"}, "tags": ["measurement_name::XRD", "measurement_id::T02", "composition_id::AAA01", "batch::B", "fabrication_method::VAM"], "type": "measurement_run", "uids": {"auto": "b89f5209-afd0-429b-8213-af8b39021a7b"}}</data>
+  <data key="source">MeasurementRun_XRD charact. for Alloy (AAA01-VAM-B) (T02)_b89f5209-afd0-429b-8213-af8b39021a7b_.json</data>
+</node>
+<node id="Weigh Cr for AAA01 [f8f6560d-9750-40b0-a77d-d4f56eab2b95, measurement_run]">
+  <data key="color">purple</data>
+  <data key="shape">circle</data>
+  <data key="uuid">f8f6560d-9750-40b0-a77d-d4f56eab2b95</data>
+  <data key="type">measurement_run</data>
+  <data key="short_name">Weigh Cr for AAA01</data>
+  <data key="object">{"conditions": [], "file_links": [], "material": {"id": "bdc3de98-21e8-466c-aa90-5d0c4b5982f1", "scope": "auto", "type": "link_by_uid"}, "name": "Weigh Cr for AAA01", "notes": null, "parameters": [], "properties": [{"file_links": [], "name": "Weighed Mass", "notes": null, "origin": "specified", "template": {"id": "589d6c5b-d225-4097-a5c7-309a572eb9b5", "scope": "auto", "type": "link_by_uid"}, "type": "property", "value": {"nominal": 0.0, "type": "nominal_real", "units": "gram"}}, {"file_links": [], "name": "Mass Loss", "notes": null, "origin": "specified", "template": {"id": "4a8b4a37-69dc-401f-a8e1-c6b5c6fb098f", "scope": "auto", "type": "link_by_uid"}, "type": "property", "value": {"nominal": 0.0, "type": "nominal_real", "units": "gram"}}], "source": {"performed_by": "Wenle &amp; Daniel", "performed_date": "2022-09-27", "type": "performed_source"}, "spec": {"id": "3ca7568d-6148-4601-8ac5-7e7f5807c9a7", "scope": "auto", "type": "link_by_uid"}, "tags": ["composition_id::AAA01", "batch::B", "fabrication_method::VAM"], "type": "measurement_run", "uids": {"auto": "f8f6560d-9750-40b0-a77d-d4f56eab2b95"}}</data>
+  <data key="source">MeasurementRun_Weigh Cr for AAA01_f8f6560d-9750-40b0-a77d-d4f56eab2b95_.json</data>
+</node>
+<node id="Weigh Co for AAA01 [1e8c4a39-36be-4e46-8a86-8e5fedea62fa, measurement_run]">
+  <data key="color">purple</data>
+  <data key="shape">circle</data>
+  <data key="uuid">1e8c4a39-36be-4e46-8a86-8e5fedea62fa</data>
+  <data key="type">measurement_run</data>
+  <data key="short_name">Weigh Co for AAA01</data>
+  <data key="object">{"conditions": [], "file_links": [], "material": {"id": "4186442e-e8d6-4095-8f31-87d4dcd7bc0b", "scope": "auto", "type": "link_by_uid"}, "name": "Weigh Co for AAA01", "notes": null, "parameters": [], "properties": [{"file_links": [], "name": "Weighed Mass", "notes": null, "origin": "specified", "template": {"id": "589d6c5b-d225-4097-a5c7-309a572eb9b5", "scope": "auto", "type": "link_by_uid"}, "type": "property", "value": {"nominal": 0.0, "type": "nominal_real", "units": "gram"}}, {"file_links": [], "name": "Mass Loss", "notes": null, "origin": "specified", "template": {"id": "4a8b4a37-69dc-401f-a8e1-c6b5c6fb098f", "scope": "auto", "type": "link_by_uid"}, "type": "property", "value": {"nominal": 0.0, "type": "nominal_real", "units": "gram"}}], "source": {"performed_by": "Wenle &amp; Daniel", "performed_date": "2022-09-27", "type": "performed_source"}, "spec": {"id": "e47df7df-a9c3-4893-9cc6-1ff56783b410", "scope": "auto", "type": "link_by_uid"}, "tags": ["composition_id::AAA01", "batch::B", "fabrication_method::VAM"], "type": "measurement_run", "uids": {"auto": "1e8c4a39-36be-4e46-8a86-8e5fedea62fa"}}</data>
+  <data key="source">MeasurementRun_Weigh Co for AAA01_1e8c4a39-36be-4e46-8a86-8e5fedea62fa_.json</data>
+</node>
+<node id="Alloy (AAA01-VAM-B): Traveler Ing. [8ad32671-fb73-4a22-8c23-934b5508b141, ingredient_run]">
+  <data key="color">blue</data>
+  <data key="shape">circle</data>
+  <data key="uuid">8ad32671-fb73-4a22-8c23-934b5508b141</data>
+  <data key="type">ingredient_run</data>
+  <data key="short_name">Alloy (AAA01-VAM-B): Traveler Ing.</data>
+  <data key="object">{"absolute_quantity": null, "file_links": [], "labels": [], "mass_fraction": null, "material": {"id": "58ff7f19-3675-45d6-977a-a9151b903132", "scope": "auto", "type": "link_by_uid"}, "name": "Alloy (AAA01-VAM-B): Traveler Ing.", "notes": null, "number_fraction": null, "process": {"id": "9ff418c3-387c-4407-9b2a-ae2b2df161bb", "scope": "auto", "type": "link_by_uid"}, "spec": {"id": "26ec67a6-eefb-47dd-84eb-07bca58d8bca", "scope": "auto", "type": "link_by_uid"}, "tags": [], "type": "ingredient_run", "uids": {"auto": "8ad32671-fb73-4a22-8c23-934b5508b141"}, "volume_fraction": null}</data>
+  <data key="source">IngredientRun_Alloy (AAA01-VAM-B): Traveler Ing._8ad32671-fb73-4a22-8c23-934b5508b141_.json</data>
+</node>
+<node id="Composition AAA01 Ing. [9a2c57cc-69b6-4389-a439-aae5654e2dd1, ingredient_run]">
+  <data key="color">blue</data>
+  <data key="shape">circle</data>
+  <data key="uuid">9a2c57cc-69b6-4389-a439-aae5654e2dd1</data>
+  <data key="type">ingredient_run</data>
+  <data key="short_name">Composition AAA01 Ing.</data>
+  <data key="object">{"absolute_quantity": null, "file_links": [], "labels": [], "mass_fraction": null, "material": {"id": "9cf4e2f4-3451-4e81-9861-f263dd1b72d4", "scope": "auto", "type": "link_by_uid"}, "name": "Composition AAA01 Ing.", "notes": null, "number_fraction": null, "process": {"id": "5d12a695-19b4-4277-8869-cc3b4cd52d85", "scope": "auto", "type": "link_by_uid"}, "spec": {"id": "3fcb3bd7-f8a4-4a0e-9ee5-f2fb941bbe50", "scope": "auto", "type": "link_by_uid"}, "tags": [], "type": "ingredient_run", "uids": {"auto": "9a2c57cc-69b6-4389-a439-aae5654e2dd1"}, "volume_fraction": null}</data>
+  <data key="source">IngredientRun_Composition AAA01 Ing._9a2c57cc-69b6-4389-a439-aae5654e2dd1_.json</data>
+</node>
+<node id="Weigh Ni for AAA01 [7e5cf6c0-291a-438b-b98a-abfdc1071e81, measurement_run]">
+  <data key="color">purple</data>
+  <data key="shape">circle</data>
+  <data key="uuid">7e5cf6c0-291a-438b-b98a-abfdc1071e81</data>
+  <data key="type">measurement_run</data>
+  <data key="short_name">Weigh Ni for AAA01</data>
+  <data key="object">{"conditions": [], "file_links": [], "material": {"id": "26e97a49-8e77-497a-a9e9-e8fedb5ae537", "scope": "auto", "type": "link_by_uid"}, "name": "Weigh Ni for AAA01", "notes": null, "parameters": [], "properties": [{"file_links": [], "name": "Weighed Mass", "notes": null, "origin": "specified", "template": {"id": "589d6c5b-d225-4097-a5c7-309a572eb9b5", "scope": "auto", "type": "link_by_uid"}, "type": "property", "value": {"nominal": 0.0, "type": "nominal_real", "units": "gram"}}, {"file_links": [], "name": "Mass Loss", "notes": null, "origin": "specified", "template": {"id": "4a8b4a37-69dc-401f-a8e1-c6b5c6fb098f", "scope": "auto", "type": "link_by_uid"}, "type": "property", "value": {"nominal": 0.0, "type": "nominal_real", "units": "gram"}}], "source": {"performed_by": "Wenle &amp; Daniel", "performed_date": "2022-09-27", "type": "performed_source"}, "spec": {"id": "f0eddb60-d7a6-4933-bcff-1cf020ff2dc0", "scope": "auto", "type": "link_by_uid"}, "tags": ["composition_id::AAA01", "batch::B", "fabrication_method::VAM"], "type": "measurement_run", "uids": {"auto": "7e5cf6c0-291a-438b-b98a-abfdc1071e81"}}</data>
+  <data key="source">MeasurementRun_Weigh Ni for AAA01_7e5cf6c0-291a-438b-b98a-abfdc1071e81_.json</data>
+</node>
+<node id="Composition AAA01 Ing. [f861b9c5-f711-4db1-8178-ad16d8e733e4, ingredient_run]">
+  <data key="color">blue</data>
+  <data key="shape">circle</data>
+  <data key="uuid">f861b9c5-f711-4db1-8178-ad16d8e733e4</data>
+  <data key="type">ingredient_run</data>
+  <data key="short_name">Composition AAA01 Ing.</data>
+  <data key="object">{"absolute_quantity": null, "file_links": [], "labels": [], "mass_fraction": null, "material": {"id": "9cf4e2f4-3451-4e81-9861-f263dd1b72d4", "scope": "auto", "type": "link_by_uid"}, "name": "Composition AAA01 Ing.", "notes": null, "number_fraction": null, "process": {"id": "4dbe8d0a-e687-40cf-8c63-ea0faa26a18c", "scope": "auto", "type": "link_by_uid"}, "spec": {"id": "7d277dc4-5339-46ff-a23a-840a21f184f8", "scope": "auto", "type": "link_by_uid"}, "tags": [], "type": "ingredient_run", "uids": {"auto": "f861b9c5-f711-4db1-8178-ad16d8e733e4"}, "volume_fraction": null}</data>
+  <data key="source">IngredientRun_Composition AAA01 Ing._f861b9c5-f711-4db1-8178-ad16d8e733e4_.json</data>
+</node>
+<node id="Adding Fe for AAA01 [e905bc20-4a8e-483a-9481-ff46e7c8a89d, process_run]">
+  <data key="color">red</data>
+  <data key="shape">circle</data>
+  <data key="uuid">e905bc20-4a8e-483a-9481-ff46e7c8a89d</data>
+  <data key="type">process_run</data>
+  <data key="short_name">Adding Fe for AAA01</data>
+  <data key="object">{"conditions": [], "file_links": [], "name": "Adding Fe for AAA01", "notes": null, "parameters": [], "source": null, "spec": {"id": "5cb69ede-437d-4a13-8f19-357cf53bae94", "scope": "auto", "type": "link_by_uid"}, "tags": ["composition_id::AAA01", "batch::B", "fabrication_method::VAM"], "type": "process_run", "uids": {"auto": "e905bc20-4a8e-483a-9481-ff46e7c8a89d"}}</data>
+  <data key="source">ProcessRun_Adding Fe for AAA01_e905bc20-4a8e-483a-9481-ff46e7c8a89d_.json</data>
+</node>
+<node id="Inferred Alloy Compositions Ing. [7c86bb09-860f-4838-b08d-2e1b8abcba85, ingredient_run]">
+  <data key="color">blue</data>
+  <data key="shape">circle</data>
+  <data key="uuid">7c86bb09-860f-4838-b08d-2e1b8abcba85</data>
+  <data key="type">ingredient_run</data>
+  <data key="short_name">Inferred Alloy Compositions Ing.</data>
+  <data key="object">{"absolute_quantity": null, "file_links": [], "labels": [], "mass_fraction": null, "material": {"id": "c5811359-44a1-40b6-88ac-1405d9a71e9f", "scope": "auto", "type": "link_by_uid"}, "name": "Inferred Alloy Compositions Ing.", "notes": null, "number_fraction": null, "process": {"id": "ee9a5359-5f75-4bd1-83f0-3d85f80086fe", "scope": "auto", "type": "link_by_uid"}, "spec": {"id": "19af1ba3-e4cd-4343-be03-f4f4e1a0326d", "scope": "auto", "type": "link_by_uid"}, "tags": [], "type": "ingredient_run", "uids": {"auto": "7c86bb09-860f-4838-b08d-2e1b8abcba85"}, "volume_fraction": null}</data>
+  <data key="source">IngredientRun_Inferred Alloy Compositions Ing._7c86bb09-860f-4838-b08d-2e1b8abcba85_.json</data>
+</node>
+<node id="Inferred Alloy Compositions [c5811359-44a1-40b6-88ac-1405d9a71e9f, material_run]">
+  <data key="color">green</data>
+  <data key="shape">circle</data>
+  <data key="uuid">c5811359-44a1-40b6-88ac-1405d9a71e9f</data>
+  <data key="type">material_run</data>
+  <data key="short_name">Inferred Alloy Compositions</data>
+  <data key="object">{"file_links": [{"filename": "HTMDEC AAA Summary Synthesis Results.xlsx", "type": "file_link", "url": "/srv/hemi01-j01/htmdec/birdshot/excel_sheets/HTMDEC AAA Summary Synthesis Results.xlsx"}], "name": "Inferred Alloy Compositions", "notes": null, "process": null, "sample_type": null, "spec": {"id": "8188fc1e-2ecb-4138-b1ee-b8056bd254d4", "scope": "auto", "type": "link_by_uid"}, "tags": ["AAA01::Co::45", "AAA01::Cr::10", "AAA01::Fe::20", "AAA01::Ni::15", "AAA01::V::10", "AAA01::Al::0", "AAA02::Co::30", "AAA02::Cr::10", "AAA02::Fe::5", "AAA02::Ni::45", "AAA02::V::10", "AAA02::Al::0", "AAA03::Co::30", "AAA03::Cr::5", "AAA03::Fe::30", "AAA03::Ni::20", "AAA03::V::15", "AAA03::Al::0", "AAA04::Co::25", "AAA04::Cr::10", "AAA04::Fe::20", "AAA04::Ni::40", "AAA04::V::5", "AAA04::Al::0", "AAA05::Co::10", "AAA05::Cr::10", "AAA05::Fe::55.00000000000001", "AAA05::Ni::25", "AAA05::V::0", "AAA05::Al::0", "AAA06::Co::35", "AAA06::Cr::25", "AAA06::Fe::5", "AAA06::Ni::30", "AAA06::V::5", "AAA06::Al::0", "AAA07::Co::55.00000000000001", "AAA07::Cr::10", "AAA07::Fe::10", "AAA07::Ni::15", "AAA07::V::10", "AAA07::Al::0", "AAA08::Co::10", "AAA08::Cr::10", "AAA08::Fe::25", "AAA08::Ni::50", "AAA08::V::5", "AAA08::Al::0", "AAA09::Co::0", "AAA09::Cr::5", "AAA09::Fe::25", "AAA09::Ni::60", "AAA09::V::5", "AAA09::Al::5", "AAA10::Co::5", "AAA10::Cr::15", "AAA10::Fe::5", "AAA10::Ni::70", "AAA10::V::5", "AAA10::Al::0", "AAA11::Co::15", "AAA11::Cr::5", "AAA11::Fe::45", "AAA11::Ni::30", "AAA11::V::5", "AAA11::Al::0", "AAA12::Co::15", "AAA12::Cr::5", "AAA12::Fe::5", "AAA12::Ni::65", "AAA12::V::5", "AAA12::Al::5", "AAA13::Co::10", "AAA13::Cr::5", "AAA13::Fe::25", "AAA13::Ni::50", "AAA13::V::5", "AAA13::Al::5", "AAA14::Co::25", "AAA14::Cr::10", "AAA14::Fe::5", "AAA14::Ni::35", "AAA14::V::25", "AAA14::Al::0", "AAA15::Co::0", "AAA15::Cr::5", "AAA15::Fe::45", "AAA15::Ni::45", "AAA15::V::0", "AAA15::Al::5", "AAA16::Co::5", "AAA16::Cr::10", "AAA16::Fe::10", "AAA16::Ni::55.00000000000001", "AAA16::V::20", "AAA16::Al::0"], "type": "material_run", "uids": {"auto": "c5811359-44a1-40b6-88ac-1405d9a71e9f"}}</data>
+  <data key="source">MaterialRun_Inferred Alloy Compositions_c5811359-44a1-40b6-88ac-1405d9a71e9f_.json</data>
+</node>
+<node id="Homogenized Alloy (AAA01-VAM-B) Ing. [ffd285a7-74d9-47d5-b759-bd7e2fe59530, ingredient_run]">
+  <data key="color">blue</data>
+  <data key="shape">circle</data>
+  <data key="uuid">ffd285a7-74d9-47d5-b759-bd7e2fe59530</data>
+  <data key="type">ingredient_run</data>
+  <data key="short_name">Homogenized Alloy (AAA01-VAM-B) Ing.</data>
+  <data key="object">{"absolute_quantity": null, "file_links": [], "labels": [], "mass_fraction": null, "material": {"id": "035cf557-8ae9-44e0-83a1-db99fcc3c72d", "scope": "auto", "type": "link_by_uid"}, "name": "Homogenized Alloy (AAA01-VAM-B) Ing.", "notes": null, "number_fraction": null, "process": {"id": "bf95d429-d03d-4cb7-bc7a-abfbcfc83f75", "scope": "auto", "type": "link_by_uid"}, "spec": {"id": "f0ca6395-6fc1-4d86-bcc5-e73f4f2c23b0", "scope": "auto", "type": "link_by_uid"}, "tags": [], "type": "ingredient_run", "uids": {"auto": "ffd285a7-74d9-47d5-b759-bd7e2fe59530"}, "volume_fraction": null}</data>
+  <data key="source">IngredientRun_Homogenized Alloy (AAA01-VAM-B) Ing._ffd285a7-74d9-47d5-b759-bd7e2fe59530_.json</data>
+</node>
+<node id="Homogenized Alloy (AAA01-VAM-B) [035cf557-8ae9-44e0-83a1-db99fcc3c72d, material_run]">
+  <data key="color">green</data>
+  <data key="shape">circle</data>
+  <data key="uuid">035cf557-8ae9-44e0-83a1-db99fcc3c72d</data>
+  <data key="type">material_run</data>
+  <data key="short_name">Homogenized Alloy (AAA01-VAM-B)</data>
+  <data key="object">{"file_links": [], "name": "Homogenized Alloy (AAA01-VAM-B)", "notes": null, "process": {"id": "e1db8e65-f1be-4764-a5e3-98f2ec4bc8ba", "scope": "auto", "type": "link_by_uid"}, "sample_type": null, "spec": {"id": "f0d12a18-8962-450d-9746-7cf2317f3fb6", "scope": "auto", "type": "link_by_uid"}, "tags": ["composition_id::AAA01", "batch::B", "fabrication_method::VAM"], "type": "material_run", "uids": {"auto": "035cf557-8ae9-44e0-83a1-db99fcc3c72d"}}</data>
+  <data key="source">MaterialRun_Homogenized Alloy (AAA01-VAM-B)_035cf557-8ae9-44e0-83a1-db99fcc3c72d_.json</data>
+</node>
+<node id="SRJT charact. for AAA01 [eb77584e-1534-4c9b-b32a-c775849a8b59, measurement_run]">
+  <data key="color">purple</data>
+  <data key="shape">circle</data>
+  <data key="uuid">eb77584e-1534-4c9b-b32a-c775849a8b59</data>
+  <data key="type">measurement_run</data>
+  <data key="short_name">SRJT charact. for AAA01</data>
+  <data key="object">{"conditions": [], "file_links": [], "material": {"id": "0a2d8dbf-51f8-43cf-b1f6-11c1642f9518", "scope": "auto", "type": "link_by_uid"}, "name": "SRJT charact. for AAA01", "notes": null, "parameters": [], "properties": [{"file_links": [], "name": "Strain Rate Sensitivity Exponent Std. Dev.", "notes": "", "origin": "measured", "template": null, "type": "property", "value": {"nominal": 0.001213364457, "type": "nominal_real", "units": "dimensionless"}}, {"file_links": [], "name": "Avg. Raw Hardness (Gpa)", "notes": "", "origin": "measured", "template": null, "type": "property", "value": {"nominal": 2.887777778, "type": "nominal_real", "units": "gigapascal"}}, {"file_links": [], "name": "Avg. Raw Modulus (Gpa)", "notes": "", "origin": "measured", "template": null, "type": "property", "value": {"nominal": 209.2111111, "type": "nominal_real", "units": "gigapascal"}}, {"file_links": [], "name": "Avg. Pile-up Ratio", "notes": "", "origin": "measured", "template": null, "type": "property", "value": {"nominal": 90.77906667, "type": "nominal_real", "units": "dimensionless"}}, {"file_links": [], "name": "Avg. Corrected Hardness (Gpa)", "notes": "", "origin": "measured", "template": null, "type": "property", "value": {"nominal": 2.622164412, "type": "nominal_real", "units": "gigapascal"}}, {"file_links": [], "name": "Corrected Hardness Std. Dev.", "notes": "", "origin": "measured", "template": null, "type": "property", "value": {"nominal": 0.1178632999, "type": "nominal_real", "units": "dimensionless"}}, {"file_links": [], "name": "Avg. Corrected Modulus (Gpa)", "notes": "", "origin": "measured", "template": null, "type": "property", "value": {"nominal": 190.0172628, "type": "nominal_real", "units": "gigapascal"}}, {"file_links": [], "name": "Corrected Modulus Std. Dev.", "notes": "", "origin": "measured", "template": null, "type": "property", "value": {"nominal": 11.78703334, "type": "nominal_real", "units": "dimensionless"}}], "source": null, "spec": {"id": "02d312a1-1d13-45a6-a4e8-e96c65610150", "scope": "auto", "type": "link_by_uid"}, "tags": ["composition_id::AAA01"], "type": "measurement_run", "uids": {"auto": "eb77584e-1534-4c9b-b32a-c775849a8b59"}}</data>
+  <data key="source">MeasurementRun_SRJT charact. for AAA01_eb77584e-1534-4c9b-b32a-c775849a8b59_.json</data>
+</node>
+<node id="Ni in AAA01 Ing. [3efc1532-9728-4497-a021-577fee3b456b, ingredient_run]">
+  <data key="color">blue</data>
+  <data key="shape">circle</data>
+  <data key="uuid">3efc1532-9728-4497-a021-577fee3b456b</data>
+  <data key="type">ingredient_run</data>
+  <data key="short_name">Ni in AAA01 Ing.</data>
+  <data key="object">{"absolute_quantity": null, "file_links": [], "labels": [], "mass_fraction": null, "material": {"id": "26e97a49-8e77-497a-a9e9-e8fedb5ae537", "scope": "auto", "type": "link_by_uid"}, "name": "Ni in AAA01 Ing.", "notes": null, "number_fraction": null, "process": {"id": "49e89c90-c175-4c9e-b540-10f92b2aee97", "scope": "auto", "type": "link_by_uid"}, "spec": {"id": "e2bda006-763f-4449-91e0-61d45bce283f", "scope": "auto", "type": "link_by_uid"}, "tags": [], "type": "ingredient_run", "uids": {"auto": "3efc1532-9728-4497-a021-577fee3b456b"}, "volume_fraction": null}</data>
+  <data key="source">IngredientRun_Ni in AAA01 Ing._3efc1532-9728-4497-a021-577fee3b456b_.json</data>
+</node>
+<node id="Cr in AAA01 Ing. [ae786385-52cd-4756-9956-3a4a4c964d3c, ingredient_run]">
+  <data key="color">blue</data>
+  <data key="shape">circle</data>
+  <data key="uuid">ae786385-52cd-4756-9956-3a4a4c964d3c</data>
+  <data key="type">ingredient_run</data>
+  <data key="short_name">Cr in AAA01 Ing.</data>
+  <data key="object">{"absolute_quantity": null, "file_links": [], "labels": [], "mass_fraction": null, "material": {"id": "bdc3de98-21e8-466c-aa90-5d0c4b5982f1", "scope": "auto", "type": "link_by_uid"}, "name": "Cr in AAA01 Ing.", "notes": null, "number_fraction": null, "process": {"id": "49e89c90-c175-4c9e-b540-10f92b2aee97", "scope": "auto", "type": "link_by_uid"}, "spec": {"id": "d8e44d33-189f-4931-b8a3-9ecde34dbb4e", "scope": "auto", "type": "link_by_uid"}, "tags": [], "type": "ingredient_run", "uids": {"auto": "ae786385-52cd-4756-9956-3a4a4c964d3c"}, "volume_fraction": null}</data>
+  <data key="source">IngredientRun_Cr in AAA01 Ing._ae786385-52cd-4756-9956-3a4a4c964d3c_.json</data>
+</node>
+<node id="Composition AAA01 Ing. [510edf37-ad44-4544-85db-6877497b20cf, ingredient_run]">
+  <data key="color">blue</data>
+  <data key="shape">circle</data>
+  <data key="uuid">510edf37-ad44-4544-85db-6877497b20cf</data>
+  <data key="type">ingredient_run</data>
+  <data key="short_name">Composition AAA01 Ing.</data>
+  <data key="object">{"absolute_quantity": null, "file_links": [], "labels": [], "mass_fraction": null, "material": {"id": "9cf4e2f4-3451-4e81-9861-f263dd1b72d4", "scope": "auto", "type": "link_by_uid"}, "name": "Composition AAA01 Ing.", "notes": null, "number_fraction": null, "process": {"id": "49fffcab-b43c-4655-91b3-13fc461f5cd8", "scope": "auto", "type": "link_by_uid"}, "spec": {"id": "77f47837-40eb-475f-ab69-4da0d8bf32af", "scope": "auto", "type": "link_by_uid"}, "tags": [], "type": "ingredient_run", "uids": {"auto": "510edf37-ad44-4544-85db-6877497b20cf"}, "volume_fraction": null}</data>
+  <data key="source">IngredientRun_Composition AAA01 Ing._510edf37-ad44-4544-85db-6877497b20cf_.json</data>
+</node>
+<node id="NI charact. for Alloy (AAA01-VAM-B) (T04) [cf1cbb3c-71f1-4c3e-8886-8004d579a06e, measurement_run]">
+  <data key="color">purple</data>
+  <data key="shape">circle</data>
+  <data key="uuid">cf1cbb3c-71f1-4c3e-8886-8004d579a06e</data>
+  <data key="type">measurement_run</data>
+  <data key="short_name">NI charact. for Alloy (AAA01-VAM-B) (T04)</data>
+  <data key="object">{"conditions": [], "file_links": [], "material": {"id": "a1158bb1-f492-4b6b-82a9-9c37f923b22b", "scope": "auto", "type": "link_by_uid"}, "name": "NI charact. for Alloy (AAA01-VAM-B) (T04)", "notes": null, "parameters": [], "properties": [], "source": null, "spec": {"id": "bfa3cdc7-b34d-41db-8ba0-31434f4ccd96", "scope": "auto", "type": "link_by_uid"}, "tags": ["measurement_name::NI", "measurement_id::T04", "composition_id::AAA01", "batch::B", "fabrication_method::VAM"], "type": "measurement_run", "uids": {"auto": "cf1cbb3c-71f1-4c3e-8886-8004d579a06e"}}</data>
+  <data key="source">MeasurementRun_NI charact. for Alloy (AAA01-VAM-B) (T04)_cf1cbb3c-71f1-4c3e-8886-8004d579a06e_.json</data>
+</node>
+<node id="Alloy (AAA01-VAM-B): Traveler Ing. [c09cc025-0841-4594-a6ab-1fe1a068556c, ingredient_run]">
+  <data key="color">blue</data>
+  <data key="shape">circle</data>
+  <data key="uuid">c09cc025-0841-4594-a6ab-1fe1a068556c</data>
+  <data key="type">ingredient_run</data>
+  <data key="short_name">Alloy (AAA01-VAM-B): Traveler Ing.</data>
+  <data key="object">{"absolute_quantity": null, "file_links": [], "labels": [], "mass_fraction": null, "material": {"id": "58ff7f19-3675-45d6-977a-a9151b903132", "scope": "auto", "type": "link_by_uid"}, "name": "Alloy (AAA01-VAM-B): Traveler Ing.", "notes": null, "number_fraction": null, "process": {"id": "6acd5994-a673-42c8-9f28-254b322a83cd", "scope": "auto", "type": "link_by_uid"}, "spec": {"id": "38477cb4-e8bf-45e4-8dce-8c749d9dac02", "scope": "auto", "type": "link_by_uid"}, "tags": [], "type": "ingredient_run", "uids": {"auto": "c09cc025-0841-4594-a6ab-1fe1a068556c"}, "volume_fraction": null}</data>
+  <data key="source">IngredientRun_Alloy (AAA01-VAM-B): Traveler Ing._c09cc025-0841-4594-a6ab-1fe1a068556c_.json</data>
+</node>
+<node id="Alloy (AAA01-VAM-B): Traveler Ing. [b5711ef5-1064-419b-bb08-5991e5a4ad4b, ingredient_run]">
+  <data key="color">blue</data>
+  <data key="shape">circle</data>
+  <data key="uuid">b5711ef5-1064-419b-bb08-5991e5a4ad4b</data>
+  <data key="type">ingredient_run</data>
+  <data key="short_name">Alloy (AAA01-VAM-B): Traveler Ing.</data>
+  <data key="object">{"absolute_quantity": null, "file_links": [], "labels": [], "mass_fraction": null, "material": {"id": "58ff7f19-3675-45d6-977a-a9151b903132", "scope": "auto", "type": "link_by_uid"}, "name": "Alloy (AAA01-VAM-B): Traveler Ing.", "notes": null, "number_fraction": null, "process": {"id": "30f6cf95-a0ed-4529-8102-b3094960fe71", "scope": "auto", "type": "link_by_uid"}, "spec": {"id": "23ee76b9-8f6f-4276-adc1-e1f64d36bba5", "scope": "auto", "type": "link_by_uid"}, "tags": [], "type": "ingredient_run", "uids": {"auto": "b5711ef5-1064-419b-bb08-5991e5a4ad4b"}, "volume_fraction": null}</data>
+  <data key="source">IngredientRun_Alloy (AAA01-VAM-B): Traveler Ing._b5711ef5-1064-419b-bb08-5991e5a4ad4b_.json</data>
+</node>
+<node id="Composition AAA01 Ing. [817de2ce-b4ad-47c4-912c-0b546ed67151, ingredient_run]">
+  <data key="color">blue</data>
+  <data key="shape">circle</data>
+  <data key="uuid">817de2ce-b4ad-47c4-912c-0b546ed67151</data>
+  <data key="type">ingredient_run</data>
+  <data key="short_name">Composition AAA01 Ing.</data>
+  <data key="object">{"absolute_quantity": null, "file_links": [], "labels": [], "mass_fraction": null, "material": {"id": "9cf4e2f4-3451-4e81-9861-f263dd1b72d4", "scope": "auto", "type": "link_by_uid"}, "name": "Composition AAA01 Ing.", "notes": null, "number_fraction": null, "process": {"id": "e905bc20-4a8e-483a-9481-ff46e7c8a89d", "scope": "auto", "type": "link_by_uid"}, "spec": {"id": "078f074d-6ddf-4107-848c-baf845567bfe", "scope": "auto", "type": "link_by_uid"}, "tags": [], "type": "ingredient_run", "uids": {"auto": "817de2ce-b4ad-47c4-912c-0b546ed67151"}, "volume_fraction": null}</data>
+  <data key="source">IngredientRun_Composition AAA01 Ing._817de2ce-b4ad-47c4-912c-0b546ed67151_.json</data>
+</node>
+<node id="Forged Alloy (AAA01-VAM-B) Ing. [efaaad98-0505-44c5-8e57-191a0ce4551a, ingredient_run]">
+  <data key="color">blue</data>
+  <data key="shape">circle</data>
+  <data key="uuid">efaaad98-0505-44c5-8e57-191a0ce4551a</data>
+  <data key="type">ingredient_run</data>
+  <data key="short_name">Forged Alloy (AAA01-VAM-B) Ing.</data>
+  <data key="object">{"absolute_quantity": null, "file_links": [], "labels": [], "mass_fraction": null, "material": {"id": "ac0964fc-de04-4f54-b52c-5a29bda53cca", "scope": "auto", "type": "link_by_uid"}, "name": "Forged Alloy (AAA01-VAM-B) Ing.", "notes": null, "number_fraction": null, "process": {"id": "b84185cd-f69c-468e-b0f4-8feb0d1c2306", "scope": "auto", "type": "link_by_uid"}, "spec": {"id": "62efe067-ea94-496b-a2cf-287995730640", "scope": "auto", "type": "link_by_uid"}, "tags": [], "type": "ingredient_run", "uids": {"auto": "efaaad98-0505-44c5-8e57-191a0ce4551a"}, "volume_fraction": null}</data>
+  <data key="source">IngredientRun_Forged Alloy (AAA01-VAM-B) Ing._efaaad98-0505-44c5-8e57-191a0ce4551a_.json</data>
+</node>
+<edge source="Alloy (AAA01-VAM-B): T. Sample (Tensile, T10) [9a21aab4-5241-4a06-9722-07ac966152b7, material_run]" target="Tensile charact. for Alloy (AAA01-VAM-B) (T10) [ec404417-87ed-4cfa-b8dd-979f2ab2783e, measurement_run]">
+  <data key="relationship">is measured with</data>
+</edge>
+<edge source="V in AAA01 [0c4b53ec-e383-4341-97e9-cc4c694c65c2, material_run]" target="Weigh V for AAA01 [1dfb0b04-8c06-499f-b1fc-650f69df6190, measurement_run]">
+  <data key="relationship">is measured with</data>
+</edge>
+<edge source="V in AAA01 [0c4b53ec-e383-4341-97e9-cc4c694c65c2, material_run]" target="V in AAA01 Ing. [be36e4ba-60fe-43c8-82d3-a7a6f0787447, ingredient_run]">
+  <data key="relationship">becomes</data>
+</edge>
+<edge source="Alloy (AAA01-VAM-B): T. Sample (Tensile, T08) [bb9dea38-658f-4a83-a05f-603f6a560d95, material_run]" target="Tensile charact. for Alloy (AAA01-VAM-B) (T08) [a6aebff0-1add-47a7-9cb1-d2de49fb37eb, measurement_run]">
+  <data key="relationship">is measured with</data>
+</edge>
+<edge source="Adding Co for AAA01 [4dbe8d0a-e687-40cf-8c63-ea0faa26a18c, process_run]" target="Co in AAA01 [4186442e-e8d6-4095-8f31-87d4dcd7bc0b, material_run]">
+  <data key="relationship">creates</data>
+</edge>
+<edge source="Alloy (AAA01-VAM-B): Traveler [58ff7f19-3675-45d6-977a-a9151b903132, material_run]" target="Alloy (AAA01-VAM-B): Traveler Ing. [4b4b4a98-8957-4b45-ac51-ff44d278d164, ingredient_run]">
+  <data key="relationship">becomes</data>
+</edge>
+<edge source="Alloy (AAA01-VAM-B): Traveler [58ff7f19-3675-45d6-977a-a9151b903132, material_run]" target="Alloy (AAA01-VAM-B): Traveler Ing. [8a722cbe-682d-47b5-b6b8-895a0e3f8bcd, ingredient_run]">
+  <data key="relationship">becomes</data>
+</edge>
+<edge source="Alloy (AAA01-VAM-B): Traveler [58ff7f19-3675-45d6-977a-a9151b903132, material_run]" target="Alloy (AAA01-VAM-B): Traveler Ing. [8ad32671-fb73-4a22-8c23-934b5508b141, ingredient_run]">
+  <data key="relationship">becomes</data>
+</edge>
+<edge source="Alloy (AAA01-VAM-B): Traveler [58ff7f19-3675-45d6-977a-a9151b903132, material_run]" target="Alloy (AAA01-VAM-B): Traveler Ing. [c09cc025-0841-4594-a6ab-1fe1a068556c, ingredient_run]">
+  <data key="relationship">becomes</data>
+</edge>
+<edge source="Alloy (AAA01-VAM-B): Traveler [58ff7f19-3675-45d6-977a-a9151b903132, material_run]" target="Alloy (AAA01-VAM-B): Traveler Ing. [b5711ef5-1064-419b-bb08-5991e5a4ad4b, ingredient_run]">
+  <data key="relationship">becomes</data>
+</edge>
+<edge source="Setting traveler for Alloy (AAA01-VAM-B) [b84185cd-f69c-468e-b0f4-8feb0d1c2306, process_run]" target="Alloy (AAA01-VAM-B): Traveler [58ff7f19-3675-45d6-977a-a9151b903132, material_run]">
+  <data key="relationship">creates</data>
+</edge>
+<edge source="Adding V for AAA01 [8fecc444-c99f-4519-9c83-215bb4786f46, process_run]" target="V in AAA01 [0c4b53ec-e383-4341-97e9-cc4c694c65c2, material_run]">
+  <data key="relationship">creates</data>
+</edge>
+<edge source="V in AAA01 Ing. [be36e4ba-60fe-43c8-82d3-a7a6f0787447, ingredient_run]" target="Mix elements of AAA01 [49e89c90-c175-4c9e-b540-10f92b2aee97, process_run]">
+  <data key="relationship">is used in</data>
+</edge>
+<edge source="Mix elements of AAA01 [49e89c90-c175-4c9e-b540-10f92b2aee97, process_run]" target="Alloy (AAA01-VAM-B) [0a2d8dbf-51f8-43cf-b1f6-11c1642f9518, material_run]">
+  <data key="relationship">creates</data>
+</edge>
+<edge source="Al in AAA01 Ing. [880e2548-0e40-4689-b9cb-42086f91e770, ingredient_run]" target="Mix elements of AAA01 [49e89c90-c175-4c9e-b540-10f92b2aee97, process_run]">
+  <data key="relationship">is used in</data>
+</edge>
+<edge source="Al in AAA01 [f474691e-17e9-4e7f-b75a-720b1579ee33, material_run]" target="Al in AAA01 Ing. [880e2548-0e40-4689-b9cb-42086f91e770, ingredient_run]">
+  <data key="relationship">becomes</data>
+</edge>
+<edge source="Al in AAA01 [f474691e-17e9-4e7f-b75a-720b1579ee33, material_run]" target="Weigh Al for AAA01 [d840ba2b-03d4-4a4b-a15d-b99ee1fd667c, measurement_run]">
+  <data key="relationship">is measured with</data>
+</edge>
+<edge source="Forged Alloy (AAA01-VAM-B) [ac0964fc-de04-4f54-b52c-5a29bda53cca, material_run]" target="Forged Alloy (AAA01-VAM-B) Ing. [efaaad98-0505-44c5-8e57-191a0ce4551a, ingredient_run]">
+  <data key="relationship">becomes</data>
+</edge>
+<edge source="Forging Alloy (AAA01-VAM-B) [bf95d429-d03d-4cb7-bc7a-abfbcfc83f75, process_run]" target="Forged Alloy (AAA01-VAM-B) [ac0964fc-de04-4f54-b52c-5a29bda53cca, material_run]">
+  <data key="relationship">creates</data>
+</edge>
+<edge source="Homogenizing Alloy (AAA01-VAM-B) [e1db8e65-f1be-4764-a5e3-98f2ec4bc8ba, process_run]" target="Homogenized Alloy (AAA01-VAM-B) [035cf557-8ae9-44e0-83a1-db99fcc3c72d, material_run]">
+  <data key="relationship">creates</data>
+</edge>
+<edge source="Composition AAA01 Ing. [f8eb06e2-0e83-40d4-87dc-349c4a23d79f, ingredient_run]" target="Adding Al for AAA01 [7893d1f0-dbc4-4c34-b1a3-88645e907910, process_run]">
+  <data key="relationship">is used in</data>
+</edge>
+<edge source="Adding Al for AAA01 [7893d1f0-dbc4-4c34-b1a3-88645e907910, process_run]" target="Al in AAA01 [f474691e-17e9-4e7f-b75a-720b1579ee33, material_run]">
+  <data key="relationship">creates</data>
+</edge>
+<edge source="Composition AAA01 [9cf4e2f4-3451-4e81-9861-f263dd1b72d4, material_run]" target="Composition AAA01 Ing. [f8eb06e2-0e83-40d4-87dc-349c4a23d79f, ingredient_run]">
+  <data key="relationship">becomes</data>
+</edge>
+<edge source="Composition AAA01 [9cf4e2f4-3451-4e81-9861-f263dd1b72d4, material_run]" target="Composition AAA01 Ing. [fe96e4ca-d3ae-4769-9a68-677697a65a54, ingredient_run]">
+  <data key="relationship">becomes</data>
+</edge>
+<edge source="Composition AAA01 [9cf4e2f4-3451-4e81-9861-f263dd1b72d4, material_run]" target="Composition AAA01 Ing. [9a2c57cc-69b6-4389-a439-aae5654e2dd1, ingredient_run]">
+  <data key="relationship">becomes</data>
+</edge>
+<edge source="Composition AAA01 [9cf4e2f4-3451-4e81-9861-f263dd1b72d4, material_run]" target="Composition AAA01 Ing. [f861b9c5-f711-4db1-8178-ad16d8e733e4, ingredient_run]">
+  <data key="relationship">becomes</data>
+</edge>
+<edge source="Composition AAA01 [9cf4e2f4-3451-4e81-9861-f263dd1b72d4, material_run]" target="Composition AAA01 Ing. [510edf37-ad44-4544-85db-6877497b20cf, ingredient_run]">
+  <data key="relationship">becomes</data>
+</edge>
+<edge source="Composition AAA01 [9cf4e2f4-3451-4e81-9861-f263dd1b72d4, material_run]" target="Composition AAA01 Ing. [817de2ce-b4ad-47c4-912c-0b546ed67151, ingredient_run]">
+  <data key="relationship">becomes</data>
+</edge>
+<edge source="Co in AAA01 Ing. [7cc94ab6-7a03-46ff-b06d-3ec80aa7fac1, ingredient_run]" target="Mix elements of AAA01 [49e89c90-c175-4c9e-b540-10f92b2aee97, process_run]">
+  <data key="relationship">is used in</data>
+</edge>
+<edge source="Co in AAA01 [4186442e-e8d6-4095-8f31-87d4dcd7bc0b, material_run]" target="Co in AAA01 Ing. [7cc94ab6-7a03-46ff-b06d-3ec80aa7fac1, ingredient_run]">
+  <data key="relationship">becomes</data>
+</edge>
+<edge source="Co in AAA01 [4186442e-e8d6-4095-8f31-87d4dcd7bc0b, material_run]" target="Weigh Co for AAA01 [1e8c4a39-36be-4e46-8a86-8e5fedea62fa, measurement_run]">
+  <data key="relationship">is measured with</data>
+</edge>
+<edge source="Adding Ni for AAA01 [49fffcab-b43c-4655-91b3-13fc461f5cd8, process_run]" target="Ni in AAA01 [26e97a49-8e77-497a-a9e9-e8fedb5ae537, material_run]">
+  <data key="relationship">creates</data>
+</edge>
+<edge source="Arc Melted Alloy (AAA01-VAM-B) [05c39044-ca08-4ed6-ad0c-b5085ab967e8, material_run]" target="Weigh Arc Melted Alloy (AAA01-VAM-B) [aa550cbb-c16a-467e-b91c-7cb9f1e7719a, measurement_run]">
+  <data key="relationship">is measured with</data>
+</edge>
+<edge source="Arc Melted Alloy (AAA01-VAM-B) [05c39044-ca08-4ed6-ad0c-b5085ab967e8, material_run]" target="Arc Melted Alloy (AAA01-VAM-B) Ing. [be05605b-808b-4729-829c-90299e4dc62a, ingredient_run]">
+  <data key="relationship">becomes</data>
+</edge>
+<edge source="Alloy (AAA01-VAM-B): Traveler Ing. [4b4b4a98-8957-4b45-ac51-ff44d278d164, ingredient_run]" target="Extract sample from Alloy (AAA01-VAM-B): Traveler [5d8ca121-339d-48e4-91fc-130141caa292, process_run]">
+  <data key="relationship">is used in</data>
+</edge>
+<edge source="Extract sample from Alloy (AAA01-VAM-B): Traveler [5d8ca121-339d-48e4-91fc-130141caa292, process_run]" target="Alloy (AAA01-VAM-B): T. Sample (Tensile, T08) [bb9dea38-658f-4a83-a05f-603f6a560d95, material_run]">
+  <data key="relationship">creates</data>
+</edge>
+<edge source="Extract sample from Alloy (AAA01-VAM-B): Traveler [04783018-5731-4d0a-bb08-a7e258c54a8b, process_run]" target="Alloy (AAA01-VAM-B): T. Sample (Tensile, T10) [9a21aab4-5241-4a06-9722-07ac966152b7, material_run]">
+  <data key="relationship">creates</data>
+</edge>
+<edge source="Alloy (AAA01-VAM-B) [0a2d8dbf-51f8-43cf-b1f6-11c1642f9518, material_run]" target="Alloy (AAA01-VAM-B) Ing. [10243e3d-1829-4f84-966b-eb0dde2f8e44, ingredient_run]">
+  <data key="relationship">becomes</data>
+</edge>
+<edge source="Alloy (AAA01-VAM-B) [0a2d8dbf-51f8-43cf-b1f6-11c1642f9518, material_run]" target="SRJT charact. for AAA01 [eb77584e-1534-4c9b-b32a-c775849a8b59, measurement_run]">
+  <data key="relationship">is measured with</data>
+</edge>
+<edge source="Alloy (AAA01-VAM-B): T. Sample (SEM, T02) [dcf76777-9b9c-4712-b9c2-e243c43ac8c4, material_run]" target="SEM charact. for Alloy (AAA01-VAM-B) (T02) [677800f2-386d-439c-8bc2-8dadf0f46240, measurement_run]">
+  <data key="relationship">is measured with</data>
+</edge>
+<edge source="Cr in AAA01 [bdc3de98-21e8-466c-aa90-5d0c4b5982f1, material_run]" target="Weigh Cr for AAA01 [f8f6560d-9750-40b0-a77d-d4f56eab2b95, measurement_run]">
+  <data key="relationship">is measured with</data>
+</edge>
+<edge source="Cr in AAA01 [bdc3de98-21e8-466c-aa90-5d0c4b5982f1, material_run]" target="Cr in AAA01 Ing. [ae786385-52cd-4756-9956-3a4a4c964d3c, ingredient_run]">
+  <data key="relationship">becomes</data>
+</edge>
+<edge source="Adding Cr for AAA01 [5d12a695-19b4-4277-8869-cc3b4cd52d85, process_run]" target="Cr in AAA01 [bdc3de98-21e8-466c-aa90-5d0c4b5982f1, material_run]">
+  <data key="relationship">creates</data>
+</edge>
+<edge source="Composition AAA01 Ing. [fe96e4ca-d3ae-4769-9a68-677697a65a54, ingredient_run]" target="Adding V for AAA01 [8fecc444-c99f-4519-9c83-215bb4786f46, process_run]">
+  <data key="relationship">is used in</data>
+</edge>
+<edge source="Alloy (AAA01-VAM-B): T. Sample (XRD, T02) [2fc05823-5188-47da-a001-5a2c7cfad5ea, material_run]" target="XRD charact. for Alloy (AAA01-VAM-B) (T02) [b89f5209-afd0-429b-8213-af8b39021a7b, measurement_run]">
+  <data key="relationship">is measured with</data>
+</edge>
+<edge source="Extract sample from Alloy (AAA01-VAM-B): Traveler [9ff418c3-387c-4407-9b2a-ae2b2df161bb, process_run]" target="Alloy (AAA01-VAM-B): T. Sample (XRD, T02) [2fc05823-5188-47da-a001-5a2c7cfad5ea, material_run]">
+  <data key="relationship">creates</data>
+</edge>
+<edge source="Alloy (AAA01-VAM-B) Ing. [10243e3d-1829-4f84-966b-eb0dde2f8e44, ingredient_run]" target="Arc melting of Alloy (AAA01-VAM-B) [b500a80d-5817-4477-8b43-0f5e032dbef8, process_run]">
+  <data key="relationship">is used in</data>
+</edge>
+<edge source="Arc melting of Alloy (AAA01-VAM-B) [b500a80d-5817-4477-8b43-0f5e032dbef8, process_run]" target="Arc Melted Alloy (AAA01-VAM-B) [05c39044-ca08-4ed6-ad0c-b5085ab967e8, material_run]">
+  <data key="relationship">creates</data>
+</edge>
+<edge source="Arc Melted Alloy (AAA01-VAM-B) Ing. [be05605b-808b-4729-829c-90299e4dc62a, ingredient_run]" target="Homogenizing Alloy (AAA01-VAM-B) [e1db8e65-f1be-4764-a5e3-98f2ec4bc8ba, process_run]">
+  <data key="relationship">is used in</data>
+</edge>
+<edge source="Select AAA01 [ee9a5359-5f75-4bd1-83f0-3d85f80086fe, process_run]" target="Composition AAA01 [9cf4e2f4-3451-4e81-9861-f263dd1b72d4, material_run]">
+  <data key="relationship">creates</data>
+</edge>
+<edge source="Extract sample from Alloy (AAA01-VAM-B): Traveler [6acd5994-a673-42c8-9f28-254b322a83cd, process_run]" target="Alloy (AAA01-VAM-B): T. Sample (SEM, T02) [dcf76777-9b9c-4712-b9c2-e243c43ac8c4, material_run]">
+  <data key="relationship">creates</data>
+</edge>
+<edge source="Extract sample from Alloy (AAA01-VAM-B): Traveler [30f6cf95-a0ed-4529-8102-b3094960fe71, process_run]" target="Alloy (AAA01-VAM-B): T. Sample (NI, T04) [a1158bb1-f492-4b6b-82a9-9c37f923b22b, material_run]">
+  <data key="relationship">creates</data>
+</edge>
+<edge source="Fe in AAA01 Ing. [7cad4edf-b87c-4957-84e4-8512cbf7dd86, ingredient_run]" target="Mix elements of AAA01 [49e89c90-c175-4c9e-b540-10f92b2aee97, process_run]">
+  <data key="relationship">is used in</data>
+</edge>
+<edge source="Fe in AAA01 [a2d7ac5c-265e-4058-ae5e-7d2bfee15e66, material_run]" target="Fe in AAA01 Ing. [7cad4edf-b87c-4957-84e4-8512cbf7dd86, ingredient_run]">
+  <data key="relationship">becomes</data>
+</edge>
+<edge source="Fe in AAA01 [a2d7ac5c-265e-4058-ae5e-7d2bfee15e66, material_run]" target="Weigh Fe for AAA01 [c33c81d2-8fb6-4abe-a7a7-ce17dea6a9a0, measurement_run]">
+  <data key="relationship">is measured with</data>
+</edge>
+<edge source="Alloy (AAA01-VAM-B): T. Sample (NI, T04) [a1158bb1-f492-4b6b-82a9-9c37f923b22b, material_run]" target="NI charact. for Alloy (AAA01-VAM-B) (T04) [cf1cbb3c-71f1-4c3e-8886-8004d579a06e, measurement_run]">
+  <data key="relationship">is measured with</data>
+</edge>
+<edge source="Ni in AAA01 [26e97a49-8e77-497a-a9e9-e8fedb5ae537, material_run]" target="Weigh Ni for AAA01 [7e5cf6c0-291a-438b-b98a-abfdc1071e81, measurement_run]">
+  <data key="relationship">is measured with</data>
+</edge>
+<edge source="Ni in AAA01 [26e97a49-8e77-497a-a9e9-e8fedb5ae537, material_run]" target="Ni in AAA01 Ing. [3efc1532-9728-4497-a021-577fee3b456b, ingredient_run]">
+  <data key="relationship">becomes</data>
+</edge>
+<edge source="Alloy (AAA01-VAM-B): Traveler Ing. [8a722cbe-682d-47b5-b6b8-895a0e3f8bcd, ingredient_run]" target="Extract sample from Alloy (AAA01-VAM-B): Traveler [04783018-5731-4d0a-bb08-a7e258c54a8b, process_run]">
+  <data key="relationship">is used in</data>
+</edge>
+<edge source="Alloy (AAA01-VAM-B): Traveler Ing. [8ad32671-fb73-4a22-8c23-934b5508b141, ingredient_run]" target="Extract sample from Alloy (AAA01-VAM-B): Traveler [9ff418c3-387c-4407-9b2a-ae2b2df161bb, process_run]">
+  <data key="relationship">is used in</data>
+</edge>
+<edge source="Composition AAA01 Ing. [9a2c57cc-69b6-4389-a439-aae5654e2dd1, ingredient_run]" target="Adding Cr for AAA01 [5d12a695-19b4-4277-8869-cc3b4cd52d85, process_run]">
+  <data key="relationship">is used in</data>
+</edge>
+<edge source="Composition AAA01 Ing. [f861b9c5-f711-4db1-8178-ad16d8e733e4, ingredient_run]" target="Adding Co for AAA01 [4dbe8d0a-e687-40cf-8c63-ea0faa26a18c, process_run]">
+  <data key="relationship">is used in</data>
+</edge>
+<edge source="Adding Fe for AAA01 [e905bc20-4a8e-483a-9481-ff46e7c8a89d, process_run]" target="Fe in AAA01 [a2d7ac5c-265e-4058-ae5e-7d2bfee15e66, material_run]">
+  <data key="relationship">creates</data>
+</edge>
+<edge source="Inferred Alloy Compositions Ing. [7c86bb09-860f-4838-b08d-2e1b8abcba85, ingredient_run]" target="Select AAA01 [ee9a5359-5f75-4bd1-83f0-3d85f80086fe, process_run]">
+  <data key="relationship">is used in</data>
+</edge>
+<edge source="Inferred Alloy Compositions [c5811359-44a1-40b6-88ac-1405d9a71e9f, material_run]" target="Inferred Alloy Compositions Ing. [7c86bb09-860f-4838-b08d-2e1b8abcba85, ingredient_run]">
+  <data key="relationship">becomes</data>
+</edge>
+<edge source="Homogenized Alloy (AAA01-VAM-B) Ing. [ffd285a7-74d9-47d5-b759-bd7e2fe59530, ingredient_run]" target="Forging Alloy (AAA01-VAM-B) [bf95d429-d03d-4cb7-bc7a-abfbcfc83f75, process_run]">
+  <data key="relationship">is used in</data>
+</edge>
+<edge source="Homogenized Alloy (AAA01-VAM-B) [035cf557-8ae9-44e0-83a1-db99fcc3c72d, material_run]" target="Homogenized Alloy (AAA01-VAM-B) Ing. [ffd285a7-74d9-47d5-b759-bd7e2fe59530, ingredient_run]">
+  <data key="relationship">becomes</data>
+</edge>
+<edge source="Ni in AAA01 Ing. [3efc1532-9728-4497-a021-577fee3b456b, ingredient_run]" target="Mix elements of AAA01 [49e89c90-c175-4c9e-b540-10f92b2aee97, process_run]">
+  <data key="relationship">is used in</data>
+</edge>
+<edge source="Cr in AAA01 Ing. [ae786385-52cd-4756-9956-3a4a4c964d3c, ingredient_run]" target="Mix elements of AAA01 [49e89c90-c175-4c9e-b540-10f92b2aee97, process_run]">
+  <data key="relationship">is used in</data>
+</edge>
+<edge source="Composition AAA01 Ing. [510edf37-ad44-4544-85db-6877497b20cf, ingredient_run]" target="Adding Ni for AAA01 [49fffcab-b43c-4655-91b3-13fc461f5cd8, process_run]">
+  <data key="relationship">is used in</data>
+</edge>
+<edge source="Alloy (AAA01-VAM-B): Traveler Ing. [c09cc025-0841-4594-a6ab-1fe1a068556c, ingredient_run]" target="Extract sample from Alloy (AAA01-VAM-B): Traveler [6acd5994-a673-42c8-9f28-254b322a83cd, process_run]">
+  <data key="relationship">is used in</data>
+</edge>
+<edge source="Alloy (AAA01-VAM-B): Traveler Ing. [b5711ef5-1064-419b-bb08-5991e5a4ad4b, ingredient_run]" target="Extract sample from Alloy (AAA01-VAM-B): Traveler [30f6cf95-a0ed-4529-8102-b3094960fe71, process_run]">
+  <data key="relationship">is used in</data>
+</edge>
+<edge source="Composition AAA01 Ing. [817de2ce-b4ad-47c4-912c-0b546ed67151, ingredient_run]" target="Adding Fe for AAA01 [e905bc20-4a8e-483a-9481-ff46e7c8a89d, process_run]">
+  <data key="relationship">is used in</data>
+</edge>
+<edge source="Forged Alloy (AAA01-VAM-B) Ing. [efaaad98-0505-44c5-8e57-191a0ce4551a, ingredient_run]" target="Setting traveler for Alloy (AAA01-VAM-B) [b84185cd-f69c-468e-b0f4-8feb0d1c2306, process_run]">
+  <data key="relationship">is used in</data>
+</edge>
+</graph></graphml>

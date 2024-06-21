@@ -181,7 +181,9 @@ class OpenDB(Runnable):
                     "Load Model",
                     "Listed Queries",
                     "Custom Query",
+                    "Dump GEMD from Query",
                     "Add Schema",
+                    "Return"
                 ]
                 mode_question = select(
                     "Select an interactive mode:", choices=mode_choices
@@ -264,6 +266,8 @@ class OpenDB(Runnable):
                         print(f"ERROR: {e}")
                         print("Try again.")
                     self.logger.info("Done.")
+                elif mode_question == "Return":
+                    break
         except KeyboardInterrupt:
             pass
 

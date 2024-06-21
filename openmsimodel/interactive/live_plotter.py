@@ -7,6 +7,9 @@ from openmsimodel.utilities.io import read_graphml_from_folder
 import os
 
 class LivePlotter(FileSystemEventHandler):
+    '''
+    Class that watches a folder, and visualizes all detected graphs in real time. 
+    '''
     def __init__(self, display_func):
         self.display_func = display_func
         self.current_display = None

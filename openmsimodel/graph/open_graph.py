@@ -15,6 +15,7 @@ from openmsimodel.utilities.runnable import Runnable
 from openmsimodel.graph.helpers import launch_graph_widget
 from openmsimodel.utilities.io import read_gemd_data
 
+import questionary
 import time
 
 
@@ -32,10 +33,10 @@ class OpenGraph(Runnable):
 
     IPYNB_FILENAME = pathlib.Path(
         pathlib.Path(__file__).parent.resolve()
-        / "open_graph_nb/open_graph_nb_template.ipynb"
+        / "open_graph_visualization_nb/open_graph_visualisation.ipynb"
     )
     CONFIG_FILENAME = pathlib.Path(
-        pathlib.Path(__file__).parent.resolve() / "open_graph_nb/.config"
+        pathlib.Path(__file__).parent.resolve() / "open_graph_visualization_nb/.config"
     )
 
     # TODO: move build_graph function params to obj + store pygraphviz and networkx as obj attr
@@ -446,6 +447,25 @@ class OpenGraph(Runnable):
         self.dot_path = dot_path
         self.graphml_path = graphml_path
 
+    def interactive_mode(self):
+        while True:
+            action = questionary.select(
+                "Choose an action:",
+                choices=["Build Graph", "Build Graph and Visualize", "Edit Graph: Add Measurement", "Return"]
+            ).ask()
+            
+            if action == "Build Graph":
+                self.build_graph(save=True)
+                print("Graph built and saved.")
+            elif action == "Build Graph and Visualize":
+                self.build_graph(save=True)
+                if self.graphml_path:
+                    self.launch(self.graphml_path, from_command_line=True)
+                else:
+                    print("GraphML path not set. Ensure the graph is built and saved correctly.")
+            elif action == "Return":
+                break
+
     @classmethod
     def load_graphml(cls, file_path):
         """
@@ -653,6 +673,7 @@ class OpenGraph(Runnable):
             print("Couldn't find NetworkX graph.")
 
         return dot_path, svg_path, graphml_path
+    
 
     @classmethod
     def get_argument_parser(cls, *args, **kwargs):

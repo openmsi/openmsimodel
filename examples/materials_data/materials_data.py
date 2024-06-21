@@ -57,25 +57,29 @@ def main():
         polishing_block, ingredient_name_to_link="Polished Alloy Ingredient"
     )
 
-    to_be_visualized = heating_block.gemd_assets
-    output = str(Path().absolute() / "output")
-    output = "/srv/hemi01-j01/openmsimodel/examples/materials_data/output"
-    open_graph = OpenGraph(
-        name="heating",
-        source=to_be_visualized,
-        output=output,
-        which="all",
-        dump_svg_and_dot=True,
-    )
-    G, relabeled_G, name_mapping = open_graph.build_graph()
+    
 
-    block = MaterialsSequence.from_spec_or_run(
-        str(polishing_process.name + "_backward"),
-        notes=None,
-        spec=polishing_process.spec,
-        run=polishing_process.run,
-    )
-    print(block.assets)
+    # # 
+    # to_be_visualized = heating_block.gemd_assets
+    # output = str(Path().absolute() / "output")
+    # output = "/srv/hemi01-j01/openmsimodel/examples/materials_data/output"
+    # open_graph = OpenGraph(
+    #     name="heating",
+    #     source=to_be_visualized,
+    #     output=output,
+    #     which="all",
+    #     dump_svg_and_dot=True,
+    # )
+    # G, relabeled_G, name_mapping = open_graph.build_graph()
+
+    # # 
+    # block = MaterialsSequence.from_spec_or_run(
+    #     str(polishing_process.name + "_backward"),
+    #     notes=None,
+    #     spec=polishing_process.spec,
+    #     run=polishing_process.run,
+    # )
+    # print(block.assets)
 
 
 if __name__ == "__main__":

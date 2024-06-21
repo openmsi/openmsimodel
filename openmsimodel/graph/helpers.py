@@ -13,7 +13,7 @@ def color_mapping(index, node):
     return name_to_hex(color)
 
 def launch_graph_widget(graph_source, engine="yfiles"):
-    print("Launching {}".format(graph_source))
+    print("Launching widget for {}".format(graph_source))
     if type(graph_source) == str:  # passing a single dot or graphml file
         if graph_source.endswith(".dot"):
             dot = nx.nx_pydot.read_dot(graph_source)
