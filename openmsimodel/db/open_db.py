@@ -22,6 +22,7 @@ import random
 import time
 import os
 from pathlib import Path
+import pandas as pd
 
 from questionary import prompt, select, text, confirm
 
@@ -49,7 +50,7 @@ class OpenDB(Runnable):
 
     ARGUMENT_PARSER_TYPE = OpenMSIModelParser
 
-    def __init__(self, database_name, private_path, output, science_kit=None):
+    def __init__(self, database_name, private_path, output, source=None, science_kit=None):
         """
         Initialization of OpenDB instance.
 
@@ -62,6 +63,7 @@ class OpenDB(Runnable):
         """
         self.auth = None
         self.gemd_db = None
+        self.source = source
         self.output = output
         self.listed_functions = {}
         self.listed_acronyms = {}
@@ -172,6 +174,38 @@ class OpenDB(Runnable):
 
     def custom_query(self, query):
         return self.gemd_db.execute_query(query)
+    
+    def dump_gemd_from_query(self, query_result_path, column_name):
+        if not os.path.exists(query_result_path):
+            raise ValueError(f"File '{query_result_path}' doesn't exist.")
+
+        # Read the CSV file into a pandas DataFrame
+        df = pd.read_csv(query_result_path)
+
+        # Check if the column exists
+        if column_name not in df.columns:
+            raise ValueError(f"Column '{column_name}' does not exist in the CSV file.")
+
+        # Iterate over each row in the specified column
+        for index, row in df.iterrows():
+            json_data = row[column_name]
+            
+            # Convert the JSON data to a Python dictionary
+            try:
+                json_object = json.loads(json_data)
+            except json.JSONDecodeError as e:
+                print(f"Error decoding JSON for row {index}: {e}")
+                continue
+            
+            # Define the output file path
+            output_file_path = os.path.join(self.source, f'row_{index}.json')
+            
+            # Save the JSON object to a file
+            with open(output_file_path, 'w') as json_file:
+                json.dump(json_object, json_file, indent=4)
+
+            print(f"Saved JSON object from row {index} to {self.source}")
+
 
     def interactive_mode(self):
         try:
@@ -181,8 +215,10 @@ class OpenDB(Runnable):
                     "Load Model",
                     "Listed Queries",
                     "Custom Query",
-                    "Dump GEMD from Query",
+                    "Dump from Query To GEMD Folder",
+                    "Sync GEMD Folder With Database Table",
                     "Add Schema",
+                    "Edit Db: Add Measurement",
                     "Return"
                 ]
                 mode_question = select(
@@ -266,8 +302,19 @@ class OpenDB(Runnable):
                         print(f"ERROR: {e}")
                         print("Try again.")
                     self.logger.info("Done.")
+                elif mode_question == "Dump from Query To GEMD Folder":
+                    # Input parameters for loading a model
+                    params = input(
+                        "Enter the appropriate parameters for loading a model (path to query result, and column name): "
+                    )
+                    params = params.split(" ")
+                    if len(params) != 2:
+                        raise ValueError("Expected two parameters (name and dirpath).")
+                    self.dump_gemd_from_query(params[0], params[1])
+
                 elif mode_question == "Return":
                     break
+
         except KeyboardInterrupt:
             pass
 

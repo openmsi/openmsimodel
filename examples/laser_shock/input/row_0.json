@@ -1,0 +1,63 @@
+{
+    "conditions": [],
+    "file_links": [
+        {
+            "filename": "F2--20220623--00050",
+            "type": "file_link",
+            "url": null
+        },
+        {
+            "filename": "BP--20220623--00050",
+            "type": "file_link",
+            "url": null
+        }
+    ],
+    "material": {
+        "id": "8b67e84e-2de9-47d1-98bd-b55fd4853d49",
+        "scope": "auto",
+        "type": "link_by_uid"
+    },
+    "name": "Spall",
+    "notes": "",
+    "parameters": [],
+    "properties": [
+        {
+            "file_links": [],
+            "name": "EstImpactVelocity",
+            "notes": null,
+            "origin": "measured",
+            "template": {
+                "id": "b28085f0-c069-4816-9dec-c0f54b47d5ea",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            "type": "property",
+            "value": {
+                "nominal": 630.0,
+                "type": "nominal_real",
+                "units": "meter / second"
+            }
+        }
+    ],
+    "source": {
+        "performed_by": "Diamond",
+        "performed_date": "06/23/2022",
+        "type": "performed_source"
+    },
+    "spec": {
+        "id": "9a5d0b29-61b6-4aab-8125-fca2dca5b7ef",
+        "scope": "auto",
+        "type": "link_by_uid"
+    },
+    "tags": [
+        "NewEnergyMeasurement::No",
+        "ExperimentDayCounter::00050",
+        "recordId::1216",
+        "modId::0",
+        "ObjectType::LaserShockExperiment"
+    ],
+    "type": "measurement_run",
+    "uids": {
+        "auto": "2fcd1d0e-ccb2-4b9f-8689-8b42a8b67827"
+    }
+}

@@ -10,15 +10,20 @@ from openmsimodel.entity.gemd.measurement import Measurement
 from openmsimodel.structures.materials_sequence import MaterialsSequence
 from openmsimodel.graph.open_graph import OpenGraph
 import uuid
-
+import questionary
 
 class GEMDAutomation(FileSystemEventHandler):
     '''
-    Class that watches a folder, and for every new file, it matches its file extension and/or regex to a GEMD backbone
+    Class that watches a folder, and for every new file, it matches its file extension and/or regex to a GEMD backbone, storing its JSON and graphML representations
     '''
     mapping = {}
     output_folder = "./live_grapher_output"
     open_graphs = []
+
+    def __init__(self, output_folder=None):
+        if self.output_folder:
+            self.output_folder = output_folder
+
 
     def on_created(self, event):
         if event.is_directory:
@@ -26,13 +31,30 @@ class GEMDAutomation(FileSystemEventHandler):
         filepath = event.src_path
         filename = os.path.basename(filepath)
         print(f"New file added: {filename}")
+    
+
+
         file_name, file_extension = os.path.splitext(filepath)
         if file_extension in self.mapping.keys():
             to_be_visualized = define_run(self.mapping[file_extension])
         else:
-            to_be_visualized = define_spec(
-                file_extension, self.mapping, self.output_folder
-            )
+            choice = questionary.select(
+                "Which rule would you like to create?",
+                choices=["File Format Matching", "Name Regex Matching", "Both", "Exit"]
+            ).ask()
+            
+            if choice == "File Format Matching":
+                # self.open_db.interactive_mode()
+                to_be_visualized = define_spec(
+                    file_extension, self.mapping, self.output_folder
+                )
+            elif choice == "OpenGraph":
+                pass
+                # self.open_graph.interactive_mode()
+            elif choice == "Both":
+                pass
+            elif choice == "Exit":
+                pass
         open_graph = dump_graph(to_be_visualized, self.output_folder)
         self.open_graphs.append(open_graph)
 
@@ -105,7 +127,7 @@ def define_spec(file_extension, mapping, output):
 
 if __name__ == "__main__":
     folder_to_watch = "./live_grapher_input"
-    event_handler = liveGrapher()
+    event_handler = GEMDAutomation()
     observer = Observer()
     observer.schedule(event_handler, folder_to_watch, recursive=False)
     observer.start()

@@ -1,0 +1,9 @@
+Source,Target
+measurement_run [073f51e1-7792-4bad-b9c0-894e64557b85],material_run [445dff14-f12a-48f6-b044-84dcefc028b0]
+material_run [445dff14-f12a-48f6-b044-84dcefc028b0],material_spec [f0bff219-f11d-423e-a4ae-831375403e1b]
+material_run [445dff14-f12a-48f6-b044-84dcefc028b0],process_run [9bff627f-e4f1-4e8d-abe0-a126f5bc0a3d]
+process_run [9bff627f-e4f1-4e8d-abe0-a126f5bc0a3d],process_spec [b126fc84-b3e9-4bf3-a8f6-0532a4d086fd]
+process_spec [b126fc84-b3e9-4bf3-a8f6-0532a4d086fd],process_template [f65ad95d-1cbc-45f6-82ff-0cebf6ec11bf]
+material_spec [f0bff219-f11d-423e-a4ae-831375403e1b],process_spec [b126fc84-b3e9-4bf3-a8f6-0532a4d086fd]
+material_spec [f0bff219-f11d-423e-a4ae-831375403e1b],material_template [e3695a38-878e-40e9-ae9f-df2ea4fd10fa]
+process_spec [b126fc84-b3e9-4bf3-a8f6-0532a4d086fd],process_template [f65ad95d-1cbc-45f6-82ff-0cebf6ec11bf]

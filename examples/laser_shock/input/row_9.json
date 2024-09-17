@@ -1,0 +1,51 @@
+{
+    "conditions": [
+        {
+            "file_links": [],
+            "name": "Sample Attachment Method",
+            "notes": null,
+            "origin": "specified",
+            "template": {
+                "id": "15925243-57f7-42b0-9948-81ec91bfc697",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            "type": "condition",
+            "value": {
+                "category": "Manual",
+                "type": "nominal_categorical"
+            }
+        }
+    ],
+    "file_links": [],
+    "name": "Attaching Sample",
+    "notes": null,
+    "parameters": [
+        {
+            "file_links": [],
+            "name": "Sample Attachment Adhesive",
+            "notes": null,
+            "origin": "specified",
+            "template": {
+                "id": "e2303de1-5295-40b8-b09f-57afd2c374ab",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            "type": "parameter",
+            "value": {
+                "category": "Kapton Included Adhesive",
+                "type": "nominal_categorical"
+            }
+        }
+    ],
+    "tags": [],
+    "template": {
+        "id": "b6fbde0c-bbf3-44fc-ada9-ebd2dd07f69b",
+        "scope": "auto",
+        "type": "link_by_uid"
+    },
+    "type": "process_spec",
+    "uids": {
+        "auto": "b9274d86-b97a-4e39-b097-efee075e171a"
+    }
+}

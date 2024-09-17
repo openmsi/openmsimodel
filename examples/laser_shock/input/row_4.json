@@ -1,0 +1,21 @@
+{
+    "file_links": [],
+    "name": "Launch Package",
+    "notes": "A spec for creating a launch package",
+    "process": {
+        "id": "b9274d86-b97a-4e39-b097-efee075e171a",
+        "scope": "auto",
+        "type": "link_by_uid"
+    },
+    "properties": [],
+    "tags": [],
+    "template": {
+        "id": "2eb06493-a47a-4f22-a77f-b98d790d9d86",
+        "scope": "auto",
+        "type": "link_by_uid"
+    },
+    "type": "material_spec",
+    "uids": {
+        "auto": "5c38e07c-1e18-4d80-b1e5-03fc2517755c"
+    }
+}

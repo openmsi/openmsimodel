@@ -17,10 +17,10 @@ class OpenGraphAndDB(OpenGraph, OpenDB):
         :param output: Path to the output directory.
         :type output: str
         """
+        self.source = source
+        self.output = output
         self.open_graph = OpenGraph(name, source, output, science_kit)
-        self.open_db = OpenDB(database_name, private_path, output, science_kit)
-        # self.source = source
-        # self.output = output
+        self.open_db = OpenDB(database_name, private_path, output, self.source, science_kit)
         # self.auth = None
         # self.gemd_db = None
         # self.logger = Logger()
@@ -34,7 +34,7 @@ class OpenGraphAndDB(OpenGraph, OpenDB):
         while True:
             choice = questionary.select(
                 "Do you want to interact with OpenDB or OpenGraph?",
-                choices=["OpenDB", "OpenGraph", "Exit"]
+                choices=["OpenDB", "OpenGraph", "Edit Graph & DB: Add Measurement", "Exit"]
             ).ask()
             
             if choice == "OpenDB":

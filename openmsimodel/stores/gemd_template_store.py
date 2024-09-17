@@ -19,6 +19,14 @@ from openmsimodel.utilities.cached_isinstance_functions import (
 from openmsimodel.entity.gemd.impl import assign_uuid
 from openmsimodel.utilities.logging import Logger
 
+from openmsimodel.stores.gemd_spec_store import GEMDSpecStore
+# 1) register asset stores from raw files in the asset store (with recursive function or manual function) which can be called from open_graph or open_db
+# 2) write template[specs], specs[templates], runs[specs] in stores specificy
+# 3) build associater which will rely on the assets store to generate predefined runs from given specs, will have runs_associated[specs_associated] (more by blocks)
+# * will have possible 'arrangements' of different types, which is defined by the respective specs and delimiting links
+# ** which are ALL just pieces of one long spec strip right?
+# ** will have 'instances' which is originally empty but filled over time sections of the 'arrangement' templates with the links made ,
+#  based on fille appearance and function call. the common denominator will be file name common string
 
 # from openmsimodel.stores.common import GEMDTemplateStore, stores_config
 class StoresConfig:
@@ -46,6 +54,7 @@ class StoresConfig:
         designated_root: str = Path(__file__) / "stores/local",
     ):
         self.all_template_stores = {}
+        self.all_spec_stores = {}
         self.activated = activated
         if self.activated:
             self.designated_store_id = designated_store_id
@@ -58,19 +67,31 @@ class StoresConfig:
         self.all_template_stores[name] = GEMDTemplateStore(name, load_all_files=False)
         self.all_template_stores[name].root = self.designated_root
         self.all_template_stores[name].initialize_store()
+        self.all_spec_stores[name] = GEMDSpecStore(name, load_all_files=False)
+        self.all_spec_stores[name].root = self.designated_root
+        self.all_spec_stores[name].initialize_store()
 
     def register_store(self, store):
-        if store.id in self.all_template_stores.keys():
-            raise NameError(f"template store with id {store.name} already exists.")
-        if self.activated:
-            self.all_template_stores[store.id] = store
-            self.all_template_stores[store.id].initialize_store()
+        if type(store) == GEMDTemplateStore:
+            if store.id in self.all_template_stores.keys():
+                raise NameError(f"template store with id {store.name} already exists.")
+            if self.activated:
+                self.all_template_stores[store.id] = store
+                self.all_template_stores[store.id].initialize_store()
+        if type(store) == GEMDSpecStore:
+            if store.id in self.all_spec_store.keys():
+                raise NameError(f"spec store with id {store.name} already exists.")
+            if self.activated:
+                self.all_spec_store[store.id] = store
+                self.all_spec_store[store.id].initialize_store()
+            
 
 
 stores_config = StoresConfig()
 
 # TODO: chck types of errors returned
 
+#TODO: add mapping of specs to configs, and vice versa
 
 # TODO: maybe add file path, + from subclass?
 @dataclass

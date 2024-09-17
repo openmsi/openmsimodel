@@ -30,7 +30,7 @@ def top_elements(model_id, nb, gemd_type):
     Returns:
         _type_: str
     """
-    return f"""select top {nb} context from gemdobject c where gemd_type='{gemd_type}' AND c.model_id='{model_id}' order by newid()"""
+    return f"""select top {nb} * from gemdobject c where gemd_type='{gemd_type}' AND c.model_id='{model_id}' order by newid()"""
 
 
 def display_all(model_id, type_to_display):
@@ -84,7 +84,7 @@ def gemd_types_query():
 
 
 def reachable_nodes_query(uid):
-    """returns all the elements that can be reached from the material.
+    """returns all the elements that can be reached from the node.
 
     Args:
         uid (str): unique identifier of object to query with
@@ -118,10 +118,10 @@ def reachable_nodes_query(uid):
         join GEMDObject c on c.uid=e.to_uid
         where gr.level < 16
         )
-        select Source,Target
+        select Source,Target,node_context
         --,node_type,node_context
         from gr
-        where Source is not null
+        
     """
 
 

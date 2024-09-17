@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><key id="relationship" for="edge" attr.name="relationship" attr.type="string"/>
+<key id="source" for="node" attr.name="source" attr.type="string"/>
+<key id="object" for="node" attr.name="object" attr.type="string"/>
+<key id="short_name" for="node" attr.name="short_name" attr.type="string"/>
+<key id="type" for="node" attr.name="type" attr.type="string"/>
+<key id="uuid" for="node" attr.name="uuid" attr.type="string"/>
+<key id="shape" for="node" attr.name="shape" attr.type="string"/>
+<key id="color" for="node" attr.name="color" attr.type="string"/>
+<key id="name" for="graph" attr.name="name" attr.type="string"/>
+<graph edgedefault="directed"><data key="name">laser_shock_example</data>
+<node id="Attaching Sample [89ae9da7-828c-4bd2-a3df-889f25b430f9, process_run]">
+  <data key="color">red</data>
+  <data key="shape">circle</data>
+  <data key="uuid">89ae9da7-828c-4bd2-a3df-889f25b430f9</data>
+  <data key="type">process_run</data>
+  <data key="short_name">Attaching Sample</data>
+  <data key="object">{"conditions": [], "file_links": [], "name": "Attaching Sample", "notes": null, "parameters": [], "source": {"performed_by": "Diamond", "performed_date": "06/22/2022", "type": "performed_source"}, "spec": {"id": "b9274d86-b97a-4e39-b097-efee075e171a", "scope": "auto", "type": "link_by_uid"}, "tags": [], "type": "process_run", "uids": {"auto": "89ae9da7-828c-4bd2-a3df-889f25b430f9"}}</data>
+  <data key="source">row_5.json</data>
+</node>
+<node id="F100-R4C5-Spacer-Sample [8b67e84e-2de9-47d1-98bd-b55fd4853d49, material_run]">
+  <data key="color">green</data>
+  <data key="shape">circle</data>
+  <data key="uuid">8b67e84e-2de9-47d1-98bd-b55fd4853d49</data>
+  <data key="type">material_run</data>
+  <data key="short_name">F100-R4C5-Spacer-Sample</data>
+  <data key="object">{"file_links": [], "name": "F100-R4C5-Spacer-Sample", "notes": null, "process": {"id": "89ae9da7-828c-4bd2-a3df-889f25b430f9", "scope": "auto", "type": "link_by_uid"}, "sample_type": "unknown", "spec": {"id": "5c38e07c-1e18-4d80-b1e5-03fc2517755c", "scope": "auto", "type": "link_by_uid"}, "tags": ["recordId::1546", "modId::0", "ObjectType::LaserShockLaunchPackage"], "type": "material_run", "uids": {"auto": "8b67e84e-2de9-47d1-98bd-b55fd4853d49"}}</data>
+  <data key="source">row_1.json</data>
+</node>
+<node id="Spall [2fcd1d0e-ccb2-4b9f-8689-8b42a8b67827, measurement_run]">
+  <data key="color">purple</data>
+  <data key="shape">circle</data>
+  <data key="uuid">2fcd1d0e-ccb2-4b9f-8689-8b42a8b67827</data>
+  <data key="type">measurement_run</data>
+  <data key="short_name">Spall</data>
+  <data key="object">{"conditions": [], "file_links": [{"filename": "F2--20220623--00050", "type": "file_link", "url": null}, {"filename": "BP--20220623--00050", "type": "file_link", "url": null}], "material": {"id": "8b67e84e-2de9-47d1-98bd-b55fd4853d49", "scope": "auto", "type": "link_by_uid"}, "name": "Spall", "notes": "", "parameters": [], "properties": [{"file_links": [], "name": "EstImpactVelocity", "notes": null, "origin": "measured", "template": {"id": "b28085f0-c069-4816-9dec-c0f54b47d5ea", "scope": "auto", "type": "link_by_uid"}, "type": "property", "value": {"nominal": 630.0, "type": "nominal_real", "units": "meter / second"}}], "source": {"performed_by": "Diamond", "performed_date": "06/23/2022", "type": "performed_source"}, "spec": {"id": "9a5d0b29-61b6-4aab-8125-fca2dca5b7ef", "scope": "auto", "type": "link_by_uid"}, "tags": ["NewEnergyMeasurement::No", "ExperimentDayCounter::00050", "recordId::1216", "modId::0", "ObjectType::LaserShockExperiment"], "type": "measurement_run", "uids": {"auto": "2fcd1d0e-ccb2-4b9f-8689-8b42a8b67827"}}</data>
+  <data key="source">row_0.json</data>
+</node>
+<edge source="Attaching Sample [89ae9da7-828c-4bd2-a3df-889f25b430f9, process_run]" target="F100-R4C5-Spacer-Sample [8b67e84e-2de9-47d1-98bd-b55fd4853d49, material_run]">
+  <data key="relationship">creates</data>
+</edge>
+<edge source="F100-R4C5-Spacer-Sample [8b67e84e-2de9-47d1-98bd-b55fd4853d49, material_run]" target="Spall [2fcd1d0e-ccb2-4b9f-8689-8b42a8b67827, measurement_run]">
+  <data key="relationship">is measured with</data>
+</edge>
+</graph></graphml>

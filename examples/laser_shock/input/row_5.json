@@ -1,0 +1,22 @@
+{
+    "conditions": [],
+    "file_links": [],
+    "name": "Attaching Sample",
+    "notes": null,
+    "parameters": [],
+    "source": {
+        "performed_by": "Diamond",
+        "performed_date": "06/22/2022",
+        "type": "performed_source"
+    },
+    "spec": {
+        "id": "b9274d86-b97a-4e39-b097-efee075e171a",
+        "scope": "auto",
+        "type": "link_by_uid"
+    },
+    "tags": [],
+    "type": "process_run",
+    "uids": {
+        "auto": "89ae9da7-828c-4bd2-a3df-889f25b430f9"
+    }
+}

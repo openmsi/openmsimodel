@@ -1,0 +1,25 @@
+{
+    "file_links": [],
+    "name": "F100-R4C5-Spacer-Sample",
+    "notes": null,
+    "process": {
+        "id": "89ae9da7-828c-4bd2-a3df-889f25b430f9",
+        "scope": "auto",
+        "type": "link_by_uid"
+    },
+    "sample_type": "unknown",
+    "spec": {
+        "id": "5c38e07c-1e18-4d80-b1e5-03fc2517755c",
+        "scope": "auto",
+        "type": "link_by_uid"
+    },
+    "tags": [
+        "recordId::1546",
+        "modId::0",
+        "ObjectType::LaserShockLaunchPackage"
+    ],
+    "type": "material_run",
+    "uids": {
+        "auto": "8b67e84e-2de9-47d1-98bd-b55fd4853d49"
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "description": "A specific flyer in a flyer stack, possibly with a spacer and/or impact sample attached",
+    "name": "Launch Package",
+    "properties": [],
+    "tags": [],
+    "type": "material_template",
+    "uids": {
+        "auto": "2eb06493-a47a-4f22-a77f-b98d790d9d86"
+    }
+}

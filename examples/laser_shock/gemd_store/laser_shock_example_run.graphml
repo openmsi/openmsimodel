@@ -8,7 +8,7 @@
 <key id="shape" for="node" attr.name="shape" attr.type="string"/>
 <key id="color" for="node" attr.name="color" attr.type="string"/>
 <key id="name" for="graph" attr.name="name" attr.type="string"/>
-<graph edgedefault="directed"><data key="name">example</data>
+<graph edgedefault="directed"><data key="name">laser_shock_example</data>
 <node id="Tensile charact. for Alloy (AAA01-VAM-B) (T10) [ec404417-87ed-4cfa-b8dd-979f2ab2783e, measurement_run]">
   <data key="color">purple</data>
   <data key="shape">circle</data>

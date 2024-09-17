@@ -1,0 +1,375 @@
+{
+    "conditions": [
+        [
+            {
+                "id": "456ea02b-c012-4a0e-9345-33623ef9bbae",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ],
+        [
+            {
+                "id": "f491d129-c4dd-48f0-baf1-2b2dfb241759",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ],
+        [
+            {
+                "id": "cd2de546-c0e4-467f-856e-417224a54627",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ],
+        [
+            {
+                "id": "b17ee3c2-3af0-4c5c-930c-896e465f4880",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ],
+        [
+            {
+                "id": "e932d95d-599d-4142-9dd3-f09cc8a5f65a",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ],
+        [
+            {
+                "id": "e186bbf5-2e98-4af7-90c3-78fb39c27f84",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ],
+        [
+            {
+                "id": "be2f187b-3602-4834-b36a-4e4c6efa1a62",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ],
+        [
+            {
+                "id": "c832e1ac-0f38-4ace-9a4a-853663ab3bfb",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ],
+        [
+            {
+                "id": "c72f0a56-9abe-4161-a36d-eb05091f0994",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ],
+        [
+            {
+                "id": "ec7efdb9-2fb4-4e9a-9071-6448ede91384",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ],
+        [
+            {
+                "id": "078bc57c-9ad2-4732-99c6-28e92ebcf14b",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ],
+        [
+            {
+                "id": "de5622a7-a0c0-4141-8eb8-73537586a89c",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ],
+        [
+            {
+                "id": "3a104b09-81aa-4d7c-95d1-ed6232ad5b81",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ],
+        [
+            {
+                "id": "8ccce41f-1025-4b07-8c1e-86ca6a9d4359",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ],
+        [
+            {
+                "id": "d89b7550-7e27-4dbc-b473-a5a01e9a6936",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ],
+        [
+            {
+                "id": "79cdd653-1c32-4625-a65b-0c48dc092d71",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ],
+        [
+            {
+                "id": "dec82658-161d-4ba4-89ff-41ecdf29d0e3",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ],
+        [
+            {
+                "id": "50a701cd-5075-42d4-95bc-b5a0bebdeae7",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ],
+        [
+            {
+                "id": "bb1093c2-4850-4ead-a3d5-c81b3997196b",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ],
+        [
+            {
+                "id": "fef7d0fc-042b-42bc-90d2-65f5fa53f5fc",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ],
+        [
+            {
+                "id": "a6d2a38f-ed71-4cb3-a8a2-1ee60771b537",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ],
+        [
+            {
+                "id": "78819e87-dd9f-40ee-b164-4200792e2c0d",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ]
+    ],
+    "description": "One of several different categories of measurements performed in the Laser Shock lab",
+    "name": "Laser Shock Experiment",
+    "parameters": [
+        [
+            {
+                "id": "fe4510c7-8c64-4698-8bd6-a158514f8948",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ],
+        [
+            {
+                "id": "52b86f6d-4dde-49eb-b38b-f411ae3b988c",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ],
+        [
+            {
+                "id": "3a16ed08-f2db-4411-b7ad-81d72c1b1207",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ],
+        [
+            {
+                "id": "b29282fd-ebec-4be5-bb13-bd28d3241ef6",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ],
+        [
+            {
+                "id": "7e6d11dc-ceb3-4c84-9c2a-fc302cbf5618",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ],
+        [
+            {
+                "id": "52953917-c154-4f8f-a693-22a748c640f3",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ],
+        [
+            {
+                "id": "6cbf0926-8344-4f56-bfd9-a8dda89f0424",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ],
+        [
+            {
+                "id": "9d1e3e55-c9c8-409d-be85-b4570cd543f8",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ],
+        [
+            {
+                "id": "74924eb1-6cb5-4b46-a859-be02dcebc59c",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ],
+        [
+            {
+                "id": "064122ff-06e3-4e2f-b010-74fd7a4a4e7f",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ],
+        [
+            {
+                "id": "211be3bd-9d0c-4a0d-bbcb-9262ec626370",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ],
+        [
+            {
+                "id": "cf5b03b0-a051-43d4-b9a3-e0afa181ea93",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ],
+        [
+            {
+                "id": "c496ca75-cf5c-4d64-818c-302b309a7ced",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ],
+        [
+            {
+                "id": "710504ee-96bc-44dd-8dce-36ae00d52a4f",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ]
+    ],
+    "properties": [
+        [
+            {
+                "id": "a2a0c266-26a1-413f-b962-4850ab5a5153",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ],
+        [
+            {
+                "id": "01d8209c-5f75-4c5a-84c6-04603aa83725",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ],
+        [
+            {
+                "id": "f070740e-5e58-4b8d-a693-58b6d657fbc1",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ],
+        [
+            {
+                "id": "3f3577c5-305b-46be-a063-b16a407a3204",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ],
+        [
+            {
+                "id": "c54372e5-8879-4fee-8f0f-dbeda4055160",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ],
+        [
+            {
+                "id": "cf8db0f5-fc27-4816-90fa-c4f3008de81a",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ],
+        [
+            {
+                "id": "00f132e7-60d8-472c-80cc-0aec952f214e",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ],
+        [
+            {
+                "id": "b28085f0-c069-4816-9dec-c0f54b47d5ea",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ],
+        [
+            {
+                "id": "137db6ff-77e0-4d1b-b8d1-183d668fa56e",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ]
+    ],
+    "tags": [],
+    "type": "measurement_template",
+    "uids": {
+        "auto": "6d0fa0a8-8f25-47e4-a389-7d425671207b"
+    }
+}

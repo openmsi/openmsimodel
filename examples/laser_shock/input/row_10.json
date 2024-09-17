@@ -1,0 +1,39 @@
+{
+    "allowed_labels": [],
+    "allowed_names": [],
+    "conditions": [
+        [
+            {
+                "id": "15925243-57f7-42b0-9948-81ec91bfc697",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ]
+    ],
+    "description": "Attaching an impact sample to a specific flyer/spacer for a Launch Package",
+    "name": "Attaching Sample",
+    "parameters": [
+        [
+            {
+                "id": "37690317-9aaa-40fd-a6fe-d7e82c97db09",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ],
+        [
+            {
+                "id": "e2303de1-5295-40b8-b09f-57afd2c374ab",
+                "scope": "auto",
+                "type": "link_by_uid"
+            },
+            null
+        ]
+    ],
+    "tags": [],
+    "type": "process_template",
+    "uids": {
+        "auto": "b6fbde0c-bbf3-44fc-ada9-ebd2dd07f69b"
+    }
+}
