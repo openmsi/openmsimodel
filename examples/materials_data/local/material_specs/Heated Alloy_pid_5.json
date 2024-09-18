@@ -1,0 +1,18 @@
+{
+   "file_links": [],
+   "name": "Heated Alloy",
+   "notes": null,
+   "process": null,
+   "properties": [],
+   "tags": [],
+   "template": {
+      "id": "f2f7ac78-8887-4f4e-85d2-5c36206ab7ad",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "material_spec",
+   "uids": {
+      "auto": "4271c8e1-cb66-403a-bd71-18331e1bbdaa",
+      "persistent_id": 5
+   }
+}

@@ -1,0 +1,8 @@
+persistent_id,name,type
+0,Alloy,material_spec
+1,Polishing,process_spec
+2,Temperature,measurement_spec
+3,Polishing Alloy,material_spec
+4,Heating,process_spec
+5,Heated Alloy,material_spec
+6,Post-Heating Temperature,measurement_spec

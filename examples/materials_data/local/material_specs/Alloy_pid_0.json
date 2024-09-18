@@ -1,0 +1,18 @@
+{
+   "file_links": [],
+   "name": "Alloy",
+   "notes": null,
+   "process": null,
+   "properties": [],
+   "tags": [],
+   "template": {
+      "id": "f2f7ac78-8887-4f4e-85d2-5c36206ab7ad",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "material_spec",
+   "uids": {
+      "auto": "348721d3-2316-46dc-9830-636bd2371b8b",
+      "persistent_id": 0
+   }
+}

@@ -41,7 +41,7 @@ from openmsimodel.utilities.attributes import (
 )
 
 from openmsimodel.utilities.logging import Logger
-import openmsimodel.stores.gemd_template_store as store_tools
+import openmsimodel.stores.stores_config as stores_tools
 
 
 class GEMDElement(CoreElement):
@@ -106,6 +106,7 @@ class GEMDElement(CoreElement):
         self.name = name
         self.logger = Logger()
         self.TEMPLATE_WRAPPER = {}
+        self.SPEC_WRAPPER = {}
         has_subclassed_template = hasattr(self, "TEMPLATE")
 
         if is_not_ingredient:  # FIXME without passed attribute
@@ -126,9 +127,11 @@ class GEMDElement(CoreElement):
 
             # TODO: change from file when supporting file links
             # registering the object templates
-            if store_tools.stores_config.activated:
+            print(stores_tools.stores_config)
+            print(stores_tools.stores_config.activated)
+            if stores_tools.stores_config.activated:
                 for i, store in enumerate(
-                    store_tools.stores_config.all_template_stores.values()
+                    stores_tools.stores_config.all_template_stores.values()
                 ):
                     self.TEMPLATE_WRAPPER[store.id] = store.register_new_template(
                         self.TEMPLATE,
@@ -137,9 +140,9 @@ class GEMDElement(CoreElement):
                         from_memory=bool(template),
                         from_subclass=bool(has_subclassed_template and not template),
                     )
-                    if store_tools.stores_config.designated_store_id == store.id:
+                    if stores_tools.stores_config.designated_store_id == store.id:
                         self.TEMPLATE = self.TEMPLATE_WRAPPER[
-                            store_tools.stores_config.designated_store_id
+                            stores_tools.stores_config.designated_store_id
                         ].template
 
             if (
@@ -148,17 +151,26 @@ class GEMDElement(CoreElement):
                 self.prepare_attrs()
 
             # registering the attribute templates
-            if store_tools.stores_config.activated:
+            if stores_tools.stores_config.activated:
                 for i, store in enumerate(
-                    store_tools.stores_config.all_template_stores.values()
+                    stores_tools.stores_config.all_template_stores.values()
                 ):
                     for _attr_type in self._ATTRS.keys():
                         for _attr in self._ATTRS[_attr_type].values():
-                            store_tools.stores_config.all_template_stores[
+                            stores_tools.stores_config.all_template_stores[
                                 store.id
                             ].register_new_template(_attr["obj"])
 
             self._spec: Spec = self._SpecType(name=name, template=self.TEMPLATE)
+            if stores_tools.stores_config.activated:
+                for i, store in enumerate(
+                    stores_tools.stores_config.all_spec_stores.values()
+                ):
+                    self.SPEC_WRAPPER[store.id] = store.register_new_unique_specs(self._spec)
+                    if stores_tools.stores_config.designated_store_id == store.id:
+                        self._spec = self.SPEC_WRAPPER[
+                            stores_tools.stores_config.designated_store_id
+                        ].spec
             self._run: Run = make_instance(self._spec)
             assign_uuid(self._spec, "auto")
             assign_uuid(self._run, "auto")  # FIXME: redundant?

@@ -19,7 +19,6 @@ from openmsimodel.utilities.cached_isinstance_functions import (
 from openmsimodel.entity.gemd.impl import assign_uuid
 from openmsimodel.utilities.logging import Logger
 
-from openmsimodel.stores.gemd_spec_store import GEMDSpecStore
 # 1) register asset stores from raw files in the asset store (with recursive function or manual function) which can be called from open_graph or open_db
 # 2) write template[specs], specs[templates], runs[specs] in stores specificy
 # 3) build associater which will rely on the assets store to generate predefined runs from given specs, will have runs_associated[specs_associated] (more by blocks)
@@ -28,66 +27,6 @@ from openmsimodel.stores.gemd_spec_store import GEMDSpecStore
 # ** will have 'instances' which is originally empty but filled over time sections of the 'arrangement' templates with the links made ,
 #  based on fille appearance and function call. the common denominator will be file name common string
 
-# from openmsimodel.stores.common import GEMDTemplateStore, stores_config
-class StoresConfig:
-    """
-    Managing the default configurations for activating store, name of the default store and a list of ids of all template stores
-
-    Example:
-    >>> from openmsimodel.stores.gemd_template_store import StoresConfig, stores_config
-    >>> stores_config = StoresConfig(activated=True) # default name is local
-    >>> stores_config.designated_store_id
-    "local"
-    >>> stores_config = StoresConfig(activated=True, designated_store_id="local_2")
-
-    """
-
-    all_template_stores: dict
-    activated: bool
-    designated_store_id: str
-    designated_root: str
-
-    def __init__(
-        self,
-        activated=False,
-        designated_store_id: str = "local",
-        designated_root: str = Path(__file__) / "stores/local",
-    ):
-        self.all_template_stores = {}
-        self.all_spec_stores = {}
-        self.activated = activated
-        if self.activated:
-            self.designated_store_id = designated_store_id
-            self.designated_root = designated_root
-            self.deploy_store(designated_store_id)
-
-    def deploy_store(self, name):
-        if name in self.all_template_stores.keys():
-            raise NameError(f"template store with id {name} already exists.")
-        self.all_template_stores[name] = GEMDTemplateStore(name, load_all_files=False)
-        self.all_template_stores[name].root = self.designated_root
-        self.all_template_stores[name].initialize_store()
-        self.all_spec_stores[name] = GEMDSpecStore(name, load_all_files=False)
-        self.all_spec_stores[name].root = self.designated_root
-        self.all_spec_stores[name].initialize_store()
-
-    def register_store(self, store):
-        if type(store) == GEMDTemplateStore:
-            if store.id in self.all_template_stores.keys():
-                raise NameError(f"template store with id {store.name} already exists.")
-            if self.activated:
-                self.all_template_stores[store.id] = store
-                self.all_template_stores[store.id].initialize_store()
-        if type(store) == GEMDSpecStore:
-            if store.id in self.all_spec_store.keys():
-                raise NameError(f"spec store with id {store.name} already exists.")
-            if self.activated:
-                self.all_spec_store[store.id] = store
-                self.all_spec_store[store.id].initialize_store()
-            
-
-
-stores_config = StoresConfig()
 
 # TODO: chck types of errors returned
 
@@ -119,14 +58,16 @@ class GEMDTemplateStore(ABC):
     a template_type_root of json dump files coupled with one or more dictionaries of static, hard-coded templates
     """
 
-    # _root = Path(__file__).parent / "stores/global"
+    _root = Path(__file__).parent / "local"
 
-    def __init__(self, id, encoder=GEMDJson(), load_all_files=False):
+    def __init__(self, id, root=None, encoder=GEMDJson(), stores_config=None, load_all_files=False):
         """
         encoder = a pre-created GEMD JSON encoder (optional)
         """
 
         self.id = id
+        if root:
+            self.root = root
         self.encoder = encoder  # TODO: separate from science_kit one
         # self.logger = Logger()
         self._n_from_files = 0
@@ -149,8 +90,9 @@ class GEMDTemplateStore(ABC):
         }
         if load_all_files:
             self.register_all_templates_from_store()
-        if stores_config.activated:
-            stores_config.register_store(self)
+        if stores_config and stores_config.activated:
+            self.stores_config = stores_config
+            self.stores_config.register_store(self)
 
     @property
     def root(self):
@@ -159,11 +101,11 @@ class GEMDTemplateStore(ABC):
     @root.setter
     def root(self, path: str):
         # TODO raise error if not exists?
-        self._root = path
+        self._root = Path(path)
 
     @property
     def registry_path(self):
-        return self._root / "registry.csv"
+        return self._root / "template_registry.csv"
 
     @property
     def registry_columns(self):
@@ -281,7 +223,6 @@ class GEMDTemplateStore(ABC):
             #         return matching_template
 
             # writing to registry
-            # TODO: convert to dataframe manipulation to be safer
             with open(self.registry_path, "r+") as registry_csv_file:
                 persistent_id = len(registry_csv_file.readlines()) - 1
                 template.add_uid(
@@ -309,10 +250,10 @@ class GEMDTemplateStore(ABC):
     # @abstractmethod ?
     # shutil can cause problems down the road? permissions, etc
     def initialize_store(self):
-        # TODO raise error if not exists
-        if os.path.isdir(self.root):
-            shutil.rmtree(self.root)
-        os.mkdir(self.root)
+        # TODO raiseinitialize_store error if not exists
+        # if os.path.isdir(self.root):
+        #     shutil.rmtree(self.root)
+        # os.mkdir(self.root)
         for subfolder in self.store_folders.values():
             os.mkdir(subfolder)
         with open(self.registry_path, "w") as registry_csv_file:

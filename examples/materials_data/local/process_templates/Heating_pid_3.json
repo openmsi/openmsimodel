@@ -1,0 +1,23 @@
+{
+   "allowed_labels": [],
+   "allowed_names": [],
+   "conditions": [],
+   "description": null,
+   "name": "Heating",
+   "parameters": [
+      [
+         {
+            "id": "5f86ee21-2e45-44ac-8e5d-21a37fa2bd99",
+            "scope": "auto",
+            "type": "link_by_uid"
+         },
+         null
+      ]
+   ],
+   "tags": [],
+   "type": "process_template",
+   "uids": {
+      "auto": "b7422770-2b90-4725-b075-a852333a505e",
+      "persistent_id": 3
+   }
+}

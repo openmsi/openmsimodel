@@ -6,16 +6,14 @@ from gemd.entity.object import MaterialSpec, ProcessSpec, IngredientSpec, Measur
 from gemd.json import GEMDJson
 from openmsimodel.stores.cached_isinstance_functions import isinstance_spec
 from abc import ABC, abstractmethod
-from openmsimodel.stores.gemd_template_store import stores_config
+from pathlib import Path
+import os, shutil, csv
 
 @dataclass
 class GEMDSpec :
     spec : Union[MaterialSpec,ProcessSpec,IngredientSpec,MeasurementSpec]
     as_dict_no_uid : str
     from_file: bool
-    from_store: bool
-    from_memory: bool
-    from_subclass: bool
 
 class GEMDSpecStore(ABC) :
     """
@@ -23,7 +21,12 @@ class GEMDSpecStore(ABC) :
     a directory of json dump files coupled with dynamically-created specs
     """
 
-    def __init__(self,encoder=GEMDJson(),debug=False, load_all_files=False) :
+    _root = Path(__file__).parent / "local"
+
+    def __init__(self, id, root=None, encoder=GEMDJson(),debug=False, stores_config=None, load_all_files=False) :
+        self.id = id
+        if root:
+            self.root = root
         self.encoder = encoder
         self.__n_specs = 0
         self.__mat_specs = {}
@@ -39,8 +42,9 @@ class GEMDSpecStore(ABC) :
         self.__debug=debug
         if load_all_files:
             self.register_all_specs_from_store()
-        if stores_config.activated:
-            stores_config.register_store(self)
+        if stores_config and stores_config.activated:
+            self.stores_config = stores_config
+            self.stores_config.register_store(self)
 
     @property
     def root(self):
@@ -49,11 +53,11 @@ class GEMDSpecStore(ABC) :
     @root.setter
     def root(self, path: str):
         # TODO raise error if not exists?
-        self._root = path
+        self._root = Path(path)
 
     @property
     def registry_path(self):
-        return self._root / "registry.csv"
+        return self._root / "spec_registry.csv"
     
     @property
     def registry_columns(self):
@@ -74,6 +78,17 @@ class GEMDSpecStore(ABC) :
         "ingredient_spec": IngredientSpec,
         "measurement_spec": MeasurementSpec,
     }
+
+    def initialize_store(self):
+        # TODO raiseinitialize_store error if not exists
+        # if os.path.isdir(self.root):
+        #     shutil.rmtree(self.root)
+        # os.mkdir(self.root)
+        for subfolder in self.store_folders.values():
+            os.mkdir(subfolder)
+        with open(self.registry_path, "w") as registry_csv_file:
+            registry_writer = csv.writer(registry_csv_file, delimiter=",")
+            registry_writer.writerow(self.registry_columns)
 
     @property
     def n_specs(self) :
@@ -118,7 +133,7 @@ class GEMDSpecStore(ABC) :
         else :
             self.__register_new_unique_specs(specobj)
         existingspec = self.__get_stored_version_of_spec(specobj,debug=debug)
-        return existingspec.spec
+        return existingspec
 
     def register_new_unique_spec_from_file(self,item) :
         if not isinstance_spec(item) :
@@ -209,12 +224,32 @@ class GEMDSpecStore(ABC) :
         if stored_version is not None :
             self.__n_objs_found+=1
 
-    def __register_new_unique_specs(self,item) :
+    def register_new_unique_specs(self,item) :
         if not isinstance_spec(item) :
-            return
+            raise TypeError
         if self.__spec_exists_in_store_rec(item) :
-            return
-        self.__register_spec(item)
+            return self.__get_stored_version_of_spec(item)
+        spec_dataclass = self.__register_spec(item)
+        spec = spec_dataclass.spec
+        name = spec.name
+        # writing to registry
+        with open(self.registry_path, "r+") as registry_csv_file:
+            persistent_id = len(registry_csv_file.readlines()) - 1
+            spec.add_uid(
+                "persistent_id", persistent_id
+            )  # TODO: maybe make sure it's not there?
+            registry_writer = csv.writer(registry_csv_file, delimiter=",")
+            registry_writer.writerow([persistent_id, name, spec.typ])
+
+        # writing spec to file
+        with open(
+            self.store_folders[type(spec)] / f"{name}_pid_{persistent_id}.json",
+            "w",  # TODO: maybe use diff encoding of path
+        ) as spec_file:
+            spec_file.write(self.encoder.thin_dumps(spec, indent=3))
+        spec_dataclass.spec = spec
+        return spec_dataclass
+        
 
     def __register_spec(self,item,from_file=False) :
         new_spec_name, new_spec_as_dict_no_uid = self.__get_name_and_dict_for_spec(item)
@@ -227,4 +262,5 @@ class GEMDSpecStore(ABC) :
             print(f'Creating a new {type(item).__name__} with name {new_spec_name} ({new_uid})')
         dict_of_type[new_spec_name][new_uid] = GEMDSpec(item,new_spec_as_dict_no_uid,from_file)
         self.__n_specs+=1
+        return dict_of_type[new_spec_name][new_uid]
     

@@ -1,0 +1,13 @@
+{
+   "conditions": [],
+   "description": null,
+   "name": "Temperature",
+   "parameters": [],
+   "properties": [],
+   "tags": [],
+   "type": "measurement_template",
+   "uids": {
+      "auto": "1222c8f9-94a1-4fcb-9e40-3d7b43994d9c",
+      "persistent_id": 2
+   }
+}

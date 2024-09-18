@@ -1,0 +1,6 @@
+persistent_id,name,type
+0,Alloy,material_template
+1,Polishing,process_template
+2,Temperature,measurement_template
+3,Heating,process_template
+4,Temperature,parameter_template

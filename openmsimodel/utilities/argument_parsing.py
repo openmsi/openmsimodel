@@ -188,6 +188,20 @@ class OpenMSIModelParser(ArgumentParser):
                 "help": "source of GEMD data, wheter path to folder, single file or memory objects ",
             },
         ],
+        "gemd_folder": [
+            "positional",
+            {
+                "type": str,
+                "help": "Folder to dump gemd folder into (Gemd_modeller) ",
+            },
+        ],
+        "files_folder": [
+            "positional",
+            {
+                "type": str,
+                "help": "Folder to dump gemd folder into (Gemd_modeller) ",
+            },
+        ],
         "database_name": [
             "positional",
             {"type": str, "help": "name of database to log on"},

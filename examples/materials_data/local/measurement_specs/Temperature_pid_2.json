@@ -1,0 +1,18 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Temperature",
+   "notes": null,
+   "parameters": [],
+   "tags": [],
+   "template": {
+      "id": "1222c8f9-94a1-4fcb-9e40-3d7b43994d9c",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "measurement_spec",
+   "uids": {
+      "auto": "b26c421d-09e7-454e-8b65-33028137ea9e",
+      "persistent_id": 2
+   }
+}

@@ -1,0 +1,18 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Post-Heating Temperature",
+   "notes": null,
+   "parameters": [],
+   "tags": [],
+   "template": {
+      "id": "1222c8f9-94a1-4fcb-9e40-3d7b43994d9c",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "measurement_spec",
+   "uids": {
+      "auto": "a51127c2-c743-4873-af7b-578515b9a07d",
+      "persistent_id": 6
+   }
+}

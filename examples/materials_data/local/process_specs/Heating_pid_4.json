@@ -1,0 +1,18 @@
+{
+   "conditions": [],
+   "file_links": [],
+   "name": "Heating",
+   "notes": null,
+   "parameters": [],
+   "tags": [],
+   "template": {
+      "id": "b7422770-2b90-4725-b075-a852333a505e",
+      "scope": "auto",
+      "type": "link_by_uid"
+   },
+   "type": "process_spec",
+   "uids": {
+      "auto": "41717141-b056-4e9c-8e49-2563da942d82",
+      "persistent_id": 4
+   }
+}
