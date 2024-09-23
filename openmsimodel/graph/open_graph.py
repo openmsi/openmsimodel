@@ -82,6 +82,7 @@ class OpenGraph(Runnable):
         if not self.output.exists():
             raise FileNotFoundError(f"{self.output} does not exist.")
         self.science_kit = science_kit
+        print(science_kit)
         if self.science_kit:
             self.science_kit.open_graphs[name] = self
         self.layout = layout
@@ -723,6 +724,7 @@ class OpenGraph(Runnable):
             args.name,
             args.source,
             args.output,
+            None, #TODO: fix science_kti
             args.layout,
             args.add_bidirectional_edges,
             args.take_small_sample,
@@ -734,7 +736,7 @@ class OpenGraph(Runnable):
             "add_file_links": args.add_file_links,
             "add_tags": args.add_tags,
         }
-        G, relabeled_G_gviz, name_mapping = viewer.build_graph()
+        G, relabeled_G_gviz, name_mapping = viewer.build_graph(save=True)
 
         # reduces to elements with identifier and related nodes
         if args.identifier:
