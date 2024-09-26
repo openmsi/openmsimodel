@@ -199,7 +199,7 @@ class OpenMSIModelParser(ArgumentParser):
             "positional",
             {
                 "type": str,
-                "help": "Folder to dump gemd folder into (Gemd_modeller) ",
+                "help": "Folder to dump files folder into (Gemd_modeller) ",
             },
         ],
         "database_name": [

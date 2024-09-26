@@ -3,8 +3,12 @@ import os
 from pathlib import Path
 import glob
 import networkx as nx
+import time
 
 def from_graphml(graphml_filename):
+    if not os.path.exists(graphml_filename):
+        raise FileNotFoundError(f"GraphML file '{graphml_filename}' not found.")
+    time.sleep(1)
     graph_source = nx.read_graphml(graphml_filename)
     for n, d in graph_source.nodes(data=True):
         d.update(json.loads(d.pop("object", "{}")))

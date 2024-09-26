@@ -64,7 +64,6 @@ class GEMDTemplateStore(ABC):
         """
         encoder = a pre-created GEMD JSON encoder (optional)
         """
-
         self.id = id
         if root:
             self.root = root

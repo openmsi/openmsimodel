@@ -17,11 +17,9 @@ class LivePlotter(FileSystemEventHandler):
     def on_created(self, event):
         if not event.is_directory and event.src_path.endswith(".graphml"):
             print(f"New graph found: {event.src_path}")
-            # if self.current_display:
-            #     self.current_display.close()
-            launch_graph_widget(graph_source=read_graphml_from_folder(os.path.dirname(event.src_path)), engine='yfiles')
-            # self.current_display = self.display_func(
-            #     OpenGraphWidget.from_graphml_folder(os.path.dirname(event.src_path))
+            graph_source = read_graphml_from_folder(os.path.dirname(event.src_path))
+            print(graph_source)
+            launch_graph_widget(graph_source=graph_source, engine='yfiles')
             # )
 
 
