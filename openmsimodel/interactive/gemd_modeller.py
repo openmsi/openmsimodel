@@ -43,7 +43,6 @@ class AutomatableComponentTree:
         
         component_node = AutomatableComponentNode(automatable_component)
         file_node.add_child(component_node)
-        print("tree", self.display_tree())
         return component_node
 
     def find_component_by_file(self, file_name):
@@ -60,7 +59,6 @@ class AutomatableComponentTree:
 
     def _display_node(self, node, level):
         indent = "  " * level
-        print(f"{indent}{node.value}")
         for child in node.children:
             self._display_node(child, level + 1)
 
@@ -273,7 +271,6 @@ class GEMDModeller(Runnable):
     def run_from_command_line(cls, args=None):
         parser = cls.get_argument_parser()
         args = parser.parse_args(args=args)
-        print(args)
         gemd_modeller = cls(args.files_folder, args.gemd_folder, args.instantiate_build)
         gemd_modeller.interactive_mode()
     
