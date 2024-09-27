@@ -127,8 +127,6 @@ class GEMDElement(CoreElement):
 
             # TODO: change from file when supporting file links
             # registering the object templates
-            print(stores_tools.stores_config)
-            print(stores_tools.stores_config.activated)
             if stores_tools.stores_config.activated:
                 for i, store in enumerate(
                     stores_tools.stores_config.all_template_stores.values()

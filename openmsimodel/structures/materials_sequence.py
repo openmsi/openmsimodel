@@ -147,10 +147,6 @@ class MaterialsSequence(Structure):
         """
         linked = False
         for name in self.ingredients.keys():
-            print('first')
-            print(ingredient_name_to_link)
-            print(self.ingredients[name].run.name)
-            print(self.ingredients[name].run.name == ingredient_name_to_link)
             if self.ingredients[name].run.name == ingredient_name_to_link:
                 self.ingredients[name].spec.material = prior_block.material.spec
                 self.ingredients[name].run.material = prior_block.material.run
