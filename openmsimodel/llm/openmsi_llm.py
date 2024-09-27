@@ -41,7 +41,7 @@ class OpenMSI_LLM:
     
     def ask_question_with_context(self, context, question):
         response = openai.Completion.create(
-            engine="text-davinci-004",
+            engine="gpt-3.5-turbo-instruct",
             prompt=f"Context: {context}\nQuestion: {question}\nAnswer:",
             max_tokens=150
         )
@@ -68,22 +68,22 @@ class OpenMSI_LLM:
 
 
 def main():
-    api_key = ''
+    api_key = ""
     
     openmsi_llm = OpenMSI_LLM(api_key)
     target_folder = Path().absolute() / "output3"
 
-    graph = openmsi_llm.load_graphml("/srv/hemi01-j01/openmsimodel/openmsimodel/graph/open_graph_build_nb/output/Laser_shock_run.graphml")
-    subgraphs = OpenGraph.get_isolated_subgraphs(graph)
-    # subgraphs = OpenGraph.get_subbranches(graph)
+    # graph = openmsi_llm.load_graphml("/srv/hemi01-j01/openmsimodel/openmsimodel/graph/open_graph_build_nb/output/Laser_shock_run.graphml")
+    # subgraphs = OpenGraph.get_isolated_subgraphs(graph)
+    # # subgraphs = OpenGraph.get_subbranches(graph)
 
-    selected_subgraphs = sorted(subgraphs, key=lambda sg: sg.number_of_nodes())[-15:]
-    OpenGraph.save_subgraphs(selected_subgraphs, target_folder)
+    # selected_subgraphs = sorted(subgraphs, key=lambda sg: sg.number_of_nodes())[-15:]
+    # OpenGraph.save_subgraphs(selected_subgraphs, target_folder)
 
-    for i, s in enumerate(selected_subgraphs):
-        print(i, len(s.nodes))
-    sizes = [(i, len(subgraph.nodes)) for i, subgraph in enumerate(subgraphs)]
-    selected_subgraphs = sorted(sizes, key=lambda x: x[1])
+    # for i, s in enumerate(selected_subgraphs):
+    #     print(i, len(s.nodes))
+    # sizes = [(i, len(subgraph.nodes)) for i, subgraph in enumerate(subgraphs)]
+    # selected_subgraphs = sorted(sizes, key=lambda x: x[1])
 
     # sentences = []
     # for subgraph in selected_subgraphs:
@@ -93,7 +93,8 @@ def main():
     # print(f'Context length: {len(context)}')
     # openmsi_llm.write_context(context, target_folder / "context")
     # question = "What does node 1 represent?"
-    # answer = openmsi_llm.ask_question_with_context(context, question)
+    answer = openmsi_llm.ask_question_with_context('hi', 'how are you?')
+    print(answer)
     # print(answer)
 
 if __name__ == "__main__":
