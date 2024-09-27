@@ -149,9 +149,6 @@ class GEMDModeller(Runnable):
 
     def process_file_in_files_folder(self, file_name: str, file_path: str):
 
-        print(file_name)
-        print(file_path)
-        print(self.automatable_components)
         try:
 
             # Process the file and map to the automatable components tree
