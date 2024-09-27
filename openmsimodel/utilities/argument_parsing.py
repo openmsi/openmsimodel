@@ -181,6 +181,14 @@ class OpenMSIModelParser(ArgumentParser):
                 "help": "destination for artefacts generated during the creation of gemd models",
             },
         ],
+        "instantiate_build": [
+            "optional",
+            {
+                "action": "store_true",
+                "default": False,
+                "help": "whether to apply the modelling logic to files already existing in the folder at launch"
+            }
+        ],
         "source": [
             "positional",
             {

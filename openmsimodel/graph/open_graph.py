@@ -150,7 +150,7 @@ class OpenGraph(Runnable):
             obj_uid = obj_data["uids"][self.uuid_to_track]
             obj_name = obj_data["name"]
             # name_mapping[obj_uid] = "{}".format(obj_name, obj_uid, obj_type) #FIXME
-            name_mapping[obj_uid] = "{} [{}, {}]".format(obj_name, obj_uid, obj_type)
+            name_mapping[obj_uid] = "{} [{}, {}]".format(obj_name, obj_uid[:4], obj_type)
             self.handle_gemd_obj(
                 G_nx,
                 obj_uid,

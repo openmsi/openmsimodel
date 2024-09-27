@@ -78,6 +78,7 @@ class FolderEventHandler(FileSystemEventHandler):
         self.root = root
         self.callback_function = callback_function
 
+
     def on_created(self, event):
         if event.is_directory:
             # Handle folder creation
@@ -94,24 +95,25 @@ class GEMDModeller(Runnable):
 
     ARGUMENT_PARSER_TYPE = OpenMSIModelParser
 
-    def __init__(self, files_folder, gemd_folder, stores_config=stores_tools.stores_config):
+    def __init__(self, files_folder, gemd_folder, instantiate_build, stores_config=stores_tools.stores_config):
         """
         Initialize the GEMDModeller with stores_config, files_folder, and gemd_folder.
         """
-        self.stores_config = stores_config
         self.encoder = GEMDJson() #TODO: make the store's encoder universally available??
         self.files_folder = Path(files_folder)
         self.gemd_folder = Path(gemd_folder)
+        self.instantiate_build = instantiate_build
+        self.stores_config = stores_config
         self.automatable_components = []
         self.automatable_components_trees = {}
         
         self.run_memory = {}
         self.file_observer = Observer()  # Observer to monitor folder changes
-        self.start_folder_monitoring()
 
-        # Create directories if they don't exist
+        # Create directories if they don't exist 
         self.files_folder.mkdir(parents=True, exist_ok=True)
         self.gemd_folder.mkdir(parents=True, exist_ok=True)
+
 
     def add_automatable_component(self, rule_function, file_id_regex_pattern, required_schema, action_function):
         self.automatable_components.append({
@@ -146,8 +148,10 @@ class GEMDModeller(Runnable):
             raise ValueError(f"ID not found in filename: {file_name}")
 
     def process_file_in_files_folder(self, file_name: str, file_path: str):
-        print(f"Processing folder or file: {file_name}")
-        
+
+        print(file_name)
+        print(file_path)
+        print(self.automatable_components)
         try:
 
             # Process the file and map to the automatable components tree
@@ -155,9 +159,8 @@ class GEMDModeller(Runnable):
                 rule_function = component['rule_function']
 
                 if rule_function(file_name):
-
+                    
                     file_id = self.extract_id_from_filename_or_filepath(component['file_id_regex_pattern'], file_name, file_path)
-                    print('file_id', file_id)
                     # Check if the ID already has an automatable components tree, if not, create one
                     if file_id not in self.automatable_components_trees:
                         self.automatable_components_trees[file_id] = AutomatableComponentTree()
@@ -173,14 +176,17 @@ class GEMDModeller(Runnable):
                     component_tree.add_mapping(file_id, component)
 
                     self.dump_output_to_gemd_folder(output)
+                    print(f'Rule was Found for {file_name} and applied. ')
+
                     return
 
-            print(f'No Rules were Found for {file_name}.')
+            print(f'No Rules were Found for {file_name} ')
 
         except ValueError as e:
+            print(e)
             raise e
 
-    def process_file_in_gemd_folder(self, file_name):
+    def process_file_in_gemd_folder(self, file_name: str, file_path: str):
         """
         Process files dumped into the gemd_folder.
         This could involve registering templates and specs, or handling runs.
@@ -191,7 +197,6 @@ class GEMDModeller(Runnable):
     def dump_output_to_gemd_folder(self, output):
 
         for ele in output:
-            print(ele)
             json_file_path = self.gemd_folder / f"{ele.name}_{ele.typ}.json"
             with open(json_file_path, 'w') as json_file:
                 json_file.write(self.encoder.thin_dumps(ele, indent=2))
@@ -210,8 +215,33 @@ class GEMDModeller(Runnable):
         gemd_folder_event_handler = FolderEventHandler("gemd", str(self.gemd_folder), self.process_file_in_gemd_folder)
         self.file_observer.schedule(gemd_folder_event_handler, str(self.gemd_folder), recursive=False)
 
+        # Process existing files and folders if instantiate_build is True
+        if self.instantiate_build:
+            self.process_existing_files_and_folders()
+
         # Start observing both folders
         self.file_observer.start()
+
+    def process_existing_files_and_folders(self):
+        """
+        Process all existing files and folders in files_folder before monitoring starts.
+        """
+        print("Processing existing files and folders")
+
+        # Process existing files and folders in files_folder
+        for root, dirs, files in os.walk(self.files_folder):
+            # Process files
+            for file_name in files:
+                file_path = os.path.join(root, file_name)
+                print(f"- Processing initial file: {file_path}")
+                self.process_file_in_files_folder(file_name, file_path)  # Call the callback directly
+
+            # Process folders
+            for dir_name in dirs:
+                dir_path = os.path.join(root, dir_name)
+                print(f"- Processing initial folder: {dir_path}")
+                self.process_file_in_files_folder(dir_name, dir_path)  # Call the callback directly
+
 
     def stop_folder_monitoring(self):
         """
@@ -238,7 +268,7 @@ class GEMDModeller(Runnable):
     @classmethod
     def get_command_line_arguments(cls):
         superargs, superkwargs = super().get_command_line_arguments()
-        args = [*superargs, "files_folder", "gemd_folder"]
+        args = [*superargs, "files_folder", "gemd_folder", "instantiate_build"]
         kwargs = {**superkwargs}
         return args, kwargs
 
@@ -246,7 +276,8 @@ class GEMDModeller(Runnable):
     def run_from_command_line(cls, args=None):
         parser = cls.get_argument_parser()
         args = parser.parse_args(args=args)
-        gemd_modeller = cls(args.files_folder, args.gemd_folder)
+        print(args)
+        gemd_modeller = cls(args.files_folder, args.gemd_folder, args.instantiate_build)
         gemd_modeller.interactive_mode()
     
 

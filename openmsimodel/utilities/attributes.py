@@ -155,6 +155,8 @@ def update_attrs(
     # returns required attributes, defined as attributes with a default value
     required_attrs = _required_attrs(attrs_dict, AttrType, attr_dict_key, plural)
 
+    print("attributes")
+    print(attributes)
     supplied_attrs = {attr.name: attr for attr in attributes}
 
     for attr_name, attr in supplied_attrs.items():
@@ -162,6 +164,9 @@ def update_attrs(
         # TODO: applies to uncommented bloc of code above that caused errors
         # ensures that the attribute exists in the template and registers it to attrs_dict
         if attr_name not in attrs_dict[plural].keys():
+            print(attr)
+            print(hasattr(attr, "template"))
+            print(attr.template)
             if hasattr(attr, "template"):
                 define_attribute(
                     attrs_dict,
