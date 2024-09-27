@@ -82,7 +82,6 @@ class OpenGraph(Runnable):
         if not self.output.exists():
             raise FileNotFoundError(f"{self.output} does not exist.")
         self.science_kit = science_kit
-        print(science_kit)
         if self.science_kit:
             self.science_kit.open_graphs[name] = self
         self.layout = layout
