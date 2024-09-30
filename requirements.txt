@@ -22,3 +22,4 @@ ipycytoscape
 nbsphinx
 openai==0.28
 charset-normalizer
+transformers
