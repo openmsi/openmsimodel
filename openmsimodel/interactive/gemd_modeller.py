@@ -13,6 +13,7 @@ from openmsimodel.entity.gemd.measurement import Measurement
 import re
 import json
 from gemd.json import GEMDJson
+from girder_client import GirderClient
 
 
 class AutomatableComponentNode:
@@ -100,9 +101,13 @@ class GEMDModeller(Runnable):
 
     def __init__(
         self,
+        mode,
         files_folder,
         gemd_folder,
         instantiate_build,
+        api_url,
+        girder_api_key,
+        girder_root_folder_id,
         stores_config=stores_tools.stores_config,
     ):
         """
@@ -111,8 +116,24 @@ class GEMDModeller(Runnable):
         self.encoder = (
             GEMDJson()
         )  # TODO: make the store's encoder universally available??
+        self.mode = mode
         self.files_folder = Path(files_folder)
         self.gemd_folder = Path(gemd_folder)
+        if self.mode == "local":
+            if not self.files_folder.exists():
+                raise FileNotFoundError(
+                    f"Error: The folder '{self.files_folder}' does not exist."
+                )
+            if not self.gemd_folder.exists():
+                raise FileNotFoundError(
+                    f"Error: The folder '{self.gemd_folder}' does not exist."
+                )
+        self.api_url = api_url
+        self.girder_api_key = girder_api_key
+        self.girder_root_folder_id = girder_root_folder_id
+        if self.mode == "girder":
+            client = GirderClient(apiUrl=self.api_url)
+            self.client.authenticate(apiKey=self.girder_api_key)
         self.instantiate_build = instantiate_build
         self.stores_config = stores_config
         self.automatable_components = []
@@ -234,28 +255,75 @@ class GEMDModeller(Runnable):
         """
         Start monitoring both files_folder and gemd_folder.
         """
-        # Monitor files_folder
-        files_folder_event_handler = FolderEventHandler(
-            "files", str(self.files_folder), self.process_file_in_files_folder
-        )
-        self.file_observer.schedule(
-            files_folder_event_handler, str(self.files_folder), recursive=True
-        )
+        if self.mode == "local":
+            print("Running in LOCAL mode. Monitoring local files...")
+            # Monitor files_folder
+            files_folder_event_handler = FolderEventHandler(
+                "files", str(self.files_folder), self.process_file_in_files_folder
+            )
+            self.file_observer.schedule(
+                files_folder_event_handler, str(self.files_folder), recursive=True
+            )
 
-        # Monitor gemd_folder
-        gemd_folder_event_handler = FolderEventHandler(
-            "gemd", str(self.gemd_folder), self.process_file_in_gemd_folder
-        )
-        self.file_observer.schedule(
-            gemd_folder_event_handler, str(self.gemd_folder), recursive=False
-        )
+            # Monitor gemd_folder
+            gemd_folder_event_handler = FolderEventHandler(
+                "gemd", str(self.gemd_folder), self.process_file_in_gemd_folder
+            )
+            self.file_observer.schedule(
+                gemd_folder_event_handler, str(self.gemd_folder), recursive=False
+            )
 
-        # Process existing files and folders if instantiate_build is True
-        if self.instantiate_build:
-            self.process_existing_files_and_folders()
+            # Process existing files and folders if instantiate_build is True
+            if self.instantiate_build:
+                self.process_existing_files_and_folders()
 
-        # Start observing both folders
-        self.file_observer.start()
+            # Start observing both folders
+            self.file_observer.start()
+        elif self.model == "girder":
+            print("Running in GIRDER mode. Fetching files from Girder folder...")
+            self.process_existing_files_and_folders_girder()
+        else:
+            raise ValueError("Invalid mode. Choose 'local' or 'girder'.")
+
+    def process_existing_files_and_folders_girder(self):
+        """
+        Process all existing files and folders in a Girder folder before monitoring starts.
+        """
+        if not self.girder_root_folder_id:
+            raise ValueError("Girder mode requires a valid girder_root_folder_id.")
+
+        print("Processing existing files and folders in Girder")
+
+        def process_girder_folder(folder_id, folder_path=""):
+            """Recursively fetch and process files/folders from Girder."""
+
+            # Process files in the current folder
+            files = self.client.get(f"/item", parameters={"folderId": folder_id})
+            for file in files:
+                file_name = file["name"]
+                file_id = file["_id"]
+                file_path = os.path.join(folder_path, file_name)
+
+                print(f"- Processing initial file from Girder: {file_path}")
+                self.process_file_in_files_folder(file_name, file_path)
+
+            # Process subfolders
+            subfolders = self.client.get(
+                f"/folder", parameters={"parentType": "folder", "parentId": folder_id}
+            )
+            for subfolder in subfolders:
+                subfolder_name = subfolder["name"]
+                subfolder_id = subfolder["_id"]
+                subfolder_path = os.path.join(folder_path, subfolder_name)
+
+                print(f"- Processing initial folder from Girder: {subfolder_path}")
+                self.process_file_in_files_folder(subfolder_name, subfolder_path)
+
+                # Recursively process the subfolder
+                process_girder_folder(subfolder_id, subfolder_path)
+
+        # Start processing from the root Girder folder folder
+        process_girder_folder(self.girder_root_folder_id)
 
     def process_existing_files_and_folders(self):
         """
@@ -288,13 +356,6 @@ class GEMDModeller(Runnable):
         self.file_observer.stop()
         self.file_observer.join()
 
-    @classmethod
-    def get_argument_parser(cls, *args, **kwargs):
-        parser = cls.ARGUMENT_PARSER_TYPE(*args, **kwargs)
-        cl_args, cl_kwargs = cls.get_command_line_arguments()
-        parser.add_arguments(*cl_args, **cl_kwargs)
-        return parser
-
     # @classmethod
     def interactive_mode(self):
 
@@ -302,17 +363,88 @@ class GEMDModeller(Runnable):
             continue
 
     @classmethod
+    def get_argument_parser(cls, *args, **kwargs):
+        parser = cls.ARGUMENT_PARSER_TYPE(*args, **kwargs)
+        cl_args, cl_kwargs = cls.get_command_line_arguments()
+        parser.add_arguments(*cl_args, **cl_kwargs)
+        return parser
+
+    @classmethod
     def get_command_line_arguments(cls):
         superargs, superkwargs = super().get_command_line_arguments()
-        args = [*superargs, "files_folder", "gemd_folder", "instantiate_build"]
+        # args = [*superargs, "files_folder", "gemd_folder", "instantiate_build"]
+        args = [*superargs]
         kwargs = {**superkwargs}
         return args, kwargs
 
     @classmethod
     def run_from_command_line(cls, args=None):
         parser = cls.get_argument_parser()
+        parser.add_argument(
+            "mode",
+            choices=["local", "girder"],
+            help="Mode of operation: 'local' for monitoring local files, 'girder' for fetching files from Girder.",
+        )
+
+        parser.add_argument(
+            "--files_folder",
+            type=str,
+            required=False,
+            default=None,
+            help="Path to the local folder containing files (Required in 'local' mode).",
+        )
+
+        parser.add_argument(
+            "--gemd_folder",
+            type=str,
+            required=False,
+            default=None,
+            help="Path to the local GEMD output folder (Required in 'local' mode).",
+        )
+
+        parser.add_argument(
+            "--girder_root_folder_id",
+            type=str,
+            required=False,
+            default=None,
+            help="Root folder ID in Girder (Required in 'girder' mode).",
+        )
+        parser.add_argument(
+            "--api_url",
+            type=str,
+            default="https://data.htmdec.org/api/v1",
+            help="Girder API URL",
+        )
+        parser.add_argument(
+            "--girder_api_key", default=None, type=str, help="Girder API Key"
+        )
+
+        parser.add_argument(
+            "--instantiate_build",
+            action="store_true",
+            help="Whether to process existing files and folders before starting monitoring.",
+        )
+
         args = parser.parse_args(args=args)
-        gemd_modeller = cls(args.files_folder, args.gemd_folder, args.instantiate_build)
+
+        if args.mode == "local":
+            if not args.files_folder or not args.gemd_folder:
+                parser.error(
+                    "--files_folder and --gemd_folder are required in 'local' mode."
+                )
+        elif args.mode == "girder":
+            if not args.api_url:
+                parser.error("The --api_url argument is required in 'girder' mode.")
+            if not args.girder_api_key:
+                parser.error(
+                    "The --girder_api_key argument is required in 'girder' mode."
+                )
+            if not args.girder_root_folder_id:
+                parser.error("--girder_root_folder_id is required in 'girder' mode.")
+
+        gemd_modeller = cls(
+            args.mode, args.files_folder, args.gemd_folder, args.instantiate_build
+        )
         gemd_modeller.interactive_mode()
 
 
