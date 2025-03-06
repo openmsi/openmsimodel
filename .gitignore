@@ -1,5 +1,5 @@
 examples/birdshot/input
-.circleci
+.circleci/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
