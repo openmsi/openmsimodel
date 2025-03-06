@@ -78,3 +78,15 @@ jobs:
           build-args: |
             PACKAGE_VERSION=${{ env.VERSION }}
           file: ./Dockerfile
+
+  build-docs:
+    needs: [pypi-release, docker-publish] # Ensure it runs only after PyPI & Docker jobs succeed
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Trigger ReadTheDocs Build
+        run: |
+          curl -X POST -d "token=${{ secrets.RTD_API_TOKEN }}" \
+            https://readthedocs.org/api/v3/projects/openmsimodel/builds/

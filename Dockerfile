@@ -16,10 +16,7 @@ RUN apt-get update && apt-get install -y \
 
 # Install openmsimodel and pygraphviz
 ARG PACKAGE_VERSION=latest
-RUN pip install --no-cache-dir openmsimodel==$PACKAGE_VERSION \
-    && pip install --no-cache-dir pygraphviz --global-option=build_ext \
-    --global-option="-I/usr/include/graphviz/" \
-    --global-option="-L/usr/lib/graphviz/"
+RUN pip install --no-cache-dir openmsimodel==$PACKAGE_VERSION 
 
 # Set a default command
 CMD ["/bin/bash"]
