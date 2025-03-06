@@ -88,5 +88,5 @@ jobs:
 
       - name: Trigger ReadTheDocs Build
         run: |
-          curl -X POST "https://readthedocs.org/api/v3/projects/YOUR_PROJECT_NAME/versions/latest/builds/" \
+          curl -X POST "https://readthedocs.org/api/v3/projects/openmsimodel/versions/latest/builds/" \
             -H "Authorization: Token ${{ secrets.RTD_API_TOKEN }}"
