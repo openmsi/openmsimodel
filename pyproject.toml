@@ -1,0 +1,56 @@
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "openmsimodel"
+version = "0.2.0.dev1"
+description = "OpenMSIModel uses the GEMD (Graphical Expression of Material Data) format to interact with generalized laboratory, analysis, and computational materials data. It allows to structure real scientific workflows into meaningful data structures, model them in graph and relational databases, explore on interactive graphical interfaces, and build long-term, shareable assets stores."
+authors = ["Ali Rachidi <arachid1@jhu.edu>"]
+license = "MIT"
+homepage = "https://github.com/openmsi/openmsimodel"
+repository = "https://github.com/openmsi/openmsimodel"
+readme = "README.md"
+packages = [{ include = "openmsimodel" }]
+include = ["openmsimodel/**/*"]
+classifiers = [
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.9",
+    "License :: OSI Approved :: MIT License"
+]
+
+[tool.poetry.dependencies]
+python = ">=3.9,<3.11"
+gemd = "1.13.0"
+networkx = "*"
+pymssql = "2.2.8"
+SQLAlchemy = "2.0.17"
+prompt_toolkit = "*"
+numpy = "*"
+pandas = "*"
+methodtools = "*"
+matplotlib = "*"
+yfiles_jupyter_graphs = "*"
+ipython = "*"
+ipykernel = "*"
+openpyxl = "*"
+graphviz = "*"
+sphinx_rtd_theme = "*"
+questionary = "*"
+webcolors = "*"
+jupyter = "*"
+ipycytoscape = "*"
+nbsphinx = "*"
+openai = "0.28"
+charset-normalizer = "*"
+transformers = "*"
+pygraphviz = "*"
+
+[tool.poetry.dev-dependencies]
+
+[tool.poetry.extras]
+all = []
+
+[tool.poetry.scripts]
+open_db = "openmsimodel.db.open_db:main"
+open_graph = "openmsimodel.graph.open_graph:main"
