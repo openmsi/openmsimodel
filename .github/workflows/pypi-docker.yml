@@ -73,8 +73,8 @@ jobs:
         with:
           push: true
           tags: |
-            openmsi/alpss:latest
-            openmsi/alpss:${{ env.VERSION }}
+            openmsi/openmsimodel:latest
+            openmsi/openmsimodel:${{ env.VERSION }}
           build-args: |
             PACKAGE_VERSION=${{ env.VERSION }}
           file: ./Dockerfile
