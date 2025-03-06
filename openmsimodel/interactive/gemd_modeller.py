@@ -14,6 +14,7 @@ import re
 import json
 from gemd.json import GEMDJson
 
+
 class AutomatableComponentNode:
     def __init__(self, value):
         self.value = value  # This could be a file name, component, or function
@@ -24,6 +25,7 @@ class AutomatableComponentNode:
 
     def __repr__(self):
         return f"{self.value} -> {[child.value for child in self.children]}"
+
 
 class AutomatableComponentTree:
     def __init__(self):
@@ -40,7 +42,7 @@ class AutomatableComponentTree:
             self.file_mappings[file_name] = file_node
         else:
             file_node = self.file_mappings[file_name]
-        
+
         component_node = AutomatableComponentNode(automatable_component)
         file_node.add_child(component_node)
         return component_node
@@ -62,82 +64,108 @@ class AutomatableComponentTree:
         for child in node.children:
             self._display_node(child, level + 1)
 
+
 def rule_contains_string(file_name: str, match_str: str) -> bool:
     return match_str in file_name
+
 
 class FolderEventHandler(FileSystemEventHandler):
     """
     Custom event handler for folder events.
     It calls the appropriate callback when a new file is created in the folder.
     """
+
     def __init__(self, name, root, callback_function):
         super().__init__()
         self.name = name
         self.root = root
         self.callback_function = callback_function
 
-
     def on_created(self, event):
         if event.is_directory:
             # Handle folder creation
             folder_name = os.path.basename(event.src_path)
-            print(f"New folder added: {folder_name}")
+            # print(f"New folder added: {folder_name}")
             self.callback_function(folder_name, event.src_path)
         else:
             # Handle file creation
             file_name = os.path.basename(event.src_path)
-            print(f"New file added: {file_name}")
+            # print(f"New file added: {file_name}")
             self.callback_function(file_name, event.src_path)
+
 
 class GEMDModeller(Runnable):
 
     ARGUMENT_PARSER_TYPE = OpenMSIModelParser
 
-    def __init__(self, files_folder, gemd_folder, instantiate_build, stores_config=stores_tools.stores_config):
+    def __init__(
+        self,
+        files_folder,
+        gemd_folder,
+        instantiate_build,
+        stores_config=stores_tools.stores_config,
+    ):
         """
         Initialize the GEMDModeller with stores_config, files_folder, and gemd_folder.
         """
-        self.encoder = GEMDJson() #TODO: make the store's encoder universally available??
+        self.encoder = (
+            GEMDJson()
+        )  # TODO: make the store's encoder universally available??
         self.files_folder = Path(files_folder)
         self.gemd_folder = Path(gemd_folder)
         self.instantiate_build = instantiate_build
         self.stores_config = stores_config
         self.automatable_components = []
         self.automatable_components_trees = {}
-        
-        self.run_memory = {}
+
+        # self.run_memory = {}
         self.file_observer = Observer()  # Observer to monitor folder changes
 
-        # Create directories if they don't exist 
+        # Create directories if they don't exist
         self.files_folder.mkdir(parents=True, exist_ok=True)
         self.gemd_folder.mkdir(parents=True, exist_ok=True)
 
-
-    def add_automatable_component(self, rule_function, file_id_regex_pattern, required_schema, action_function):
-        self.automatable_components.append({
-            'rule_function': rule_function,
-            'file_id_regex_pattern': file_id_regex_pattern,
-            'required_schema': required_schema,
-            'action_function': action_function,
-        })
+    def add_automatable_component(
+        self, rule_function, file_id_regex_pattern, required_schema, action_function
+    ):
+        self.automatable_components.append(
+            {
+                "rule_function": rule_function,
+                "file_id_regex_pattern": file_id_regex_pattern,
+                "required_schema": required_schema,
+                "action_function": action_function,
+            }
+        )
 
     def functions(self):
-        return [component['action_function'].__name__ for component in self.automatable_components]
+        return [
+            component["action_function"].__name__
+            for component in self.automatable_components
+        ]
 
     def ids(self):
-        return list(set([component['id'] for component in self.automatable_components]))
+        return list(set([component["id"] for component in self.automatable_components]))
 
     def required_schemas(self):
-        return list(set([component['required_schema'] for component in self.automatable_components]))
+        return list(
+            set(
+                [
+                    component["required_schema"]
+                    for component in self.automatable_components
+                ]
+            )
+        )
 
-    def extract_id_from_filename_or_filepath(self, file_id_regex_pattern: (str, bool), file_name: str, file_path: str) -> str:
+    def extract_id_from_filename_or_filepath(
+        self, file_id_regex_pattern: (str, bool), file_name: str, file_path: str
+    ) -> str:
         """
         Extract the ID from the filename using a regex file_id.
         Modify the file_id based on your ID format.
         """
-        if file_id_regex_pattern[1] == True: # extract id from filepath
+        if file_id_regex_pattern[1] == True:  # extract id from filepath
             match = re.search(file_id_regex_pattern[0], file_path)
-        else: # extract id from filename
+        else:  # extract id from filename
             # file_id_regex_pattern = r"\d+"  # Example: Match a sequence of digits (modify based on your ID file_id)
             match = re.search(file_id_regex_pattern[0], file_name)
         if match:
@@ -151,31 +179,35 @@ class GEMDModeller(Runnable):
 
             # Process the file and map to the automatable components tree
             for component in self.automatable_components:
-                rule_function = component['rule_function']
+                rule_function = component["rule_function"]
 
                 if rule_function(file_name):
-                    
-                    file_id = self.extract_id_from_filename_or_filepath(component['file_id_regex_pattern'], file_name, file_path)
+
+                    file_id = self.extract_id_from_filename_or_filepath(
+                        component["file_id_regex_pattern"], file_name, file_path
+                    )
                     # Check if the ID already has an automatable components tree, if not, create one
                     if file_id not in self.automatable_components_trees:
-                        self.automatable_components_trees[file_id] = AutomatableComponentTree()
-                    
+                        self.automatable_components_trees[file_id] = (
+                            AutomatableComponentTree()
+                        )
+
                     # Access the tree for this ID
-                    component_tree = self.automatable_components_trees[file_id]        
-                    
-                    required_schema = component['required_schema']
-                    action_function = component['action_function']
+                    component_tree = self.automatable_components_trees[file_id]
+
+                    required_schema = component["required_schema"]
+                    action_function = component["action_function"]
                     output = action_function(file_name, file_path, component)
 
                     # Add the mapping to the automatable components tree for this ID
                     component_tree.add_mapping(file_id, component)
 
                     self.dump_output_to_gemd_folder(output)
-                    print(f'Rule was Found for {file_name} and applied. ')
+                    print(f"Rule was Found for {file_name} and applied. ")
 
                     return
 
-            print(f'No Rules were Found for {file_name} ')
+            print(f"No Rules were Found for {file_name} ")
 
         except ValueError as e:
             print(e)
@@ -193,7 +225,7 @@ class GEMDModeller(Runnable):
 
         for ele in output:
             json_file_path = self.gemd_folder / f"{ele.name}_{ele.typ}.json"
-            with open(json_file_path, 'w') as json_file:
+            with open(json_file_path, "w") as json_file:
                 json_file.write(self.encoder.thin_dumps(ele, indent=2))
                 # json.dump(ele, json_file, indent=4)
             # json.dump(self.encoder(ele, json_file, indent=4)
@@ -203,12 +235,20 @@ class GEMDModeller(Runnable):
         Start monitoring both files_folder and gemd_folder.
         """
         # Monitor files_folder
-        files_folder_event_handler = FolderEventHandler("files", str(self.files_folder), self.process_file_in_files_folder)
-        self.file_observer.schedule(files_folder_event_handler, str(self.files_folder), recursive=True)
+        files_folder_event_handler = FolderEventHandler(
+            "files", str(self.files_folder), self.process_file_in_files_folder
+        )
+        self.file_observer.schedule(
+            files_folder_event_handler, str(self.files_folder), recursive=True
+        )
 
         # Monitor gemd_folder
-        gemd_folder_event_handler = FolderEventHandler("gemd", str(self.gemd_folder), self.process_file_in_gemd_folder)
-        self.file_observer.schedule(gemd_folder_event_handler, str(self.gemd_folder), recursive=False)
+        gemd_folder_event_handler = FolderEventHandler(
+            "gemd", str(self.gemd_folder), self.process_file_in_gemd_folder
+        )
+        self.file_observer.schedule(
+            gemd_folder_event_handler, str(self.gemd_folder), recursive=False
+        )
 
         # Process existing files and folders if instantiate_build is True
         if self.instantiate_build:
@@ -229,14 +269,17 @@ class GEMDModeller(Runnable):
             for file_name in files:
                 file_path = os.path.join(root, file_name)
                 print(f"- Processing initial file: {file_path}")
-                self.process_file_in_files_folder(file_name, file_path)  # Call the callback directly
+                self.process_file_in_files_folder(
+                    file_name, file_path
+                )  # Call the callback directly
 
             # Process folders
             for dir_name in dirs:
                 dir_path = os.path.join(root, dir_name)
                 print(f"- Processing initial folder: {dir_path}")
-                self.process_file_in_files_folder(dir_name, dir_path)  # Call the callback directly
-
+                self.process_file_in_files_folder(
+                    dir_name, dir_path
+                )  # Call the callback directly
 
     def stop_folder_monitoring(self):
         """
@@ -252,14 +295,12 @@ class GEMDModeller(Runnable):
         parser.add_arguments(*cl_args, **cl_kwargs)
         return parser
 
-
     # @classmethod
     def interactive_mode(self):
 
-
         while True:
-            continue   
-    
+            continue
+
     @classmethod
     def get_command_line_arguments(cls):
         superargs, superkwargs = super().get_command_line_arguments()
@@ -273,7 +314,7 @@ class GEMDModeller(Runnable):
         args = parser.parse_args(args=args)
         gemd_modeller = cls(args.files_folder, args.gemd_folder, args.instantiate_build)
         gemd_modeller.interactive_mode()
-    
+
 
 def main(args=None):
     """
