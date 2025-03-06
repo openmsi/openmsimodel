@@ -161,14 +161,17 @@ def update_attrs(
         # FIXME: quick fix for now for having multiple version of a same template (i.e., ambient ressure, purging pressure for the same parameter template: pressure )
         # TODO: applies to uncommented bloc of code above that caused errors
         # ensures that the attribute exists in the template and registers it to attrs_dict
-        if attr_name not in attrs_dict[plural].keys():
-            if hasattr(attr, "template"):
-                define_attribute(
-                    attrs_dict,
-                    template=attr.template,
-                    # default_value=attr.template.default_value, #FIXME
-                )
-            attr_name = attr.template.name  # FIXME
+        try:
+            if attr_name not in attrs_dict[plural].keys():
+                if hasattr(attr, "template"):
+                    define_attribute(
+                        attrs_dict,
+                        template=attr.template,
+                        # default_value=attr.template.default_value, #FIXME
+                    )
+                attr_name = attr.template.name  # FIXME
+        except Exception as e:
+            print(f"Error processing attribute '{attr_name}': {e}. Skipping...")
 
         # reassigns the template of the supplied attr to the pre-defined attr template
         if type(attr) == PropertyAndConditions:

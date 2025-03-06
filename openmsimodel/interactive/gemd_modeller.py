@@ -104,10 +104,10 @@ class GEMDModeller(Runnable):
         mode,
         files_folder,
         gemd_folder,
-        instantiate_build,
         api_url,
         girder_api_key,
         girder_root_folder_id,
+        instantiate_build,
         stores_config=stores_tools.stores_config,
     ):
         """
@@ -117,34 +117,23 @@ class GEMDModeller(Runnable):
             GEMDJson()
         )  # TODO: make the store's encoder universally available??
         self.mode = mode
-        self.files_folder = Path(files_folder)
-        self.gemd_folder = Path(gemd_folder)
         if self.mode == "local":
-            if not self.files_folder.exists():
-                raise FileNotFoundError(
-                    f"Error: The folder '{self.files_folder}' does not exist."
-                )
-            if not self.gemd_folder.exists():
-                raise FileNotFoundError(
-                    f"Error: The folder '{self.gemd_folder}' does not exist."
-                )
+            self.files_folder = Path(files_folder)
+            self.gemd_folder = Path(gemd_folder)
+            self.file_observer = Observer()  # Observer to monitor folder changes
+            self.files_folder.mkdir(parents=True, exist_ok=True)
+            self.gemd_folder.mkdir(parents=True, exist_ok=True)
+
         self.api_url = api_url
         self.girder_api_key = girder_api_key
         self.girder_root_folder_id = girder_root_folder_id
         if self.mode == "girder":
-            client = GirderClient(apiUrl=self.api_url)
+            self.client = GirderClient(apiUrl=self.api_url)
             self.client.authenticate(apiKey=self.girder_api_key)
         self.instantiate_build = instantiate_build
         self.stores_config = stores_config
         self.automatable_components = []
         self.automatable_components_trees = {}
-
-        # self.run_memory = {}
-        self.file_observer = Observer()  # Observer to monitor folder changes
-
-        # Create directories if they don't exist
-        self.files_folder.mkdir(parents=True, exist_ok=True)
-        self.gemd_folder.mkdir(parents=True, exist_ok=True)
 
     def add_automatable_component(
         self, rule_function, file_id_regex_pattern, required_schema, action_function
@@ -207,6 +196,7 @@ class GEMDModeller(Runnable):
                     file_id = self.extract_id_from_filename_or_filepath(
                         component["file_id_regex_pattern"], file_name, file_path
                     )
+
                     # Check if the ID already has an automatable components tree, if not, create one
                     if file_id not in self.automatable_components_trees:
                         self.automatable_components_trees[file_id] = (
@@ -279,7 +269,7 @@ class GEMDModeller(Runnable):
 
             # Start observing both folders
             self.file_observer.start()
-        elif self.model == "girder":
+        elif self.mode == "girder":
             print("Running in GIRDER mode. Fetching files from Girder folder...")
             self.process_existing_files_and_folders_girder()
         else:
@@ -372,59 +362,23 @@ class GEMDModeller(Runnable):
     @classmethod
     def get_command_line_arguments(cls):
         superargs, superkwargs = super().get_command_line_arguments()
-        # args = [*superargs, "files_folder", "gemd_folder", "instantiate_build"]
-        args = [*superargs]
+        args = [
+            *superargs,
+            "mode",
+            "files_folder",
+            "gemd_folder",
+            "api_url",
+            "girder_api_key",
+            "girder_root_folder_id",
+            "instantiate_build",
+        ]
+        # args = [*superargs]
         kwargs = {**superkwargs}
         return args, kwargs
 
     @classmethod
     def run_from_command_line(cls, args=None):
         parser = cls.get_argument_parser()
-        parser.add_argument(
-            "mode",
-            choices=["local", "girder"],
-            help="Mode of operation: 'local' for monitoring local files, 'girder' for fetching files from Girder.",
-        )
-
-        parser.add_argument(
-            "--files_folder",
-            type=str,
-            required=False,
-            default=None,
-            help="Path to the local folder containing files (Required in 'local' mode).",
-        )
-
-        parser.add_argument(
-            "--gemd_folder",
-            type=str,
-            required=False,
-            default=None,
-            help="Path to the local GEMD output folder (Required in 'local' mode).",
-        )
-
-        parser.add_argument(
-            "--girder_root_folder_id",
-            type=str,
-            required=False,
-            default=None,
-            help="Root folder ID in Girder (Required in 'girder' mode).",
-        )
-        parser.add_argument(
-            "--api_url",
-            type=str,
-            default="https://data.htmdec.org/api/v1",
-            help="Girder API URL",
-        )
-        parser.add_argument(
-            "--girder_api_key", default=None, type=str, help="Girder API Key"
-        )
-
-        parser.add_argument(
-            "--instantiate_build",
-            action="store_true",
-            help="Whether to process existing files and folders before starting monitoring.",
-        )
-
         args = parser.parse_args(args=args)
 
         if args.mode == "local":
@@ -443,7 +397,13 @@ class GEMDModeller(Runnable):
                 parser.error("--girder_root_folder_id is required in 'girder' mode.")
 
         gemd_modeller = cls(
-            args.mode, args.files_folder, args.gemd_folder, args.instantiate_build
+            args.mode,
+            args.files_folder,
+            args.gemd_folder,
+            args.api_url,
+            args.girder_api_key,
+            args.girder_root_folder_id,
+            args.instantiate_build,
         )
         gemd_modeller.interactive_mode()
 

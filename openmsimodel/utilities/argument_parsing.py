@@ -181,14 +181,6 @@ class OpenMSIModelParser(ArgumentParser):
                 "help": "destination for artefacts generated during the creation of gemd models",
             },
         ],
-        "instantiate_build": [
-            "optional",
-            {
-                "action": "store_true",
-                "default": False,
-                "help": "whether to apply the modelling logic to files already existing in the folder at launch"
-            }
-        ],
         "source": [
             "positional",
             {
@@ -196,18 +188,59 @@ class OpenMSIModelParser(ArgumentParser):
                 "help": "source of GEMD data, wheter path to folder, single file or memory objects ",
             },
         ],
-        "gemd_folder": [
-            "positional",
+        "files_folder": [
+            "optional",
             {
                 "type": str,
-                "help": "Folder to dump gemd folder into (Gemd_modeller) ",
+                "help": "Path to the local folder containing files (Required in 'local' mode).",
+                "default": None,
             },
         ],
-        "files_folder": [
-            "positional",
+        "gemd_folder": [
+            "optional",
             {
                 "type": str,
-                "help": "Folder to dump files folder into (Gemd_modeller) ",
+                "help": "Path to the local GEMD output folder (Required in 'local' mode).",
+                "default": None,
+            },
+        ],
+        "instantiate_build": [
+            "optional",
+            {
+                "action": "store_true",
+                "default": False,
+                "help": "whether to apply the modelling logic to files already existing in the folder at launch",
+            },
+        ],
+        "mode": [
+            "required",
+            {
+                "choices": ["local", "girder"],
+                "help": "Mode of operation: 'local' for monitoring local files, 'girder' for fetching files from Girder.",
+            },
+        ],
+        "girder_root_folder_id": [
+            "optional",
+            {
+                "type": str,
+                "help": "Root folder ID in Girder (Required in 'girder' mode).",
+                "default": None,
+            },
+        ],
+        "api_url": [
+            "optional",
+            {
+                "type": str,
+                "help": "Girder API URL (Required in 'girder' mode).",
+                "default": "https://data.htmdec.org/api/v1",
+            },
+        ],
+        "girder_api_key": [
+            "optional",
+            {
+                "type": str,
+                "help": "Girder API Key (Required in 'girder' mode).",
+                "default": None,
             },
         ],
         "database_name": [
