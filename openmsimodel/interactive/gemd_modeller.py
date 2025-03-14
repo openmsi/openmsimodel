@@ -17,36 +17,24 @@ from girder_client import GirderClient
 
 
 class AutomatableComponentNode:
-    def __init__(self, value):
-        self.value = value  # This could be a file name, component, or function
-        self.children = []  # List of child nodes (representing relationships)
-
-    def add_child(self, child_node):
-        self.children.append(child_node)
-
-    def __repr__(self):
-        return f"{self.value} -> {[child.value for child in self.children]}"
+    def __init__(self, file_name, component, output):
+        self.file_name = file_name
+        self.component = component
+        self.output = output
 
 
 class AutomatableComponentTree:
     def __init__(self):
-        self.root = AutomatableComponentNode("root")
-        self.file_mappings = {}  # Mapping of file names to their corresponding nodes
+        self.root = AutomatableComponentNode("root", None, None)
+        self.file_mappings = {}
 
-    def add_mapping(self, file_name, automatable_component):
+    def add_mapping(self, file_id, component, output):
         """
         Add a new file name and map it to an automatable component in the tree.
         """
-        if file_name not in self.file_mappings:
-            file_node = AutomatableComponentNode(file_name)
-            self.root.add_child(file_node)
-            self.file_mappings[file_name] = file_node
-        else:
-            file_node = self.file_mappings[file_name]
-
-        component_node = AutomatableComponentNode(automatable_component)
-        file_node.add_child(component_node)
-        return component_node
+        if file_id not in self.file_mappings:
+            file_node = AutomatableComponentNode(file_id, component, output)
+            self.file_mappings[component["name"]] = file_node
 
     def find_component_by_file(self, file_name):
         """
@@ -64,6 +52,34 @@ class AutomatableComponentTree:
         indent = "  " * level
         for child in node.children:
             self._display_node(child, level + 1)
+
+
+class BIRDSHOTAutomatableComponentTree(AutomatableComponentTree):
+
+    def __init__(self):
+        super().__init__()
+        self.schema = "dag"
+
+    def map_to_schema(self):
+        if self.schema == "dag":
+            return self.map_to_dag()
+
+    def map_to_dag(self):
+        _all = []
+        if "Syn" in self.file_mappings:
+            synthesis_kit = self.file_mappings["Syn"].output
+            if "EDS" in self.file_mappings:
+                eds_kit = self.file_mappings["EDS"].output
+                eds_kit_first_sequence = list(eds_kit.structures.values())[0]
+                eds_kit.link_prior(
+                    synthesis_kit,
+                    ingredient_name_to_link=eds_kit_first_sequence.element_assets[
+                        0
+                    ].name,
+                )
+                _all.extend(eds_kit.assets())
+            _all.extend(synthesis_kit.assets())
+        return _all
 
 
 def rule_contains_string(file_name: str, match_str: str) -> bool:
@@ -95,6 +111,17 @@ class FolderEventHandler(FileSystemEventHandler):
             self.callback_function(file_name, event.src_path)
 
 
+# def out(self, item):
+#     """
+#     function object to run on individual item during recursion
+#     :param item: json item to write its destination
+#     se
+#     """
+#     fn = "_".join([item.__class__.__name__, item.name, item.uids["auto"], ".json"])
+#     with open(os.path.join(local_out_destination, fn), "w") as fp:
+#         fp.write(self.dump_function(item, indent=3))
+
+
 class GEMDModeller(Runnable):
 
     ARGUMENT_PARSER_TYPE = OpenMSIModelParser
@@ -117,32 +144,35 @@ class GEMDModeller(Runnable):
             GEMDJson()
         )  # TODO: make the store's encoder universally available??
         self.mode = mode
+        self.gemd_folder = Path(gemd_folder)
+        self.gemd_folder.mkdir(parents=True, exist_ok=True)
+
         if self.mode == "local":
             self.files_folder = Path(files_folder)
-            self.gemd_folder = Path(gemd_folder)
             self.file_observer = Observer()  # Observer to monitor folder changes
             self.files_folder.mkdir(parents=True, exist_ok=True)
-            self.gemd_folder.mkdir(parents=True, exist_ok=True)
 
         self.api_url = api_url
         self.girder_api_key = girder_api_key
         self.girder_root_folder_id = girder_root_folder_id
-        if self.mode == "girder":
+        if self.mode == "girder" or self.mode == "forms":
             self.client = GirderClient(apiUrl=self.api_url)
             self.client.authenticate(apiKey=self.girder_api_key)
         self.instantiate_build = instantiate_build
         self.stores_config = stores_config
         self.automatable_components = []
         self.automatable_components_trees = {}
+        self.tree_class = AutomatableComponentTree
 
     def add_automatable_component(
-        self, rule_function, file_id_regex_pattern, required_schema, action_function
+        self, name, rule_function, file_id_regex_pattern, action_function
     ):
         self.automatable_components.append(
             {
+                "name": name,
                 "rule_function": rule_function,
                 "file_id_regex_pattern": file_id_regex_pattern,
-                "required_schema": required_schema,
+                # "required_schema": required_schema,
                 "action_function": action_function,
             }
         )
@@ -173,47 +203,50 @@ class GEMDModeller(Runnable):
         Extract the ID from the filename using a regex file_id.
         Modify the file_id based on your ID format.
         """
+
         if file_id_regex_pattern[1] == True:  # extract id from filepath
             match = re.search(file_id_regex_pattern[0], file_path)
         else:  # extract id from filename
-            # file_id_regex_pattern = r"\d+"  # Example: Match a sequence of digits (modify based on your ID file_id)
             match = re.search(file_id_regex_pattern[0], file_name)
         if match:
             return match.group(0)  # Return the matched ID
         else:
-            raise ValueError(f"ID not found in filename: {file_name}")
+            raise ValueError(
+                f"ID not found in filename:{file_name}, or file path: {file_path}"
+            )
 
-    def process_file_in_files_folder(self, file_name: str, file_path: str):
+    def process_file_in_files_folder(self, file_name: str, file_path: str, **kwargs):
 
         try:
 
             # Process the file and map to the automatable components tree
             for component in self.automatable_components:
                 rule_function = component["rule_function"]
+                print("FILE_NAME: ", file_name)
 
-                if rule_function(file_name):
+                if rule_function(file_name, file_path):
 
                     file_id = self.extract_id_from_filename_or_filepath(
                         component["file_id_regex_pattern"], file_name, file_path
                     )
+                    print("FILE_ID: ", file_id)
 
                     # Check if the ID already has an automatable components tree, if not, create one
                     if file_id not in self.automatable_components_trees:
-                        self.automatable_components_trees[file_id] = (
-                            AutomatableComponentTree()
-                        )
+                        self.automatable_components_trees[file_id] = self.tree_class()
 
                     # Access the tree for this ID
                     component_tree = self.automatable_components_trees[file_id]
 
-                    required_schema = component["required_schema"]
+                    # required_schema = component["required_schema"]
                     action_function = component["action_function"]
-                    output = action_function(file_name, file_path, component)
+
+                    output = action_function(file_name, file_path, component, **kwargs)
 
                     # Add the mapping to the automatable components tree for this ID
-                    component_tree.add_mapping(file_id, component)
+                    component_tree.add_mapping(file_id, component, output)
 
-                    self.dump_output_to_gemd_folder(output)
+                    # self.dump_output_to_gemd_folder(output)
                     print(f"Rule was Found for {file_name} and applied. ")
 
                     return
@@ -238,10 +271,8 @@ class GEMDModeller(Runnable):
             json_file_path = self.gemd_folder / f"{ele.name}_{ele.typ}.json"
             with open(json_file_path, "w") as json_file:
                 json_file.write(self.encoder.thin_dumps(ele, indent=2))
-                # json.dump(ele, json_file, indent=4)
-            # json.dump(self.encoder(ele, json_file, indent=4)
 
-    def start_folder_monitoring(self):
+    def start_monitoring(self):
         """
         Start monitoring both files_folder and gemd_folder.
         """
@@ -272,8 +303,30 @@ class GEMDModeller(Runnable):
         elif self.mode == "girder":
             print("Running in GIRDER mode. Fetching files from Girder folder...")
             self.process_existing_files_and_folders_girder()
+        elif self.mode == "forms":
+            print("Running in FORMS mode. Fetching from entries from Girder...")
+            self.process_existing_form_entries()
+
         else:
             raise ValueError("Invalid mode. Choose 'local' or 'girder'.")
+
+    def process_existing_form_entries(self):
+        raw_data_forms = self.client.get(
+            "entry/search",
+            parameters={"query": r"\b[A-Z]{3}\d{2}_(?:VAM|DED)-[A-Z]\b", "limit": 1000},
+        )
+
+        for form in raw_data_forms:
+            file_id = form["data"]["sampleId"]
+            file_path = form["data"]["targetPath"]
+            print(f"- Processing initial file from Girder: {file_id}")
+            self.process_file_in_files_folder(file_id, file_path, form=form)
+
+        for file_id, tree in self.automatable_components_trees.items():
+            print(file_id)
+            print(tree.file_mappings.keys())
+            # tree.map_to_schema()
+            self.dump_output_to_gemd_folder(tree.map_to_schema())
 
     def process_existing_files_and_folders_girder(self):
         """

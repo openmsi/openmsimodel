@@ -197,7 +197,7 @@ class OpenMSIModelParser(ArgumentParser):
             },
         ],
         "gemd_folder": [
-            "optional",
+            "required",
             {
                 "type": str,
                 "help": "Path to the local GEMD output folder (Required in 'local' mode).",
@@ -215,7 +215,7 @@ class OpenMSIModelParser(ArgumentParser):
         "mode": [
             "required",
             {
-                "choices": ["local", "girder"],
+                "choices": ["local", "girder", "forms"],
                 "help": "Mode of operation: 'local' for monitoring local files, 'girder' for fetching files from Girder.",
             },
         ],

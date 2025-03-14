@@ -39,6 +39,13 @@ class ScienceKit(Runnable):
                 self.elements.extend(structure.assets)
         return self.elements
 
+    def link_prior(self, prior_kit: "ScienceKit", ingredient_name_to_link: str):
+        prior_kit_last_sequence = list(prior_kit.structures.values())[-1]
+        current_kit_first_sequence = list(self.structures.values())[0]
+        current_kit_first_sequence.link_prior(
+            prior_kit_last_sequence, ingredient_name_to_link
+        )
+
     def build(self):
         """
         This function builds the entire GEMD model that represents a certain ScienceKit.
@@ -59,16 +66,6 @@ class ScienceKit(Runnable):
         in which pointers (i.e., true value) are replaced by links (e.g., uuid).
         """
         pass
-
-    def out(self, item):
-        """
-        function object to run on individual item during recursion
-        :param item: json item to write its destination
-        se
-        """
-        fn = "_".join([item.__class__.__name__, item.name, item.uids["auto"], ".json"])
-        with open(os.path.join(self.local_out_destination, fn), "w") as fp:
-            fp.write(self.dump_function(item, indent=3))
 
     @classmethod
     def from_spec_or_run(

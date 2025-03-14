@@ -49,6 +49,7 @@ class OpenMSI_LLM:
         response = openai.Completion.create(
             engine="gpt-3.5-turbo-instruct",
             prompt=f"Context: {context}\nQuestion: {question}\nAnswer:",
+            max_tokens=500,
         )
         return response.choices[0].text.strip()
 

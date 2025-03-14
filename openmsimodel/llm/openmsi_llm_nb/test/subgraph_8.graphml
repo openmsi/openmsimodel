@@ -1,0 +1,211 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><key id="d26" for="edge" attr.name="relationship" attr.type="string"/>
+<key id="d25" for="node" attr.name="Posterior Width" attr.type="string"/>
+<key id="d24" for="node" attr.name="Prior Width" attr.type="string"/>
+<key id="d23" for="node" attr.name="Prior Thickness" attr.type="string"/>
+<key id="d22" for="node" attr.name="Prior Length" attr.type="string"/>
+<key id="d21" for="node" attr.name="Soak Time" attr.type="string"/>
+<key id="d20" for="node" attr.name="V" attr.type="string"/>
+<key id="d19" for="node" attr.name="Ni" attr.type="string"/>
+<key id="d18" for="node" attr.name="Mn" attr.type="string"/>
+<key id="d17" for="node" attr.name="Fe" attr.type="string"/>
+<key id="d16" for="node" attr.name="Cr" attr.type="string"/>
+<key id="d15" for="node" attr.name="Co" attr.type="string"/>
+<key id="d14" for="node" attr.name="Al" attr.type="string"/>
+<key id="d13" for="node" attr.name="Temperature" attr.type="string"/>
+<key id="d12" for="node" attr.name="Duration" attr.type="string"/>
+<key id="d11" for="node" attr.name="Cooling Rate" attr.type="string"/>
+<key id="d10" for="node" attr.name="Atmosphere" attr.type="string"/>
+<key id="d9" for="node" attr.name="file_links" attr.type="string"/>
+<key id="d8" for="node" attr.name="Vacuum Before Melt" attr.type="string"/>
+<key id="d7" for="node" attr.name="Argon Pressure" attr.type="string"/>
+<key id="d6" for="node" attr.name="source" attr.type="string"/>
+<key id="d5" for="node" attr.name="short_name" attr.type="string"/>
+<key id="d4" for="node" attr.name="type" attr.type="string"/>
+<key id="d3" for="node" attr.name="uuid" attr.type="string"/>
+<key id="d2" for="node" attr.name="shape" attr.type="string"/>
+<key id="d1" for="node" attr.name="color" attr.type="string"/>
+<key id="d0" for="graph" attr.name="name" attr.type="string"/>
+<graph edgedefault="directed"><data key="d0">birdshot</data>
+<node id="BBC09_VAM-A Forged Ingot [69a6, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">69a6d5fa-4bf4-422f-9776-fbcf17ab1046</data>
+  <data key="d4">material_run</data>
+  <data key="d5">BBC09_VAM-A Forged Ingot</data>
+  <data key="d6">BBC09_VAM-A Forged Ingot_material_run.json</data>
+</node>
+<node id="BBC09_VAM-A Forged Sample [f1ee, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">f1ee064d-fd0c-4d98-9ff7-c670dc1aaf01</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">BBC09_VAM-A Forged Sample</data>
+  <data key="d6">BBC09_VAM-A Forged Sample_ingredient_run.json</data>
+</node>
+<node id="BBC09_VAM-A Arc Melting [5d56, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">5d5623ce-ad57-4491-ba82-40753cac512e</data>
+  <data key="d4">process_run</data>
+  <data key="d5">BBC09_VAM-A Arc Melting</data>
+  <data key="d7">Argon Pressure, 800.0 pascal</data>
+  <data key="d8">Vacuum Before Melt, 3e-05 pascal</data>
+  <data key="d9">{0: 'https://data.htmdec.org/api/v1/item/67c5cca544f9c11af77b0094', 1: 'https://data.htmdec.org/api/v1/item/67c5aecc44f9c11af77aff63'}</data>
+  <data key="d6">BBC09_VAM-A Arc Melting_process_run.json</data>
+</node>
+<node id="BBC09_VAM-A Homogenization [4bff, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">4bfff73e-5ffe-4cdd-9080-605a1cdd11ad</data>
+  <data key="d4">process_run</data>
+  <data key="d5">BBC09_VAM-A Homogenization</data>
+  <data key="d10">Atmosphere, Ar</data>
+  <data key="d11">Cooling Rate, FC</data>
+  <data key="d12">Duration, 24.0 hour</data>
+  <data key="d13">Temperature, 950.0 degree_Celsius</data>
+  <data key="d6">BBC09_VAM-A Homogenization_process_run.json</data>
+</node>
+<node id="BBC09_VAM-A Ingot [aad2, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">aad2b052-8f42-47a4-9f40-5289c1b16656</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">BBC09_VAM-A Ingot</data>
+  <data key="d6">BBC09_VAM-A Ingot_ingredient_run.json</data>
+</node>
+<node id="BBC09_VAM-A Homogenous Sample [f9dd, ingredient_run]">
+  <data key="d1">blue</data>
+  <data key="d2">circle</data>
+  <data key="d3">f9dd2045-5eb7-45f6-9495-d56bedc5b14c</data>
+  <data key="d4">ingredient_run</data>
+  <data key="d5">BBC09_VAM-A Homogenous Sample</data>
+  <data key="d6">BBC09_VAM-A Homogenous Sample_ingredient_run.json</data>
+</node>
+<node id="BBC09_VAM-A Weighed Mass [a2e5, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">a2e5672f-8214-47d1-826e-87496de01455</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">BBC09_VAM-A Weighed Mass</data>
+  <data key="d14">Al, 0.0 gram</data>
+  <data key="d15">Co, 13.2845 gram</data>
+  <data key="d16">Cr, 1.3009 gram</data>
+  <data key="d17">Fe, 5.598 gram</data>
+  <data key="d18">Mn, 5.5065 gram</data>
+  <data key="d19">Ni, 2.9372 gram</data>
+  <data key="d20">V, 6.38 gram</data>
+  <data key="d6">BBC09_VAM-A Weighed Mass_measurement_run.json</data>
+</node>
+<node id="BBC09_VAM-A Homogenous Material [c429, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">c429efb6-9fd1-42d6-aa4f-aa38797393c4</data>
+  <data key="d4">material_run</data>
+  <data key="d5">BBC09_VAM-A Homogenous Material</data>
+  <data key="d6">BBC09_VAM-A Homogenous Material_material_run.json</data>
+</node>
+<node id="BBC09_VAM-A Forging [4c8f, process_run]">
+  <data key="d1">red</data>
+  <data key="d2">circle</data>
+  <data key="d3">4c8f356b-3ad8-444e-a19c-2de6d85499c5</data>
+  <data key="d4">process_run</data>
+  <data key="d5">BBC09_VAM-A Forging</data>
+  <data key="d6">BBC09_VAM-A Forging_process_run.json</data>
+</node>
+<node id="BBC09_VAM-A Temperature [a873, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">a873088a-89cf-4a12-928c-65521b9f5988</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">BBC09_VAM-A Temperature</data>
+  <data key="d6">BBC09_VAM-A Temperature_measurement_run.json</data>
+</node>
+<node id="BBC09_VAM-A Arc Melted Sample [c2c1, material_run]">
+  <data key="d1">green</data>
+  <data key="d2">circle</data>
+  <data key="d3">c2c1534e-8cb6-43b9-b53c-1a919a4ab146</data>
+  <data key="d4">material_run</data>
+  <data key="d5">BBC09_VAM-A Arc Melted Sample</data>
+  <data key="d6">BBC09_VAM-A Arc Melted Sample_material_run.json</data>
+</node>
+<node id="BBC09_VAM-A Time Spent Measurement [051a, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">051a22e7-8c87-4e60-99a1-251cc43b069a</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">BBC09_VAM-A Time Spent Measurement</data>
+  <data key="d6">BBC09_VAM-A Time Spent Measurement_measurement_run.json</data>
+</node>
+<node id="BBC09_VAM-A Soak Time [2a0a, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">2a0a51b3-6783-439c-ab80-e90a6e8b943b</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">BBC09_VAM-A Soak Time</data>
+  <data key="d21">Soak Time, 0.0 minute</data>
+  <data key="d6">BBC09_VAM-A Soak Time_measurement_run.json</data>
+</node>
+<node id="BBC09_VAM-A Prior Dimension [b292, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">b2928fc6-1f7e-4cd3-8f82-055004bc2a34</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">BBC09_VAM-A Prior Dimension</data>
+  <data key="d22">Prior Length, 38.63 centimeter</data>
+  <data key="d23">Prior Thickness, 11.58 centimeter</data>
+  <data key="d24">Prior Width, 14.45 centimeter</data>
+  <data key="d6">BBC09_VAM-A Prior Dimension_measurement_run.json</data>
+</node>
+<node id="BBC09_VAM-A Posterior Dimension [40e5, measurement_run]">
+  <data key="d1">purple</data>
+  <data key="d2">circle</data>
+  <data key="d3">40e5bd1c-7e37-4fe6-a565-199f3462f96e</data>
+  <data key="d4">measurement_run</data>
+  <data key="d5">BBC09_VAM-A Posterior Dimension</data>
+  <data key="d25">Posterior Width, 0.0 centimeter</data>
+  <data key="d6">BBC09_VAM-A Posterior Dimension_measurement_run.json</data>
+</node>
+<edge source="BBC09_VAM-A Forged Ingot [69a6, material_run]" target="BBC09_VAM-A Temperature [a873, measurement_run]">
+  <data key="d26">is measured with</data>
+</edge>
+<edge source="BBC09_VAM-A Forged Ingot [69a6, material_run]" target="BBC09_VAM-A Posterior Dimension [40e5, measurement_run]">
+  <data key="d26">is measured with</data>
+</edge>
+<edge source="BBC09_VAM-A Forged Ingot [69a6, material_run]" target="BBC09_VAM-A Prior Dimension [b292, measurement_run]">
+  <data key="d26">is measured with</data>
+</edge>
+<edge source="BBC09_VAM-A Forged Ingot [69a6, material_run]" target="BBC09_VAM-A Forged Sample [f1ee, ingredient_run]">
+  <data key="d26">becomes</data>
+</edge>
+<edge source="BBC09_VAM-A Forged Ingot [69a6, material_run]" target="BBC09_VAM-A Soak Time [2a0a, measurement_run]">
+  <data key="d26">is measured with</data>
+</edge>
+<edge source="BBC09_VAM-A Forged Sample [f1ee, ingredient_run]" target="BBC09_VAM-A Homogenization [4bff, process_run]">
+  <data key="d26">is used in</data>
+</edge>
+<edge source="BBC09_VAM-A Arc Melting [5d56, process_run]" target="BBC09_VAM-A Arc Melted Sample [c2c1, material_run]">
+  <data key="d26">creates</data>
+</edge>
+<edge source="BBC09_VAM-A Homogenization [4bff, process_run]" target="BBC09_VAM-A Homogenous Material [c429, material_run]">
+  <data key="d26">creates</data>
+</edge>
+<edge source="BBC09_VAM-A Ingot [aad2, ingredient_run]" target="BBC09_VAM-A Forging [4c8f, process_run]">
+  <data key="d26">is used in</data>
+</edge>
+<edge source="BBC09_VAM-A Homogenous Sample [f9dd, ingredient_run]" target="BBC09_VAM-A Arc Melting [5d56, process_run]">
+  <data key="d26">is used in</data>
+</edge>
+<edge source="BBC09_VAM-A Homogenous Material [c429, material_run]" target="BBC09_VAM-A Time Spent Measurement [051a, measurement_run]">
+  <data key="d26">is measured with</data>
+</edge>
+<edge source="BBC09_VAM-A Homogenous Material [c429, material_run]" target="BBC09_VAM-A Homogenous Sample [f9dd, ingredient_run]">
+  <data key="d26">becomes</data>
+</edge>
+<edge source="BBC09_VAM-A Forging [4c8f, process_run]" target="BBC09_VAM-A Forged Ingot [69a6, material_run]">
+  <data key="d26">creates</data>
+</edge>
+<edge source="BBC09_VAM-A Arc Melted Sample [c2c1, material_run]" target="BBC09_VAM-A Weighed Mass [a2e5, measurement_run]">
+  <data key="d26">is measured with</data>
+</edge>
+</graph></graphml>
